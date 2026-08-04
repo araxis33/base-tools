@@ -212,11 +212,11 @@ const TOOLS = [
   {name:"DEXTools", cat:"Terminals", desc:"Графики, ликвидность и рейтинги пар Base-сети, один из старейших ончейн-терминалов.", url:"https://www.dextools.io/app/en/base/pairs", color:"#000000"},
   {name:"GeckoTerminal", cat:"Terminals", desc:"Ончейн-терминал от CoinGecko: пулы, объёмы, тренды по Base в реальном времени.", url:"https://www.geckoterminal.com/base/pools", color:"#8bc53f"},
 
-  {name:"Cielo Finance", cat:"Tracking & Alerts", desc:"Трекер кошельков и смартмани по 25+ сетям вклюq�ая Base, алерты в Telegram/Discord.", url:"https://cielo.finance", color:"#38bdf8"},
+  {name:"Cielo Finance", cat:"Tracking & Alerts", desc:"Трекер кошельков и смартмани по 25+ сетям включая Base, алерты в Telegram/Discord.", url:"https://cielo.finance", color:"#38bdf8"},
   {name:"RayBot", cat:"Tracking & Alerts", desc:"Telegram-трекер кошельков с моментальными алертами, поддерживает Base наравне с Solana/ETH.", url:"https://raybot.app", color:"#fb7185"},
 
   {name:"Base Bridge", cat:"Bridges", desc:"Официальный мост Superchain для перевода ETH и токенов между Ethereum и Base.", url:"https://bridge.base.org", color:"#0052ff"},
-  {name:"Superbridge", cat:"Bridges", desc:"Универсальный мост в Superchain-роллапы, вклюq�ая выделенный интерфейс для Base.", url:"https://base.superbridge.app", color:"#f97316"},
+  {name:"Superbridge", cat:"Bridges", desc:"Универсальный мост в Superchain-роллапы, включая выделенный интерфейс для Base.", url:"https://base.superbridge.app", color:"#f97316"},
   {name:"Brid.gg", cat:"Bridges", desc:"Простой интерфейс для мостинга ETH и ERC-20 токенов в Base и обратно, есть expert-режим.", url:"https://www.brid.gg", color:"#14b8a6"},
 
   {name:"Aerodrome Finance", cat:"DEX & Swap", desc:"Главный DEX и центр ликвидности Base, ve(3,3)-модель, крупнейший TVL в экосистеме.", url:"https://aerodrome.finance", color:"#000000"},
@@ -229,7 +229,7 @@ document.getElementById("tool-count").textContent = TOOLS.length;
 document.getElementById("cat-count").textContent = CATS.length - 1;
 
 function initials(name){
-  return name.split(" ").map(w=>v[0]).join("").slice(0,2).toUpperCase();
+  return name.split(" ").map(w=>w[0]).join("").slice(0,2).toUpperCase();
 }
 
 function renderGrid(filter){
