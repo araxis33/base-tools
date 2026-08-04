@@ -4,27 +4,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>base.tools — Base ecosystem directory</title>
-<meta name="description" content="Каталог инструментов Base-экосистемы плюс живые рейтинги токенов: по объёму, топ blue-chip и лучшие по росту цены за 24ч.">
+<meta name="description" content="Каталог инструментов Base-экосистемы плюс живые рейтинги настоящих base-нативных токенов: по объёму, blue-chip и росту цены.">
 <style>
   :root{
-    --blue:#0052ff;
-    --blue-dark:#0039b3;
-    --blue-light:#eaf1ff;
-    --blue-line:#d7e4ff;
-    --sky:#f4f8ff;
-    --yellow:#ffc700;
-    --ink:#0a0e17;
-    --muted:#5b6472;
-    --muted2:#8993a3;
-    --white:#ffffff;
-    --red:#e0393e;
-    --green:#0a9a5a;
+    --bg:#0a0e1c;
+    --bg2:#0d1226;
+    --card:#111730;
+    --card-hover:#151c3a;
+    --border:#232c4d;
+    --border-hover:#33406b;
+    --blue:#3b6eff;
+    --blue-soft:#182252;
+    --blue-text:#7ea0ff;
+    --yellow:#ffcf40;
+    --text:#eef1fb;
+    --muted:#8791b3;
+    --muted2:#5c6690;
+    --green:#3ddc84;
+    --red:#ff5d5d;
     --radius:14px;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   body{
-    background:var(--white);
-    color:var(--ink);
+    background:var(--bg);
+    color:var(--text);
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height:1.5;
   }
@@ -32,97 +35,93 @@
   .wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
 
   header{
-    border-bottom:1px solid var(--blue-line);
-    background:rgba(255,255,255,0.9);
+    border-bottom:1px solid var(--border);
+    background:rgba(10,14,28,0.9);
     backdrop-filter:blur(8px);
     position:sticky; top:0; z-index:50;
   }
   header .wrap{display:flex; align-items:center; justify-content:space-between; height:66px;}
-  .logo{display:flex; align-items:center; gap:10px; font-weight:800; font-size:18px; color:var(--ink);}
+  .logo{display:flex; align-items:center; gap:10px; font-weight:800; font-size:18px; color:var(--text);}
   .logo-mark{
     width:30px; height:30px; border-radius:8px;
     background:var(--blue); color:#fff;
     display:flex; align-items:center; justify-content:center;
     font-weight:900; font-size:15px;
   }
-  nav{display:flex; gap:26px; font-size:14px; font-weight:700; color:var(--blue-dark);}
+  nav{display:flex; gap:26px; font-size:14px; font-weight:700; color:var(--blue-text);}
   nav a{padding:6px 0; border-bottom:2px solid transparent;}
   nav a:hover{border-color:var(--blue);}
 
   .hero{
-    padding:72px 0 48px;
+    padding:68px 0 44px;
     background:
-      radial-gradient(600px 300px at 85% -10%, var(--blue-light), transparent),
-      radial-gradient(500px 260px at 5% 0%, #fff8e0, transparent);
+      radial-gradient(650px 320px at 90% -10%, rgba(59,110,255,0.16), transparent),
+      radial-gradient(500px 260px at 0% 0%, rgba(255,207,64,0.07), transparent);
   }
   .pill{
     display:inline-flex; align-items:center; gap:8px;
-    background:var(--blue-light); border:1px solid var(--blue-line); border-radius:999px;
-    padding:7px 14px; font-size:12.5px; font-weight:800; color:var(--blue-dark);
+    background:var(--blue-soft); border:1px solid var(--border); border-radius:999px;
+    padding:7px 14px; font-size:12.5px; font-weight:800; color:var(--blue-text);
     margin-bottom:26px; letter-spacing:.02em;
   }
   .pill .dot{width:7px; height:7px; border-radius:50%; background:var(--blue);}
-  h1{font-size:52px; font-weight:800; line-height:1.08; letter-spacing:-0.02em; max-width:760px; color:var(--ink);}
-  h1 .accent{color:var(--blue);}
-  h1 .mark{
-    background:linear-gradient(180deg, transparent 62%, var(--yellow) 62%);
-  }
-  .sub{color:var(--muted); font-size:17px; max-width:600px; margin-top:20px;}
+  h1{font-size:50px; font-weight:800; line-height:1.1; letter-spacing:-0.02em; max-width:760px; color:var(--text);}
+  h1 .accent{color:var(--blue-text);}
+  h1 .mark{color:var(--yellow);}
+  .sub{color:var(--muted); font-size:16.5px; max-width:600px; margin-top:20px;}
 
   section{padding:32px 0;}
   .section-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:18px; flex-wrap:wrap; gap:10px;}
-  .section-title{font-size:22px; font-weight:800; color:var(--ink);}
+  .section-title{font-size:22px; font-weight:800; color:var(--text);}
   .section-sub{color:var(--muted); font-size:13.5px; margin-top:4px;}
   .updated{font-size:12px; color:var(--muted2); font-weight:600;}
 
   /* trending: 3 columns */
   .trend-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:18px;}
   .trend-col{
-    border:1px solid var(--blue-line); border-radius:var(--radius); background:var(--white);
+    border:1px solid var(--border); border-radius:var(--radius); background:var(--card);
     overflow:hidden;
   }
   .trend-col-head{
     display:flex; align-items:center; gap:10px;
-    padding:16px 18px; border-bottom:1px solid var(--blue-line);
+    padding:16px 18px; border-bottom:1px solid var(--border);
   }
   .trend-col-icon{
     width:30px; height:30px; border-radius:8px; display:flex; align-items:center; justify-content:center;
     font-size:15px; flex-shrink:0;
   }
-  .trend-col-icon.vol{background:var(--blue-light); color:var(--blue);}
-  .trend-col-icon.chip{background:#eaf3ff; color:var(--blue-dark);}
-  .trend-col-icon.gain{background:#fff6d9; color:#a67300;}
+  .trend-col-icon.vol{background:rgba(59,110,255,0.15); color:var(--blue-text);}
+  .trend-col-icon.chip{background:rgba(255,207,64,0.14); color:var(--yellow);}
+  .trend-col-icon.gain{background:rgba(61,220,132,0.14); color:var(--green);}
   .trend-col-title{font-weight:800; font-size:14.5px;}
   .trend-col-desc{font-size:11.5px; color:var(--muted2); font-weight:600;}
   .trend-row{
     display:flex; align-items:center; justify-content:space-between; gap:10px;
-    padding:11px 18px; border-bottom:1px solid #f0f4fb; font-size:13px;
+    padding:11px 18px; border-bottom:1px solid rgba(255,255,255,0.03); font-size:13px;
   }
   .trend-row:last-child{border-bottom:none;}
-  .trend-row:hover{background:var(--sky);}
+  .trend-row:hover{background:var(--card-hover);}
   .trend-left{display:flex; align-items:center; gap:10px; min-width:0;}
   .trend-rank{color:var(--muted2); font-weight:700; font-size:12px; width:14px; flex-shrink:0;}
-  .trend-sym{font-weight:800; color:var(--ink);}
-  .trend-sym a{color:var(--ink);}
-  .trend-sym a:hover{color:var(--blue);}
+  .trend-logo{width:26px; height:26px; border-radius:50%; flex-shrink:0; background:var(--blue-soft); object-fit:cover;}
+  .trend-sym{font-weight:800; color:var(--text);}
   .trend-addr{font-size:11px; color:var(--muted2); display:flex; align-items:center; gap:4px;}
   .trend-addr a{color:var(--muted2);}
-  .trend-addr a:hover{color:var(--blue);}
+  .trend-addr a:hover{color:var(--blue-text);}
   .copy-btn{background:none; border:none; color:var(--muted2); cursor:pointer; font-size:11px; padding:0;}
-  .copy-btn:hover{color:var(--blue);}
+  .copy-btn:hover{color:var(--blue-text);}
   .trend-right{text-align:right; flex-shrink:0;}
   .trend-price{font-weight:700; font-size:12.5px;}
   .trend-chg{font-size:11.5px; font-weight:800;}
   .trend-chg.pos{color:var(--green);}
   .trend-chg.neg{color:var(--red);}
-  .trend-vol{font-size:11px; color:var(--muted2);}
   .trend-empty{padding:24px 18px; color:var(--muted); font-size:13px; text-align:center;}
 
   /* filters */
   .filters{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:22px;}
   .chip{
-    border:1.5px solid var(--blue-line); border-radius:8px; padding:8px 15px;
-    font-size:12.5px; font-weight:700; color:var(--blue-dark); cursor:pointer; background:var(--white);
+    border:1.5px solid var(--border); border-radius:8px; padding:8px 15px;
+    font-size:12.5px; font-weight:700; color:var(--blue-text); cursor:pointer; background:var(--card);
     transition:.15s;
   }
   .chip:hover{border-color:var(--blue);}
@@ -131,35 +130,37 @@
   /* cards */
   .grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;}
   .card{
-    border:1px solid var(--blue-line); border-radius:var(--radius); background:var(--white);
+    border:1px solid var(--border); border-left:3px solid var(--cat-color, var(--border));
+    border-radius:var(--radius); background:var(--card);
     padding:20px; display:flex; flex-direction:column; gap:14px;
-    transition:.15s; box-shadow:0 1px 2px rgba(10,20,40,0.03);
+    transition:.15s;
   }
-  .card:hover{border-color:var(--blue); box-shadow:0 8px 20px rgba(0,82,255,0.10); transform:translateY(-2px);}
+  .card:hover{border-color:var(--border-hover); border-left-color:var(--cat-color, var(--border-hover)); background:var(--card-hover);}
   .card-head{display:flex; align-items:center; gap:12px;}
   .icon{
-    width:38px; height:38px; border-radius:10px; flex-shrink:0;
+    width:36px; height:36px; border-radius:10px; flex-shrink:0;
     display:flex; align-items:center; justify-content:center;
-    font-weight:800; font-size:14px; color:#fff;
+    font-weight:800; font-size:13px;
+    background:var(--cat-bg); color:var(--cat-color);
   }
   .card-title{font-weight:800; font-size:15px;}
-  .card-cat{font-size:10.5px; color:var(--blue); font-weight:800; letter-spacing:.05em; text-transform:uppercase; margin-top:2px;}
+  .card-cat{font-size:10.5px; color:var(--cat-color); font-weight:800; letter-spacing:.05em; text-transform:uppercase; margin-top:2px;}
   .card-desc{color:var(--muted); font-size:13.5px; flex:1;}
   .visit{
     align-self:flex-start; display:inline-flex; align-items:center; gap:6px;
-    background:var(--blue-light); color:var(--blue-dark); font-weight:800; font-size:12.5px;
+    background:var(--blue-soft); color:var(--blue-text); font-weight:800; font-size:12.5px;
     padding:8px 14px; border-radius:8px; transition:.15s;
   }
   .card:hover .visit{background:var(--blue); color:#fff;}
 
-  footer{border-top:1px solid var(--blue-line); padding:32px 0 48px; margin-top:24px; background:var(--sky);}
+  footer{border-top:1px solid var(--border); padding:32px 0 48px; margin-top:24px;}
   footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;}
   footer p{color:var(--muted2); font-size:12.5px; max-width:600px;}
-  footer a{color:var(--blue-dark); font-size:12.5px; font-weight:700;}
+  footer a{color:var(--blue-text); font-size:12.5px; font-weight:700;}
   footer a:hover{color:var(--blue);}
 
   @media(max-width:900px){
-    h1{font-size:36px;}
+    h1{font-size:34px;}
     .grid{grid-template-columns:1fr;}
     .trend-grid{grid-template-columns:1fr;}
   }
@@ -181,7 +182,7 @@
 <div class="wrap hero">
   <div class="pill"><span class="dot"></span> <span id="tool-count">14</span> TOOLS · <span id="cat-count">5</span> CATEGORIES · BASE ONLY</div>
   <h1>The <span class="mark">directory</span> and live<br>token board for <span class="accent">Base</span>.</h1>
-  <p class="sub">Инструменты Base-экосистемы в одном месте — плюс три живых рейтинга токенов сети: по объёму, по надёжности и по росту цены.</p>
+  <p class="sub">Инструменты Base-экосистемы в одном месте — плюс три живых рейтинга настоящих base-нативных токенов: по объёму, надёжности и росту цены.</p>
 </div>
 
 <div class="wrap">
@@ -189,7 +190,7 @@
     <div class="section-head">
       <div>
         <div class="section-title">Live token boards</div>
-        <div class="section-sub">Обновляется на лету из ончейн-данных Base</div>
+        <div class="section-sub">Кураторский список base-нативных токенов, данные в реальном времени</div>
       </div>
       <div class="updated" id="trend-updated">loading…</div>
     </div>
@@ -204,7 +205,7 @@
       <div class="trend-col">
         <div class="trend-col-head">
           <div class="trend-col-icon chip">🔷</div>
-          <div><div class="trend-col-title">Base Blue-chips</div><div class="trend-col-desc">Крупнейшие токены экосистемы</div></div>
+          <div><div class="trend-col-title">Base Blue-chips</div><div class="trend-col-desc">Самые надёжные токены экосистемы</div></div>
         </div>
         <div id="col-bluechip"><div class="trend-empty">Загрузка…</div></div>
       </div>
@@ -239,25 +240,34 @@
 
 <script>
 // ---------- Directory data ----------
+// Muted category colors — visible but not loud
+const CAT_STYLE = {
+  "Trading Bots":      { color:"#e0a336", bg:"rgba(224,163,54,0.12)" },
+  "Terminals":         { color:"#5b8fd6", bg:"rgba(91,143,214,0.12)" },
+  "Tracking & Alerts":  { color:"#4fb3a9", bg:"rgba(79,179,169,0.12)" },
+  "Bridges":           { color:"#c97a4a", bg:"rgba(201,122,74,0.12)" },
+  "DEX & Swap":        { color:"#9b7bd6", bg:"rgba(155,123,214,0.12)" },
+};
+
 const TOOLS = [
-  {name:"Banana Gun", cat:"Trading Bots", desc:"Telegram-бот для быстрого исполнения сделок и снайпинга новых токенов. Работает на Base наравне с ETH/SOL/BNB.", url:"https://bananagun.io", color:"#f0b429"},
-  {name:"GMGN.ai", cat:"Trading Bots", desc:"Мультичейн терминал + бот для мем-трейдинга: сканер новых токенов, security-check, копи-трейдинг смартмани.", url:"https://gmgn.ai/?chain=base", color:"#0aa06e"},
-  {name:"Maestro", cat:"Trading Bots", desc:"Telegram-бот для снайпинга, копи-трейдинга и алертов по китам, поддерживает Base с 2024 года.", url:"https://www.maestrobots.com", color:"#7c5cff"},
+  {name:"Banana Gun", cat:"Trading Bots", desc:"Telegram-бот для быстрого исполнения сделок и снайпинга новых токенов. Работает на Base наравне с ETH/SOL/BNB.", url:"https://bananagun.io"},
+  {name:"GMGN.ai", cat:"Trading Bots", desc:"Мультичейн терминал + бот для мем-трейдинга: сканер новых токенов, security-check, копи-трейдинг смартмани.", url:"https://gmgn.ai/?chain=base"},
+  {name:"Maestro", cat:"Trading Bots", desc:"Telegram-бот для снайпинга, копи-трейдинга и алертов по китам, поддерживает Base с 2024 года.", url:"https://www.maestrobots.com"},
 
-  {name:"DexScreener", cat:"Terminals", desc:"Сканер пар и графики в реальном времени по всем пулам Base — новые пары, ликвидность, объём.", url:"https://dexscreener.com/base", color:"#0052ff"},
-  {name:"DEXTools", cat:"Terminals", desc:"Графики, ликвидность и рейтинги пар Base-сети, один из старейших ончейн-терминалов.", url:"https://www.dextools.io/app/en/base/pairs", color:"#111827"},
-  {name:"GeckoTerminal", cat:"Terminals", desc:"Ончейн-терминал от CoinGecko: пулы, объёмы, тренды по Base в реальном времени.", url:"https://www.geckoterminal.com/base/pools", color:"#3fae4e"},
+  {name:"DexScreener", cat:"Terminals", desc:"Сканер пар и графики в реальном времени по всем пулам Base — новые пары, ликвидность, объём.", url:"https://dexscreener.com/base"},
+  {name:"DEXTools", cat:"Terminals", desc:"Графики, ликвидность и рейтинги пар Base-сети, один из старейших ончейн-терминалов.", url:"https://www.dextools.io/app/en/base/pairs"},
+  {name:"GeckoTerminal", cat:"Terminals", desc:"Ончейн-терминал от CoinGecko: пулы, объёмы, тренды по Base в реальном времени.", url:"https://www.geckoterminal.com/base/pools"},
 
-  {name:"Cielo Finance", cat:"Tracking & Alerts", desc:"Трекер кошельков и смартмани по 25+ сетям включая Base, алерты в Telegram/Discord.", url:"https://cielo.finance", color:"#0ea5c9"},
-  {name:"RayBot", cat:"Tracking & Alerts", desc:"Telegram-трекер кошельков с моментальными алертами, поддерживает Base наравне с Solana/ETH.", url:"https://raybot.app", color:"#ef5b7a"},
+  {name:"Cielo Finance", cat:"Tracking & Alerts", desc:"Трекер кошельков и смартмани по 25+ сетям включая Base, алерты в Telegram/Discord.", url:"https://cielo.finance"},
+  {name:"RayBot", cat:"Tracking & Alerts", desc:"Telegram-трекер кошельков с моментальными алертами, поддерживает Base наравне с Solana/ETH.", url:"https://raybot.app"},
 
-  {name:"Base Bridge", cat:"Bridges", desc:"Официальный мост Superchain для перевода ETH и токенов между Ethereum и Base.", url:"https://bridge.base.org", color:"#0052ff"},
-  {name:"Superbridge", cat:"Bridges", desc:"Универсальный мост в Superchain-роллапы, включая выделенный интерфейс для Base.", url:"https://base.superbridge.app", color:"#ff8a00"},
-  {name:"Brid.gg", cat:"Bridges", desc:"Простой интерфейс для мостинга ETH и ERC-20 токенов в Base и обратно, есть expert-режим.", url:"https://www.brid.gg", color:"#0aa8a0"},
+  {name:"Base Bridge", cat:"Bridges", desc:"Официальный мост Superchain для перевода ETH и токенов между Ethereum и Base.", url:"https://bridge.base.org"},
+  {name:"Superbridge", cat:"Bridges", desc:"Универсальный мост в Superchain-роллапы, включая выделенный интерфейс для Base.", url:"https://base.superbridge.app"},
+  {name:"Brid.gg", cat:"Bridges", desc:"Простой интерфейс для мостинга ETH и ERC-20 токенов в Base и обратно, есть expert-режим.", url:"https://www.brid.gg"},
 
-  {name:"Aerodrome Finance", cat:"DEX & Swap", desc:"Главный DEX и центр ликвидности Base, ve(3,3)-модель, крупнейший TVL в экосистеме.", url:"https://aerodrome.finance", color:"#111827"},
-  {name:"Uniswap", cat:"DEX & Swap", desc:"Крупнейший DEX-протокол, полностью развёрнут на Base включая v4.", url:"https://app.uniswap.org", color:"#ff2e97"},
-  {name:"Matcha", cat:"DEX & Swap", desc:"Агрегатор ликвидности от 0x — ищет лучший курс среди десятков источников на Base.", url:"https://matcha.xyz", color:"#00b3a4"},
+  {name:"Aerodrome Finance", cat:"DEX & Swap", desc:"Главный DEX и центр ликвидности Base, ve(3,3)-модель, крупнейший TVL в экосистеме.", url:"https://aerodrome.finance"},
+  {name:"Uniswap", cat:"DEX & Swap", desc:"Крупнейший DEX-протокол, полностью развёрнут на Base включая v4.", url:"https://app.uniswap.org"},
+  {name:"Matcha", cat:"DEX & Swap", desc:"Агрегатор ликвидности от 0x — ищет лучший курс среди десятков источников на Base.", url:"https://matcha.xyz"},
 ];
 
 const CATS = ["All", ...Array.from(new Set(TOOLS.map(t=>t.cat)))];
@@ -272,11 +282,14 @@ function renderGrid(filter){
   const grid = document.getElementById("grid");
   grid.innerHTML = "";
   TOOLS.filter(t => filter === "All" || t.cat === filter).forEach(t=>{
+    const style = CAT_STYLE[t.cat];
     const card = document.createElement("div");
     card.className = "card";
+    card.style.setProperty("--cat-color", style.color);
+    card.style.setProperty("--cat-bg", style.bg);
     card.innerHTML = `
       <div class="card-head">
-        <div class="icon" style="background:${t.color}">${initials(t.name)}</div>
+        <div class="icon">${initials(t.name)}</div>
         <div>
           <div class="card-title">${t.name}</div>
           <div class="card-cat">${t.cat}</div>
@@ -309,17 +322,22 @@ renderFilters();
 renderGrid("All");
 
 // ---------- Live token boards ----------
-const CACHE_KEY = "basetools_boards_v2";
-const CACHE_TTL_MS = 5 * 60 * 1000;
-
-const BLUECHIPS = [
-  {symbol:"WETH", id:"weth", contract:"0x4200000000000000000000000000000000000006"},
-  {symbol:"cbBTC", id:"coinbase-wrapped-btc", contract:"0xcbb7c0000ab88b473b1f5afd9ef808440eed33bf"},
-  {symbol:"AERO", id:"aerodrome-finance", contract:"0x940181a94a35a4569e4529a3cdfb74e38fd98631"},
-  {symbol:"VIRTUAL", id:"virtual-protocol", contract:"0x0b3e328455c4059eeb9e3f84b5543f74e24e7e1b"},
-  {symbol:"MORPHO", id:"morpho", contract:"0xbaa5cc21fd487b8fcc2f632f3f4e8d37262a0842"},
-  {symbol:"COMP", id:"compound-governance-token", contract:"0x9e1028f5f1d5ede59748ffcee5532509976840e0"},
+// Curated, verified Base-native / Base-flagship tokens only (not generic multi-chain assets).
+// Each contract address cross-checked against CoinGecko's Base-platform contract lookup.
+const BASE_TOKENS = [
+  {id:"aerodrome-finance", contract:"0x940181a94a35a4569e4529a3cdfb74e38fd98631", blueChip:true},
+  {id:"morpho",            contract:"0xbaa5cc21fd487b8fcc2f632f3f4e8d37262a0842", blueChip:true},
+  {id:"virtual-protocol",  contract:"0x0b3e328455c4059eeb9e3f84b5543f74e24e7e1b", blueChip:true},
+  {id:"moonwell-artemis",  contract:"0xa88594d404727625a9437c3f886c7643872296ae", blueChip:true},
+  {id:"degen-base",        contract:"0x4ed4e862860bed51a9570b96d89af5e1b0efefed", blueChip:true},
+  {id:"toshi",             contract:"0xac1bd2486aaf3b5c0fc3fd868558b082a531b2b4", blueChip:true},
+  {id:"bankercoin-2",      contract:"0x22af33fe49fd1fa80c7149773dde5890d3c76f3b", blueChip:false},
+  {id:"venice-token",      contract:"0xacfe6019ed1a7dc6f7b508c02d1b04ec88cc21bf", blueChip:false},
+  {id:"tokenbot-2",        contract:"0x1bc0c42215582d5a085795f4badbac3ff36d1bcb", blueChip:false},
 ];
+
+const CACHE_KEY = "basetools_boards_v3";
+const CACHE_TTL_MS = 5 * 60 * 1000;
 
 function fmtPrice(n){
   if (!isFinite(n)) return "—";
@@ -328,17 +346,8 @@ function fmtPrice(n){
   if (n >= 0.01) return "$" + n.toFixed(4);
   return "$" + n.toPrecision(3);
 }
-function fmtVol(n){
-  if (!isFinite(n)) return "—";
-  if (n >= 1e6) return "$" + (n/1e6).toFixed(2) + "M";
-  if (n >= 1e3) return "$" + (n/1e3).toFixed(1) + "K";
-  return "$" + n.toFixed(0);
-}
 function shortAddr(a){
   return a.slice(0,6) + "…" + a.slice(-4);
-}
-function tokenSymbol(pairName){
-  return (pairName || "").split("/")[0].trim() || "?";
 }
 function chgHtml(n){
   if (!isFinite(n)) return `<span class="trend-chg">—</span>`;
@@ -359,94 +368,39 @@ function bindCopyButtons(container){
   });
 }
 
-async function fetchPoolsOnce(){
-  const res = await fetch("https://api.geckoterminal.com/api/v2/networks/base/trending_pools?limit=20", {
+async function fetchMarketsOnce(){
+  const ids = BASE_TOKENS.map(t=>t.id).join(",");
+  const res = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${ids}&price_change_percentage=24h`, {
     headers: { "Accept": "application/json" }
   });
   if (!res.ok) throw new Error("http " + res.status);
   const json = await res.json();
-  return (json.data || []).map(p=>{
-    const attr = p.attributes;
-    const baseTokenId = p.relationships?.base_token?.data?.id || "";
-    const contract = baseTokenId.replace(/^base_/, "");
+  return BASE_TOKENS.map(t=>{
+    const m = json.find(x=>x.id === t.id);
+    if (!m) return null;
     return {
-      symbol: tokenSymbol(attr.name),
-      contract,
-      poolAddress: attr.address,
-      price: parseFloat(attr.base_token_price_usd),
-      change24h: parseFloat(attr.price_change_percentage?.h24),
-      vol24h: parseFloat(attr.volume_usd?.h24),
-      liquidity: parseFloat(attr.reserve_in_usd),
+      symbol: (m.symbol || "").toUpperCase(),
+      logo: m.image,
+      contract: t.contract,
+      blueChip: t.blueChip,
+      price: m.current_price,
+      change24h: m.price_change_percentage_24h,
+      volume24h: m.total_volume,
     };
-  }).filter(t => isFinite(t.liquidity) && t.liquidity > 5000);
+  }).filter(Boolean);
 }
 
-async function fetchPoolsWithRetry(){
-  try { return await fetchPoolsOnce(); }
-  catch(e){
-    await new Promise(r=>setTimeout(r, 800));
-    return await fetchPoolsOnce();
+async function fetchMarketsWithRetry(){
+  let lastErr;
+  for (const delay of [0, 800, 2000]){
+    if (delay) await new Promise(r=>setTimeout(r, delay));
+    try { return await fetchMarketsOnce(); }
+    catch(e){ lastErr = e; }
   }
+  throw lastErr;
 }
 
-async function fetchBlueChipsOnce(){
-  const ids = BLUECHIPS.map(t=>t.id).join(",");
-  const res = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd&include_24hr_change=true`);
-  if (!res.ok) throw new Error("http " + res.status);
-  const json = await res.json();
-  return BLUECHIPS.map(t=>({
-    symbol: t.symbol,
-    contract: t.contract,
-    price: json[t.id]?.usd,
-    change24h: json[t.id]?.usd_24h_change,
-  })).filter(t => t.price != null);
-}
-
-async function fetchBlueChipsWithRetry(){
-  try { return await fetchBlueChipsOnce(); }
-  catch(e){
-    await new Promise(r=>setTimeout(r, 800));
-    return await fetchBlueChipsOnce();
-  }
-}
-
-function dedupeByContract(pools){
-  const seen = new Map();
-  for (const p of pools){
-    const existing = seen.get(p.contract);
-    if (!existing || p.vol24h > existing.vol24h) seen.set(p.contract, p);
-  }
-  return Array.from(seen.values());
-}
-
-function renderPoolColumn(elId, items, linkFn){
-  const el = document.getElementById(elId);
-  if (!items || !items.length){
-    el.innerHTML = `<div class="trend-empty">Недоступно. См. <a href="https://www.geckoterminal.com/base/pools" target="_blank" rel="noopener" style="color:var(--blue)">GeckoTerminal</a>.</div>`;
-    return;
-  }
-  el.innerHTML = items.map((t,i)=>`
-    <div class="trend-row">
-      <div class="trend-left">
-        <div class="trend-rank">${i+1}</div>
-        <div>
-          <div class="trend-sym"><a href="${linkFn(t)}" target="_blank" rel="noopener">${t.symbol}</a></div>
-          <div class="trend-addr">
-            <a href="https://basescan.org/token/${t.contract}" target="_blank" rel="noopener">${shortAddr(t.contract)}</a>
-            ${copyBtnHtml(t.contract)}
-          </div>
-        </div>
-      </div>
-      <div class="trend-right">
-        <div class="trend-price">${fmtPrice(t.price)}</div>
-        ${chgHtml(t.change24h)}
-      </div>
-    </div>
-  `).join("");
-  bindCopyButtons(el);
-}
-
-function renderBlueChipColumn(elId, items){
+function renderColumn(elId, items){
   const el = document.getElementById(elId);
   if (!items || !items.length){
     el.innerHTML = `<div class="trend-empty">Недоступно. Обновите страницу позже.</div>`;
@@ -456,6 +410,7 @@ function renderBlueChipColumn(elId, items){
     <div class="trend-row">
       <div class="trend-left">
         <div class="trend-rank">${i+1}</div>
+        <img class="trend-logo" src="${t.logo}" alt="${t.symbol}" loading="lazy">
         <div>
           <div class="trend-sym">${t.symbol}</div>
           <div class="trend-addr">
@@ -473,14 +428,14 @@ function renderBlueChipColumn(elId, items){
   bindCopyButtons(el);
 }
 
-function renderBoards(data, meta){
-  const pools = dedupeByContract(data.pools || []);
-  const byVolume = [...pools].sort((a,b)=>b.vol24h - a.vol24h).slice(0,6);
-  const byGainers = [...pools].filter(t=>isFinite(t.change24h)).sort((a,b)=>b.change24h - a.change24h).slice(0,6);
+function renderBoards(tokens, meta){
+  const byVolume = [...tokens].sort((a,b)=>b.volume24h - a.volume24h).slice(0,6);
+  const byGainers = [...tokens].filter(t=>isFinite(t.change24h)).sort((a,b)=>b.change24h - a.change24h).slice(0,6);
+  const blueChips = tokens.filter(t=>t.blueChip);
 
-  renderPoolColumn("col-volume", byVolume, t=>`https://dexscreener.com/base/${t.poolAddress}`);
-  renderPoolColumn("col-gainers", byGainers, t=>`https://dexscreener.com/base/${t.poolAddress}`);
-  renderBlueChipColumn("col-bluechip", data.bluechips || []);
+  renderColumn("col-volume", byVolume);
+  renderColumn("col-gainers", byGainers);
+  renderColumn("col-bluechip", blueChips);
 
   document.getElementById("trend-updated").textContent = meta === "cache" ? "cached · только что" : "live · только что";
 }
@@ -496,23 +451,17 @@ async function loadBoards(){
     return;
   }
   try {
-    const [pools, bluechips] = await Promise.all([
-      fetchPoolsWithRetry().catch(()=>[]),
-      fetchBlueChipsWithRetry().catch(()=>[]),
-    ]);
-    const data = { pools, bluechips };
-    if (pools.length || bluechips.length){
-      localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
-    }
-    renderBoards(data, "live");
+    const tokens = await fetchMarketsWithRetry();
+    localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data: tokens }));
+    renderBoards(tokens, "live");
   } catch(e){
     if (cached){
       renderBoards(cached.data, "cache");
       document.getElementById("trend-updated").textContent = "cached (offline)";
     } else {
-      renderPoolColumn("col-volume", null);
-      renderPoolColumn("col-gainers", null);
-      renderBlueChipColumn("col-bluechip", null);
+      renderColumn("col-volume", null);
+      renderColumn("col-gainers", null);
+      renderColumn("col-bluechip", null);
       document.getElementById("trend-updated").textContent = "unavailable";
     }
   }
