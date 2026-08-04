@@ -154,7 +154,10 @@
     display:flex; align-items:center; justify-content:center;
     font-weight:800; font-size:13px;
     background:var(--cat-bg); color:var(--cat-color);
+    overflow:hidden;
   }
+  .icon img{width:22px; height:22px; object-fit:contain; border-radius:4px;}
+  .icon-fallback{display:none;}
   .card-title{font-weight:800; font-size:15px;}
   .card-desc{color:var(--muted); font-size:13.5px; flex:1;}
   .visit{
@@ -291,10 +294,15 @@ function initials(name){
 
 function cardHtml(t){
   const style = CAT_STYLE[t.cat];
+  const domain = new URL(t.url).hostname;
+  const favicon = `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
   return `
     <div class="card" style="--cat-color:${style.color}; --cat-bg:${style.bg}">
       <div class="card-head">
-        <div class="icon">${initials(t.name)}</div>
+        <div class="icon">
+          <img src="${favicon}" alt="${t.name}" loading="lazy" onerror="this.remove(); this.nextElementSibling.style.display='block';">
+          <span class="icon-fallback">${initials(t.name)}</span>
+        </div>
         <div class="card-title">${t.name}</div>
       </div>
       <div class="card-desc">${t.desc}</div>
