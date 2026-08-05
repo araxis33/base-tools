@@ -204,7 +204,7 @@
     <div class="section-head">
       <div>
         <div class="section-title">Live token boards</div>
-        <div class="section-sub">Every Base-native token with real 24h data — scanned live, no fixed list</div>
+        <div class="section-sub">Volume &amp; Gainers scan every Base-native token live · Blue-chips is a curated list of established projects</div>
       </div>
       <div class="updated" id="trend-updated">loading…</div>
     </div>
@@ -219,7 +219,7 @@
       <div class="trend-col">
         <div class="trend-col-head">
           <div class="trend-col-icon chip">🔷</div>
-          <div><div class="trend-col-title">Base Blue-chips</div><div class="trend-col-desc">Highest market cap, Base-native only</div></div>
+          <div><div class="trend-col-title">Base Blue-chips</div><div class="trend-col-desc">Established Base projects, hand-picked</div></div>
         </div>
         <div id="col-bluechip"><div class="trend-empty">Loading…</div></div>
       </div>
@@ -365,10 +365,27 @@ function isNativeToBase(coin){
   return chains.length === 1;
 }
 
+// Blue-chips is a hand-picked list of long-established Base projects, not a live
+// market-cap ranking — a fresh/volatile token can briefly out-cap a real blue chip,
+// which isn't what "most stable" means here. Revisit this list occasionally.
+const BLUE_CHIP_TOKENS = [
+  { id:"aerodrome-finance", contract:"0x940181a94a35a4569e4529a3cdfb74e38fd98631" },
+  { id:"virtual-protocol",  contract:"0x0b3e328455c4059eeb9e3f84b5543f74e24e7e1b" },
+  { id:"morpho",            contract:"0xbaa5cc21fd487b8fcc2f632f3f4e8d37262a0842" },
+  { id:"based-brett",       contract:"0x532f27101965dd16442e59d40670faf5ebb142e4" },
+  { id:"toshi",             contract:"0xac1bd2486aaf3b5c0fc3fd868558b082a531b2b4" },
+  { id:"degen-base",        contract:"0x4ed4e862860bed51a9570b96d89af5e1b0efefed" },
+  { id:"zora",              contract:"0x1111111111166b7fe7bd91427724b487980afc69" },
+  { id:"higher",            contract:"0x0578d8a44db98b23bf096a382e016e29a5ce0ffe" },
+  { id:"venice-token",      contract:"0xacfe6019ed1a7dc6f7b508c02d1b04ec88cc21bf" },
+  { id:"kaito",             contract:"0x98d0baa52b2d063e780de12f615f963fe8537553" },
+  { id:"bankercoin-2",      contract:"0x22af33fe49fd1fa80c7149773dde5890d3c76f3b" },
+];
+
 const PLATFORMS_CACHE_KEY = "basetools_platforms_v1";
 const PLATFORMS_CACHE_TTL_MS = 24 * 60 * 60 * 1000; // platform mapping barely changes, cache a day
 
-const CACHE_KEY = "basetools_boards_v4";
+const CACHE_KEY = "basetools_boards_v5";
 const CACHE_TTL_MS = 5 * 60 * 1000;
 
 function fmtPrice(n){
@@ -450,13 +467,40 @@ async function fetchMarketsOnce(nativeMap){
     }));
 }
 
-async function fetchMarketsWithRetry(){
+async function fetchBlueChips(){
+  const ids = BLUE_CHIP_TOKENS.map(t=>t.id).join(",");
+  const res = await fetchWithTimeout(
+    `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${ids}&price_change_percentage=24h`,
+    9000
+  );
+  if (!res.ok) throw new Error("http " + res.status);
+  const json = await res.json();
+  return BLUE_CHIP_TOKENS.map(t=>{
+    const m = json.find(x=>x.id === t.id);
+    if (!m) return null;
+    return {
+      symbol: (m.symbol || "").toUpperCase(),
+      logo: m.image,
+      contract: t.contract,
+      price: m.current_price,
+      change24h: m.price_change_percentage_24h,
+      volume24h: m.total_volume,
+      marketCap: m.market_cap,
+    };
+  }).filter(Boolean).sort((a,b)=>(b.marketCap||0) - (a.marketCap||0));
+}
+
+async function fetchBoardsDataWithRetry(){
   let lastErr;
   for (const delay of [0, 800, 2000]){
     if (delay) await new Promise(r=>setTimeout(r, delay));
     try {
       const nativeMap = await fetchNativeBaseMap();
-      return await fetchMarketsOnce(nativeMap);
+      const [dynamicTokens, blueChips] = await Promise.all([
+        fetchMarketsOnce(nativeMap),
+        fetchBlueChips(),
+      ]);
+      return { dynamicTokens, blueChips };
     }
     catch(e){ lastErr = e; }
   }
@@ -494,14 +538,14 @@ function renderColumn(elId, items){
   bindCopyButtons(el);
 }
 
-function renderBoards(tokens, meta){
+function renderBoards(data, meta){
+  const tokens = data.dynamicTokens;
   const byVolume = [...tokens].sort((a,b)=>b.volume24h - a.volume24h).slice(0,6);
   const byGainers = [...tokens].filter(t=>isFinite(t.change24h)).sort((a,b)=>b.change24h - a.change24h).slice(0,6);
-  const blueChips = [...tokens].sort((a,b)=>(b.marketCap||0) - (a.marketCap||0)).slice(0,6);
 
   renderColumn("col-volume", byVolume);
   renderColumn("col-gainers", byGainers);
-  renderColumn("col-bluechip", blueChips);
+  renderColumn("col-bluechip", data.blueChips);
 
   document.getElementById("trend-updated").textContent = meta === "cache" ? "cached · just now" : "live · just now";
 }
@@ -517,9 +561,9 @@ async function loadBoards(){
     return;
   }
   try {
-    const tokens = await fetchMarketsWithRetry();
-    localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data: tokens }));
-    renderBoards(tokens, "live");
+    const data = await fetchBoardsDataWithRetry();
+    localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
+    renderBoards(data, "live");
   } catch(e){
     if (cached){
       renderBoards(cached.data, "cache");
