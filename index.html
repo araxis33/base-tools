@@ -204,7 +204,7 @@
     <div class="section-head">
       <div>
         <div class="section-title">Live token boards</div>
-        <div class="section-sub">Curated list of Base-native tokens, updated in real time</div>
+        <div class="section-sub">Every Base-native token with real 24h data — scanned live, no fixed list</div>
       </div>
       <div class="updated" id="trend-updated">loading…</div>
     </div>
@@ -219,7 +219,7 @@
       <div class="trend-col">
         <div class="trend-col-head">
           <div class="trend-col-icon chip">🔷</div>
-          <div><div class="trend-col-title">Base Blue-chips</div><div class="trend-col-desc">Most established tokens in the ecosystem</div></div>
+          <div><div class="trend-col-title">Base Blue-chips</div><div class="trend-col-desc">Highest market cap, Base-native only</div></div>
         </div>
         <div id="col-bluechip"><div class="trend-empty">Loading…</div></div>
       </div>
@@ -346,26 +346,29 @@ renderFilters();
 renderGrid("All");
 
 // ---------- Live token boards ----------
-// Curated, verified Base-native / Base-flagship tokens only (not generic multi-chain assets).
-// Each contract address cross-checked against CoinGecko's Base-platform contract lookup.
-const BASE_TOKENS = [
-  {id:"aerodrome-finance",  contract:"0x940181a94a35a4569e4529a3cdfb74e38fd98631", blueChip:true},
-  {id:"based-brett",        contract:"0x532f27101965dd16442e59d40670faf5ebb142e4", blueChip:true},
-  {id:"toshi",              contract:"0xac1bd2486aaf3b5c0fc3fd868558b082a531b2b4", blueChip:true},
-  {id:"morpho",             contract:"0xbaa5cc21fd487b8fcc2f632f3f4e8d37262a0842", blueChip:true},
-  {id:"virtual-protocol",   contract:"0x0b3e328455c4059eeb9e3f84b5543f74e24e7e1b", blueChip:true},
-  {id:"degen-base",         contract:"0x4ed4e862860bed51a9570b96d89af5e1b0efefed", blueChip:true},
-  {id:"moonwell-artemis",   contract:"0xa88594d404727625a9437c3f886c7643872296ae", blueChip:false},
-  {id:"bankercoin-2",       contract:"0x22af33fe49fd1fa80c7149773dde5890d3c76f3b", blueChip:false},
-  {id:"venice-token",       contract:"0xacfe6019ed1a7dc6f7b508c02d1b04ec88cc21bf", blueChip:false},
-  {id:"tokenbot-2",         contract:"0x1bc0c42215582d5a085795f4badbac3ff36d1bcb", blueChip:false},
-  {id:"higher",             contract:"0x0578d8a44db98b23bf096a382e016e29a5ce0ffe", blueChip:false},
-  {id:"zora",               contract:"0x1111111111166b7fe7bd91427724b487980afc69", blueChip:false},
-  {id:"echelon-prime",      contract:"0xfa980ced6895ac314e7de34ef1bfae90a5add21b", blueChip:false},
-  {id:"keyboard-cat-base",  contract:"0x9a26f5433671751c3276a065f57e5a02d2817973", blueChip:false},
-];
+// No fixed token list. Every board is built live from CoinGecko's "base-ecosystem"
+// category, restricted to tokens that are actually native to Base (see isNativeToBase),
+// so any real Base token with real 24h volume/price data shows up automatically.
 
-const CACHE_KEY = "basetools_boards_v3";
+// Tickers that collide with globally multi-chain assets (stablecoins, wrapped BTC/ETH,
+// blue-chip DeFi tokens available on many chains). These are excluded even when the
+// specific CoinGecko listing happens to be Base-only, because the underlying asset
+// is not a Base-native project.
+const NON_NATIVE_SYMBOLS = new Set([
+  "WETH","WBTC","CBBTC","USDC","USDBC","USDT","USDE","DAI","PYUSD","EURC",
+  "SOL","BTC","ETH","BNB","LINK","AAVE","UNI","WSTETH","CBETH",
+]);
+
+function isNativeToBase(coin){
+  if (!coin.platforms || !coin.platforms.base) return false;
+  const chains = Object.keys(coin.platforms).filter(k => k && coin.platforms[k]);
+  return chains.length === 1;
+}
+
+const PLATFORMS_CACHE_KEY = "basetools_platforms_v1";
+const PLATFORMS_CACHE_TTL_MS = 24 * 60 * 60 * 1000; // platform mapping barely changes, cache a day
+
+const CACHE_KEY = "basetools_boards_v4";
 const CACHE_TTL_MS = 5 * 60 * 1000;
 
 function fmtPrice(n){
@@ -397,41 +400,64 @@ function bindCopyButtons(container){
   });
 }
 
-async function fetchMarketsOnce(){
-  const ids = BASE_TOKENS.map(t=>t.id).join(",");
+async function fetchWithTimeout(url, ms){
   const controller = new AbortController();
-  const timeout = setTimeout(()=>controller.abort(), 7000);
-  let res;
+  const timeout = setTimeout(()=>controller.abort(), ms);
   try {
-    res = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${ids}&price_change_percentage=24h`, {
-      headers: { "Accept": "application/json" },
-      signal: controller.signal,
-    });
+    return await fetch(url, { headers: { "Accept": "application/json" }, signal: controller.signal });
   } finally {
     clearTimeout(timeout);
   }
+}
+
+// id -> base contract address, for every coin whose only platform is Base.
+async function fetchNativeBaseMap(){
+  const cachedRaw = localStorage.getItem(PLATFORMS_CACHE_KEY);
+  if (cachedRaw){
+    try {
+      const cached = JSON.parse(cachedRaw);
+      if ((Date.now() - cached.ts) < PLATFORMS_CACHE_TTL_MS) return cached.data;
+    } catch(e){}
+  }
+  const res = await fetchWithTimeout("https://api.coingecko.com/api/v3/coins/list?include_platform=true", 12000);
+  if (!res.ok) throw new Error("http " + res.status);
+  const list = await res.json();
+  const map = {};
+  for (const c of list){
+    if (isNativeToBase(c)) map[c.id] = c.platforms.base;
+  }
+  localStorage.setItem(PLATFORMS_CACHE_KEY, JSON.stringify({ ts: Date.now(), data: map }));
+  return map;
+}
+
+async function fetchMarketsOnce(nativeMap){
+  const res = await fetchWithTimeout(
+    "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=base-ecosystem&order=volume_desc&per_page=250&page=1&price_change_percentage=24h",
+    9000
+  );
   if (!res.ok) throw new Error("http " + res.status);
   const json = await res.json();
-  return BASE_TOKENS.map(t=>{
-    const m = json.find(x=>x.id === t.id);
-    if (!m) return null;
-    return {
+  return json
+    .filter(m => nativeMap[m.id] && m.total_volume > 0 && !NON_NATIVE_SYMBOLS.has((m.symbol||"").toUpperCase()))
+    .map(m => ({
       symbol: (m.symbol || "").toUpperCase(),
       logo: m.image,
-      contract: t.contract,
-      blueChip: t.blueChip,
+      contract: nativeMap[m.id],
       price: m.current_price,
       change24h: m.price_change_percentage_24h,
       volume24h: m.total_volume,
-    };
-  }).filter(Boolean);
+      marketCap: m.market_cap,
+    }));
 }
 
 async function fetchMarketsWithRetry(){
   let lastErr;
   for (const delay of [0, 800, 2000]){
     if (delay) await new Promise(r=>setTimeout(r, delay));
-    try { return await fetchMarketsOnce(); }
+    try {
+      const nativeMap = await fetchNativeBaseMap();
+      return await fetchMarketsOnce(nativeMap);
+    }
     catch(e){ lastErr = e; }
   }
   throw lastErr;
@@ -471,7 +497,7 @@ function renderColumn(elId, items){
 function renderBoards(tokens, meta){
   const byVolume = [...tokens].sort((a,b)=>b.volume24h - a.volume24h).slice(0,6);
   const byGainers = [...tokens].filter(t=>isFinite(t.change24h)).sort((a,b)=>b.change24h - a.change24h).slice(0,6);
-  const blueChips = tokens.filter(t=>t.blueChip);
+  const blueChips = [...tokens].sort((a,b)=>(b.marketCap||0) - (a.marketCap||0)).slice(0,6);
 
   renderColumn("col-volume", byVolume);
   renderColumn("col-gainers", byGainers);
@@ -512,3 +538,4 @@ loadBoards();
 
 </body>
 </html>
+
