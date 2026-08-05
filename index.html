@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>base.tools — Base ecosystem directory</title>
+<title>base.tools вЂ” Base ecosystem directory</title>
 <meta name="description" content="Directory of Base ecosystem tools plus live boards for real Base-native tokens: by volume, blue-chip status and 24h price gains.">
 <style>
   :root{
@@ -129,7 +129,7 @@
   .chip:hover{border-color:var(--blue);}
   .chip.active{background:var(--blue); color:#fff; border-color:var(--blue);}
 
-  /* category blocks — cards strictly grouped by color per category */
+  /* category blocks вЂ” cards strictly grouped by color per category */
   .cat-block{margin-bottom:28px;}
   .cat-block:last-child{margin-bottom:0;}
   .cat-label{
@@ -194,9 +194,9 @@
 </header>
 
 <div class="wrap hero">
-  <div class="pill"><span class="dot"></span> <span id="tool-count">14</span> TOOLS · <span id="cat-count">5</span> CATEGORIES · BASE ONLY</div>
+  <div class="pill"><span class="dot"></span> <span id="tool-count">14</span> TOOLS В· <span id="cat-count">5</span> CATEGORIES В· BASE ONLY</div>
   <h1>The <span class="mark">directory</span> and live<br>token board for <span class="accent">Base</span>.</h1>
-  <p class="sub">Base ecosystem tools in one place — plus three live boards for real Base-native tokens: by volume, blue-chip status and 24h price gains.</p>
+  <p class="sub">Base ecosystem tools in one place вЂ” plus three live boards for real Base-native tokens: by volume, blue-chip status and 24h price gains.</p>
 </div>
 
 <div class="wrap">
@@ -204,31 +204,31 @@
     <div class="section-head">
       <div>
         <div class="section-title">Live token boards</div>
-        <div class="section-sub">Volume &amp; Gainers scan every Base-native token live · Blue-chips is a curated list of established projects</div>
+        <div class="section-sub">Volume &amp; Gainers scan every Base-native token live В· Blue-chips is a curated list of established projects</div>
       </div>
-      <div class="updated" id="trend-updated">loading…</div>
+      <div class="updated" id="trend-updated">loadingвЂ¦</div>
     </div>
     <div class="trend-grid" id="trend-grid">
       <div class="trend-col">
         <div class="trend-col-head">
-          <div class="trend-col-icon vol">📊</div>
+          <div class="trend-col-icon vol">рџ“Љ</div>
           <div><div class="trend-col-title">Volume Leaders</div><div class="trend-col-desc">Top by 24h volume</div></div>
         </div>
-        <div id="col-volume"><div class="trend-empty">Loading…</div></div>
+        <div id="col-volume"><div class="trend-empty">LoadingвЂ¦</div></div>
       </div>
       <div class="trend-col">
         <div class="trend-col-head">
-          <div class="trend-col-icon chip">🔷</div>
+          <div class="trend-col-icon chip">рџ”·</div>
           <div><div class="trend-col-title">Base Blue-chips</div><div class="trend-col-desc">Established Base projects, hand-picked</div></div>
         </div>
-        <div id="col-bluechip"><div class="trend-empty">Loading…</div></div>
+        <div id="col-bluechip"><div class="trend-empty">LoadingвЂ¦</div></div>
       </div>
       <div class="trend-col">
         <div class="trend-col-head">
-          <div class="trend-col-icon gain">🚀</div>
+          <div class="trend-col-icon gain">рџљЂ</div>
           <div><div class="trend-col-title">Top Gainers</div><div class="trend-col-desc">Best 24h price gains</div></div>
         </div>
-        <div id="col-gainers"><div class="trend-empty">Loading…</div></div>
+        <div id="col-gainers"><div class="trend-empty">LoadingвЂ¦</div></div>
       </div>
     </div>
   </section>
@@ -247,14 +247,14 @@
 
 <footer>
   <div class="wrap">
-    <p>Not financial advice. Always verify the contract address before trading. Tool links are direct — no affiliate programs.</p>
-    <a href="https://github.com/araxis33/base-tools" target="_blank" rel="noopener">GitHub ↗</a>
+    <p>Not financial advice. Always verify the contract address before trading. Tool links are direct вЂ” no affiliate programs.</p>
+    <a href="https://github.com/araxis33/base-tools" target="_blank" rel="noopener">GitHub в†—</a>
   </div>
 </footer>
 
 <script>
 // ---------- Directory data ----------
-// Muted category colors — visible but not loud
+// Muted category colors вЂ” visible but not loud
 const CAT_STYLE = {
   "Trading Bots":       { color:"#e0a336", bg:"rgba(224,163,54,0.12)" },
   "Terminals":          { color:"#5b8fd6", bg:"rgba(91,143,214,0.12)" },
@@ -268,7 +268,7 @@ const TOOLS = [
   {name:"GMGN.ai", cat:"Trading Bots", desc:"Multichain terminal + bot for meme trading: new-token scanner, security checks, smart-money copy trading.", url:"https://gmgn.ai/?chain=base"},
   {name:"Maestro", cat:"Trading Bots", desc:"Telegram bot for sniping, copy trading and whale alerts, supporting Base since 2024.", url:"https://www.maestrobots.com"},
 
-  {name:"DexScreener", cat:"Terminals", desc:"Real-time pair scanner and charts across all Base pools — new pairs, liquidity, volume.", url:"https://dexscreener.com/base"},
+  {name:"DexScreener", cat:"Terminals", desc:"Real-time pair scanner and charts across all Base pools вЂ” new pairs, liquidity, volume.", url:"https://dexscreener.com/base"},
   {name:"DEXTools", cat:"Terminals", desc:"Charts, liquidity and pair rankings for the Base network, one of the oldest onchain terminals.", url:"https://www.dextools.io/app/en/base/pairs"},
   {name:"GeckoTerminal", cat:"Terminals", desc:"CoinGecko's onchain terminal: pools, volumes and trends on Base in real time.", url:"https://www.geckoterminal.com/base/pools"},
 
@@ -281,7 +281,7 @@ const TOOLS = [
 
   {name:"Aerodrome Finance", cat:"DEX & Swap", desc:"Base's main DEX and liquidity hub, ve(3,3) model, the largest TVL in the ecosystem.", url:"https://aerodrome.finance"},
   {name:"Uniswap", cat:"DEX & Swap", desc:"The largest DEX protocol, fully deployed on Base including v4.", url:"https://app.uniswap.org"},
-  {name:"Matcha", cat:"DEX & Swap", desc:"Liquidity aggregator by 0x — finds the best rate across dozens of sources on Base.", url:"https://matcha.xyz"},
+  {name:"Matcha", cat:"DEX & Swap", desc:"Liquidity aggregator by 0x вЂ” finds the best rate across dozens of sources on Base.", url:"https://matcha.xyz"},
 ];
 
 const CATS = ["All", ...Array.from(new Set(TOOLS.map(t=>t.cat)))];
@@ -306,7 +306,7 @@ function cardHtml(t){
         <div class="card-title">${t.name}</div>
       </div>
       <div class="card-desc">${t.desc}</div>
-      <a class="visit" href="${t.url}" target="_blank" rel="noopener">Open ↗</a>
+      <a class="visit" href="${t.url}" target="_blank" rel="noopener">Open в†—</a>
     </div>
   `;
 }
@@ -366,7 +366,7 @@ function isNativeToBase(coin){
 }
 
 // Blue-chips is a hand-picked list of long-established Base projects, not a live
-// market-cap ranking — a fresh/volatile token can briefly out-cap a real blue chip,
+// market-cap ranking вЂ” a fresh/volatile token can briefly out-cap a real blue chip,
 // which isn't what "most stable" means here. Revisit this list occasionally.
 const BLUE_CHIP_TOKENS = [
   { id:"aerodrome-finance", contract:"0x940181a94a35a4569e4529a3cdfb74e38fd98631" },
@@ -389,30 +389,30 @@ const CACHE_KEY = "basetools_boards_v5";
 const CACHE_TTL_MS = 5 * 60 * 1000;
 
 function fmtPrice(n){
-  if (!isFinite(n)) return "—";
+  if (!isFinite(n)) return "вЂ”";
   if (n >= 1000) return "$" + n.toLocaleString(undefined,{maximumFractionDigits:0});
   if (n >= 1) return "$" + n.toFixed(2);
   if (n >= 0.01) return "$" + n.toFixed(4);
   return "$" + n.toPrecision(3);
 }
 function shortAddr(a){
-  return a.slice(0,6) + "…" + a.slice(-4);
+  return a.slice(0,6) + "вЂ¦" + a.slice(-4);
 }
 function chgHtml(n){
-  if (!isFinite(n)) return `<span class="trend-chg">—</span>`;
+  if (!isFinite(n)) return `<span class="trend-chg">вЂ”</span>`;
   const cls = n >= 0 ? "pos" : "neg";
   const sign = n >= 0 ? "+" : "";
   return `<span class="trend-chg ${cls}">${sign}${n.toFixed(1)}%</span>`;
 }
 function copyBtnHtml(contract){
-  return `<button class="copy-btn" title="Copy address" data-addr="${contract}">⧉</button>`;
+  return `<button class="copy-btn" title="Copy address" data-addr="${contract}">в§‰</button>`;
 }
 function bindCopyButtons(container){
   container.querySelectorAll(".copy-btn").forEach(btn=>{
     btn.onclick = ()=>{
       navigator.clipboard?.writeText(btn.dataset.addr);
-      btn.textContent = "✓";
-      setTimeout(()=>{ btn.textContent = "⧉"; }, 1200);
+      btn.textContent = "вњ“";
+      setTimeout(()=>{ btn.textContent = "в§‰"; }, 1200);
     };
   });
 }
@@ -540,14 +540,14 @@ function renderColumn(elId, items){
 
 function renderBoards(data, meta){
   const tokens = data.dynamicTokens;
-  const byVolume = [...tokens].sort((a,b)=>b.volume24h - a.volume24h).slice(0,6);
-  const byGainers = [...tokens].filter(t=>isFinite(t.change24h)).sort((a,b)=>b.change24h - a.change24h).slice(0,6);
+  const byVolume = [...tokens].sort((a,b)=>b.volume24h - a.volume24h).slice(0,10);
+  const byGainers = [...tokens].filter(t=>isFinite(t.change24h)).sort((a,b)=>b.change24h - a.change24h).slice(0,10);
 
   renderColumn("col-volume", byVolume);
   renderColumn("col-gainers", byGainers);
-  renderColumn("col-bluechip", data.blueChips);
+  renderColumn("col-bluechip", data.blueChips.slice(0,10));
 
-  document.getElementById("trend-updated").textContent = meta === "cache" ? "cached · just now" : "live · just now";
+  document.getElementById("trend-updated").textContent = meta === "cache" ? "cached В· just now" : "live В· just now";
 }
 
 async function loadBoards(){
