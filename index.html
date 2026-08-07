@@ -51,6 +51,16 @@
   nav{display:flex; gap:26px; font-size:14px; font-weight:700; color:var(--blue-text);}
   nav a{padding:6px 0; border-bottom:2px solid transparent;}
   nav a:hover{border-color:var(--blue);}
+  /* The tools now sit above my own projects, so the one link people arrive
+     looking for is two long sections down the page. This makes it a button
+     rather than the fourth identical word in a row. */
+  nav a.nav-cta{
+    padding:7px 15px; border-radius:999px;
+    background:var(--blue-soft); border:1px solid var(--blue); color:var(--blue-text);
+    display:inline-flex; align-items:center; gap:6px; transition:.15s;
+  }
+  nav a.nav-cta:hover{background:var(--blue); color:#fff; border-color:var(--blue);}
+  nav a.nav-cta .spark{width:6px; height:6px; border-radius:50%; background:var(--yellow); flex-shrink:0;}
 
   .hero{
     padding:68px 0 44px;
@@ -267,7 +277,7 @@
     <nav>
       <a href="#trending">Trending</a>
       <a href="#directory">Directory</a>
-      <a href="#projects">Projects</a>
+      <a class="nav-cta" href="#projects"><span class="spark"></span>Built by Def777</a>
       <a href="https://base.org" target="_blank" rel="noopener">Base.org</a>
     </nav>
   </div>
