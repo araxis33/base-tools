@@ -173,10 +173,89 @@
   footer a{color:var(--blue-text); font-size:12.5px; font-weight:700;}
   footer a:hover{color:var(--blue);}
 
+  /* my own projects — deliberately warmer than the directory cards below, so
+     it reads as "built here" rather than "another outbound link" */
+  .mine{
+    background:
+      radial-gradient(760px 300px at 8% 0%, rgba(255,207,64,0.06), transparent 60%),
+      radial-gradient(600px 260px at 95% 10%, rgba(59,110,255,0.08), transparent 60%);
+    border:1px solid var(--border); border-radius:calc(var(--radius) + 4px);
+    padding:26px; margin-top:8px;
+  }
+  .proj-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:16px;}
+  .proj-card{
+    border:1px solid var(--border); border-radius:var(--radius); background:var(--card);
+    padding:20px; display:flex; flex-direction:column; gap:13px; transition:.15s;
+    position:relative; overflow:hidden;
+  }
+  .proj-card::before{
+    content:""; position:absolute; left:0; top:0; bottom:0; width:3px;
+    background:linear-gradient(180deg, var(--yellow), var(--blue));
+  }
+  .proj-card:hover{border-color:var(--border-hover); background:var(--card-hover); transform:translateY(-2px);}
+  .proj-head{display:flex; align-items:center; gap:12px;}
+  .proj-icon{
+    width:42px; height:42px; border-radius:11px; flex-shrink:0; font-size:20px;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--blue-soft); border:1px solid var(--border);
+  }
+  .proj-name{font-weight:800; font-size:16px;}
+  .proj-kind{font-size:11.5px; color:var(--muted2); font-weight:700; letter-spacing:.03em;}
+  .proj-desc{color:var(--muted); font-size:13.5px; flex:1;}
+  .proj-tags{display:flex; gap:6px; flex-wrap:wrap;}
+  .tag{
+    font-size:11px; font-weight:800; letter-spacing:.03em; padding:4px 9px; border-radius:999px;
+    background:rgba(255,255,255,0.04); border:1px solid var(--border); color:var(--muted);
+  }
+  .tag.live{color:var(--green); border-color:rgba(61,220,132,0.35); background:rgba(61,220,132,0.1);}
+  .tag.live::before{content:"● "; font-size:9px;}
+  .proj-links{display:flex; gap:8px; flex-wrap:wrap;}
+  .proj-links .visit{align-self:auto;}
+  .ghost{
+    display:inline-flex; align-items:center; gap:6px; font-weight:800; font-size:12.5px;
+    padding:8px 14px; border-radius:8px; transition:.15s;
+    border:1px solid var(--border); color:var(--muted);
+  }
+  .ghost:hover{border-color:var(--border-hover); color:var(--text);}
+
+  /* X / Twitter card */
+  .x-card{
+    border:1px solid var(--border); border-radius:var(--radius);
+    background:linear-gradient(160deg, #14192f, var(--card));
+    padding:22px; display:flex; flex-direction:column; gap:16px; height:100%;
+  }
+  .x-top{display:flex; align-items:center; gap:14px;}
+  .x-avatar{
+    width:60px; height:60px; border-radius:50%; flex-shrink:0;
+    border:2px solid var(--border); object-fit:cover; background:var(--blue-soft);
+  }
+  .x-name{font-weight:800; font-size:16px; display:flex; align-items:center; gap:7px;}
+  .x-handle{color:var(--muted2); font-size:13px; font-weight:700;}
+  .x-logo{width:17px; height:17px; flex-shrink:0; fill:var(--text);}
+  .x-bio{color:var(--muted); font-size:13.5px;}
+  .x-bio span{color:var(--blue-text); font-weight:700;}
+  .x-follow{
+    align-self:flex-start; display:inline-flex; align-items:center; gap:8px;
+    background:var(--text); color:#0a0e1c; font-weight:800; font-size:13px;
+    padding:9px 18px; border-radius:999px; transition:.15s;
+  }
+  .x-follow:hover{background:#fff;}
+  .split{display:grid; grid-template-columns:1.55fr 1fr; gap:16px; align-items:stretch;}
+
   @media(max-width:900px){
     h1{font-size:34px;}
     .grid{grid-template-columns:1fr;}
     .trend-grid{grid-template-columns:1fr;}
+    .proj-grid{grid-template-columns:1fr;}
+    .split{grid-template-columns:1fr;}
+    .mine{padding:18px;}
+  }
+  /* The nav gained a fourth item, which pushes the fixed-height header past the
+     viewport on phones. Let it wrap onto a second line instead of the whole
+     page picking up a horizontal scrollbar. */
+  @media(max-width:620px){
+    header .wrap{height:auto; flex-wrap:wrap; gap:6px; padding-top:11px; padding-bottom:11px;}
+    nav{gap:18px; font-size:13px; flex-wrap:wrap;}
   }
 </style>
 </head>
@@ -186,6 +265,7 @@
   <div class="wrap">
     <div class="logo"><span class="logo-mark">b</span> base.tools</div>
     <nav>
+      <a href="#projects">Projects</a>
       <a href="#trending">Trending</a>
       <a href="#directory">Directory</a>
       <a href="https://base.org" target="_blank" rel="noopener">Base.org</a>
@@ -200,6 +280,122 @@
 </div>
 
 <div class="wrap">
+  <section id="projects">
+    <div class="section-head">
+      <div>
+        <div class="section-title">Built by Def777</div>
+        <div class="section-sub">My own tools for the Base ecosystem — free, open source, no wallet connection required</div>
+      </div>
+    </div>
+
+    <div class="mine">
+      <div class="proj-grid">
+
+        <div class="proj-card">
+          <div class="proj-head">
+            <div class="proj-icon">🛰️</div>
+            <div>
+              <div class="proj-name">Aero Vote Radar</div>
+              <div class="proj-kind">Web app · CLI · MCP server</div>
+            </div>
+          </div>
+          <p class="proj-desc">Tells veAERO holders which Aerodrome pools to vote for. Ranks every pool by the dollars it pays per vote, then splits your voting power across several of them — because piling everything into the top pool dilutes your own share of it.</p>
+          <div class="proj-tags">
+            <span class="tag live">Live</span>
+            <span class="tag">Aerodrome</span>
+            <span class="tag">Rescans every 6h</span>
+          </div>
+          <div class="proj-links">
+            <a class="visit" href="https://aero.deftools.xyz" target="_blank" rel="noopener">Open ↗</a>
+            <a class="ghost" href="https://github.com/araxis33/aero-vote-radar" target="_blank" rel="noopener">Code ↗</a>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-head">
+            <div class="proj-icon">📋</div>
+            <div>
+              <div class="proj-name">Base Watchlist</div>
+              <div class="proj-kind">Web app</div>
+            </div>
+          </div>
+          <p class="proj-desc">Eight Base projects worth watching, each with live TVL and price pulled from DefiLlama and CoinGecko rather than screenshots that went stale months ago.</p>
+          <div class="proj-tags">
+            <span class="tag live">Live</span>
+            <span class="tag">Real data</span>
+          </div>
+          <div class="proj-links">
+            <a class="visit" href="https://araxis33.github.io/base-watchlist/" target="_blank" rel="noopener">Open ↗</a>
+            <a class="ghost" href="https://github.com/araxis33/base-watchlist" target="_blank" rel="noopener">Code ↗</a>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-head">
+            <div class="proj-icon">🔎</div>
+            <div>
+              <div class="proj-name">Meme Scout</div>
+              <div class="proj-kind">Telegram bot</div>
+            </div>
+          </div>
+          <p class="proj-desc">Watches new meme tokens as they launch on Base and Robinhood Chain, scores how likely each one is to be a scam, and follows what happens to it afterwards.</p>
+          <div class="proj-tags">
+            <span class="tag live">Live</span>
+            <span class="tag">Base + Robinhood Chain</span>
+          </div>
+          <div class="proj-links">
+            <a class="visit" href="https://t.me/MemeScoutDef777Bot" target="_blank" rel="noopener">Open in Telegram ↗</a>
+            <a class="ghost" href="https://github.com/araxis33/meme-scout" target="_blank" rel="noopener">Code ↗</a>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-head">
+            <div class="proj-icon">🎮</div>
+            <div>
+              <div class="proj-name">Rug or Ape</div>
+              <div class="proj-kind">Browser game</div>
+            </div>
+          </div>
+          <p class="proj-desc">A swipe game about spotting rugs. You get a token, you get its red flags, you decide. Quick, silly, and a decent way to learn which warning signs actually matter.</p>
+          <div class="proj-tags">
+            <span class="tag live">Live</span>
+            <span class="tag">No wallet needed</span>
+          </div>
+          <div class="proj-links">
+            <a class="visit" href="https://araxis33.github.io/rug-or-ape/" target="_blank" rel="noopener">Play ↗</a>
+            <a class="ghost" href="https://github.com/araxis33/rug-or-ape" target="_blank" rel="noopener">Code ↗</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="twitter">
+    <div class="split">
+      <div>
+        <div class="section-title">Where I post</div>
+        <p class="sub" style="margin-top:10px">Onchain data, DeFi findings and Base ecosystem notes — usually before they show up anywhere else. New tools get announced there first, and I answer questions about them in replies.</p>
+      </div>
+
+      <div class="x-card">
+        <div class="x-top">
+          <img class="x-avatar" src="data:image/jpeg;base64,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" alt="Def777 avatar" width="60" height="60">
+          <div>
+            <div class="x-name">
+              Def777.base.eth
+              <svg class="x-logo" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </div>
+            <div class="x-handle">@Def7771</div>
+          </div>
+        </div>
+        <p class="x-bio">Tracking the <span>Base</span> ecosystem before it trends. Onchain data · DeFi alpha · Crypto macro.</p>
+        <a class="x-follow" href="https://x.com/Def7771" target="_blank" rel="noopener">Follow on X</a>
+      </div>
+    </div>
+  </section>
+
   <section id="trending">
     <div class="section-head">
       <div>
@@ -248,7 +444,10 @@
 <footer>
   <div class="wrap">
     <p>Not financial advice. Always verify the contract address before trading. Tool links are direct — no affiliate programs.</p>
-    <a href="https://github.com/araxis33/base-tools" target="_blank" rel="noopener">GitHub ↗</a>
+    <span style="display:flex; gap:18px; align-items:center">
+      <a href="https://x.com/Def7771" target="_blank" rel="noopener">@Def7771 ↗</a>
+      <a href="https://github.com/araxis33" target="_blank" rel="noopener">GitHub ↗</a>
+    </span>
   </div>
 </footer>
 
