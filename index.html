@@ -265,9 +265,9 @@
   <div class="wrap">
     <div class="logo"><span class="logo-mark">b</span> base.tools</div>
     <nav>
-      <a href="#projects">Projects</a>
       <a href="#trending">Trending</a>
       <a href="#directory">Directory</a>
+      <a href="#projects">Projects</a>
       <a href="https://base.org" target="_blank" rel="noopener">Base.org</a>
     </nav>
   </div>
@@ -280,6 +280,50 @@
 </div>
 
 <div class="wrap">
+  <section id="trending">
+    <div class="section-head">
+      <div>
+        <div class="section-title">Live token boards</div>
+        <div class="section-sub">Volume &amp; Gainers scan every Base-native token live · Blue-chips is a curated list of established projects</div>
+      </div>
+      <div class="updated" id="trend-updated">loading…</div>
+    </div>
+    <div class="trend-grid" id="trend-grid">
+      <div class="trend-col">
+        <div class="trend-col-head">
+          <div class="trend-col-icon vol">📊</div>
+          <div><div class="trend-col-title">Volume Leaders</div><div class="trend-col-desc">Top by 24h volume</div></div>
+        </div>
+        <div id="col-volume"><div class="trend-empty">Loading…</div></div>
+      </div>
+      <div class="trend-col">
+        <div class="trend-col-head">
+          <div class="trend-col-icon gain">🚀</div>
+          <div><div class="trend-col-title">Top Gainers</div><div class="trend-col-desc">Best 24h price gains</div></div>
+        </div>
+        <div id="col-gainers"><div class="trend-empty">Loading…</div></div>
+      </div>
+      <div class="trend-col">
+        <div class="trend-col-head">
+          <div class="trend-col-icon chip">🔷</div>
+          <div><div class="trend-col-title">Base Blue-chips</div><div class="trend-col-desc">Established Base projects, hand-picked</div></div>
+        </div>
+        <div id="col-bluechip"><div class="trend-empty">Loading…</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="directory">
+    <div class="section-head">
+      <div>
+        <div class="section-title">Directory</div>
+        <div class="section-sub">Bots, terminals, trackers, bridges, DEXs</div>
+      </div>
+    </div>
+    <div class="filters" id="filters"></div>
+    <div id="grid"></div>
+  </section>
+
   <section id="projects">
     <div class="section-head">
       <div>
@@ -396,49 +440,6 @@
     </div>
   </section>
 
-  <section id="trending">
-    <div class="section-head">
-      <div>
-        <div class="section-title">Live token boards</div>
-        <div class="section-sub">Volume &amp; Gainers scan every Base-native token live · Blue-chips is a curated list of established projects</div>
-      </div>
-      <div class="updated" id="trend-updated">loading…</div>
-    </div>
-    <div class="trend-grid" id="trend-grid">
-      <div class="trend-col">
-        <div class="trend-col-head">
-          <div class="trend-col-icon vol">📊</div>
-          <div><div class="trend-col-title">Volume Leaders</div><div class="trend-col-desc">Top by 24h volume</div></div>
-        </div>
-        <div id="col-volume"><div class="trend-empty">Loading…</div></div>
-      </div>
-      <div class="trend-col">
-        <div class="trend-col-head">
-          <div class="trend-col-icon gain">🚀</div>
-          <div><div class="trend-col-title">Top Gainers</div><div class="trend-col-desc">Best 24h price gains</div></div>
-        </div>
-        <div id="col-gainers"><div class="trend-empty">Loading…</div></div>
-      </div>
-      <div class="trend-col">
-        <div class="trend-col-head">
-          <div class="trend-col-icon chip">🔷</div>
-          <div><div class="trend-col-title">Base Blue-chips</div><div class="trend-col-desc">Established Base projects, hand-picked</div></div>
-        </div>
-        <div id="col-bluechip"><div class="trend-empty">Loading…</div></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="directory">
-    <div class="section-head">
-      <div>
-        <div class="section-title">Directory</div>
-        <div class="section-sub">Bots, terminals, trackers, bridges, DEXs</div>
-      </div>
-    </div>
-    <div class="filters" id="filters"></div>
-    <div id="grid"></div>
-  </section>
 </div>
 
 <footer>
