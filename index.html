@@ -323,7 +323,12 @@
     width:40px; height:40px; border-radius:var(--r-md); flex-shrink:0;
     display:flex; align-items:center; justify-content:center;
     background:var(--blue-soft); border:1px solid var(--border);
+    overflow:hidden;
   }
+  /* Each project shows the same mark it shows when you actually open it - the
+     Aerodrome swoosh, the bot's Telegram avatar, the game's own tab icon -
+     rather than a generic glyph, so the card and the thing it opens match. */
+  .proj-icon img{width:28px; height:28px; object-fit:contain; border-radius:var(--r-sm);}
   .proj-name{font-weight:800; font-size:var(--fs-md);}
   .proj-kind{font-size:var(--fs-xxs); color:var(--muted2); font-weight:700; letter-spacing:.03em;}
   .proj-desc{color:var(--muted); font-size:var(--fs-sm); flex:1;}
