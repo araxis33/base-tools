@@ -28,10 +28,16 @@
     --blue:#3b6eff;
     --blue-soft:#182252;
     --blue-text:#7ea0ff;
+    /* --blue is a fill, not a text colour: on --bg it only reaches 4.45:1, just
+       under AA. Links that need to get brighter on hover use this instead. */
+    --blue-bright:#9db8ff;
     --yellow:#ffcf40;
     --text:#eef1fb;
     --muted:#8791b3;
-    --muted2:#5c6690;
+    /* Was #5c6690, which scored 3.16:1 on --card and is used at 11-12.5px for
+       addresses, footer text and column subtitles. This is the dimmest value
+       that still clears AA (4.79:1) so the step down from --muted survives. */
+    --muted2:#7a84a8;
     --green:#3ddc84;
     --red:#ff5d5d;
     --radius:14px;
@@ -205,7 +211,7 @@
   footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;}
   footer p{color:var(--muted2); font-size:12.5px; max-width:600px;}
   footer a{color:var(--blue-text); font-size:12.5px; font-weight:700;}
-  footer a:hover{color:var(--blue);}
+  footer a:hover{color:var(--blue-bright);}
 
   /* my own projects — deliberately warmer than the directory cards below, so
      it reads as "built here" rather than "another outbound link" */
