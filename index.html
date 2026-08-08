@@ -41,9 +41,20 @@
        addresses, footer text and column subtitles. This is the dimmest value
        that still clears AA (4.79:1) so the step down from --muted survives. */
     --muted2:#7a84a8;
+    /* Ink on a filled accent, and the brightest surface. Both were written as
+       a literal #fff in six rules; #0a0e1c appeared twice where --bg was meant. */
+    --white:#fff;
     --green:#3ddc84;
     --red:#ff5d5d;
-    --radius:14px;
+    /* Radius scale, on the same 4px grid as spacing. There were nine values
+       before (3 / 5 / 8 / 10 / 11 / 14 / 18 / 999 / 50%), four of them one-offs
+       that no other element shared. */
+    --r-xs:4px;      /* swatches, inline badges, the logo image inside a tile */
+    --r-sm:8px;      /* buttons, chips, small icon tiles */
+    --r-md:12px;     /* icon tiles nested inside a card */
+    --r-lg:16px;     /* cards, boards */
+    --r-xl:20px;     /* the panel that wraps the project cards */
+    --r-pill:999px;
     /* One transition timing for the whole page. `transition:.15s` used to be
        written out nine times with no property named, which meant every
        animatable property was watched, easing was the browser default, and
@@ -90,8 +101,8 @@
   }
   .ic-solid{fill:currentColor; stroke:none;}
   .sprite{display:none;}
-  .trend-col-icon .ic{width:17px; height:17px;}
-  .proj-icon .ic{width:21px; height:21px;}
+  .trend-col-icon .ic{width:16px; height:16px;}
+  .proj-icon .ic{width:20px; height:20px;}
 
   header{
     border-bottom:1px solid var(--border);
@@ -99,11 +110,11 @@
     backdrop-filter:blur(8px);
     position:sticky; top:0; z-index:50;
   }
-  header .wrap{display:flex; align-items:center; justify-content:space-between; height:66px;}
+  header .wrap{display:flex; align-items:center; justify-content:space-between; height:64px;}
   .logo{display:flex; align-items:center; gap:8px; font-weight:800; font-size:var(--fs-lg); color:var(--text);}
   .logo-mark{
-    width:30px; height:30px; border-radius:8px;
-    background:var(--blue); color:#fff;
+    width:32px; height:32px; border-radius:var(--r-sm);
+    background:var(--blue); color:var(--white);
     display:flex; align-items:center; justify-content:center;
     font-weight:900; font-size:var(--fs-md);
   }
@@ -114,13 +125,13 @@
      looking for is two long sections down the page. This makes it a button
      rather than the fourth identical word in a row. */
   nav a.nav-cta{
-    padding:8px 16px; border-radius:999px;
+    padding:8px 16px; border-radius:var(--r-pill);
     background:var(--blue-soft); border:1px solid var(--blue); color:var(--blue-text);
     display:inline-flex; align-items:center; gap:8px;
     transition:background-color var(--t), border-color var(--t), color var(--t);
   }
-  nav a.nav-cta:hover{background:var(--blue); color:#fff; border-color:var(--blue);}
-  nav a.nav-cta .spark{width:6px; height:6px; border-radius:50%; background:var(--yellow); flex-shrink:0;}
+  nav a.nav-cta:hover{background:var(--blue); color:var(--white); border-color:var(--blue);}
+  nav a.nav-cta .spark{width:8px; height:8px; border-radius:50%; background:var(--yellow); flex-shrink:0;}
 
   .hero{
     padding:68px 0 44px;
@@ -130,11 +141,11 @@
   }
   .pill{
     display:inline-flex; align-items:center; gap:8px;
-    background:var(--blue-soft); border:1px solid var(--border); border-radius:999px;
+    background:var(--blue-soft); border:1px solid var(--border); border-radius:var(--r-pill);
     padding:8px 16px; font-size:var(--fs-xs); font-weight:800; color:var(--blue-text);
     margin-bottom:24px; letter-spacing:.02em;
   }
-  .pill .dot{width:7px; height:7px; border-radius:50%; background:var(--blue);}
+  .pill .dot{width:8px; height:8px; border-radius:50%; background:var(--blue);}
   h1{font-size:var(--fs-display); font-weight:800; line-height:1.1; letter-spacing:-0.02em; max-width:760px; color:var(--text);}
   h1 .accent{color:var(--blue-text);}
   h1 .mark{color:var(--yellow);}
@@ -149,7 +160,7 @@
   /* trending: 3 columns */
   .trend-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;}
   .trend-col{
-    border:1px solid var(--border); border-radius:var(--radius); background:var(--card);
+    border:1px solid var(--border); border-radius:var(--r-lg); background:var(--card);
     overflow:hidden;
   }
   .trend-col-head{
@@ -157,7 +168,7 @@
     padding:16px; border-bottom:1px solid var(--border);
   }
   .trend-col-icon{
-    width:30px; height:30px; border-radius:8px; display:flex; align-items:center; justify-content:center;
+    width:32px; height:32px; border-radius:var(--r-sm); display:flex; align-items:center; justify-content:center;
     flex-shrink:0;
   }
   .trend-col-icon.vol{background:rgba(59,110,255,0.15); color:var(--blue-text);}
@@ -172,8 +183,8 @@
   .trend-row:last-child{border-bottom:none;}
   .trend-row:hover{background:var(--card-hover);}
   .trend-left{display:flex; align-items:center; gap:12px; min-width:0;}
-  .trend-rank{color:var(--muted2); font-weight:700; font-size:var(--fs-xs); width:14px; flex-shrink:0;}
-  .trend-logo{width:26px; height:26px; border-radius:50%; flex-shrink:0; background:var(--blue-soft); object-fit:cover;}
+  .trend-rank{color:var(--muted2); font-weight:700; font-size:var(--fs-xs); width:16px; flex-shrink:0;}
+  .trend-logo{width:24px; height:24px; border-radius:50%; flex-shrink:0; background:var(--blue-soft); object-fit:cover;}
   .trend-sym{font-weight:800; color:var(--text); transition:color var(--t); display:block;}
   .trend-sym:hover{color:var(--blue-text);}
   .trend-addr{font-size:var(--fs-xxs); color:var(--muted2); display:flex; align-items:center; gap:4px;}
@@ -196,33 +207,35 @@
   .trend-retry{
     margin-top:12px; display:inline-flex; align-items:center; gap:8px;
     background:var(--blue-soft); color:var(--blue-text); cursor:pointer;
-    border:1px solid var(--blue); border-radius:8px;
+    border:1px solid var(--blue); border-radius:var(--r-sm);
     padding:8px 16px; font-size:var(--fs-xs); font-weight:800;
     font-family:inherit;
     transition:background-color var(--t), color var(--t);
   }
-  .trend-retry:hover{background:var(--blue); color:#fff;}
+  .trend-retry:hover{background:var(--blue); color:var(--white);}
   .trend-retry[disabled]{opacity:.6; cursor:default;}
 
   /* filters */
   .filters{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:24px;}
   .chip{
-    border:1.5px solid var(--border); border-radius:8px; padding:8px 16px;
+    border:1px solid var(--border); border-radius:var(--r-sm); padding:8px 16px;
     font-size:var(--fs-xs); font-weight:700; color:var(--blue-text); cursor:pointer; background:var(--card);
     transition:background-color var(--t), border-color var(--t), color var(--t);
   }
   .chip:hover{border-color:var(--blue);}
-  .chip.active{background:var(--blue); color:#fff; border-color:var(--blue);}
+  .chip.active{background:var(--blue); color:var(--white); border-color:var(--blue);}
   .chip.mine-chip{color:var(--yellow); border-color:rgba(255,207,64,0.4);}
   .chip.mine-chip:hover{border-color:var(--yellow);}
-  .chip.mine-chip.active{background:var(--yellow); color:#0a0e1c; border-color:var(--yellow);}
+  .chip.mine-chip.active{background:var(--yellow); color:var(--bg); border-color:var(--yellow);}
 
   .card-head .fav-star{margin-left:auto; color:var(--yellow); font-size:var(--fs-sm); flex-shrink:0;}
   .ref-note{
-    /* The 2px here is the one spacing value on the page that sits off the 4px
-       grid. It has to: this badge is inline inside the Open button, and 4px of
-       vertical padding grows the button around it. */
-    margin-left:8px; padding:2px 8px; border-radius:5px;
+    /* This badge sits inline inside the Open button, so it has to fit the
+       button's line box or the referral card ends up with a button 4px taller
+       than every other one. 11px at line-height 1 plus 2px of padding is 15px
+       against the button's 18px line box, so it fits with room to spare. The 2px
+       is the one spacing value on the page off the 4px grid, for that reason. */
+    margin-left:8px; padding:2px 8px; border-radius:var(--r-xs); line-height:1;
     background:rgba(255,255,255,0.09); font-size:var(--fs-xxs); font-weight:700;
     letter-spacing:.03em; text-transform:uppercase; opacity:.9;
   }
@@ -235,26 +248,26 @@
     font-size:var(--fs-xs); font-weight:800; letter-spacing:.05em; text-transform:uppercase;
     color:var(--cat-color); margin-bottom:12px;
   }
-  .cat-label .sw{width:9px; height:9px; border-radius:3px; background:var(--cat-color); flex-shrink:0;}
+  .cat-label .sw{width:8px; height:8px; border-radius:var(--r-xs); background:var(--cat-color); flex-shrink:0;}
 
   /* cards */
   .grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;}
   .card{
     border:1px solid var(--border); border-left:3px solid var(--cat-color, var(--border));
-    border-radius:var(--radius); background:var(--card);
+    border-radius:var(--r-lg); background:var(--card);
     padding:20px; display:flex; flex-direction:column; gap:16px;
     transition:background-color var(--t), border-color var(--t);
   }
   .card:hover{border-color:var(--border-hover); border-left-color:var(--cat-color, var(--border-hover)); background:var(--card-hover);}
   .card-head{display:flex; align-items:center; gap:12px;}
   .icon{
-    width:36px; height:36px; border-radius:10px; flex-shrink:0;
+    width:36px; height:36px; border-radius:var(--r-md); flex-shrink:0;
     display:flex; align-items:center; justify-content:center;
     font-weight:800; font-size:var(--fs-sm);
     background:var(--cat-bg); color:var(--cat-color);
     overflow:hidden;
   }
-  .icon img{width:24px; height:24px; object-fit:contain; border-radius:5px;}
+  .icon img{width:24px; height:24px; object-fit:contain; border-radius:var(--r-xs);}
   /* Shown only for the two tools whose sites block automated logo fetches, so
      it has to look like a deliberate monogram rather than a failed image. */
   .icon-fallback{font-weight:800; font-size:var(--fs-xs); letter-spacing:.02em;}
@@ -263,10 +276,14 @@
   .visit{
     align-self:flex-start; display:inline-flex; align-items:center; gap:8px;
     background:var(--blue-soft); color:var(--blue-text); font-weight:800; font-size:var(--fs-xs);
-    padding:8px 16px; border-radius:8px;
+    padding:8px 16px; border-radius:var(--r-sm);
+    /* Transparent border so Open matches the height of Code and of the filter
+       chips, which all carry a 1px border. Without it Open sits a pixel short,
+       which shows because Open and Code sit side by side. */
+    border:1px solid transparent;
     transition:background-color var(--t), color var(--t);
   }
-  .card:hover .visit{background:var(--blue); color:#fff;}
+  .card:hover .visit{background:var(--blue); color:var(--white);}
 
   footer{border-top:1px solid var(--border); padding:32px 0 48px; margin-top:24px;}
   footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;}
@@ -280,12 +297,12 @@
     background:
       radial-gradient(760px 300px at 8% 0%, rgba(255,207,64,0.06), transparent 60%),
       radial-gradient(600px 260px at 95% 10%, rgba(59,110,255,0.08), transparent 60%);
-    border:1px solid var(--border); border-radius:calc(var(--radius) + 4px);
+    border:1px solid var(--border); border-radius:var(--r-xl);
     padding:24px; margin-top:8px;
   }
   .proj-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:16px;}
   .proj-card{
-    border:1px solid var(--border); border-radius:var(--radius); background:var(--card);
+    border:1px solid var(--border); border-radius:var(--r-lg); background:var(--card);
     padding:20px; display:flex; flex-direction:column; gap:12px;
     transition:background-color var(--t), border-color var(--t), transform var(--t);
     position:relative; overflow:hidden;
@@ -297,7 +314,7 @@
   .proj-card:hover{border-color:var(--border-hover); background:var(--card-hover); transform:translateY(-2px);}
   .proj-head{display:flex; align-items:center; gap:12px;}
   .proj-icon{
-    width:42px; height:42px; border-radius:11px; flex-shrink:0;
+    width:40px; height:40px; border-radius:var(--r-md); flex-shrink:0;
     display:flex; align-items:center; justify-content:center;
     background:var(--blue-soft); border:1px solid var(--border);
   }
@@ -306,7 +323,7 @@
   .proj-desc{color:var(--muted); font-size:var(--fs-sm); flex:1;}
   .proj-tags{display:flex; gap:8px; flex-wrap:wrap;}
   .tag{
-    font-size:var(--fs-xxs); font-weight:800; letter-spacing:.03em; padding:4px 8px; border-radius:999px;
+    font-size:var(--fs-xxs); font-weight:800; letter-spacing:.03em; padding:4px 8px; border-radius:var(--r-pill);
     background:rgba(255,255,255,0.04); border:1px solid var(--border); color:var(--muted);
   }
   .tag.live{color:var(--green); border-color:rgba(61,220,132,0.35); background:rgba(61,220,132,0.1);}
@@ -314,11 +331,14 @@
     content:""; display:inline-block; width:6px; height:6px; border-radius:50%;
     background:currentColor; margin-right:8px; vertical-align:1px;
   }
-  .proj-links{display:flex; gap:8px; flex-wrap:wrap;}
+  /* align-items:center rather than the default stretch: otherwise Open gets
+     pulled to Code's height and ends up a pixel taller than the identical
+     button on a directory card. */
+  .proj-links{display:flex; gap:8px; flex-wrap:wrap; align-items:center;}
   .proj-links .visit{align-self:auto;}
   .ghost{
     display:inline-flex; align-items:center; gap:8px; font-weight:800; font-size:var(--fs-xs);
-    padding:8px 16px; border-radius:8px;
+    padding:8px 16px; border-radius:var(--r-sm);
     transition:border-color var(--t), color var(--t);
     border:1px solid var(--border); color:var(--muted);
   }
@@ -326,7 +346,7 @@
 
   /* X / Twitter card */
   .x-card{
-    border:1px solid var(--border); border-radius:var(--radius);
+    border:1px solid var(--border); border-radius:var(--r-lg);
     background:linear-gradient(160deg, var(--card-lift), var(--card));
     padding:24px; display:flex; flex-direction:column; gap:16px; height:100%;
   }
@@ -337,15 +357,15 @@
   }
   .x-name{font-weight:800; font-size:var(--fs-md); display:flex; align-items:center; gap:8px;}
   .x-handle{color:var(--muted2); font-size:var(--fs-sm); font-weight:700;}
-  .x-logo{width:17px; height:17px; flex-shrink:0; fill:var(--text);}
+  .x-logo{width:16px; height:16px; flex-shrink:0; fill:var(--text);}
   .x-bio{color:var(--muted); font-size:var(--fs-sm);}
   .x-bio span{color:var(--blue-text); font-weight:700;}
   .x-follow{
     align-self:flex-start; display:inline-flex; align-items:center; gap:8px;
-    background:var(--text); color:#0a0e1c; font-weight:800; font-size:var(--fs-sm);
-    padding:8px 20px; border-radius:999px; transition:background-color var(--t);
+    background:var(--text); color:var(--bg); font-weight:800; font-size:var(--fs-sm);
+    padding:8px 20px; border-radius:var(--r-pill); transition:background-color var(--t);
   }
-  .x-follow:hover{background:#fff;}
+  .x-follow:hover{background:var(--white);}
   .split{display:grid; grid-template-columns:1.55fr 1fr; gap:16px; align-items:stretch;}
 
   @media(max-width:900px){
