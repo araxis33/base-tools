@@ -147,8 +147,12 @@
   }
   .pill .dot{width:8px; height:8px; border-radius:50%; background:var(--blue);}
   h1{font-size:var(--fs-display); font-weight:800; line-height:1.1; letter-spacing:-0.02em; max-width:760px; color:var(--text);}
+  /* Both highlighted words in the headline share the accent. `.mark` used to be
+     yellow here, which was the one purely decorative use of that colour —
+     everywhere else yellow means "mine" (the My stack chip, the favourite
+     marker, the projects panel), so a yellow word in the headline made it read
+     as a second accent rather than as a meaning. */
   h1 .accent{color:var(--blue-text);}
-  h1 .mark{color:var(--yellow);}
   .sub{color:var(--muted); font-size:var(--fs-md); max-width:600px; margin-top:20px;}
 
   section{padding:32px 0;}
@@ -430,7 +434,7 @@
 
 <div class="wrap hero">
   <div class="pill"><span class="dot"></span> <span id="tool-count">14</span> TOOLS · <span id="cat-count">5</span> CATEGORIES · BASE ONLY</div>
-  <h1>The <span class="mark">directory</span> and live<br>token board for <span class="accent">Base</span>.</h1>
+  <h1>The <span class="accent">directory</span> and live<br>token board for <span class="accent">Base</span>.</h1>
   <p class="sub">Base ecosystem tools in one place, plus three live boards for real Base-native tokens: by volume, blue-chip status and 24h price gains.</p>
 </div>
 
