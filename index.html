@@ -60,6 +60,11 @@
     --fs-display-sm:32px;  /* h1 under 900px */
     --fs-display:48px;     /* h1 */
   }
+  /* Spacing sits on a 4px grid. Every padding, margin and gap below is a
+     multiple of 4; the single exception is the 2px vertical padding on
+     .ref-note, which is commented where it happens. Before this there were
+     7px, 9px, 10px, 11px, 13px, 14px, 15px, 18px, 22px and 26px values in the
+     mix, so nothing lined up with anything else by construction. */
   *{box-sizing:border-box; margin:0; padding:0;}
   body{
     background:var(--bg);
@@ -92,23 +97,23 @@
     position:sticky; top:0; z-index:50;
   }
   header .wrap{display:flex; align-items:center; justify-content:space-between; height:66px;}
-  .logo{display:flex; align-items:center; gap:10px; font-weight:800; font-size:var(--fs-lg); color:var(--text);}
+  .logo{display:flex; align-items:center; gap:8px; font-weight:800; font-size:var(--fs-lg); color:var(--text);}
   .logo-mark{
     width:30px; height:30px; border-radius:8px;
     background:var(--blue); color:#fff;
     display:flex; align-items:center; justify-content:center;
     font-weight:900; font-size:var(--fs-md);
   }
-  nav{display:flex; gap:26px; font-size:var(--fs-sm); font-weight:700; color:var(--blue-text);}
-  nav a{padding:6px 0; border-bottom:2px solid transparent;}
+  nav{display:flex; gap:24px; font-size:var(--fs-sm); font-weight:700; color:var(--blue-text);}
+  nav a{padding:8px 0; border-bottom:2px solid transparent;}
   nav a:hover{border-color:var(--blue);}
   /* The tools now sit above my own projects, so the one link people arrive
      looking for is two long sections down the page. This makes it a button
      rather than the fourth identical word in a row. */
   nav a.nav-cta{
-    padding:7px 15px; border-radius:999px;
+    padding:8px 16px; border-radius:999px;
     background:var(--blue-soft); border:1px solid var(--blue); color:var(--blue-text);
-    display:inline-flex; align-items:center; gap:6px;
+    display:inline-flex; align-items:center; gap:8px;
     transition:background-color var(--t), border-color var(--t), color var(--t);
   }
   nav a.nav-cta:hover{background:var(--blue); color:#fff; border-color:var(--blue);}
@@ -123,8 +128,8 @@
   .pill{
     display:inline-flex; align-items:center; gap:8px;
     background:var(--blue-soft); border:1px solid var(--border); border-radius:999px;
-    padding:7px 14px; font-size:var(--fs-xs); font-weight:800; color:var(--blue-text);
-    margin-bottom:26px; letter-spacing:.02em;
+    padding:8px 16px; font-size:var(--fs-xs); font-weight:800; color:var(--blue-text);
+    margin-bottom:24px; letter-spacing:.02em;
   }
   .pill .dot{width:7px; height:7px; border-radius:50%; background:var(--blue);}
   h1{font-size:var(--fs-display); font-weight:800; line-height:1.1; letter-spacing:-0.02em; max-width:760px; color:var(--text);}
@@ -133,20 +138,20 @@
   .sub{color:var(--muted); font-size:var(--fs-md); max-width:600px; margin-top:20px;}
 
   section{padding:32px 0;}
-  .section-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:18px; flex-wrap:wrap; gap:10px;}
+  .section-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:16px; flex-wrap:wrap; gap:8px;}
   .section-title{font-size:var(--fs-xl); font-weight:800; color:var(--text);}
   .section-sub{color:var(--muted); font-size:var(--fs-sm); margin-top:4px;}
   .updated{font-size:var(--fs-xs); color:var(--muted2); font-weight:600;}
 
   /* trending: 3 columns */
-  .trend-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:18px;}
+  .trend-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;}
   .trend-col{
     border:1px solid var(--border); border-radius:var(--radius); background:var(--card);
     overflow:hidden;
   }
   .trend-col-head{
-    display:flex; align-items:center; gap:10px;
-    padding:16px 18px; border-bottom:1px solid var(--border);
+    display:flex; align-items:center; gap:12px;
+    padding:16px; border-bottom:1px solid var(--border);
   }
   .trend-col-icon{
     width:30px; height:30px; border-radius:8px; display:flex; align-items:center; justify-content:center;
@@ -158,12 +163,12 @@
   .trend-col-title{font-weight:800; font-size:var(--fs-sm);}
   .trend-col-desc{font-size:var(--fs-xxs); color:var(--muted2); font-weight:600;}
   .trend-row{
-    display:flex; align-items:center; justify-content:space-between; gap:10px;
-    padding:11px 18px; border-bottom:1px solid rgba(255,255,255,0.03); font-size:var(--fs-sm);
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding:12px 16px; border-bottom:1px solid rgba(255,255,255,0.03); font-size:var(--fs-sm);
   }
   .trend-row:last-child{border-bottom:none;}
   .trend-row:hover{background:var(--card-hover);}
-  .trend-left{display:flex; align-items:center; gap:10px; min-width:0;}
+  .trend-left{display:flex; align-items:center; gap:12px; min-width:0;}
   .trend-rank{color:var(--muted2); font-weight:700; font-size:var(--fs-xs); width:14px; flex-shrink:0;}
   .trend-logo{width:26px; height:26px; border-radius:50%; flex-shrink:0; background:var(--blue-soft); object-fit:cover;}
   .trend-sym{font-weight:800; color:var(--text); transition:color var(--t); display:block;}
@@ -182,12 +187,12 @@
   .trend-chg{font-size:var(--fs-xs); font-weight:800;}
   .trend-chg.pos{color:var(--green);}
   .trend-chg.neg{color:var(--red);}
-  .trend-empty{padding:24px 18px; color:var(--muted); font-size:var(--fs-sm); text-align:center;}
+  .trend-empty{padding:24px 16px; color:var(--muted); font-size:var(--fs-sm); text-align:center;}
 
   /* filters */
-  .filters{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:26px;}
+  .filters{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:24px;}
   .chip{
-    border:1.5px solid var(--border); border-radius:8px; padding:8px 15px;
+    border:1.5px solid var(--border); border-radius:8px; padding:8px 16px;
     font-size:var(--fs-xs); font-weight:700; color:var(--blue-text); cursor:pointer; background:var(--card);
     transition:background-color var(--t), border-color var(--t), color var(--t);
   }
@@ -199,7 +204,10 @@
 
   .card-head .fav-star{margin-left:auto; color:var(--yellow); font-size:var(--fs-sm); flex-shrink:0;}
   .ref-note{
-    margin-left:7px; padding:2px 6px; border-radius:5px;
+    /* The 2px here is the one spacing value on the page that sits off the 4px
+       grid. It has to: this badge is inline inside the Open button, and 4px of
+       vertical padding grows the button around it. */
+    margin-left:8px; padding:2px 8px; border-radius:5px;
     background:rgba(255,255,255,0.09); font-size:var(--fs-xxs); font-weight:700;
     letter-spacing:.03em; text-transform:uppercase; opacity:.9;
   }
@@ -219,7 +227,7 @@
   .card{
     border:1px solid var(--border); border-left:3px solid var(--cat-color, var(--border));
     border-radius:var(--radius); background:var(--card);
-    padding:20px; display:flex; flex-direction:column; gap:14px;
+    padding:20px; display:flex; flex-direction:column; gap:16px;
     transition:background-color var(--t), border-color var(--t);
   }
   .card:hover{border-color:var(--border-hover); border-left-color:var(--cat-color, var(--border-hover)); background:var(--card-hover);}
@@ -238,9 +246,9 @@
   .card-title{font-weight:800; font-size:var(--fs-md);}
   .card-desc{color:var(--muted); font-size:var(--fs-sm); flex:1;}
   .visit{
-    align-self:flex-start; display:inline-flex; align-items:center; gap:6px;
+    align-self:flex-start; display:inline-flex; align-items:center; gap:8px;
     background:var(--blue-soft); color:var(--blue-text); font-weight:800; font-size:var(--fs-xs);
-    padding:8px 14px; border-radius:8px;
+    padding:8px 16px; border-radius:8px;
     transition:background-color var(--t), color var(--t);
   }
   .card:hover .visit{background:var(--blue); color:#fff;}
@@ -258,12 +266,12 @@
       radial-gradient(760px 300px at 8% 0%, rgba(255,207,64,0.06), transparent 60%),
       radial-gradient(600px 260px at 95% 10%, rgba(59,110,255,0.08), transparent 60%);
     border:1px solid var(--border); border-radius:calc(var(--radius) + 4px);
-    padding:26px; margin-top:8px;
+    padding:24px; margin-top:8px;
   }
   .proj-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:16px;}
   .proj-card{
     border:1px solid var(--border); border-radius:var(--radius); background:var(--card);
-    padding:20px; display:flex; flex-direction:column; gap:13px;
+    padding:20px; display:flex; flex-direction:column; gap:12px;
     transition:background-color var(--t), border-color var(--t), transform var(--t);
     position:relative; overflow:hidden;
   }
@@ -281,21 +289,21 @@
   .proj-name{font-weight:800; font-size:var(--fs-md);}
   .proj-kind{font-size:var(--fs-xxs); color:var(--muted2); font-weight:700; letter-spacing:.03em;}
   .proj-desc{color:var(--muted); font-size:var(--fs-sm); flex:1;}
-  .proj-tags{display:flex; gap:6px; flex-wrap:wrap;}
+  .proj-tags{display:flex; gap:8px; flex-wrap:wrap;}
   .tag{
-    font-size:var(--fs-xxs); font-weight:800; letter-spacing:.03em; padding:4px 9px; border-radius:999px;
+    font-size:var(--fs-xxs); font-weight:800; letter-spacing:.03em; padding:4px 8px; border-radius:999px;
     background:rgba(255,255,255,0.04); border:1px solid var(--border); color:var(--muted);
   }
   .tag.live{color:var(--green); border-color:rgba(61,220,132,0.35); background:rgba(61,220,132,0.1);}
   .tag.live::before{
     content:""; display:inline-block; width:6px; height:6px; border-radius:50%;
-    background:currentColor; margin-right:6px; vertical-align:1px;
+    background:currentColor; margin-right:8px; vertical-align:1px;
   }
   .proj-links{display:flex; gap:8px; flex-wrap:wrap;}
   .proj-links .visit{align-self:auto;}
   .ghost{
-    display:inline-flex; align-items:center; gap:6px; font-weight:800; font-size:var(--fs-xs);
-    padding:8px 14px; border-radius:8px;
+    display:inline-flex; align-items:center; gap:8px; font-weight:800; font-size:var(--fs-xs);
+    padding:8px 16px; border-radius:8px;
     transition:border-color var(--t), color var(--t);
     border:1px solid var(--border); color:var(--muted);
   }
@@ -305,14 +313,14 @@
   .x-card{
     border:1px solid var(--border); border-radius:var(--radius);
     background:linear-gradient(160deg, #14192f, var(--card));
-    padding:22px; display:flex; flex-direction:column; gap:16px; height:100%;
+    padding:24px; display:flex; flex-direction:column; gap:16px; height:100%;
   }
-  .x-top{display:flex; align-items:center; gap:14px;}
+  .x-top{display:flex; align-items:center; gap:16px;}
   .x-avatar{
     width:60px; height:60px; border-radius:50%; flex-shrink:0;
     border:2px solid var(--border); object-fit:cover; background:var(--blue-soft);
   }
-  .x-name{font-weight:800; font-size:var(--fs-md); display:flex; align-items:center; gap:7px;}
+  .x-name{font-weight:800; font-size:var(--fs-md); display:flex; align-items:center; gap:8px;}
   .x-handle{color:var(--muted2); font-size:var(--fs-sm); font-weight:700;}
   .x-logo{width:17px; height:17px; flex-shrink:0; fill:var(--text);}
   .x-bio{color:var(--muted); font-size:var(--fs-sm);}
@@ -320,7 +328,7 @@
   .x-follow{
     align-self:flex-start; display:inline-flex; align-items:center; gap:8px;
     background:var(--text); color:#0a0e1c; font-weight:800; font-size:var(--fs-sm);
-    padding:9px 18px; border-radius:999px; transition:background-color var(--t);
+    padding:8px 20px; border-radius:999px; transition:background-color var(--t);
   }
   .x-follow:hover{background:#fff;}
   .split{display:grid; grid-template-columns:1.55fr 1fr; gap:16px; align-items:stretch;}
@@ -331,14 +339,14 @@
     .trend-grid{grid-template-columns:1fr;}
     .proj-grid{grid-template-columns:1fr;}
     .split{grid-template-columns:1fr;}
-    .mine{padding:18px;}
+    .mine{padding:16px;}
   }
   /* The nav gained a fourth item, which pushes the fixed-height header past the
      viewport on phones. Let it wrap onto a second line instead of the whole
      page picking up a horizontal scrollbar. */
   @media(max-width:620px){
-    header .wrap{height:auto; flex-wrap:wrap; gap:6px; padding-top:11px; padding-bottom:11px;}
-    nav{gap:18px; font-size:var(--fs-sm); flex-wrap:wrap;}
+    header .wrap{height:auto; flex-wrap:wrap; gap:8px; padding-top:12px; padding-bottom:12px;}
+    nav{gap:16px; font-size:var(--fs-sm); flex-wrap:wrap;}
   }
 
   /* Honour the OS "reduce motion" setting. The project cards lift on hover,
@@ -513,7 +521,7 @@
     <div class="split">
       <div>
         <div class="section-title">Where I post</div>
-        <p class="sub" style="margin-top:10px">Onchain data, DeFi findings and Base ecosystem notes, usually before they show up anywhere else. New tools get announced there first, and I answer questions about them in replies.</p>
+        <p class="sub" style="margin-top:8px">Onchain data, DeFi findings and Base ecosystem notes, usually before they show up anywhere else. New tools get announced there first, and I answer questions about them in replies.</p>
       </div>
 
       <div class="x-card">
@@ -538,7 +546,7 @@
 <footer>
   <div class="wrap">
     <p>Not financial advice. Always verify the contract address before trading. Tool links are direct, except the one card labelled <b>referral</b>: that link earns me a referral credit, and it's the only one on the site that does. A <svg class="ic ic-solid" style="color:var(--yellow)" aria-hidden="true"><use href="#i-star"/></svg> marks the handful I use myself.</p>
-    <span style="display:flex; gap:18px; align-items:center">
+    <span style="display:flex; gap:16px; align-items:center">
       <a href="https://x.com/Def7771" target="_blank" rel="noopener">@Def7771 <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       <a href="https://github.com/araxis33" target="_blank" rel="noopener">GitHub <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </span>
