@@ -41,6 +41,12 @@
     --green:#3ddc84;
     --red:#ff5d5d;
     --radius:14px;
+    /* One transition timing for the whole page. `transition:.15s` used to be
+       written out nine times with no property named, which meant every
+       animatable property was watched, easing was the browser default, and
+       changing the feel meant editing nine rules. */
+    --ease:cubic-bezier(.4, 0, .2, 1);
+    --t:150ms var(--ease);
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   body{
@@ -90,7 +96,8 @@
   nav a.nav-cta{
     padding:7px 15px; border-radius:999px;
     background:var(--blue-soft); border:1px solid var(--blue); color:var(--blue-text);
-    display:inline-flex; align-items:center; gap:6px; transition:.15s;
+    display:inline-flex; align-items:center; gap:6px;
+    transition:background-color var(--t), border-color var(--t), color var(--t);
   }
   nav a.nav-cta:hover{background:var(--blue); color:#fff; border-color:var(--blue);}
   nav a.nav-cta .spark{width:6px; height:6px; border-radius:50%; background:var(--yellow); flex-shrink:0;}
@@ -147,7 +154,7 @@
   .trend-left{display:flex; align-items:center; gap:10px; min-width:0;}
   .trend-rank{color:var(--muted2); font-weight:700; font-size:12px; width:14px; flex-shrink:0;}
   .trend-logo{width:26px; height:26px; border-radius:50%; flex-shrink:0; background:var(--blue-soft); object-fit:cover;}
-  .trend-sym{font-weight:800; color:var(--text); transition:.15s; display:block;}
+  .trend-sym{font-weight:800; color:var(--text); transition:color var(--t); display:block;}
   .trend-sym:hover{color:var(--blue-text);}
   .trend-addr{font-size:11px; color:var(--muted2); display:flex; align-items:center; gap:4px;}
   .trend-addr a{color:var(--muted2);}
@@ -157,7 +164,7 @@
   .copy-btn:hover{color:var(--blue-text);}
   .trend-right{text-align:right; flex-shrink:0; display:block;}
   .trend-right:hover .trend-price{color:var(--blue-text);}
-  .trend-price{font-weight:700; font-size:12.5px; transition:.15s;}
+  .trend-price{font-weight:700; font-size:12.5px; transition:color var(--t);}
   .trend-chg{font-size:11.5px; font-weight:800;}
   .trend-chg.pos{color:var(--green);}
   .trend-chg.neg{color:var(--red);}
@@ -168,7 +175,7 @@
   .chip{
     border:1.5px solid var(--border); border-radius:8px; padding:8px 15px;
     font-size:12.5px; font-weight:700; color:var(--blue-text); cursor:pointer; background:var(--card);
-    transition:.15s;
+    transition:background-color var(--t), border-color var(--t), color var(--t);
   }
   .chip:hover{border-color:var(--blue);}
   .chip.active{background:var(--blue); color:#fff; border-color:var(--blue);}
@@ -199,7 +206,7 @@
     border:1px solid var(--border); border-left:3px solid var(--cat-color, var(--border));
     border-radius:var(--radius); background:var(--card);
     padding:20px; display:flex; flex-direction:column; gap:14px;
-    transition:.15s;
+    transition:background-color var(--t), border-color var(--t);
   }
   .card:hover{border-color:var(--border-hover); border-left-color:var(--cat-color, var(--border-hover)); background:var(--card-hover);}
   .card-head{display:flex; align-items:center; gap:12px;}
@@ -219,7 +226,8 @@
   .visit{
     align-self:flex-start; display:inline-flex; align-items:center; gap:6px;
     background:var(--blue-soft); color:var(--blue-text); font-weight:800; font-size:12.5px;
-    padding:8px 14px; border-radius:8px; transition:.15s;
+    padding:8px 14px; border-radius:8px;
+    transition:background-color var(--t), color var(--t);
   }
   .card:hover .visit{background:var(--blue); color:#fff;}
 
@@ -241,7 +249,8 @@
   .proj-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:16px;}
   .proj-card{
     border:1px solid var(--border); border-radius:var(--radius); background:var(--card);
-    padding:20px; display:flex; flex-direction:column; gap:13px; transition:.15s;
+    padding:20px; display:flex; flex-direction:column; gap:13px;
+    transition:background-color var(--t), border-color var(--t), transform var(--t);
     position:relative; overflow:hidden;
   }
   .proj-card::before{
@@ -272,7 +281,8 @@
   .proj-links .visit{align-self:auto;}
   .ghost{
     display:inline-flex; align-items:center; gap:6px; font-weight:800; font-size:12.5px;
-    padding:8px 14px; border-radius:8px; transition:.15s;
+    padding:8px 14px; border-radius:8px;
+    transition:border-color var(--t), color var(--t);
     border:1px solid var(--border); color:var(--muted);
   }
   .ghost:hover{border-color:var(--border-hover); color:var(--text);}
@@ -296,7 +306,7 @@
   .x-follow{
     align-self:flex-start; display:inline-flex; align-items:center; gap:8px;
     background:var(--text); color:#0a0e1c; font-weight:800; font-size:13px;
-    padding:9px 18px; border-radius:999px; transition:.15s;
+    padding:9px 18px; border-radius:999px; transition:background-color var(--t);
   }
   .x-follow:hover{background:#fff;}
   .split{display:grid; grid-template-columns:1.55fr 1fr; gap:16px; align-items:stretch;}
@@ -315,6 +325,19 @@
   @media(max-width:620px){
     header .wrap{height:auto; flex-wrap:wrap; gap:6px; padding-top:11px; padding-bottom:11px;}
     nav{gap:18px; font-size:13px; flex-wrap:wrap;}
+  }
+
+  /* Honour the OS "reduce motion" setting. The project cards lift on hover,
+     which is exactly the kind of movement people turn this on to avoid; the
+     colour changes stay, they just arrive instantly. */
+  @media(prefers-reduced-motion:reduce){
+    *, *::before, *::after{
+      transition-duration:1ms !important;
+      animation-duration:1ms !important;
+      animation-iteration-count:1 !important;
+      scroll-behavior:auto !important;
+    }
+    .proj-card:hover{transform:none;}
   }
 </style>
 </head>
