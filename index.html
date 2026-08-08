@@ -617,7 +617,12 @@ const CAT_STYLE = {
 const TOOLS = [
   {name:"Base App", cat:"Wallets & Apps", fav:true, ref:true, desc:"The main consumer app for Base: trade, earn and use onchain apps from one place. Where I'd start someone who is new to Base.", url:"https://base.app/invite/araxis/BS04CF6M"},
 
-  {name:"Bankr", cat:"Trading Bots", fav:true, desc:"AI agent that buys, sells, swaps and places limit orders from a plain chat command, without opening a DEX interface.", url:"https://bankr.bot"},
+  // Base's signature sector, and the one the directory was missing entirely.
+  // Bankr moves here out of Trading Bots: it is an agent you talk to, not a
+  // Telegram sniper like the three that remain there.
+  {name:"Virtuals Protocol", cat:"AI Agents", desc:"Launchpad and marketplace for tokenized AI agents. Launch your own, or buy into someone else's through its token. 17,000+ agents so far, and the sector Base is best known for.", url:"https://www.virtuals.io"},
+  {name:"Bankr", cat:"AI Agents", fav:true, desc:"AI agent that buys, sells, swaps and places limit orders from a plain chat command, without opening a DEX interface.", url:"https://bankr.bot"},
+  {name:"Clanker", cat:"AI Agents", desc:"Deploys an ERC-20 for you with no code, originally as an agent you tagged on Farcaster. Now a launcher across Base, Arbitrum and BNB Chain with instant liquidity and fee rewards for the deployer.", url:"https://www.clanker.world"},
 
   {name:"Banana Gun", cat:"Trading Bots", desc:"Telegram bot for fast trade execution and sniping new tokens. Works on Base alongside ETH/SOL/BNB.", url:"https://bananagun.io"},
   {name:"GMGN.ai", cat:"Trading Bots", desc:"Multichain terminal + bot for meme trading: new-token scanner, security checks, smart-money copy trading.", url:"https://gmgn.ai/?chain=base"},
