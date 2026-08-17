@@ -408,11 +408,19 @@
     .mine{padding:16px;}
   }
   /* The nav gained a fourth item, which pushes the fixed-height header past the
-     viewport on phones. Let it wrap onto a second line instead of the whole
-     page picking up a horizontal scrollbar. */
+     viewport on phones. Letting it wrap kept the page free of a horizontal
+     scrollbar, but at the cost of three stacked rows: a sticky 159px header,
+     a fifth of an 844px phone screen, present on every scroll position. The
+     rules below shrink the header's own parts instead -- mark, wordmark, nav
+     type, CTA padding -- and hide the words "Built by " so the four links fit
+     on one row under the logo. */
   @media(max-width:620px){
     header .wrap{height:auto; flex-wrap:wrap; gap:8px; padding-top:12px; padding-bottom:12px;}
-    nav{gap:16px; font-size:var(--fs-sm); flex-wrap:wrap;}
+    nav{gap:12px; font-size:var(--fs-xs); flex-wrap:wrap;}
+    .logo{font-size:var(--fs-md);}
+    .logo-mark{width:28px; height:28px; font-size:var(--fs-sm);}
+    nav a.nav-cta{padding:8px 12px;}
+    .cta-long{display:none;}
   }
 
   /* Honour the OS "reduce motion" setting. The project cards lift on hover,
@@ -450,7 +458,7 @@
     <nav>
       <a href="#trending">Token boards</a>
       <a href="#directory">Directory</a>
-      <a class="nav-cta" href="#projects"><span class="spark"></span>Built by Def777</a>
+      <a class="nav-cta" href="#projects"><span class="spark"></span><span class="cta-long">Built by </span>Def777</a>
       <a href="https://base.org" target="_blank" rel="noopener">Base.org</a>
     </nav>
   </div>
