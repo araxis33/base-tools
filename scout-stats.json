@@ -1,15 +1,15 @@
 {
- "generated_at": "2026-08-19T14:40:39Z",
- "generated_at_unix": 1787150439,
+ "generated_at": "2026-08-19T14:52:18Z",
+ "generated_at_unix": 1787151137,
  "period": {
   "start": "2026-07-15",
   "days": 35
  },
  "totals": {
-  "seen": 79455,
-  "base": 12819,
-  "robinhood": 66636,
-  "below_liquidity_threshold": 77812,
+  "seen": 79510,
+  "base": 12831,
+  "robinhood": 66679,
+  "below_liquidity_threshold": 77867,
   "scored": 1643,
   "green": 674,
   "yellow": 329,
@@ -19,8 +19,8 @@
  "daily": [
   {
    "date": "2026-07-29",
-   "base": 235,
-   "robinhood": 1229
+   "base": 230,
+   "robinhood": 1177
   },
   {
    "date": "2026-07-30",
@@ -124,8 +124,8 @@
   },
   {
    "date": "2026-08-19",
-   "base": 190,
-   "robinhood": 578
+   "base": 202,
+   "robinhood": 621
   }
  ],
  "recent_finds": [
@@ -490,7 +490,7 @@
   "rug": 895
  },
  "watchlist_active": 91,
- "price_snapshots": 51831,
+ "price_snapshots": 52252,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Verify anything yourself before touching it."
 }
