@@ -1,26 +1,26 @@
 {
- "generated_at": "2026-08-19T14:52:18Z",
- "generated_at_unix": 1787151137,
+ "generated_at": "2026-08-19T15:52:42Z",
+ "generated_at_unix": 1787154761,
  "period": {
   "start": "2026-07-15",
   "days": 35
  },
  "totals": {
-  "seen": 79510,
-  "base": 12831,
-  "robinhood": 66679,
-  "below_liquidity_threshold": 77867,
-  "scored": 1643,
+  "seen": 79822,
+  "base": 12886,
+  "robinhood": 66936,
+  "below_liquidity_threshold": 78178,
+  "scored": 1644,
   "green": 674,
-  "yellow": 329,
+  "yellow": 330,
   "red": 640
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-07-29",
-   "base": 230,
-   "robinhood": 1177
+   "base": 185,
+   "robinhood": 956
   },
   {
    "date": "2026-07-30",
@@ -124,11 +124,21 @@
   },
   {
    "date": "2026-08-19",
-   "base": 202,
-   "robinhood": 621
+   "base": 257,
+   "robinhood": 878
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "Larry",
+   "name": "Larry",
+   "chain": "base",
+   "address": "0x5fbda7cd3b27b0966f21aa78ffcc7c23cff425a1",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 60554.8889,
+   "first_seen": 1787152254
+  },
   {
    "symbol": "Larry",
    "name": "Larry",
@@ -318,19 +328,15 @@
    "verdict": "yellow",
    "liquidity_usd": 358024.7427,
    "first_seen": 1787075870
-  },
-  {
-   "symbol": "NOTHING",
-   "name": "Nothing",
-   "chain": "robinhood",
-   "address": "0x9b52d1c25c002ba6ff5b68e8f9ff4f2a27099e8f",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 50475.7438,
-   "first_seen": 1787075159
   }
  ],
  "recent_drains": [
+  {
+   "symbol": "Larry",
+   "chain": "base",
+   "address": "0x47c3b64c3279ee529ac644a2449c14b5e3d34b38",
+   "ts": 1787151972
+  },
   {
    "symbol": "LARRY",
    "chain": "base",
@@ -414,12 +420,6 @@
    "chain": "base",
    "address": "0x9126236476efba9ad8ab77855c60eb5bf37586eb",
    "ts": 1787129307
-  },
-  {
-   "symbol": "DEGEN",
-   "chain": "base",
-   "address": "0x4ed4e862860bed51a9570b96d89af5e1b0efefed",
-   "ts": 1787084825
   }
  ],
  "survivors": [
@@ -487,10 +487,10 @@
  "alerts": {
   "dump": 674,
   "pump": 257,
-  "rug": 895
+  "rug": 896
  },
  "watchlist_active": 91,
- "price_snapshots": 52252,
+ "price_snapshots": 54591,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Verify anything yourself before touching it."
 }
