@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-08-20T20:12:27Z",
- "generated_at_unix": 1787256747,
+ "generated_at": "2026-08-20T20:27:42Z",
+ "generated_at_unix": 1787257662,
  "period": {
   "start": "2026-07-15",
   "days": 36
  },
  "totals": {
-  "seen": 83407,
-  "base": 13553,
-  "robinhood": 69854,
-  "below_liquidity_threshold": 81712,
+  "seen": 83507,
+  "base": 13575,
+  "robinhood": 69932,
+  "below_liquidity_threshold": 81811,
   "spam_filtered": 0,
-  "scored": 1695,
-  "green": 704,
+  "scored": 1696,
+  "green": 705,
   "yellow": 339,
   "red": 652
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-07-30",
-   "base": 18,
-   "robinhood": 173
+   "base": 10,
+   "robinhood": 113
   },
   {
    "date": "2026-07-31",
@@ -125,11 +125,21 @@
   },
   {
    "date": "2026-08-20",
-   "base": 591,
-   "robinhood": 2622
+   "base": 613,
+   "robinhood": 2700
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "hygg.ai",
+   "name": "hy:gg",
+   "chain": "base",
+   "address": "0x0e3bb9db0d4598171898f50fe4e7064f0ff494fe",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 69614.1,
+   "first_seen": 1787256931
+  },
   {
    "symbol": "AGENT",
    "name": "Circle Agent",
@@ -319,16 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 447627.4348,
    "first_seen": 1787223621
-  },
-  {
-   "symbol": "SGOOSE",
-   "name": "Silly Goose",
-   "chain": "robinhood",
-   "address": "0x2d8552e6f148d9b33e47c4b51966890e69b187d2",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 447627.4348,
-   "first_seen": 1787223618
   }
  ],
  "confirmed": [],
@@ -353,7 +353,7 @@
   }
  ],
  "probation": {
-  "waiting": 1,
+  "waiting": 2,
   "confirmed": 0,
   "dropped": 0
  },
@@ -527,7 +527,7 @@
   "rug": 921
  },
  "watchlist_active": 85,
- "price_snapshots": 65432,
+ "price_snapshots": 65726,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
