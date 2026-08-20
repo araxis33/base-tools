@@ -1,31 +1,26 @@
 {
- "generated_at": "2026-08-19T17:20:15Z",
- "generated_at_unix": 1787160012,
+ "generated_at": "2026-08-20T08:06:02Z",
+ "generated_at_unix": 1787213161,
  "period": {
   "start": "2026-07-15",
-  "days": 35
+  "days": 36
  },
  "totals": {
-  "seen": 80048,
-  "base": 12931,
-  "robinhood": 67117,
-  "below_liquidity_threshold": 78402,
-  "scored": 1646,
-  "green": 675,
-  "yellow": 330,
-  "red": 641
+  "seen": 80485,
+  "base": 13018,
+  "robinhood": 67467,
+  "below_liquidity_threshold": 78827,
+  "scored": 1658,
+  "green": 683,
+  "yellow": 331,
+  "red": 644
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
-   "date": "2026-07-29",
-   "base": 140,
-   "robinhood": 819
-  },
-  {
    "date": "2026-07-30",
-   "base": 369,
-   "robinhood": 1766
+   "base": 299,
+   "robinhood": 1396
   },
   {
    "date": "2026-07-31",
@@ -124,11 +119,106 @@
   },
   {
    "date": "2026-08-19",
-   "base": 302,
-   "robinhood": 1059
+   "base": 333,
+   "robinhood": 1174
+  },
+  {
+   "date": "2026-08-20",
+   "base": 56,
+   "robinhood": 235
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "STRABELS",
+   "name": "The Strabels",
+   "chain": "robinhood",
+   "address": "0xbb0602b26d4cca81728fbec863aaaeb7cbd8d167",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 445460.636462458,
+   "first_seen": 1787212033
+  },
+  {
+   "symbol": "AAPLCAT",
+   "name": "Apple cat",
+   "chain": "base",
+   "address": "0x9133c183c7a2b12f35eb30853724d4dbae8f484f",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 67311.6,
+   "first_seen": 1787211944
+  },
+  {
+   "symbol": "$AVA",
+   "name": "Ava By Virtuals",
+   "chain": "base",
+   "address": "0xf7f7a69aedd2671047663fcd31cad693a4517eb5",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 337741.7239,
+   "first_seen": 1787210799
+  },
+  {
+   "symbol": "Bondises",
+   "name": "Bondises",
+   "chain": "robinhood",
+   "address": "0xfed267d23a85d15bd918a61853fc9107d350f31d",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 447170.0145,
+   "first_seen": 1787210796
+  },
+  {
+   "symbol": "Walsam",
+   "name": "Walsam",
+   "chain": "robinhood",
+   "address": "0x9388677503dfc249acd61a5b694fe2cc9efb8d32",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 447170.0145,
+   "first_seen": 1787210794
+  },
+  {
+   "symbol": "Whaleonay",
+   "name": "Whaleonay",
+   "chain": "robinhood",
+   "address": "0x7d8002df2aff64cf7e8d5d39c4a84befc51f51df",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 447177.9556,
+   "first_seen": 1787210792
+  },
+  {
+   "symbol": "Bold",
+   "name": "Believe in Bold",
+   "chain": "base",
+   "address": "0x4dc591279bdc8a0cb524e160a6c88a735b4fcdcf",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 68886.8393,
+   "first_seen": 1787209656
+  },
+  {
+   "symbol": "CLOCK IN",
+   "name": "CLOCKIN",
+   "chain": "robinhood",
+   "address": "0x72cef28dba1c2da343f6bf18cfed22840c817a5b",
+   "score": 40,
+   "verdict": "yellow",
+   "liquidity_usd": 426906.8831,
+   "first_seen": 1787209565
+  },
+  {
+   "symbol": "openhuman",
+   "name": "openhuman",
+   "chain": "base",
+   "address": "0x9042616ff67286a4d6ffbe8d7c79baa253121d4d",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 63828.7876,
+   "first_seen": 1787160016
+  },
   {
    "symbol": "SHERIFF",
    "name": "Sheriff",
@@ -238,99 +328,45 @@
    "verdict": "green",
    "liquidity_usd": 11305426.9522,
    "first_seen": 1787128977
-  },
-  {
-   "symbol": "Trencher",
-   "name": "The Trencher",
-   "chain": "base",
-   "address": "0x51b9ef08126070c30b0df79fae25f08f0a38a384",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 57375.0,
-   "first_seen": 1787087192
-  },
-  {
-   "symbol": "JACKET",
-   "name": "just a jacket",
-   "chain": "base",
-   "address": "0x9afe267863a63a7640dfa90ebed7306f6dd38f08",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 63314.038,
-   "first_seen": 1787086243
-  },
-  {
-   "symbol": "XSO",
-   "name": "XSOLUT (BASE)",
-   "chain": "base",
-   "address": "0xc723959cea420016c6465db4bac2663da0cb30ae",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 210364.9041,
-   "first_seen": 1787085293
-  },
-  {
-   "symbol": "JACKET",
-   "name": "just a jacket",
-   "chain": "base",
-   "address": "0xaad1705b5e0459750adb1598bd36ce0adc7e83ff",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 60943.7898,
-   "first_seen": 1787085245
-  },
-  {
-   "symbol": "ROBINCOYOTE",
-   "name": "RobinCoyote",
-   "chain": "robinhood",
-   "address": "0xc06289d251872edf52e73098245e2fdb819b7347",
-   "score": 92,
-   "verdict": "green",
-   "liquidity_usd": 70444.2103,
-   "first_seen": 1787085210
-  },
-  {
-   "symbol": "奥兹",
-   "name": "奥兹",
-   "chain": "robinhood",
-   "address": "0xcb94c2190ebeceb1c8361c0b9b5599ab60d8ae13",
-   "score": 84,
-   "verdict": "green",
-   "liquidity_usd": 52283.0825,
-   "first_seen": 1787081165
-  },
-  {
-   "symbol": "XXT",
-   "name": "XSOLUT-XXT",
-   "chain": "base",
-   "address": "0x7a01fef5e5baa9a06adbb4a162673dddbdd6db7d",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 333955.953,
-   "first_seen": 1787080756
-  },
-  {
-   "symbol": "奥兹",
-   "name": "奥兹",
-   "chain": "robinhood",
-   "address": "0xb005c0dc25cee3266d9d7c2bfc661bbff010f59d",
-   "score": 92,
-   "verdict": "green",
-   "liquidity_usd": 79681.5187,
-   "first_seen": 1787078358
-  },
-  {
-   "symbol": "XTT/XST",
-   "name": "XTSOULUTS - XST",
-   "chain": "base",
-   "address": "0x3d82b779e395669cc131319aa83cd4715f8e2975",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 456454.9492,
-   "first_seen": 1787076278
   }
  ],
  "recent_drains": [
+  {
+   "symbol": "Bold",
+   "chain": "base",
+   "address": "0x4dc591279bdc8a0cb524e160a6c88a735b4fcdcf",
+   "ts": 1787211918
+  },
+  {
+   "symbol": "奥兹",
+   "chain": "robinhood",
+   "address": "0xcb94c2190ebeceb1c8361c0b9b5599ab60d8ae13",
+   "ts": 1787209714
+  },
+  {
+   "symbol": "ROBINCOYOTE",
+   "chain": "robinhood",
+   "address": "0xc06289d251872edf52e73098245e2fdb819b7347",
+   "ts": 1787209574
+  },
+  {
+   "symbol": "openhuman",
+   "chain": "base",
+   "address": "0x9042616ff67286a4d6ffbe8d7c79baa253121d4d",
+   "ts": 1787209562
+  },
+  {
+   "symbol": "REEL",
+   "chain": "robinhood",
+   "address": "0x66856c8604e472732fc33e1379837532ebfce888",
+   "ts": 1787209562
+  },
+  {
+   "symbol": "SHERIFF",
+   "chain": "base",
+   "address": "0xf87d660175cb454482304b96b3ae681c37263604",
+   "ts": 1787160016
+  },
   {
    "symbol": "Larry",
    "chain": "base",
@@ -384,45 +420,19 @@
    "chain": "robinhood",
    "address": "0xf031b2e7ff105e742d2e3fd7b1d1138431c33aa4",
    "ts": 1787132100
-  },
-  {
-   "symbol": "BaseBull",
-   "chain": "base",
-   "address": "0xe428c426fa9b0eb9fd38d3ddaff5ea6af4eb75e9",
-   "ts": 1787129688
-  },
-  {
-   "symbol": "BaseBull",
-   "chain": "base",
-   "address": "0x7c928bc4295856e9b8b55b2a254224142ec59648",
-   "ts": 1787129686
-  },
-  {
-   "symbol": "BaseBull",
-   "chain": "base",
-   "address": "0x5ed801fc81d4d428e5867eeb0464ba99d61b43ea",
-   "ts": 1787129686
-  },
-  {
-   "symbol": "XXT",
-   "chain": "base",
-   "address": "0xae7d502dc8d84c5f860eff07877f3f1cde4c9b12",
-   "ts": 1787129613
-  },
-  {
-   "symbol": "Claude",
-   "chain": "base",
-   "address": "0xc4e9a27d5a1c6857823fbf8dccc607b8d7e32b07",
-   "ts": 1787129482
-  },
-  {
-   "symbol": "PONS",
-   "chain": "robinhood",
-   "address": "0xb2598c5e7bab721e835680090eb930e9b381b401",
-   "ts": 1787129357
   }
  ],
  "survivors": [
+  {
+   "symbol": "OIL",
+   "chain": "robinhood",
+   "address": "0x00006916819880adfda57e4329ab8db487c6773a",
+   "score": 17,
+   "alerted_at": 1787084708,
+   "liq_0": 51661.3655,
+   "liq_24h": 83443.36,
+   "volume_24h": 76895.33
+  },
   {
    "symbol": "WALLSTREET",
    "chain": "robinhood",
@@ -485,12 +495,12 @@
   }
  ],
  "alerts": {
-  "dump": 674,
+  "dump": 676,
   "pump": 257,
-  "rug": 897
+  "rug": 903
  },
- "watchlist_active": 92,
- "price_snapshots": 55507,
+ "watchlist_active": 85,
+ "price_snapshots": 52291,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Verify anything yourself before touching it."
 }
