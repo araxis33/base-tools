@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-08-20T19:49:58Z",
- "generated_at_unix": 1787255398,
+ "generated_at": "2026-08-20T20:04:11Z",
+ "generated_at_unix": 1787256250,
  "period": {
   "start": "2026-07-15",
   "days": 36
  },
  "totals": {
-  "seen": 83265,
-  "base": 13533,
-  "robinhood": 69732,
-  "below_liquidity_threshold": 81571,
+  "seen": 83361,
+  "base": 13542,
+  "robinhood": 69819,
+  "below_liquidity_threshold": 81666,
   "spam_filtered": 0,
-  "scored": 1694,
-  "green": 703,
+  "scored": 1695,
+  "green": 704,
   "yellow": 339,
   "red": 652
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-07-30",
-   "base": 34,
-   "robinhood": 297
+   "base": 29,
+   "robinhood": 226
   },
   {
    "date": "2026-07-31",
@@ -125,11 +125,21 @@
   },
   {
    "date": "2026-08-20",
-   "base": 571,
-   "robinhood": 2500
+   "base": 580,
+   "robinhood": 2587
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "AGENT",
+   "name": "Circle Agent",
+   "chain": "base",
+   "address": "0x89816f6fccff37950032f84fb57b28081cdfed78",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 73621.7851,
+   "first_seen": 1787255400
+  },
   {
    "symbol": "KIRK",
    "name": "Official Charlie Kirk Coin",
@@ -319,16 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 447627.4348,
    "first_seen": 1787223618
-  },
-  {
-   "symbol": "BFRG",
-   "name": "Bonk Frog",
-   "chain": "robinhood",
-   "address": "0x1a8704e994d631015bd07f56bcd726ff1a948ab5",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 447558.779692764,
-   "first_seen": 1787223614
   }
  ],
  "confirmed": [],
@@ -353,7 +353,7 @@
   }
  ],
  "probation": {
-  "waiting": 0,
+  "waiting": 1,
   "confirmed": 0,
   "dropped": 0
  },
@@ -527,7 +527,7 @@
   "rug": 921
  },
  "watchlist_active": 85,
- "price_snapshots": 64995,
+ "price_snapshots": 65262,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
