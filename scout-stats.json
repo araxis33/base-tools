@@ -1,17 +1,17 @@
 {
- "generated_at": "2026-08-20T11:19:28Z",
- "generated_at_unix": 1787224768,
+ "generated_at": "2026-08-20T13:19:37Z",
+ "generated_at_unix": 1787231976,
  "period": {
   "start": "2026-07-15",
   "days": 36
  },
  "totals": {
-  "seen": 81053,
-  "base": 13121,
-  "robinhood": 67932,
-  "below_liquidity_threshold": 79381,
-  "scored": 1672,
-  "green": 692,
+  "seen": 81408,
+  "base": 13197,
+  "robinhood": 68211,
+  "below_liquidity_threshold": 79733,
+  "scored": 1675,
+  "green": 695,
   "yellow": 334,
   "red": 646
  },
@@ -19,8 +19,8 @@
  "daily": [
   {
    "date": "2026-07-30",
-   "base": 241,
-   "robinhood": 1122
+   "base": 187,
+   "robinhood": 1010
   },
   {
    "date": "2026-07-31",
@@ -124,11 +124,41 @@
   },
   {
    "date": "2026-08-20",
-   "base": 159,
-   "robinhood": 700
+   "base": 235,
+   "robinhood": 979
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "JACKET",
+   "name": "just a jacket",
+   "chain": "base",
+   "address": "0x4cf6b0ec811ebd921d3d8c06597e9fc3250166f8",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 69269.136,
+   "first_seen": 1787230021
+  },
+  {
+   "symbol": "CB",
+   "name": "Cheeseburger &amp; Bitcoin",
+   "chain": "base",
+   "address": "0x9e9674bea6056746bcbced69caeadfa908b63552",
+   "score": 94,
+   "verdict": "green",
+   "liquidity_usd": 80869.1679,
+   "first_seen": 1787229328
+  },
+  {
+   "symbol": "lilcobie",
+   "name": "lil cobie bot",
+   "chain": "base",
+   "address": "0x6dfd6eaa195b7f8f5fd55721ec4d552cb48a5992",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 72597.3456,
+   "first_seen": 1787226030
+  },
   {
    "symbol": "DERP",
    "name": "Derp Penguin",
@@ -298,39 +328,27 @@
    "verdict": "green",
    "liquidity_usd": 447170.0145,
    "first_seen": 1787210794
-  },
-  {
-   "symbol": "Whaleonay",
-   "name": "Whaleonay",
-   "chain": "robinhood",
-   "address": "0x7d8002df2aff64cf7e8d5d39c4a84befc51f51df",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 447177.9556,
-   "first_seen": 1787210792
-  },
-  {
-   "symbol": "Bold",
-   "name": "Believe in Bold",
-   "chain": "base",
-   "address": "0x4dc591279bdc8a0cb524e160a6c88a735b4fcdcf",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 68886.8393,
-   "first_seen": 1787209656
-  },
-  {
-   "symbol": "CLOCK IN",
-   "name": "CLOCKIN",
-   "chain": "robinhood",
-   "address": "0x72cef28dba1c2da343f6bf18cfed22840c817a5b",
-   "score": 40,
-   "verdict": "yellow",
-   "liquidity_usd": 426906.8831,
-   "first_seen": 1787209565
   }
  ],
  "recent_drains": [
+  {
+   "symbol": "CB",
+   "chain": "base",
+   "address": "0x9e9674bea6056746bcbced69caeadfa908b63552",
+   "ts": 1787230048
+  },
+  {
+   "symbol": "lilcobie",
+   "chain": "base",
+   "address": "0x6dfd6eaa195b7f8f5fd55721ec4d552cb48a5992",
+   "ts": 1787229352
+  },
+  {
+   "symbol": "lilcobie",
+   "chain": "base",
+   "address": "0xb46f893c1f9042b98fc1cfea6dd44e063918f6bc",
+   "ts": 1787226028
+  },
   {
    "symbol": "lilcobie",
    "chain": "base",
@@ -402,24 +420,6 @@
    "chain": "robinhood",
    "address": "0x66856c8604e472732fc33e1379837532ebfce888",
    "ts": 1787209562
-  },
-  {
-   "symbol": "SHERIFF",
-   "chain": "base",
-   "address": "0xf87d660175cb454482304b96b3ae681c37263604",
-   "ts": 1787160016
-  },
-  {
-   "symbol": "Larry",
-   "chain": "base",
-   "address": "0x5fbda7cd3b27b0966f21aa78ffcc7c23cff425a1",
-   "ts": 1787154832
-  },
-  {
-   "symbol": "Larry",
-   "chain": "base",
-   "address": "0x47c3b64c3279ee529ac644a2449c14b5e3d34b38",
-   "ts": 1787151972
   }
  ],
  "survivors": [
@@ -497,10 +497,10 @@
  "alerts": {
   "dump": 676,
   "pump": 257,
-  "rug": 908
+  "rug": 911
  },
- "watchlist_active": 84,
- "price_snapshots": 57577,
+ "watchlist_active": 82,
+ "price_snapshots": 59153,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Verify anything yourself before touching it."
 }
