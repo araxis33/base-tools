@@ -1,26 +1,26 @@
 {
- "generated_at": "2026-08-20T18:09:04Z",
- "generated_at_unix": 1787249344,
+ "generated_at": "2026-08-20T19:09:15Z",
+ "generated_at_unix": 1787252954,
  "period": {
   "start": "2026-07-15",
   "days": 36
  },
  "totals": {
-  "seen": 82507,
-  "base": 13419,
-  "robinhood": 69088,
-  "below_liquidity_threshold": 80818,
-  "scored": 1689,
-  "green": 701,
-  "yellow": 337,
-  "red": 651
+  "seen": 82927,
+  "base": 13475,
+  "robinhood": 69452,
+  "below_liquidity_threshold": 81234,
+  "scored": 1693,
+  "green": 703,
+  "yellow": 338,
+  "red": 652
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-07-30",
-   "base": 93,
-   "robinhood": 586
+   "base": 65,
+   "robinhood": 465
   },
   {
    "date": "2026-07-31",
@@ -124,11 +124,41 @@
   },
   {
    "date": "2026-08-20",
-   "base": 457,
-   "robinhood": 1856
+   "base": 513,
+   "robinhood": 2220
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "GOAT",
+   "name": "goat-huuuge",
+   "chain": "base",
+   "address": "0x92231b08ecfc119e11f06cf3290163dab233a2fe",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 69584.4,
+   "first_seen": 1787252375
+  },
+  {
+   "symbol": "GOAT",
+   "name": "goat-huuuge",
+   "chain": "base",
+   "address": "0xb34dd18069a09f2b4e974765fcd24baad4f1c778",
+   "score": 71,
+   "verdict": "green",
+   "liquidity_usd": 69908.0343,
+   "first_seen": 1787250941
+  },
+  {
+   "symbol": "TICK",
+   "name": "The Ticking Graft",
+   "chain": "robinhood",
+   "address": "0xf468c557eac964ada2a6ff6c4f79480e33449167",
+   "score": 40,
+   "verdict": "yellow",
+   "liquidity_usd": 146956.012183898,
+   "first_seen": 1787249408
+  },
   {
    "symbol": "BULLBALLS",
    "name": "Bullballs Coin",
@@ -298,39 +328,21 @@
    "verdict": "green",
    "liquidity_usd": 447558.779691397,
    "first_seen": 1787223610
-  },
-  {
-   "symbol": "lilcobie",
-   "name": "lil cobie bot",
-   "chain": "base",
-   "address": "0xb46f893c1f9042b98fc1cfea6dd44e063918f6bc",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 68434.8,
-   "first_seen": 1787222892
-  },
-  {
-   "symbol": "lilcobie",
-   "name": "lil cobie bot",
-   "chain": "base",
-   "address": "0x660afa7b80eae8262e099da1376acc5efc384ec3",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 68606.4,
-   "first_seen": 1787221175
-  },
-  {
-   "symbol": "lilcobie",
-   "name": "lil cobie bot",
-   "chain": "base",
-   "address": "0x4ae2d6d13f23e4b150d61ddb6e3ca5c6083ea943",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 69569.166,
-   "first_seen": 1787219206
   }
  ],
  "recent_drains": [
+  {
+   "symbol": "GOAT",
+   "chain": "base",
+   "address": "0xb34dd18069a09f2b4e974765fcd24baad4f1c778",
+   "ts": 1787252402
+  },
+  {
+   "symbol": "openhuman",
+   "chain": "base",
+   "address": "0x05553481fcc9434c9040b75bdc9b284b7d44cd6b",
+   "ts": 1787250821
+  },
   {
    "symbol": "openhuman",
    "chain": "base",
@@ -408,18 +420,6 @@
    "chain": "base",
    "address": "0xcfda263872bb03c9f4f16cbac636a3b0ec29382c",
    "ts": 1787219082
-  },
-  {
-   "symbol": "dogue",
-   "chain": "base",
-   "address": "0x8d2230c5bdb4b7bdd46aa6650546ef7f5d1c968b",
-   "ts": 1787217552
-  },
-  {
-   "symbol": "Monkey",
-   "chain": "robinhood",
-   "address": "0x8156edd920be55e364b49cb95d2b3327d16bef60",
-   "ts": 1787215882
   }
  ],
  "survivors": [
@@ -497,10 +497,10 @@
  "alerts": {
   "dump": 677,
   "pump": 257,
-  "rug": 918
+  "rug": 920
  },
- "watchlist_active": 85,
- "price_snapshots": 63303,
+ "watchlist_active": 86,
+ "price_snapshots": 64260,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Verify anything yourself before touching it."
 }
