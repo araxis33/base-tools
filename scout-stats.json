@@ -1,26 +1,26 @@
 {
- "generated_at": "2026-08-20T09:19:11Z",
- "generated_at_unix": 1787217549,
+ "generated_at": "2026-08-20T10:19:22Z",
+ "generated_at_unix": 1787221161,
  "period": {
   "start": "2026-07-15",
   "days": 36
  },
  "totals": {
-  "seen": 80582,
-  "base": 13035,
-  "robinhood": 67547,
-  "below_liquidity_threshold": 78923,
-  "scored": 1659,
-  "green": 684,
-  "yellow": 331,
+  "seen": 80826,
+  "base": 13092,
+  "robinhood": 67734,
+  "below_liquidity_threshold": 79163,
+  "scored": 1663,
+  "green": 686,
+  "yellow": 333,
   "red": 644
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-07-30",
-   "base": 299,
-   "robinhood": 1396
+   "base": 255,
+   "robinhood": 1230
   },
   {
    "date": "2026-07-31",
@@ -124,11 +124,51 @@
   },
   {
    "date": "2026-08-20",
-   "base": 73,
-   "robinhood": 315
+   "base": 130,
+   "robinhood": 502
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "lilcobie",
+   "name": "lil cobie bot",
+   "chain": "base",
+   "address": "0x4ae2d6d13f23e4b150d61ddb6e3ca5c6083ea943",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 69569.166,
+   "first_seen": 1787219206
+  },
+  {
+   "symbol": "USDG",
+   "name": "COIN MANCERS",
+   "chain": "robinhood",
+   "address": "0xd3b7bfbdf2257de76788f0bd17a45f9ca2b255e9",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 51511.0854,
+   "first_seen": 1787218918
+  },
+  {
+   "symbol": "USWS",
+   "name": "US WATER SUPPLY",
+   "chain": "base",
+   "address": "0x54b063501b2d76e94850729f130ab58c9e00bfe7",
+   "score": 57,
+   "verdict": "yellow",
+   "liquidity_usd": 101608.8463,
+   "first_seen": 1787217561
+  },
+  {
+   "symbol": "BTrencher",
+   "name": "Base Trencher",
+   "chain": "base",
+   "address": "0xcfda263872bb03c9f4f16cbac636a3b0ec29382c",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 74055.45,
+   "first_seen": 1787217553
+  },
   {
    "symbol": "dogue",
    "name": "doguecoin",
@@ -288,49 +328,27 @@
    "verdict": "yellow",
    "liquidity_usd": 87369.567,
    "first_seen": 1787144463
-  },
-  {
-   "symbol": "USWS",
-   "name": "US WATER SUPPLY-USWS",
-   "chain": "base",
-   "address": "0x5c4bdcbcddcf91c42cfb09fcc0db11d33f860713",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 139296.0902,
-   "first_seen": 1787143251
-  },
-  {
-   "symbol": "MRBASE",
-   "name": "MR BASE",
-   "chain": "base",
-   "address": "0xf05f7432e5305112eb6e1d376da8054cb5b3b25e",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 59917.3112,
-   "first_seen": 1787143224
-  },
-  {
-   "symbol": "GOOGL",
-   "name": "GOOGL",
-   "chain": "base",
-   "address": "0xa86df9d2bd733391b36eb3b889f5213042610ac1",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 57921.8281,
-   "first_seen": 1787132376
-  },
-  {
-   "symbol": "TREX",
-   "name": "Google's TREX",
-   "chain": "base",
-   "address": "0x891c7e57b5f55c73a67b09ac4b4aa87816abac3d",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 57670.5,
-   "first_seen": 1787129706
   }
  ],
  "recent_drains": [
+  {
+   "symbol": "lilcobie",
+   "chain": "base",
+   "address": "0x4ae2d6d13f23e4b150d61ddb6e3ca5c6083ea943",
+   "ts": 1787221056
+  },
+  {
+   "symbol": "BTrencher",
+   "chain": "base",
+   "address": "0xcfda263872bb03c9f4f16cbac636a3b0ec29382c",
+   "ts": 1787219082
+  },
+  {
+   "symbol": "dogue",
+   "chain": "base",
+   "address": "0x8d2230c5bdb4b7bdd46aa6650546ef7f5d1c968b",
+   "ts": 1787217552
+  },
   {
    "symbol": "Monkey",
    "chain": "robinhood",
@@ -402,24 +420,6 @@
    "chain": "base",
    "address": "0xda0975d914183999ad91a1c0563c0d5955f0e060",
    "ts": 1787149576
-  },
-  {
-   "symbol": "GP",
-   "chain": "base",
-   "address": "0xbe6026e221911840add9123a3cec4addc2649e1e",
-   "ts": 1787147630
-  },
-  {
-   "symbol": "XTS",
-   "chain": "base",
-   "address": "0xbd13901269c953db34cd3197ee73416865f5cf0b",
-   "ts": 1787147053
-  },
-  {
-   "symbol": "WINK",
-   "chain": "robinhood",
-   "address": "0xf4dfdd939eb603c03249a0ac36d7577ebb26a9d4",
-   "ts": 1787145373
   }
  ],
  "survivors": [
@@ -497,10 +497,10 @@
  "alerts": {
   "dump": 676,
   "pump": 257,
-  "rug": 904
+  "rug": 907
  },
- "watchlist_active": 81,
- "price_snapshots": 53454,
+ "watchlist_active": 80,
+ "price_snapshots": 55547,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Verify anything yourself before touching it."
 }
