@@ -1,26 +1,26 @@
 {
- "generated_at": "2026-08-20T13:19:37Z",
- "generated_at_unix": 1787231976,
+ "generated_at": "2026-08-20T14:19:43Z",
+ "generated_at_unix": 1787235582,
  "period": {
   "start": "2026-07-15",
   "days": 36
  },
  "totals": {
-  "seen": 81408,
-  "base": 13197,
-  "robinhood": 68211,
-  "below_liquidity_threshold": 79733,
-  "scored": 1675,
-  "green": 695,
-  "yellow": 334,
-  "red": 646
+  "seen": 81816,
+  "base": 13254,
+  "robinhood": 68562,
+  "below_liquidity_threshold": 80136,
+  "scored": 1680,
+  "green": 697,
+  "yellow": 335,
+  "red": 648
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-07-30",
-   "base": 187,
-   "robinhood": 1010
+   "base": 138,
+   "robinhood": 858
   },
   {
    "date": "2026-07-31",
@@ -124,11 +124,41 @@
   },
   {
    "date": "2026-08-20",
-   "base": 235,
-   "robinhood": 979
+   "base": 292,
+   "robinhood": 1330
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "PPAP",
+   "name": "Pen Pineapple Apple Pen",
+   "chain": "base",
+   "address": "0xb7410a64870a8dc4dc29275f99ab3c3d23d59d8a",
+   "score": 94,
+   "verdict": "green",
+   "liquidity_usd": 68938.1398,
+   "first_seen": 1787235409
+  },
+  {
+   "symbol": "PPAP",
+   "name": "Pen Pineapple Apple Pen",
+   "chain": "base",
+   "address": "0x4f6aade479ebdf0aa108a61353eef51299619c82",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 68933.4801,
+   "first_seen": 1787234990
+  },
+  {
+   "symbol": "Trencher",
+   "name": "The Trencher",
+   "chain": "base",
+   "address": "0x7ea10ff35ed61b593b307c4b8e2cb57f86d3c70b",
+   "score": 71,
+   "verdict": "green",
+   "liquidity_usd": 70157.3272,
+   "first_seen": 1787232622
+  },
   {
    "symbol": "JACKET",
    "name": "just a jacket",
@@ -298,39 +328,21 @@
    "verdict": "green",
    "liquidity_usd": 67311.6,
    "first_seen": 1787211944
-  },
-  {
-   "symbol": "$AVA",
-   "name": "Ava By Virtuals",
-   "chain": "base",
-   "address": "0xf7f7a69aedd2671047663fcd31cad693a4517eb5",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 337741.7239,
-   "first_seen": 1787210799
-  },
-  {
-   "symbol": "Bondises",
-   "name": "Bondises",
-   "chain": "robinhood",
-   "address": "0xfed267d23a85d15bd918a61853fc9107d350f31d",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 447170.0145,
-   "first_seen": 1787210796
-  },
-  {
-   "symbol": "Walsam",
-   "name": "Walsam",
-   "chain": "robinhood",
-   "address": "0x9388677503dfc249acd61a5b694fe2cc9efb8d32",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 447170.0145,
-   "first_seen": 1787210794
   }
  ],
  "recent_drains": [
+  {
+   "symbol": "Trencher",
+   "chain": "base",
+   "address": "0x7ea10ff35ed61b593b307c4b8e2cb57f86d3c70b",
+   "ts": 1787234735
+  },
+  {
+   "symbol": "JACKET",
+   "chain": "base",
+   "address": "0x4cf6b0ec811ebd921d3d8c06597e9fc3250166f8",
+   "ts": 1787232376
+  },
   {
    "symbol": "CB",
    "chain": "base",
@@ -408,18 +420,6 @@
    "chain": "robinhood",
    "address": "0xc06289d251872edf52e73098245e2fdb819b7347",
    "ts": 1787209574
-  },
-  {
-   "symbol": "openhuman",
-   "chain": "base",
-   "address": "0x9042616ff67286a4d6ffbe8d7c79baa253121d4d",
-   "ts": 1787209562
-  },
-  {
-   "symbol": "REEL",
-   "chain": "robinhood",
-   "address": "0x66856c8604e472732fc33e1379837532ebfce888",
-   "ts": 1787209562
   }
  ],
  "survivors": [
@@ -497,10 +497,10 @@
  "alerts": {
   "dump": 676,
   "pump": 257,
-  "rug": 911
+  "rug": 913
  },
- "watchlist_active": 82,
- "price_snapshots": 59153,
+ "watchlist_active": 85,
+ "price_snapshots": 60630,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Verify anything yourself before touching it."
 }
