@@ -212,9 +212,12 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
 
 <script>
 (function () {
+  // Клик по названию монеты ведёт на график, а не на страницу адреса в
+  // обозревателе блоков. Robinhood Chain вела на blockscout только потому,
+  // что DexScreener проиндексировал эту сеть уже после написания страницы.
   var EXPLORER = {
     base: 'https://dexscreener.com/base/',
-    robinhood: 'https://robinhoodchain.blockscout.com/address/'
+    robinhood: 'https://dexscreener.com/robinhood/'
   };
   var CHAIN_LABEL = { base: 'Base', robinhood: 'Robinhood Chain' };
 
