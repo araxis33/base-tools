@@ -1,26 +1,26 @@
 {
- "generated_at": "2026-08-20T19:09:15Z",
- "generated_at_unix": 1787252954,
+ "generated_at": "2026-08-20T19:30:38Z",
+ "generated_at_unix": 1787254237,
  "period": {
   "start": "2026-07-15",
   "days": 36
  },
  "totals": {
-  "seen": 82927,
-  "base": 13475,
-  "robinhood": 69452,
-  "below_liquidity_threshold": 81234,
-  "scored": 1693,
+  "seen": 83049,
+  "base": 13507,
+  "robinhood": 69542,
+  "below_liquidity_threshold": 81355,
+  "scored": 1694,
   "green": 703,
-  "yellow": 338,
+  "yellow": 339,
   "red": 652
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-07-30",
-   "base": 65,
-   "robinhood": 465
+   "base": 44,
+   "robinhood": 366
   },
   {
    "date": "2026-07-31",
@@ -124,11 +124,21 @@
   },
   {
    "date": "2026-08-20",
-   "base": 513,
-   "robinhood": 2220
+   "base": 545,
+   "robinhood": 2310
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "KIRK",
+   "name": "Official Charlie Kirk Coin",
+   "chain": "base",
+   "address": "0xc5bbc4bacb40b5d4cb359d4cf83e0c9e61e753cd",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 75106.074,
+   "first_seen": 1787252964
+  },
   {
    "symbol": "GOAT",
    "name": "goat-huuuge",
@@ -318,16 +328,6 @@
    "verdict": "green",
    "liquidity_usd": 447558.779692764,
    "first_seen": 1787223614
-  },
-  {
-   "symbol": "CFRG",
-   "name": "Clown Frog",
-   "chain": "robinhood",
-   "address": "0xee2c897b6f505be6fe765121b405430ce01daeae",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 447558.779691397,
-   "first_seen": 1787223610
   }
  ],
  "recent_drains": [
@@ -500,7 +500,7 @@
   "rug": 920
  },
  "watchlist_active": 86,
- "price_snapshots": 64260,
+ "price_snapshots": 64626,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Verify anything yourself before touching it."
 }
