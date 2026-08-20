@@ -1,17 +1,17 @@
 {
- "generated_at": "2026-08-20T08:06:02Z",
- "generated_at_unix": 1787213161,
+ "generated_at": "2026-08-20T09:19:11Z",
+ "generated_at_unix": 1787217549,
  "period": {
   "start": "2026-07-15",
   "days": 36
  },
  "totals": {
-  "seen": 80485,
-  "base": 13018,
-  "robinhood": 67467,
-  "below_liquidity_threshold": 78827,
-  "scored": 1658,
-  "green": 683,
+  "seen": 80582,
+  "base": 13035,
+  "robinhood": 67547,
+  "below_liquidity_threshold": 78923,
+  "scored": 1659,
+  "green": 684,
   "yellow": 331,
   "red": 644
  },
@@ -124,11 +124,21 @@
   },
   {
    "date": "2026-08-20",
-   "base": 56,
-   "robinhood": 235
+   "base": 73,
+   "robinhood": 315
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "dogue",
+   "name": "doguecoin",
+   "chain": "base",
+   "address": "0x8d2230c5bdb4b7bdd46aa6650546ef7f5d1c968b",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 72091.8212,
+   "first_seen": 1787214936
+  },
   {
    "symbol": "STRABELS",
    "name": "The Strabels",
@@ -318,19 +328,27 @@
    "verdict": "yellow",
    "liquidity_usd": 57670.5,
    "first_seen": 1787129706
-  },
-  {
-   "symbol": "RYY",
-   "name": "Reyayu",
-   "chain": "base",
-   "address": "0xa61007f8b5fe284ebc08286b8e334d6934913f56",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 11305426.9522,
-   "first_seen": 1787128977
   }
  ],
  "recent_drains": [
+  {
+   "symbol": "Monkey",
+   "chain": "robinhood",
+   "address": "0x8156edd920be55e364b49cb95d2b3327d16bef60",
+   "ts": 1787215882
+  },
+  {
+   "symbol": "AAPLCAT",
+   "chain": "base",
+   "address": "0x9133c183c7a2b12f35eb30853724d4dbae8f484f",
+   "ts": 1787214298
+  },
+  {
+   "symbol": "WUSDG",
+   "chain": "robinhood",
+   "address": "0x4eff9ccd650f6990132d1d738446256ca405f320",
+   "ts": 1787214168
+  },
   {
    "symbol": "Bold",
    "chain": "base",
@@ -402,24 +420,6 @@
    "chain": "robinhood",
    "address": "0xf4dfdd939eb603c03249a0ac36d7577ebb26a9d4",
    "ts": 1787145373
-  },
-  {
-   "symbol": "WETH",
-   "chain": "robinhood",
-   "address": "0x0000000000000000000000000000000000000000",
-   "ts": 1787144543
-  },
-  {
-   "symbol": "TREX",
-   "chain": "base",
-   "address": "0x891c7e57b5f55c73a67b09ac4b4aa87816abac3d",
-   "ts": 1787132306
-  },
-  {
-   "symbol": "PIPECAT",
-   "chain": "robinhood",
-   "address": "0xf031b2e7ff105e742d2e3fd7b1d1138431c33aa4",
-   "ts": 1787132100
   }
  ],
  "survivors": [
@@ -497,10 +497,10 @@
  "alerts": {
   "dump": 676,
   "pump": 257,
-  "rug": 903
+  "rug": 904
  },
- "watchlist_active": 85,
- "price_snapshots": 52291,
+ "watchlist_active": 81,
+ "price_snapshots": 53454,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Verify anything yourself before touching it."
 }
