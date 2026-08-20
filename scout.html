@@ -85,6 +85,7 @@ td.num{font-variant-numeric:tabular-nums; white-space:nowrap}
 .pill{display:inline-block; padding:2px 9px; border-radius:999px; font-size:12px; font-weight:600}
 .pill.green{background:rgba(63,191,135,.14); color:#6fd7ab}
 .pill.yellow{background:rgba(255,207,64,.14); color:var(--yellow)}
+.pill.red{background:rgba(255,107,107,.14); color:var(--red)}
 .chain{color:var(--muted); font-size:13px}
 
 .disclaim{background:var(--card); border:1px solid var(--border); border-left:3px solid var(--yellow);
@@ -119,7 +120,8 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
     <h1>What's launching on Base and Robinhood Chain</h1>
     <p class="sub">A scanner watches every new pool on both chains, checks each token for the
       usual traps &mdash; honeypot, mintable supply, unlocked liquidity, holder concentration &mdash;
-      and then follows what happens to it. These are its raw numbers.</p>
+      and then follows what actually happens to it. The follow-up is the point: it turns out
+      a clean contract predicted almost nothing. These are the raw numbers, including that.</p>
     <div class="stamp" id="stamp">Loading&hellip;</div>
   </div>
 
@@ -129,6 +131,7 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
       <h2>The funnel</h2>
       <p class="note" id="period"></p>
       <div class="funnel" id="funnel"></div>
+      <p class="note" id="funnel-note"></p>
     </section>
 
     <section>
@@ -150,8 +153,28 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
     </section>
 
     <section>
-      <h2>Latest tokens that passed the checks</h2>
-      <p class="note">Cleared the liquidity floor and came back clean or near-clean. Not a recommendation.</p>
+      <h2>Did the checks predict anything?</h2>
+      <p class="note">Every token below was followed for 24 hours after it was first seen.
+        Grouped by the verdict the contract checks gave it at birth. Still a small sample,
+        and honeypots flatter the flagged group &mdash; you cannot drain a pool nobody can sell into.
+        But the clean group did not come out ahead, and that is the whole finding.</p>
+      <div class="tbl-wrap"><table id="verdicts"></table></div>
+      <p class="note" id="verdict-take"></p>
+    </section>
+
+    <section>
+      <h2>Tokens that proved demand</h2>
+      <p class="note">These were not published when their pool appeared. Each one waited, and is
+        listed only because real trading showed up afterwards: many distinct buyers, real volume
+        against the pool size, liquidity still in place. Still not a recommendation &mdash; it is a
+        measurement of interest, not of worth.</p>
+      <div class="tbl-wrap"><table id="confirmed"></table></div>
+    </section>
+
+    <section>
+      <h2>Recently cleared the contract checks</h2>
+      <p class="note">No traps found in the code at launch. On the numbers above this told you
+        very little about what happened next, so it is listed as raw output, not as a shortlist.</p>
       <div class="tbl-wrap"><table id="finds"></table></div>
     </section>
 
@@ -248,11 +271,19 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
     document.getElementById('funnel').innerHTML = [
       { c: 'a', n: t.seen, l: 'new tokens appeared', p: '' },
       { c: 'b', n: t.scored, l: 'had at least ' + usd(d.liquidity_threshold_usd) + ' liquidity', p: pct(t.scored, t.seen) + ' of all' },
-      { c: 'c', n: t.green, l: 'passed the scam checks cleanly', p: pct(t.green, t.seen) + ' of all' }
+      { c: 'c', n: (d.probation && d.probation.confirmed) || 0, l: 'went on to prove real demand', p: pct((d.probation && d.probation.confirmed) || 0, t.seen) + ' of all' }
     ].map(function (s) {
       return '<div class="step ' + s.c + '"><span class="n">' + num(s.n) + '</span>' +
         '<span class="lbl">' + s.l + '</span><span class="pct">' + s.p + '</span></div>';
     }).join('');
+
+    var pb = d.probation || {};
+    var pbSeen = (pb.waiting || 0) + (pb.confirmed || 0) + (pb.dropped || 0);
+    document.getElementById('funnel-note').textContent = pbSeen < 50
+      ? 'The last stage is new: until 20 Aug 2026 this scanner published tokens as soon as their '
+        + 'pool appeared, which is exactly what the numbers below showed to be worthless. It now '
+        + 'waits for trading instead, so this row starts from zero and fills up over the coming days.'
+      : pb.dropped + ' candidates have been dropped after waiting without ever attracting real trading.';
 
     document.getElementById('chains').innerHTML = [
       { k: 'Robinhood Chain', v: t.robinhood, s: pct(t.robinhood, t.seen) + ' of everything seen' },
@@ -273,6 +304,45 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
         '<i class="bs" style="height:' + (x.base * h).toFixed(1) + 'px"></i>' +
         '<b>' + x.date.slice(8) + '</b></div>';
     }).join('');
+
+    var vo = d.verdict_outcomes || [];
+    var VERDICT_LABEL = { green: 'came back clean', yellow: 'minor flags', red: 'flagged as dangerous' };
+    table(document.getElementById('verdicts'),
+      ['Verdict at launch', 'Followed', 'Still had liquidity 24h later', 'Still trading'],
+      vo.map(function (v) {
+        var share = v.checked ? Math.round(100 * v.held_liquidity / v.checked) : 0;
+        return [
+          { html: '<span class="pill ' + (v.verdict === 'green' ? 'green' : (v.verdict === 'yellow' ? 'yellow' : 'red')) + '">' +
+                  esc(VERDICT_LABEL[v.verdict] || v.verdict) + '</span>' },
+          { html: num(v.checked), num: true },
+          { html: num(v.held_liquidity) + ' <span class="addr">' + share + '%</span>', num: true },
+          { html: num(v.still_trading), num: true }
+        ];
+      }));
+
+    var clean = vo.filter(function (v) { return v.verdict === 'green'; })[0];
+    var flagged = vo.filter(function (v) { return v.verdict === 'red'; })[0];
+    if (clean && flagged && clean.checked && flagged.checked) {
+      var cp = Math.round(100 * clean.held_liquidity / clean.checked);
+      var fp = Math.round(100 * flagged.held_liquidity / flagged.checked);
+      document.getElementById('verdict-take').textContent =
+        'Read that again: ' + cp + '% of the tokens that came back clean still had their liquidity a day ' +
+        'later, against ' + fp + '% of the ones the same checks flagged as dangerous. Passing the ' +
+        'contract checks did not make a token more likely to survive. That is why this scanner now ' +
+        'waits for real trading before it says anything.';
+    }
+
+    table(document.getElementById('confirmed'),
+      ['Token', 'Chain', 'Buyers in an hour', 'Volume in that hour', 'Liquidity'],
+      (d.confirmed || []).map(function (c) {
+        return [
+          { html: link(c.chain, c.address, c.symbol || '?', 'sym') + ' <span class="addr">' + esc(short(c.address)) + '</span>' },
+          { html: '<span class="chain">' + esc(CHAIN_LABEL[c.chain] || c.chain) + '</span>' },
+          { html: num(c.buyers_h1), num: true },
+          { html: usd(c.volume_h1), num: true },
+          { html: usd(c.liquidity_usd), num: true }
+        ];
+      }));
 
     table(document.getElementById('finds'),
       ['Token', 'Chain', 'Score', 'Liquidity', 'Found'],
