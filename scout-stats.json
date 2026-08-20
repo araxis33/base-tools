@@ -1,26 +1,26 @@
 {
- "generated_at": "2026-08-20T14:19:43Z",
- "generated_at_unix": 1787235582,
+ "generated_at": "2026-08-20T18:09:04Z",
+ "generated_at_unix": 1787249344,
  "period": {
   "start": "2026-07-15",
   "days": 36
  },
  "totals": {
-  "seen": 81816,
-  "base": 13254,
-  "robinhood": 68562,
-  "below_liquidity_threshold": 80136,
-  "scored": 1680,
-  "green": 697,
-  "yellow": 335,
-  "red": 648
+  "seen": 82507,
+  "base": 13419,
+  "robinhood": 69088,
+  "below_liquidity_threshold": 80818,
+  "scored": 1689,
+  "green": 701,
+  "yellow": 337,
+  "red": 651
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-07-30",
-   "base": 138,
-   "robinhood": 858
+   "base": 93,
+   "robinhood": 586
   },
   {
    "date": "2026-07-31",
@@ -124,11 +124,71 @@
   },
   {
    "date": "2026-08-20",
-   "base": 292,
-   "robinhood": 1330
+   "base": 457,
+   "robinhood": 1856
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "BULLBALLS",
+   "name": "Bullballs Coin",
+   "chain": "base",
+   "address": "0x6e07cb5b2170d2e57cdd5e1d51738055422ad1dc",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 351732.8642,
+   "first_seen": 1787248660
+  },
+  {
+   "symbol": "openhuman",
+   "name": "openhuman",
+   "chain": "base",
+   "address": "0x05553481fcc9434c9040b75bdc9b284b7d44cd6b",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 72859.1322,
+   "first_seen": 1787248657
+  },
+  {
+   "symbol": "UTOF",
+   "name": "UTOF - United Oil Trust Fund",
+   "chain": "base",
+   "address": "0x864bdb4b0ffdd0f1e6f730ee7c89ed4fd306a471",
+   "score": 57,
+   "verdict": "yellow",
+   "liquidity_usd": 211205.2834,
+   "first_seen": 1787246606
+  },
+  {
+   "symbol": "openhuman",
+   "name": "openhuman",
+   "chain": "base",
+   "address": "0xe9e5f9ac3526a36a0ddea310a172349b312e0e3c",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 70096.5,
+   "first_seen": 1787246601
+  },
+  {
+   "symbol": "HAYLORD",
+   "name": "HAYLORD",
+   "chain": "base",
+   "address": "0x9d8697c274a7e375ab05a06f60189335b022161b",
+   "score": 94,
+   "verdict": "green",
+   "liquidity_usd": 68262.3,
+   "first_seen": 1787237723
+  },
+  {
+   "symbol": "THEO",
+   "name": "Autheo",
+   "chain": "base",
+   "address": "0x10de8276e5a6c16e1f685c8d6c53549c306702d2",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 455227.3987,
+   "first_seen": 1787237722
+  },
   {
    "symbol": "PPAP",
    "name": "Pen Pineapple Apple Pen",
@@ -268,69 +328,39 @@
    "verdict": "yellow",
    "liquidity_usd": 69569.166,
    "first_seen": 1787219206
-  },
-  {
-   "symbol": "USDG",
-   "name": "COIN MANCERS",
-   "chain": "robinhood",
-   "address": "0xd3b7bfbdf2257de76788f0bd17a45f9ca2b255e9",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 51511.0854,
-   "first_seen": 1787218918
-  },
-  {
-   "symbol": "USWS",
-   "name": "US WATER SUPPLY",
-   "chain": "base",
-   "address": "0x54b063501b2d76e94850729f130ab58c9e00bfe7",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 101608.8463,
-   "first_seen": 1787217561
-  },
-  {
-   "symbol": "BTrencher",
-   "name": "Base Trencher",
-   "chain": "base",
-   "address": "0xcfda263872bb03c9f4f16cbac636a3b0ec29382c",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 74055.45,
-   "first_seen": 1787217553
-  },
-  {
-   "symbol": "dogue",
-   "name": "doguecoin",
-   "chain": "base",
-   "address": "0x8d2230c5bdb4b7bdd46aa6650546ef7f5d1c968b",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 72091.8212,
-   "first_seen": 1787214936
-  },
-  {
-   "symbol": "STRABELS",
-   "name": "The Strabels",
-   "chain": "robinhood",
-   "address": "0xbb0602b26d4cca81728fbec863aaaeb7cbd8d167",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 445460.636462458,
-   "first_seen": 1787212033
-  },
-  {
-   "symbol": "AAPLCAT",
-   "name": "Apple cat",
-   "chain": "base",
-   "address": "0x9133c183c7a2b12f35eb30853724d4dbae8f484f",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 67311.6,
-   "first_seen": 1787211944
   }
  ],
  "recent_drains": [
+  {
+   "symbol": "openhuman",
+   "chain": "base",
+   "address": "0xe9e5f9ac3526a36a0ddea310a172349b312e0e3c",
+   "ts": 1787248526
+  },
+  {
+   "symbol": "$AVA",
+   "chain": "base",
+   "address": "0xf7f7a69aedd2671047663fcd31cad693a4517eb5",
+   "ts": 1787247200
+  },
+  {
+   "symbol": "NIMOAL",
+   "chain": "robinhood",
+   "address": "0xc3c49edb33df49f8d875f326a3b735689730a749",
+   "ts": 1787246628
+  },
+  {
+   "symbol": "HAYLORD",
+   "chain": "base",
+   "address": "0x9d8697c274a7e375ab05a06f60189335b022161b",
+   "ts": 1787246617
+  },
+  {
+   "symbol": "PPAP",
+   "chain": "base",
+   "address": "0xb7410a64870a8dc4dc29275f99ab3c3d23d59d8a",
+   "ts": 1787237578
+  },
   {
    "symbol": "Trencher",
    "chain": "base",
@@ -390,36 +420,6 @@
    "chain": "robinhood",
    "address": "0x8156edd920be55e364b49cb95d2b3327d16bef60",
    "ts": 1787215882
-  },
-  {
-   "symbol": "AAPLCAT",
-   "chain": "base",
-   "address": "0x9133c183c7a2b12f35eb30853724d4dbae8f484f",
-   "ts": 1787214298
-  },
-  {
-   "symbol": "WUSDG",
-   "chain": "robinhood",
-   "address": "0x4eff9ccd650f6990132d1d738446256ca405f320",
-   "ts": 1787214168
-  },
-  {
-   "symbol": "Bold",
-   "chain": "base",
-   "address": "0x4dc591279bdc8a0cb524e160a6c88a735b4fcdcf",
-   "ts": 1787211918
-  },
-  {
-   "symbol": "奥兹",
-   "chain": "robinhood",
-   "address": "0xcb94c2190ebeceb1c8361c0b9b5599ab60d8ae13",
-   "ts": 1787209714
-  },
-  {
-   "symbol": "ROBINCOYOTE",
-   "chain": "robinhood",
-   "address": "0xc06289d251872edf52e73098245e2fdb819b7347",
-   "ts": 1787209574
   }
  ],
  "survivors": [
@@ -495,12 +495,12 @@
   }
  ],
  "alerts": {
-  "dump": 676,
+  "dump": 677,
   "pump": 257,
-  "rug": 913
+  "rug": 918
  },
  "watchlist_active": 85,
- "price_snapshots": 60630,
+ "price_snapshots": 63303,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Verify anything yourself before touching it."
 }
