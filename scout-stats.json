@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-08-21T16:49:46Z",
- "generated_at_unix": 1787330985,
+ "generated_at": "2026-08-21T17:49:52Z",
+ "generated_at_unix": 1787334592,
  "period": {
   "start": "2026-07-15",
   "days": 37
  },
  "totals": {
-  "seen": 85791,
-  "base": 14000,
-  "robinhood": 71791,
-  "below_liquidity_threshold": 84058,
+  "seen": 86007,
+  "base": 14060,
+  "robinhood": 71947,
+  "below_liquidity_threshold": 84272,
   "spam_filtered": 14,
-  "scored": 1719,
-  "green": 715,
+  "scored": 1721,
+  "green": 717,
   "yellow": 347,
   "red": 657
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-07-31",
-   "base": 124,
-   "robinhood": 468
+   "base": 77,
+   "robinhood": 307
   },
   {
    "date": "2026-08-01",
@@ -125,11 +125,31 @@
   },
   {
    "date": "2026-08-21",
-   "base": 394,
-   "robinhood": 1704
+   "base": 454,
+   "robinhood": 1860
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "VIBE",
+   "name": "VibeFi by Virtuals",
+   "chain": "base",
+   "address": "0x18e3163c289bd7fac0395c1b94d026e1f6b550d6",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 73218.7945,
+   "first_seen": 1787334071
+  },
+  {
+   "symbol": "PX",
+   "name": "1millllionpixels",
+   "chain": "base",
+   "address": "0xcf3fd0264414e72df1a76d91b517caea553d29c6",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 192750.3184,
+   "first_seen": 1787333482
+  },
   {
    "symbol": "WWW",
    "name": "We Will Win",
@@ -309,40 +329,20 @@
    "verdict": "green",
    "liquidity_usd": 348008.2814,
    "first_seen": 1787258669
-  },
-  {
-   "symbol": "hygg.ai",
-   "name": "hy:gg",
-   "chain": "base",
-   "address": "0x0e3bb9db0d4598171898f50fe4e7064f0ff494fe",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 69614.1,
-   "first_seen": 1787256931
-  },
-  {
-   "symbol": "AGENT",
-   "name": "Circle Agent",
-   "chain": "base",
-   "address": "0x89816f6fccff37950032f84fb57b28081cdfed78",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 73621.7851,
-   "first_seen": 1787255400
   }
  ],
  "confirmed": [],
  "verdict_outcomes": [
   {
    "verdict": "green",
-   "checked": 115,
+   "checked": 116,
    "held_liquidity": 22,
-   "still_trading": 54
+   "still_trading": 55
   },
   {
    "verdict": "yellow",
-   "checked": 68,
-   "held_liquidity": 25,
+   "checked": 69,
+   "held_liquidity": 26,
    "still_trading": 16
   },
   {
@@ -353,7 +353,7 @@
   }
  ],
  "probation": {
-  "waiting": 13,
+  "waiting": 15,
   "confirmed": 0,
   "dropped": 7
  },
@@ -526,8 +526,8 @@
   "pump": 257,
   "rug": 922
  },
- "watchlist_active": 58,
- "price_snapshots": 74337,
+ "watchlist_active": 57,
+ "price_snapshots": 74854,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
