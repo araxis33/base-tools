@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-08-21T14:49:33Z",
- "generated_at_unix": 1787323773,
+ "generated_at": "2026-08-21T15:49:38Z",
+ "generated_at_unix": 1787327378,
  "period": {
   "start": "2026-07-15",
   "days": 37
  },
  "totals": {
-  "seen": 85170,
-  "base": 13905,
-  "robinhood": 71265,
-  "below_liquidity_threshold": 83442,
-  "spam_filtered": 12,
-  "scored": 1716,
-  "green": 714,
+  "seen": 85493,
+  "base": 13953,
+  "robinhood": 71540,
+  "below_liquidity_threshold": 83763,
+  "spam_filtered": 13,
+  "scored": 1717,
+  "green": 715,
   "yellow": 346,
   "red": 656
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-07-31",
-   "base": 206,
-   "robinhood": 847
+   "base": 173,
+   "robinhood": 685
   },
   {
    "date": "2026-08-01",
@@ -125,11 +125,21 @@
   },
   {
    "date": "2026-08-21",
-   "base": 299,
-   "robinhood": 1178
+   "base": 347,
+   "robinhood": 1453
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "UTOF",
+   "name": "United Oil Trust Fund",
+   "chain": "base",
+   "address": "0x2719e6c4eb27f5c1cfdc682cb7dd478e5fa35903",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 249239.3493,
+   "first_seen": 1787327329
+  },
   {
    "symbol": "DOT",
    "name": "de dot",
@@ -319,25 +329,15 @@
    "verdict": "yellow",
    "liquidity_usd": 75106.074,
    "first_seen": 1787252964
-  },
-  {
-   "symbol": "GOAT",
-   "name": "goat-huuuge",
-   "chain": "base",
-   "address": "0x92231b08ecfc119e11f06cf3290163dab233a2fe",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 69584.4,
-   "first_seen": 1787252375
   }
  ],
  "confirmed": [],
  "verdict_outcomes": [
   {
    "verdict": "green",
-   "checked": 113,
-   "held_liquidity": 21,
-   "still_trading": 53
+   "checked": 115,
+   "held_liquidity": 22,
+   "still_trading": 54
   },
   {
    "verdict": "yellow",
@@ -347,13 +347,13 @@
   },
   {
    "verdict": "red",
-   "checked": 27,
-   "held_liquidity": 17,
+   "checked": 30,
+   "held_liquidity": 20,
    "still_trading": 9
   }
  ],
  "probation": {
-  "waiting": 12,
+  "waiting": 13,
   "confirmed": 0,
   "dropped": 6
  },
@@ -527,7 +527,7 @@
   "rug": 922
  },
  "watchlist_active": 63,
- "price_snapshots": 71392,
+ "price_snapshots": 73023,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
