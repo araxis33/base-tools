@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-21T13:49:29Z",
- "generated_at_unix": 1787320169,
+ "generated_at": "2026-08-21T14:49:33Z",
+ "generated_at_unix": 1787323773,
  "period": {
   "start": "2026-07-15",
   "days": 37
  },
  "totals": {
-  "seen": 84871,
-  "base": 13855,
-  "robinhood": 71016,
-  "below_liquidity_threshold": 83150,
-  "spam_filtered": 10,
-  "scored": 1711,
-  "green": 711,
-  "yellow": 345,
-  "red": 655
+  "seen": 85170,
+  "base": 13905,
+  "robinhood": 71265,
+  "below_liquidity_threshold": 83442,
+  "spam_filtered": 12,
+  "scored": 1716,
+  "green": 714,
+  "yellow": 346,
+  "red": 656
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-07-31",
-   "base": 237,
-   "robinhood": 1067
+   "base": 206,
+   "robinhood": 847
   },
   {
    "date": "2026-08-01",
@@ -125,11 +125,51 @@
   },
   {
    "date": "2026-08-21",
-   "base": 249,
-   "robinhood": 929
+   "base": 299,
+   "robinhood": 1178
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "DOT",
+   "name": "de dot",
+   "chain": "base",
+   "address": "0x7797ddad074dfca11bdefc2de8e67926652e0528",
+   "score": 57,
+   "verdict": "yellow",
+   "liquidity_usd": 101250.8775,
+   "first_seen": 1787323250
+  },
+  {
+   "symbol": "IOTA",
+   "name": "IOTA",
+   "chain": "base",
+   "address": "0x78349d664df309451acc60a50a7835a73933a9cb",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 20299034.9067,
+   "first_seen": 1787321424
+  },
+  {
+   "symbol": "USER",
+   "name": "UNITED STATES ENERGY RESERVE",
+   "chain": "base",
+   "address": "0x02ee163bbb778086bee0631e205979073bab8dd6",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 380783.6155,
+   "first_seen": 1787321422
+  },
+  {
+   "symbol": "somETHing",
+   "name": "believe in somETHing",
+   "chain": "base",
+   "address": "0x5670441ba9ee310ef72ace5ccfb07a100fe39216",
+   "score": 94,
+   "verdict": "green",
+   "liquidity_usd": 72393.4595,
+   "first_seen": 1787320587
+  },
   {
    "symbol": "MOONCOIN",
    "name": "MoonCoin",
@@ -289,75 +329,41 @@
    "verdict": "green",
    "liquidity_usd": 69584.4,
    "first_seen": 1787252375
-  },
-  {
-   "symbol": "GOAT",
-   "name": "goat-huuuge",
-   "chain": "base",
-   "address": "0xb34dd18069a09f2b4e974765fcd24baad4f1c778",
-   "score": 71,
-   "verdict": "green",
-   "liquidity_usd": 69908.0343,
-   "first_seen": 1787250941
-  },
-  {
-   "symbol": "TICK",
-   "name": "The Ticking Graft",
-   "chain": "robinhood",
-   "address": "0xf468c557eac964ada2a6ff6c4f79480e33449167",
-   "score": 40,
-   "verdict": "yellow",
-   "liquidity_usd": 146956.012183898,
-   "first_seen": 1787249408
-  },
-  {
-   "symbol": "BULLBALLS",
-   "name": "Bullballs Coin",
-   "chain": "base",
-   "address": "0x6e07cb5b2170d2e57cdd5e1d51738055422ad1dc",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 351732.8642,
-   "first_seen": 1787248660
-  },
-  {
-   "symbol": "openhuman",
-   "name": "openhuman",
-   "chain": "base",
-   "address": "0x05553481fcc9434c9040b75bdc9b284b7d44cd6b",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 72859.1322,
-   "first_seen": 1787248657
   }
  ],
  "confirmed": [],
  "verdict_outcomes": [
   {
    "verdict": "green",
-   "checked": 112,
+   "checked": 113,
    "held_liquidity": 21,
-   "still_trading": 52
+   "still_trading": 53
   },
   {
    "verdict": "yellow",
-   "checked": 67,
+   "checked": 68,
    "held_liquidity": 25,
-   "still_trading": 15
+   "still_trading": 16
   },
   {
    "verdict": "red",
-   "checked": 26,
-   "held_liquidity": 16,
+   "checked": 27,
+   "held_liquidity": 17,
    "still_trading": 9
   }
  ],
  "probation": {
-  "waiting": 8,
+  "waiting": 12,
   "confirmed": 0,
   "dropped": 6
  },
  "recent_drains": [
+  {
+   "symbol": "XTS",
+   "chain": "base",
+   "address": "0xbd13901269c953db34cd3197ee73416865f5cf0b",
+   "ts": 1787322163
+  },
   {
    "symbol": "USWS",
    "chain": "base",
@@ -441,12 +447,6 @@
    "chain": "base",
    "address": "0xb46f893c1f9042b98fc1cfea6dd44e063918f6bc",
    "ts": 1787226028
-  },
-  {
-   "symbol": "lilcobie",
-   "chain": "base",
-   "address": "0x660afa7b80eae8262e099da1376acc5efc384ec3",
-   "ts": 1787222774
   }
  ],
  "survivors": [
@@ -526,8 +526,8 @@
   "pump": 257,
   "rug": 922
  },
- "watchlist_active": 66,
- "price_snapshots": 70853,
+ "watchlist_active": 63,
+ "price_snapshots": 71392,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
