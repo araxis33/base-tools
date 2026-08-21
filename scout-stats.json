@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-21T17:49:52Z",
- "generated_at_unix": 1787334592,
+ "generated_at": "2026-08-21T18:49:57Z",
+ "generated_at_unix": 1787338196,
  "period": {
   "start": "2026-07-15",
   "days": 37
  },
  "totals": {
-  "seen": 86007,
-  "base": 14060,
-  "robinhood": 71947,
-  "below_liquidity_threshold": 84272,
+  "seen": 86379,
+  "base": 14144,
+  "robinhood": 72235,
+  "below_liquidity_threshold": 84639,
   "spam_filtered": 14,
-  "scored": 1721,
-  "green": 717,
+  "scored": 1726,
+  "green": 720,
   "yellow": 347,
-  "red": 657
+  "red": 659
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-07-31",
-   "base": 77,
-   "robinhood": 307
+   "base": 42,
+   "robinhood": 158
   },
   {
    "date": "2026-08-01",
@@ -125,11 +125,41 @@
   },
   {
    "date": "2026-08-21",
-   "base": 454,
-   "robinhood": 1860
+   "base": 538,
+   "robinhood": 2148
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "SENTI",
+   "name": "SENTI by Virtuals",
+   "chain": "base",
+   "address": "0xe6951931bb28681b0f29b6f29da463f1420dd32a",
+   "score": 88,
+   "verdict": "green",
+   "liquidity_usd": 72844.2,
+   "first_seen": 1787336711
+  },
+  {
+   "symbol": "UNOIL",
+   "name": "United States Oil Hub",
+   "chain": "base",
+   "address": "0xbd7eb1472ddcc6efa4e05cc8ae052a30e19c58c8",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 779709.7672,
+   "first_seen": 1787336618
+  },
+  {
+   "symbol": "BCAT",
+   "name": "Banana Cat",
+   "chain": "base",
+   "address": "0xff1e3f29966400dfcde2b32723d14babf1799651",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 72776.6019,
+   "first_seen": 1787335924
+  },
   {
    "symbol": "VIBE",
    "name": "VibeFi by Virtuals",
@@ -299,51 +329,21 @@
    "verdict": "yellow",
    "liquidity_usd": 74188.7317,
    "first_seen": 1787298634
-  },
-  {
-   "symbol": "STABLEUSDC",
-   "name": "Stable coin paired with usdc!!!!",
-   "chain": "base",
-   "address": "0x5fa360188dda48f8afaa72e09b5c68e9b49838c0",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 101314.0088,
-   "first_seen": 1787298537
-  },
-  {
-   "symbol": "O1DOLL",
-   "name": "O1 Doll",
-   "chain": "base",
-   "address": "0x3fedf7f96bb5c702141cddd83de523ba3e5dcc82",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 69891.9899744,
-   "first_seen": 1787259587
-  },
-  {
-   "symbol": "DEGEN",
-   "name": "Degen",
-   "chain": "base",
-   "address": "0xa4d06f184a5aa85d58d99749b7d17d543b82cd8c",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 348008.2814,
-   "first_seen": 1787258669
   }
  ],
  "confirmed": [],
  "verdict_outcomes": [
   {
    "verdict": "green",
-   "checked": 116,
-   "held_liquidity": 22,
-   "still_trading": 55
+   "checked": 118,
+   "held_liquidity": 23,
+   "still_trading": 56
   },
   {
    "verdict": "yellow",
-   "checked": 69,
-   "held_liquidity": 26,
-   "still_trading": 16
+   "checked": 71,
+   "held_liquidity": 27,
+   "still_trading": 17
   },
   {
    "verdict": "red",
@@ -353,9 +353,9 @@
   }
  ],
  "probation": {
-  "waiting": 15,
+  "waiting": 17,
   "confirmed": 0,
-  "dropped": 7
+  "dropped": 8
  },
  "recent_drains": [
   {
@@ -526,8 +526,8 @@
   "pump": 257,
   "rug": 922
  },
- "watchlist_active": 57,
- "price_snapshots": 74854,
+ "watchlist_active": 56,
+ "price_snapshots": 75355,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
