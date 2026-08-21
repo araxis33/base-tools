@@ -1,32 +1,27 @@
 {
- "generated_at": "2026-08-20T20:27:42Z",
- "generated_at_unix": 1787257662,
+ "generated_at": "2026-08-21T08:49:01Z",
+ "generated_at_unix": 1787302140,
  "period": {
   "start": "2026-07-15",
-  "days": 36
+  "days": 37
  },
  "totals": {
-  "seen": 83507,
-  "base": 13575,
-  "robinhood": 69932,
-  "below_liquidity_threshold": 81811,
-  "spam_filtered": 0,
-  "scored": 1696,
-  "green": 705,
-  "yellow": 339,
-  "red": 652
+  "seen": 84034,
+  "base": 13694,
+  "robinhood": 70340,
+  "below_liquidity_threshold": 82323,
+  "spam_filtered": 5,
+  "scored": 1706,
+  "green": 710,
+  "yellow": 342,
+  "red": 654
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
-   "date": "2026-07-30",
-   "base": 10,
-   "robinhood": 113
-  },
-  {
    "date": "2026-07-31",
-   "base": 455,
-   "robinhood": 1982
+   "base": 409,
+   "robinhood": 1628
   },
   {
    "date": "2026-08-01",
@@ -125,11 +120,96 @@
   },
   {
    "date": "2026-08-20",
-   "base": 613,
-   "robinhood": 2700
+   "base": 644,
+   "robinhood": 2855
+  },
+  {
+   "date": "2026-08-21",
+   "base": 88,
+   "robinhood": 253
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "DRB.",
+   "name": "DebtReliefBot.",
+   "chain": "base",
+   "address": "0x8f0900a1978675c101379c2742aae034fc8cf52b",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 537106.5114,
+   "first_seen": 1787301255
+  },
+  {
+   "symbol": "DRB",
+   "name": "DebtReliefBot",
+   "chain": "base",
+   "address": "0xed7f00c5a365a9efe9cf0ffe748282ef2704e90b",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 569161.9587,
+   "first_seen": 1787299224
+  },
+  {
+   "symbol": "UXRP",
+   "name": "United States XRP Reserve (UXRP)",
+   "chain": "base",
+   "address": "0x783b3161daa7390579f219b679601a6b6b0a526a",
+   "score": 57,
+   "verdict": "yellow",
+   "liquidity_usd": 194700.4527,
+   "first_seen": 1787298636
+  },
+  {
+   "symbol": "UXRP",
+   "name": "U.S. XRP Reserve (UXRP)",
+   "chain": "base",
+   "address": "0x898a7fd912451e4381a19d7b12e7406e7389dcb9",
+   "score": 57,
+   "verdict": "yellow",
+   "liquidity_usd": 183344.772,
+   "first_seen": 1787298635
+  },
+  {
+   "symbol": "XTS",
+   "name": "X SOLUT (XST)",
+   "chain": "base",
+   "address": "0xfebf8bdc3b0eca845016881458ec4d551ea625d4",
+   "score": 43,
+   "verdict": "yellow",
+   "liquidity_usd": 74188.7317,
+   "first_seen": 1787298634
+  },
+  {
+   "symbol": "STABLEUSDC",
+   "name": "Stable coin paired with usdc!!!!",
+   "chain": "base",
+   "address": "0x5fa360188dda48f8afaa72e09b5c68e9b49838c0",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 101314.0088,
+   "first_seen": 1787298537
+  },
+  {
+   "symbol": "O1DOLL",
+   "name": "O1 Doll",
+   "chain": "base",
+   "address": "0x3fedf7f96bb5c702141cddd83de523ba3e5dcc82",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 69891.9899744,
+   "first_seen": 1787259587
+  },
+  {
+   "symbol": "DEGEN",
+   "name": "Degen",
+   "chain": "base",
+   "address": "0xa4d06f184a5aa85d58d99749b7d17d543b82cd8c",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 348008.2814,
+   "first_seen": 1787258669
+  },
   {
    "symbol": "hygg.ai",
    "name": "hy:gg",
@@ -249,100 +329,20 @@
    "verdict": "green",
    "liquidity_usd": 455227.3987,
    "first_seen": 1787237722
-  },
-  {
-   "symbol": "PPAP",
-   "name": "Pen Pineapple Apple Pen",
-   "chain": "base",
-   "address": "0xb7410a64870a8dc4dc29275f99ab3c3d23d59d8a",
-   "score": 94,
-   "verdict": "green",
-   "liquidity_usd": 68938.1398,
-   "first_seen": 1787235409
-  },
-  {
-   "symbol": "PPAP",
-   "name": "Pen Pineapple Apple Pen",
-   "chain": "base",
-   "address": "0x4f6aade479ebdf0aa108a61353eef51299619c82",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 68933.4801,
-   "first_seen": 1787234990
-  },
-  {
-   "symbol": "Trencher",
-   "name": "The Trencher",
-   "chain": "base",
-   "address": "0x7ea10ff35ed61b593b307c4b8e2cb57f86d3c70b",
-   "score": 71,
-   "verdict": "green",
-   "liquidity_usd": 70157.3272,
-   "first_seen": 1787232622
-  },
-  {
-   "symbol": "JACKET",
-   "name": "just a jacket",
-   "chain": "base",
-   "address": "0x4cf6b0ec811ebd921d3d8c06597e9fc3250166f8",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 69269.136,
-   "first_seen": 1787230021
-  },
-  {
-   "symbol": "CB",
-   "name": "Cheeseburger &amp; Bitcoin",
-   "chain": "base",
-   "address": "0x9e9674bea6056746bcbced69caeadfa908b63552",
-   "score": 94,
-   "verdict": "green",
-   "liquidity_usd": 80869.1679,
-   "first_seen": 1787229328
-  },
-  {
-   "symbol": "lilcobie",
-   "name": "lil cobie bot",
-   "chain": "base",
-   "address": "0x6dfd6eaa195b7f8f5fd55721ec4d552cb48a5992",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 72597.3456,
-   "first_seen": 1787226030
-  },
-  {
-   "symbol": "DERP",
-   "name": "Derp Penguin",
-   "chain": "robinhood",
-   "address": "0x385a5fc85356cf1c88b81caaad30ce68267c75c1",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 447627.4348,
-   "first_seen": 1787223623
-  },
-  {
-   "symbol": "CLOWN",
-   "name": "Clown Dog",
-   "chain": "robinhood",
-   "address": "0x285f89246a397313a0eac4417f9a30bc599c995c",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 447627.4348,
-   "first_seen": 1787223621
   }
  ],
  "confirmed": [],
  "verdict_outcomes": [
   {
    "verdict": "green",
-   "checked": 102,
-   "held_liquidity": 18,
-   "still_trading": 46
+   "checked": 106,
+   "held_liquidity": 20,
+   "still_trading": 48
   },
   {
    "verdict": "yellow",
-   "checked": 65,
-   "held_liquidity": 24,
+   "checked": 66,
+   "held_liquidity": 25,
    "still_trading": 14
   },
   {
@@ -353,11 +353,17 @@
   }
  ],
  "probation": {
-  "waiting": 2,
+  "waiting": 8,
   "confirmed": 0,
-  "dropped": 0
+  "dropped": 2
  },
  "recent_drains": [
+  {
+   "symbol": "USWS",
+   "chain": "base",
+   "address": "0x880f974792652d48495a3e5066f6c95e33a3755b",
+   "ts": 1787298685
+  },
   {
    "symbol": "GOAT",
    "chain": "base",
@@ -441,12 +447,6 @@
    "chain": "base",
    "address": "0x660afa7b80eae8262e099da1376acc5efc384ec3",
    "ts": 1787222774
-  },
-  {
-   "symbol": "lilcobie",
-   "chain": "base",
-   "address": "0x4ae2d6d13f23e4b150d61ddb6e3ca5c6083ea943",
-   "ts": 1787221056
   }
  ],
  "survivors": [
@@ -522,12 +522,12 @@
   }
  ],
  "alerts": {
-  "dump": 677,
+  "dump": 680,
   "pump": 257,
-  "rug": 921
+  "rug": 922
  },
- "watchlist_active": 85,
- "price_snapshots": 65726,
+ "watchlist_active": 74,
+ "price_snapshots": 67810,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
