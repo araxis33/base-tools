@@ -1,20 +1,20 @@
 {
- "generated_at": "2026-08-21T18:49:57Z",
- "generated_at_unix": 1787338196,
+ "generated_at": "2026-08-21T19:50:06Z",
+ "generated_at_unix": 1787341805,
  "period": {
   "start": "2026-07-15",
   "days": 37
  },
  "totals": {
-  "seen": 86379,
-  "base": 14144,
-  "robinhood": 72235,
-  "below_liquidity_threshold": 84639,
-  "spam_filtered": 14,
-  "scored": 1726,
+  "seen": 86792,
+  "base": 14334,
+  "robinhood": 72458,
+  "below_liquidity_threshold": 85048,
+  "spam_filtered": 16,
+  "scored": 1728,
   "green": 720,
   "yellow": 347,
-  "red": 659
+  "red": 661
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
@@ -125,8 +125,8 @@
   },
   {
    "date": "2026-08-21",
-   "base": 538,
-   "robinhood": 2148
+   "base": 728,
+   "robinhood": 2371
   }
  ],
  "recent_finds": [
@@ -335,27 +335,27 @@
  "verdict_outcomes": [
   {
    "verdict": "green",
-   "checked": 118,
+   "checked": 119,
    "held_liquidity": 23,
-   "still_trading": 56
+   "still_trading": 57
   },
   {
    "verdict": "yellow",
-   "checked": 71,
-   "held_liquidity": 27,
+   "checked": 72,
+   "held_liquidity": 28,
    "still_trading": 17
   },
   {
    "verdict": "red",
-   "checked": 30,
-   "held_liquidity": 20,
-   "still_trading": 9
+   "checked": 31,
+   "held_liquidity": 21,
+   "still_trading": 10
   }
  ],
  "probation": {
-  "waiting": 17,
+  "waiting": 16,
   "confirmed": 0,
-  "dropped": 8
+  "dropped": 9
  },
  "recent_drains": [
   {
@@ -526,8 +526,8 @@
   "pump": 257,
   "rug": 922
  },
- "watchlist_active": 56,
- "price_snapshots": 75355,
+ "watchlist_active": 54,
+ "price_snapshots": 75957,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
