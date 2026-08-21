@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-21T15:49:38Z",
- "generated_at_unix": 1787327378,
+ "generated_at": "2026-08-21T16:49:46Z",
+ "generated_at_unix": 1787330985,
  "period": {
   "start": "2026-07-15",
   "days": 37
  },
  "totals": {
-  "seen": 85493,
-  "base": 13953,
-  "robinhood": 71540,
-  "below_liquidity_threshold": 83763,
-  "spam_filtered": 13,
-  "scored": 1717,
+  "seen": 85791,
+  "base": 14000,
+  "robinhood": 71791,
+  "below_liquidity_threshold": 84058,
+  "spam_filtered": 14,
+  "scored": 1719,
   "green": 715,
-  "yellow": 346,
-  "red": 656
+  "yellow": 347,
+  "red": 657
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-07-31",
-   "base": 173,
-   "robinhood": 685
+   "base": 124,
+   "robinhood": 468
   },
   {
    "date": "2026-08-01",
@@ -125,11 +125,21 @@
   },
   {
    "date": "2026-08-21",
-   "base": 347,
-   "robinhood": 1453
+   "base": 394,
+   "robinhood": 1704
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "WWW",
+   "name": "We Will Win",
+   "chain": "robinhood",
+   "address": "0xc117a5659812e620a0ba51f7f59eb554b13e0cc6",
+   "score": 57,
+   "verdict": "yellow",
+   "liquidity_usd": 20542475.7879,
+   "first_seen": 1787328063
+  },
   {
    "symbol": "UTOF",
    "name": "United Oil Trust Fund",
@@ -319,16 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 73621.7851,
    "first_seen": 1787255400
-  },
-  {
-   "symbol": "KIRK",
-   "name": "Official Charlie Kirk Coin",
-   "chain": "base",
-   "address": "0xc5bbc4bacb40b5d4cb359d4cf83e0c9e61e753cd",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 75106.074,
-   "first_seen": 1787252964
   }
  ],
  "confirmed": [],
@@ -355,7 +355,7 @@
  "probation": {
   "waiting": 13,
   "confirmed": 0,
-  "dropped": 6
+  "dropped": 7
  },
  "recent_drains": [
   {
@@ -526,8 +526,8 @@
   "pump": 257,
   "rug": 922
  },
- "watchlist_active": 63,
- "price_snapshots": 73023,
+ "watchlist_active": 58,
+ "price_snapshots": 74337,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
