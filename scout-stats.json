@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-21T09:49:12Z",
- "generated_at_unix": 1787305751,
+ "generated_at": "2026-08-21T12:49:24Z",
+ "generated_at_unix": 1787316563,
  "period": {
   "start": "2026-07-15",
   "days": 37
  },
  "totals": {
-  "seen": 84265,
-  "base": 13746,
-  "robinhood": 70519,
-  "below_liquidity_threshold": 82550,
-  "spam_filtered": 5,
-  "scored": 1710,
+  "seen": 84607,
+  "base": 13802,
+  "robinhood": 70805,
+  "below_liquidity_threshold": 82889,
+  "spam_filtered": 7,
+  "scored": 1711,
   "green": 711,
-  "yellow": 344,
+  "yellow": 345,
   "red": 655
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-07-31",
-   "base": 356,
-   "robinhood": 1489
+   "base": 274,
+   "robinhood": 1227
   },
   {
    "date": "2026-08-01",
@@ -125,11 +125,21 @@
   },
   {
    "date": "2026-08-21",
-   "base": 140,
-   "robinhood": 432
+   "base": 196,
+   "robinhood": 718
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "MOONCOIN",
+   "name": "MoonCoin",
+   "chain": "robinhood",
+   "address": "0x934e8349195b53ac64275daa39efc3c6e2b4a0b5",
+   "score": 59,
+   "verdict": "yellow",
+   "liquidity_usd": 52371.649,
+   "first_seen": 1787309197
+  },
   {
    "symbol": "FTFS",
    "name": "Federal Trust Fund System - FTFS",
@@ -319,31 +329,21 @@
    "verdict": "yellow",
    "liquidity_usd": 72859.1322,
    "first_seen": 1787248657
-  },
-  {
-   "symbol": "UTOF",
-   "name": "UTOF - United Oil Trust Fund",
-   "chain": "base",
-   "address": "0x864bdb4b0ffdd0f1e6f730ee7c89ed4fd306a471",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 211205.2834,
-   "first_seen": 1787246606
   }
  ],
  "confirmed": [],
  "verdict_outcomes": [
   {
    "verdict": "green",
-   "checked": 108,
+   "checked": 111,
    "held_liquidity": 21,
-   "still_trading": 49
+   "still_trading": 51
   },
   {
    "verdict": "yellow",
-   "checked": 66,
+   "checked": 67,
    "held_liquidity": 25,
-   "still_trading": 14
+   "still_trading": 15
   },
   {
    "verdict": "red",
@@ -353,9 +353,9 @@
   }
  ],
  "probation": {
-  "waiting": 9,
+  "waiting": 8,
   "confirmed": 0,
-  "dropped": 4
+  "dropped": 6
  },
  "recent_drains": [
   {
@@ -526,8 +526,8 @@
   "pump": 257,
   "rug": 922
  },
- "watchlist_active": 74,
- "price_snapshots": 69650,
+ "watchlist_active": 67,
+ "price_snapshots": 70249,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
