@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-08-21T19:50:06Z",
- "generated_at_unix": 1787341805,
+ "generated_at": "2026-08-21T20:50:11Z",
+ "generated_at_unix": 1787345411,
  "period": {
   "start": "2026-07-15",
   "days": 37
  },
  "totals": {
-  "seen": 86792,
-  "base": 14334,
-  "robinhood": 72458,
-  "below_liquidity_threshold": 85048,
-  "spam_filtered": 16,
-  "scored": 1728,
-  "green": 720,
+  "seen": 87295,
+  "base": 14590,
+  "robinhood": 72705,
+  "below_liquidity_threshold": 85547,
+  "spam_filtered": 17,
+  "scored": 1731,
+  "green": 723,
   "yellow": 347,
   "red": 661
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-07-31",
-   "base": 42,
-   "robinhood": 158
+   "base": 4,
+   "robinhood": 29
   },
   {
    "date": "2026-08-01",
@@ -125,11 +125,41 @@
   },
   {
    "date": "2026-08-21",
-   "base": 728,
-   "robinhood": 2371
+   "base": 984,
+   "robinhood": 2618
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "BASE",
+   "name": "BasedBaldBrianIAmGayBlueInu",
+   "chain": "base",
+   "address": "0x2cb88d2b6aa1868916f6d656bb308dc33bb2e1ad",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 73828.799,
+   "first_seen": 1787344344
+  },
+  {
+   "symbol": "LLKK",
+   "name": "LLKK",
+   "chain": "robinhood",
+   "address": "0x4ab6c1b5cff1bdc00852366b8c9c5ce7b8f819fe",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 20140896.1695,
+   "first_seen": 1787342023
+  },
+  {
+   "symbol": "CLARK",
+   "name": "coinbase mascot",
+   "chain": "base",
+   "address": "0xfcd97946c92497be76ca34a7353a26e2f6948d64",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 72689.0516,
+   "first_seen": 1787341887
+  },
   {
    "symbol": "SENTI",
    "name": "SENTI by Virtuals",
@@ -299,36 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 569161.9587,
    "first_seen": 1787299224
-  },
-  {
-   "symbol": "UXRP",
-   "name": "United States XRP Reserve (UXRP)",
-   "chain": "base",
-   "address": "0x783b3161daa7390579f219b679601a6b6b0a526a",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 194700.4527,
-   "first_seen": 1787298636
-  },
-  {
-   "symbol": "UXRP",
-   "name": "U.S. XRP Reserve (UXRP)",
-   "chain": "base",
-   "address": "0x898a7fd912451e4381a19d7b12e7406e7389dcb9",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 183344.772,
-   "first_seen": 1787298635
-  },
-  {
-   "symbol": "XTS",
-   "name": "X SOLUT (XST)",
-   "chain": "base",
-   "address": "0xfebf8bdc3b0eca845016881458ec4d551ea625d4",
-   "score": 43,
-   "verdict": "yellow",
-   "liquidity_usd": 74188.7317,
-   "first_seen": 1787298634
   }
  ],
  "confirmed": [],
@@ -353,9 +353,9 @@
   }
  ],
  "probation": {
-  "waiting": 16,
+  "waiting": 12,
   "confirmed": 0,
-  "dropped": 9
+  "dropped": 16
  },
  "recent_drains": [
   {
@@ -526,8 +526,8 @@
   "pump": 257,
   "rug": 922
  },
- "watchlist_active": 54,
- "price_snapshots": 75957,
+ "watchlist_active": 53,
+ "price_snapshots": 76498,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
