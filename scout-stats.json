@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-21T21:50:18Z",
- "generated_at_unix": 1787349018,
+ "generated_at": "2026-08-22T14:48:20Z",
+ "generated_at_unix": 1787410096,
  "period": {
   "start": "2026-07-15",
-  "days": 37
+  "days": 38
  },
  "totals": {
-  "seen": 87877,
-  "base": 14853,
-  "robinhood": 73024,
-  "below_liquidity_threshold": 86124,
-  "spam_filtered": 17,
-  "scored": 1736,
-  "green": 725,
-  "yellow": 348,
-  "red": 663
+  "seen": 88462,
+  "base": 15070,
+  "robinhood": 73392,
+  "below_liquidity_threshold": 86694,
+  "spam_filtered": 19,
+  "scored": 1746,
+  "green": 730,
+  "yellow": 350,
+  "red": 666
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-01",
-   "base": 328,
-   "robinhood": 1537
+   "base": 186,
+   "robinhood": 906
   },
   {
    "date": "2026-08-02",
@@ -125,11 +125,81 @@
   },
   {
    "date": "2026-08-22",
-   "base": 215,
-   "robinhood": 251
+   "base": 435,
+   "robinhood": 619
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "BUNNY",
+   "name": "Base Bunny",
+   "chain": "base",
+   "address": "0x87a0b1ef8b10f615bafc6c0a8914d492f07b018e",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 73767.6949,
+   "first_seen": 1787407344
+  },
+  {
+   "symbol": "TRUMPCAT",
+   "name": "TRUMPCAT",
+   "chain": "robinhood",
+   "address": "0xf57ac38ac59b3890f84c28d7ab02573394d11ccb",
+   "score": 84,
+   "verdict": "green",
+   "liquidity_usd": 52972.2813,
+   "first_seen": 1787384933
+  },
+  {
+   "symbol": "TREX",
+   "name": "ERC3643",
+   "chain": "base",
+   "address": "0xcf40f0fb1c0cd1e0c79bca5fa9bf23ec7f110032",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 74529.3965,
+   "first_seen": 1787384925
+  },
+  {
+   "symbol": "stewards",
+   "name": "STEWARDS",
+   "chain": "base",
+   "address": "0xa110870455341d7ab40bc036810201797736aa1c",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 81747.5369,
+   "first_seen": 1787383401
+  },
+  {
+   "symbol": "SLX",
+   "name": "Solstice SLX - SLX",
+   "chain": "base",
+   "address": "0x74f4633b4286ced2d1b609f61b52037d8f459e37",
+   "score": 57,
+   "verdict": "yellow",
+   "liquidity_usd": 212129.1773,
+   "first_seen": 1787383400
+  },
+  {
+   "symbol": "SPROUT",
+   "name": "RobinSprout",
+   "chain": "robinhood",
+   "address": "0xae2ff165ac69c41f43b1bdb6ff996256e1ecff38",
+   "score": 57,
+   "verdict": "yellow",
+   "liquidity_usd": 330692.7594,
+   "first_seen": 1787383322
+  },
+  {
+   "symbol": "Fluffy",
+   "name": "01cat",
+   "chain": "base",
+   "address": "0x5b7f996f78c3dc634ec2bb44f00a2200aece78ab",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 76288.894,
+   "first_seen": 1787351395
+  },
   {
    "symbol": "FLUFFY",
    "name": "Fluffy",
@@ -259,76 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 249239.3493,
    "first_seen": 1787327329
-  },
-  {
-   "symbol": "DOT",
-   "name": "de dot",
-   "chain": "base",
-   "address": "0x7797ddad074dfca11bdefc2de8e67926652e0528",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 101250.8775,
-   "first_seen": 1787323250
-  },
-  {
-   "symbol": "IOTA",
-   "name": "IOTA",
-   "chain": "base",
-   "address": "0x78349d664df309451acc60a50a7835a73933a9cb",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 20299034.9067,
-   "first_seen": 1787321424
-  },
-  {
-   "symbol": "USER",
-   "name": "UNITED STATES ENERGY RESERVE",
-   "chain": "base",
-   "address": "0x02ee163bbb778086bee0631e205979073bab8dd6",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 380783.6155,
-   "first_seen": 1787321422
-  },
-  {
-   "symbol": "somETHing",
-   "name": "believe in somETHing",
-   "chain": "base",
-   "address": "0x5670441ba9ee310ef72ace5ccfb07a100fe39216",
-   "score": 94,
-   "verdict": "green",
-   "liquidity_usd": 72393.4595,
-   "first_seen": 1787320587
-  },
-  {
-   "symbol": "MOONCOIN",
-   "name": "MoonCoin",
-   "chain": "robinhood",
-   "address": "0x934e8349195b53ac64275daa39efc3c6e2b4a0b5",
-   "score": 59,
-   "verdict": "yellow",
-   "liquidity_usd": 52371.649,
-   "first_seen": 1787309197
-  },
-  {
-   "symbol": "FTFS",
-   "name": "Federal Trust Fund System - FTFS",
-   "chain": "base",
-   "address": "0x0116f8a5bf718931f161013dc18e1d4c8e9afd15",
-   "score": 43,
-   "verdict": "yellow",
-   "liquidity_usd": 95318.0726,
-   "first_seen": 1787305234
-  },
-  {
-   "symbol": "TREX",
-   "name": "TREX",
-   "chain": "base",
-   "address": "0x30d5e9be559c9885e8c039ceed39629caac0a8e0",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 71575.8954344,
-   "first_seen": 1787304546
   }
  ],
  "confirmed": [],
@@ -353,11 +353,17 @@
   }
  ],
  "probation": {
-  "waiting": 15,
+  "waiting": 3,
   "confirmed": 0,
-  "dropped": 16
+  "dropped": 35
  },
  "recent_drains": [
+  {
+   "symbol": "Monkey",
+   "chain": "robinhood",
+   "address": "0x8156edd920be55e364b49cb95d2b3327d16bef60",
+   "ts": 1787383322
+  },
   {
    "symbol": "XTS",
    "chain": "base",
@@ -441,12 +447,6 @@
    "chain": "base",
    "address": "0x6dfd6eaa195b7f8f5fd55721ec4d552cb48a5992",
    "ts": 1787229352
-  },
-  {
-   "symbol": "lilcobie",
-   "chain": "base",
-   "address": "0xb46f893c1f9042b98fc1cfea6dd44e063918f6bc",
-   "ts": 1787226028
   }
  ],
  "survivors": [
@@ -526,8 +526,8 @@
   "pump": 257,
   "rug": 922
  },
- "watchlist_active": 53,
- "price_snapshots": 77028,
+ "watchlist_active": 49,
+ "price_snapshots": 76455,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
