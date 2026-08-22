@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-22T16:51:10Z",
- "generated_at_unix": 1787417470,
+ "generated_at": "2026-08-22T17:51:15Z",
+ "generated_at_unix": 1787421074,
  "period": {
   "start": "2026-07-15",
   "days": 38
  },
  "totals": {
-  "seen": 89283,
-  "base": 15415,
-  "robinhood": 73868,
-  "below_liquidity_threshold": 87506,
-  "spam_filtered": 23,
-  "scored": 1754,
-  "green": 735,
-  "yellow": 350,
-  "red": 669
+  "seen": 89717,
+  "base": 15592,
+  "robinhood": 74125,
+  "below_liquidity_threshold": 87936,
+  "spam_filtered": 24,
+  "scored": 1757,
+  "green": 736,
+  "yellow": 351,
+  "red": 670
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-01",
-   "base": 147,
-   "robinhood": 830
+   "base": 114,
+   "robinhood": 603
   },
   {
    "date": "2026-08-02",
@@ -125,11 +125,31 @@
   },
   {
    "date": "2026-08-22",
-   "base": 777,
-   "robinhood": 1095
+   "base": 954,
+   "robinhood": 1352
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "you",
+   "name": "all your base are belong to you",
+   "chain": "base",
+   "address": "0x15d7946a7e85e6d60ffbbbea02942027e1b278f5",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 73339.5362,
+   "first_seen": 1787420281
+  },
+  {
+   "symbol": "CLARITEE",
+   "name": "Claritee",
+   "chain": "base",
+   "address": "0x30ec6935ebf77ed5053ebacae75c4ca13c6dc9c0",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 72729.0,
+   "first_seen": 1787417655
+  },
   {
    "symbol": "WWW",
    "name": "TRUTH Coin",
@@ -309,26 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 72689.0516,
    "first_seen": 1787341887
-  },
-  {
-   "symbol": "SENTI",
-   "name": "SENTI by Virtuals",
-   "chain": "base",
-   "address": "0xe6951931bb28681b0f29b6f29da463f1420dd32a",
-   "score": 88,
-   "verdict": "green",
-   "liquidity_usd": 72844.2,
-   "first_seen": 1787336711
-  },
-  {
-   "symbol": "UNOIL",
-   "name": "United States Oil Hub",
-   "chain": "base",
-   "address": "0xbd7eb1472ddcc6efa4e05cc8ae052a30e19c58c8",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 779709.7672,
-   "first_seen": 1787336618
   }
  ],
  "confirmed": [],
@@ -353,9 +353,9 @@
   }
  ],
  "probation": {
-  "waiting": 6,
+  "waiting": 4,
   "confirmed": 0,
-  "dropped": 37
+  "dropped": 41
  },
  "recent_drains": [
   {
@@ -526,8 +526,8 @@
   "pump": 257,
   "rug": 922
  },
- "watchlist_active": 48,
- "price_snapshots": 75697,
+ "watchlist_active": 47,
+ "price_snapshots": 76429,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
