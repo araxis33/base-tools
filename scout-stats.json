@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-08-22T15:51:04Z",
- "generated_at_unix": 1787413863,
+ "generated_at": "2026-08-22T16:51:10Z",
+ "generated_at_unix": 1787417470,
  "period": {
   "start": "2026-07-15",
   "days": 38
  },
  "totals": {
-  "seen": 88889,
-  "base": 15248,
-  "robinhood": 73641,
-  "below_liquidity_threshold": 87118,
-  "spam_filtered": 20,
-  "scored": 1751,
-  "green": 732,
+  "seen": 89283,
+  "base": 15415,
+  "robinhood": 73868,
+  "below_liquidity_threshold": 87506,
+  "spam_filtered": 23,
+  "scored": 1754,
+  "green": 735,
   "yellow": 350,
   "red": 669
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-01",
-   "base": 186,
-   "robinhood": 906
+   "base": 147,
+   "robinhood": 830
   },
   {
    "date": "2026-08-02",
@@ -125,11 +125,41 @@
   },
   {
    "date": "2026-08-22",
-   "base": 610,
-   "robinhood": 868
+   "base": 777,
+   "robinhood": 1095
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "WWW",
+   "name": "TRUTH Coin",
+   "chain": "robinhood",
+   "address": "0x9cc97d4d264aca66844ef015d19f714549ac1906",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 698126.8848,
+   "first_seen": 1787416980
+  },
+  {
+   "symbol": "BARRON",
+   "name": "Barron",
+   "chain": "robinhood",
+   "address": "0xc4b268050c6f567e8edee0faf027192d5b2302bd",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 698102.8574,
+   "first_seen": 1787416518
+  },
+  {
+   "symbol": "COTAL",
+   "name": "COTAL",
+   "chain": "base",
+   "address": "0x4b629a20e97e8c9aefda79c0c85332d16e7aba9e",
+   "score": 94,
+   "verdict": "green",
+   "liquidity_usd": 72426.6965688,
+   "first_seen": 1787414974
+  },
   {
    "symbol": "Truth Coin",
    "name": "Truth Coin",
@@ -299,36 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 779709.7672,
    "first_seen": 1787336618
-  },
-  {
-   "symbol": "BCAT",
-   "name": "Banana Cat",
-   "chain": "base",
-   "address": "0xff1e3f29966400dfcde2b32723d14babf1799651",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 72776.6019,
-   "first_seen": 1787335924
-  },
-  {
-   "symbol": "VIBE",
-   "name": "VibeFi by Virtuals",
-   "chain": "base",
-   "address": "0x18e3163c289bd7fac0395c1b94d026e1f6b550d6",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 73218.7945,
-   "first_seen": 1787334071
-  },
-  {
-   "symbol": "PX",
-   "name": "1millllionpixels",
-   "chain": "base",
-   "address": "0xcf3fd0264414e72df1a76d91b517caea553d29c6",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 192750.3184,
-   "first_seen": 1787333482
   }
  ],
  "confirmed": [],
@@ -353,7 +353,7 @@
   }
  ],
  "probation": {
-  "waiting": 3,
+  "waiting": 6,
   "confirmed": 0,
   "dropped": 37
  },
@@ -526,8 +526,8 @@
   "pump": 257,
   "rug": 922
  },
- "watchlist_active": 49,
- "price_snapshots": 75628,
+ "watchlist_active": 48,
+ "price_snapshots": 75697,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
