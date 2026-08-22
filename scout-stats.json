@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-22T18:51:21Z",
- "generated_at_unix": 1787424680,
+ "generated_at": "2026-08-22T19:51:28Z",
+ "generated_at_unix": 1787428287,
  "period": {
   "start": "2026-07-15",
   "days": 38
  },
  "totals": {
-  "seen": 90115,
-  "base": 15707,
-  "robinhood": 74408,
-  "below_liquidity_threshold": 88331,
-  "spam_filtered": 26,
-  "scored": 1758,
-  "green": 737,
+  "seen": 90504,
+  "base": 15779,
+  "robinhood": 74725,
+  "below_liquidity_threshold": 88715,
+  "spam_filtered": 28,
+  "scored": 1761,
+  "green": 738,
   "yellow": 351,
-  "red": 670
+  "red": 672
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-01",
-   "base": 77,
-   "robinhood": 403
+   "base": 34,
+   "robinhood": 206
   },
   {
    "date": "2026-08-02",
@@ -125,11 +125,21 @@
   },
   {
    "date": "2026-08-22",
-   "base": 1069,
-   "robinhood": 1635
+   "base": 1141,
+   "robinhood": 1952
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "jai",
+   "name": "jai",
+   "chain": "base",
+   "address": "0x6643c8295f7a3bfa0b4f97f1a480442d074c3626",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 74001.9193,
+   "first_seen": 1787425048
+  },
   {
    "symbol": "Jai",
    "name": "Jai",
@@ -319,16 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 73828.799,
    "first_seen": 1787344344
-  },
-  {
-   "symbol": "LLKK",
-   "name": "LLKK",
-   "chain": "robinhood",
-   "address": "0x4ab6c1b5cff1bdc00852366b8c9c5ce7b8f819fe",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 20140896.1695,
-   "first_seen": 1787342023
   }
  ],
  "confirmed": [],
@@ -353,9 +353,9 @@
   }
  ],
  "probation": {
-  "waiting": 4,
+  "waiting": 3,
   "confirmed": 0,
-  "dropped": 42
+  "dropped": 44
  },
  "recent_drains": [
   {
@@ -527,7 +527,7 @@
   "rug": 922
  },
  "watchlist_active": 47,
- "price_snapshots": 77113,
+ "price_snapshots": 77232,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
