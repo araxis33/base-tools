@@ -1,20 +1,20 @@
 {
- "generated_at": "2026-08-22T14:50:50Z",
- "generated_at_unix": 1787410235,
+ "generated_at": "2026-08-22T15:51:04Z",
+ "generated_at_unix": 1787413863,
  "period": {
   "start": "2026-07-15",
   "days": 38
  },
  "totals": {
-  "seen": 88497,
-  "base": 15088,
-  "robinhood": 73409,
-  "below_liquidity_threshold": 86731,
-  "spam_filtered": 19,
-  "scored": 1746,
-  "green": 730,
+  "seen": 88889,
+  "base": 15248,
+  "robinhood": 73641,
+  "below_liquidity_threshold": 87118,
+  "spam_filtered": 20,
+  "scored": 1751,
+  "green": 732,
   "yellow": 350,
-  "red": 666
+  "red": 669
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
@@ -125,11 +125,31 @@
   },
   {
    "date": "2026-08-22",
-   "base": 451,
-   "robinhood": 636
+   "base": 610,
+   "robinhood": 868
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "Truth Coin",
+   "name": "Truth Coin",
+   "chain": "robinhood",
+   "address": "0x97e25d08d6c2de135cd5f07d2f5fcdcf5cbd5fb5",
+   "score": 92,
+   "verdict": "green",
+   "liquidity_usd": 52523.026,
+   "first_seen": 1787411623
+  },
+  {
+   "symbol": "TOOTHPASTE",
+   "name": "Toothpaste Token",
+   "chain": "base",
+   "address": "0x2a421ad28549452d9a7ae0dd99abfcef8178f7af",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 73163.8299,
+   "first_seen": 1787410252
+  },
   {
    "symbol": "BUNNY",
    "name": "Base Bunny",
@@ -309,26 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 192750.3184,
    "first_seen": 1787333482
-  },
-  {
-   "symbol": "WWW",
-   "name": "We Will Win",
-   "chain": "robinhood",
-   "address": "0xc117a5659812e620a0ba51f7f59eb554b13e0cc6",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 20542475.7879,
-   "first_seen": 1787328063
-  },
-  {
-   "symbol": "UTOF",
-   "name": "United Oil Trust Fund",
-   "chain": "base",
-   "address": "0x2719e6c4eb27f5c1cfdc682cb7dd478e5fa35903",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 249239.3493,
-   "first_seen": 1787327329
   }
  ],
  "confirmed": [],
@@ -353,9 +353,9 @@
   }
  ],
  "probation": {
-  "waiting": 2,
+  "waiting": 3,
   "confirmed": 0,
-  "dropped": 36
+  "dropped": 37
  },
  "recent_drains": [
   {
@@ -527,7 +527,7 @@
   "rug": 922
  },
  "watchlist_active": 49,
- "price_snapshots": 75601,
+ "price_snapshots": 75628,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
