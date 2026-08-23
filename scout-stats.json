@@ -1,32 +1,27 @@
 {
- "generated_at": "2026-08-22T19:51:28Z",
- "generated_at_unix": 1787428287,
+ "generated_at": "2026-08-23T18:51:51Z",
+ "generated_at_unix": 1787511111,
  "period": {
   "start": "2026-07-15",
-  "days": 38
+  "days": 39
  },
  "totals": {
-  "seen": 90504,
-  "base": 15779,
-  "robinhood": 74725,
-  "below_liquidity_threshold": 88715,
-  "spam_filtered": 28,
-  "scored": 1761,
-  "green": 738,
-  "yellow": 351,
-  "red": 672
+  "seen": 91411,
+  "base": 16032,
+  "robinhood": 75379,
+  "below_liquidity_threshold": 89608,
+  "spam_filtered": 34,
+  "scored": 1769,
+  "green": 744,
+  "yellow": 352,
+  "red": 673
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
-   "date": "2026-08-01",
-   "base": 34,
-   "robinhood": 206
-  },
-  {
    "date": "2026-08-02",
-   "base": 142,
-   "robinhood": 404
+   "base": 97,
+   "robinhood": 277
   },
   {
    "date": "2026-08-03",
@@ -125,11 +120,86 @@
   },
   {
    "date": "2026-08-22",
-   "base": 1141,
-   "robinhood": 1952
+   "base": 1154,
+   "robinhood": 2004
+  },
+  {
+   "date": "2026-08-23",
+   "base": 240,
+   "robinhood": 602
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "BALDO",
+   "name": "Base Waldo",
+   "chain": "base",
+   "address": "0x78e82c647dc8ce706c9f91ae150b3c44adf39b9b",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 73397.7786,
+   "first_seen": 1787509236
+  },
+  {
+   "symbol": "USDG",
+   "name": "United States Global Dollar",
+   "chain": "robinhood",
+   "address": "0x0c95df78d9f692beb3feaeceb2ef1e614513b1f7",
+   "score": 40,
+   "verdict": "yellow",
+   "liquidity_usd": 1097250.0619,
+   "first_seen": 1787508505
+  },
+  {
+   "symbol": "Toshi",
+   "name": "Face of Base",
+   "chain": "base",
+   "address": "0xb4192d75f9627f97e342fbe80c27fb74f2c91db4",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 73287.289,
+   "first_seen": 1787485177
+  },
+  {
+   "symbol": "BLUECHIP",
+   "name": "BLUECHIP",
+   "chain": "base",
+   "address": "0x75ad0d8f53fd67357716d066a970da0741a88d77",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 72886.6933,
+   "first_seen": 1787482782
+  },
+  {
+   "symbol": "GOOGLE",
+   "name": "Cobie’s Son",
+   "chain": "base",
+   "address": "0xd5d254d872af16d370290b0f1710230093301a82",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 72416.7,
+   "first_seen": 1787480304
+  },
+  {
+   "symbol": "BULLRUN",
+   "name": "The Prophecy",
+   "chain": "base",
+   "address": "0xe9da9ed6b0148e2ceedaa584039e8ac41fca2fbc",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 77223.575,
+   "first_seen": 1787478794
+  },
+  {
+   "symbol": "MBG",
+   "name": "mbg coin",
+   "chain": "base",
+   "address": "0xd58287735442b66ee87488036fb1c0764ceb8a3b",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 361945.2314,
+   "first_seen": 1787478793
+  },
   {
    "symbol": "jai",
    "name": "jai",
@@ -259,76 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 81747.5369,
    "first_seen": 1787383401
-  },
-  {
-   "symbol": "SLX",
-   "name": "Solstice SLX - SLX",
-   "chain": "base",
-   "address": "0x74f4633b4286ced2d1b609f61b52037d8f459e37",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 212129.1773,
-   "first_seen": 1787383400
-  },
-  {
-   "symbol": "SPROUT",
-   "name": "RobinSprout",
-   "chain": "robinhood",
-   "address": "0xae2ff165ac69c41f43b1bdb6ff996256e1ecff38",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 330692.7594,
-   "first_seen": 1787383322
-  },
-  {
-   "symbol": "Fluffy",
-   "name": "01cat",
-   "chain": "base",
-   "address": "0x5b7f996f78c3dc634ec2bb44f00a2200aece78ab",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 76288.894,
-   "first_seen": 1787351395
-  },
-  {
-   "symbol": "FLUFFY",
-   "name": "Fluffy",
-   "chain": "base",
-   "address": "0x257136ae0f4da5dd211c4cc63dfeac07ea4c5ac3",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 75001.3845,
-   "first_seen": 1787348898
-  },
-  {
-   "symbol": "NYANCATE",
-   "name": "Nyan Cate",
-   "chain": "robinhood",
-   "address": "0x027cb37ce147aee7c405748ef76547dfba6b983d",
-   "score": 92,
-   "verdict": "green",
-   "liquidity_usd": 52629.2501,
-   "first_seen": 1787347951
-  },
-  {
-   "symbol": "BASED",
-   "name": "Based Institute",
-   "chain": "base",
-   "address": "0x3081d94c74d4d4be577125862999ea754e927408",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 73194.0,
-   "first_seen": 1787346443
-  },
-  {
-   "symbol": "BASE",
-   "name": "BasedBaldBrianIAmGayBlueInu",
-   "chain": "base",
-   "address": "0x2cb88d2b6aa1868916f6d656bb308dc33bb2e1ad",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 73828.799,
-   "first_seen": 1787344344
   }
  ],
  "confirmed": [],
@@ -355,14 +355,14 @@
  "probation": {
   "waiting": 3,
   "confirmed": 0,
-  "dropped": 44
+  "dropped": 51
  },
  "recent_drains": [
   {
    "symbol": "Monkey",
    "chain": "robinhood",
    "address": "0x8156edd920be55e364b49cb95d2b3327d16bef60",
-   "ts": 1787383322
+   "ts": 1787480300
   },
   {
    "symbol": "XTS",
@@ -526,8 +526,8 @@
   "pump": 257,
   "rug": 922
  },
- "watchlist_active": 47,
- "price_snapshots": 77232,
+ "watchlist_active": 41,
+ "price_snapshots": 78372,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
