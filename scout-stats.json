@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-08-23T18:51:51Z",
- "generated_at_unix": 1787511111,
+ "generated_at": "2026-08-23T19:52:00Z",
+ "generated_at_unix": 1787514719,
  "period": {
   "start": "2026-07-15",
   "days": 39
  },
  "totals": {
-  "seen": 91411,
-  "base": 16032,
-  "robinhood": 75379,
-  "below_liquidity_threshold": 89608,
+  "seen": 91762,
+  "base": 16118,
+  "robinhood": 75644,
+  "below_liquidity_threshold": 89957,
   "spam_filtered": 34,
-  "scored": 1769,
-  "green": 744,
+  "scored": 1771,
+  "green": 746,
   "yellow": 352,
   "red": 673
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-02",
-   "base": 97,
-   "robinhood": 277
+   "base": 40,
+   "robinhood": 129
   },
   {
    "date": "2026-08-03",
@@ -125,11 +125,31 @@
   },
   {
    "date": "2026-08-23",
-   "base": 240,
-   "robinhood": 602
+   "base": 326,
+   "robinhood": 867
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "BOARDRY",
+   "name": "boardry",
+   "chain": "base",
+   "address": "0xf72505485a88cb196ca0716d36db08cb57f7cfce",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 74181.7494,
+   "first_seen": 1787514613
+  },
+  {
+   "symbol": "CHILLGULL",
+   "name": "CHILLGULL",
+   "chain": "base",
+   "address": "0x77e6fd7a81084832c83300a3e552936a3e4780c2",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 73437.9,
+   "first_seen": 1787512014
+  },
   {
    "symbol": "BALDO",
    "name": "Base Waldo",
@@ -309,26 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 52972.2813,
    "first_seen": 1787384933
-  },
-  {
-   "symbol": "TREX",
-   "name": "ERC3643",
-   "chain": "base",
-   "address": "0xcf40f0fb1c0cd1e0c79bca5fa9bf23ec7f110032",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 74529.3965,
-   "first_seen": 1787384925
-  },
-  {
-   "symbol": "stewards",
-   "name": "STEWARDS",
-   "chain": "base",
-   "address": "0xa110870455341d7ab40bc036810201797736aa1c",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 81747.5369,
-   "first_seen": 1787383401
   }
  ],
  "confirmed": [],
@@ -353,7 +353,7 @@
   }
  ],
  "probation": {
-  "waiting": 3,
+  "waiting": 5,
   "confirmed": 0,
   "dropped": 51
  },
@@ -527,7 +527,7 @@
   "rug": 922
  },
  "watchlist_active": 41,
- "price_snapshots": 78372,
+ "price_snapshots": 78681,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
