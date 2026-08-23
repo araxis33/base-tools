@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-23T19:52:00Z",
- "generated_at_unix": 1787514719,
+ "generated_at": "2026-08-23T20:52:05Z",
+ "generated_at_unix": 1787518324,
  "period": {
   "start": "2026-07-15",
   "days": 39
  },
  "totals": {
-  "seen": 91762,
-  "base": 16118,
-  "robinhood": 75644,
-  "below_liquidity_threshold": 89957,
+  "seen": 92042,
+  "base": 16190,
+  "robinhood": 75852,
+  "below_liquidity_threshold": 90235,
   "spam_filtered": 34,
-  "scored": 1771,
+  "scored": 1773,
   "green": 746,
-  "yellow": 352,
-  "red": 673
+  "yellow": 353,
+  "red": 674
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-02",
-   "base": 40,
-   "robinhood": 129
+   "base": 6,
+   "robinhood": 26
   },
   {
    "date": "2026-08-03",
@@ -125,11 +125,21 @@
   },
   {
    "date": "2026-08-23",
-   "base": 326,
-   "robinhood": 867
+   "base": 398,
+   "robinhood": 1075
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "FEEDS",
+   "name": "FEEDS",
+   "chain": "base",
+   "address": "0xa640dd08d30a879dcc3a1d2afb0f442c885ab37a",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 73440.6,
+   "first_seen": 1787516975
+  },
   {
    "symbol": "BOARDRY",
    "name": "boardry",
@@ -319,16 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 73767.6949,
    "first_seen": 1787407344
-  },
-  {
-   "symbol": "TRUMPCAT",
-   "name": "TRUMPCAT",
-   "chain": "robinhood",
-   "address": "0xf57ac38ac59b3890f84c28d7ab02573394d11ccb",
-   "score": 84,
-   "verdict": "green",
-   "liquidity_usd": 52972.2813,
-   "first_seen": 1787384933
   }
  ],
  "confirmed": [],
@@ -353,9 +353,9 @@
   }
  ],
  "probation": {
-  "waiting": 5,
+  "waiting": 3,
   "confirmed": 0,
-  "dropped": 51
+  "dropped": 54
  },
  "recent_drains": [
   {
@@ -526,8 +526,8 @@
   "pump": 257,
   "rug": 922
  },
- "watchlist_active": 41,
- "price_snapshots": 78681,
+ "watchlist_active": 40,
+ "price_snapshots": 78662,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
