@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-24T18:31:58Z",
- "generated_at_unix": 1787596318,
+ "generated_at": "2026-08-24T19:32:05Z",
+ "generated_at_unix": 1787599924,
  "period": {
   "start": "2026-07-15",
   "days": 40
  },
  "totals": {
-  "seen": 94400,
-  "base": 16761,
-  "robinhood": 77639,
-  "below_liquidity_threshold": 92571,
+  "seen": 94775,
+  "base": 16827,
+  "robinhood": 77948,
+  "below_liquidity_threshold": 92944,
   "spam_filtered": 37,
-  "scored": 1792,
-  "green": 755,
+  "scored": 1794,
+  "green": 756,
   "yellow": 358,
-  "red": 679
+  "red": 680
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-03",
-   "base": 75,
-   "robinhood": 417
+   "base": 37,
+   "robinhood": 267
   },
   {
    "date": "2026-08-04",
@@ -125,11 +125,21 @@
   },
   {
    "date": "2026-08-24",
-   "base": 556,
-   "robinhood": 1761
+   "base": 622,
+   "robinhood": 2070
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "信达雅",
+   "name": "信达雅",
+   "chain": "base",
+   "address": "0xe24750f5d97611fa16eb465558db2f29f825123c",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 74937.4299,
+   "first_seen": 1787598044
+  },
   {
    "symbol": "Routavo",
    "name": "RoutavoAI",
@@ -319,16 +329,6 @@
    "verdict": "yellow",
    "liquidity_usd": 1097250.0619,
    "first_seen": 1787508505
-  },
-  {
-   "symbol": "Toshi",
-   "name": "Face of Base",
-   "chain": "base",
-   "address": "0xb4192d75f9627f97e342fbe80c27fb74f2c91db4",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 73287.289,
-   "first_seen": 1787485177
   }
  ],
  "confirmed": [
@@ -364,22 +364,22 @@
   }
  ],
  "probation": {
-  "waiting": 5,
+  "waiting": 4,
   "confirmed": 1,
-  "dropped": 65
+  "dropped": 67
  },
  "recent_drains": [
+  {
+   "symbol": "WBTC",
+   "chain": "base",
+   "address": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
+   "ts": 1787598094
+  },
   {
    "symbol": "UTOF",
    "chain": "base",
    "address": "0x676dda0b67e373b1fe3c9ea9a03dadafb899fc57",
    "ts": 1787594268
-  },
-  {
-   "symbol": "WBTC",
-   "chain": "base",
-   "address": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
-   "ts": 1787594267
   },
   {
    "symbol": "STFX",
@@ -537,8 +537,8 @@
   "pump": 257,
   "rug": 930
  },
- "watchlist_active": 14,
- "price_snapshots": 75067,
+ "watchlist_active": 13,
+ "price_snapshots": 74455,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
