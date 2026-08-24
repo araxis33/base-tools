@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-24T17:31:53Z",
- "generated_at_unix": 1787592710,
+ "generated_at": "2026-08-24T18:31:58Z",
+ "generated_at_unix": 1787596318,
  "period": {
   "start": "2026-07-15",
   "days": 40
  },
  "totals": {
-  "seen": 93858,
-  "base": 16642,
-  "robinhood": 77216,
-  "below_liquidity_threshold": 92034,
-  "spam_filtered": 35,
-  "scored": 1789,
-  "green": 754,
+  "seen": 94400,
+  "base": 16761,
+  "robinhood": 77639,
+  "below_liquidity_threshold": 92571,
+  "spam_filtered": 37,
+  "scored": 1792,
+  "green": 755,
   "yellow": 358,
-  "red": 677
+  "red": 679
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-03",
-   "base": 85,
-   "robinhood": 509
+   "base": 75,
+   "robinhood": 417
   },
   {
    "date": "2026-08-04",
@@ -125,11 +125,21 @@
   },
   {
    "date": "2026-08-24",
-   "base": 437,
-   "robinhood": 1338
+   "base": 556,
+   "robinhood": 1761
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "Routavo",
+   "name": "RoutavoAI",
+   "chain": "base",
+   "address": "0x55596eed7dd5ab6f4c926e41d8945cf2303a434d",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 73974.0,
+   "first_seen": 1787594262
+  },
   {
    "symbol": "CHEES",
    "name": "Richeese",
@@ -319,16 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 73287.289,
    "first_seen": 1787485177
-  },
-  {
-   "symbol": "BLUECHIP",
-   "name": "BLUECHIP",
-   "chain": "base",
-   "address": "0x75ad0d8f53fd67357716d066a970da0741a88d77",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 72886.6933,
-   "first_seen": 1787482782
   }
  ],
  "confirmed": [
@@ -364,11 +364,41 @@
   }
  ],
  "probation": {
-  "waiting": 6,
+  "waiting": 5,
   "confirmed": 1,
-  "dropped": 63
+  "dropped": 65
  },
  "recent_drains": [
+  {
+   "symbol": "UTOF",
+   "chain": "base",
+   "address": "0x676dda0b67e373b1fe3c9ea9a03dadafb899fc57",
+   "ts": 1787594268
+  },
+  {
+   "symbol": "WBTC",
+   "chain": "base",
+   "address": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
+   "ts": 1787594267
+  },
+  {
+   "symbol": "STFX",
+   "chain": "robinhood",
+   "address": "0x98804a141d7508f24cccc8736d7109f169bd7f6d",
+   "ts": 1787592839
+  },
+  {
+   "symbol": "VXRP",
+   "chain": "base",
+   "address": "0x23c1445ad26af18a8b23cc7c1ecbe0ae95291c05",
+   "ts": 1787592835
+  },
+  {
+   "symbol": "WLD",
+   "chain": "base",
+   "address": "0x8b1a5f59e75ec900dcab3ac5594ce5070ecafceb",
+   "ts": 1787592834
+  },
   {
    "symbol": "CANTON",
    "chain": "base",
@@ -428,36 +458,6 @@
    "chain": "base",
    "address": "0xe9e5f9ac3526a36a0ddea310a172349b312e0e3c",
    "ts": 1787248526
-  },
-  {
-   "symbol": "$AVA",
-   "chain": "base",
-   "address": "0xf7f7a69aedd2671047663fcd31cad693a4517eb5",
-   "ts": 1787247200
-  },
-  {
-   "symbol": "NIMOAL",
-   "chain": "robinhood",
-   "address": "0xc3c49edb33df49f8d875f326a3b735689730a749",
-   "ts": 1787246628
-  },
-  {
-   "symbol": "HAYLORD",
-   "chain": "base",
-   "address": "0x9d8697c274a7e375ab05a06f60189335b022161b",
-   "ts": 1787246617
-  },
-  {
-   "symbol": "PPAP",
-   "chain": "base",
-   "address": "0xb7410a64870a8dc4dc29275f99ab3c3d23d59d8a",
-   "ts": 1787237578
-  },
-  {
-   "symbol": "Trencher",
-   "chain": "base",
-   "address": "0x7ea10ff35ed61b593b307c4b8e2cb57f86d3c70b",
-   "ts": 1787234735
   }
  ],
  "survivors": [
@@ -533,12 +533,12 @@
   }
  ],
  "alerts": {
-  "dump": 682,
+  "dump": 683,
   "pump": 257,
-  "rug": 925
+  "rug": 930
  },
- "watchlist_active": 17,
- "price_snapshots": 77648,
+ "watchlist_active": 14,
+ "price_snapshots": 75067,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
