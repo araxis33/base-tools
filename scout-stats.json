@@ -1,32 +1,27 @@
 {
- "generated_at": "2026-08-24T20:32:12Z",
- "generated_at_unix": 1787603531,
+ "generated_at": "2026-08-24T21:32:19Z",
+ "generated_at_unix": 1787607139,
  "period": {
   "start": "2026-07-15",
   "days": 40
  },
  "totals": {
-  "seen": 95194,
-  "base": 16914,
-  "robinhood": 78280,
-  "below_liquidity_threshold": 93359,
+  "seen": 95590,
+  "base": 16987,
+  "robinhood": 78603,
+  "below_liquidity_threshold": 93751,
   "spam_filtered": 39,
-  "scored": 1796,
-  "green": 757,
+  "scored": 1800,
+  "green": 759,
   "yellow": 358,
-  "red": 681
+  "red": 683
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
-   "date": "2026-08-03",
-   "base": 16,
-   "robinhood": 62
-  },
-  {
    "date": "2026-08-04",
-   "base": 303,
-   "robinhood": 1807
+   "base": 292,
+   "robinhood": 1723
   },
   {
    "date": "2026-08-05",
@@ -125,11 +120,36 @@
   },
   {
    "date": "2026-08-24",
-   "base": 709,
-   "robinhood": 2402
+   "base": 741,
+   "robinhood": 2549
+  },
+  {
+   "date": "2026-08-25",
+   "base": 41,
+   "robinhood": 176
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "PARCELFI",
+   "name": "ParcelFi by Virtuals",
+   "chain": "base",
+   "address": "0xa99f30843cd1fc268ea58e0a5860792be710bec7",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 75430.5289,
+   "first_seen": 1787606503
+  },
+  {
+   "symbol": "Biscotti",
+   "name": "Biscotti",
+   "chain": "base",
+   "address": "0x8390941d7dc1d91bfab4e16d6759dd438d192774",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 74767.8585,
+   "first_seen": 1787603951
+  },
   {
    "symbol": "LIFEOFJERRY",
    "name": "Life of Jerry",
@@ -309,26 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 74181.7494,
    "first_seen": 1787514613
-  },
-  {
-   "symbol": "CHILLGULL",
-   "name": "CHILLGULL",
-   "chain": "base",
-   "address": "0x77e6fd7a81084832c83300a3e552936a3e4780c2",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 73437.9,
-   "first_seen": 1787512014
-  },
-  {
-   "symbol": "BALDO",
-   "name": "Base Waldo",
-   "chain": "base",
-   "address": "0x78e82c647dc8ce706c9f91ae150b3c44adf39b9b",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 73397.7786,
-   "first_seen": 1787509236
   }
  ],
  "confirmed": [
@@ -364,16 +364,16 @@
   }
  ],
  "probation": {
-  "waiting": 5,
+  "waiting": 6,
   "confirmed": 1,
-  "dropped": 67
+  "dropped": 68
  },
  "recent_drains": [
   {
    "symbol": "WBTC",
    "chain": "base",
    "address": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
-   "ts": 1787602780
+   "ts": 1787607020
   },
   {
    "symbol": "UTOF",
@@ -537,8 +537,8 @@
   "pump": 257,
   "rug": 930
  },
- "watchlist_active": 13,
- "price_snapshots": 74513,
+ "watchlist_active": 12,
+ "price_snapshots": 74830,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
