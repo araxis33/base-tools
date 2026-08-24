@@ -1,20 +1,20 @@
 {
- "generated_at": "2026-08-24T00:26:58Z",
- "generated_at_unix": 1787531216,
+ "generated_at": "2026-08-24T12:58:38Z",
+ "generated_at_unix": 1787576317,
  "period": {
   "start": "2026-07-15",
-  "days": 39
+  "days": 40
  },
  "totals": {
-  "seen": 92210,
-  "base": 16232,
-  "robinhood": 75978,
-  "below_liquidity_threshold": 90401,
+  "seen": 92793,
+  "base": 16442,
+  "robinhood": 76351,
+  "below_liquidity_threshold": 90975,
   "spam_filtered": 34,
-  "scored": 1775,
-  "green": 747,
-  "yellow": 354,
-  "red": 674
+  "scored": 1784,
+  "green": 751,
+  "yellow": 356,
+  "red": 677
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
@@ -125,11 +125,71 @@
   },
   {
    "date": "2026-08-24",
-   "base": 29,
-   "robinhood": 100
+   "base": 237,
+   "robinhood": 473
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "AAPLCAT",
+   "name": "Apple Cat",
+   "chain": "base",
+   "address": "0x66145753b8f11e8504f26aa3cc06e357119627d3",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 75980.4361,
+   "first_seen": 1787576194
+  },
+  {
+   "symbol": "FSFT",
+   "name": "(FTFS) Federal Trust Fund System",
+   "chain": "base",
+   "address": "0x641e02f0246b25491298e15a23d057889f8f63da",
+   "score": 43,
+   "verdict": "yellow",
+   "liquidity_usd": 75881.7496,
+   "first_seen": 1787574872
+  },
+  {
+   "symbol": "Greed",
+   "name": "Greedcoin",
+   "chain": "robinhood",
+   "address": "0xbb9af6c9d9a20c3b637460d4c4bb6226553f1986",
+   "score": 75,
+   "verdict": "green",
+   "liquidity_usd": 75157.666,
+   "first_seen": 1787574487
+  },
+  {
+   "symbol": "Cooper",
+   "name": "Cooper",
+   "chain": "base",
+   "address": "0x7d57d3e9afe425bab7bac444ac7889f9024fc6cf",
+   "score": 94,
+   "verdict": "green",
+   "liquidity_usd": 79874.5851,
+   "first_seen": 1787574432
+  },
+  {
+   "symbol": "USWR foundation",
+   "name": "USWR foundation",
+   "chain": "base",
+   "address": "0x1c6360dc61050730b5e2583c27c92a51d48445c5",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 372946.7223,
+   "first_seen": 1787574386
+  },
+  {
+   "symbol": "CYBERLEEK",
+   "name": "CyberLeek",
+   "chain": "base",
+   "address": "0x98824e150d924c2410a32f19af3f61267a5677a4",
+   "score": 57,
+   "verdict": "yellow",
+   "liquidity_usd": 225886.050149082,
+   "first_seen": 1787554427
+  },
   {
    "symbol": "RC",
    "name": "RDAY COIN",
@@ -269,66 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 73119.4,
    "first_seen": 1787422828
-  },
-  {
-   "symbol": "you",
-   "name": "all your base are belong to you",
-   "chain": "base",
-   "address": "0x15d7946a7e85e6d60ffbbbea02942027e1b278f5",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 73339.5362,
-   "first_seen": 1787420281
-  },
-  {
-   "symbol": "CLARITEE",
-   "name": "Claritee",
-   "chain": "base",
-   "address": "0x30ec6935ebf77ed5053ebacae75c4ca13c6dc9c0",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 72729.0,
-   "first_seen": 1787417655
-  },
-  {
-   "symbol": "WWW",
-   "name": "TRUTH Coin",
-   "chain": "robinhood",
-   "address": "0x9cc97d4d264aca66844ef015d19f714549ac1906",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 698126.8848,
-   "first_seen": 1787416980
-  },
-  {
-   "symbol": "BARRON",
-   "name": "Barron",
-   "chain": "robinhood",
-   "address": "0xc4b268050c6f567e8edee0faf027192d5b2302bd",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 698102.8574,
-   "first_seen": 1787416518
-  },
-  {
-   "symbol": "COTAL",
-   "name": "COTAL",
-   "chain": "base",
-   "address": "0x4b629a20e97e8c9aefda79c0c85332d16e7aba9e",
-   "score": 94,
-   "verdict": "green",
-   "liquidity_usd": 72426.6965688,
-   "first_seen": 1787414974
-  },
-  {
-   "symbol": "Truth Coin",
-   "name": "Truth Coin",
-   "chain": "robinhood",
-   "address": "0x97e25d08d6c2de135cd5f07d2f5fcdcf5cbd5fb5",
-   "score": 92,
-   "verdict": "green",
-   "liquidity_usd": 52523.026,
-   "first_seen": 1787411623
   }
  ],
  "confirmed": [],
@@ -353,11 +353,17 @@
   }
  ],
  "probation": {
-  "waiting": 4,
+  "waiting": 6,
   "confirmed": 0,
-  "dropped": 55
+  "dropped": 59
  },
  "recent_drains": [
+  {
+   "symbol": "DTCC RIPPLE XRP",
+   "chain": "base",
+   "address": "0x23003b37056e6353a82ace2d80daa8f834f377f1",
+   "ts": 1787554150
+  },
   {
    "symbol": "Monkey",
    "chain": "robinhood",
@@ -441,12 +447,6 @@
    "chain": "base",
    "address": "0x9e9674bea6056746bcbced69caeadfa908b63552",
    "ts": 1787230048
-  },
-  {
-   "symbol": "lilcobie",
-   "chain": "base",
-   "address": "0x6dfd6eaa195b7f8f5fd55721ec4d552cb48a5992",
-   "ts": 1787229352
   }
  ],
  "survivors": [
@@ -524,10 +524,10 @@
  "alerts": {
   "dump": 680,
   "pump": 257,
-  "rug": 922
+  "rug": 923
  },
- "watchlist_active": 40,
- "price_snapshots": 78776,
+ "watchlist_active": 34,
+ "price_snapshots": 77458,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
