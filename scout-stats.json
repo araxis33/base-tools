@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-24T19:32:05Z",
- "generated_at_unix": 1787599924,
+ "generated_at": "2026-08-24T20:32:12Z",
+ "generated_at_unix": 1787603531,
  "period": {
   "start": "2026-07-15",
   "days": 40
  },
  "totals": {
-  "seen": 94775,
-  "base": 16827,
-  "robinhood": 77948,
-  "below_liquidity_threshold": 92944,
-  "spam_filtered": 37,
-  "scored": 1794,
-  "green": 756,
+  "seen": 95194,
+  "base": 16914,
+  "robinhood": 78280,
+  "below_liquidity_threshold": 93359,
+  "spam_filtered": 39,
+  "scored": 1796,
+  "green": 757,
   "yellow": 358,
-  "red": 680
+  "red": 681
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-03",
-   "base": 37,
-   "robinhood": 267
+   "base": 16,
+   "robinhood": 62
   },
   {
    "date": "2026-08-04",
@@ -125,11 +125,21 @@
   },
   {
    "date": "2026-08-24",
-   "base": 622,
-   "robinhood": 2070
+   "base": 709,
+   "robinhood": 2402
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "LIFEOFJERRY",
+   "name": "Life of Jerry",
+   "chain": "base",
+   "address": "0xb3188759bef0c05b1e9fa94fca5e4ca2d631a9c3",
+   "score": 71,
+   "verdict": "green",
+   "liquidity_usd": 74688.241,
+   "first_seen": 1787600734
+  },
   {
    "symbol": "信达雅",
    "name": "信达雅",
@@ -319,16 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 73397.7786,
    "first_seen": 1787509236
-  },
-  {
-   "symbol": "USDG",
-   "name": "United States Global Dollar",
-   "chain": "robinhood",
-   "address": "0x0c95df78d9f692beb3feaeceb2ef1e614513b1f7",
-   "score": 40,
-   "verdict": "yellow",
-   "liquidity_usd": 1097250.0619,
-   "first_seen": 1787508505
   }
  ],
  "confirmed": [
@@ -364,7 +364,7 @@
   }
  ],
  "probation": {
-  "waiting": 4,
+  "waiting": 5,
   "confirmed": 1,
   "dropped": 67
  },
@@ -373,7 +373,7 @@
    "symbol": "WBTC",
    "chain": "base",
    "address": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
-   "ts": 1787598094
+   "ts": 1787602780
   },
   {
    "symbol": "UTOF",
@@ -538,7 +538,7 @@
   "rug": 930
  },
  "watchlist_active": 13,
- "price_snapshots": 74455,
+ "price_snapshots": 74513,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
