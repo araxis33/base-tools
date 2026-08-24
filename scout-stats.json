@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-08-24T13:58:46Z",
- "generated_at_unix": 1787579925,
+ "generated_at": "2026-08-24T14:58:51Z",
+ "generated_at_unix": 1787583531,
  "period": {
   "start": "2026-07-15",
   "days": 40
  },
  "totals": {
-  "seen": 93157,
-  "base": 16499,
-  "robinhood": 76658,
-  "below_liquidity_threshold": 91337,
+  "seen": 93590,
+  "base": 16584,
+  "robinhood": 77006,
+  "below_liquidity_threshold": 91768,
   "spam_filtered": 35,
-  "scored": 1785,
-  "green": 751,
+  "scored": 1787,
+  "green": 753,
   "yellow": 357,
   "red": 677
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-03",
-   "base": 178,
-   "robinhood": 1043
+   "base": 155,
+   "robinhood": 993
   },
   {
    "date": "2026-08-04",
@@ -125,11 +125,31 @@
   },
   {
    "date": "2026-08-24",
-   "base": 294,
-   "robinhood": 780
+   "base": 379,
+   "robinhood": 1128
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "SHORTCAT",
+   "name": "Short Cat",
+   "chain": "robinhood",
+   "address": "0x06c2c847ab91137ccbba2e9d55e119e798813a91",
+   "score": 92,
+   "verdict": "green",
+   "liquidity_usd": 87939.592,
+   "first_seen": 1787581453
+  },
+  {
+   "symbol": "WHERE",
+   "name": "WHERE BRO ?",
+   "chain": "base",
+   "address": "0x0260c6c09df90c8fd2ed03be8f5017c085e65bd8",
+   "score": 94,
+   "verdict": "green",
+   "liquidity_usd": 75153.6,
+   "first_seen": 1787580939
+  },
   {
    "symbol": "STFX",
    "name": "Stonkifacts",
@@ -309,29 +329,20 @@
    "verdict": "green",
    "liquidity_usd": 77223.575,
    "first_seen": 1787478794
-  },
-  {
-   "symbol": "MBG",
-   "name": "mbg coin",
-   "chain": "base",
-   "address": "0xd58287735442b66ee87488036fb1c0764ceb8a3b",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 361945.2314,
-   "first_seen": 1787478793
-  },
-  {
-   "symbol": "jai",
-   "name": "jai",
-   "chain": "base",
-   "address": "0x6643c8295f7a3bfa0b4f97f1a480442d074c3626",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 74001.9193,
-   "first_seen": 1787425048
   }
  ],
- "confirmed": [],
+ "confirmed": [
+  {
+   "symbol": "STFX",
+   "chain": "robinhood",
+   "address": "0x98804a141d7508f24cccc8736d7109f169bd7f6d",
+   "buyers_h1": 1003,
+   "volume_h1": 715530.599613221,
+   "liquidity_usd": 215976.0002,
+   "confirmed_at": 1787578582,
+   "hours_waited": 0.8
+  }
+ ],
  "verdict_outcomes": [
   {
    "verdict": "green",
@@ -353,8 +364,8 @@
   }
  ],
  "probation": {
-  "waiting": 4,
-  "confirmed": 0,
+  "waiting": 5,
+  "confirmed": 1,
   "dropped": 62
  },
  "recent_drains": [
@@ -526,8 +537,8 @@
   "pump": 257,
   "rug": 923
  },
- "watchlist_active": 34,
- "price_snapshots": 76912,
+ "watchlist_active": 19,
+ "price_snapshots": 77327,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
