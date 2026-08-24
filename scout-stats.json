@@ -1,32 +1,27 @@
 {
- "generated_at": "2026-08-23T20:52:05Z",
- "generated_at_unix": 1787518324,
+ "generated_at": "2026-08-24T00:26:58Z",
+ "generated_at_unix": 1787531216,
  "period": {
   "start": "2026-07-15",
   "days": 39
  },
  "totals": {
-  "seen": 92042,
-  "base": 16190,
-  "robinhood": 75852,
-  "below_liquidity_threshold": 90235,
+  "seen": 92210,
+  "base": 16232,
+  "robinhood": 75978,
+  "below_liquidity_threshold": 90401,
   "spam_filtered": 34,
-  "scored": 1773,
-  "green": 746,
-  "yellow": 353,
+  "scored": 1775,
+  "green": 747,
+  "yellow": 354,
   "red": 674
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
-   "date": "2026-08-02",
-   "base": 6,
-   "robinhood": 26
-  },
-  {
    "date": "2026-08-03",
-   "base": 200,
-   "robinhood": 1170
+   "base": 178,
+   "robinhood": 1043
   },
   {
    "date": "2026-08-04",
@@ -125,11 +120,36 @@
   },
   {
    "date": "2026-08-23",
-   "base": 398,
-   "robinhood": 1075
+   "base": 413,
+   "robinhood": 1101
+  },
+  {
+   "date": "2026-08-24",
+   "base": 29,
+   "robinhood": 100
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "RC",
+   "name": "RDAY COIN",
+   "chain": "base",
+   "address": "0x40950cee04c6253722e0feefe1cf4e4374cea2f4",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 370796.3284,
+   "first_seen": 1787520026
+  },
+  {
+   "symbol": "BASECITY",
+   "name": "basecity",
+   "chain": "base",
+   "address": "0x3c661bf4abbc10de89b79f5599faca29c764e632",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 74395.723,
+   "first_seen": 1787519934
+  },
   {
    "symbol": "FEEDS",
    "name": "FEEDS",
@@ -309,26 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 52523.026,
    "first_seen": 1787411623
-  },
-  {
-   "symbol": "TOOTHPASTE",
-   "name": "Toothpaste Token",
-   "chain": "base",
-   "address": "0x2a421ad28549452d9a7ae0dd99abfcef8178f7af",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 73163.8299,
-   "first_seen": 1787410252
-  },
-  {
-   "symbol": "BUNNY",
-   "name": "Base Bunny",
-   "chain": "base",
-   "address": "0x87a0b1ef8b10f615bafc6c0a8914d492f07b018e",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 73767.6949,
-   "first_seen": 1787407344
   }
  ],
  "confirmed": [],
@@ -353,9 +353,9 @@
   }
  ],
  "probation": {
-  "waiting": 3,
+  "waiting": 4,
   "confirmed": 0,
-  "dropped": 54
+  "dropped": 55
  },
  "recent_drains": [
   {
@@ -527,7 +527,7 @@
   "rug": 922
  },
  "watchlist_active": 40,
- "price_snapshots": 78662,
+ "price_snapshots": 78776,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
