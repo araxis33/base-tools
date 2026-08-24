@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-24T14:58:51Z",
- "generated_at_unix": 1787583531,
+ "generated_at": "2026-08-24T17:31:53Z",
+ "generated_at_unix": 1787592710,
  "period": {
   "start": "2026-07-15",
   "days": 40
  },
  "totals": {
-  "seen": 93590,
-  "base": 16584,
-  "robinhood": 77006,
-  "below_liquidity_threshold": 91768,
+  "seen": 93858,
+  "base": 16642,
+  "robinhood": 77216,
+  "below_liquidity_threshold": 92034,
   "spam_filtered": 35,
-  "scored": 1787,
-  "green": 753,
-  "yellow": 357,
+  "scored": 1789,
+  "green": 754,
+  "yellow": 358,
   "red": 677
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-03",
-   "base": 155,
-   "robinhood": 993
+   "base": 85,
+   "robinhood": 509
   },
   {
    "date": "2026-08-04",
@@ -125,11 +125,31 @@
   },
   {
    "date": "2026-08-24",
-   "base": 379,
-   "robinhood": 1128
+   "base": 437,
+   "robinhood": 1338
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "CHEES",
+   "name": "Richeese",
+   "chain": "base",
+   "address": "0x281526e68c4eab07aafc14784f87599ba7b24189",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 606466.2335,
+   "first_seen": 1787585397
+  },
+  {
+   "symbol": "LIBRA",
+   "name": "ZUCK BUCK",
+   "chain": "base",
+   "address": "0xea42ae38ca51cb79533eb9fd326b4a0857b287e5",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 75417.0,
+   "first_seen": 1787584121
+  },
   {
    "symbol": "SHORTCAT",
    "name": "Short Cat",
@@ -309,26 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 72886.6933,
    "first_seen": 1787482782
-  },
-  {
-   "symbol": "GOOGLE",
-   "name": "Cobie’s Son",
-   "chain": "base",
-   "address": "0xd5d254d872af16d370290b0f1710230093301a82",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 72416.7,
-   "first_seen": 1787480304
-  },
-  {
-   "symbol": "BULLRUN",
-   "name": "The Prophecy",
-   "chain": "base",
-   "address": "0xe9da9ed6b0148e2ceedaa584039e8ac41fca2fbc",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 77223.575,
-   "first_seen": 1787478794
   }
  ],
  "confirmed": [
@@ -364,11 +364,23 @@
   }
  ],
  "probation": {
-  "waiting": 5,
+  "waiting": 6,
   "confirmed": 1,
-  "dropped": 62
+  "dropped": 63
  },
  "recent_drains": [
+  {
+   "symbol": "CANTON",
+   "chain": "base",
+   "address": "0x1929a588f27d3366384320844f85bf10a52a0d72",
+   "ts": 1787584378
+  },
+  {
+   "symbol": "BEAT",
+   "chain": "base",
+   "address": "0xa5078ac8f585de7947941aabdee9bf6dc0432748",
+   "ts": 1787584247
+  },
   {
    "symbol": "DTCC RIPPLE XRP",
    "chain": "base",
@@ -446,18 +458,6 @@
    "chain": "base",
    "address": "0x7ea10ff35ed61b593b307c4b8e2cb57f86d3c70b",
    "ts": 1787234735
-  },
-  {
-   "symbol": "JACKET",
-   "chain": "base",
-   "address": "0x4cf6b0ec811ebd921d3d8c06597e9fc3250166f8",
-   "ts": 1787232376
-  },
-  {
-   "symbol": "CB",
-   "chain": "base",
-   "address": "0x9e9674bea6056746bcbced69caeadfa908b63552",
-   "ts": 1787230048
   }
  ],
  "survivors": [
@@ -533,12 +533,12 @@
   }
  ],
  "alerts": {
-  "dump": 680,
+  "dump": 682,
   "pump": 257,
-  "rug": 923
+  "rug": 925
  },
- "watchlist_active": 19,
- "price_snapshots": 77327,
+ "watchlist_active": 17,
+ "price_snapshots": 77648,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
