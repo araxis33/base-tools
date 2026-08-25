@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-25T18:01:09Z",
- "generated_at_unix": 1787680868,
+ "generated_at": "2026-08-25T19:01:19Z",
+ "generated_at_unix": 1787684479,
  "period": {
   "start": "2026-07-15",
   "days": 41
  },
  "totals": {
-  "seen": 96232,
-  "base": 17091,
-  "robinhood": 79141,
-  "below_liquidity_threshold": 94382,
-  "spam_filtered": 39,
-  "scored": 1811,
-  "green": 762,
+  "seen": 96743,
+  "base": 17157,
+  "robinhood": 79586,
+  "below_liquidity_threshold": 94883,
+  "spam_filtered": 42,
+  "scored": 1818,
+  "green": 764,
   "yellow": 359,
-  "red": 690
+  "red": 695
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-04",
-   "base": 88,
-   "robinhood": 656
+   "base": 51,
+   "robinhood": 461
   },
   {
    "date": "2026-08-05",
@@ -125,11 +125,31 @@
   },
   {
    "date": "2026-08-25",
-   "base": 145,
-   "robinhood": 714
+   "base": 211,
+   "robinhood": 1159
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "ROBIN",
+   "name": "Robin",
+   "chain": "robinhood",
+   "address": "0x9e443fd81d8a516f214e89750c017efe0e371fd3",
+   "score": 92,
+   "verdict": "green",
+   "liquidity_usd": 51503.4964935737,
+   "first_seen": 1787682619
+  },
+  {
+   "symbol": "rookie",
+   "name": "rookie",
+   "chain": "base",
+   "address": "0x518509afb510b1806bb5969a3c5ac3a24a93e9d1",
+   "score": 88,
+   "verdict": "green",
+   "liquidity_usd": 74192.4,
+   "first_seen": 1787682400
+  },
   {
    "symbol": "VOLT",
    "name": "Volt",
@@ -309,26 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 79874.5851,
    "first_seen": 1787574432
-  },
-  {
-   "symbol": "USWR foundation",
-   "name": "USWR foundation",
-   "chain": "base",
-   "address": "0x1c6360dc61050730b5e2583c27c92a51d48445c5",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 372946.7223,
-   "first_seen": 1787574386
-  },
-  {
-   "symbol": "CYBERLEEK",
-   "name": "CyberLeek",
-   "chain": "base",
-   "address": "0x98824e150d924c2410a32f19af3f61267a5677a4",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 225886.050149082,
-   "first_seen": 1787554427
   }
  ],
  "confirmed": [
@@ -364,9 +364,9 @@
   }
  ],
  "probation": {
-  "waiting": 3,
+  "waiting": 4,
   "confirmed": 1,
-  "dropped": 75
+  "dropped": 76
  },
  "recent_drains": [
   {
@@ -538,7 +538,7 @@
   "rug": 930
  },
  "watchlist_active": 11,
- "price_snapshots": 70340,
+ "price_snapshots": 69422,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
