@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-25T19:01:19Z",
- "generated_at_unix": 1787684479,
+ "generated_at": "2026-08-25T20:01:26Z",
+ "generated_at_unix": 1787688085,
  "period": {
   "start": "2026-07-15",
   "days": 41
  },
  "totals": {
-  "seen": 96743,
-  "base": 17157,
-  "robinhood": 79586,
-  "below_liquidity_threshold": 94883,
+  "seen": 97132,
+  "base": 17258,
+  "robinhood": 79874,
+  "below_liquidity_threshold": 95270,
   "spam_filtered": 42,
-  "scored": 1818,
-  "green": 764,
-  "yellow": 359,
+  "scored": 1820,
+  "green": 765,
+  "yellow": 360,
   "red": 695
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-04",
-   "base": 51,
-   "robinhood": 461
+   "base": 20,
+   "robinhood": 206
   },
   {
    "date": "2026-08-05",
@@ -125,11 +125,31 @@
   },
   {
    "date": "2026-08-25",
-   "base": 211,
-   "robinhood": 1159
+   "base": 312,
+   "robinhood": 1447
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "COBIE",
+   "name": "Cobie The Dog",
+   "chain": "base",
+   "address": "0xe6a6685b58bb5861fdfaf408a4a4f7e9421466ed",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 74082.2261,
+   "first_seen": 1787686673
+  },
+  {
+   "symbol": "PI",
+   "name": "PI Agent",
+   "chain": "base",
+   "address": "0x74e746ac174bb64dd49dbf2f157c796f8803d8fa",
+   "score": 88,
+   "verdict": "green",
+   "liquidity_usd": 74789.3115,
+   "first_seen": 1787684765
+  },
   {
    "symbol": "ROBIN",
    "name": "Robin",
@@ -309,29 +329,19 @@
    "verdict": "yellow",
    "liquidity_usd": 75881.7496,
    "first_seen": 1787574872
-  },
-  {
-   "symbol": "Greed",
-   "name": "Greedcoin",
-   "chain": "robinhood",
-   "address": "0xbb9af6c9d9a20c3b637460d4c4bb6226553f1986",
-   "score": 75,
-   "verdict": "green",
-   "liquidity_usd": 75157.666,
-   "first_seen": 1787574487
-  },
-  {
-   "symbol": "Cooper",
-   "name": "Cooper",
-   "chain": "base",
-   "address": "0x7d57d3e9afe425bab7bac444ac7889f9024fc6cf",
-   "score": 94,
-   "verdict": "green",
-   "liquidity_usd": 79874.5851,
-   "first_seen": 1787574432
   }
  ],
  "confirmed": [
+  {
+   "symbol": "ROBIN",
+   "chain": "robinhood",
+   "address": "0x9e443fd81d8a516f214e89750c017efe0e371fd3",
+   "buyers_h1": 464,
+   "volume_h1": 397479.015096553,
+   "liquidity_usd": 275180.8513,
+   "confirmed_at": 1787682619,
+   "hours_waited": 0.8
+  },
   {
    "symbol": "STFX",
    "chain": "robinhood",
@@ -364,9 +374,9 @@
   }
  ],
  "probation": {
-  "waiting": 4,
-  "confirmed": 1,
-  "dropped": 76
+  "waiting": 3,
+  "confirmed": 2,
+  "dropped": 78
  },
  "recent_drains": [
   {
@@ -537,8 +547,8 @@
   "pump": 257,
   "rug": 930
  },
- "watchlist_active": 11,
- "price_snapshots": 69422,
+ "watchlist_active": 12,
+ "price_snapshots": 68654,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
