@@ -1,28 +1,23 @@
 {
- "generated_at": "2026-08-25T20:01:26Z",
- "generated_at_unix": 1787688085,
+ "generated_at": "2026-08-25T21:01:30Z",
+ "generated_at_unix": 1787691690,
  "period": {
   "start": "2026-07-15",
   "days": 41
  },
  "totals": {
-  "seen": 97132,
-  "base": 17258,
-  "robinhood": 79874,
-  "below_liquidity_threshold": 95270,
+  "seen": 97645,
+  "base": 17323,
+  "robinhood": 80322,
+  "below_liquidity_threshold": 95780,
   "spam_filtered": 42,
-  "scored": 1820,
-  "green": 765,
+  "scored": 1823,
+  "green": 766,
   "yellow": 360,
-  "red": 695
+  "red": 697
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
-  {
-   "date": "2026-08-04",
-   "base": 20,
-   "robinhood": 206
-  },
   {
    "date": "2026-08-05",
    "base": 193,
@@ -125,11 +120,26 @@
   },
   {
    "date": "2026-08-25",
-   "base": 312,
-   "robinhood": 1447
+   "base": 375,
+   "robinhood": 1876
+  },
+  {
+   "date": "2026-08-26",
+   "base": 2,
+   "robinhood": 19
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "Armstrong",
+   "name": "Base elephant",
+   "chain": "base",
+   "address": "0x214acd93ecc4cd2de07aeb752565b1524d252d4d",
+   "score": 88,
+   "verdict": "green",
+   "liquidity_usd": 74101.0707,
+   "first_seen": 1787688806
+  },
   {
    "symbol": "COBIE",
    "name": "Cobie The Dog",
@@ -319,16 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 75980.4361,
    "first_seen": 1787576194
-  },
-  {
-   "symbol": "FSFT",
-   "name": "(FTFS) Federal Trust Fund System",
-   "chain": "base",
-   "address": "0x641e02f0246b25491298e15a23d057889f8f63da",
-   "score": 43,
-   "verdict": "yellow",
-   "liquidity_usd": 75881.7496,
-   "first_seen": 1787574872
   }
  ],
  "confirmed": [
@@ -374,9 +374,9 @@
   }
  ],
  "probation": {
-  "waiting": 3,
+  "waiting": 2,
   "confirmed": 2,
-  "dropped": 78
+  "dropped": 80
  },
  "recent_drains": [
   {
@@ -543,12 +543,12 @@
   }
  ],
  "alerts": {
-  "dump": 683,
+  "dump": 684,
   "pump": 257,
   "rug": 930
  },
  "watchlist_active": 12,
- "price_snapshots": 68654,
+ "price_snapshots": 67931,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
