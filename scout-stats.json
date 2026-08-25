@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-24T21:32:19Z",
- "generated_at_unix": 1787607139,
+ "generated_at": "2026-08-25T18:01:09Z",
+ "generated_at_unix": 1787680868,
  "period": {
   "start": "2026-07-15",
-  "days": 40
+  "days": 41
  },
  "totals": {
-  "seen": 95590,
-  "base": 16987,
-  "robinhood": 78603,
-  "below_liquidity_threshold": 93751,
+  "seen": 96232,
+  "base": 17091,
+  "robinhood": 79141,
+  "below_liquidity_threshold": 94382,
   "spam_filtered": 39,
-  "scored": 1800,
-  "green": 759,
-  "yellow": 358,
-  "red": 683
+  "scored": 1811,
+  "green": 762,
+  "yellow": 359,
+  "red": 690
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-04",
-   "base": 292,
-   "robinhood": 1723
+   "base": 88,
+   "robinhood": 656
   },
   {
    "date": "2026-08-05",
@@ -125,11 +125,51 @@
   },
   {
    "date": "2026-08-25",
-   "base": 41,
-   "robinhood": 176
+   "base": 145,
+   "robinhood": 714
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "VOLT",
+   "name": "Volt",
+   "chain": "base",
+   "address": "0x53cff9f8d97b3b4b00297b8e21a7b0d978b22a3d",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 74427.668,
+   "first_seen": 1787679948
+  },
+  {
+   "symbol": "GrokBot",
+   "name": "GrokBot",
+   "chain": "base",
+   "address": "0x538dbc33787c9f12aa824b6597e29a41d644ca41",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 502894.2465,
+   "first_seen": 1787678948
+  },
+  {
+   "symbol": "HASH",
+   "name": "Hashcore",
+   "chain": "base",
+   "address": "0x1c03af0698117baf90304642e0e1f6fdef72839f",
+   "score": 88,
+   "verdict": "green",
+   "liquidity_usd": 74042.7,
+   "first_seen": 1787677587
+  },
+  {
+   "symbol": "USMS",
+   "name": "United States Mineral Supply",
+   "chain": "base",
+   "address": "0x7063dad0e5cc6060fa39ab80b1cfd00d60a7ef6f",
+   "score": 88,
+   "verdict": "green",
+   "liquidity_usd": 63388.9605,
+   "first_seen": 1787677356
+  },
   {
    "symbol": "PARCELFI",
    "name": "ParcelFi by Virtuals",
@@ -289,46 +329,6 @@
    "verdict": "yellow",
    "liquidity_usd": 225886.050149082,
    "first_seen": 1787554427
-  },
-  {
-   "symbol": "RC",
-   "name": "RDAY COIN",
-   "chain": "base",
-   "address": "0x40950cee04c6253722e0feefe1cf4e4374cea2f4",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 370796.3284,
-   "first_seen": 1787520026
-  },
-  {
-   "symbol": "BASECITY",
-   "name": "basecity",
-   "chain": "base",
-   "address": "0x3c661bf4abbc10de89b79f5599faca29c764e632",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 74395.723,
-   "first_seen": 1787519934
-  },
-  {
-   "symbol": "FEEDS",
-   "name": "FEEDS",
-   "chain": "base",
-   "address": "0xa640dd08d30a879dcc3a1d2afb0f442c885ab37a",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 73440.6,
-   "first_seen": 1787516975
-  },
-  {
-   "symbol": "BOARDRY",
-   "name": "boardry",
-   "chain": "base",
-   "address": "0xf72505485a88cb196ca0716d36db08cb57f7cfce",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 74181.7494,
-   "first_seen": 1787514613
   }
  ],
  "confirmed": [
@@ -364,22 +364,22 @@
   }
  ],
  "probation": {
-  "waiting": 6,
+  "waiting": 3,
   "confirmed": 1,
-  "dropped": 68
+  "dropped": 75
  },
  "recent_drains": [
+  {
+   "symbol": "UTOF",
+   "chain": "base",
+   "address": "0x676dda0b67e373b1fe3c9ea9a03dadafb899fc57",
+   "ts": 1787677267
+  },
   {
    "symbol": "WBTC",
    "chain": "base",
    "address": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
    "ts": 1787607020
-  },
-  {
-   "symbol": "UTOF",
-   "chain": "base",
-   "address": "0x676dda0b67e373b1fe3c9ea9a03dadafb899fc57",
-   "ts": 1787594268
   },
   {
    "symbol": "STFX",
@@ -537,8 +537,8 @@
   "pump": 257,
   "rug": 930
  },
- "watchlist_active": 12,
- "price_snapshots": 74830,
+ "watchlist_active": 11,
+ "price_snapshots": 70340,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
