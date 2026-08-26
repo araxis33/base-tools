@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-08-26T14:04:51Z",
- "generated_at_unix": 1787753090,
+ "generated_at": "2026-08-26T15:05:00Z",
+ "generated_at_unix": 1787756699,
  "period": {
   "start": "2026-07-15",
   "days": 42
  },
  "totals": {
-  "seen": 98263,
-  "base": 17454,
-  "robinhood": 80809,
-  "below_liquidity_threshold": 96387,
+  "seen": 98775,
+  "base": 17563,
+  "robinhood": 81212,
+  "below_liquidity_threshold": 96897,
   "spam_filtered": 42,
-  "scored": 1834,
-  "green": 770,
+  "scored": 1836,
+  "green": 772,
   "yellow": 364,
   "red": 700
  },
@@ -125,11 +125,31 @@
   },
   {
    "date": "2026-08-26",
-   "base": 133,
-   "robinhood": 506
+   "base": 242,
+   "robinhood": 909
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "O1 Doll",
+   "name": "O1 Doll",
+   "chain": "base",
+   "address": "0x98c2ed9898d669620ca12d9b50e3b666635d0732",
+   "score": 94,
+   "verdict": "green",
+   "liquidity_usd": 73494.3,
+   "first_seen": 1787755019
+  },
+  {
+   "symbol": "NITTER",
+   "name": "Nitter",
+   "chain": "base",
+   "address": "0x56342a2cd3c845b0c42034439e6a002f621afd69",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 981418.3632,
+   "first_seen": 1787754698
+  },
   {
    "symbol": "o1 Doll",
    "name": "o1 Doll",
@@ -309,26 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 75430.5289,
    "first_seen": 1787606503
-  },
-  {
-   "symbol": "Biscotti",
-   "name": "Biscotti",
-   "chain": "base",
-   "address": "0x8390941d7dc1d91bfab4e16d6759dd438d192774",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 74767.8585,
-   "first_seen": 1787603951
-  },
-  {
-   "symbol": "LIFEOFJERRY",
-   "name": "Life of Jerry",
-   "chain": "base",
-   "address": "0xb3188759bef0c05b1e9fa94fca5e4ca2d631a9c3",
-   "score": 71,
-   "verdict": "green",
-   "liquidity_usd": 74688.241,
-   "first_seen": 1787600734
   }
  ],
  "confirmed": [
@@ -374,9 +374,9 @@
   }
  ],
  "probation": {
-  "waiting": 6,
+  "waiting": 7,
   "confirmed": 2,
-  "dropped": 84
+  "dropped": 85
  },
  "recent_drains": [
   {
@@ -548,7 +548,7 @@
   "rug": 930
  },
  "watchlist_active": 12,
- "price_snapshots": 66224,
+ "price_snapshots": 64113,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
