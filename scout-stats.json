@@ -1,20 +1,20 @@
 {
- "generated_at": "2026-08-26T15:05:00Z",
- "generated_at_unix": 1787756699,
+ "generated_at": "2026-08-26T16:43:48Z",
+ "generated_at_unix": 1787762625,
  "period": {
   "start": "2026-07-15",
   "days": 42
  },
  "totals": {
-  "seen": 98775,
-  "base": 17563,
-  "robinhood": 81212,
-  "below_liquidity_threshold": 96897,
-  "spam_filtered": 42,
-  "scored": 1836,
+  "seen": 99309,
+  "base": 17631,
+  "robinhood": 81678,
+  "below_liquidity_threshold": 97429,
+  "spam_filtered": 43,
+  "scored": 1837,
   "green": 772,
   "yellow": 364,
-  "red": 700
+  "red": 701
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
@@ -125,8 +125,8 @@
   },
   {
    "date": "2026-08-26",
-   "base": 242,
-   "robinhood": 909
+   "base": 310,
+   "robinhood": 1375
   }
  ],
  "recent_finds": [
@@ -333,6 +333,16 @@
  ],
  "confirmed": [
   {
+   "symbol": "Claude",
+   "chain": "base",
+   "address": "0x838802a0076d4c8ccd92aa5b267d750b0426db07",
+   "buyers_h1": 36,
+   "volume_h1": 13224292.7688832,
+   "liquidity_usd": 4770704.7309,
+   "confirmed_at": 1787750003,
+   "hours_waited": 2.3
+  },
+  {
    "symbol": "ROBIN",
    "chain": "robinhood",
    "address": "0x9e443fd81d8a516f214e89750c017efe0e371fd3",
@@ -374,9 +384,9 @@
   }
  ],
  "probation": {
-  "waiting": 7,
-  "confirmed": 2,
-  "dropped": 85
+  "waiting": 5,
+  "confirmed": 3,
+  "dropped": 86
  },
  "recent_drains": [
   {
@@ -547,8 +557,8 @@
   "pump": 257,
   "rug": 930
  },
- "watchlist_active": 12,
- "price_snapshots": 64113,
+ "watchlist_active": 13,
+ "price_snapshots": 61512,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
