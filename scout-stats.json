@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-26T18:44:19Z",
- "generated_at_unix": 1787769859,
+ "generated_at": "2026-08-26T19:44:24Z",
+ "generated_at_unix": 1787773464,
  "period": {
   "start": "2026-07-15",
   "days": 42
  },
  "totals": {
-  "seen": 100751,
-  "base": 17987,
-  "robinhood": 82764,
-  "below_liquidity_threshold": 98865,
-  "spam_filtered": 43,
-  "scored": 1843,
-  "green": 775,
+  "seen": 101408,
+  "base": 18067,
+  "robinhood": 83341,
+  "below_liquidity_threshold": 99516,
+  "spam_filtered": 44,
+  "scored": 1848,
+  "green": 777,
   "yellow": 364,
-  "red": 704
+  "red": 707
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-05",
-   "base": 51,
-   "robinhood": 645
+   "base": 26,
+   "robinhood": 408
   },
   {
    "date": "2026-08-06",
@@ -125,11 +125,31 @@
   },
   {
    "date": "2026-08-26",
-   "base": 666,
-   "robinhood": 2461
+   "base": 746,
+   "robinhood": 3038
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "MOO",
+   "name": "Moo Market",
+   "chain": "base",
+   "address": "0x600ecc554d92e6a94c62abcf9f22fe34d5a2146d",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 74833.9721,
+   "first_seen": 1787771722
+  },
+  {
+   "symbol": "CASHCAT",
+   "name": "Cash Cat",
+   "chain": "base",
+   "address": "0x1d611b04b394d91fced8dab4cb8bc6a051b4ea75",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 87329119.1359,
+   "first_seen": 1787770045
+  },
   {
    "symbol": "FACTO",
    "name": "Facto",
@@ -309,26 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 74192.4,
    "first_seen": 1787682400
-  },
-  {
-   "symbol": "VOLT",
-   "name": "Volt",
-   "chain": "base",
-   "address": "0x53cff9f8d97b3b4b00297b8e21a7b0d978b22a3d",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 74427.668,
-   "first_seen": 1787679948
-  },
-  {
-   "symbol": "GrokBot",
-   "name": "GrokBot",
-   "chain": "base",
-   "address": "0x538dbc33787c9f12aa824b6597e29a41d644ca41",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 502894.2465,
-   "first_seen": 1787678948
   }
  ],
  "confirmed": [
@@ -384,9 +384,9 @@
   }
  ],
  "probation": {
-  "waiting": 7,
+  "waiting": 8,
   "confirmed": 3,
-  "dropped": 87
+  "dropped": 88
  },
  "recent_drains": [
   {
@@ -558,7 +558,7 @@
   "rug": 930
  },
  "watchlist_active": 13,
- "price_snapshots": 61519,
+ "price_snapshots": 61909,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
