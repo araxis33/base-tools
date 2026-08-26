@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-26T19:44:24Z",
- "generated_at_unix": 1787773464,
+ "generated_at": "2026-08-26T20:44:30Z",
+ "generated_at_unix": 1787777069,
  "period": {
   "start": "2026-07-15",
   "days": 42
  },
  "totals": {
-  "seen": 101408,
-  "base": 18067,
-  "robinhood": 83341,
-  "below_liquidity_threshold": 99516,
-  "spam_filtered": 44,
-  "scored": 1848,
-  "green": 777,
+  "seen": 102055,
+  "base": 18127,
+  "robinhood": 83928,
+  "below_liquidity_threshold": 100156,
+  "spam_filtered": 45,
+  "scored": 1854,
+  "green": 778,
   "yellow": 364,
-  "red": 707
+  "red": 712
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-05",
-   "base": 26,
-   "robinhood": 408
+   "base": 3,
+   "robinhood": 80
   },
   {
    "date": "2026-08-06",
@@ -125,11 +125,21 @@
   },
   {
    "date": "2026-08-26",
-   "base": 746,
-   "robinhood": 3038
+   "base": 806,
+   "robinhood": 3625
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "Mortgage",
+   "name": "Mortgagecoin",
+   "chain": "base",
+   "address": "0x705159729ed1639f2aca62658dc7c2d35f095fec",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 75396.143,
+   "first_seen": 1787774403
+  },
   {
    "symbol": "MOO",
    "name": "Moo Market",
@@ -319,16 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 51503.4964935737,
    "first_seen": 1787682619
-  },
-  {
-   "symbol": "rookie",
-   "name": "rookie",
-   "chain": "base",
-   "address": "0x518509afb510b1806bb5969a3c5ac3a24a93e9d1",
-   "score": 88,
-   "verdict": "green",
-   "liquidity_usd": 74192.4,
-   "first_seen": 1787682400
   }
  ],
  "confirmed": [
@@ -384,7 +384,7 @@
   }
  ],
  "probation": {
-  "waiting": 8,
+  "waiting": 9,
   "confirmed": 3,
   "dropped": 88
  },
@@ -558,7 +558,7 @@
   "rug": 930
  },
  "watchlist_active": 13,
- "price_snapshots": 61909,
+ "price_snapshots": 62286,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
