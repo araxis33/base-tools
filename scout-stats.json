@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-26T17:44:15Z",
- "generated_at_unix": 1787766254,
+ "generated_at": "2026-08-26T18:44:19Z",
+ "generated_at_unix": 1787769859,
  "period": {
   "start": "2026-07-15",
   "days": 42
  },
  "totals": {
-  "seen": 99966,
-  "base": 17830,
-  "robinhood": 82136,
-  "below_liquidity_threshold": 98085,
+  "seen": 100751,
+  "base": 17987,
+  "robinhood": 82764,
+  "below_liquidity_threshold": 98865,
   "spam_filtered": 43,
-  "scored": 1838,
-  "green": 772,
+  "scored": 1843,
+  "green": 775,
   "yellow": 364,
-  "red": 702
+  "red": 704
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-05",
-   "base": 76,
-   "robinhood": 760
+   "base": 51,
+   "robinhood": 645
   },
   {
    "date": "2026-08-06",
@@ -125,11 +125,41 @@
   },
   {
    "date": "2026-08-26",
-   "base": 509,
-   "robinhood": 1833
+   "base": 666,
+   "robinhood": 2461
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "FACTO",
+   "name": "Facto",
+   "chain": "base",
+   "address": "0x4eb2119c8e90ae4bf2082662fdbeaa66bba65a5d",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 73900.8,
+   "first_seen": 1787769224
+  },
+  {
+   "symbol": "可愛い犬",
+   "name": "可愛い犬",
+   "chain": "base",
+   "address": "0x3a001b12af7790eba8a1af8f5bec24ece4370c46",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 369826.1308,
+   "first_seen": 1787768907
+  },
+  {
+   "symbol": "Agentmuxer",
+   "name": "Agentmuxer",
+   "chain": "base",
+   "address": "0x8784350e3cade31b7db7cd2df88850eedf507496",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 74167.5343,
+   "first_seen": 1787766551
+  },
   {
    "symbol": "O1 Doll",
    "name": "O1 Doll",
@@ -299,36 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 502894.2465,
    "first_seen": 1787678948
-  },
-  {
-   "symbol": "HASH",
-   "name": "Hashcore",
-   "chain": "base",
-   "address": "0x1c03af0698117baf90304642e0e1f6fdef72839f",
-   "score": 88,
-   "verdict": "green",
-   "liquidity_usd": 74042.7,
-   "first_seen": 1787677587
-  },
-  {
-   "symbol": "USMS",
-   "name": "United States Mineral Supply",
-   "chain": "base",
-   "address": "0x7063dad0e5cc6060fa39ab80b1cfd00d60a7ef6f",
-   "score": 88,
-   "verdict": "green",
-   "liquidity_usd": 63388.9605,
-   "first_seen": 1787677356
-  },
-  {
-   "symbol": "PARCELFI",
-   "name": "ParcelFi by Virtuals",
-   "chain": "base",
-   "address": "0xa99f30843cd1fc268ea58e0a5860792be710bec7",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 75430.5289,
-   "first_seen": 1787606503
   }
  ],
  "confirmed": [
@@ -384,9 +384,9 @@
   }
  ],
  "probation": {
-  "waiting": 5,
+  "waiting": 7,
   "confirmed": 3,
-  "dropped": 86
+  "dropped": 87
  },
  "recent_drains": [
   {
@@ -558,7 +558,7 @@
   "rug": 930
  },
  "watchlist_active": 13,
- "price_snapshots": 61142,
+ "price_snapshots": 61519,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
