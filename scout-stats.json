@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-25T21:01:30Z",
- "generated_at_unix": 1787691690,
+ "generated_at": "2026-08-26T14:04:51Z",
+ "generated_at_unix": 1787753090,
  "period": {
   "start": "2026-07-15",
-  "days": 41
+  "days": 42
  },
  "totals": {
-  "seen": 97645,
-  "base": 17323,
-  "robinhood": 80322,
-  "below_liquidity_threshold": 95780,
+  "seen": 98263,
+  "base": 17454,
+  "robinhood": 80809,
+  "below_liquidity_threshold": 96387,
   "spam_filtered": 42,
-  "scored": 1823,
-  "green": 766,
-  "yellow": 360,
-  "red": 697
+  "scored": 1834,
+  "green": 770,
+  "yellow": 364,
+  "red": 700
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-05",
-   "base": 193,
-   "robinhood": 1737
+   "base": 76,
+   "robinhood": 760
   },
   {
    "date": "2026-08-06",
@@ -125,11 +125,91 @@
   },
   {
    "date": "2026-08-26",
-   "base": 2,
-   "robinhood": 19
+   "base": 133,
+   "robinhood": 506
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "o1 Doll",
+   "name": "o1 Doll",
+   "chain": "base",
+   "address": "0x7f1148a7904fc22ad750573cf81c61a3a9547d16",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 73704.0,
+   "first_seen": 1787752285
+  },
+  {
+   "symbol": "Pi",
+   "name": "Pi Agent",
+   "chain": "base",
+   "address": "0x29bbe265cae393137a4331dc3178cdfe917fc603",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 366263.8719,
+   "first_seen": 1787751192
+  },
+  {
+   "symbol": "Claude",
+   "name": "Claude",
+   "chain": "base",
+   "address": "0x838802a0076d4c8ccd92aa5b267d750b0426db07",
+   "score": 67,
+   "verdict": "yellow",
+   "liquidity_usd": 103096.1906,
+   "first_seen": 1787750003
+  },
+  {
+   "symbol": "HOUSECOIN",
+   "name": "HouseCoin",
+   "chain": "base",
+   "address": "0x9a11500d418a5fd6f7f43b3a80e85d201fac53ac",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 73578.6,
+   "first_seen": 1787749818
+  },
+  {
+   "symbol": "XTS",
+   "name": "X SOLUT - XST",
+   "chain": "base",
+   "address": "0x2c024382a19e41dbb958370c6191ddb244b87b9e",
+   "score": 43,
+   "verdict": "yellow",
+   "liquidity_usd": 64081.2288,
+   "first_seen": 1787749632
+  },
+  {
+   "symbol": "X SOLUT - XST",
+   "name": "XTS",
+   "chain": "base",
+   "address": "0x7eab34e1f2a7f8f76c804a2dd3320d7d2c53acb7",
+   "score": 43,
+   "verdict": "yellow",
+   "liquidity_usd": 64857.8074,
+   "first_seen": 1787749631
+  },
+  {
+   "symbol": "XTS",
+   "name": "XSOLUT - XST",
+   "chain": "base",
+   "address": "0x82abf1aaa5332920060ea11234aeaaa991d3bc9d",
+   "score": 43,
+   "verdict": "yellow",
+   "liquidity_usd": 65757.7654,
+   "first_seen": 1787749629
+  },
+  {
+   "symbol": "NVDA6900",
+   "name": "NVDA6900 Index",
+   "chain": "base",
+   "address": "0x93bb9188b7ff7ca0ed672517914ad2469e68bf01",
+   "score": 91,
+   "verdict": "green",
+   "liquidity_usd": 79405.3703,
+   "first_seen": 1787731136
+  },
   {
    "symbol": "Armstrong",
    "name": "Base elephant",
@@ -249,86 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 74688.241,
    "first_seen": 1787600734
-  },
-  {
-   "symbol": "信达雅",
-   "name": "信达雅",
-   "chain": "base",
-   "address": "0xe24750f5d97611fa16eb465558db2f29f825123c",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 74937.4299,
-   "first_seen": 1787598044
-  },
-  {
-   "symbol": "Routavo",
-   "name": "RoutavoAI",
-   "chain": "base",
-   "address": "0x55596eed7dd5ab6f4c926e41d8945cf2303a434d",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 73974.0,
-   "first_seen": 1787594262
-  },
-  {
-   "symbol": "CHEES",
-   "name": "Richeese",
-   "chain": "base",
-   "address": "0x281526e68c4eab07aafc14784f87599ba7b24189",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 606466.2335,
-   "first_seen": 1787585397
-  },
-  {
-   "symbol": "LIBRA",
-   "name": "ZUCK BUCK",
-   "chain": "base",
-   "address": "0xea42ae38ca51cb79533eb9fd326b4a0857b287e5",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 75417.0,
-   "first_seen": 1787584121
-  },
-  {
-   "symbol": "SHORTCAT",
-   "name": "Short Cat",
-   "chain": "robinhood",
-   "address": "0x06c2c847ab91137ccbba2e9d55e119e798813a91",
-   "score": 92,
-   "verdict": "green",
-   "liquidity_usd": 87939.592,
-   "first_seen": 1787581453
-  },
-  {
-   "symbol": "WHERE",
-   "name": "WHERE BRO ?",
-   "chain": "base",
-   "address": "0x0260c6c09df90c8fd2ed03be8f5017c085e65bd8",
-   "score": 94,
-   "verdict": "green",
-   "liquidity_usd": 75153.6,
-   "first_seen": 1787580939
-  },
-  {
-   "symbol": "STFX",
-   "name": "Stonkifacts",
-   "chain": "robinhood",
-   "address": "0x98804a141d7508f24cccc8736d7109f169bd7f6d",
-   "score": 54,
-   "verdict": "yellow",
-   "liquidity_usd": 76786.5733,
-   "first_seen": 1787578582
-  },
-  {
-   "symbol": "AAPLCAT",
-   "name": "Apple Cat",
-   "chain": "base",
-   "address": "0x66145753b8f11e8504f26aa3cc06e357119627d3",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 75980.4361,
-   "first_seen": 1787576194
   }
  ],
  "confirmed": [
@@ -374,9 +374,9 @@
   }
  ],
  "probation": {
-  "waiting": 2,
+  "waiting": 6,
   "confirmed": 2,
-  "dropped": 80
+  "dropped": 84
  },
  "recent_drains": [
   {
@@ -548,7 +548,7 @@
   "rug": 930
  },
  "watchlist_active": 12,
- "price_snapshots": 67931,
+ "price_snapshots": 66224,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
