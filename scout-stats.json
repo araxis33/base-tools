@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-08-27T18:06:42Z",
- "generated_at_unix": 1787854002,
+ "generated_at": "2026-08-27T19:06:46Z",
+ "generated_at_unix": 1787857606,
  "period": {
   "start": "2026-07-15",
   "days": 43
  },
  "totals": {
-  "seen": 105282,
-  "base": 18561,
-  "robinhood": 86721,
-  "below_liquidity_threshold": 103359,
+  "seen": 106015,
+  "base": 18617,
+  "robinhood": 87398,
+  "below_liquidity_threshold": 104091,
   "spam_filtered": 52,
-  "scored": 1871,
-  "green": 787,
+  "scored": 1872,
+  "green": 788,
   "yellow": 365,
   "red": 719
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-06",
-   "base": 68,
-   "robinhood": 684
+   "base": 42,
+   "robinhood": 451
   },
   {
    "date": "2026-08-07",
@@ -125,11 +125,21 @@
   },
   {
    "date": "2026-08-27",
-   "base": 420,
-   "robinhood": 2656
+   "base": 476,
+   "robinhood": 3333
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "MTGA",
+   "name": "MAKE TOKENS GREAT AGAIN",
+   "chain": "base",
+   "address": "0x86362208de45f7eeec32d0325f69a1beef81d779",
+   "score": 91,
+   "verdict": "green",
+   "liquidity_usd": 75134.3594,
+   "first_seen": 1787856602
+  },
   {
    "symbol": "MTGA",
    "name": "Make Tokens Great Again",
@@ -319,16 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 73704.0,
    "first_seen": 1787752285
-  },
-  {
-   "symbol": "Pi",
-   "name": "Pi Agent",
-   "chain": "base",
-   "address": "0x29bbe265cae393137a4331dc3178cdfe917fc603",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 366263.8719,
-   "first_seen": 1787751192
   }
  ],
  "confirmed": [
@@ -384,9 +384,9 @@
   }
  ],
  "probation": {
-  "waiting": 4,
+  "waiting": 2,
   "confirmed": 3,
-  "dropped": 103
+  "dropped": 106
  },
  "recent_drains": [
   {
@@ -568,7 +568,7 @@
   "rug": 931
  },
  "watchlist_active": 12,
- "price_snapshots": 49207,
+ "price_snapshots": 47432,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
