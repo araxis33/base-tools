@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-08-27T13:14:46Z",
- "generated_at_unix": 1787836484,
+ "generated_at": "2026-08-27T14:14:53Z",
+ "generated_at_unix": 1787840093,
  "period": {
   "start": "2026-07-15",
   "days": 43
  },
  "totals": {
-  "seen": 103799,
-  "base": 18387,
-  "robinhood": 85412,
-  "below_liquidity_threshold": 101883,
+  "seen": 104446,
+  "base": 18448,
+  "robinhood": 85998,
+  "below_liquidity_threshold": 102531,
   "spam_filtered": 52,
-  "scored": 1862,
-  "green": 781,
+  "scored": 1863,
+  "green": 782,
   "yellow": 365,
   "red": 716
  },
@@ -125,11 +125,21 @@
   },
   {
    "date": "2026-08-27",
-   "base": 247,
-   "robinhood": 1347
+   "base": 307,
+   "robinhood": 1933
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "LOOMDART",
+   "name": "loomdart",
+   "chain": "base",
+   "address": "0xde9a4455af00ca473dfe43e9d5fcb077462d2190",
+   "score": 91,
+   "verdict": "green",
+   "liquidity_usd": 76021.1656,
+   "first_seen": 1787838533
+  },
   {
    "symbol": "Loomdart",
    "name": "Loomdart",
@@ -319,16 +329,6 @@
    "verdict": "yellow",
    "liquidity_usd": 65757.7654,
    "first_seen": 1787749629
-  },
-  {
-   "symbol": "NVDA6900",
-   "name": "NVDA6900 Index",
-   "chain": "base",
-   "address": "0x93bb9188b7ff7ca0ed672517914ad2469e68bf01",
-   "score": 91,
-   "verdict": "green",
-   "liquidity_usd": 79405.3703,
-   "first_seen": 1787731136
   }
  ],
  "confirmed": [
@@ -386,7 +386,7 @@
  "probation": {
   "waiting": 1,
   "confirmed": 3,
-  "dropped": 100
+  "dropped": 101
  },
  "recent_drains": [
   {
@@ -558,7 +558,7 @@
   "rug": 931
  },
  "watchlist_active": 11,
- "price_snapshots": 54091,
+ "price_snapshots": 52264,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
