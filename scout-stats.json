@@ -1,32 +1,27 @@
 {
- "generated_at": "2026-08-27T19:06:46Z",
- "generated_at_unix": 1787857606,
+ "generated_at": "2026-08-27T21:06:56Z",
+ "generated_at_unix": 1787864815,
  "period": {
   "start": "2026-07-15",
   "days": 43
  },
  "totals": {
-  "seen": 106015,
-  "base": 18617,
-  "robinhood": 87398,
-  "below_liquidity_threshold": 104091,
-  "spam_filtered": 52,
-  "scored": 1872,
-  "green": 788,
+  "seen": 107145,
+  "base": 18726,
+  "robinhood": 88419,
+  "below_liquidity_threshold": 105217,
+  "spam_filtered": 54,
+  "scored": 1874,
+  "green": 789,
   "yellow": 365,
-  "red": 719
+  "red": 720
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
-   "date": "2026-08-06",
-   "base": 42,
-   "robinhood": 451
-  },
-  {
    "date": "2026-08-07",
-   "base": 329,
-   "robinhood": 2346
+   "base": 326,
+   "robinhood": 2326
   },
   {
    "date": "2026-08-08",
@@ -125,11 +120,26 @@
   },
   {
    "date": "2026-08-27",
-   "base": 476,
-   "robinhood": 3333
+   "base": 585,
+   "robinhood": 4300
+  },
+  {
+   "date": "2026-08-28",
+   "base": 0,
+   "robinhood": 54
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "BITBANK",
+   "name": "BITBANK",
+   "chain": "base",
+   "address": "0x06ab74506e40a8e326400594fb76007a144b9f37",
+   "score": 91,
+   "verdict": "green",
+   "liquidity_usd": 74959.8999464,
+   "first_seen": 1787861640
+  },
   {
    "symbol": "MTGA",
    "name": "MAKE TOKENS GREAT AGAIN",
@@ -319,16 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 981418.3632,
    "first_seen": 1787754698
-  },
-  {
-   "symbol": "o1 Doll",
-   "name": "o1 Doll",
-   "chain": "base",
-   "address": "0x7f1148a7904fc22ad750573cf81c61a3a9547d16",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 73704.0,
-   "first_seen": 1787752285
   }
  ],
  "confirmed": [
@@ -384,9 +384,9 @@
   }
  ],
  "probation": {
-  "waiting": 2,
+  "waiting": 1,
   "confirmed": 3,
-  "dropped": 106
+  "dropped": 108
  },
  "recent_drains": [
   {
@@ -568,7 +568,7 @@
   "rug": 931
  },
  "watchlist_active": 12,
- "price_snapshots": 47432,
+ "price_snapshots": 43703,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
