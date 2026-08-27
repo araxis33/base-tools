@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-27T09:34:50Z",
- "generated_at_unix": 1787823290,
+ "generated_at": "2026-08-27T13:14:46Z",
+ "generated_at_unix": 1787836484,
  "period": {
   "start": "2026-07-15",
   "days": 43
  },
  "totals": {
-  "seen": 103070,
-  "base": 18258,
-  "robinhood": 84812,
-  "below_liquidity_threshold": 101163,
-  "spam_filtered": 51,
-  "scored": 1856,
-  "green": 779,
-  "yellow": 364,
-  "red": 713
+  "seen": 103799,
+  "base": 18387,
+  "robinhood": 85412,
+  "below_liquidity_threshold": 101883,
+  "spam_filtered": 52,
+  "scored": 1862,
+  "green": 781,
+  "yellow": 365,
+  "red": 716
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-06",
-   "base": 148,
-   "robinhood": 1019
+   "base": 117,
+   "robinhood": 881
   },
   {
    "date": "2026-08-07",
@@ -125,11 +125,41 @@
   },
   {
    "date": "2026-08-27",
-   "base": 117,
-   "robinhood": 747
+   "base": 247,
+   "robinhood": 1347
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "Loomdart",
+   "name": "Loomdart",
+   "chain": "base",
+   "address": "0xa50b6d3ca7e75e0beb4fb993489f5826be42fbd5",
+   "score": 91,
+   "verdict": "green",
+   "liquidity_usd": 74940.3,
+   "first_seen": 1787835667
+  },
+  {
+   "symbol": "microduck",
+   "name": "Microduck",
+   "chain": "base",
+   "address": "0xe33e5e4b13f3ac6d4c72b3746b4fd29c6392a116",
+   "score": 91,
+   "verdict": "green",
+   "liquidity_usd": 75129.7001728,
+   "first_seen": 1787832936
+  },
+  {
+   "symbol": "Baselife",
+   "name": "My life is Base",
+   "chain": "base",
+   "address": "0xa188dcddbb56e3a79cef9b4343c12fb42214ff74",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 76158.0,
+   "first_seen": 1787825549
+  },
   {
    "symbol": "BaseJak",
    "name": "BaseJak",
@@ -299,36 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 79405.3703,
    "first_seen": 1787731136
-  },
-  {
-   "symbol": "Armstrong",
-   "name": "Base elephant",
-   "chain": "base",
-   "address": "0x214acd93ecc4cd2de07aeb752565b1524d252d4d",
-   "score": 88,
-   "verdict": "green",
-   "liquidity_usd": 74101.0707,
-   "first_seen": 1787688806
-  },
-  {
-   "symbol": "COBIE",
-   "name": "Cobie The Dog",
-   "chain": "base",
-   "address": "0xe6a6685b58bb5861fdfaf408a4a4f7e9421466ed",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 74082.2261,
-   "first_seen": 1787686673
-  },
-  {
-   "symbol": "PI",
-   "name": "PI Agent",
-   "chain": "base",
-   "address": "0x74e746ac174bb64dd49dbf2f157c796f8803d8fa",
-   "score": 88,
-   "verdict": "green",
-   "liquidity_usd": 74789.3115,
-   "first_seen": 1787684765
   }
  ],
  "confirmed": [
@@ -384,9 +384,9 @@
   }
  ],
  "probation": {
-  "waiting": 0,
+  "waiting": 1,
   "confirmed": 3,
-  "dropped": 98
+  "dropped": 100
  },
  "recent_drains": [
   {
@@ -558,7 +558,7 @@
   "rug": 931
  },
  "watchlist_active": 11,
- "price_snapshots": 58950,
+ "price_snapshots": 54091,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
