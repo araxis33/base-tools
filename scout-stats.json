@@ -1,32 +1,27 @@
 {
- "generated_at": "2026-08-26T20:44:30Z",
- "generated_at_unix": 1787777069,
+ "generated_at": "2026-08-27T08:34:43Z",
+ "generated_at_unix": 1787819683,
  "period": {
   "start": "2026-07-15",
-  "days": 42
+  "days": 43
  },
  "totals": {
-  "seen": 102055,
-  "base": 18127,
-  "robinhood": 83928,
-  "below_liquidity_threshold": 100156,
-  "spam_filtered": 45,
-  "scored": 1854,
-  "green": 778,
+  "seen": 102753,
+  "base": 18223,
+  "robinhood": 84530,
+  "below_liquidity_threshold": 100848,
+  "spam_filtered": 49,
+  "scored": 1856,
+  "green": 779,
   "yellow": 364,
-  "red": 712
+  "red": 713
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
-   "date": "2026-08-05",
-   "base": 3,
-   "robinhood": 80
-  },
-  {
    "date": "2026-08-06",
-   "base": 229,
-   "robinhood": 1385
+   "base": 148,
+   "robinhood": 1019
   },
   {
    "date": "2026-08-07",
@@ -125,11 +120,26 @@
   },
   {
    "date": "2026-08-26",
-   "base": 806,
-   "robinhood": 3625
+   "base": 820,
+   "robinhood": 3762
+  },
+  {
+   "date": "2026-08-27",
+   "base": 82,
+   "robinhood": 465
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "BaseJak",
+   "name": "BaseJak",
+   "chain": "base",
+   "address": "0x2ed53fbc5deac14f3f7a99d155d67db19d199db8",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 75016.4019,
+   "first_seen": 1787815873
+  },
   {
    "symbol": "Mortgage",
    "name": "Mortgagecoin",
@@ -319,16 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 74789.3115,
    "first_seen": 1787684765
-  },
-  {
-   "symbol": "ROBIN",
-   "name": "Robin",
-   "chain": "robinhood",
-   "address": "0x9e443fd81d8a516f214e89750c017efe0e371fd3",
-   "score": 92,
-   "verdict": "green",
-   "liquidity_usd": 51503.4964935737,
-   "first_seen": 1787682619
   }
  ],
  "confirmed": [
@@ -384,11 +384,17 @@
   }
  ],
  "probation": {
-  "waiting": 9,
+  "waiting": 0,
   "confirmed": 3,
-  "dropped": 88
+  "dropped": 98
  },
  "recent_drains": [
+  {
+   "symbol": "Claude",
+   "chain": "base",
+   "address": "0x838802a0076d4c8ccd92aa5b267d750b0426db07",
+   "ts": 1787815916
+  },
   {
    "symbol": "UTOF",
    "chain": "base",
@@ -472,12 +478,6 @@
    "chain": "base",
    "address": "0x05553481fcc9434c9040b75bdc9b284b7d44cd6b",
    "ts": 1787250821
-  },
-  {
-   "symbol": "openhuman",
-   "chain": "base",
-   "address": "0xe9e5f9ac3526a36a0ddea310a172349b312e0e3c",
-   "ts": 1787248526
   }
  ],
  "survivors": [
@@ -553,12 +553,12 @@
   }
  ],
  "alerts": {
-  "dump": 684,
+  "dump": 685,
   "pump": 257,
-  "rug": 930
+  "rug": 931
  },
- "watchlist_active": 13,
- "price_snapshots": 62286,
+ "watchlist_active": 11,
+ "price_snapshots": 60079,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
