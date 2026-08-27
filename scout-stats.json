@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-27T14:14:53Z",
- "generated_at_unix": 1787840093,
+ "generated_at": "2026-08-27T18:06:42Z",
+ "generated_at_unix": 1787854002,
  "period": {
   "start": "2026-07-15",
   "days": 43
  },
  "totals": {
-  "seen": 104446,
-  "base": 18448,
-  "robinhood": 85998,
-  "below_liquidity_threshold": 102531,
+  "seen": 105282,
+  "base": 18561,
+  "robinhood": 86721,
+  "below_liquidity_threshold": 103359,
   "spam_filtered": 52,
-  "scored": 1863,
-  "green": 782,
+  "scored": 1871,
+  "green": 787,
   "yellow": 365,
-  "red": 716
+  "red": 719
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-06",
-   "base": 117,
-   "robinhood": 881
+   "base": 68,
+   "robinhood": 684
   },
   {
    "date": "2026-08-07",
@@ -125,11 +125,61 @@
   },
   {
    "date": "2026-08-27",
-   "base": 307,
-   "robinhood": 1933
+   "base": 420,
+   "robinhood": 2656
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "MTGA",
+   "name": "Make Tokens Great Again",
+   "chain": "base",
+   "address": "0xf828fdbfce67655f1d833e605502c81aab9ea6cd",
+   "score": 91,
+   "verdict": "green",
+   "liquidity_usd": 76111.0646,
+   "first_seen": 1787853978
+  },
+  {
+   "symbol": "SFEAD",
+   "name": "supercallafragilisticexpialidocious",
+   "chain": "robinhood",
+   "address": "0x2d905775e0deba45de728541c12a201cefb7ba69",
+   "score": 75,
+   "verdict": "green",
+   "liquidity_usd": 66814.3342,
+   "first_seen": 1787853125
+  },
+  {
+   "symbol": "TRADR",
+   "name": "TRADR Club",
+   "chain": "base",
+   "address": "0x7e74b3645ada650246f21394891b4210ec3cce48",
+   "score": 91,
+   "verdict": "green",
+   "liquidity_usd": 81732.3724,
+   "first_seen": 1787852135
+  },
+  {
+   "symbol": "FERD",
+   "name": "FUTURE ENERGY RESERVE DAO",
+   "chain": "base",
+   "address": "0x357283ca26ea94c3806dddc60975457018197e34",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 552612.4936,
+   "first_seen": 1787842840
+  },
+  {
+   "symbol": "Microduck",
+   "name": "Microduck",
+   "chain": "base",
+   "address": "0x6e1fa49538e79f098bdc1e359ad76710a020be61",
+   "score": 91,
+   "verdict": "green",
+   "liquidity_usd": 78600.3629,
+   "first_seen": 1787841470
+  },
   {
    "symbol": "LOOMDART",
    "name": "loomdart",
@@ -279,56 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 366263.8719,
    "first_seen": 1787751192
-  },
-  {
-   "symbol": "Claude",
-   "name": "Claude",
-   "chain": "base",
-   "address": "0x838802a0076d4c8ccd92aa5b267d750b0426db07",
-   "score": 67,
-   "verdict": "yellow",
-   "liquidity_usd": 103096.1906,
-   "first_seen": 1787750003
-  },
-  {
-   "symbol": "HOUSECOIN",
-   "name": "HouseCoin",
-   "chain": "base",
-   "address": "0x9a11500d418a5fd6f7f43b3a80e85d201fac53ac",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 73578.6,
-   "first_seen": 1787749818
-  },
-  {
-   "symbol": "XTS",
-   "name": "X SOLUT - XST",
-   "chain": "base",
-   "address": "0x2c024382a19e41dbb958370c6191ddb244b87b9e",
-   "score": 43,
-   "verdict": "yellow",
-   "liquidity_usd": 64081.2288,
-   "first_seen": 1787749632
-  },
-  {
-   "symbol": "X SOLUT - XST",
-   "name": "XTS",
-   "chain": "base",
-   "address": "0x7eab34e1f2a7f8f76c804a2dd3320d7d2c53acb7",
-   "score": 43,
-   "verdict": "yellow",
-   "liquidity_usd": 64857.8074,
-   "first_seen": 1787749631
-  },
-  {
-   "symbol": "XTS",
-   "name": "XSOLUT - XST",
-   "chain": "base",
-   "address": "0x82abf1aaa5332920060ea11234aeaaa991d3bc9d",
-   "score": 43,
-   "verdict": "yellow",
-   "liquidity_usd": 65757.7654,
-   "first_seen": 1787749629
   }
  ],
  "confirmed": [
@@ -384,9 +384,9 @@
   }
  ],
  "probation": {
-  "waiting": 1,
+  "waiting": 4,
   "confirmed": 3,
-  "dropped": 101
+  "dropped": 103
  },
  "recent_drains": [
   {
@@ -482,6 +482,16 @@
  ],
  "survivors": [
   {
+   "symbol": "Claude",
+   "chain": "base",
+   "address": "0x838802a0076d4c8ccd92aa5b267d750b0426db07",
+   "score": 51,
+   "alerted_at": 1787758148,
+   "liq_0": 4770704.7309,
+   "liq_24h": 4950422.54,
+   "volume_24h": 21475.78
+  },
+  {
    "symbol": "OIL",
    "chain": "robinhood",
    "address": "0x00006916819880adfda57e4329ab8db487c6773a",
@@ -554,11 +564,11 @@
  ],
  "alerts": {
   "dump": 685,
-  "pump": 257,
+  "pump": 258,
   "rug": 931
  },
- "watchlist_active": 11,
- "price_snapshots": 52264,
+ "watchlist_active": 12,
+ "price_snapshots": 49207,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
