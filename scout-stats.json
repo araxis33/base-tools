@@ -1,32 +1,27 @@
 {
- "generated_at": "2026-08-28T19:36:57Z",
- "generated_at_unix": 1787945816,
+ "generated_at": "2026-08-28T21:37:06Z",
+ "generated_at_unix": 1787953026,
  "period": {
   "start": "2026-07-15",
   "days": 44
  },
  "totals": {
-  "seen": 111900,
-  "base": 19432,
-  "robinhood": 92468,
-  "below_liquidity_threshold": 109935,
+  "seen": 112871,
+  "base": 19565,
+  "robinhood": 93306,
+  "below_liquidity_threshold": 110899,
   "spam_filtered": 60,
-  "scored": 1905,
-  "green": 803,
-  "yellow": 371,
-  "red": 731
+  "scored": 1912,
+  "green": 806,
+  "yellow": 373,
+  "red": 733
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
-   "date": "2026-08-07",
-   "base": 27,
-   "robinhood": 283
-  },
-  {
    "date": "2026-08-08",
-   "base": 304,
-   "robinhood": 1857
+   "base": 292,
+   "robinhood": 1737
   },
   {
    "date": "2026-08-09",
@@ -125,11 +120,66 @@
   },
   {
    "date": "2026-08-28",
-   "base": 706,
-   "robinhood": 4103
+   "base": 805,
+   "robinhood": 4701
+  },
+  {
+   "date": "2026-08-29",
+   "base": 34,
+   "robinhood": 240
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "RELAXA",
+   "name": "relaxa",
+   "chain": "base",
+   "address": "0x6b1d3b12ae5f61bf468543bc4acd041ff86aefa7",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 363967.0791,
+   "first_seen": 1787952136
+  },
+  {
+   "symbol": "Cubey",
+   "name": "Cubey",
+   "chain": "base",
+   "address": "0x54eccacf33d9284b3335c9d91c5f4ebfac75d04a",
+   "score": 91,
+   "verdict": "green",
+   "liquidity_usd": 74390.3336,
+   "first_seen": 1787951272
+  },
+  {
+   "symbol": "DEPL",
+   "name": "Deployer",
+   "chain": "base",
+   "address": "0xb6f19c4579b34f1eb40e5ce03fd0d584ab93d0ba",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 72990.9,
+   "first_seen": 1787948998
+  },
+  {
+   "symbol": "Deployer",
+   "name": "Deployer",
+   "chain": "base",
+   "address": "0x94b9fe158c8f0fa3e9150519ff1f77e049ab8a32",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 72972.3,
+   "first_seen": 1787946908
+  },
+  {
+   "symbol": "AI",
+   "name": "Artificial Inu",
+   "chain": "robinhood",
+   "address": "0x9d19d54c161441d3881764d5b217429cd0aa56f2",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 596476.5242,
+   "first_seen": 1787946036
+  },
   {
    "symbol": "CEECIL",
    "name": "CEEcil",
@@ -279,56 +329,6 @@
    "verdict": "yellow",
    "liquidity_usd": 74903.1998708,
    "first_seen": 1787921214
-  },
-  {
-   "symbol": "ROCKS",
-   "name": "Rocks",
-   "chain": "robinhood",
-   "address": "0xf2f10e40e57cf159564f734fdef1a7339a86d4af",
-   "score": 75,
-   "verdict": "green",
-   "liquidity_usd": 65943.7525,
-   "first_seen": 1787920769
-  },
-  {
-   "symbol": "$BSLN",
-   "name": "Baseline Corp",
-   "chain": "base",
-   "address": "0xff646deee7d0cc78140fcd60effc4e870c6ba7b8",
-   "score": 88,
-   "verdict": "green",
-   "liquidity_usd": 76690.7976,
-   "first_seen": 1787918981
-  },
-  {
-   "symbol": "TREX",
-   "name": "Google's TREX",
-   "chain": "base",
-   "address": "0x4d91b6c4671fc8b0931133112a30267cc6731720",
-   "score": 91,
-   "verdict": "green",
-   "liquidity_usd": 75953.4456,
-   "first_seen": 1787909383
-  },
-  {
-   "symbol": "PrinterInkCoin",
-   "name": "PrinterInkCoin",
-   "chain": "base",
-   "address": "0xea132698b673f9732fbcb85d97e3554a00fd78a4",
-   "score": 76,
-   "verdict": "green",
-   "liquidity_usd": 79588.8452,
-   "first_seen": 1787907795
-  },
-  {
-   "symbol": "BOOGL",
-   "name": "BOOGL",
-   "chain": "base",
-   "address": "0xf4ddcccfec9540044f33d16403a4f6003e79668c",
-   "score": 91,
-   "verdict": "green",
-   "liquidity_usd": 81685.2543,
-   "first_seen": 1787903552
   }
  ],
  "confirmed": [
@@ -394,9 +394,9 @@
   }
  ],
  "probation": {
-  "waiting": 3,
+  "waiting": 6,
   "confirmed": 4,
-  "dropped": 125
+  "dropped": 127
  },
  "recent_drains": [
   {
@@ -577,8 +577,8 @@
   "pump": 258,
   "rug": 932
  },
- "watchlist_active": 11,
- "price_snapshots": 30927,
+ "watchlist_active": 10,
+ "price_snapshots": 28679,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
