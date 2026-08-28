@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-28T14:36:28Z",
- "generated_at_unix": 1787927787,
+ "generated_at": "2026-08-28T15:36:35Z",
+ "generated_at_unix": 1787931394,
  "period": {
   "start": "2026-07-15",
   "days": 44
  },
  "totals": {
-  "seen": 109397,
-  "base": 19031,
-  "robinhood": 90366,
-  "below_liquidity_threshold": 107452,
+  "seen": 109968,
+  "base": 19172,
+  "robinhood": 90796,
+  "below_liquidity_threshold": 108022,
   "spam_filtered": 57,
-  "scored": 1888,
+  "scored": 1889,
   "green": 795,
-  "yellow": 369,
+  "yellow": 370,
   "red": 724
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-07",
-   "base": 148,
-   "robinhood": 1033
+   "base": 120,
+   "robinhood": 828
   },
   {
    "date": "2026-08-08",
@@ -125,11 +125,21 @@
   },
   {
    "date": "2026-08-28",
-   "base": 305,
-   "robinhood": 2001
+   "base": 446,
+   "robinhood": 2431
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "ELONRWA",
+   "name": "memelord",
+   "chain": "base",
+   "address": "0xc411a0fbdfab5b38e77bc67b9d9b2e0b3bb51dcc",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 76151.9127,
+   "first_seen": 1787929228
+  },
   {
    "symbol": "BaseLambo",
    "name": "BaseLambo",
@@ -319,16 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 74940.3,
    "first_seen": 1787835667
-  },
-  {
-   "symbol": "microduck",
-   "name": "Microduck",
-   "chain": "base",
-   "address": "0xe33e5e4b13f3ac6d4c72b3746b4fd29c6392a116",
-   "score": 91,
-   "verdict": "green",
-   "liquidity_usd": 75129.7001728,
-   "first_seen": 1787832936
   }
  ],
  "confirmed": [
@@ -386,7 +386,7 @@
  "probation": {
   "waiting": 3,
   "confirmed": 3,
-  "dropped": 116
+  "dropped": 117
  },
  "recent_drains": [
   {
@@ -568,7 +568,7 @@
   "rug": 932
  },
  "watchlist_active": 11,
- "price_snapshots": 36146,
+ "price_snapshots": 34843,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
