@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-28T09:02:33Z",
- "generated_at_unix": 1787907749,
+ "generated_at": "2026-08-28T12:36:15Z",
+ "generated_at_unix": 1787920575,
  "period": {
   "start": "2026-07-15",
   "days": 44
  },
  "totals": {
-  "seen": 107691,
-  "base": 18797,
-  "robinhood": 88894,
-  "below_liquidity_threshold": 105758,
+  "seen": 108276,
+  "base": 18899,
+  "robinhood": 89377,
+  "below_liquidity_threshold": 106339,
   "spam_filtered": 57,
-  "scored": 1876,
-  "green": 790,
+  "scored": 1880,
+  "green": 793,
   "yellow": 365,
-  "red": 721
+  "red": 722
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-07",
-   "base": 281,
-   "robinhood": 2063
+   "base": 206,
+   "robinhood": 1424
   },
   {
    "date": "2026-08-08",
@@ -125,11 +125,41 @@
   },
   {
    "date": "2026-08-28",
-   "base": 71,
-   "robinhood": 529
+   "base": 173,
+   "robinhood": 1012
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "$BSLN",
+   "name": "Baseline Corp",
+   "chain": "base",
+   "address": "0xff646deee7d0cc78140fcd60effc4e870c6ba7b8",
+   "score": 88,
+   "verdict": "green",
+   "liquidity_usd": 76690.7976,
+   "first_seen": 1787918981
+  },
+  {
+   "symbol": "TREX",
+   "name": "Google's TREX",
+   "chain": "base",
+   "address": "0x4d91b6c4671fc8b0931133112a30267cc6731720",
+   "score": 91,
+   "verdict": "green",
+   "liquidity_usd": 75953.4456,
+   "first_seen": 1787909383
+  },
+  {
+   "symbol": "PrinterInkCoin",
+   "name": "PrinterInkCoin",
+   "chain": "base",
+   "address": "0xea132698b673f9732fbcb85d97e3554a00fd78a4",
+   "score": 76,
+   "verdict": "green",
+   "liquidity_usd": 79588.8452,
+   "first_seen": 1787907795
+  },
   {
    "symbol": "BOOGL",
    "name": "BOOGL",
@@ -299,36 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 73900.8,
    "first_seen": 1787769224
-  },
-  {
-   "symbol": "可愛い犬",
-   "name": "可愛い犬",
-   "chain": "base",
-   "address": "0x3a001b12af7790eba8a1af8f5bec24ece4370c46",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 369826.1308,
-   "first_seen": 1787768907
-  },
-  {
-   "symbol": "Agentmuxer",
-   "name": "Agentmuxer",
-   "chain": "base",
-   "address": "0x8784350e3cade31b7db7cd2df88850eedf507496",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 74167.5343,
-   "first_seen": 1787766551
-  },
-  {
-   "symbol": "O1 Doll",
-   "name": "O1 Doll",
-   "chain": "base",
-   "address": "0x98c2ed9898d669620ca12d9b50e3b666635d0732",
-   "score": 94,
-   "verdict": "green",
-   "liquidity_usd": 73494.3,
-   "first_seen": 1787755019
   }
  ],
  "confirmed": [
@@ -386,7 +386,7 @@
  "probation": {
   "waiting": 1,
   "confirmed": 3,
-  "dropped": 109
+  "dropped": 112
  },
  "recent_drains": [
   {
@@ -568,7 +568,7 @@
   "rug": 932
  },
  "watchlist_active": 11,
- "price_snapshots": 42698,
+ "price_snapshots": 38926,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
