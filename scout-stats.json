@@ -1,20 +1,20 @@
 {
- "generated_at": "2026-08-28T16:36:40Z",
- "generated_at_unix": 1787935000,
+ "generated_at": "2026-08-28T17:36:46Z",
+ "generated_at_unix": 1787938606,
  "period": {
   "start": "2026-07-15",
   "days": 44
  },
  "totals": {
-  "seen": 110484,
-  "base": 19231,
-  "robinhood": 91253,
-  "below_liquidity_threshold": 108534,
+  "seen": 110756,
+  "base": 19274,
+  "robinhood": 91482,
+  "below_liquidity_threshold": 108802,
   "spam_filtered": 58,
-  "scored": 1892,
-  "green": 796,
+  "scored": 1896,
+  "green": 799,
   "yellow": 371,
-  "red": 725
+  "red": 726
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
@@ -125,11 +125,41 @@
   },
   {
    "date": "2026-08-28",
-   "base": 505,
-   "robinhood": 2888
+   "base": 548,
+   "robinhood": 3117
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "MRLN",
+   "name": "Merlin",
+   "chain": "robinhood",
+   "address": "0x06e30939571a05a74a2ea2672766143db2e83333",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 5000570.3827,
+   "first_seen": 1787938337
+  },
+  {
+   "symbol": "NVDAc",
+   "name": "NVIDIA Corporation",
+   "chain": "base",
+   "address": "0xe8d956687173f21cb92ac2eb3cbf6b3aac6b499c",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 417896.7524,
+   "first_seen": 1787938333
+  },
+  {
+   "symbol": "SUB8BOT",
+   "name": "Sub8 bot",
+   "chain": "base",
+   "address": "0xa178a8d10de5778bbf0e35a5ee005bced86b337c",
+   "score": 91,
+   "verdict": "green",
+   "liquidity_usd": 73498.2537,
+   "first_seen": 1787936165
+  },
   {
    "symbol": "Tony",
    "name": "Official Mascot Google",
@@ -299,36 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 66814.3342,
    "first_seen": 1787853125
-  },
-  {
-   "symbol": "TRADR",
-   "name": "TRADR Club",
-   "chain": "base",
-   "address": "0x7e74b3645ada650246f21394891b4210ec3cce48",
-   "score": 91,
-   "verdict": "green",
-   "liquidity_usd": 81732.3724,
-   "first_seen": 1787852135
-  },
-  {
-   "symbol": "FERD",
-   "name": "FUTURE ENERGY RESERVE DAO",
-   "chain": "base",
-   "address": "0x357283ca26ea94c3806dddc60975457018197e34",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 552612.4936,
-   "first_seen": 1787842840
-  },
-  {
-   "symbol": "Microduck",
-   "name": "Microduck",
-   "chain": "base",
-   "address": "0x6e1fa49538e79f098bdc1e359ad76710a020be61",
-   "score": 91,
-   "verdict": "green",
-   "liquidity_usd": 78600.3629,
-   "first_seen": 1787841470
   }
  ],
  "confirmed": [
@@ -394,9 +394,9 @@
   }
  ],
  "probation": {
-  "waiting": 2,
+  "waiting": 4,
   "confirmed": 4,
-  "dropped": 119
+  "dropped": 120
  },
  "recent_drains": [
   {
@@ -578,7 +578,7 @@
   "rug": 932
  },
  "watchlist_active": 11,
- "price_snapshots": 33821,
+ "price_snapshots": 33242,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
