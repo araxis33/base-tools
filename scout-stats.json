@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-28T17:36:46Z",
- "generated_at_unix": 1787938606,
+ "generated_at": "2026-08-28T18:36:50Z",
+ "generated_at_unix": 1787942210,
  "period": {
   "start": "2026-07-15",
   "days": 44
  },
  "totals": {
-  "seen": 110756,
-  "base": 19274,
-  "robinhood": 91482,
-  "below_liquidity_threshold": 108802,
+  "seen": 111272,
+  "base": 19359,
+  "robinhood": 91913,
+  "below_liquidity_threshold": 109311,
   "spam_filtered": 58,
-  "scored": 1896,
-  "green": 799,
+  "scored": 1903,
+  "green": 803,
   "yellow": 371,
-  "red": 726
+  "red": 729
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-07",
-   "base": 104,
-   "robinhood": 666
+   "base": 53,
+   "robinhood": 554
   },
   {
    "date": "2026-08-08",
@@ -125,11 +125,51 @@
   },
   {
    "date": "2026-08-28",
-   "base": 548,
-   "robinhood": 3117
+   "base": 633,
+   "robinhood": 3548
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "CEECIL",
+   "name": "CEEcil",
+   "chain": "base",
+   "address": "0xfa4000d9a3aef97a284b4ea905736ff828ee0cfe",
+   "score": 88,
+   "verdict": "green",
+   "liquidity_usd": 74357.586,
+   "first_seen": 1787942189
+  },
+  {
+   "symbol": "LUCIA CAMINOS",
+   "name": "LUCIA - SHE CAN DIE",
+   "chain": "robinhood",
+   "address": "0xc2b952a370c3dad2ca3bbbe3f255dbd6b12d83f6",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 410197.0942,
+   "first_seen": 1787941299
+  },
+  {
+   "symbol": "C",
+   "name": "Coinbase Logo Ads",
+   "chain": "base",
+   "address": "0xa2a82aa98a07fff694b73eebfc0c3e38cf914714",
+   "score": 88,
+   "verdict": "green",
+   "liquidity_usd": 74314.1935,
+   "first_seen": 1787941284
+  },
+  {
+   "symbol": "Sub8",
+   "name": "Sub8 Bot",
+   "chain": "base",
+   "address": "0xafd9c04fe705ff1b9ecdb8a63bdee41f27b74b20",
+   "score": 88,
+   "verdict": "green",
+   "liquidity_usd": 73238.1,
+   "first_seen": 1787938791
+  },
   {
    "symbol": "MRLN",
    "name": "Merlin",
@@ -289,46 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 81685.2543,
    "first_seen": 1787903552
-  },
-  {
-   "symbol": "BITBANK",
-   "name": "BITBANK",
-   "chain": "base",
-   "address": "0x06ab74506e40a8e326400594fb76007a144b9f37",
-   "score": 91,
-   "verdict": "green",
-   "liquidity_usd": 74959.8999464,
-   "first_seen": 1787861640
-  },
-  {
-   "symbol": "MTGA",
-   "name": "MAKE TOKENS GREAT AGAIN",
-   "chain": "base",
-   "address": "0x86362208de45f7eeec32d0325f69a1beef81d779",
-   "score": 91,
-   "verdict": "green",
-   "liquidity_usd": 75134.3594,
-   "first_seen": 1787856602
-  },
-  {
-   "symbol": "MTGA",
-   "name": "Make Tokens Great Again",
-   "chain": "base",
-   "address": "0xf828fdbfce67655f1d833e605502c81aab9ea6cd",
-   "score": 91,
-   "verdict": "green",
-   "liquidity_usd": 76111.0646,
-   "first_seen": 1787853978
-  },
-  {
-   "symbol": "SFEAD",
-   "name": "supercallafragilisticexpialidocious",
-   "chain": "robinhood",
-   "address": "0x2d905775e0deba45de728541c12a201cefb7ba69",
-   "score": 75,
-   "verdict": "green",
-   "liquidity_usd": 66814.3342,
-   "first_seen": 1787853125
   }
  ],
  "confirmed": [
@@ -394,9 +394,9 @@
   }
  ],
  "probation": {
-  "waiting": 4,
+  "waiting": 6,
   "confirmed": 4,
-  "dropped": 120
+  "dropped": 122
  },
  "recent_drains": [
   {
@@ -578,7 +578,7 @@
   "rug": 932
  },
  "watchlist_active": 11,
- "price_snapshots": 33242,
+ "price_snapshots": 32037,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
