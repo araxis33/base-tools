@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-08-28T00:42:14Z",
- "generated_at_unix": 1787877733,
+ "generated_at": "2026-08-28T09:02:33Z",
+ "generated_at_unix": 1787907749,
  "period": {
   "start": "2026-07-15",
-  "days": 43
+  "days": 44
  },
  "totals": {
-  "seen": 107429,
-  "base": 18757,
-  "robinhood": 88672,
-  "below_liquidity_threshold": 105498,
-  "spam_filtered": 56,
-  "scored": 1875,
-  "green": 789,
+  "seen": 107691,
+  "base": 18797,
+  "robinhood": 88894,
+  "below_liquidity_threshold": 105758,
+  "spam_filtered": 57,
+  "scored": 1876,
+  "green": 790,
   "yellow": 365,
   "red": 721
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-07",
-   "base": 305,
-   "robinhood": 2130
+   "base": 281,
+   "robinhood": 2063
   },
   {
    "date": "2026-08-08",
@@ -125,11 +125,21 @@
   },
   {
    "date": "2026-08-28",
-   "base": 31,
-   "robinhood": 307
+   "base": 71,
+   "robinhood": 529
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "BOOGL",
+   "name": "BOOGL",
+   "chain": "base",
+   "address": "0xf4ddcccfec9540044f33d16403a4f6003e79668c",
+   "score": 91,
+   "verdict": "green",
+   "liquidity_usd": 81685.2543,
+   "first_seen": 1787903552
+  },
   {
    "symbol": "BITBANK",
    "name": "BITBANK",
@@ -319,16 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 73494.3,
    "first_seen": 1787755019
-  },
-  {
-   "symbol": "NITTER",
-   "name": "Nitter",
-   "chain": "base",
-   "address": "0x56342a2cd3c845b0c42034439e6a002f621afd69",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 981418.3632,
-   "first_seen": 1787754698
   }
  ],
  "confirmed": [
@@ -386,9 +386,21 @@
  "probation": {
   "waiting": 1,
   "confirmed": 3,
-  "dropped": 108
+  "dropped": 109
  },
  "recent_drains": [
+  {
+   "symbol": "XXT",
+   "chain": "base",
+   "address": "0x31dce74641b7fcc3e777080f6cff5b364c49a2f8",
+   "ts": 1787903635
+  },
+  {
+   "symbol": "WBTC",
+   "chain": "base",
+   "address": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
+   "ts": 1787903634
+  },
   {
    "symbol": "Claude",
    "chain": "base",
@@ -400,12 +412,6 @@
    "chain": "base",
    "address": "0x676dda0b67e373b1fe3c9ea9a03dadafb899fc57",
    "ts": 1787677267
-  },
-  {
-   "symbol": "WBTC",
-   "chain": "base",
-   "address": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
-   "ts": 1787607020
   },
   {
    "symbol": "STFX",
@@ -472,12 +478,6 @@
    "chain": "base",
    "address": "0xb34dd18069a09f2b4e974765fcd24baad4f1c778",
    "ts": 1787252402
-  },
-  {
-   "symbol": "openhuman",
-   "chain": "base",
-   "address": "0x05553481fcc9434c9040b75bdc9b284b7d44cd6b",
-   "ts": 1787250821
   }
  ],
  "survivors": [
@@ -563,12 +563,12 @@
   }
  ],
  "alerts": {
-  "dump": 685,
+  "dump": 686,
   "pump": 258,
-  "rug": 931
+  "rug": 932
  },
- "watchlist_active": 12,
- "price_snapshots": 43628,
+ "watchlist_active": 11,
+ "price_snapshots": 42698,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
