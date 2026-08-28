@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-28T18:36:50Z",
- "generated_at_unix": 1787942210,
+ "generated_at": "2026-08-28T19:36:57Z",
+ "generated_at_unix": 1787945816,
  "period": {
   "start": "2026-07-15",
   "days": 44
  },
  "totals": {
-  "seen": 111272,
-  "base": 19359,
-  "robinhood": 91913,
-  "below_liquidity_threshold": 109311,
-  "spam_filtered": 58,
-  "scored": 1903,
+  "seen": 111900,
+  "base": 19432,
+  "robinhood": 92468,
+  "below_liquidity_threshold": 109935,
+  "spam_filtered": 60,
+  "scored": 1905,
   "green": 803,
   "yellow": 371,
-  "red": 729
+  "red": 731
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-07",
-   "base": 53,
-   "robinhood": 554
+   "base": 27,
+   "robinhood": 283
   },
   {
    "date": "2026-08-08",
@@ -125,8 +125,8 @@
   },
   {
    "date": "2026-08-28",
-   "base": 633,
-   "robinhood": 3548
+   "base": 706,
+   "robinhood": 4103
   }
  ],
  "recent_finds": [
@@ -394,9 +394,9 @@
   }
  ],
  "probation": {
-  "waiting": 6,
+  "waiting": 3,
   "confirmed": 4,
-  "dropped": 122
+  "dropped": 125
  },
  "recent_drains": [
   {
@@ -578,7 +578,7 @@
   "rug": 932
  },
  "watchlist_active": 11,
- "price_snapshots": 32037,
+ "price_snapshots": 30927,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
