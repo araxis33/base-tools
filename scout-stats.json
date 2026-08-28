@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-28T15:36:35Z",
- "generated_at_unix": 1787931394,
+ "generated_at": "2026-08-28T16:36:40Z",
+ "generated_at_unix": 1787935000,
  "period": {
   "start": "2026-07-15",
   "days": 44
  },
  "totals": {
-  "seen": 109968,
-  "base": 19172,
-  "robinhood": 90796,
-  "below_liquidity_threshold": 108022,
-  "spam_filtered": 57,
-  "scored": 1889,
-  "green": 795,
-  "yellow": 370,
-  "red": 724
+  "seen": 110484,
+  "base": 19231,
+  "robinhood": 91253,
+  "below_liquidity_threshold": 108534,
+  "spam_filtered": 58,
+  "scored": 1892,
+  "green": 796,
+  "yellow": 371,
+  "red": 725
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-07",
-   "base": 120,
-   "robinhood": 828
+   "base": 104,
+   "robinhood": 666
   },
   {
    "date": "2026-08-08",
@@ -125,11 +125,31 @@
   },
   {
    "date": "2026-08-28",
-   "base": 446,
-   "robinhood": 2431
+   "base": 505,
+   "robinhood": 2888
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "Tony",
+   "name": "Official Mascot Google",
+   "chain": "base",
+   "address": "0x61ab6694a27c3a8824d2e72f5745431e1a73773e",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 74719.5015,
+   "first_seen": 1787933978
+  },
+  {
+   "symbol": "gVITALIK",
+   "name": "VITALIK",
+   "chain": "base",
+   "address": "0x3de9da25c739191c6e416ff73e3e9e227d360402",
+   "score": 88,
+   "verdict": "green",
+   "liquidity_usd": 75094.5,
+   "first_seen": 1787931507
+  },
   {
    "symbol": "ELONRWA",
    "name": "memelord",
@@ -309,29 +329,19 @@
    "verdict": "green",
    "liquidity_usd": 78600.3629,
    "first_seen": 1787841470
-  },
-  {
-   "symbol": "LOOMDART",
-   "name": "loomdart",
-   "chain": "base",
-   "address": "0xde9a4455af00ca473dfe43e9d5fcb077462d2190",
-   "score": 91,
-   "verdict": "green",
-   "liquidity_usd": 76021.1656,
-   "first_seen": 1787838533
-  },
-  {
-   "symbol": "Loomdart",
-   "name": "Loomdart",
-   "chain": "base",
-   "address": "0xa50b6d3ca7e75e0beb4fb993489f5826be42fbd5",
-   "score": 91,
-   "verdict": "green",
-   "liquidity_usd": 74940.3,
-   "first_seen": 1787835667
   }
  ],
  "confirmed": [
+  {
+   "symbol": "我的女友景甜",
+   "chain": "base",
+   "address": "0xdc4f058c103f3879fea72d0fc86eded309f43b07",
+   "buyers_h1": 114,
+   "volume_h1": 27065198.6611428,
+   "liquidity_usd": 9011454.4558,
+   "confirmed_at": 1787925711,
+   "hours_waited": 2.3
+  },
   {
    "symbol": "Claude",
    "chain": "base",
@@ -384,9 +394,9 @@
   }
  ],
  "probation": {
-  "waiting": 3,
-  "confirmed": 3,
-  "dropped": 117
+  "waiting": 2,
+  "confirmed": 4,
+  "dropped": 119
  },
  "recent_drains": [
   {
@@ -568,7 +578,7 @@
   "rug": 932
  },
  "watchlist_active": 11,
- "price_snapshots": 34843,
+ "price_snapshots": 33821,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
