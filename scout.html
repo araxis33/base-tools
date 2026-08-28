@@ -8,7 +8,23 @@
 <meta property="og:title" content="Scout — new tokens on Base and Robinhood Chain">
 <meta property="og:description" content="Every new pool on two chains, checked automatically. Under 1% turn out to be worth a second look.">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="base.tools">
+<meta property="og:url" content="https://deftools.xyz/scout.html">
+<meta property="og:image" content="https://deftools.xyz/og-scout.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="base.tools / scout. Every new token on Base, checked automatically. 2 chains watched, 24/7 automated scanner, $50k liquidity bar.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Def7771">
+<meta name="twitter:creator" content="@Def7771">
+<meta name="twitter:title" content="Scout — new tokens on Base and Robinhood Chain">
+<meta name="twitter:description" content="Every new pool on two chains, checked automatically. Under 1% turn out to be worth a second look.">
+<meta name="twitter:image" content="https://deftools.xyz/og-scout.png">
 <link rel="canonical" href="https://deftools.xyz/scout.html">
+<meta name="theme-color" content="#0a0e1c">
+<!-- Same blue "b" mark as the homepage. Without it this page asked for
+     /favicon.ico on every visit and got a 404 and a blank tab. -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b6eff'/%3E%3Cpath d='M10.5 6.5v19' stroke='%23fff' stroke-width='4' stroke-linecap='round'/%3E%3Ccircle cx='18' cy='19.5' r='5.5' fill='none' stroke='%23fff' stroke-width='4'/%3E%3C/svg%3E">
 <style>
 :root{
   --bg:#0a0e1c; --bg2:#0d1226; --card:#111730; --card-hover:#151c3a;
@@ -299,8 +315,8 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
     }).join('');
 
     document.getElementById('caveat').textContent = d.caveat || '';
-    var max = Math.max.apply(null, d.daily.map(function (x) { return x.base + x.robinhood; })) || 1;
-    document.getElementById('bars').innerHTML = d.daily.map(function (x) {
+    var max = Math.max.apply(null, (d.daily || []).map(function (x) { return x.base + x.robinhood; })) || 1;
+    document.getElementById('bars').innerHTML = (d.daily || []).map(function (x) {
       var h = 130 / max;
       return '<div class="bar" title="' + x.date + ': ' + (x.base + x.robinhood) + ' tokens">' +
         '<i class="rh" style="height:' + (x.robinhood * h).toFixed(1) + 'px"></i>' +
@@ -349,11 +365,11 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
 
     table(document.getElementById('finds'),
       ['Token', 'Chain', 'Score', 'Liquidity', 'Found'],
-      d.recent_finds.map(function (f) {
+      (d.recent_finds || []).map(function (f) {
         return [
           { html: link(f.chain, f.address, f.symbol || '?', 'sym') + ' <span class="addr">' + esc(short(f.address)) + '</span>' },
           { html: '<span class="chain">' + esc(CHAIN_LABEL[f.chain] || f.chain) + '</span>' },
-          { html: '<span class="pill ' + (f.verdict === 'green' ? 'green' : 'yellow') + '">' + f.score + '</span>', num: true },
+          { html: '<span class="pill ' + (f.verdict === 'green' ? 'green' : 'yellow') + '">' + esc(f.score) + '</span>', num: true },
           { html: usd(f.liquidity_usd), num: true },
           { html: ago(f.first_seen), num: true }
         ];
@@ -361,7 +377,7 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
 
     table(document.getElementById('survivors'),
       ['Token', 'Chain', 'Liquidity then → now', '24h volume'],
-      d.survivors.map(function (s) {
+      (d.survivors || []).map(function (s) {
         return [
           { html: link(s.chain, s.address, s.symbol || '?', 'sym') + ' <span class="addr">' + esc(short(s.address)) + '</span>' },
           { html: '<span class="chain">' + esc(CHAIN_LABEL[s.chain] || s.chain) + '</span>' },
@@ -372,7 +388,7 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
 
     table(document.getElementById('drains'),
       ['Token', 'Chain', 'Flagged'],
-      d.recent_drains.map(function (r) {
+      (d.recent_drains || []).map(function (r) {
         return [
           { html: link(r.chain, r.address, r.symbol || '?', 'sym') + ' <span class="addr">' + esc(short(r.address)) + '</span>' },
           { html: '<span class="chain">' + esc(CHAIN_LABEL[r.chain] || r.chain) + '</span>' },

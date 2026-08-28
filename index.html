@@ -196,7 +196,7 @@
     flex-shrink:0;
   }
   .trend-col-icon.vol{background:rgba(59,110,255,0.15); color:var(--blue-text);}
-  .trend-col-icon.chip{background:rgba(255,207,64,0.14); color:var(--yellow);}
+  .trend-col-icon.gem{background:rgba(255,207,64,0.14); color:var(--yellow);}
   .trend-col-icon.gain{background:rgba(61,220,132,0.14); color:var(--green);}
   .trend-col-title{font-weight:800; font-size:var(--fs-sm);}
   .trend-col-desc{font-size:var(--fs-xxs); color:var(--muted2); font-weight:600;}
@@ -225,6 +225,7 @@
   }
   .copy-btn .ic{width:12px; height:12px; vertical-align:middle;}
   .copy-btn:hover{color:var(--blue-text);}
+  .copy-btn.copy-fail{color:var(--red);}
   .trend-right{text-align:right; flex-shrink:0; display:block;}
   .trend-right:hover .trend-price{color:var(--blue-text);}
   /* Price and symbol are the two things a row exists to show, so they share a
@@ -251,6 +252,9 @@
   .filters{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:24px;}
   .chip{
     border:1px solid var(--border); border-radius:var(--r-sm); padding:8px 16px;
+    /* font-family is set because these are <button>s, which take the UA font
+       rather than the page's unless told otherwise. */
+    font-family:inherit; line-height:1.4;
     font-size:var(--fs-xs); font-weight:700; color:var(--blue-text); cursor:pointer; background:var(--card);
     transition:background-color var(--t), border-color var(--t), color var(--t);
   }
@@ -508,7 +512,7 @@
       </div>
       <div class="trend-col">
         <div class="trend-col-head">
-          <div class="trend-col-icon chip"><svg class="ic" aria-hidden="true"><use href="#i-gem"/></svg></div>
+          <div class="trend-col-icon gem"><svg class="ic" aria-hidden="true"><use href="#i-gem"/></svg></div>
           <div><div class="trend-col-title">Base Blue-chips</div><div class="trend-col-desc">Established Base projects, hand-picked</div></div>
         </div>
         <div id="col-bluechip"><div class="trend-empty">Loading…</div></div>
@@ -523,7 +527,7 @@
         <div class="section-sub">Apps, bots, terminals, trackers, bridges, DEXs and lending. A <svg class="ic ic-solid" style="color:var(--yellow)" aria-hidden="true"><use href="#i-star"/></svg> marks what I use myself, or hit <b style="color:var(--yellow)">My stack</b> to see only those.</div>
       </div>
     </div>
-    <div class="filters" id="filters"></div>
+    <div class="filters" id="filters" role="group" aria-label="Filter tools by category"></div>
     <div id="grid"></div>
   </section>
 
@@ -796,15 +800,25 @@ function renderFilters(){
   box.innerHTML = "";
   const chips = ["All", MY_STACK, ...CATS.slice(1)];
   chips.forEach(c=>{
-    const chip = document.createElement("div");
-    chip.className = "chip" + (c === "All" ? " active" : "") + (c === MY_STACK ? " mine-chip" : "");
+    // These were <div>s with an onclick: no tab stop, no Enter or Space, and
+    // nothing announced. A <button> gets all of that from the browser, and the
+    // pressed state tells a screen reader which filter is the current one.
+    const chip = document.createElement("button");
+    chip.type = "button";
+    const active = c === "All";
+    chip.className = "chip" + (active ? " active" : "") + (c === MY_STACK ? " mine-chip" : "");
+    chip.setAttribute("aria-pressed", String(active));
     chip.innerHTML = c === MY_STACK
       ? '<svg class="ic ic-solid" aria-hidden="true"><use href="#i-star"/></svg> ' + c
       : c;
     chip.title = c === MY_STACK ? "The handful I actually use, not the whole catalogue" : "";
     chip.onclick = ()=>{
-      document.querySelectorAll(".chip").forEach(el=>el.classList.remove("active"));
+      box.querySelectorAll(".chip").forEach(el=>{
+        el.classList.remove("active");
+        el.setAttribute("aria-pressed", "false");
+      });
       chip.classList.add("active");
+      chip.setAttribute("aria-pressed", "true");
       renderGrid(c);
     };
     box.appendChild(chip);
@@ -851,11 +865,44 @@ const BLUE_CHIP_TOKENS = [
   { id:"bankercoin-2",      contract:"0x22af33fe49fd1fa80c7149773dde5890d3c76f3b" },
 ];
 
+// Every board read and wrote localStorage directly. In a private window, or
+// with site data blocked, the *getter itself* throws — which happened before
+// the first fetch and left the boards stuck on "loading…" with no error state
+// and no retry button. Storage is a cache here, never the source of truth, so
+// losing it has to be silent.
+function storageGet(key){
+  try { return localStorage.getItem(key); } catch(e){ return null; }
+}
+function storageSet(key, value){
+  try { localStorage.setItem(key, value); } catch(e){}
+}
+
+// Symbols, logo URLs and contract addresses come from CoinGecko, not from this
+// file, and they land inside HTML attributes and text. Escaping them keeps a
+// stray quote in an upstream token name from breaking the row it renders.
+function esc(s){
+  return String(s == null ? "" : s).replace(/[&<>"']/g, c => (
+    { "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]
+  ));
+}
+
 const PLATFORMS_CACHE_KEY = "basetools_platforms_v1";
 const PLATFORMS_CACHE_TTL_MS = 24 * 60 * 60 * 1000; // platform mapping barely changes, cache a day
 
 const CACHE_KEY = "basetools_boards_v5";
 const CACHE_TTL_MS = 5 * 60 * 1000;
+
+// The stamp said "cached · just now" for anything served from storage, which
+// could be five minutes old on this visit and a day old on the offline path.
+// The boards are the one part of this page that claims to be current, so the
+// age they report has to be the real one.
+function ageLabel(ts){
+  const s = Math.max(0, (Date.now() - ts) / 1000);
+  if (s < 60) return "just now";
+  if (s < 5400) return Math.round(s / 60) + " min ago";
+  if (s < 172800) return Math.round(s / 3600) + " h ago";
+  return Math.round(s / 86400) + " days ago";
+}
 
 function fmtPrice(n){
   if (!isFinite(n)) return "—";
@@ -877,14 +924,41 @@ const ICON_COPY  = `<svg class="ic" aria-hidden="true"><use href="#i-copy"/></sv
 const ICON_CHECK = `<svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>`;
 
 function copyBtnHtml(contract){
-  return `<button class="copy-btn" title="Copy address" aria-label="Copy address" data-addr="${contract}">${ICON_COPY}</button>`;
+  return `<button class="copy-btn" type="button" title="Copy address" aria-label="Copy address" data-addr="${esc(contract)}">${ICON_COPY}</button>`;
 }
+
+// The Clipboard API needs a secure context and a permission some browsers
+// refuse outright; the old button showed a checkmark either way, so a contract
+// address you were about to paste into a wallet could quietly not be there.
+async function copyAddr(text){
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    try { await navigator.clipboard.writeText(text); return true; } catch(e){}
+  }
+  try {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.cssText = "position:fixed; top:-1000px; opacity:0";
+    document.body.appendChild(ta);
+    ta.select();
+    const ok = document.execCommand("copy");
+    ta.remove();
+    return ok;
+  } catch(e){ return false; }
+}
+
 function bindCopyButtons(container){
   container.querySelectorAll(".copy-btn").forEach(btn=>{
-    btn.onclick = ()=>{
-      navigator.clipboard?.writeText(btn.dataset.addr);
-      btn.innerHTML = ICON_CHECK;
-      setTimeout(()=>{ btn.innerHTML = ICON_COPY; }, 1200);
+    btn.onclick = async ()=>{
+      const ok = await copyAddr(btn.dataset.addr);
+      btn.classList.toggle("copy-fail", !ok);
+      btn.title = ok ? "Copied" : "Couldn't copy — open the address instead";
+      if (ok) btn.innerHTML = ICON_CHECK;
+      setTimeout(()=>{
+        btn.innerHTML = ICON_COPY;
+        btn.classList.remove("copy-fail");
+        btn.title = "Copy address";
+      }, 1200);
     };
   });
 }
@@ -901,7 +975,7 @@ async function fetchWithTimeout(url, ms){
 
 // id -> base contract address, for every coin whose only platform is Base.
 async function fetchNativeBaseMap(){
-  const cachedRaw = localStorage.getItem(PLATFORMS_CACHE_KEY);
+  const cachedRaw = storageGet(PLATFORMS_CACHE_KEY);
   if (cachedRaw){
     try {
       const cached = JSON.parse(cachedRaw);
@@ -915,7 +989,7 @@ async function fetchNativeBaseMap(){
   for (const c of list){
     if (isNativeToBase(c)) map[c.id] = c.platforms.base;
   }
-  localStorage.setItem(PLATFORMS_CACHE_KEY, JSON.stringify({ ts: Date.now(), data: map }));
+  storageSet(PLATFORMS_CACHE_KEY, JSON.stringify({ ts: Date.now(), data: map }));
   return map;
 }
 
@@ -962,20 +1036,32 @@ async function fetchBlueChips(){
   }).filter(Boolean).sort((a,b)=>(b.marketCap||0) - (a.marketCap||0));
 }
 
+// The two market calls used to be a Promise.all, so a single rate-limited
+// request took down all three boards — including the two the other call had
+// already paid for. They are settled independently now: a complete result
+// still returns straight away, and a half-loaded one is only accepted once the
+// retries are spent, so a transient failure still gets its second chance.
 async function fetchBoardsDataWithRetry(){
-  let lastErr;
+  let lastErr, partial = null;
   for (const delay of [0, 800, 2000]){
     if (delay) await new Promise(r=>setTimeout(r, delay));
-    try {
-      const nativeMap = await fetchNativeBaseMap();
-      const [dynamicTokens, blueChips] = await Promise.all([
-        fetchMarketsOnce(nativeMap),
-        fetchBlueChips(),
-      ]);
-      return { dynamicTokens, blueChips };
-    }
-    catch(e){ lastErr = e; }
+
+    let nativeMap;
+    try { nativeMap = await fetchNativeBaseMap(); }
+    catch(e){ lastErr = e; continue; }
+
+    const [markets, chips] = await Promise.allSettled([
+      fetchMarketsOnce(nativeMap),
+      fetchBlueChips(),
+    ]);
+    const dynamicTokens = markets.status === "fulfilled" ? markets.value : null;
+    const blueChips     = chips.status   === "fulfilled" ? chips.value   : null;
+
+    if (dynamicTokens && blueChips) return { dynamicTokens, blueChips, complete:true };
+    lastErr = markets.reason || chips.reason || lastErr;
+    if (dynamicTokens || blueChips) partial = { dynamicTokens, blueChips, complete:false };
   }
+  if (partial) return partial;
   throw lastErr;
 }
 
@@ -990,21 +1076,21 @@ function renderColumn(elId, items){
     return;
   }
   el.innerHTML = items.map((t,i)=>{
-    const tradeUrl = `https://www.geckoterminal.com/base/tokens/${t.contract}`;
+    const tradeUrl = `https://www.geckoterminal.com/base/tokens/${esc(t.contract)}`;
     return `
     <div class="trend-row">
       <div class="trend-left">
         <div class="trend-rank">${i+1}</div>
-        <img class="trend-logo" src="${t.logo}" alt="${t.symbol}" loading="lazy">
+        <img class="trend-logo" src="${esc(t.logo)}" alt="${esc(t.symbol)}" width="24" height="24" loading="lazy">
         <div>
-          <a class="trend-sym" href="${tradeUrl}" target="_blank" rel="noopener" title="Open where ${t.symbol} trades">${t.symbol}</a>
+          <a class="trend-sym" href="${tradeUrl}" target="_blank" rel="noopener" title="Open where ${esc(t.symbol)} trades">${esc(t.symbol)}</a>
           <div class="trend-addr">
-            <a href="https://basescan.org/token/${t.contract}" target="_blank" rel="noopener">${shortAddr(t.contract)}</a>
+            <a href="https://basescan.org/token/${esc(t.contract)}" target="_blank" rel="noopener">${esc(shortAddr(t.contract))}</a>
             ${copyBtnHtml(t.contract)}
           </div>
         </div>
       </div>
-      <a class="trend-right" href="${tradeUrl}" target="_blank" rel="noopener" title="Open where ${t.symbol} trades">
+      <a class="trend-right" href="${tradeUrl}" target="_blank" rel="noopener" title="Open where ${esc(t.symbol)} trades">
         <div class="trend-price">${fmtPrice(t.price)}</div>
         ${chgHtml(t.change24h)}
       </a>
@@ -1014,36 +1100,37 @@ function renderColumn(elId, items){
   bindCopyButtons(el);
 }
 
-function renderBoards(data, meta){
+function renderBoards(data, label){
   const tokens = data.dynamicTokens;
-  const byVolume = [...tokens].sort((a,b)=>b.volume24h - a.volume24h).slice(0,10);
-  const byGainers = [...tokens].filter(t=>isFinite(t.change24h)).sort((a,b)=>b.change24h - a.change24h).slice(0,10);
 
-  renderColumn("col-volume", byVolume);
-  renderColumn("col-gainers", byGainers);
-  renderColumn("col-bluechip", data.blueChips.slice(0,10));
+  // Either half may be absent when only one of the two calls came back.
+  // renderColumn already draws the error-with-retry state for a null.
+  renderColumn("col-volume",  tokens && [...tokens].sort((a,b)=>b.volume24h - a.volume24h).slice(0,10));
+  renderColumn("col-gainers", tokens && [...tokens].filter(t=>isFinite(t.change24h)).sort((a,b)=>b.change24h - a.change24h).slice(0,10));
+  renderColumn("col-bluechip", data.blueChips && data.blueChips.slice(0,10));
 
-  document.getElementById("trend-updated").textContent = meta === "cache" ? "cached · just now" : "live · just now";
+  document.getElementById("trend-updated").textContent = label;
 }
 
 async function loadBoards(){
-  const cachedRaw = localStorage.getItem(CACHE_KEY);
+  const cachedRaw = storageGet(CACHE_KEY);
   let cached = null;
   if (cachedRaw){
     try { cached = JSON.parse(cachedRaw); } catch(e){}
   }
   if (cached && (Date.now() - cached.ts) < CACHE_TTL_MS){
-    renderBoards(cached.data, "cache");
+    renderBoards(cached.data, "cached · " + ageLabel(cached.ts));
     return;
   }
   try {
     const data = await fetchBoardsDataWithRetry();
-    localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
-    renderBoards(data, "live");
+    // A half-loaded result is worth showing but not worth pinning for the next
+    // five minutes: leaving it out of the cache lets the following visit retry.
+    if (data.complete) storageSet(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
+    renderBoards(data, data.complete ? "live · just now" : "live · partly unavailable");
   } catch(e){
     if (cached){
-      renderBoards(cached.data, "cache");
-      document.getElementById("trend-updated").textContent = "cached (offline)";
+      renderBoards(cached.data, "cached · " + ageLabel(cached.ts) + " · offline");
     } else {
       renderColumn("col-volume", null);
       renderColumn("col-gainers", null);
