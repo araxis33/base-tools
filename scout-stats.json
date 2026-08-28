@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-28T12:36:15Z",
- "generated_at_unix": 1787920575,
+ "generated_at": "2026-08-28T14:36:28Z",
+ "generated_at_unix": 1787927787,
  "period": {
   "start": "2026-07-15",
   "days": 44
  },
  "totals": {
-  "seen": 108276,
-  "base": 18899,
-  "robinhood": 89377,
-  "below_liquidity_threshold": 106339,
+  "seen": 109397,
+  "base": 19031,
+  "robinhood": 90366,
+  "below_liquidity_threshold": 107452,
   "spam_filtered": 57,
-  "scored": 1880,
-  "green": 793,
-  "yellow": 365,
-  "red": 722
+  "scored": 1888,
+  "green": 795,
+  "yellow": 369,
+  "red": 724
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-07",
-   "base": 206,
-   "robinhood": 1424
+   "base": 148,
+   "robinhood": 1033
   },
   {
    "date": "2026-08-08",
@@ -125,11 +125,71 @@
   },
   {
    "date": "2026-08-28",
-   "base": 173,
-   "robinhood": 1012
+   "base": 305,
+   "robinhood": 2001
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "BaseLambo",
+   "name": "BaseLambo",
+   "chain": "base",
+   "address": "0x21f6bd23aaa6a6d2248be4d502a503cc01a5c633",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 74392.5,
+   "first_seen": 1787926532
+  },
+  {
+   "symbol": "我的女友景甜",
+   "name": "我的女友景甜",
+   "chain": "base",
+   "address": "0xdc4f058c103f3879fea72d0fc86eded309f43b07",
+   "score": 61,
+   "verdict": "yellow",
+   "liquidity_usd": 63916.0057,
+   "first_seen": 1787925711
+  },
+  {
+   "symbol": "BASELIFE",
+   "name": "My life is Base",
+   "chain": "base",
+   "address": "0x5322c2f8abc8706482cdcaed20f46ff7c6577d60",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 74933.4,
+   "first_seen": 1787923631
+  },
+  {
+   "symbol": "DTCC XRP",
+   "name": "DTCC RIPPLE XRP",
+   "chain": "base",
+   "address": "0x28cf85a168a124e215bdbcc3f3553c19b349b362",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 181338.1224,
+   "first_seen": 1787923446
+  },
+  {
+   "symbol": "30",
+   "name": "$30 and a dream",
+   "chain": "base",
+   "address": "0x6ca8b0f3cec183cb07d2924c5e0d9ed8bdd75a95",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 74903.1998708,
+   "first_seen": 1787921214
+  },
+  {
+   "symbol": "ROCKS",
+   "name": "Rocks",
+   "chain": "robinhood",
+   "address": "0xf2f10e40e57cf159564f734fdef1a7339a86d4af",
+   "score": 75,
+   "verdict": "green",
+   "liquidity_usd": 65943.7525,
+   "first_seen": 1787920769
+  },
   {
    "symbol": "$BSLN",
    "name": "Baseline Corp",
@@ -269,66 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 75129.7001728,
    "first_seen": 1787832936
-  },
-  {
-   "symbol": "Baselife",
-   "name": "My life is Base",
-   "chain": "base",
-   "address": "0xa188dcddbb56e3a79cef9b4343c12fb42214ff74",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 76158.0,
-   "first_seen": 1787825549
-  },
-  {
-   "symbol": "BaseJak",
-   "name": "BaseJak",
-   "chain": "base",
-   "address": "0x2ed53fbc5deac14f3f7a99d155d67db19d199db8",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 75016.4019,
-   "first_seen": 1787815873
-  },
-  {
-   "symbol": "Mortgage",
-   "name": "Mortgagecoin",
-   "chain": "base",
-   "address": "0x705159729ed1639f2aca62658dc7c2d35f095fec",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 75396.143,
-   "first_seen": 1787774403
-  },
-  {
-   "symbol": "MOO",
-   "name": "Moo Market",
-   "chain": "base",
-   "address": "0x600ecc554d92e6a94c62abcf9f22fe34d5a2146d",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 74833.9721,
-   "first_seen": 1787771722
-  },
-  {
-   "symbol": "CASHCAT",
-   "name": "Cash Cat",
-   "chain": "base",
-   "address": "0x1d611b04b394d91fced8dab4cb8bc6a051b4ea75",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 87329119.1359,
-   "first_seen": 1787770045
-  },
-  {
-   "symbol": "FACTO",
-   "name": "Facto",
-   "chain": "base",
-   "address": "0x4eb2119c8e90ae4bf2082662fdbeaa66bba65a5d",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 73900.8,
-   "first_seen": 1787769224
   }
  ],
  "confirmed": [
@@ -384,9 +384,9 @@
   }
  ],
  "probation": {
-  "waiting": 1,
+  "waiting": 3,
   "confirmed": 3,
-  "dropped": 112
+  "dropped": 116
  },
  "recent_drains": [
   {
@@ -568,7 +568,7 @@
   "rug": 932
  },
  "watchlist_active": 11,
- "price_snapshots": 38926,
+ "price_snapshots": 36146,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
