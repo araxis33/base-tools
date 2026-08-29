@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-29T15:39:41Z",
- "generated_at_unix": 1788017980,
+ "generated_at": "2026-08-29T16:39:45Z",
+ "generated_at_unix": 1788021585,
  "period": {
   "start": "2026-07-15",
   "days": 45
  },
  "totals": {
-  "seen": 115652,
-  "base": 19871,
-  "robinhood": 95781,
-  "below_liquidity_threshold": 113656,
-  "spam_filtered": 65,
-  "scored": 1931,
-  "green": 816,
-  "yellow": 377,
-  "red": 738
+  "seen": 116086,
+  "base": 19925,
+  "robinhood": 96161,
+  "below_liquidity_threshold": 114086,
+  "spam_filtered": 66,
+  "scored": 1934,
+  "green": 817,
+  "yellow": 378,
+  "red": 739
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-08",
-   "base": 115,
-   "robinhood": 772
+   "base": 95,
+   "robinhood": 752
   },
   {
    "date": "2026-08-09",
@@ -125,11 +125,31 @@
   },
   {
    "date": "2026-08-29",
-   "base": 340,
-   "robinhood": 2715
+   "base": 394,
+   "robinhood": 3095
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "HOME",
+   "name": "HOMECOIN",
+   "chain": "base",
+   "address": "0x1dcb7811f2d2f0989bca6fdcf7dcf54ee868a7e7",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 73997.4511,
+   "first_seen": 1788020461
+  },
+  {
+   "symbol": "GOLDILOCKS",
+   "name": "GOLDICLOCKS",
+   "chain": "robinhood",
+   "address": "0x58643fbc239446111b73c1cd8ac5eaa7aabf1e18",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 136057.9547,
+   "first_seen": 1788020229
+  },
   {
    "symbol": "HOUSE",
    "name": "HOUSE COIN",
@@ -309,26 +329,6 @@
    "verdict": "yellow",
    "liquidity_usd": 72972.3,
    "first_seen": 1787946908
-  },
-  {
-   "symbol": "AI",
-   "name": "Artificial Inu",
-   "chain": "robinhood",
-   "address": "0x9d19d54c161441d3881764d5b217429cd0aa56f2",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 596476.5242,
-   "first_seen": 1787946036
-  },
-  {
-   "symbol": "CEECIL",
-   "name": "CEEcil",
-   "chain": "base",
-   "address": "0xfa4000d9a3aef97a284b4ea905736ff828ee0cfe",
-   "score": 88,
-   "verdict": "green",
-   "liquidity_usd": 74357.586,
-   "first_seen": 1787942189
   }
  ],
  "confirmed": [
@@ -404,9 +404,9 @@
   }
  ],
  "probation": {
-  "waiting": 5,
+  "waiting": 6,
   "confirmed": 5,
-  "dropped": 141
+  "dropped": 142
  },
  "recent_drains": [
   {
@@ -588,7 +588,7 @@
   "rug": 932
  },
  "watchlist_active": 11,
- "price_snapshots": 26929,
+ "price_snapshots": 25817,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
