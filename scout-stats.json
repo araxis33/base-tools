@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-29T11:39:18Z",
- "generated_at_unix": 1788003557,
+ "generated_at": "2026-08-29T13:39:27Z",
+ "generated_at_unix": 1788010767,
  "period": {
   "start": "2026-07-15",
   "days": 45
  },
  "totals": {
-  "seen": 113820,
-  "base": 19707,
-  "robinhood": 94113,
-  "below_liquidity_threshold": 111834,
+  "seen": 114881,
+  "base": 19794,
+  "robinhood": 95087,
+  "below_liquidity_threshold": 112888,
   "spam_filtered": 64,
-  "scored": 1922,
-  "green": 812,
+  "scored": 1929,
+  "green": 815,
   "yellow": 376,
-  "red": 734
+  "red": 738
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-08",
-   "base": 199,
-   "robinhood": 1330
+   "base": 161,
+   "robinhood": 1067
   },
   {
    "date": "2026-08-09",
@@ -125,11 +125,41 @@
   },
   {
    "date": "2026-08-29",
-   "base": 176,
-   "robinhood": 1047
+   "base": 263,
+   "robinhood": 2021
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "Basepepe",
+   "name": "Basepepe",
+   "chain": "base",
+   "address": "0x1e01abd3d8eb7f15b92126594b2d26261f4e4323",
+   "score": 88,
+   "verdict": "green",
+   "liquidity_usd": 73424.3303,
+   "first_seen": 1788008533
+  },
+  {
+   "symbol": "MRBASE",
+   "name": "MR. Base",
+   "chain": "base",
+   "address": "0x905343a18202a6a98814d20054cb475f1ce2be82",
+   "score": 91,
+   "verdict": "green",
+   "liquidity_usd": 73759.3412,
+   "first_seen": 1788005791
+  },
+  {
+   "symbol": "妈妈的孙",
+   "name": "妈妈的孙",
+   "chain": "robinhood",
+   "address": "0xa70571d9c9638c0551d831bad44436473b060e2b",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 100427.9118,
+   "first_seen": 1788004528
+  },
   {
    "symbol": "TREX",
    "name": "TREX",
@@ -299,36 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 74314.1935,
    "first_seen": 1787941284
-  },
-  {
-   "symbol": "Sub8",
-   "name": "Sub8 Bot",
-   "chain": "base",
-   "address": "0xafd9c04fe705ff1b9ecdb8a63bdee41f27b74b20",
-   "score": 88,
-   "verdict": "green",
-   "liquidity_usd": 73238.1,
-   "first_seen": 1787938791
-  },
-  {
-   "symbol": "MRLN",
-   "name": "Merlin",
-   "chain": "robinhood",
-   "address": "0x06e30939571a05a74a2ea2672766143db2e83333",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 5000570.3827,
-   "first_seen": 1787938337
-  },
-  {
-   "symbol": "NVDAc",
-   "name": "NVIDIA Corporation",
-   "chain": "base",
-   "address": "0xe8d956687173f21cb92ac2eb3cbf6b3aac6b499c",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 417896.7524,
-   "first_seen": 1787938333
   }
  ],
  "confirmed": [
@@ -404,9 +404,9 @@
   }
  ],
  "probation": {
-  "waiting": 5,
+  "waiting": 6,
   "confirmed": 5,
-  "dropped": 136
+  "dropped": 138
  },
  "recent_drains": [
   {
@@ -588,7 +588,7 @@
   "rug": 932
  },
  "watchlist_active": 11,
- "price_snapshots": 27366,
+ "price_snapshots": 28004,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
