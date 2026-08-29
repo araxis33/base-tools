@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-29T16:39:45Z",
- "generated_at_unix": 1788021585,
+ "generated_at": "2026-08-29T17:39:51Z",
+ "generated_at_unix": 1788025191,
  "period": {
   "start": "2026-07-15",
   "days": 45
  },
  "totals": {
-  "seen": 116086,
-  "base": 19925,
-  "robinhood": 96161,
-  "below_liquidity_threshold": 114086,
-  "spam_filtered": 66,
-  "scored": 1934,
+  "seen": 116846,
+  "base": 19991,
+  "robinhood": 96855,
+  "below_liquidity_threshold": 114843,
+  "spam_filtered": 67,
+  "scored": 1936,
   "green": 817,
-  "yellow": 378,
-  "red": 739
+  "yellow": 379,
+  "red": 740
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-08",
-   "base": 95,
-   "robinhood": 752
+   "base": 76,
+   "robinhood": 560
   },
   {
    "date": "2026-08-09",
@@ -125,11 +125,21 @@
   },
   {
    "date": "2026-08-29",
-   "base": 394,
-   "robinhood": 3095
+   "base": 460,
+   "robinhood": 3789
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "Zuckasaurus",
+   "name": "Zuckasaurus",
+   "chain": "base",
+   "address": "0x33bfc0e9f8038502135a8ce5b868f821d8b6263b",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 73685.6109,
+   "first_seen": 1788024512
+  },
   {
    "symbol": "HOME",
    "name": "HOMECOIN",
@@ -319,16 +329,6 @@
    "verdict": "yellow",
    "liquidity_usd": 72990.9,
    "first_seen": 1787948998
-  },
-  {
-   "symbol": "Deployer",
-   "name": "Deployer",
-   "chain": "base",
-   "address": "0x94b9fe158c8f0fa3e9150519ff1f77e049ab8a32",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 72972.3,
-   "first_seen": 1787946908
   }
  ],
  "confirmed": [
@@ -406,7 +406,7 @@
  "probation": {
   "waiting": 6,
   "confirmed": 5,
-  "dropped": 142
+  "dropped": 143
  },
  "recent_drains": [
   {
@@ -588,7 +588,7 @@
   "rug": 932
  },
  "watchlist_active": 11,
- "price_snapshots": 25817,
+ "price_snapshots": 24901,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
