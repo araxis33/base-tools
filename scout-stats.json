@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-29T13:39:27Z",
- "generated_at_unix": 1788010767,
+ "generated_at": "2026-08-29T15:39:41Z",
+ "generated_at_unix": 1788017980,
  "period": {
   "start": "2026-07-15",
   "days": 45
  },
  "totals": {
-  "seen": 114881,
-  "base": 19794,
-  "robinhood": 95087,
-  "below_liquidity_threshold": 112888,
-  "spam_filtered": 64,
-  "scored": 1929,
-  "green": 815,
-  "yellow": 376,
+  "seen": 115652,
+  "base": 19871,
+  "robinhood": 95781,
+  "below_liquidity_threshold": 113656,
+  "spam_filtered": 65,
+  "scored": 1931,
+  "green": 816,
+  "yellow": 377,
   "red": 738
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-08",
-   "base": 161,
-   "robinhood": 1067
+   "base": 115,
+   "robinhood": 772
   },
   {
    "date": "2026-08-09",
@@ -125,11 +125,31 @@
   },
   {
    "date": "2026-08-29",
-   "base": 263,
-   "robinhood": 2021
+   "base": 340,
+   "robinhood": 2715
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "HOUSE",
+   "name": "HOUSE COIN",
+   "chain": "base",
+   "address": "0x953df57c49671d465618da41442f6ca509a2e6c3",
+   "score": 88,
+   "verdict": "green",
+   "liquidity_usd": 85426.6753,
+   "first_seen": 1788017677
+  },
+  {
+   "symbol": "MRBASE",
+   "name": "MR BASE",
+   "chain": "base",
+   "address": "0x49714ba7fd0aed8566d4941e7818eec579e24da7",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 74016.4936,
+   "first_seen": 1788010855
+  },
   {
    "symbol": "Basepepe",
    "name": "Basepepe",
@@ -309,26 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 74357.586,
    "first_seen": 1787942189
-  },
-  {
-   "symbol": "LUCIA CAMINOS",
-   "name": "LUCIA - SHE CAN DIE",
-   "chain": "robinhood",
-   "address": "0xc2b952a370c3dad2ca3bbbe3f255dbd6b12d83f6",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 410197.0942,
-   "first_seen": 1787941299
-  },
-  {
-   "symbol": "C",
-   "name": "Coinbase Logo Ads",
-   "chain": "base",
-   "address": "0xa2a82aa98a07fff694b73eebfc0c3e38cf914714",
-   "score": 88,
-   "verdict": "green",
-   "liquidity_usd": 74314.1935,
-   "first_seen": 1787941284
   }
  ],
  "confirmed": [
@@ -404,9 +404,9 @@
   }
  ],
  "probation": {
-  "waiting": 6,
+  "waiting": 5,
   "confirmed": 5,
-  "dropped": 138
+  "dropped": 141
  },
  "recent_drains": [
   {
@@ -588,7 +588,7 @@
   "rug": 932
  },
  "watchlist_active": 11,
- "price_snapshots": 28004,
+ "price_snapshots": 26929,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
