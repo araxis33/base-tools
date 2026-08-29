@@ -1,19 +1,19 @@
 {
- "generated_at": "2026-08-29T00:54:49Z",
- "generated_at_unix": 1787964889,
+ "generated_at": "2026-08-29T08:41:46Z",
+ "generated_at_unix": 1787992906,
  "period": {
   "start": "2026-07-15",
-  "days": 44
+  "days": 45
  },
  "totals": {
-  "seen": 113003,
-  "base": 19576,
-  "robinhood": 93427,
-  "below_liquidity_threshold": 111030,
-  "spam_filtered": 60,
-  "scored": 1913,
-  "green": 807,
-  "yellow": 373,
+  "seen": 113324,
+  "base": 19637,
+  "robinhood": 93687,
+  "below_liquidity_threshold": 111347,
+  "spam_filtered": 61,
+  "scored": 1916,
+  "green": 809,
+  "yellow": 374,
   "red": 733
  },
  "liquidity_threshold_usd": 50000.0,
@@ -125,11 +125,41 @@
   },
   {
    "date": "2026-08-29",
-   "base": 45,
-   "robinhood": 361
+   "base": 106,
+   "robinhood": 621
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "PONS",
+   "name": "Pons",
+   "chain": "base",
+   "address": "0x2738c6dd3187a725bead46a500d4d56e87356c2b",
+   "score": 88,
+   "verdict": "green",
+   "liquidity_usd": 79106.2534,
+   "first_seen": 1787992224
+  },
+  {
+   "symbol": "OpenAI",
+   "name": "OpenAI",
+   "chain": "base",
+   "address": "0x3f261044acefe347b36f7a126f393cbf84ce0b07",
+   "score": 67,
+   "verdict": "yellow",
+   "liquidity_usd": 3847094.3399,
+   "first_seen": 1787990578
+  },
+  {
+   "symbol": "Everyone",
+   "name": "Everyone",
+   "chain": "base",
+   "address": "0xabdf80b542a33df2edecc12c3e017d249d9096b2",
+   "score": 91,
+   "verdict": "green",
+   "liquidity_usd": 78721.8045,
+   "first_seen": 1787989352
+  },
   {
    "symbol": "BasedBBIAGBInu",
    "name": "BasedBaldBrianIAmGayBlueInu",
@@ -299,36 +329,6 @@
    "verdict": "yellow",
    "liquidity_usd": 74392.5,
    "first_seen": 1787926532
-  },
-  {
-   "symbol": "我的女友景甜",
-   "name": "我的女友景甜",
-   "chain": "base",
-   "address": "0xdc4f058c103f3879fea72d0fc86eded309f43b07",
-   "score": 61,
-   "verdict": "yellow",
-   "liquidity_usd": 63916.0057,
-   "first_seen": 1787925711
-  },
-  {
-   "symbol": "BASELIFE",
-   "name": "My life is Base",
-   "chain": "base",
-   "address": "0x5322c2f8abc8706482cdcaed20f46ff7c6577d60",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 74933.4,
-   "first_seen": 1787923631
-  },
-  {
-   "symbol": "DTCC XRP",
-   "name": "DTCC RIPPLE XRP",
-   "chain": "base",
-   "address": "0x28cf85a168a124e215bdbcc3f3553c19b349b362",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 181338.1224,
-   "first_seen": 1787923446
   }
  ],
  "confirmed": [
@@ -394,9 +394,9 @@
   }
  ],
  "probation": {
-  "waiting": 6,
+  "waiting": 3,
   "confirmed": 4,
-  "dropped": 128
+  "dropped": 134
  },
  "recent_drains": [
   {
@@ -578,7 +578,7 @@
   "rug": 932
  },
  "watchlist_active": 10,
- "price_snapshots": 28346,
+ "price_snapshots": 27082,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
