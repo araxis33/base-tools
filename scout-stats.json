@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-29T17:39:51Z",
- "generated_at_unix": 1788025191,
+ "generated_at": "2026-08-29T18:39:55Z",
+ "generated_at_unix": 1788028795,
  "period": {
   "start": "2026-07-15",
   "days": 45
  },
  "totals": {
-  "seen": 116846,
-  "base": 19991,
-  "robinhood": 96855,
-  "below_liquidity_threshold": 114843,
-  "spam_filtered": 67,
-  "scored": 1936,
-  "green": 817,
+  "seen": 117611,
+  "base": 20046,
+  "robinhood": 97565,
+  "below_liquidity_threshold": 115602,
+  "spam_filtered": 69,
+  "scored": 1940,
+  "green": 819,
   "yellow": 379,
-  "red": 740
+  "red": 742
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-08",
-   "base": 76,
-   "robinhood": 560
+   "base": 50,
+   "robinhood": 398
   },
   {
    "date": "2026-08-09",
@@ -125,11 +125,31 @@
   },
   {
    "date": "2026-08-29",
-   "base": 460,
-   "robinhood": 3789
+   "base": 515,
+   "robinhood": 4499
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "PAWFUND",
+   "name": "Pawfund",
+   "chain": "robinhood",
+   "address": "0x54f042727ca7c65ff6c4da1e5249539d5e5f8530",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 313449.4915,
+   "first_seen": 1788027984
+  },
+  {
+   "symbol": "P",
+   "name": "Everpure Robinhood Token",
+   "chain": "robinhood",
+   "address": "0x8e8e6eeb0e8dc188943129c7f3beac5b97c61e18",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 137915.9948,
+   "first_seen": 1788025337
+  },
   {
    "symbol": "Zuckasaurus",
    "name": "Zuckasaurus",
@@ -309,26 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 363967.0791,
    "first_seen": 1787952136
-  },
-  {
-   "symbol": "Cubey",
-   "name": "Cubey",
-   "chain": "base",
-   "address": "0x54eccacf33d9284b3335c9d91c5f4ebfac75d04a",
-   "score": 91,
-   "verdict": "green",
-   "liquidity_usd": 74390.3336,
-   "first_seen": 1787951272
-  },
-  {
-   "symbol": "DEPL",
-   "name": "Deployer",
-   "chain": "base",
-   "address": "0xb6f19c4579b34f1eb40e5ce03fd0d584ab93d0ba",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 72990.9,
-   "first_seen": 1787948998
   }
  ],
  "confirmed": [
@@ -404,9 +404,9 @@
   }
  ],
  "probation": {
-  "waiting": 6,
+  "waiting": 7,
   "confirmed": 5,
-  "dropped": 143
+  "dropped": 144
  },
  "recent_drains": [
   {
@@ -588,7 +588,7 @@
   "rug": 932
  },
  "watchlist_active": 11,
- "price_snapshots": 24901,
+ "price_snapshots": 23957,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
