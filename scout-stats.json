@@ -1,28 +1,23 @@
 {
- "generated_at": "2026-08-29T18:39:55Z",
- "generated_at_unix": 1788028795,
+ "generated_at": "2026-08-30T10:30:09Z",
+ "generated_at_unix": 1788085807,
  "period": {
   "start": "2026-07-15",
-  "days": 45
+  "days": 46
  },
  "totals": {
-  "seen": 117611,
-  "base": 20046,
-  "robinhood": 97565,
-  "below_liquidity_threshold": 115602,
-  "spam_filtered": 69,
-  "scored": 1940,
-  "green": 819,
-  "yellow": 379,
-  "red": 742
+  "seen": 119911,
+  "base": 20273,
+  "robinhood": 99638,
+  "below_liquidity_threshold": 117883,
+  "spam_filtered": 73,
+  "scored": 1955,
+  "green": 828,
+  "yellow": 380,
+  "red": 747
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
-  {
-   "date": "2026-08-08",
-   "base": 50,
-   "robinhood": 398
-  },
   {
    "date": "2026-08-09",
    "base": 138,
@@ -125,11 +120,116 @@
   },
   {
    "date": "2026-08-29",
-   "base": 515,
-   "robinhood": 4499
+   "base": 658,
+   "robinhood": 5908
+  },
+  {
+   "date": "2026-08-30",
+   "base": 84,
+   "robinhood": 664
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "PERFECT",
+   "name": "The Protector",
+   "chain": "robinhood",
+   "address": "0xade75d59b1f09d31813d07dc41adf583000d8fcd",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 414134.245,
+   "first_seen": 1788077550
+  },
+  {
+   "symbol": "RCS",
+   "name": "Recess",
+   "chain": "robinhood",
+   "address": "0xc39cfd4a3471a3fecd33304450152ab205db8470",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 412484.7141,
+   "first_seen": 1788077140
+  },
+  {
+   "symbol": "Zipper",
+   "name": "Zipper",
+   "chain": "robinhood",
+   "address": "0xe1e8b826ebf770133717bd6fd973fd421d9c2614",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 100962.05486421,
+   "first_seen": 1788076362
+  },
+  {
+   "symbol": "USSA",
+   "name": "United States Space Academy",
+   "chain": "robinhood",
+   "address": "0xf916387dce98c01b12fb4b4f02ab0e90a74ec225",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 411654.7401,
+   "first_seen": 1788039107
+  },
+  {
+   "symbol": "[coin]",
+   "name": "Bracket Coin",
+   "chain": "robinhood",
+   "address": "0xb81984f0b0dc3ae07fef1ea5f5f8b605d0bf12fc",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 428610.7566,
+   "first_seen": 1788036782
+  },
+  {
+   "symbol": "runner",
+   "name": "the ultimate runner",
+   "chain": "robinhood",
+   "address": "0xd2bf63c901cb1151e4a9f163a21df37c5711cc05",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 424445.6233,
+   "first_seen": 1788036733
+  },
+  {
+   "symbol": "basechef",
+   "name": "Base Chef",
+   "chain": "base",
+   "address": "0x97cc1ed8743179f7f048cfc8b246d7697efd4fd8",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 73863.923,
+   "first_seen": 1788035901
+  },
+  {
+   "symbol": "COOK",
+   "name": "Let Him Cook",
+   "chain": "base",
+   "address": "0xa03455664c6eb9e8721072f7776e57f1fcbe98c7",
+   "score": 91,
+   "verdict": "green",
+   "liquidity_usd": 74211.0719,
+   "first_seen": 1788033359
+  },
+  {
+   "symbol": "STANDARD",
+   "name": "Standard",
+   "chain": "robinhood",
+   "address": "0xfae2ffee0d8373ffe17da561d82009d21676f3d5",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 246212638310.613,
+   "first_seen": 1788032588
+  },
+  {
+   "symbol": "OHMEN",
+   "name": "OHMEN",
+   "chain": "robinhood",
+   "address": "0xacb57a58360a10cf7ff7b8d9c45019a0810fa292",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 166527.9747,
+   "first_seen": 1788030173
+  },
   {
    "symbol": "PAWFUND",
    "name": "Pawfund",
@@ -229,109 +329,19 @@
    "verdict": "green",
    "liquidity_usd": 100427.9118,
    "first_seen": 1788004528
-  },
-  {
-   "symbol": "TREX",
-   "name": "TREX",
-   "chain": "base",
-   "address": "0x6c5726d51f8c40221394a1a0a2f24b34f169e41f",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 73120.8,
-   "first_seen": 1788003380
-  },
-  {
-   "symbol": "RAVN",
-   "name": "RAVN AGENT AI",
-   "chain": "robinhood",
-   "address": "0x7713b456f8e9f351fc9a625172b77d917ac3423e",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 147406.47061515,
-   "first_seen": 1788002758
-  },
-  {
-   "symbol": "USDG",
-   "name": "As Global Dollar",
-   "chain": "robinhood",
-   "address": "0xce871279d6ddbb70cced22dba3a31c067bb8d33e",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 219742.9102,
-   "first_seen": 1788001365
-  },
-  {
-   "symbol": "Min Day Lee",
-   "name": "Baseline CEO",
-   "chain": "base",
-   "address": "0xc45766137accaba847cf0345786d1a8f55beb475",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 73087.8,
-   "first_seen": 1788000777
-  },
-  {
-   "symbol": "MEMELORD",
-   "name": "memelord",
-   "chain": "base",
-   "address": "0x3c5cf6ccd429507d1b99a79bda2e08ef74cf0627",
-   "score": 88,
-   "verdict": "green",
-   "liquidity_usd": 73009.5,
-   "first_seen": 1787992959
-  },
-  {
-   "symbol": "PONS",
-   "name": "Pons",
-   "chain": "base",
-   "address": "0x2738c6dd3187a725bead46a500d4d56e87356c2b",
-   "score": 88,
-   "verdict": "green",
-   "liquidity_usd": 79106.2534,
-   "first_seen": 1787992224
-  },
-  {
-   "symbol": "OpenAI",
-   "name": "OpenAI",
-   "chain": "base",
-   "address": "0x3f261044acefe347b36f7a126f393cbf84ce0b07",
-   "score": 67,
-   "verdict": "yellow",
-   "liquidity_usd": 3847094.3399,
-   "first_seen": 1787990578
-  },
-  {
-   "symbol": "Everyone",
-   "name": "Everyone",
-   "chain": "base",
-   "address": "0xabdf80b542a33df2edecc12c3e017d249d9096b2",
-   "score": 91,
-   "verdict": "green",
-   "liquidity_usd": 78721.8045,
-   "first_seen": 1787989352
-  },
-  {
-   "symbol": "BasedBBIAGBInu",
-   "name": "BasedBaldBrianIAmGayBlueInu",
-   "chain": "base",
-   "address": "0xefa720720de492b947f09be7e263f4647548ff84",
-   "score": 88,
-   "verdict": "green",
-   "liquidity_usd": 73076.2063,
-   "first_seen": 1787953729
-  },
-  {
-   "symbol": "RELAXA",
-   "name": "relaxa",
-   "chain": "base",
-   "address": "0x6b1d3b12ae5f61bf468543bc4acd041ff86aefa7",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 363967.0791,
-   "first_seen": 1787952136
   }
  ],
  "confirmed": [
+  {
+   "symbol": "OHMEN",
+   "chain": "robinhood",
+   "address": "0xacb57a58360a10cf7ff7b8d9c45019a0810fa292",
+   "buyers_h1": 87,
+   "volume_h1": 43754.8150226527,
+   "liquidity_usd": 222555.9363,
+   "confirmed_at": 1788030173,
+   "hours_waited": 0.8
+  },
   {
    "symbol": "OpenAI",
    "chain": "base",
@@ -405,10 +415,22 @@
  ],
  "probation": {
   "waiting": 7,
-  "confirmed": 5,
-  "dropped": 144
+  "confirmed": 6,
+  "dropped": 153
  },
  "recent_drains": [
+  {
+   "symbol": "Claude",
+   "chain": "base",
+   "address": "0x838802a0076d4c8ccd92aa5b267d750b0426db07",
+   "ts": 1788075673
+  },
+  {
+   "symbol": "OpenAI",
+   "chain": "base",
+   "address": "0x3f261044acefe347b36f7a126f393cbf84ce0b07",
+   "ts": 1788075549
+  },
   {
    "symbol": "XXT",
    "chain": "base",
@@ -420,12 +442,6 @@
    "chain": "base",
    "address": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
    "ts": 1787903634
-  },
-  {
-   "symbol": "Claude",
-   "chain": "base",
-   "address": "0x838802a0076d4c8ccd92aa5b267d750b0426db07",
-   "ts": 1787815916
   },
   {
    "symbol": "UTOF",
@@ -492,12 +508,6 @@
    "chain": "base",
    "address": "0x92231b08ecfc119e11f06cf3290163dab233a2fe",
    "ts": 1787254598
-  },
-  {
-   "symbol": "GOAT",
-   "chain": "base",
-   "address": "0xb34dd18069a09f2b4e974765fcd24baad4f1c778",
-   "ts": 1787252402
   }
  ],
  "survivors": [
@@ -583,12 +593,12 @@
   }
  ],
  "alerts": {
-  "dump": 686,
+  "dump": 687,
   "pump": 258,
-  "rug": 932
+  "rug": 933
  },
- "watchlist_active": 11,
- "price_snapshots": 23957,
+ "watchlist_active": 10,
+ "price_snapshots": 23283,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
