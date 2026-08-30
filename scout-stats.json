@@ -1,19 +1,19 @@
 {
- "generated_at": "2026-08-30T10:30:09Z",
- "generated_at_unix": 1788085807,
+ "generated_at": "2026-08-30T11:30:18Z",
+ "generated_at_unix": 1788089417,
  "period": {
   "start": "2026-07-15",
   "days": 46
  },
  "totals": {
-  "seen": 119911,
-  "base": 20273,
-  "robinhood": 99638,
-  "below_liquidity_threshold": 117883,
-  "spam_filtered": 73,
-  "scored": 1955,
+  "seen": 120483,
+  "base": 20353,
+  "robinhood": 100130,
+  "below_liquidity_threshold": 118451,
+  "spam_filtered": 76,
+  "scored": 1956,
   "green": 828,
-  "yellow": 380,
+  "yellow": 381,
   "red": 747
  },
  "liquidity_threshold_usd": 50000.0,
@@ -125,11 +125,21 @@
   },
   {
    "date": "2026-08-30",
-   "base": 84,
-   "robinhood": 664
+   "base": 164,
+   "robinhood": 1156
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "KLEEM",
+   "name": "KLEEM",
+   "chain": "base",
+   "address": "0x880215bcc23ac54766507f4a00330e6d8fe9dd12",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 74081.2648,
+   "first_seen": 1788087047
+  },
   {
    "symbol": "PERFECT",
    "name": "The Protector",
@@ -319,19 +329,19 @@
    "verdict": "green",
    "liquidity_usd": 73759.3412,
    "first_seen": 1788005791
-  },
-  {
-   "symbol": "妈妈的孙",
-   "name": "妈妈的孙",
-   "chain": "robinhood",
-   "address": "0xa70571d9c9638c0551d831bad44436473b060e2b",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 100427.9118,
-   "first_seen": 1788004528
   }
  ],
  "confirmed": [
+  {
+   "symbol": "Zipper",
+   "chain": "robinhood",
+   "address": "0xe1e8b826ebf770133717bd6fd973fd421d9c2614",
+   "buyers_h1": 257,
+   "volume_h1": 916859.701042862,
+   "liquidity_usd": 299748.7185,
+   "confirmed_at": 1788076362,
+   "hours_waited": 2.6
+  },
   {
    "symbol": "OHMEN",
    "chain": "robinhood",
@@ -414,16 +424,16 @@
   }
  ],
  "probation": {
-  "waiting": 7,
-  "confirmed": 6,
-  "dropped": 153
+  "waiting": 1,
+  "confirmed": 7,
+  "dropped": 159
  },
  "recent_drains": [
   {
    "symbol": "Claude",
    "chain": "base",
    "address": "0x838802a0076d4c8ccd92aa5b267d750b0426db07",
-   "ts": 1788075673
+   "ts": 1788085938
   },
   {
    "symbol": "OpenAI",
@@ -598,7 +608,7 @@
   "rug": 933
  },
  "watchlist_active": 10,
- "price_snapshots": 23283,
+ "price_snapshots": 21887,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
