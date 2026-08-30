@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-30T18:05:28Z",
- "generated_at_unix": 1788113127,
+ "generated_at": "2026-08-30T20:05:37Z",
+ "generated_at_unix": 1788120336,
  "period": {
   "start": "2026-07-15",
   "days": 46
  },
  "totals": {
-  "seen": 122296,
-  "base": 20514,
-  "robinhood": 101782,
-  "below_liquidity_threshold": 120249,
-  "spam_filtered": 77,
-  "scored": 1970,
-  "green": 834,
+  "seen": 123454,
+  "base": 20616,
+  "robinhood": 102838,
+  "below_liquidity_threshold": 121400,
+  "spam_filtered": 78,
+  "scored": 1976,
+  "green": 838,
   "yellow": 383,
-  "red": 753
+  "red": 755
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-09",
-   "base": 66,
-   "robinhood": 428
+   "base": 22,
+   "robinhood": 161
   },
   {
    "date": "2026-08-10",
@@ -125,11 +125,51 @@
   },
   {
    "date": "2026-08-30",
-   "base": 325,
-   "robinhood": 2808
+   "base": 427,
+   "robinhood": 3864
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "MARCELLUS",
+   "name": "Western natural gas reserves",
+   "chain": "base",
+   "address": "0x757ecf352fed02fae99c4e733ec341b72a63b29a",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 200471.3989,
+   "first_seen": 1788118544
+  },
+  {
+   "symbol": "CATTERY",
+   "name": "BaseCattery",
+   "chain": "base",
+   "address": "0x3c4eb72059e56627c453612bfe55c3c48ea1f84a",
+   "score": 88,
+   "verdict": "green",
+   "liquidity_usd": 76075.6466,
+   "first_seen": 1788117306
+  },
+  {
+   "symbol": "100",
+   "name": "100 USDC And A Dream",
+   "chain": "base",
+   "address": "0x97c933fb19f51e49d89a6fb021aa6e1f8523ea7f",
+   "score": 88,
+   "verdict": "green",
+   "liquidity_usd": 75314.1,
+   "first_seen": 1788114831
+  },
+  {
+   "symbol": "dnt buy",
+   "name": "eltotem snipe test",
+   "chain": "robinhood",
+   "address": "0x5901bcb54ddafef8bca9346293ab66d7082a5a84",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 2.00658376567742e+22,
+   "first_seen": 1788114490
+  },
   {
    "symbol": "basenoun",
    "name": "basenoun",
@@ -289,46 +329,6 @@
    "verdict": "yellow",
    "liquidity_usd": 73863.923,
    "first_seen": 1788035901
-  },
-  {
-   "symbol": "COOK",
-   "name": "Let Him Cook",
-   "chain": "base",
-   "address": "0xa03455664c6eb9e8721072f7776e57f1fcbe98c7",
-   "score": 91,
-   "verdict": "green",
-   "liquidity_usd": 74211.0719,
-   "first_seen": 1788033359
-  },
-  {
-   "symbol": "STANDARD",
-   "name": "Standard",
-   "chain": "robinhood",
-   "address": "0xfae2ffee0d8373ffe17da561d82009d21676f3d5",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 246212638310.613,
-   "first_seen": 1788032588
-  },
-  {
-   "symbol": "OHMEN",
-   "name": "OHMEN",
-   "chain": "robinhood",
-   "address": "0xacb57a58360a10cf7ff7b8d9c45019a0810fa292",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 166527.9747,
-   "first_seen": 1788030173
-  },
-  {
-   "symbol": "PAWFUND",
-   "name": "Pawfund",
-   "chain": "robinhood",
-   "address": "0x54f042727ca7c65ff6c4da1e5249539d5e5f8530",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 313449.4915,
-   "first_seen": 1788027984
   }
  ],
  "confirmed": [
@@ -424,11 +424,17 @@
   }
  ],
  "probation": {
-  "waiting": 5,
+  "waiting": 6,
   "confirmed": 7,
-  "dropped": 163
+  "dropped": 166
  },
  "recent_drains": [
+  {
+   "symbol": "OHMEN",
+   "chain": "robinhood",
+   "address": "0xacb57a58360a10cf7ff7b8d9c45019a0810fa292",
+   "ts": 1788117940
+  },
   {
    "symbol": "Claude",
    "chain": "base",
@@ -512,12 +518,6 @@
    "chain": "base",
    "address": "0x880f974792652d48495a3e5066f6c95e33a3755b",
    "ts": 1787298685
-  },
-  {
-   "symbol": "GOAT",
-   "chain": "base",
-   "address": "0x92231b08ecfc119e11f06cf3290163dab233a2fe",
-   "ts": 1787254598
   }
  ],
  "survivors": [
@@ -605,10 +605,10 @@
  "alerts": {
   "dump": 687,
   "pump": 258,
-  "rug": 933
+  "rug": 934
  },
- "watchlist_active": 10,
- "price_snapshots": 22223,
+ "watchlist_active": 9,
+ "price_snapshots": 20563,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
