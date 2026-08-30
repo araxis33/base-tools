@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-08-30T12:30:26Z",
- "generated_at_unix": 1788093025,
+ "generated_at": "2026-08-30T15:40:15Z",
+ "generated_at_unix": 1788104415,
  "period": {
   "start": "2026-07-15",
   "days": 46
  },
  "totals": {
-  "seen": 120996,
-  "base": 20398,
-  "robinhood": 100598,
-  "below_liquidity_threshold": 118962,
+  "seen": 121116,
+  "base": 20406,
+  "robinhood": 100710,
+  "below_liquidity_threshold": 119081,
   "spam_filtered": 76,
-  "scored": 1958,
-  "green": 829,
+  "scored": 1959,
+  "green": 830,
   "yellow": 381,
   "red": 748
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-09",
-   "base": 138,
-   "robinhood": 730
+   "base": 115,
+   "robinhood": 638
   },
   {
    "date": "2026-08-10",
@@ -125,11 +125,21 @@
   },
   {
    "date": "2026-08-30",
-   "base": 209,
-   "robinhood": 1624
+   "base": 217,
+   "robinhood": 1736
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "DWMFER",
+   "name": "Degen Wolf mfer",
+   "chain": "base",
+   "address": "0x8fd1183b389f4759f0529550f5d7c20381a41576",
+   "score": 91,
+   "verdict": "green",
+   "liquidity_usd": 74379.291,
+   "first_seen": 1788093190
+  },
   {
    "symbol": "POWERUSERS",
    "name": "powerusers",
@@ -319,16 +329,6 @@
    "verdict": "yellow",
    "liquidity_usd": 74016.4936,
    "first_seen": 1788010855
-  },
-  {
-   "symbol": "Basepepe",
-   "name": "Basepepe",
-   "chain": "base",
-   "address": "0x1e01abd3d8eb7f15b92126594b2d26261f4e4323",
-   "score": 88,
-   "verdict": "green",
-   "liquidity_usd": 73424.3303,
-   "first_seen": 1788008533
   }
  ],
  "confirmed": [
@@ -424,7 +424,7 @@
   }
  ],
  "probation": {
-  "waiting": 1,
+  "waiting": 2,
   "confirmed": 7,
   "dropped": 160
  },
@@ -608,7 +608,7 @@
   "rug": 933
  },
  "watchlist_active": 10,
- "price_snapshots": 21861,
+ "price_snapshots": 21901,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
