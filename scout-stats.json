@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-08-30T15:40:15Z",
- "generated_at_unix": 1788104415,
+ "generated_at": "2026-08-30T17:05:23Z",
+ "generated_at_unix": 1788109522,
  "period": {
   "start": "2026-07-15",
   "days": 46
  },
  "totals": {
-  "seen": 121116,
-  "base": 20406,
-  "robinhood": 100710,
-  "below_liquidity_threshold": 119081,
-  "spam_filtered": 76,
-  "scored": 1959,
-  "green": 830,
-  "yellow": 381,
-  "red": 748
+  "seen": 121768,
+  "base": 20474,
+  "robinhood": 101294,
+  "below_liquidity_threshold": 119725,
+  "spam_filtered": 77,
+  "scored": 1966,
+  "green": 833,
+  "yellow": 382,
+  "red": 751
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-09",
    "base": 115,
-   "robinhood": 638
+   "robinhood": 618
   },
   {
    "date": "2026-08-10",
@@ -125,11 +125,51 @@
   },
   {
    "date": "2026-08-30",
-   "base": 217,
-   "robinhood": 1736
+   "base": 285,
+   "robinhood": 2320
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "MACHI",
+   "name": "MACHI",
+   "chain": "base",
+   "address": "0x341db371cc3cee005f5509a6397804728020a994",
+   "score": 88,
+   "verdict": "green",
+   "liquidity_usd": 77193.4375,
+   "first_seen": 1788107947
+  },
+  {
+   "symbol": "UMIA",
+   "name": "Umia",
+   "chain": "base",
+   "address": "0xf98574ed4f652c27b4d251989e899c3dd438c98f",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 70387.7034,
+   "first_seen": 1788107575
+  },
+  {
+   "symbol": "SPX85K",
+   "name": "SPX85K",
+   "chain": "base",
+   "address": "0x49613d087e2e8eb74e29e61ed7474203946c6c91",
+   "score": 88,
+   "verdict": "green",
+   "liquidity_usd": 70042.1285,
+   "first_seen": 1788107250
+  },
+  {
+   "symbol": "Bubblewrap",
+   "name": "Cobie Cat",
+   "chain": "base",
+   "address": "0xe989470d4b0618af553253db60f46910663c329e",
+   "score": 88,
+   "verdict": "green",
+   "liquidity_usd": 76896.8083,
+   "first_seen": 1788105969
+  },
   {
    "symbol": "DWMFER",
    "name": "Degen Wolf mfer",
@@ -289,46 +329,6 @@
    "verdict": "yellow",
    "liquidity_usd": 73685.6109,
    "first_seen": 1788024512
-  },
-  {
-   "symbol": "HOME",
-   "name": "HOMECOIN",
-   "chain": "base",
-   "address": "0x1dcb7811f2d2f0989bca6fdcf7dcf54ee868a7e7",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 73997.4511,
-   "first_seen": 1788020461
-  },
-  {
-   "symbol": "GOLDILOCKS",
-   "name": "GOLDICLOCKS",
-   "chain": "robinhood",
-   "address": "0x58643fbc239446111b73c1cd8ac5eaa7aabf1e18",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 136057.9547,
-   "first_seen": 1788020229
-  },
-  {
-   "symbol": "HOUSE",
-   "name": "HOUSE COIN",
-   "chain": "base",
-   "address": "0x953df57c49671d465618da41442f6ca509a2e6c3",
-   "score": 88,
-   "verdict": "green",
-   "liquidity_usd": 85426.6753,
-   "first_seen": 1788017677
-  },
-  {
-   "symbol": "MRBASE",
-   "name": "MR BASE",
-   "chain": "base",
-   "address": "0x49714ba7fd0aed8566d4941e7818eec579e24da7",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 74016.4936,
-   "first_seen": 1788010855
   }
  ],
  "confirmed": [
@@ -424,16 +424,16 @@
   }
  ],
  "probation": {
-  "waiting": 2,
+  "waiting": 3,
   "confirmed": 7,
-  "dropped": 160
+  "dropped": 163
  },
  "recent_drains": [
   {
    "symbol": "Claude",
    "chain": "base",
    "address": "0x838802a0076d4c8ccd92aa5b267d750b0426db07",
-   "ts": 1788085938
+   "ts": 1788106682
   },
   {
    "symbol": "OpenAI",
@@ -608,7 +608,7 @@
   "rug": 933
  },
  "watchlist_active": 10,
- "price_snapshots": 21901,
+ "price_snapshots": 22185,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
