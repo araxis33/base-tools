@@ -1,20 +1,20 @@
 {
- "generated_at": "2026-08-30T11:30:18Z",
- "generated_at_unix": 1788089417,
+ "generated_at": "2026-08-30T12:30:26Z",
+ "generated_at_unix": 1788093025,
  "period": {
   "start": "2026-07-15",
   "days": 46
  },
  "totals": {
-  "seen": 120483,
-  "base": 20353,
-  "robinhood": 100130,
-  "below_liquidity_threshold": 118451,
+  "seen": 120996,
+  "base": 20398,
+  "robinhood": 100598,
+  "below_liquidity_threshold": 118962,
   "spam_filtered": 76,
-  "scored": 1956,
-  "green": 828,
+  "scored": 1958,
+  "green": 829,
   "yellow": 381,
-  "red": 747
+  "red": 748
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
@@ -125,11 +125,21 @@
   },
   {
    "date": "2026-08-30",
-   "base": 164,
-   "robinhood": 1156
+   "base": 209,
+   "robinhood": 1624
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "POWERUSERS",
+   "name": "powerusers",
+   "chain": "base",
+   "address": "0x01f357f4da1e56e27696d0a16fa8b67b5edb0648",
+   "score": 91,
+   "verdict": "green",
+   "liquidity_usd": 74502.8651,
+   "first_seen": 1788090995
+  },
   {
    "symbol": "KLEEM",
    "name": "KLEEM",
@@ -319,16 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 73424.3303,
    "first_seen": 1788008533
-  },
-  {
-   "symbol": "MRBASE",
-   "name": "MR. Base",
-   "chain": "base",
-   "address": "0x905343a18202a6a98814d20054cb475f1ce2be82",
-   "score": 91,
-   "verdict": "green",
-   "liquidity_usd": 73759.3412,
-   "first_seen": 1788005791
   }
  ],
  "confirmed": [
@@ -426,7 +426,7 @@
  "probation": {
   "waiting": 1,
   "confirmed": 7,
-  "dropped": 159
+  "dropped": 160
  },
  "recent_drains": [
   {
@@ -608,7 +608,7 @@
   "rug": 933
  },
  "watchlist_active": 10,
- "price_snapshots": 21887,
+ "price_snapshots": 21861,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
