@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-04T13:10:15Z",
- "generated_at_unix": 1788527413,
+ "generated_at": "2026-09-04T14:10:22Z",
+ "generated_at_unix": 1788531021,
  "period": {
   "start": "2026-07-15",
   "days": 51
  },
  "totals": {
-  "seen": 151151,
-  "base": 23320,
-  "robinhood": 127831,
-  "below_liquidity_threshold": 148848,
-  "spam_filtered": 134,
-  "scored": 2169,
+  "seen": 151751,
+  "base": 23385,
+  "robinhood": 128366,
+  "below_liquidity_threshold": 149444,
+  "spam_filtered": 136,
+  "scored": 2171,
   "green": 897,
-  "yellow": 423,
-  "red": 849
+  "yellow": 424,
+  "red": 850
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-14",
-   "base": 141,
-   "robinhood": 896
+   "base": 120,
+   "robinhood": 732
   },
   {
    "date": "2026-08-15",
@@ -125,11 +125,21 @@
   },
   {
    "date": "2026-09-04",
-   "base": 244,
-   "robinhood": 2181
+   "base": 309,
+   "robinhood": 2716
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "Astra",
+   "name": "GPT-6 Astra",
+   "chain": "robinhood",
+   "address": "0xe79a42feefcf1dfe48d136bc6c5190a4b6ce2d78",
+   "score": 57,
+   "verdict": "yellow",
+   "liquidity_usd": 155290.2496,
+   "first_seen": 1788529382
+  },
   {
    "symbol": "PARE",
    "name": "Pare",
@@ -319,16 +329,6 @@
    "verdict": "yellow",
    "liquidity_usd": 244603.3506,
    "first_seen": 1788456534
-  },
-  {
-   "symbol": "BLACKROCK COIN",
-   "name": "BlackRock Coin",
-   "chain": "base",
-   "address": "0xaaa5b75ef6cafa3e4550a05ab06d082a97f1a1cc",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 167280.1485,
-   "first_seen": 1788456532
   }
  ],
  "confirmed": [
@@ -434,7 +434,7 @@
   }
  ],
  "probation": {
-  "waiting": 8,
+  "waiting": 9,
   "confirmed": 8,
   "dropped": 262
  },
@@ -618,7 +618,7 @@
   "rug": 935
  },
  "watchlist_active": 6,
- "price_snapshots": 16458,
+ "price_snapshots": 16315,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
