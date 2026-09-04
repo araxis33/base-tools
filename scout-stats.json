@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-04T12:44:07Z",
- "generated_at_unix": 1788525845,
+ "generated_at": "2026-09-04T13:10:15Z",
+ "generated_at_unix": 1788527413,
  "period": {
   "start": "2026-07-15",
   "days": 51
  },
  "totals": {
-  "seen": 151025,
-  "base": 23302,
-  "robinhood": 127723,
-  "below_liquidity_threshold": 148724,
-  "spam_filtered": 133,
-  "scored": 2168,
+  "seen": 151151,
+  "base": 23320,
+  "robinhood": 127831,
+  "below_liquidity_threshold": 148848,
+  "spam_filtered": 134,
+  "scored": 2169,
   "green": 897,
   "yellow": 423,
-  "red": 848
+  "red": 849
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-14",
-   "base": 149,
-   "robinhood": 966
+   "base": 141,
+   "robinhood": 896
   },
   {
    "date": "2026-08-15",
@@ -125,8 +125,8 @@
   },
   {
    "date": "2026-09-04",
-   "base": 226,
-   "robinhood": 2073
+   "base": 244,
+   "robinhood": 2181
   }
  ],
  "recent_finds": [
@@ -618,7 +618,7 @@
   "rug": 935
  },
  "watchlist_active": 6,
- "price_snapshots": 16509,
+ "price_snapshots": 16458,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
