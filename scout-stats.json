@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-04T19:20:24Z",
- "generated_at_unix": 1788549624,
+ "generated_at": "2026-09-04T20:20:29Z",
+ "generated_at_unix": 1788553229,
  "period": {
   "start": "2026-07-15",
   "days": 51
  },
  "totals": {
-  "seen": 153797,
-  "base": 23662,
-  "robinhood": 130135,
-  "below_liquidity_threshold": 151478,
-  "spam_filtered": 139,
-  "scored": 2180,
-  "green": 900,
+  "seen": 154402,
+  "base": 23721,
+  "robinhood": 130681,
+  "below_liquidity_threshold": 152078,
+  "spam_filtered": 140,
+  "scored": 2184,
+  "green": 903,
   "yellow": 424,
-  "red": 856
+  "red": 857
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-14",
-   "base": 48,
-   "robinhood": 358
+   "base": 11,
+   "robinhood": 140
   },
   {
    "date": "2026-08-15",
@@ -125,11 +125,41 @@
   },
   {
    "date": "2026-09-04",
-   "base": 586,
-   "robinhood": 4485
+   "base": 645,
+   "robinhood": 5031
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "o1 Doll",
+   "name": "o1 Doll",
+   "chain": "base",
+   "address": "0x1cf251eed43706ab8a597619934e4c1f11001a0b",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 75014.4569,
+   "first_seen": 1788552910
+  },
+  {
+   "symbol": "USDG",
+   "name": "Global Dollar",
+   "chain": "base",
+   "address": "0x533a66c76354a4b78bd97a92fb334dc45f7e86d9",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 568769290.5298,
+   "first_seen": 1788552409
+  },
+  {
+   "symbol": "HOUSECOIN",
+   "name": "HouseCoin",
+   "chain": "base",
+   "address": "0xfa693f45145556b5cc1848d90fc0b6f328eeb325",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 76131.4603,
+   "first_seen": 1788549635
+  },
   {
    "symbol": "PONSERS",
    "name": "Ponsers",
@@ -299,36 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 752223.5696,
    "first_seen": 1788467150
-  },
-  {
-   "symbol": "PIPEDOG",
-   "name": "pipedog",
-   "chain": "base",
-   "address": "0x37509013bfd84079ff6eea946bd9e219ba77970d",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 18831145.2676,
-   "first_seen": 1788465061
-  },
-  {
-   "symbol": "CHUMP",
-   "name": "Chump Coin",
-   "chain": "base",
-   "address": "0xef4173260d741f2105e83e80a186f8536101eca3",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 25763401.7369,
-   "first_seen": 1788461402
-  },
-  {
-   "symbol": "FLORK",
-   "name": "FLORK",
-   "chain": "base",
-   "address": "0xee7b510ee115d29c734f6918d4a913b33aeefae2",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 17042831.5562,
-   "first_seen": 1788459127
   }
  ],
  "confirmed": [
@@ -434,9 +434,9 @@
   }
  ],
  "probation": {
-  "waiting": 10,
+  "waiting": 12,
   "confirmed": 8,
-  "dropped": 264
+  "dropped": 265
  },
  "recent_drains": [
   {
@@ -618,7 +618,7 @@
   "rug": 935
  },
  "watchlist_active": 6,
- "price_snapshots": 15568,
+ "price_snapshots": 15436,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
