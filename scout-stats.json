@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-04T10:14:46Z",
- "generated_at_unix": 1788516886,
+ "generated_at": "2026-09-04T12:44:07Z",
+ "generated_at_unix": 1788525845,
  "period": {
   "start": "2026-07-15",
   "days": 51
  },
  "totals": {
-  "seen": 150211,
-  "base": 23218,
-  "robinhood": 126993,
-  "below_liquidity_threshold": 147918,
-  "spam_filtered": 130,
-  "scored": 2163,
-  "green": 896,
-  "yellow": 420,
-  "red": 847
+  "seen": 151025,
+  "base": 23302,
+  "robinhood": 127723,
+  "below_liquidity_threshold": 148724,
+  "spam_filtered": 133,
+  "scored": 2168,
+  "green": 897,
+  "yellow": 423,
+  "red": 848
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-14",
-   "base": 200,
-   "robinhood": 1136
+   "base": 149,
+   "robinhood": 966
   },
   {
    "date": "2026-08-15",
@@ -125,11 +125,51 @@
   },
   {
    "date": "2026-09-04",
-   "base": 142,
-   "robinhood": 1343
+   "base": 226,
+   "robinhood": 2073
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "PARE",
+   "name": "Pare",
+   "chain": "base",
+   "address": "0x087fcb7bef2d17f10e7531965531828c046a5121",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 2662456.1942,
+   "first_seen": 1788524266
+  },
+  {
+   "symbol": "WOTF",
+   "name": "World Oil Trust Fund",
+   "chain": "base",
+   "address": "0x35e405f8dfd01ac31fb4e8652d77b91d570a22e9",
+   "score": 57,
+   "verdict": "yellow",
+   "liquidity_usd": 123787.2478,
+   "first_seen": 1788522297
+  },
+  {
+   "symbol": "IOFA",
+   "name": "Israel Oil Fund Asset",
+   "chain": "base",
+   "address": "0x2e07e051de76429ec4bc4c2b27ef496f853a8806",
+   "score": 43,
+   "verdict": "yellow",
+   "liquidity_usd": 74199.8137,
+   "first_seen": 1788522295
+  },
+  {
+   "symbol": "WOFT",
+   "name": "World Oil Fund Trust",
+   "chain": "base",
+   "address": "0x5ec3b84b2433914f9802ec0071c1a5c90f38975c",
+   "score": 57,
+   "verdict": "yellow",
+   "liquidity_usd": 142424.4278,
+   "first_seen": 1788522292
+  },
   {
    "symbol": "CINEMA",
    "name": "ABSOLUTE CINEMA",
@@ -289,46 +329,6 @@
    "verdict": "yellow",
    "liquidity_usd": 167280.1485,
    "first_seen": 1788456532
-  },
-  {
-   "symbol": "WOTF",
-   "name": "World Oil Trust Fund - WOTF",
-   "chain": "base",
-   "address": "0x34f809a540808e3b498854382fe455990e969383",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 115294.9517,
-   "first_seen": 1788446956
-  },
-  {
-   "symbol": "GOOGL",
-   "name": "GOOGL",
-   "chain": "base",
-   "address": "0x73eddab8ae0fae51709cc78941602458a47278c0",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 73278.2031,
-   "first_seen": 1788442001
-  },
-  {
-   "symbol": "ETFC",
-   "name": "E Commerce Trust Fund",
-   "chain": "base",
-   "address": "0x510f7b2c4de4446c487d1d772ce9c67c1e36a1c9",
-   "score": 43,
-   "verdict": "yellow",
-   "liquidity_usd": 79512.1394,
-   "first_seen": 1788441723
-  },
-  {
-   "symbol": "BASEASS",
-   "name": "BASEASS",
-   "chain": "base",
-   "address": "0x900b729b49f4d015770cd77e390e6e82456399eb",
-   "score": 88,
-   "verdict": "green",
-   "liquidity_usd": 73606.9897,
-   "first_seen": 1788439803
   }
  ],
  "confirmed": [
@@ -434,9 +434,9 @@
   }
  ],
  "probation": {
-  "waiting": 5,
+  "waiting": 8,
   "confirmed": 8,
-  "dropped": 261
+  "dropped": 262
  },
  "recent_drains": [
   {
@@ -618,7 +618,7 @@
   "rug": 935
  },
  "watchlist_active": 6,
- "price_snapshots": 16461,
+ "price_snapshots": 16509,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
