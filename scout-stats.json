@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-04T18:20:20Z",
- "generated_at_unix": 1788546020,
+ "generated_at": "2026-09-04T19:20:24Z",
+ "generated_at_unix": 1788549624,
  "period": {
   "start": "2026-07-15",
   "days": 51
  },
  "totals": {
-  "seen": 153234,
-  "base": 23596,
-  "robinhood": 129638,
-  "below_liquidity_threshold": 150919,
-  "spam_filtered": 138,
-  "scored": 2177,
-  "green": 898,
+  "seen": 153797,
+  "base": 23662,
+  "robinhood": 130135,
+  "below_liquidity_threshold": 151478,
+  "spam_filtered": 139,
+  "scored": 2180,
+  "green": 900,
   "yellow": 424,
-  "red": 855
+  "red": 856
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-14",
-   "base": 68,
-   "robinhood": 480
+   "base": 48,
+   "robinhood": 358
   },
   {
    "date": "2026-08-15",
@@ -125,11 +125,31 @@
   },
   {
    "date": "2026-09-04",
-   "base": 520,
-   "robinhood": 3988
+   "base": 586,
+   "robinhood": 4485
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "PONSERS",
+   "name": "Ponsers",
+   "chain": "base",
+   "address": "0xef2a5743da7a2125c5a3085e6af1f88ae706958a",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 2220328.1386,
+   "first_seen": 1788548359
+  },
+  {
+   "symbol": "Starcoin",
+   "name": "Starcoin",
+   "chain": "base",
+   "address": "0x2c7fc04d16a7e96eec827a900d755bdcb19f5418",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 73462.8,
+   "first_seen": 1788546543
+  },
   {
    "symbol": "BELIEVE",
    "name": "close ur eyes and let it happen",
@@ -309,26 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 17042831.5562,
    "first_seen": 1788459127
-  },
-  {
-   "symbol": "WOFT",
-   "name": "WORLD OIL FUND TRUST",
-   "chain": "base",
-   "address": "0x74d4f22264e885ec5d160157eaa6bd6e698f8bb8",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 249175.0949,
-   "first_seen": 1788457989
-  },
-  {
-   "symbol": "XRPJPMD",
-   "name": "XRP JPMorgan Dollar (XRPJPM)",
-   "chain": "base",
-   "address": "0x4b156865cecb53cdd4a2e0d2697650ed0cdea2bf",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 216938.2263,
-   "first_seen": 1788456536
   }
  ],
  "confirmed": [
@@ -434,9 +434,9 @@
   }
  ],
  "probation": {
-  "waiting": 9,
+  "waiting": 10,
   "confirmed": 8,
-  "dropped": 263
+  "dropped": 264
  },
  "recent_drains": [
   {
@@ -618,7 +618,7 @@
   "rug": 935
  },
  "watchlist_active": 6,
- "price_snapshots": 15718,
+ "price_snapshots": 15568,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
