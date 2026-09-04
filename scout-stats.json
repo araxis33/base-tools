@@ -1,20 +1,20 @@
 {
- "generated_at": "2026-09-04T15:10:27Z",
- "generated_at_unix": 1788534626,
+ "generated_at": "2026-09-04T16:10:33Z",
+ "generated_at_unix": 1788538233,
  "period": {
   "start": "2026-07-15",
   "days": 51
  },
  "totals": {
-  "seen": 152278,
-  "base": 23445,
-  "robinhood": 128833,
-  "below_liquidity_threshold": 149970,
-  "spam_filtered": 136,
-  "scored": 2172,
+  "seen": 152755,
+  "base": 23493,
+  "robinhood": 129262,
+  "below_liquidity_threshold": 150444,
+  "spam_filtered": 137,
+  "scored": 2174,
   "green": 898,
   "yellow": 424,
-  "red": 850
+  "red": 852
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
@@ -125,8 +125,8 @@
   },
   {
    "date": "2026-09-04",
-   "base": 369,
-   "robinhood": 3183
+   "base": 417,
+   "robinhood": 3612
   }
  ],
  "recent_finds": [
@@ -443,7 +443,7 @@
    "symbol": "Claude",
    "chain": "base",
    "address": "0x838802a0076d4c8ccd92aa5b267d750b0426db07",
-   "ts": 1788511844
+   "ts": 1788535817
   },
   {
    "symbol": "CapitalB",
@@ -618,7 +618,7 @@
   "rug": 935
  },
  "watchlist_active": 6,
- "price_snapshots": 16165,
+ "price_snapshots": 16020,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
