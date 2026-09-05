@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-05T08:55:46Z",
- "generated_at_unix": 1788598545,
+ "generated_at": "2026-09-05T09:55:51Z",
+ "generated_at_unix": 1788602150,
  "period": {
   "start": "2026-07-15",
   "days": 52
  },
  "totals": {
-  "seen": 156187,
-  "base": 23920,
-  "robinhood": 132267,
-  "below_liquidity_threshold": 153853,
-  "spam_filtered": 145,
-  "scored": 2189,
-  "green": 903,
+  "seen": 156670,
+  "base": 23964,
+  "robinhood": 132706,
+  "below_liquidity_threshold": 154333,
+  "spam_filtered": 146,
+  "scored": 2191,
+  "green": 905,
   "yellow": 425,
   "red": 861
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-15",
-   "base": 279,
-   "robinhood": 1429
+   "base": 268,
+   "robinhood": 1401
   },
   {
    "date": "2026-08-16",
@@ -125,11 +125,31 @@
   },
   {
    "date": "2026-09-05",
-   "base": 165,
-   "robinhood": 1229
+   "base": 209,
+   "robinhood": 1668
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "(AP)",
+   "name": "Artificial Pepe",
+   "chain": "base",
+   "address": "0x5c214534ba386340df4c30001d405fd4538f83f5",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 4618009.4917,
+   "first_seen": 1788601526
+  },
+  {
+   "symbol": "SHROOM",
+   "name": "MUSHROOM",
+   "chain": "base",
+   "address": "0xf8117d5a7a7284f5a7b296633d5870cefdd533d5",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 27708744.0667,
+   "first_seen": 1788600704
+  },
   {
    "symbol": "BASED10",
    "name": "Base10 Index",
@@ -309,26 +329,6 @@
    "verdict": "yellow",
    "liquidity_usd": 20688421.3964,
    "first_seen": 1788472536
-  },
-  {
-   "symbol": "ERIC",
-   "name": "Eric Coin",
-   "chain": "robinhood",
-   "address": "0x5920d25ecb35863ec986b4e6334a4643f0761e18",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 144218.7937,
-   "first_seen": 1788470768
-  },
-  {
-   "symbol": "CTO",
-   "name": "Vida Global CTO (CTO)",
-   "chain": "base",
-   "address": "0x967e12343bfaac9dfe31c2873be4ddaa1b512a42",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 174871.507308654,
-   "first_seen": 1788467424
   }
  ],
  "confirmed": [
@@ -434,7 +434,7 @@
   }
  ],
  "probation": {
-  "waiting": 0,
+  "waiting": 2,
   "confirmed": 8,
   "dropped": 278
  },
@@ -618,7 +618,7 @@
   "rug": 935
  },
  "watchlist_active": 6,
- "price_snapshots": 15196,
+ "price_snapshots": 15360,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
