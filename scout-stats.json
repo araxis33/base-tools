@@ -1,32 +1,27 @@
 {
- "generated_at": "2026-09-05T20:11:56Z",
- "generated_at_unix": 1788639115,
+ "generated_at": "2026-09-05T21:12:03Z",
+ "generated_at_unix": 1788642721,
  "period": {
   "start": "2026-07-15",
   "days": 52
  },
  "totals": {
-  "seen": 158563,
-  "base": 24448,
+  "seen": 158657,
+  "base": 24542,
   "robinhood": 134115,
-  "below_liquidity_threshold": 156118,
-  "spam_filtered": 195,
-  "scored": 2250,
-  "green": 952,
+  "below_liquidity_threshold": 156185,
+  "spam_filtered": 210,
+  "scored": 2262,
+  "green": 960,
   "yellow": 431,
-  "red": 867
+  "red": 871
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
-   "date": "2026-08-15",
-   "base": 21,
-   "robinhood": 199
-  },
-  {
    "date": "2026-08-16",
-   "base": 93,
-   "robinhood": 429
+   "base": 86,
+   "robinhood": 409
   },
   {
    "date": "2026-08-17",
@@ -125,11 +120,96 @@
   },
   {
    "date": "2026-09-05",
-   "base": 693,
+   "base": 767,
    "robinhood": 3077
+  },
+  {
+   "date": "2026-09-06",
+   "base": 20,
+   "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "ICOIN",
+   "name": "iCoin",
+   "chain": "base",
+   "address": "0x0808b2ee37b1c2950a63ed503b3eedaa0a6d3a59",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4238.8998,
+   "first_seen": 1788642643
+  },
+  {
+   "symbol": "MINTIFY",
+   "name": "Mintifyfun",
+   "chain": "base",
+   "address": "0xb2000000000000000000009eea3a41607b868b01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4347.5738,
+   "first_seen": 1788641865
+  },
+  {
+   "symbol": "Rug",
+   "name": "Rugged Base",
+   "chain": "base",
+   "address": "0xb200000000000000000000294fb1c5ef3fce5201",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4124.0059,
+   "first_seen": 1788641227
+  },
+  {
+   "symbol": "Jusse",
+   "name": "Jusse Pullak",
+   "chain": "base",
+   "address": "0xb200000000000000000000870972e5277f725701",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4494.9575,
+   "first_seen": 1788639996
+  },
+  {
+   "symbol": "JAILJESSE",
+   "name": "JAILJESSE",
+   "chain": "base",
+   "address": "0xb200000000000000000000c6e486f274d7c00f01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 8095.3982,
+   "first_seen": 1788639994
+  },
+  {
+   "symbol": "BASEMEME",
+   "name": "BASEMEME",
+   "chain": "base",
+   "address": "0xb2000000000000000000008c031790942731b001",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 91730.1254,
+   "first_seen": 1788639856
+  },
+  {
+   "symbol": "Building",
+   "name": "Building",
+   "chain": "base",
+   "address": "0xb20000000000000000000018eec27753f9e33987",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 15592.2132,
+   "first_seen": 1788639129
+  },
+  {
+   "symbol": "Base",
+   "name": "BASE$",
+   "chain": "base",
+   "address": "0xb2000000000000000000008cfbc9fa13a12f2601",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4801.2441,
+   "first_seen": 1788639127
+  },
   {
    "symbol": "BSTONK",
    "name": "BaseStonk",
@@ -249,86 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 13333.717,
    "first_seen": 1788632196
-  },
-  {
-   "symbol": "孙小圣",
-   "name": "孙小圣 (Little Sage)",
-   "chain": "base",
-   "address": "0xa9e01e77f961909535fe8fc9742411368c5329bc",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 28057.1976,
-   "first_seen": 1788631922
-  },
-  {
-   "symbol": "NOVEL",
-   "name": "NOVEL",
-   "chain": "base",
-   "address": "0xdf7802ee9781475881798e17cf997933559c605b",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 74422.2,
-   "first_seen": 1788631784
-  },
-  {
-   "symbol": "ZCAT",
-   "name": "Anonymous Cat",
-   "chain": "base",
-   "address": "0xb200000000000000000000d3a0c8f3b72c163f01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 6257.8625,
-   "first_seen": 1788630326
-  },
-  {
-   "symbol": "FORK",
-   "name": "The Amazon Fork",
-   "chain": "base",
-   "address": "0xc52993f4a7d895c9fbd9f4065dec741ebc544ba3",
-   "score": 70,
-   "verdict": "green",
-   "liquidity_usd": 8998.3927,
-   "first_seen": 1788629552
-  },
-  {
-   "symbol": "THRSH",
-   "name": "PassiveTHRUSH",
-   "chain": "base",
-   "address": "0x75e5f2f8fd1821a771184ac710b1628a674aa881",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 24763.2,
-   "first_seen": 1788629506
-  },
-  {
-   "symbol": "BETA",
-   "name": "BETA",
-   "chain": "base",
-   "address": "0x92fab0b92707c97c21c08ea8f83cc684ead7d222",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12217.018,
-   "first_seen": 1788628824
-  },
-  {
-   "symbol": "Falcon",
-   "name": "Official Rocket SpaceX",
-   "chain": "base",
-   "address": "0xb2000000000000000000009eab791a49965c1901",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4418.4398,
-   "first_seen": 1788628316
-  },
-  {
-   "symbol": "BLOCKY",
-   "name": "blocky",
-   "chain": "base",
-   "address": "0xb2000000000000000000007ef3f4a38fca4f5db0",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 17774.6617,
-   "first_seen": 1788628314
   }
  ],
  "confirmed": [
@@ -444,9 +444,9 @@
   }
  ],
  "probation": {
-  "waiting": 29,
+  "waiting": 35,
   "confirmed": 9,
-  "dropped": 303
+  "dropped": 305
  },
  "recent_drains": [
   {
@@ -628,7 +628,7 @@
   "rug": 935
  },
  "watchlist_active": 6,
- "price_snapshots": 14411,
+ "price_snapshots": 14256,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
