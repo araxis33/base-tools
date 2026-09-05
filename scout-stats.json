@@ -1,20 +1,20 @@
 {
- "generated_at": "2026-09-05T11:56:06Z",
- "generated_at_unix": 1788609364,
+ "generated_at": "2026-09-05T12:56:13Z",
+ "generated_at_unix": 1788612972,
  "period": {
   "start": "2026-07-15",
   "days": 52
  },
  "totals": {
-  "seen": 157385,
-  "base": 24044,
-  "robinhood": 133341,
-  "below_liquidity_threshold": 155043,
-  "spam_filtered": 149,
-  "scored": 2193,
-  "green": 906,
+  "seen": 157847,
+  "base": 24075,
+  "robinhood": 133772,
+  "below_liquidity_threshold": 155501,
+  "spam_filtered": 150,
+  "scored": 2196,
+  "green": 907,
   "yellow": 426,
-  "red": 861
+  "red": 863
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
@@ -125,11 +125,21 @@
   },
   {
    "date": "2026-09-05",
-   "base": 289,
-   "robinhood": 2303
+   "base": 320,
+   "robinhood": 2734
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "michi",
+   "name": "michi",
+   "chain": "robinhood",
+   "address": "0x6fc931326cd5c0188e744592ae7b20fb3bec0172",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 102175.753,
+   "first_seen": 1788611222
+  },
   {
    "symbol": "Bons",
    "name": "Bons",
@@ -319,16 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 2067870860.102,
    "first_seen": 1788513685
-  },
-  {
-   "symbol": "CEECIL",
-   "name": "CEECIL",
-   "chain": "base",
-   "address": "0x1dde6e03436c8a3ecebb609c639878fed41d91c4",
-   "score": 94,
-   "verdict": "green",
-   "liquidity_usd": 75740.1,
-   "first_seen": 1788511983
   }
  ],
  "confirmed": [
@@ -434,7 +434,7 @@
   }
  ],
  "probation": {
-  "waiting": 4,
+  "waiting": 5,
   "confirmed": 8,
   "dropped": 278
  },
@@ -618,7 +618,7 @@
   "rug": 935
  },
  "watchlist_active": 6,
- "price_snapshots": 15295,
+ "price_snapshots": 15145,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
