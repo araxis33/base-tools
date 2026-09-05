@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-05T19:11:47Z",
- "generated_at_unix": 1788635506,
+ "generated_at": "2026-09-05T20:11:56Z",
+ "generated_at_unix": 1788639115,
  "period": {
   "start": "2026-07-15",
   "days": 52
  },
  "totals": {
-  "seen": 158518,
-  "base": 24403,
+  "seen": 158563,
+  "base": 24448,
   "robinhood": 134115,
-  "below_liquidity_threshold": 156086,
-  "spam_filtered": 187,
-  "scored": 2245,
-  "green": 949,
-  "yellow": 430,
-  "red": 866
+  "below_liquidity_threshold": 156118,
+  "spam_filtered": 195,
+  "scored": 2250,
+  "green": 952,
+  "yellow": 431,
+  "red": 867
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-15",
-   "base": 59,
-   "robinhood": 380
+   "base": 21,
+   "robinhood": 199
   },
   {
    "date": "2026-08-16",
@@ -125,11 +125,51 @@
   },
   {
    "date": "2026-09-05",
-   "base": 648,
+   "base": 693,
    "robinhood": 3077
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "BSTONK",
+   "name": "BaseStonk",
+   "chain": "base",
+   "address": "0x9eb4d30600f26d53faaabe442f75436d5424c3ba",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 50292.2945,
+   "first_seen": 1788637940
+  },
+  {
+   "symbol": "PrinterInkCoin",
+   "name": "PrinterInkCoin",
+   "chain": "base",
+   "address": "0x1a7592b25f3aed9159dcdef1388b9fdaf8eb8414",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 74340.6,
+   "first_seen": 1788636305
+  },
+  {
+   "symbol": "OMG",
+   "name": "Old Microsoft",
+   "chain": "base",
+   "address": "0x32cf1425be31a490ba40fa8eca1235838d50fee1",
+   "score": 57,
+   "verdict": "yellow",
+   "liquidity_usd": 10200.3012,
+   "first_seen": 1788635939
+  },
+  {
+   "symbol": "GARFI",
+   "name": "Garfi",
+   "chain": "base",
+   "address": "0xd041f38c8ccc6e797155602cafeb2048d7b9659e",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 16245.7703,
+   "first_seen": 1788635938
+  },
   {
    "symbol": "ERROR",
    "name": "ERROR",
@@ -289,46 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 17774.6617,
    "first_seen": 1788628314
-  },
-  {
-   "symbol": "Jinsoo Heo",
-   "name": "UPBIT DEV",
-   "chain": "base",
-   "address": "0xb200000000000000000000651ed03b5433190801",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4396.4144,
-   "first_seen": 1788628313
-  },
-  {
-   "symbol": "CLAWFUN",
-   "name": "clawfun",
-   "chain": "base",
-   "address": "0xb9fe801a7034a9bc6ba22530f216f8293345d3b5",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 101379.2579,
-   "first_seen": 1788628311
-  },
-  {
-   "symbol": "TEMPESTNOVA",
-   "name": "Tempnova",
-   "chain": "base",
-   "address": "0xe0cb08e49d27c9eb17e652b6c886d1a6ef49d738",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 24606.5790590972,
-   "first_seen": 1788626688
-  },
-  {
-   "symbol": "BOOGL",
-   "name": "BOOGL",
-   "chain": "base",
-   "address": "0xd377582f8983927c521fece61535b0b9c8d97d79",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 74022.0,
-   "first_seen": 1788626687
   }
  ],
  "confirmed": [
@@ -444,9 +444,9 @@
   }
  ],
  "probation": {
-  "waiting": 30,
+  "waiting": 29,
   "confirmed": 9,
-  "dropped": 298
+  "dropped": 303
  },
  "recent_drains": [
   {
@@ -628,7 +628,7 @@
   "rug": 935
  },
  "watchlist_active": 6,
- "price_snapshots": 14560,
+ "price_snapshots": 14411,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
