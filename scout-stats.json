@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-05T18:11:41Z",
- "generated_at_unix": 1788631900,
+ "generated_at": "2026-09-05T19:11:47Z",
+ "generated_at_unix": 1788635506,
  "period": {
   "start": "2026-07-15",
   "days": 52
  },
  "totals": {
-  "seen": 158464,
-  "base": 24349,
+  "seen": 158518,
+  "base": 24403,
   "robinhood": 134115,
-  "below_liquidity_threshold": 156049,
-  "spam_filtered": 180,
-  "scored": 2235,
-  "green": 941,
-  "yellow": 429,
-  "red": 865
+  "below_liquidity_threshold": 156086,
+  "spam_filtered": 187,
+  "scored": 2245,
+  "green": 949,
+  "yellow": 430,
+  "red": 866
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-15",
-   "base": 122,
-   "robinhood": 535
+   "base": 59,
+   "robinhood": 380
   },
   {
    "date": "2026-08-16",
@@ -125,11 +125,101 @@
   },
   {
    "date": "2026-09-05",
-   "base": 594,
+   "base": 648,
    "robinhood": 3077
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "ERROR",
+   "name": "ERROR",
+   "chain": "base",
+   "address": "0x26f7e8576617704da053b594bc87b8fe70ddc40c",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4276.4261,
+   "first_seen": 1788635302
+  },
+  {
+   "symbol": "LABASE",
+   "name": "LA Base",
+   "chain": "base",
+   "address": "0x739a21e7f08b6d56c5cc26fda375c7863f8fa971",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 75382.8876,
+   "first_seen": 1788634298
+  },
+  {
+   "symbol": "RUFUS",
+   "name": "Rufus",
+   "chain": "base",
+   "address": "0x8fafd5d3dfdabcf61c6e638847bd807d0e7a3c90",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 7088.4486,
+   "first_seen": 1788633795
+  },
+  {
+   "symbol": "SLINK",
+   "name": "Shivolink",
+   "chain": "base",
+   "address": "0x954d841007322544c2d6b59a6410cd4e395df222",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3141.4261,
+   "first_seen": 1788633610
+  },
+  {
+   "symbol": "PEPKING",
+   "name": "PepeKing",
+   "chain": "base",
+   "address": "0xd3061efeba07c579325860e20dbe979fabdc3342",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13417.3871,
+   "first_seen": 1788633109
+  },
+  {
+   "symbol": "CYBERDUCK",
+   "name": "Cyberduck",
+   "chain": "base",
+   "address": "0x11df6e00e29334927b753a9d88324ff832f5e6de",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4265.2265,
+   "first_seen": 1788632698
+  },
+  {
+   "symbol": "SHOP",
+   "name": "Sweatshop",
+   "chain": "base",
+   "address": "0x247094de6e234349edff49fa35e9708408cd290b",
+   "score": 57,
+   "verdict": "yellow",
+   "liquidity_usd": 42131.4257,
+   "first_seen": 1788632561
+  },
+  {
+   "symbol": "$1",
+   "name": "X1000X $1",
+   "chain": "base",
+   "address": "0x3b7d8a599d0b5effe2eb0340324cf0bcac676b07",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13333.717,
+   "first_seen": 1788632196
+  },
+  {
+   "symbol": "孙小圣",
+   "name": "孙小圣 (Little Sage)",
+   "chain": "base",
+   "address": "0xa9e01e77f961909535fe8fc9742411368c5329bc",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 28057.1976,
+   "first_seen": 1788631922
+  },
   {
    "symbol": "NOVEL",
    "name": "NOVEL",
@@ -239,96 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 74022.0,
    "first_seen": 1788626687
-  },
-  {
-   "symbol": "MOCHI",
-   "name": "Mochi",
-   "chain": "base",
-   "address": "0xb8cd7ebb50172d241565695f2865dc24eff964d3",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 14593.5573,
-   "first_seen": 1788626370
-  },
-  {
-   "symbol": "basestyle",
-   "name": "based style",
-   "chain": "base",
-   "address": "0xb200000000000000000000c51ee8ca7418995501",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4086.1675,
-   "first_seen": 1788626095
-  },
-  {
-   "symbol": "MEMES",
-   "name": "STOCK MEMES",
-   "chain": "base",
-   "address": "0xb20000000000000000000069bdc527533c3dba01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 5185.1469,
-   "first_seen": 1788626094
-  },
-  {
-   "symbol": "baseguy",
-   "name": "just a baseguy",
-   "chain": "base",
-   "address": "0xb200000000000000000000a4f1dfca2fff80cb01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4060.1726,
-   "first_seen": 1788626092
-  },
-  {
-   "symbol": "HOMEBASE",
-   "name": "Homebase",
-   "chain": "base",
-   "address": "0x122f351d9d1b64682d0bef510c8f4945af88c40a",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 73771.5,
-   "first_seen": 1788623778
-  },
-  {
-   "symbol": "ZZZ",
-   "name": "ZZZ",
-   "chain": "base",
-   "address": "0x96e1f154957d5fa119fc74587f1be62d6aa4876f",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 13069454.4311,
-   "first_seen": 1788623587
-  },
-  {
-   "symbol": "BEEPBOOP",
-   "name": "Basestonk",
-   "chain": "base",
-   "address": "0x08081a2433e26aaf33c97020b383603f473fa222",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3263.6043,
-   "first_seen": 1788623170
-  },
-  {
-   "symbol": "COS",
-   "name": "COS",
-   "chain": "base",
-   "address": "0x56ad7c3865642e027cc15cf87ab7dcb1f960d306",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 73732.2,
-   "first_seen": 1788621525
-  },
-  {
-   "symbol": "SAOS",
-   "name": "SAOS",
-   "chain": "base",
-   "address": "0xe693d07472d9a4b39325d213fe9f6d8ab2b3a4e5",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 2008.2439,
-   "first_seen": 1788620745
   }
  ],
  "confirmed": [
@@ -444,9 +444,9 @@
   }
  ],
  "probation": {
-  "waiting": 24,
+  "waiting": 30,
   "confirmed": 9,
-  "dropped": 295
+  "dropped": 298
  },
  "recent_drains": [
   {
@@ -628,7 +628,7 @@
   "rug": 935
  },
  "watchlist_active": 6,
- "price_snapshots": 14710,
+ "price_snapshots": 14560,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
