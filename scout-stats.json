@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-05T09:55:51Z",
- "generated_at_unix": 1788602150,
+ "generated_at": "2026-09-05T10:55:57Z",
+ "generated_at_unix": 1788605756,
  "period": {
   "start": "2026-07-15",
   "days": 52
  },
  "totals": {
-  "seen": 156670,
-  "base": 23964,
-  "robinhood": 132706,
-  "below_liquidity_threshold": 154333,
-  "spam_filtered": 146,
-  "scored": 2191,
+  "seen": 156954,
+  "base": 24006,
+  "robinhood": 132948,
+  "below_liquidity_threshold": 154615,
+  "spam_filtered": 147,
+  "scored": 2192,
   "green": 905,
-  "yellow": 425,
+  "yellow": 426,
   "red": 861
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-15",
-   "base": 268,
-   "robinhood": 1401
+   "base": 237,
+   "robinhood": 1342
   },
   {
    "date": "2026-08-16",
@@ -125,11 +125,21 @@
   },
   {
    "date": "2026-09-05",
-   "base": 209,
-   "robinhood": 1668
+   "base": 251,
+   "robinhood": 1910
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "WTOF",
+   "name": "World Oil Fund Trust",
+   "chain": "base",
+   "address": "0x455fa89e60f5a83775889b8863973bd3b5718ae8",
+   "score": 43,
+   "verdict": "yellow",
+   "liquidity_usd": 83203.5058,
+   "first_seen": 1788605386
+  },
   {
    "symbol": "(AP)",
    "name": "Artificial Pepe",
@@ -319,16 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 402854.5633,
    "first_seen": 1788511927
-  },
-  {
-   "symbol": "‮TDSU",
-   "name": "‮TDSU",
-   "chain": "base",
-   "address": "0xdb07c951ed7d6bc9a7e80bde4671b93abe847b07",
-   "score": 67,
-   "verdict": "yellow",
-   "liquidity_usd": 20688421.3964,
-   "first_seen": 1788472536
   }
  ],
  "confirmed": [
@@ -434,7 +434,7 @@
   }
  ],
  "probation": {
-  "waiting": 2,
+  "waiting": 3,
   "confirmed": 8,
   "dropped": 278
  },
@@ -618,7 +618,7 @@
   "rug": 935
  },
  "watchlist_active": 6,
- "price_snapshots": 15360,
+ "price_snapshots": 15412,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
