@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-05T14:48:54Z",
- "generated_at_unix": 1788619733,
+ "generated_at": "2026-09-05T15:48:59Z",
+ "generated_at_unix": 1788623338,
  "period": {
   "start": "2026-07-15",
   "days": 52
  },
  "totals": {
-  "seen": 158298,
-  "base": 24183,
+  "seen": 158350,
+  "base": 24235,
   "robinhood": 134115,
-  "below_liquidity_threshold": 155931,
-  "spam_filtered": 155,
-  "scored": 2212,
-  "green": 920,
+  "below_liquidity_threshold": 155968,
+  "spam_filtered": 165,
+  "scored": 2217,
+  "green": 925,
   "yellow": 428,
   "red": 864
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-15",
-   "base": 173,
-   "robinhood": 999
+   "base": 150,
+   "robinhood": 844
   },
   {
    "date": "2026-08-16",
@@ -125,11 +125,61 @@
   },
   {
    "date": "2026-09-05",
-   "base": 428,
+   "base": 480,
    "robinhood": 3077
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "BEEPBOOP",
+   "name": "Basestonk",
+   "chain": "base",
+   "address": "0x08081a2433e26aaf33c97020b383603f473fa222",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3263.6043,
+   "first_seen": 1788623170
+  },
+  {
+   "symbol": "COS",
+   "name": "COS",
+   "chain": "base",
+   "address": "0x56ad7c3865642e027cc15cf87ab7dcb1f960d306",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 73732.2,
+   "first_seen": 1788621525
+  },
+  {
+   "symbol": "SAOS",
+   "name": "SAOS",
+   "chain": "base",
+   "address": "0xe693d07472d9a4b39325d213fe9f6d8ab2b3a4e5",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 2008.2439,
+   "first_seen": 1788620745
+  },
+  {
+   "symbol": "100 Pro",
+   "name": "iPhone 100 Pro Max",
+   "chain": "base",
+   "address": "0xb200000000000000000000af6f5e3bac278ad501",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4128.1905,
+   "first_seen": 1788620607
+  },
+  {
+   "symbol": "U1",
+   "name": "USD1",
+   "chain": "base",
+   "address": "0xe8aedae0806eb5d1e627f2c5bc0ab6e6ce6f2bbc",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13275.7800625171,
+   "first_seen": 1788620606
+  },
   {
    "symbol": "COIN",
    "name": "CrashBandicootWumpaWhipCoin",
@@ -279,56 +329,6 @@
    "verdict": "yellow",
    "liquidity_usd": 142192.966662915,
    "first_seen": 1788613465
-  },
-  {
-   "symbol": "michi",
-   "name": "michi",
-   "chain": "robinhood",
-   "address": "0x6fc931326cd5c0188e744592ae7b20fb3bec0172",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 102175.753,
-   "first_seen": 1788611222
-  },
-  {
-   "symbol": "Bons",
-   "name": "Bons",
-   "chain": "base",
-   "address": "0x0b15a0e747778d8f57d060bdccdcfe0995ed4715",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 12265744.4227,
-   "first_seen": 1788607672
-  },
-  {
-   "symbol": "WTOF",
-   "name": "World Oil Fund Trust",
-   "chain": "base",
-   "address": "0x455fa89e60f5a83775889b8863973bd3b5718ae8",
-   "score": 43,
-   "verdict": "yellow",
-   "liquidity_usd": 83203.5058,
-   "first_seen": 1788605386
-  },
-  {
-   "symbol": "(AP)",
-   "name": "Artificial Pepe",
-   "chain": "base",
-   "address": "0x5c214534ba386340df4c30001d405fd4538f83f5",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 4618009.4917,
-   "first_seen": 1788601526
-  },
-  {
-   "symbol": "SHROOM",
-   "name": "MUSHROOM",
-   "chain": "base",
-   "address": "0xf8117d5a7a7284f5a7b296633d5870cefdd533d5",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 27708744.0667,
-   "first_seen": 1788600704
   }
  ],
  "confirmed": [
@@ -444,9 +444,9 @@
   }
  ],
  "probation": {
-  "waiting": 14,
+  "waiting": 13,
   "confirmed": 9,
-  "dropped": 283
+  "dropped": 289
  },
  "recent_drains": [
   {
@@ -628,7 +628,7 @@
   "rug": 935
  },
  "watchlist_active": 7,
- "price_snapshots": 15037,
+ "price_snapshots": 15076,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
