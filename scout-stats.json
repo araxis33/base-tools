@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-05T12:56:13Z",
- "generated_at_unix": 1788612972,
+ "generated_at": "2026-09-05T13:36:36Z",
+ "generated_at_unix": 1788615394,
  "period": {
   "start": "2026-07-15",
   "days": 52
  },
  "totals": {
-  "seen": 157847,
-  "base": 24075,
-  "robinhood": 133772,
-  "below_liquidity_threshold": 155501,
-  "spam_filtered": 150,
-  "scored": 2196,
+  "seen": 158241,
+  "base": 24126,
+  "robinhood": 134115,
+  "below_liquidity_threshold": 155892,
+  "spam_filtered": 151,
+  "scored": 2198,
   "green": 907,
-  "yellow": 426,
+  "yellow": 428,
   "red": 863
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-15",
-   "base": 228,
-   "robinhood": 1213
+   "base": 210,
+   "robinhood": 1193
   },
   {
    "date": "2026-08-16",
@@ -125,11 +125,31 @@
   },
   {
    "date": "2026-09-05",
-   "base": 320,
-   "robinhood": 2734
+   "base": 371,
+   "robinhood": 3077
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "WFOI",
+   "name": "World Oil Fund Institution (WFOI)",
+   "chain": "base",
+   "address": "0x5f1447f00495bba937d1734d7946e98572bbb292",
+   "score": 57,
+   "verdict": "yellow",
+   "liquidity_usd": 158824.347898347,
+   "first_seen": 1788613467
+  },
+  {
+   "symbol": "WFOT",
+   "name": "World Oil Trust Fund (WFOT)",
+   "chain": "base",
+   "address": "0x371243a4873f908e4d8382203182a98e2d5078a1",
+   "score": 57,
+   "verdict": "yellow",
+   "liquidity_usd": 142192.966662915,
+   "first_seen": 1788613465
+  },
   {
    "symbol": "michi",
    "name": "michi",
@@ -309,29 +329,19 @@
    "verdict": "green",
    "liquidity_usd": 286199557.2005,
    "first_seen": 1788514932
-  },
-  {
-   "symbol": "MERLIN",
-   "name": "Merlin the Wizard",
-   "chain": "base",
-   "address": "0xd906b27bec1e211e67654e5d1f894420c2c88bdd",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 378319.298,
-   "first_seen": 1788514147
-  },
-  {
-   "symbol": "MEME",
-   "name": "A Meme Coin",
-   "chain": "base",
-   "address": "0x076d0bff2668201b3f0ec2c2cc8e55520ed2cea3",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 2067870860.102,
-   "first_seen": 1788513685
   }
  ],
  "confirmed": [
+  {
+   "symbol": "michi",
+   "chain": "robinhood",
+   "address": "0x6fc931326cd5c0188e744592ae7b20fb3bec0172",
+   "buyers_h1": 126,
+   "volume_h1": 51968.560027789,
+   "liquidity_usd": 115922.1503,
+   "confirmed_at": 1788611222,
+   "hours_waited": 0.8
+  },
   {
    "symbol": "CapitalB",
    "chain": "base",
@@ -434,8 +444,8 @@
   }
  ],
  "probation": {
-  "waiting": 5,
-  "confirmed": 8,
+  "waiting": 6,
+  "confirmed": 9,
   "dropped": 278
  },
  "recent_drains": [
@@ -617,8 +627,8 @@
   "pump": 259,
   "rug": 935
  },
- "watchlist_active": 6,
- "price_snapshots": 15145,
+ "watchlist_active": 7,
+ "price_snapshots": 15075,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
