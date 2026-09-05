@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-05T17:11:28Z",
- "generated_at_unix": 1788628287,
+ "generated_at": "2026-09-05T18:11:41Z",
+ "generated_at_unix": 1788631900,
  "period": {
   "start": "2026-07-15",
   "days": 52
  },
  "totals": {
-  "seen": 158399,
-  "base": 24284,
+  "seen": 158464,
+  "base": 24349,
   "robinhood": 134115,
-  "below_liquidity_threshold": 156006,
-  "spam_filtered": 168,
-  "scored": 2225,
-  "green": 933,
-  "yellow": 428,
-  "red": 864
+  "below_liquidity_threshold": 156049,
+  "spam_filtered": 180,
+  "scored": 2235,
+  "green": 941,
+  "yellow": 429,
+  "red": 865
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-15",
-   "base": 125,
-   "robinhood": 560
+   "base": 122,
+   "robinhood": 535
   },
   {
    "date": "2026-08-16",
@@ -125,11 +125,101 @@
   },
   {
    "date": "2026-09-05",
-   "base": 529,
+   "base": 594,
    "robinhood": 3077
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "NOVEL",
+   "name": "NOVEL",
+   "chain": "base",
+   "address": "0xdf7802ee9781475881798e17cf997933559c605b",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 74422.2,
+   "first_seen": 1788631784
+  },
+  {
+   "symbol": "ZCAT",
+   "name": "Anonymous Cat",
+   "chain": "base",
+   "address": "0xb200000000000000000000d3a0c8f3b72c163f01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 6257.8625,
+   "first_seen": 1788630326
+  },
+  {
+   "symbol": "FORK",
+   "name": "The Amazon Fork",
+   "chain": "base",
+   "address": "0xc52993f4a7d895c9fbd9f4065dec741ebc544ba3",
+   "score": 70,
+   "verdict": "green",
+   "liquidity_usd": 8998.3927,
+   "first_seen": 1788629552
+  },
+  {
+   "symbol": "THRSH",
+   "name": "PassiveTHRUSH",
+   "chain": "base",
+   "address": "0x75e5f2f8fd1821a771184ac710b1628a674aa881",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 24763.2,
+   "first_seen": 1788629506
+  },
+  {
+   "symbol": "BETA",
+   "name": "BETA",
+   "chain": "base",
+   "address": "0x92fab0b92707c97c21c08ea8f83cc684ead7d222",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12217.018,
+   "first_seen": 1788628824
+  },
+  {
+   "symbol": "Falcon",
+   "name": "Official Rocket SpaceX",
+   "chain": "base",
+   "address": "0xb2000000000000000000009eab791a49965c1901",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4418.4398,
+   "first_seen": 1788628316
+  },
+  {
+   "symbol": "BLOCKY",
+   "name": "blocky",
+   "chain": "base",
+   "address": "0xb2000000000000000000007ef3f4a38fca4f5db0",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 17774.6617,
+   "first_seen": 1788628314
+  },
+  {
+   "symbol": "Jinsoo Heo",
+   "name": "UPBIT DEV",
+   "chain": "base",
+   "address": "0xb200000000000000000000651ed03b5433190801",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4396.4144,
+   "first_seen": 1788628313
+  },
+  {
+   "symbol": "CLAWFUN",
+   "name": "clawfun",
+   "chain": "base",
+   "address": "0xb9fe801a7034a9bc6ba22530f216f8293345d3b5",
+   "score": 57,
+   "verdict": "yellow",
+   "liquidity_usd": 101379.2579,
+   "first_seen": 1788628311
+  },
   {
    "symbol": "TEMPESTNOVA",
    "name": "Tempnova",
@@ -239,96 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 2008.2439,
    "first_seen": 1788620745
-  },
-  {
-   "symbol": "100 Pro",
-   "name": "iPhone 100 Pro Max",
-   "chain": "base",
-   "address": "0xb200000000000000000000af6f5e3bac278ad501",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4128.1905,
-   "first_seen": 1788620607
-  },
-  {
-   "symbol": "U1",
-   "name": "USD1",
-   "chain": "base",
-   "address": "0xe8aedae0806eb5d1e627f2c5bc0ab6e6ce6f2bbc",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13275.7800625171,
-   "first_seen": 1788620606
-  },
-  {
-   "symbol": "COIN",
-   "name": "CrashBandicootWumpaWhipCoin",
-   "chain": "base",
-   "address": "0x089b4b01ef5e876f7ca4e9ed55b7fcd87449b8c7",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 76169.8273,
-   "first_seen": 1788619603
-  },
-  {
-   "symbol": "ANTHROPIC",
-   "name": "ANTHROPIC",
-   "chain": "base",
-   "address": "0xf58eca5c6bf290223d0bacd4027283ee3207753d",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13785.6659,
-   "first_seen": 1788618781
-  },
-  {
-   "symbol": "SRAT",
-   "name": "SquareRATTLESNAKE",
-   "chain": "base",
-   "address": "0xca155e4f1d1ed6b203800d0626e3473b924e6da5",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 24549.3,
-   "first_seen": 1788618416
-  },
-  {
-   "symbol": "PPR",
-   "name": "Paprik",
-   "chain": "base",
-   "address": "0xb200000000000000000000b740ea1d938f9aff66",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 9817.4761,
-   "first_seen": 1788618188
-  },
-  {
-   "symbol": "1KTO100M",
-   "name": "from1kto100Mcoin",
-   "chain": "base",
-   "address": "0xf3d62af42b89ea4be678ec3d9f4db64b86d3da8b",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12031.019,
-   "first_seen": 1788617915
-  },
-  {
-   "symbol": "MEOW",
-   "name": "MeowCoin",
-   "chain": "base",
-   "address": "0x9d24d6a1a94c97db1b89a4d87dafff9a90e3d11e",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13159.44373,
-   "first_seen": 1788617777
-  },
-  {
-   "symbol": "SPCX",
-   "name": "SpaceX",
-   "chain": "base",
-   "address": "0x285b6bf54366d58c157773fc110e995f2d660e11",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13006.7205,
-   "first_seen": 1788617049
   }
  ],
  "confirmed": [
@@ -444,9 +444,9 @@
   }
  ],
  "probation": {
-  "waiting": 18,
+  "waiting": 24,
   "confirmed": 9,
-  "dropped": 292
+  "dropped": 295
  },
  "recent_drains": [
   {
@@ -627,8 +627,8 @@
   "pump": 259,
   "rug": 935
  },
- "watchlist_active": 7,
- "price_snapshots": 14988,
+ "watchlist_active": 6,
+ "price_snapshots": 14710,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
