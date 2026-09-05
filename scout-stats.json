@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-05T13:48:49Z",
- "generated_at_unix": 1788616129,
+ "generated_at": "2026-09-05T14:48:54Z",
+ "generated_at_unix": 1788619733,
  "period": {
   "start": "2026-07-15",
   "days": 52
  },
  "totals": {
-  "seen": 158249,
-  "base": 24134,
+  "seen": 158298,
+  "base": 24183,
   "robinhood": 134115,
-  "below_liquidity_threshold": 155900,
-  "spam_filtered": 151,
-  "scored": 2198,
-  "green": 907,
+  "below_liquidity_threshold": 155931,
+  "spam_filtered": 155,
+  "scored": 2212,
+  "green": 920,
   "yellow": 428,
-  "red": 863
+  "red": 864
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-15",
-   "base": 198,
-   "robinhood": 1174
+   "base": 173,
+   "robinhood": 999
   },
   {
    "date": "2026-08-16",
@@ -125,11 +125,141 @@
   },
   {
    "date": "2026-09-05",
-   "base": 379,
+   "base": 428,
    "robinhood": 3077
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "COIN",
+   "name": "CrashBandicootWumpaWhipCoin",
+   "chain": "base",
+   "address": "0x089b4b01ef5e876f7ca4e9ed55b7fcd87449b8c7",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 76169.8273,
+   "first_seen": 1788619603
+  },
+  {
+   "symbol": "ANTHROPIC",
+   "name": "ANTHROPIC",
+   "chain": "base",
+   "address": "0xf58eca5c6bf290223d0bacd4027283ee3207753d",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13785.6659,
+   "first_seen": 1788618781
+  },
+  {
+   "symbol": "SRAT",
+   "name": "SquareRATTLESNAKE",
+   "chain": "base",
+   "address": "0xca155e4f1d1ed6b203800d0626e3473b924e6da5",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 24549.3,
+   "first_seen": 1788618416
+  },
+  {
+   "symbol": "PPR",
+   "name": "Paprik",
+   "chain": "base",
+   "address": "0xb200000000000000000000b740ea1d938f9aff66",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 9817.4761,
+   "first_seen": 1788618188
+  },
+  {
+   "symbol": "1KTO100M",
+   "name": "from1kto100Mcoin",
+   "chain": "base",
+   "address": "0xf3d62af42b89ea4be678ec3d9f4db64b86d3da8b",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12031.019,
+   "first_seen": 1788617915
+  },
+  {
+   "symbol": "MEOW",
+   "name": "MeowCoin",
+   "chain": "base",
+   "address": "0x9d24d6a1a94c97db1b89a4d87dafff9a90e3d11e",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13159.44373,
+   "first_seen": 1788617777
+  },
+  {
+   "symbol": "SPCX",
+   "name": "SpaceX",
+   "chain": "base",
+   "address": "0x285b6bf54366d58c157773fc110e995f2d660e11",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13006.7205,
+   "first_seen": 1788617049
+  },
+  {
+   "symbol": "LIQUIDBGT",
+   "name": "X1000XLiquidBGT",
+   "chain": "base",
+   "address": "0x4d10630a68f21851147ec722b8497e179a290432",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13204.5528,
+   "first_seen": 1788616683
+  },
+  {
+   "symbol": "XCHAT",
+   "name": "XCHAT",
+   "chain": "base",
+   "address": "0x0e759e0736c7f932d5ce2a8f3694e3ae5fa877d0",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 15513.706,
+   "first_seen": 1788616407
+  },
+  {
+   "symbol": "Basecat",
+   "name": "Basecat",
+   "chain": "base",
+   "address": "0x438584a0c46e46edd1a5f93ea252e269eafb2b07",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 14374.6083,
+   "first_seen": 1788616361
+  },
+  {
+   "symbol": "SPACEX",
+   "name": "SpaceX",
+   "chain": "base",
+   "address": "0x0cc0b9a180a1e59c83489b01ce72596f3d2a0e94",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 15523.637,
+   "first_seen": 1788616360
+  },
+  {
+   "symbol": "memestonk",
+   "name": "memestonk",
+   "chain": "base",
+   "address": "0xcce96405145a02e6b2aa976779c17f70de926d2f",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 74223.2491,
+   "first_seen": 1788616359
+  },
+  {
+   "symbol": "PH",
+   "name": "Polymarket HQ",
+   "chain": "base",
+   "address": "0xb200000000000000000000b0cf9a7557eac5708c",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 9861.6448,
+   "first_seen": 1788616358
+  },
   {
    "symbol": "WFOI",
    "name": "World Oil Fund Institution (WFOI)",
@@ -199,136 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 27708744.0667,
    "first_seen": 1788600704
-  },
-  {
-   "symbol": "BASED10",
-   "name": "Base10 Index",
-   "chain": "base",
-   "address": "0xd72f9ec4e2db980cf3516b0885204fe85a6d3d4e",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 73589.7147160267,
-   "first_seen": 1788590950
-  },
-  {
-   "symbol": "o1 Doll",
-   "name": "o1 Doll",
-   "chain": "base",
-   "address": "0x1cf251eed43706ab8a597619934e4c1f11001a0b",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 75014.4569,
-   "first_seen": 1788552910
-  },
-  {
-   "symbol": "USDG",
-   "name": "Global Dollar",
-   "chain": "base",
-   "address": "0x533a66c76354a4b78bd97a92fb334dc45f7e86d9",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 568769290.5298,
-   "first_seen": 1788552409
-  },
-  {
-   "symbol": "HOUSECOIN",
-   "name": "HouseCoin",
-   "chain": "base",
-   "address": "0xfa693f45145556b5cc1848d90fc0b6f328eeb325",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 76131.4603,
-   "first_seen": 1788549635
-  },
-  {
-   "symbol": "PONSERS",
-   "name": "Ponsers",
-   "chain": "base",
-   "address": "0xef2a5743da7a2125c5a3085e6af1f88ae706958a",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 2220328.1386,
-   "first_seen": 1788548359
-  },
-  {
-   "symbol": "Starcoin",
-   "name": "Starcoin",
-   "chain": "base",
-   "address": "0x2c7fc04d16a7e96eec827a900d755bdcb19f5418",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 73462.8,
-   "first_seen": 1788546543
-  },
-  {
-   "symbol": "BELIEVE",
-   "name": "close ur eyes and let it happen",
-   "chain": "base",
-   "address": "0xde5854eb4af34bb2f7418520fbb82e5248fd54b4",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 75835.3843,
-   "first_seen": 1788533628
-  },
-  {
-   "symbol": "Astra",
-   "name": "GPT-6 Astra",
-   "chain": "robinhood",
-   "address": "0xe79a42feefcf1dfe48d136bc6c5190a4b6ce2d78",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 155290.2496,
-   "first_seen": 1788529382
-  },
-  {
-   "symbol": "PARE",
-   "name": "Pare",
-   "chain": "base",
-   "address": "0x087fcb7bef2d17f10e7531965531828c046a5121",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 2662456.1942,
-   "first_seen": 1788524266
-  },
-  {
-   "symbol": "WOTF",
-   "name": "World Oil Trust Fund",
-   "chain": "base",
-   "address": "0x35e405f8dfd01ac31fb4e8652d77b91d570a22e9",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 123787.2478,
-   "first_seen": 1788522297
-  },
-  {
-   "symbol": "IOFA",
-   "name": "Israel Oil Fund Asset",
-   "chain": "base",
-   "address": "0x2e07e051de76429ec4bc4c2b27ef496f853a8806",
-   "score": 43,
-   "verdict": "yellow",
-   "liquidity_usd": 74199.8137,
-   "first_seen": 1788522295
-  },
-  {
-   "symbol": "WOFT",
-   "name": "World Oil Fund Trust",
-   "chain": "base",
-   "address": "0x5ec3b84b2433914f9802ec0071c1a5c90f38975c",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 142424.4278,
-   "first_seen": 1788522292
-  },
-  {
-   "symbol": "CINEMA",
-   "name": "ABSOLUTE CINEMA",
-   "chain": "base",
-   "address": "0xbceac364416c81caef1a6107eafb10edb2dfbbf5",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 286199557.2005,
-   "first_seen": 1788514932
   }
  ],
  "confirmed": [
@@ -444,9 +444,9 @@
   }
  ],
  "probation": {
-  "waiting": 6,
+  "waiting": 14,
   "confirmed": 9,
-  "dropped": 278
+  "dropped": 283
  },
  "recent_drains": [
   {
@@ -628,7 +628,7 @@
   "rug": 935
  },
  "watchlist_active": 7,
- "price_snapshots": 15047,
+ "price_snapshots": 15037,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
