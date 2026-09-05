@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-04T21:20:35Z",
- "generated_at_unix": 1788556834,
+ "generated_at": "2026-09-05T07:55:36Z",
+ "generated_at_unix": 1788594935,
  "period": {
   "start": "2026-07-15",
-  "days": 51
+  "days": 52
  },
  "totals": {
-  "seen": 154998,
-  "base": 23772,
-  "robinhood": 131226,
-  "below_liquidity_threshold": 152673,
-  "spam_filtered": 141,
-  "scored": 2184,
+  "seen": 155790,
+  "base": 23860,
+  "robinhood": 131930,
+  "below_liquidity_threshold": 153460,
+  "spam_filtered": 143,
+  "scored": 2187,
   "green": 903,
-  "yellow": 424,
-  "red": 857
+  "yellow": 425,
+  "red": 859
  },
  "liquidity_threshold_usd": 50000.0,
  "daily": [
   {
    "date": "2026-08-15",
-   "base": 318,
-   "robinhood": 1704
+   "base": 288,
+   "robinhood": 1551
   },
   {
    "date": "2026-08-16",
@@ -125,11 +125,21 @@
   },
   {
    "date": "2026-09-05",
-   "base": 17,
-   "robinhood": 188
+   "base": 105,
+   "robinhood": 892
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "BASED10",
+   "name": "Base10 Index",
+   "chain": "base",
+   "address": "0xd72f9ec4e2db980cf3516b0885204fe85a6d3d4e",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 73589.7147160267,
+   "first_seen": 1788590950
+  },
   {
    "symbol": "o1 Doll",
    "name": "o1 Doll",
@@ -319,16 +329,6 @@
    "verdict": "yellow",
    "liquidity_usd": 174871.507308654,
    "first_seen": 1788467424
-  },
-  {
-   "symbol": "CANDY",
-   "name": "candy sweet",
-   "chain": "base",
-   "address": "0xe997160b3a1006f3ec917e2ff60009578e448044",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 752223.5696,
-   "first_seen": 1788467150
   }
  ],
  "confirmed": [
@@ -434,9 +434,9 @@
   }
  ],
  "probation": {
-  "waiting": 10,
+  "waiting": 2,
   "confirmed": 8,
-  "dropped": 267
+  "dropped": 276
  },
  "recent_drains": [
   {
@@ -618,7 +618,7 @@
   "rug": 935
  },
  "watchlist_active": 6,
- "price_snapshots": 15320,
+ "price_snapshots": 15400,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
