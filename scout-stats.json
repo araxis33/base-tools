@@ -1,20 +1,20 @@
 {
- "generated_at": "2026-09-06T10:01:41Z",
- "generated_at_unix": 1788688901,
+ "generated_at": "2026-09-06T11:01:53Z",
+ "generated_at_unix": 1788692512,
  "period": {
   "start": "2026-07-15",
   "days": 53
  },
  "totals": {
-  "seen": 158668,
-  "base": 24553,
+  "seen": 158738,
+  "base": 24623,
   "robinhood": 134115,
-  "below_liquidity_threshold": 156192,
-  "spam_filtered": 213,
-  "scored": 2263,
-  "green": 961,
+  "below_liquidity_threshold": 156231,
+  "spam_filtered": 225,
+  "scored": 2282,
+  "green": 979,
   "yellow": 431,
-  "red": 871
+  "red": 872
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
@@ -125,11 +125,191 @@
   },
   {
    "date": "2026-09-06",
-   "base": 31,
+   "base": 101,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "XTM",
+   "name": "Torum",
+   "chain": "base",
+   "address": "0x0e0ba8288b13dbd83b873ce644b7dcca41c54fbd",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 47926.4673,
+   "first_seen": 1788692463
+  },
+  {
+   "symbol": "AOB",
+   "name": "All in on Base",
+   "chain": "base",
+   "address": "0xcc2f03547b112342730e536d2e6a8f792d5b52d7",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3978.4909,
+   "first_seen": 1788692372
+  },
+  {
+   "symbol": "MEMORY",
+   "name": "Memory Man",
+   "chain": "base",
+   "address": "0x36afaad0a841eaf5f136ebf962592cb4835ee228",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4647.303,
+   "first_seen": 1788691374
+  },
+  {
+   "symbol": "BALDILOCKS",
+   "name": "Baldilocks",
+   "chain": "base",
+   "address": "0x8513abf8e2e6a8fe9dde954529f126ecb6f94306",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4322.8009,
+   "first_seen": 1788691007
+  },
+  {
+   "symbol": "SUE",
+   "name": "施工猫",
+   "chain": "base",
+   "address": "0xb4f84bb546f1b3c398e38c8a2c277eaea4812c75",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4033.2478,
+   "first_seen": 1788691006
+  },
+  {
+   "symbol": "SMOON",
+   "name": "SaylorMoon",
+   "chain": "base",
+   "address": "0x05b089fb69111860d42240b47da56a3e78977f74",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4550.794,
+   "first_seen": 1788690823
+  },
+  {
+   "symbol": "JUPCAT",
+   "name": "Jupiter Cat",
+   "chain": "base",
+   "address": "0x28231787a21316261ab407874fdc14b69adfb3d5",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 47876.4579,
+   "first_seen": 1788690595
+  },
+  {
+   "symbol": "ZECRET",
+   "name": "ZECret",
+   "chain": "base",
+   "address": "0x30144ef655de4c24edb5d76d5e658f8627c61e74",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 5730.2642,
+   "first_seen": 1788690458
+  },
+  {
+   "symbol": "ANALOS",
+   "name": "ANALOS",
+   "chain": "base",
+   "address": "0xb200000000000000000000b7626872edafd95204",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 25387.0469,
+   "first_seen": 1788690140
+  },
+  {
+   "symbol": "VTEST50",
+   "name": "VOW Test 50",
+   "chain": "base",
+   "address": "0xb200000000000000000000345dbf81f2248159d5",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 23956.7389,
+   "first_seen": 1788689913
+  },
+  {
+   "symbol": "BLUAPE",
+   "name": "BLUAPE",
+   "chain": "base",
+   "address": "0xdcce21ae4296805949d2c6c828974fea7898c8a8",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4115.9547,
+   "first_seen": 1788689641
+  },
+  {
+   "symbol": "WOOD",
+   "name": "Sherwood Protocol",
+   "chain": "base",
+   "address": "0xb200000000000000000000e54ac8139b9f3bca5a",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 29387.5663,
+   "first_seen": 1788689594
+  },
+  {
+   "symbol": "FLCN",
+   "name": "CloseFALCON",
+   "chain": "base",
+   "address": "0xb507b85127d1dca58f72f4889bac824163c4fdf4",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 24989.4,
+   "first_seen": 1788689187
+  },
+  {
+   "symbol": "BESTCOIN",
+   "name": "bestcoin",
+   "chain": "base",
+   "address": "0xb200000000000000000000b34c7903d6886d0877",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 29137.7264,
+   "first_seen": 1788688910
+  },
+  {
+   "symbol": "PAINTR",
+   "name": "paintr",
+   "chain": "base",
+   "address": "0xb20000000000000000000087336fa8ab6e08c64f",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 39206.8105,
+   "first_seen": 1788688909
+  },
+  {
+   "symbol": "PIXELCAT",
+   "name": "Robinhood Pixel Cat",
+   "chain": "base",
+   "address": "0xb200000000000000000000debae130a7f5e56d3c",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 25022.7274,
+   "first_seen": 1788688907
+  },
+  {
+   "symbol": "IRA",
+   "name": "Imaginary Retirement Account",
+   "chain": "base",
+   "address": "0xb200000000000000000000d24618d3d308bb5170",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 27190.7313885658,
+   "first_seen": 1788688906
+  },
+  {
+   "symbol": "FIRST",
+   "name": "First Deploy Paired Bittensor TAO",
+   "chain": "base",
+   "address": "0x82b7cc4a732ef3940161615692cee5680ab0f6c2",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 75228.5842,
+   "first_seen": 1788688903
+  },
   {
    "symbol": "PRIME",
    "name": "Amazon Prime(d)",
@@ -149,186 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 4238.8998,
    "first_seen": 1788642643
-  },
-  {
-   "symbol": "MINTIFY",
-   "name": "Mintifyfun",
-   "chain": "base",
-   "address": "0xb2000000000000000000009eea3a41607b868b01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4347.5738,
-   "first_seen": 1788641865
-  },
-  {
-   "symbol": "Rug",
-   "name": "Rugged Base",
-   "chain": "base",
-   "address": "0xb200000000000000000000294fb1c5ef3fce5201",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4124.0059,
-   "first_seen": 1788641227
-  },
-  {
-   "symbol": "Jusse",
-   "name": "Jusse Pullak",
-   "chain": "base",
-   "address": "0xb200000000000000000000870972e5277f725701",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4494.9575,
-   "first_seen": 1788639996
-  },
-  {
-   "symbol": "JAILJESSE",
-   "name": "JAILJESSE",
-   "chain": "base",
-   "address": "0xb200000000000000000000c6e486f274d7c00f01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 8095.3982,
-   "first_seen": 1788639994
-  },
-  {
-   "symbol": "BASEMEME",
-   "name": "BASEMEME",
-   "chain": "base",
-   "address": "0xb2000000000000000000008c031790942731b001",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 91730.1254,
-   "first_seen": 1788639856
-  },
-  {
-   "symbol": "Building",
-   "name": "Building",
-   "chain": "base",
-   "address": "0xb20000000000000000000018eec27753f9e33987",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 15592.2132,
-   "first_seen": 1788639129
-  },
-  {
-   "symbol": "Base",
-   "name": "BASE$",
-   "chain": "base",
-   "address": "0xb2000000000000000000008cfbc9fa13a12f2601",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4801.2441,
-   "first_seen": 1788639127
-  },
-  {
-   "symbol": "BSTONK",
-   "name": "BaseStonk",
-   "chain": "base",
-   "address": "0x9eb4d30600f26d53faaabe442f75436d5424c3ba",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 50292.2945,
-   "first_seen": 1788637940
-  },
-  {
-   "symbol": "PrinterInkCoin",
-   "name": "PrinterInkCoin",
-   "chain": "base",
-   "address": "0x1a7592b25f3aed9159dcdef1388b9fdaf8eb8414",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 74340.6,
-   "first_seen": 1788636305
-  },
-  {
-   "symbol": "OMG",
-   "name": "Old Microsoft",
-   "chain": "base",
-   "address": "0x32cf1425be31a490ba40fa8eca1235838d50fee1",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 10200.3012,
-   "first_seen": 1788635939
-  },
-  {
-   "symbol": "GARFI",
-   "name": "Garfi",
-   "chain": "base",
-   "address": "0xd041f38c8ccc6e797155602cafeb2048d7b9659e",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 16245.7703,
-   "first_seen": 1788635938
-  },
-  {
-   "symbol": "ERROR",
-   "name": "ERROR",
-   "chain": "base",
-   "address": "0x26f7e8576617704da053b594bc87b8fe70ddc40c",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4276.4261,
-   "first_seen": 1788635302
-  },
-  {
-   "symbol": "LABASE",
-   "name": "LA Base",
-   "chain": "base",
-   "address": "0x739a21e7f08b6d56c5cc26fda375c7863f8fa971",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 75382.8876,
-   "first_seen": 1788634298
-  },
-  {
-   "symbol": "RUFUS",
-   "name": "Rufus",
-   "chain": "base",
-   "address": "0x8fafd5d3dfdabcf61c6e638847bd807d0e7a3c90",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 7088.4486,
-   "first_seen": 1788633795
-  },
-  {
-   "symbol": "SLINK",
-   "name": "Shivolink",
-   "chain": "base",
-   "address": "0x954d841007322544c2d6b59a6410cd4e395df222",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3141.4261,
-   "first_seen": 1788633610
-  },
-  {
-   "symbol": "PEPKING",
-   "name": "PepeKing",
-   "chain": "base",
-   "address": "0xd3061efeba07c579325860e20dbe979fabdc3342",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13417.3871,
-   "first_seen": 1788633109
-  },
-  {
-   "symbol": "CYBERDUCK",
-   "name": "Cyberduck",
-   "chain": "base",
-   "address": "0x11df6e00e29334927b753a9d88324ff832f5e6de",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4265.2265,
-   "first_seen": 1788632698
-  },
-  {
-   "symbol": "SHOP",
-   "name": "Sweatshop",
-   "chain": "base",
-   "address": "0x247094de6e234349edff49fa35e9708408cd290b",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 42131.4257,
-   "first_seen": 1788632561
   }
  ],
  "confirmed": [
@@ -444,9 +444,9 @@
   }
  ],
  "probation": {
-  "waiting": 35,
+  "waiting": 45,
   "confirmed": 9,
-  "dropped": 306
+  "dropped": 314
  },
  "recent_drains": [
   {
@@ -623,12 +623,12 @@
   }
  ],
  "alerts": {
-  "dump": 687,
+  "dump": 688,
   "pump": 259,
   "rug": 935
  },
  "watchlist_active": 6,
- "price_snapshots": 14233,
+ "price_snapshots": 14007,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
