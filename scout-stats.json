@@ -1,32 +1,27 @@
 {
- "generated_at": "2026-09-06T20:19:14Z",
- "generated_at_unix": 1788725952,
+ "generated_at": "2026-09-06T21:19:19Z",
+ "generated_at_unix": 1788729558,
  "period": {
   "start": "2026-07-15",
   "days": 53
  },
  "totals": {
-  "seen": 159080,
-  "base": 24965,
+  "seen": 159134,
+  "base": 25019,
   "robinhood": 134115,
-  "below_liquidity_threshold": 156482,
-  "spam_filtered": 258,
-  "scored": 2340,
-  "green": 1028,
+  "below_liquidity_threshold": 156523,
+  "spam_filtered": 263,
+  "scored": 2348,
+  "green": 1035,
   "yellow": 434,
-  "red": 878
+  "red": 879
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
-   "date": "2026-08-16",
-   "base": 25,
-   "robinhood": 107
-  },
-  {
    "date": "2026-08-17",
-   "base": 546,
-   "robinhood": 1343
+   "base": 532,
+   "robinhood": 1307
   },
   {
    "date": "2026-08-18",
@@ -125,11 +120,86 @@
   },
   {
    "date": "2026-09-06",
-   "base": 443,
+   "base": 480,
+   "robinhood": 0
+  },
+  {
+   "date": "2026-09-07",
+   "base": 17,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "FATCOIN",
+   "name": "FATCOIN",
+   "chain": "base",
+   "address": "0xf83b9815fe370f00f3f30f3553f9dbf5492d5fe8",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 453358498.7697,
+   "first_seen": 1788729489
+  },
+  {
+   "symbol": "METASTONK",
+   "name": "METASTONK",
+   "chain": "base",
+   "address": "0xaf806d1f93d1148be7c5edbc544a907fd108b9cb",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4093.9488,
+   "first_seen": 1788728943
+  },
+  {
+   "symbol": "STONKDOGE",
+   "name": "Stonks Doge",
+   "chain": "base",
+   "address": "0xe16cb23c60f142f9a8703f5958e36d86ab2a0684",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4016.0055,
+   "first_seen": 1788728074
+  },
+  {
+   "symbol": "PIRANHA",
+   "name": "PIRANHA",
+   "chain": "base",
+   "address": "0x3d5807e2d5c34078d795bb67481802d4e9d4f185",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 5101.9584,
+   "first_seen": 1788727748
+  },
+  {
+   "symbol": "MEMESTOCK",
+   "name": "MEMESTOCK",
+   "chain": "base",
+   "address": "0xb200000000000000000000d7a2107260fd58a401",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4025.3321,
+   "first_seen": 1788727110
+  },
+  {
+   "symbol": "SWAHT",
+   "name": "Special Weapons and Hat Tricks",
+   "chain": "base",
+   "address": "0xa8c66137b9574b850fc08bc15f8ee0307d12c989",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4132.124,
+   "first_seen": 1788727108
+  },
+  {
+   "symbol": "BLUE",
+   "name": "The Stonkex Bull",
+   "chain": "base",
+   "address": "0x1d0c1be75f32c1238da27dbb59d21c7df8d311b2",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 24038.8889,
+   "first_seen": 1788727107
+  },
   {
    "symbol": "SOXXx",
    "name": "iShares Semiconductor tokenized ETF (xStock)",
@@ -259,76 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 971406071.1826,
    "first_seen": 1788722402
-  },
-  {
-   "symbol": "CFS",
-   "name": "CryptoFrendlyStock",
-   "chain": "base",
-   "address": "0x30dc1f1c4688555307ee7bdbaf7a1554d3a6f4d7",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4600.1116,
-   "first_seen": 1788722399
-  },
-  {
-   "symbol": "MOONBASE",
-   "name": "Moonbase",
-   "chain": "base",
-   "address": "0x0362596da19c495c5c2699ec6584bcb8cb38eb07",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13196.9731,
-   "first_seen": 1788722307
-  },
-  {
-   "symbol": "INDEX",
-   "name": "Stonkex Index",
-   "chain": "base",
-   "address": "0x80956774e8d7b41b104a278895838f0316181e27",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4594.2891,
-   "first_seen": 1788721939
-  },
-  {
-   "symbol": "SCOPY",
-   "name": "StrategyScopy",
-   "chain": "base",
-   "address": "0xe9e534ee973a4e4a11cb4212aa69e8bee63630e4",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4103.09,
-   "first_seen": 1788721938
-  },
-  {
-   "symbol": "SZN",
-   "name": "BASESEASON",
-   "chain": "base",
-   "address": "0x899eb7f631047f61a907066e7502ff83f836ba5e",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 2703.0081,
-   "first_seen": 1788721210
-  },
-  {
-   "symbol": "BTK",
-   "name": "BTONKEN",
-   "chain": "base",
-   "address": "0xb8fc1e03e6e2024266b2285aa94ff857d7aa6925",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4155.5071,
-   "first_seen": 1788720339
-  },
-  {
-   "symbol": "LITESLA",
-   "name": "LITESLA",
-   "chain": "base",
-   "address": "0xfb2b6b2ff134624b253a90864692a6178889f186",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3991.4202,
-   "first_seen": 1788719885
   }
  ],
  "confirmed": [
@@ -454,9 +454,9 @@
   }
  ],
  "probation": {
-  "waiting": 62,
+  "waiting": 63,
   "confirmed": 10,
-  "dropped": 348
+  "dropped": 354
  },
  "recent_drains": [
   {
@@ -648,7 +648,7 @@
   "rug": 937
  },
  "watchlist_active": 5,
- "price_snapshots": 13122,
+ "price_snapshots": 13048,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
