@@ -1,20 +1,20 @@
 {
- "generated_at": "2026-09-06T12:01:59Z",
- "generated_at_unix": 1788696118,
+ "generated_at": "2026-09-06T17:18:54Z",
+ "generated_at_unix": 1788715131,
  "period": {
   "start": "2026-07-15",
   "days": 53
  },
  "totals": {
-  "seen": 158811,
-  "base": 24696,
+  "seen": 158872,
+  "base": 24757,
   "robinhood": 134115,
-  "below_liquidity_threshold": 156281,
-  "spam_filtered": 231,
-  "scored": 2299,
-  "green": 994,
-  "yellow": 432,
-  "red": 873
+  "below_liquidity_threshold": 156327,
+  "spam_filtered": 237,
+  "scored": 2308,
+  "green": 1000,
+  "yellow": 433,
+  "red": 875
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
@@ -125,11 +125,81 @@
   },
   {
    "date": "2026-09-06",
-   "base": 174,
+   "base": 235,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "CHIPHOUSE",
+   "name": "Chip House",
+   "chain": "base",
+   "address": "0xb2000000000000000000009f902a2cc2951e9301",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3940.2502,
+   "first_seen": 1788710933
+  },
+  {
+   "symbol": "cortado",
+   "name": "cortado",
+   "chain": "base",
+   "address": "0xb200000000000000000000711e96fce56c18fd63",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 19172.4261,
+   "first_seen": 1788710932
+  },
+  {
+   "symbol": "STONKEX",
+   "name": "The Stonks Exchange Ai",
+   "chain": "base",
+   "address": "0xf46f0cc7714b21faa2618b9407bbc9383f07b133",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 2488.3574,
+   "first_seen": 1788710930
+  },
+  {
+   "symbol": "AOBS",
+   "name": "Agent OBS",
+   "chain": "base",
+   "address": "0x6e699edee6f9febc05058493ac9d4821b8167b6b",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 39166.316,
+   "first_seen": 1788697332
+  },
+  {
+   "symbol": "⚡资本",
+   "name": "⚡资本",
+   "chain": "base",
+   "address": "0xc2c08ae68936e43e1caedfe549de996381e4a62f",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 5547.5206,
+   "first_seen": 1788696832
+  },
+  {
+   "symbol": "XDEV",
+   "name": "xDevAI",
+   "chain": "base",
+   "address": "0x42784ed3127854f032d72b255feddf8802a9b14a",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 47913.438,
+   "first_seen": 1788696377
+  },
+  {
+   "symbol": "VIBE_CODE",
+   "name": "vibe_code()",
+   "chain": "base",
+   "address": "0x17b96d3889a66e112064ed3b194d3107d81b1aec",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4591.3449,
+   "first_seen": 1788696149
+  },
   {
    "symbol": "NUSA",
    "name": "nusa",
@@ -259,76 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 4073.6304,
    "first_seen": 1788693825
-  },
-  {
-   "symbol": "OpenAI",
-   "name": "OpenAI",
-   "chain": "base",
-   "address": "0x57ec22f195134582a4b01896bc60ad80fac14b07",
-   "score": 67,
-   "verdict": "yellow",
-   "liquidity_usd": 3425934.0692,
-   "first_seen": 1788693280
-  },
-  {
-   "symbol": "SD",
-   "name": "Sand Dick",
-   "chain": "base",
-   "address": "0x57e2283b14017499266ea1d9813a79f2113876cb",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4259.2278,
-   "first_seen": 1788693189
-  },
-  {
-   "symbol": "ABYSS",
-   "name": "Abyssal",
-   "chain": "base",
-   "address": "0xab31b93eca2f68b0f8b4a870ab011121533199d1",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 47922.0603,
-   "first_seen": 1788692781
-  },
-  {
-   "symbol": "XTM",
-   "name": "Torum",
-   "chain": "base",
-   "address": "0x0e0ba8288b13dbd83b873ce644b7dcca41c54fbd",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 47926.4673,
-   "first_seen": 1788692463
-  },
-  {
-   "symbol": "AOB",
-   "name": "All in on Base",
-   "chain": "base",
-   "address": "0xcc2f03547b112342730e536d2e6a8f792d5b52d7",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3978.4909,
-   "first_seen": 1788692372
-  },
-  {
-   "symbol": "MEMORY",
-   "name": "Memory Man",
-   "chain": "base",
-   "address": "0x36afaad0a841eaf5f136ebf962592cb4835ee228",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4647.303,
-   "first_seen": 1788691374
-  },
-  {
-   "symbol": "BALDILOCKS",
-   "name": "Baldilocks",
-   "chain": "base",
-   "address": "0x8513abf8e2e6a8fe9dde954529f126ecb6f94306",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4322.8009,
-   "first_seen": 1788691007
   }
  ],
  "confirmed": [
@@ -444,9 +444,9 @@
   }
  ],
  "probation": {
-  "waiting": 56,
+  "waiting": 52,
   "confirmed": 9,
-  "dropped": 319
+  "dropped": 330
  },
  "recent_drains": [
   {
@@ -542,6 +542,16 @@
  ],
  "survivors": [
   {
+   "symbol": "michi",
+   "chain": "robinhood",
+   "address": "0x6fc931326cd5c0188e744592ae7b20fb3bec0172",
+   "score": 69,
+   "alerted_at": 1788613943,
+   "liq_0": 115922.1503,
+   "liq_24h": 159410.96,
+   "volume_24h": 48278.34
+  },
+  {
    "symbol": "Claude",
    "chain": "base",
    "address": "0x838802a0076d4c8ccd92aa5b267d750b0426db07",
@@ -628,7 +638,7 @@
   "rug": 935
  },
  "watchlist_active": 6,
- "price_snapshots": 13887,
+ "price_snapshots": 13766,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
