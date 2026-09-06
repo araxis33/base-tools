@@ -1,20 +1,20 @@
 {
- "generated_at": "2026-09-06T11:01:53Z",
- "generated_at_unix": 1788692512,
+ "generated_at": "2026-09-06T12:01:59Z",
+ "generated_at_unix": 1788696118,
  "period": {
   "start": "2026-07-15",
   "days": 53
  },
  "totals": {
-  "seen": 158738,
-  "base": 24623,
+  "seen": 158811,
+  "base": 24696,
   "robinhood": 134115,
-  "below_liquidity_threshold": 156231,
-  "spam_filtered": 225,
-  "scored": 2282,
-  "green": 979,
-  "yellow": 431,
-  "red": 872
+  "below_liquidity_threshold": 156281,
+  "spam_filtered": 231,
+  "scored": 2299,
+  "green": 994,
+  "yellow": 432,
+  "red": 873
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
@@ -125,11 +125,171 @@
   },
   {
    "date": "2026-09-06",
-   "base": 101,
+   "base": 174,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "NUSA",
+   "name": "nusa",
+   "chain": "base",
+   "address": "0xecd779bd9578ffef16cc96a61a9bdbb950040e70",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 47923.7848,
+   "first_seen": 1788695968
+  },
+  {
+   "symbol": "CASHCAT",
+   "name": "Cash Cat",
+   "chain": "base",
+   "address": "0xc7c2beb84f9ea4b677a9d2eb67d53a4e458ac383",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 150983478.6562,
+   "first_seen": 1788695785
+  },
+  {
+   "symbol": "basebook",
+   "name": "basebook",
+   "chain": "base",
+   "address": "0xb200000000000000000000639186dc3950559e01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 5882.81748023295,
+   "first_seen": 1788695512
+  },
+  {
+   "symbol": "MANA",
+   "name": "wizard aura",
+   "chain": "base",
+   "address": "0x01af412931d6007c6d2f6a632a7b5d076f435305",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 27383.874,
+   "first_seen": 1788695465
+  },
+  {
+   "symbol": "GUARDIAN",
+   "name": "Bundle Guardian",
+   "chain": "base",
+   "address": "0xce7b5f814618888942cddbdfa71b7249ca6a0e17",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 47930.8743,
+   "first_seen": 1788695464
+  },
+  {
+   "symbol": "HOODB",
+   "name": "Robinhood Tokenized bStocks",
+   "chain": "base",
+   "address": "0x82483607f3fec051aaf098c2fed5371d1d7f8173",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12502.3,
+   "first_seen": 1788695327
+  },
+  {
+   "symbol": "BUNNY",
+   "name": "MASCOT BUNNY",
+   "chain": "base",
+   "address": "0x4635881196c2c322314b1485273bf9a0ac8d6b5f",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 5155.3325,
+   "first_seen": 1788695100
+  },
+  {
+   "symbol": "STA⚡",
+   "name": "Star⚡",
+   "chain": "base",
+   "address": "0xcd3f8f702ea4aa64b6aa52e6a3e44cee0222e326",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 6438.0663,
+   "first_seen": 1788694557
+  },
+  {
+   "symbol": "LISA",
+   "name": "LISA",
+   "chain": "base",
+   "address": "0xc912ef4c94d2acc403d630c02af9d095b26c2a2d",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4342.7711,
+   "first_seen": 1788694511
+  },
+  {
+   "symbol": "GLAZE",
+   "name": "glaze",
+   "chain": "base",
+   "address": "0xd36b19956eeb1d0cb7b04392c4c1a44de9f2bda2",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 47943.9035,
+   "first_seen": 1788693873
+  },
+  {
+   "symbol": "Deployer",
+   "name": "Deployer",
+   "chain": "base",
+   "address": "0x516deb171d1fea487134acd6d7884010533ea7e9",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 75492.595,
+   "first_seen": 1788693872
+  },
+  {
+   "symbol": "SPACECAT",
+   "name": "SPACECAT",
+   "chain": "base",
+   "address": "0xd32cc9b39ea71b76b2638d17712ada5898735447",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4034.1681,
+   "first_seen": 1788693826
+  },
+  {
+   "symbol": "MOONBASE",
+   "name": "Moon Base",
+   "chain": "base",
+   "address": "0xd26a425781614113db36dbe57ded74aebeed3000",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4073.6304,
+   "first_seen": 1788693825
+  },
+  {
+   "symbol": "OpenAI",
+   "name": "OpenAI",
+   "chain": "base",
+   "address": "0x57ec22f195134582a4b01896bc60ad80fac14b07",
+   "score": 67,
+   "verdict": "yellow",
+   "liquidity_usd": 3425934.0692,
+   "first_seen": 1788693280
+  },
+  {
+   "symbol": "SD",
+   "name": "Sand Dick",
+   "chain": "base",
+   "address": "0x57e2283b14017499266ea1d9813a79f2113876cb",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4259.2278,
+   "first_seen": 1788693189
+  },
+  {
+   "symbol": "ABYSS",
+   "name": "Abyssal",
+   "chain": "base",
+   "address": "0xab31b93eca2f68b0f8b4a870ab011121533199d1",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 47922.0603,
+   "first_seen": 1788692781
+  },
   {
    "symbol": "XTM",
    "name": "Torum",
@@ -169,166 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 4322.8009,
    "first_seen": 1788691007
-  },
-  {
-   "symbol": "SUE",
-   "name": "施工猫",
-   "chain": "base",
-   "address": "0xb4f84bb546f1b3c398e38c8a2c277eaea4812c75",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4033.2478,
-   "first_seen": 1788691006
-  },
-  {
-   "symbol": "SMOON",
-   "name": "SaylorMoon",
-   "chain": "base",
-   "address": "0x05b089fb69111860d42240b47da56a3e78977f74",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4550.794,
-   "first_seen": 1788690823
-  },
-  {
-   "symbol": "JUPCAT",
-   "name": "Jupiter Cat",
-   "chain": "base",
-   "address": "0x28231787a21316261ab407874fdc14b69adfb3d5",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 47876.4579,
-   "first_seen": 1788690595
-  },
-  {
-   "symbol": "ZECRET",
-   "name": "ZECret",
-   "chain": "base",
-   "address": "0x30144ef655de4c24edb5d76d5e658f8627c61e74",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 5730.2642,
-   "first_seen": 1788690458
-  },
-  {
-   "symbol": "ANALOS",
-   "name": "ANALOS",
-   "chain": "base",
-   "address": "0xb200000000000000000000b7626872edafd95204",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 25387.0469,
-   "first_seen": 1788690140
-  },
-  {
-   "symbol": "VTEST50",
-   "name": "VOW Test 50",
-   "chain": "base",
-   "address": "0xb200000000000000000000345dbf81f2248159d5",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 23956.7389,
-   "first_seen": 1788689913
-  },
-  {
-   "symbol": "BLUAPE",
-   "name": "BLUAPE",
-   "chain": "base",
-   "address": "0xdcce21ae4296805949d2c6c828974fea7898c8a8",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4115.9547,
-   "first_seen": 1788689641
-  },
-  {
-   "symbol": "WOOD",
-   "name": "Sherwood Protocol",
-   "chain": "base",
-   "address": "0xb200000000000000000000e54ac8139b9f3bca5a",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 29387.5663,
-   "first_seen": 1788689594
-  },
-  {
-   "symbol": "FLCN",
-   "name": "CloseFALCON",
-   "chain": "base",
-   "address": "0xb507b85127d1dca58f72f4889bac824163c4fdf4",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 24989.4,
-   "first_seen": 1788689187
-  },
-  {
-   "symbol": "BESTCOIN",
-   "name": "bestcoin",
-   "chain": "base",
-   "address": "0xb200000000000000000000b34c7903d6886d0877",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 29137.7264,
-   "first_seen": 1788688910
-  },
-  {
-   "symbol": "PAINTR",
-   "name": "paintr",
-   "chain": "base",
-   "address": "0xb20000000000000000000087336fa8ab6e08c64f",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 39206.8105,
-   "first_seen": 1788688909
-  },
-  {
-   "symbol": "PIXELCAT",
-   "name": "Robinhood Pixel Cat",
-   "chain": "base",
-   "address": "0xb200000000000000000000debae130a7f5e56d3c",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 25022.7274,
-   "first_seen": 1788688907
-  },
-  {
-   "symbol": "IRA",
-   "name": "Imaginary Retirement Account",
-   "chain": "base",
-   "address": "0xb200000000000000000000d24618d3d308bb5170",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 27190.7313885658,
-   "first_seen": 1788688906
-  },
-  {
-   "symbol": "FIRST",
-   "name": "First Deploy Paired Bittensor TAO",
-   "chain": "base",
-   "address": "0x82b7cc4a732ef3940161615692cee5680ab0f6c2",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 75228.5842,
-   "first_seen": 1788688903
-  },
-  {
-   "symbol": "PRIME",
-   "name": "Amazon Prime(d)",
-   "chain": "base",
-   "address": "0xe33ad052f57f029e76af9200d20393e0f6b7d0d9",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4182.9882,
-   "first_seen": 1788642735
-  },
-  {
-   "symbol": "ICOIN",
-   "name": "iCoin",
-   "chain": "base",
-   "address": "0x0808b2ee37b1c2950a63ed503b3eedaa0a6d3a59",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4238.8998,
-   "first_seen": 1788642643
   }
  ],
  "confirmed": [
@@ -444,9 +444,9 @@
   }
  ],
  "probation": {
-  "waiting": 45,
+  "waiting": 56,
   "confirmed": 9,
-  "dropped": 314
+  "dropped": 319
  },
  "recent_drains": [
   {
@@ -628,7 +628,7 @@
   "rug": 935
  },
  "watchlist_active": 6,
- "price_snapshots": 14007,
+ "price_snapshots": 13887,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
