@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-05T21:12:03Z",
- "generated_at_unix": 1788642721,
+ "generated_at": "2026-09-06T10:01:41Z",
+ "generated_at_unix": 1788688901,
  "period": {
   "start": "2026-07-15",
-  "days": 52
+  "days": 53
  },
  "totals": {
-  "seen": 158657,
-  "base": 24542,
+  "seen": 158668,
+  "base": 24553,
   "robinhood": 134115,
-  "below_liquidity_threshold": 156185,
-  "spam_filtered": 210,
-  "scored": 2262,
-  "green": 960,
+  "below_liquidity_threshold": 156192,
+  "spam_filtered": 213,
+  "scored": 2263,
+  "green": 961,
   "yellow": 431,
   "red": 871
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-16",
-   "base": 86,
-   "robinhood": 409
+   "base": 71,
+   "robinhood": 294
   },
   {
    "date": "2026-08-17",
@@ -125,11 +125,21 @@
   },
   {
    "date": "2026-09-06",
-   "base": 20,
+   "base": 31,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "PRIME",
+   "name": "Amazon Prime(d)",
+   "chain": "base",
+   "address": "0xe33ad052f57f029e76af9200d20393e0f6b7d0d9",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4182.9882,
+   "first_seen": 1788642735
+  },
   {
    "symbol": "ICOIN",
    "name": "iCoin",
@@ -319,16 +329,6 @@
    "verdict": "yellow",
    "liquidity_usd": 42131.4257,
    "first_seen": 1788632561
-  },
-  {
-   "symbol": "$1",
-   "name": "X1000X $1",
-   "chain": "base",
-   "address": "0x3b7d8a599d0b5effe2eb0340324cf0bcac676b07",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13333.717,
-   "first_seen": 1788632196
   }
  ],
  "confirmed": [
@@ -446,7 +446,7 @@
  "probation": {
   "waiting": 35,
   "confirmed": 9,
-  "dropped": 305
+  "dropped": 306
  },
  "recent_drains": [
   {
@@ -628,7 +628,7 @@
   "rug": 935
  },
  "watchlist_active": 6,
- "price_snapshots": 14256,
+ "price_snapshots": 14233,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
