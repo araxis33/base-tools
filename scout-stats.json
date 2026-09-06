@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-06T19:19:07Z",
- "generated_at_unix": 1788722346,
+ "generated_at": "2026-09-06T20:19:14Z",
+ "generated_at_unix": 1788725952,
  "period": {
   "start": "2026-07-15",
   "days": 53
  },
  "totals": {
-  "seen": 159010,
-  "base": 24895,
+  "seen": 159080,
+  "base": 24965,
   "robinhood": 134115,
-  "below_liquidity_threshold": 156432,
-  "spam_filtered": 252,
-  "scored": 2326,
-  "green": 1015,
-  "yellow": 433,
+  "below_liquidity_threshold": 156482,
+  "spam_filtered": 258,
+  "scored": 2340,
+  "green": 1028,
+  "yellow": 434,
   "red": 878
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-16",
-   "base": 56,
-   "robinhood": 275
+   "base": 25,
+   "robinhood": 107
   },
   {
    "date": "2026-08-17",
@@ -125,11 +125,151 @@
   },
   {
    "date": "2026-09-06",
-   "base": 373,
+   "base": 443,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "SOXXx",
+   "name": "iShares Semiconductor tokenized ETF (xStock)",
+   "chain": "base",
+   "address": "0x39862d5b547a27b1f7ab60f403a53d0beecca2b7",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12458.4649477181,
+   "first_seen": 1788725878
+  },
+  {
+   "symbol": "WHL",
+   "name": "AwkwardWHALE",
+   "chain": "base",
+   "address": "0xdcd807cb72566dd60352ca3ce9a0749f33f24ae0",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 24898.0,
+   "first_seen": 1788725829
+  },
+  {
+   "symbol": "CATTERY",
+   "name": "BaseCattery",
+   "chain": "base",
+   "address": "0x48fbeae4f985ff483fb5e1ee3b5cbc71e58b23a1",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 77705.9295,
+   "first_seen": 1788725692
+  },
+  {
+   "symbol": "XPIN",
+   "name": "XPIN Network (XPIN)",
+   "chain": "base",
+   "address": "0x7f5faddc1684a92ad239b42f346009def20a804a",
+   "score": 57,
+   "verdict": "yellow",
+   "liquidity_usd": 195662.1076,
+   "first_seen": 1788725504
+  },
+  {
+   "symbol": "ATR",
+   "name": "ALTAR",
+   "chain": "base",
+   "address": "0x77db8b47325a804e8bd474c0711b99d932346b07",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 24826.1456,
+   "first_seen": 1788725502
+  },
+  {
+   "symbol": "PEPE",
+   "name": "PEPECOIN (pepecoin.bar)",
+   "chain": "base",
+   "address": "0x3b3f89d2a9d7485882375933e20bdc4bf4acbda6",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12451.05,
+   "first_seen": 1788725223
+  },
+  {
+   "symbol": "PAIR",
+   "name": "PAIR",
+   "chain": "base",
+   "address": "0xe8ff7dd85a470992ff0415332f0ba20eb1150b6c",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 2066061.9452,
+   "first_seen": 1788724905
+  },
+  {
+   "symbol": "SPEPE",
+   "name": "Stonk Pepe",
+   "chain": "base",
+   "address": "0xca458dc3ff0d7af1021ff5b903eb26f09945ed6a",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4066.1933,
+   "first_seen": 1788723319
+  },
+  {
+   "symbol": "USDC",
+   "name": "Upside Down Cat",
+   "chain": "base",
+   "address": "0x44679af4931e56812f944f69556b9b77b5c4ba5e",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 2536.8399,
+   "first_seen": 1788723136
+  },
+  {
+   "symbol": "LOWL",
+   "name": "LegitimateOWL",
+   "chain": "base",
+   "address": "0xc46155d5c4a8ea42411cea7040799d0bc84bb5f5",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 24907.5,
+   "first_seen": 1788722635
+  },
+  {
+   "symbol": "memestock",
+   "name": "the memestock cambrian explosion",
+   "chain": "base",
+   "address": "0xb20000000000000000000001cf7968fd247fbf01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4389.1019,
+   "first_seen": 1788722406
+  },
+  {
+   "symbol": "PECCY",
+   "name": "Amazon Peccy",
+   "chain": "base",
+   "address": "0x836c77a70b2072f4d4f3f2a6e3c0345a580e2490",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4486.9934,
+   "first_seen": 1788722403
+  },
+  {
+   "symbol": "WOFI",
+   "name": "WOFI",
+   "chain": "base",
+   "address": "0xb200000000000000000000bc7ec1d2c6a4880f4a",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 971406071.1826,
+   "first_seen": 1788722402
+  },
+  {
+   "symbol": "CFS",
+   "name": "CryptoFrendlyStock",
+   "chain": "base",
+   "address": "0x30dc1f1c4688555307ee7bdbaf7a1554d3a6f4d7",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4600.1116,
+   "first_seen": 1788722399
+  },
   {
    "symbol": "MOONBASE",
    "name": "Moonbase",
@@ -189,146 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 3991.4202,
    "first_seen": 1788719885
-  },
-  {
-   "symbol": "STONKEXSTR",
-   "name": "Stonkex Strategy",
-   "chain": "base",
-   "address": "0xe366a30660e1edefed5c8e46a1e4db57a9ddfb19",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4326.7342,
-   "first_seen": 1788719243
-  },
-  {
-   "symbol": "BPAD",
-   "name": "Basedpad",
-   "chain": "base",
-   "address": "0xa729b42017fa262a759da118a761874f3d040ab3",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4063.0793,
-   "first_seen": 1788719242
-  },
-  {
-   "symbol": "BLUEBALLS",
-   "name": "Blue Balls",
-   "chain": "base",
-   "address": "0x3c0e7d3e131d00f706db65b960b3e5a54193871a",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 6231.9807,
-   "first_seen": 1788718466
-  },
-  {
-   "symbol": "Stonks",
-   "name": "baseStonks",
-   "chain": "base",
-   "address": "0xeb31b84e9b0fe14421bb1ead3ba069f0b2ed5d69",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 3737147.0011,
-   "first_seen": 1788716962
-  },
-  {
-   "symbol": "DCAT",
-   "name": "Degen Cat",
-   "chain": "base",
-   "address": "0x4dfc509d7996d5ae295093032f728c47df8e0222",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4730.38105911746,
-   "first_seen": 1788716961
-  },
-  {
-   "symbol": "BLUESCREEN",
-   "name": "BLUESCREEN",
-   "chain": "base",
-   "address": "0xb200000000000000000000ad0c1a937f8c817701",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4507.8274,
-   "first_seen": 1788716275
-  },
-  {
-   "symbol": "UNIPCS",
-   "name": "Unipcs",
-   "chain": "base",
-   "address": "0x03cb1c58e4d3f80201244988413005b3d0b67f7c",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 202822000.8237,
-   "first_seen": 1788716274
-  },
-  {
-   "symbol": "CT",
-   "name": "Scroll through CT",
-   "chain": "base",
-   "address": "0xb2000000000000000000004e605af4de3f7df901",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4303.8182,
-   "first_seen": 1788715141
-  },
-  {
-   "symbol": "WEEKEND",
-   "name": "long weekend",
-   "chain": "base",
-   "address": "0xb200000000000000000000ee96ee1c40abb5ce01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4606.211,
-   "first_seen": 1788715139
-  },
-  {
-   "symbol": "CHIPHOUSE",
-   "name": "Chip House",
-   "chain": "base",
-   "address": "0xb2000000000000000000009f902a2cc2951e9301",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3940.2502,
-   "first_seen": 1788710933
-  },
-  {
-   "symbol": "cortado",
-   "name": "cortado",
-   "chain": "base",
-   "address": "0xb200000000000000000000711e96fce56c18fd63",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 19172.4261,
-   "first_seen": 1788710932
-  },
-  {
-   "symbol": "STONKEX",
-   "name": "The Stonks Exchange Ai",
-   "chain": "base",
-   "address": "0xf46f0cc7714b21faa2618b9407bbc9383f07b133",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 2488.3574,
-   "first_seen": 1788710930
-  },
-  {
-   "symbol": "AOBS",
-   "name": "Agent OBS",
-   "chain": "base",
-   "address": "0x6e699edee6f9febc05058493ac9d4821b8167b6b",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 39166.316,
-   "first_seen": 1788697332
-  },
-  {
-   "symbol": "⚡资本",
-   "name": "⚡资本",
-   "chain": "base",
-   "address": "0xc2c08ae68936e43e1caedfe549de996381e4a62f",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 5547.5206,
-   "first_seen": 1788696832
   }
  ],
  "confirmed": [
@@ -454,9 +454,9 @@
   }
  ],
  "probation": {
-  "waiting": 49,
+  "waiting": 62,
   "confirmed": 10,
-  "dropped": 347
+  "dropped": 348
  },
  "recent_drains": [
   {
@@ -648,7 +648,7 @@
   "rug": 937
  },
  "watchlist_active": 5,
- "price_snapshots": 13237,
+ "price_snapshots": 13122,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
