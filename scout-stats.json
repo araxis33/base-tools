@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-07T09:54:54Z",
- "generated_at_unix": 1788774894,
+ "generated_at": "2026-09-07T10:54:59Z",
+ "generated_at_unix": 1788778498,
  "period": {
   "start": "2026-07-15",
   "days": 54
  },
  "totals": {
-  "seen": 159275,
-  "base": 25160,
+  "seen": 159324,
+  "base": 25209,
   "robinhood": 134115,
-  "below_liquidity_threshold": 156621,
-  "spam_filtered": 278,
-  "scored": 2376,
-  "green": 1061,
+  "below_liquidity_threshold": 156655,
+  "spam_filtered": 287,
+  "scored": 2382,
+  "green": 1066,
   "yellow": 434,
-  "red": 881
+  "red": 882
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-17",
-   "base": 414,
-   "robinhood": 997
+   "base": 379,
+   "robinhood": 911
   },
   {
    "date": "2026-08-18",
@@ -125,11 +125,61 @@
   },
   {
    "date": "2026-09-07",
-   "base": 158,
+   "base": 207,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "ZT2",
+   "name": "fun Zero Two",
+   "chain": "base",
+   "address": "0x68dc7628be3f3738e986bd8d368d3f5af9905845",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 4441.6656810492,
+   "first_seen": 1788777136
+  },
+  {
+   "symbol": "AQUA",
+   "name": "fun Aqua",
+   "chain": "base",
+   "address": "0x54ec157d001e72bc7af15a86b4d8e8146d2a3ebe",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 5065.9575167254,
+   "first_seen": 1788777134
+  },
+  {
+   "symbol": "rBE",
+   "name": "Bloom Energy Tokenized Stock (Reality)",
+   "chain": "base",
+   "address": "0xec7c9fa3e14e25343640a95a3abf691aff6762af",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12447.6149304282,
+   "first_seen": 1788776996
+  },
+  {
+   "symbol": "Koin",
+   "name": "Koin",
+   "chain": "base",
+   "address": "0xb20000000000000000000069e90e0b209f8e6c01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 5749.6185,
+   "first_seen": 1788776044
+  },
+  {
+   "symbol": "rTQQQ",
+   "name": "ProShares UltraPro QQQ Tokenized Stock (Reality)",
+   "chain": "base",
+   "address": "0x36dd045ec0ef84551cc47a6d69a0e02cef6e0a6d",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12430.0149043506,
+   "first_seen": 1788775265
+  },
   {
    "symbol": "Hirono",
    "name": "蒙面小野",
@@ -279,56 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 29827.7169,
    "first_seen": 1788770947
-  },
-  {
-   "symbol": "CEAR",
-   "name": "CharacteristicEARTHWORM",
-   "chain": "base",
-   "address": "0x6082d6bb5891105bc627874f0fdafe37cd98868d",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 24922.8,
-   "first_seen": 1788770946
-  },
-  {
-   "symbol": "MOONKIN",
-   "name": "MOONKIN (moonkin.online)",
-   "chain": "base",
-   "address": "0xeead131f178e3d27fd18f101f405a585627686ac",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 12446.4649260915,
-   "first_seen": 1788769005
-  },
-  {
-   "symbol": "NUBIQ",
-   "name": "Noobique",
-   "chain": "base",
-   "address": "0xb200000000000000000000026118c229de01961d",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 32838.3201,
-   "first_seen": 1788767737
-  },
-  {
-   "symbol": "NXRGT",
-   "name": "NoXeR Global Trust",
-   "chain": "base",
-   "address": "0x0859f0e1e1f57eca43c6e00ab59a255d6a107b07",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 21838.6106,
-   "first_seen": 1788767735
-  },
-  {
-   "symbol": "INFR",
-   "name": "Inference",
-   "chain": "base",
-   "address": "0xc851603d24445da6df59a46b00e23f018021b3a9",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3789.3814,
-   "first_seen": 1788767730
   }
  ],
  "confirmed": [
@@ -464,9 +464,9 @@
   }
  ],
  "probation": {
-  "waiting": 71,
+  "waiting": 75,
   "confirmed": 11,
-  "dropped": 371
+  "dropped": 372
  },
  "recent_drains": [
   {
@@ -658,7 +658,7 @@
   "rug": 937
  },
  "watchlist_active": 6,
- "price_snapshots": 12912,
+ "price_snapshots": 13086,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
