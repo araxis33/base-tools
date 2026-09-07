@@ -1,19 +1,19 @@
 {
- "generated_at": "2026-09-07T20:45:25Z",
- "generated_at_unix": 1788813924,
+ "generated_at": "2026-09-07T21:45:37Z",
+ "generated_at_unix": 1788817535,
  "period": {
   "start": "2026-07-15",
   "days": 54
  },
  "totals": {
-  "seen": 159683,
-  "base": 25568,
+  "seen": 159755,
+  "base": 25640,
   "robinhood": 134115,
-  "below_liquidity_threshold": 156932,
-  "spam_filtered": 317,
-  "scored": 2434,
-  "green": 1114,
-  "yellow": 435,
+  "below_liquidity_threshold": 156989,
+  "spam_filtered": 323,
+  "scored": 2443,
+  "green": 1122,
+  "yellow": 436,
   "red": 885
  },
  "liquidity_threshold_usd": 1500.0,
@@ -120,11 +120,106 @@
   },
   {
    "date": "2026-09-07",
-   "base": 566,
+   "base": 583,
+   "robinhood": 0
+  },
+  {
+   "date": "2026-09-08",
+   "base": 55,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "ZARP",
+   "name": "ZARP Stablecoin",
+   "chain": "base",
+   "address": "0xb755506531786c8ac63b756bab1ac387bacb0c04",
+   "score": 40,
+   "verdict": "yellow",
+   "liquidity_usd": 19426.0635,
+   "first_seen": 1788816251
+  },
+  {
+   "symbol": "MUSK",
+   "name": "MUSK",
+   "chain": "base",
+   "address": "0xb2000000000000000000006b62580924d63c0e01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4152.6599,
+   "first_seen": 1788816203
+  },
+  {
+   "symbol": "DATABASE",
+   "name": "Database",
+   "chain": "base",
+   "address": "0xf0e10d21981ed0162c0928a45806ce34c9f9cec0",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4440.5493,
+   "first_seen": 1788816014
+  },
+  {
+   "symbol": "EVE",
+   "name": "Eve",
+   "chain": "base",
+   "address": "0x837d4ea7063d1f44cf5801357c0d820d58c584fa",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4136.0342,
+   "first_seen": 1788816013
+  },
+  {
+   "symbol": "MXL",
+   "name": "MaxLinear Tokenized Stock (Robinhood)",
+   "chain": "base",
+   "address": "0x8069255c10d88e69910cc9add152d463cf42c987",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12469.4649550503,
+   "first_seen": 1788815241
+  },
+  {
+   "symbol": "thousands",
+   "name": "thousands",
+   "chain": "base",
+   "address": "0xb2000000000000000000001fd8c17ec48320d861",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 17662.7469,
+   "first_seen": 1788814649
+  },
+  {
+   "symbol": "BBY",
+   "name": "SaltyBABY",
+   "chain": "base",
+   "address": "0xf7dbc3a619dda38fc6e9c23e52289b450cf8874b",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 24951.1,
+   "first_seen": 1788814648
+  },
+  {
+   "symbol": "BSOCKS",
+   "name": "BLUE SOCKS",
+   "chain": "base",
+   "address": "0xb2000000000000000000002c305c469ba8502f01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4158.4608,
+   "first_seen": 1788814375
+  },
+  {
+   "symbol": "BANDS",
+   "name": "Blue Bands",
+   "chain": "base",
+   "address": "0xb2000000000000000000004bffb36dca1e049b01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 5794.1522,
+   "first_seen": 1788814374
+  },
   {
    "symbol": "rSPCX",
    "name": "SpaceX Tokenized Stock (Reality)",
@@ -234,96 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 76566.5702,
    "first_seen": 1788809945
-  },
-  {
-   "symbol": "Manhattan",
-   "name": "Manhattan",
-   "chain": "base",
-   "address": "0xb20000000000000000000091fe45dadefa5af1b4",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12996.518,
-   "first_seen": 1788809808
-  },
-  {
-   "symbol": "NXRSLK",
-   "name": "NoXeR $LACK",
-   "chain": "base",
-   "address": "0x0991d91886c7d47ab3017cf3c1b39a0f0993bb07",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 21803.9423,
-   "first_seen": 1788809391
-  },
-  {
-   "symbol": "test",
-   "name": "test",
-   "chain": "base",
-   "address": "0x55dda05510965a407a63e09be50f63227415595b",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4556.3451,
-   "first_seen": 1788808799
-  },
-  {
-   "symbol": "preSPCX",
-   "name": "SpaceX \nPre-IPO stock (Republic)",
-   "chain": "base",
-   "address": "0x903b8063a78a3309e48cb6002815ff5a46f4596d",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13136.863,
-   "first_seen": 1788808798
-  },
-  {
-   "symbol": "PC",
-   "name": "COMPUTER",
-   "chain": "base",
-   "address": "0xb200000000000000000000d4fa1977a43ffffb01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3713.167,
-   "first_seen": 1788808610
-  },
-  {
-   "symbol": "BONER",
-   "name": "Boner Coin",
-   "chain": "base",
-   "address": "0xd0b2c938d5c7e19f1bcdfd8dfcc5fc31cac8ec17",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12456.3,
-   "first_seen": 1788807198
-  },
-  {
-   "symbol": "JOHNDOE",
-   "name": "John Doe",
-   "chain": "base",
-   "address": "0x15955f6e42990249197afe75e34a86e3b20e35fc",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 5585.9334,
-   "first_seen": 1788806695
-  },
-  {
-   "symbol": "FLOW",
-   "name": "ApexFlow  by Virtuals",
-   "chain": "base",
-   "address": "0x77885db785150d5d282ab3019d4548cd649f9e2d",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 74996.9741,
-   "first_seen": 1788805925
-  },
-  {
-   "symbol": "CATE",
-   "name": "Catecoin (cate.life)",
-   "chain": "base",
-   "address": "0xf62f20d5066421969d7cc0fe59d55153954d1f3d",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12460.5149454078,
-   "first_seen": 1788805697
   }
  ],
  "confirmed": [
@@ -469,9 +474,9 @@
   }
  ],
  "probation": {
-  "waiting": 58,
+  "waiting": 53,
   "confirmed": 12,
-  "dropped": 437
+  "dropped": 451
  },
  "recent_drains": [
   {
@@ -658,12 +663,12 @@
   }
  ],
  "alerts": {
-  "dump": 689,
+  "dump": 690,
   "pump": 260,
   "rug": 937
  },
- "watchlist_active": 7,
- "price_snapshots": 12028,
+ "watchlist_active": 6,
+ "price_snapshots": 11961,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
