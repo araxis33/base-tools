@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-07T10:54:59Z",
- "generated_at_unix": 1788778498,
+ "generated_at": "2026-09-07T12:55:06Z",
+ "generated_at_unix": 1788785705,
  "period": {
   "start": "2026-07-15",
   "days": 54
  },
  "totals": {
-  "seen": 159324,
-  "base": 25209,
+  "seen": 159407,
+  "base": 25292,
   "robinhood": 134115,
-  "below_liquidity_threshold": 156655,
-  "spam_filtered": 287,
-  "scored": 2382,
-  "green": 1066,
+  "below_liquidity_threshold": 156712,
+  "spam_filtered": 296,
+  "scored": 2399,
+  "green": 1081,
   "yellow": 434,
-  "red": 882
+  "red": 884
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-17",
-   "base": 379,
-   "robinhood": 911
+   "base": 311,
+   "robinhood": 812
   },
   {
    "date": "2026-08-18",
@@ -125,11 +125,161 @@
   },
   {
    "date": "2026-09-07",
-   "base": 207,
+   "base": 290,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "BALLSE",
+   "name": "I can feel it in my BALLSE",
+   "chain": "base",
+   "address": "0xb20000000000000000000066e527d6820eb73f01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4141.0053,
+   "first_seen": 1788785066
+  },
+  {
+   "symbol": "24/7/365",
+   "name": "While Fiat",
+   "chain": "base",
+   "address": "0xb2000000000000000000005677e95542f840e601",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4211.2384,
+   "first_seen": 1788785064
+  },
+  {
+   "symbol": "RDDT",
+   "name": "Reddit (Derivatives)",
+   "chain": "base",
+   "address": "0x6ce2afbb42947343b0a41f7232aa2e3a6abf8e0d",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 13977.6021,
+   "first_seen": 1788785061
+  },
+  {
+   "symbol": "NUTSAQ",
+   "name": "NUTSAQ 100",
+   "chain": "base",
+   "address": "0x96962d7bee23c74a60d5dffefd36ba07daab2694",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 435737.8081,
+   "first_seen": 1788785057
+  },
+  {
+   "symbol": "OL",
+   "name": "OpenLaunch",
+   "chain": "base",
+   "address": "0xb200000000000000000000248c4a404f0ddaf496",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12849.8217,
+   "first_seen": 1788785053
+  },
+  {
+   "symbol": "touch some grass",
+   "name": "touch some grass",
+   "chain": "base",
+   "address": "0xb200000000000000000000acb975c6f7f7018fcd",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12317.236,
+   "first_seen": 1788785052
+  },
+  {
+   "symbol": "HOVER",
+   "name": "Hover",
+   "chain": "base",
+   "address": "0xa201689f24c395b587f03858c727e95f08448a35",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13223.5535,
+   "first_seen": 1788783918
+  },
+  {
+   "symbol": "カイル",
+   "name": "Blue Dolphin",
+   "chain": "base",
+   "address": "0xb200000000000000000000d818f072cb0039e501",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4083.8274,
+   "first_seen": 1788783360
+  },
+  {
+   "symbol": "FISH",
+   "name": "How To Fish",
+   "chain": "base",
+   "address": "0xac742d9821419f5a11021fd089dbbe0b5b718b97",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 27268.9505,
+   "first_seen": 1788783084
+  },
+  {
+   "symbol": "HYPE",
+   "name": "Hyperliquid",
+   "chain": "base",
+   "address": "0x2d6226dce98e4fea6ca2de5e78af84b4a5b932d9",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 27268.9505,
+   "first_seen": 1788783081
+  },
+  {
+   "symbol": "HBAR",
+   "name": "Hedera",
+   "chain": "base",
+   "address": "0x2a9f4878667874bd68e28597e7f4def9aeb92944",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 2896410235.3859,
+   "first_seen": 1788783077
+  },
+  {
+   "symbol": "BaseLlama",
+   "name": "The Base Llama",
+   "chain": "base",
+   "address": "0xb2000000000000000000007f49deb1a6a9829001",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4177.9027,
+   "first_seen": 1788783074
+  },
+  {
+   "symbol": "GOAF",
+   "name": "Global Oil Asset Fund",
+   "chain": "base",
+   "address": "0xb200000000000000000000ee62557d10ca34da9b",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 10226.836,
+   "first_seen": 1788783072
+  },
+  {
+   "symbol": "維尼來了",
+   "name": "小熊維尼",
+   "chain": "base",
+   "address": "0xb20000000000000000000021f3839d29fcb09dbe",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 10767.8662,
+   "first_seen": 1788783065
+  },
+  {
+   "symbol": "LABOR",
+   "name": "Labor Day",
+   "chain": "base",
+   "address": "0xb200000000000000000000956615ee9131a46701",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4617.50677204367,
+   "first_seen": 1788783063
+  },
   {
    "symbol": "ZT2",
    "name": "fun Zero Two",
@@ -179,156 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 12430.0149043506,
    "first_seen": 1788775265
-  },
-  {
-   "symbol": "Hirono",
-   "name": "蒙面小野",
-   "chain": "base",
-   "address": "0xb20000000000000000000085d8c2190d17838801",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 5873.6897,
-   "first_seen": 1788774852
-  },
-  {
-   "symbol": "AGI",
-   "name": "Artificial Genius Intelligence",
-   "chain": "base",
-   "address": "0xbd4cde5b6e79c99c1051a050383e146eeea6e785",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 33306.3356,
-   "first_seen": 1788774669
-  },
-  {
-   "symbol": "HENRY",
-   "name": "Official Bitcoin Mascot",
-   "chain": "base",
-   "address": "0xeefe06c57fa0b5e7954fb121ac6bcd8d98af8a9b",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 28371.8263,
-   "first_seen": 1788774168
-  },
-  {
-   "symbol": "MACINTOSH",
-   "name": "Macintosh",
-   "chain": "base",
-   "address": "0x9f163f47da16c3c474ce94c5dd2de28169c52983",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 28368.1809,
-   "first_seen": 1788774073
-  },
-  {
-   "symbol": "DELL",
-   "name": "Dell Tokenized Stock (Robinhood)",
-   "chain": "base",
-   "address": "0x83170a5280a7afc6b374998375b267f1d2027a81",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12474.4149545502,
-   "first_seen": 1788773014
-  },
-  {
-   "symbol": "GLOBALFINANCE",
-   "name": "Base is 𝘵𝘩𝘦 chain for",
-   "chain": "base",
-   "address": "0xb200000000000000000000d85c23d13bc8833801",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4409.10372480792,
-   "first_seen": 1788772326
-  },
-  {
-   "symbol": "CNF",
-   "name": "Catference",
-   "chain": "base",
-   "address": "0xb2000000000000000000004dfd0a29bb7404bc38",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 26377.8772,
-   "first_seen": 1788771235
-  },
-  {
-   "symbol": "CLAN",
-   "name": "clan.tech",
-   "chain": "base",
-   "address": "0x3908fd9d6c3716757b98a76189ea83bfee578a61",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12458.8649455667,
-   "first_seen": 1788771234
-  },
-  {
-   "symbol": "MEMELORD",
-   "name": "memelord",
-   "chain": "base",
-   "address": "0x0fac0c87a0af90199bb854dde9dd31cb9b1420f1",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 74753.2096311971,
-   "first_seen": 1788771233
-  },
-  {
-   "symbol": "RTD",
-   "name": "The Retarded Index",
-   "chain": "base",
-   "address": "0xb200000000000000000000ba48bfb52f33ec5ba6",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 27887.3048,
-   "first_seen": 1788771140
-  },
-  {
-   "symbol": "PRO",
-   "name": "Propy",
-   "chain": "base",
-   "address": "0x12fde6981a74a2e3ec03981730037d849416f5e0",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 34676.8362,
-   "first_seen": 1788770954
-  },
-  {
-   "symbol": "YOLO",
-   "name": "YOLO",
-   "chain": "base",
-   "address": "0xb20000000000000000000072d9046a6cf186e576",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 31593.045,
-   "first_seen": 1788770953
-  },
-  {
-   "symbol": "ZEN",
-   "name": "Horizen",
-   "chain": "base",
-   "address": "0xf095e72bf83bcde5eacfdd77248b867ba23f9d5d",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 34676.8362,
-   "first_seen": 1788770950
-  },
-  {
-   "symbol": "DEBIT",
-   "name": "Teller",
-   "chain": "base",
-   "address": "0xe3306dfd80636acafeaf9c8bbe9e3fa33da99ed4",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 1129237.1143,
-   "first_seen": 1788770949
-  },
-  {
-   "symbol": "METEOPAD",
-   "name": "Meteopad",
-   "chain": "base",
-   "address": "0xb2000000000000000000007df5cf2abb2441acab",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 29827.7169,
-   "first_seen": 1788770947
   }
  ],
  "confirmed": [
@@ -464,9 +464,9 @@
   }
  ],
  "probation": {
-  "waiting": 75,
+  "waiting": 61,
   "confirmed": 11,
-  "dropped": 372
+  "dropped": 401
  },
  "recent_drains": [
   {
@@ -658,7 +658,7 @@
   "rug": 937
  },
  "watchlist_active": 6,
- "price_snapshots": 13086,
+ "price_snapshots": 13063,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
