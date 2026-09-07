@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-07T12:55:06Z",
- "generated_at_unix": 1788785705,
+ "generated_at": "2026-09-07T17:45:07Z",
+ "generated_at_unix": 1788803106,
  "period": {
   "start": "2026-07-15",
   "days": 54
  },
  "totals": {
-  "seen": 159407,
-  "base": 25292,
+  "seen": 159435,
+  "base": 25320,
   "robinhood": 134115,
-  "below_liquidity_threshold": 156712,
-  "spam_filtered": 296,
-  "scored": 2399,
-  "green": 1081,
+  "below_liquidity_threshold": 156733,
+  "spam_filtered": 298,
+  "scored": 2402,
+  "green": 1084,
   "yellow": 434,
   "red": 884
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-17",
-   "base": 311,
-   "robinhood": 812
+   "base": 97,
+   "robinhood": 345
   },
   {
    "date": "2026-08-18",
@@ -125,11 +125,41 @@
   },
   {
    "date": "2026-09-07",
-   "base": 290,
+   "base": 320,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "GOOGL",
+   "name": "Alphabet Class A Tokenized Stock (Robinhood)",
+   "chain": "base",
+   "address": "0x1968d98851b65ed77f8ef8dae7f16eeceec6ef06",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12541.1150420512,
+   "first_seen": 1788786889
+  },
+  {
+   "symbol": "TRUMP",
+   "name": "TRUMP",
+   "chain": "base",
+   "address": "0x37b5dd11451e312bc526739e17ed7de8e9228b07",
+   "score": 70,
+   "verdict": "green",
+   "liquidity_usd": 2700784.3672,
+   "first_seen": 1788786841
+  },
+  {
+   "symbol": "cheefrog",
+   "name": "CHEEFROG",
+   "chain": "base",
+   "address": "0xb200000000000000000000531ad1e489c9f414e7",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13602.2296,
+   "first_seen": 1788786838
+  },
   {
    "symbol": "BALLSE",
    "name": "I can feel it in my BALLSE",
@@ -299,36 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 5065.9575167254,
    "first_seen": 1788777134
-  },
-  {
-   "symbol": "rBE",
-   "name": "Bloom Energy Tokenized Stock (Reality)",
-   "chain": "base",
-   "address": "0xec7c9fa3e14e25343640a95a3abf691aff6762af",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12447.6149304282,
-   "first_seen": 1788776996
-  },
-  {
-   "symbol": "Koin",
-   "name": "Koin",
-   "chain": "base",
-   "address": "0xb20000000000000000000069e90e0b209f8e6c01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 5749.6185,
-   "first_seen": 1788776044
-  },
-  {
-   "symbol": "rTQQQ",
-   "name": "ProShares UltraPro QQQ Tokenized Stock (Reality)",
-   "chain": "base",
-   "address": "0x36dd045ec0ef84551cc47a6d69a0e02cef6e0a6d",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12430.0149043506,
-   "first_seen": 1788775265
   }
  ],
  "confirmed": [
@@ -466,7 +466,7 @@
  "probation": {
   "waiting": 61,
   "confirmed": 11,
-  "dropped": 401
+  "dropped": 404
  },
  "recent_drains": [
   {
@@ -654,11 +654,11 @@
  ],
  "alerts": {
   "dump": 688,
-  "pump": 259,
+  "pump": 260,
   "rug": 937
  },
  "watchlist_active": 6,
- "price_snapshots": 13063,
+ "price_snapshots": 12295,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
