@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-07T08:54:48Z",
- "generated_at_unix": 1788771287,
+ "generated_at": "2026-09-07T09:54:54Z",
+ "generated_at_unix": 1788774894,
  "period": {
   "start": "2026-07-15",
   "days": 54
  },
  "totals": {
-  "seen": 159217,
-  "base": 25102,
+  "seen": 159275,
+  "base": 25160,
   "robinhood": 134115,
-  "below_liquidity_threshold": 156572,
-  "spam_filtered": 275,
-  "scored": 2370,
-  "green": 1055,
+  "below_liquidity_threshold": 156621,
+  "spam_filtered": 278,
+  "scored": 2376,
+  "green": 1061,
   "yellow": 434,
   "red": 881
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-17",
-   "base": 450,
-   "robinhood": 1107
+   "base": 414,
+   "robinhood": 997
   },
   {
    "date": "2026-08-18",
@@ -125,11 +125,71 @@
   },
   {
    "date": "2026-09-07",
-   "base": 100,
+   "base": 158,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "Hirono",
+   "name": "蒙面小野",
+   "chain": "base",
+   "address": "0xb20000000000000000000085d8c2190d17838801",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 5873.6897,
+   "first_seen": 1788774852
+  },
+  {
+   "symbol": "AGI",
+   "name": "Artificial Genius Intelligence",
+   "chain": "base",
+   "address": "0xbd4cde5b6e79c99c1051a050383e146eeea6e785",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 33306.3356,
+   "first_seen": 1788774669
+  },
+  {
+   "symbol": "HENRY",
+   "name": "Official Bitcoin Mascot",
+   "chain": "base",
+   "address": "0xeefe06c57fa0b5e7954fb121ac6bcd8d98af8a9b",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 28371.8263,
+   "first_seen": 1788774168
+  },
+  {
+   "symbol": "MACINTOSH",
+   "name": "Macintosh",
+   "chain": "base",
+   "address": "0x9f163f47da16c3c474ce94c5dd2de28169c52983",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 28368.1809,
+   "first_seen": 1788774073
+  },
+  {
+   "symbol": "DELL",
+   "name": "Dell Tokenized Stock (Robinhood)",
+   "chain": "base",
+   "address": "0x83170a5280a7afc6b374998375b267f1d2027a81",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12474.4149545502,
+   "first_seen": 1788773014
+  },
+  {
+   "symbol": "GLOBALFINANCE",
+   "name": "Base is 𝘵𝘩𝘦 chain for",
+   "chain": "base",
+   "address": "0xb200000000000000000000d85c23d13bc8833801",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4409.10372480792,
+   "first_seen": 1788772326
+  },
   {
    "symbol": "CNF",
    "name": "Catference",
@@ -269,66 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 3789.3814,
    "first_seen": 1788767730
-  },
-  {
-   "symbol": "HARVEST",
-   "name": "OnchainHarvest",
-   "chain": "base",
-   "address": "0xb20000000000000000000007ff36b3196d5f5f9a",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 23910.2683,
-   "first_seen": 1788767727
-  },
-  {
-   "symbol": "SPACEPEG",
-   "name": "Space Peg",
-   "chain": "base",
-   "address": "0x07ba2a0260d452efcc50ee50f20fee7634030c1d",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4006.5786,
-   "first_seen": 1788767726
-  },
-  {
-   "symbol": "THINKCAT",
-   "name": "Let me think",
-   "chain": "base",
-   "address": "0x3dc0427f231c892cda8e78b17fd787e3748e51b9",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4138.697,
-   "first_seen": 1788767724
-  },
-  {
-   "symbol": "AGI",
-   "name": "Artificial Goyim Intelligence",
-   "chain": "base",
-   "address": "0xb200000000000000000000e6108e5fcd094efa01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4045.6708,
-   "first_seen": 1788731525
-  },
-  {
-   "symbol": "YOLO",
-   "name": "YOLO (yolorh.com)",
-   "chain": "base",
-   "address": "0xda93c8bb9a585184956332c885111cae2597a152",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12533.65,
-   "first_seen": 1788731042
-  },
-  {
-   "symbol": "JACKET",
-   "name": "Leather Jacket AI",
-   "chain": "base",
-   "address": "0x872f164280934ee6149704e55d7c4af9c3ada88d",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4120.6061,
-   "first_seen": 1788730765
   }
  ],
  "confirmed": [
@@ -466,7 +466,7 @@
  "probation": {
   "waiting": 71,
   "confirmed": 11,
-  "dropped": 365
+  "dropped": 371
  },
  "recent_drains": [
   {
@@ -658,7 +658,7 @@
   "rug": 937
  },
  "watchlist_active": 6,
- "price_snapshots": 12738,
+ "price_snapshots": 12912,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
