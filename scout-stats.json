@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-07T19:45:18Z",
- "generated_at_unix": 1788810317,
+ "generated_at": "2026-09-07T20:45:25Z",
+ "generated_at_unix": 1788813924,
  "period": {
   "start": "2026-07-15",
   "days": 54
  },
  "totals": {
-  "seen": 159607,
-  "base": 25492,
+  "seen": 159683,
+  "base": 25568,
   "robinhood": 134115,
-  "below_liquidity_threshold": 156866,
-  "spam_filtered": 315,
-  "scored": 2426,
-  "green": 1106,
+  "below_liquidity_threshold": 156932,
+  "spam_filtered": 317,
+  "scored": 2434,
+  "green": 1114,
   "yellow": 435,
   "red": 885
  },
@@ -120,11 +120,91 @@
   },
   {
    "date": "2026-09-07",
-   "base": 490,
+   "base": 566,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "rSPCX",
+   "name": "SpaceX Tokenized Stock (Reality)",
+   "chain": "base",
+   "address": "0x7b5912dfcab25d75bf866a13f72945750d60c7be",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12851.238,
+   "first_seen": 1788813692
+  },
+  {
+   "symbol": "FOMO",
+   "name": "[Fake] FOMO (fomo.giving)",
+   "chain": "base",
+   "address": "0x91825c565fce4ebce01c3a509e174b8b36c72bb2",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12446.1149341401,
+   "first_seen": 1788812558
+  },
+  {
+   "symbol": "BODEN",
+   "name": "Henter Boden",
+   "chain": "base",
+   "address": "0xa2e23cb1367f4d14c558e951d8d5a8d958a5c77f",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 10512.126,
+   "first_seen": 1788812014
+  },
+  {
+   "symbol": "STONKO",
+   "name": "Stonko the Bull",
+   "chain": "base",
+   "address": "0xc618d47d0fc77b3a009b86428aa775ccba0116d8",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4012.3311,
+   "first_seen": 1788811689
+  },
+  {
+   "symbol": "BRKT",
+   "name": "Base Rocket Bass",
+   "chain": "base",
+   "address": "0xbf97060b2c913c33aa23fb112c997cd99fc226b6",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4473.8282,
+   "first_seen": 1788811688
+  },
+  {
+   "symbol": "JIMOTHY",
+   "name": "Jimothy The Raccoon",
+   "chain": "base",
+   "address": "0x4209ca0180500c6cc705f1fb029dc9d455a1af04",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12477.5649683734,
+   "first_seen": 1788810866
+  },
+  {
+   "symbol": "ADA",
+   "name": "fun Ada AI",
+   "chain": "base",
+   "address": "0x8c1976e84fb74ddc37935218a5fc97bf5f62ceea",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 4422.8973,
+   "first_seen": 1788810682
+  },
+  {
+   "symbol": "WAYAI",
+   "name": "fun Wayfinder Foundation",
+   "chain": "base",
+   "address": "0x22c188e901cfd08d023d01a699c7e7c08ed8fe78",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 4429.1886,
+   "first_seen": 1788810589
+  },
   {
    "symbol": "LAPTOP",
    "name": "LAPTOP Price (",
@@ -244,89 +324,19 @@
    "verdict": "green",
    "liquidity_usd": 12460.5149454078,
    "first_seen": 1788805697
-  },
-  {
-   "symbol": "ZUNICORN",
-   "name": "Zebra Unicorn",
-   "chain": "base",
-   "address": "0xb200000000000000000000ae65e52973e5c1d401",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 5573.1784,
-   "first_seen": 1788804476
-  },
-  {
-   "symbol": "qBTC",
-   "name": "Quantum Bitcoin",
-   "chain": "base",
-   "address": "0x9d63b8b62a16047780ab853c9ff79708192b7734",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 74780.2096646029,
-   "first_seen": 1788803479
-  },
-  {
-   "symbol": "WORF",
-   "name": "World Oil Reserve Fund",
-   "chain": "base",
-   "address": "0x61506d7bcaab6e3b115b91891d4fa8f3a4aa333d",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 116664.8025,
-   "first_seen": 1788803388
-  },
-  {
-   "symbol": "BIDEN2028",
-   "name": "BIDEN2028",
-   "chain": "base",
-   "address": "0xb200000000000000000000ca38c6de4e225a6301",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4302.51458040782,
-   "first_seen": 1788803387
-  },
-  {
-   "symbol": "MANIFEST",
-   "name": "Manifesting (manifesting.meme)",
-   "chain": "base",
-   "address": "0x09afa290660bb57a0431c5596e4365206ddc2875",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12467.2849,
-   "first_seen": 1788803386
-  },
-  {
-   "symbol": "SLTH",
-   "name": "MinimumSLOTH",
-   "chain": "base",
-   "address": "0x7723e7c43c977fc66867ac3148b22e1c28431bed",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 24919.9,
-   "first_seen": 1788803385
-  },
-  {
-   "symbol": "LAPTOP",
-   "name": "LAPTOP TOKEN",
-   "chain": "base",
-   "address": "0x0925ee245376eaad40592996d84a0315e1b2dead",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 24558.719,
-   "first_seen": 1788803113
-  },
-  {
-   "symbol": "LAPTOP",
-   "name": "Laptop",
-   "chain": "base",
-   "address": "0x4fb636434b05c5dbcf0070f2e810f8e706277b07",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 14323026.7981,
-   "first_seen": 1788803112
   }
  ],
  "confirmed": [
+  {
+   "symbol": "PC",
+   "chain": "base",
+   "address": "0xb200000000000000000000d4fa1977a43ffffb01",
+   "buyers_h1": 124,
+   "volume_h1": 28652.7957729816,
+   "liquidity_usd": 9332.7936,
+   "confirmed_at": 1788808610,
+   "hours_waited": 0.8
+  },
   {
    "symbol": "BLUE",
    "chain": "base",
@@ -459,9 +469,9 @@
   }
  ],
  "probation": {
-  "waiting": 56,
-  "confirmed": 11,
-  "dropped": 432
+  "waiting": 58,
+  "confirmed": 12,
+  "dropped": 437
  },
  "recent_drains": [
   {
@@ -652,8 +662,8 @@
   "pump": 260,
   "rug": 937
  },
- "watchlist_active": 6,
- "price_snapshots": 12095,
+ "watchlist_active": 7,
+ "price_snapshots": 12028,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
