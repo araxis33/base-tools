@@ -1,28 +1,23 @@
 {
- "generated_at": "2026-09-07T18:45:12Z",
- "generated_at_unix": 1788806712,
+ "generated_at": "2026-09-07T19:45:18Z",
+ "generated_at_unix": 1788810317,
  "period": {
   "start": "2026-07-15",
   "days": 54
  },
  "totals": {
-  "seen": 159537,
-  "base": 25422,
+  "seen": 159607,
+  "base": 25492,
   "robinhood": 134115,
-  "below_liquidity_threshold": 156814,
-  "spam_filtered": 307,
-  "scored": 2416,
-  "green": 1097,
+  "below_liquidity_threshold": 156866,
+  "spam_filtered": 315,
+  "scored": 2426,
+  "green": 1106,
   "yellow": 435,
-  "red": 884
+  "red": 885
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
-  {
-   "date": "2026-08-17",
-   "base": 55,
-   "robinhood": 194
-  },
   {
    "date": "2026-08-18",
    "base": 512,
@@ -125,11 +120,101 @@
   },
   {
    "date": "2026-09-07",
-   "base": 420,
+   "base": 490,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "LAPTOP",
+   "name": "LAPTOP Price (",
+   "chain": "base",
+   "address": "0x63d879e664607695e59bc3025fdd139828b2020e",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 150702.3704,
+   "first_seen": 1788810310
+  },
+  {
+   "symbol": "META",
+   "name": "Meta Platforms Tokenized Stock (Robinhood)",
+   "chain": "base",
+   "address": "0x3c8ee542668aba54b14501853e0d2a206daeb94e",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12528.0751,
+   "first_seen": 1788810127
+  },
+  {
+   "symbol": "BOB",
+   "name": "Build on Base",
+   "chain": "base",
+   "address": "0xa8300dad6211a40159e4578dae256709241b6141",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 76566.5702,
+   "first_seen": 1788809945
+  },
+  {
+   "symbol": "Manhattan",
+   "name": "Manhattan",
+   "chain": "base",
+   "address": "0xb20000000000000000000091fe45dadefa5af1b4",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12996.518,
+   "first_seen": 1788809808
+  },
+  {
+   "symbol": "NXRSLK",
+   "name": "NoXeR $LACK",
+   "chain": "base",
+   "address": "0x0991d91886c7d47ab3017cf3c1b39a0f0993bb07",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 21803.9423,
+   "first_seen": 1788809391
+  },
+  {
+   "symbol": "test",
+   "name": "test",
+   "chain": "base",
+   "address": "0x55dda05510965a407a63e09be50f63227415595b",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4556.3451,
+   "first_seen": 1788808799
+  },
+  {
+   "symbol": "preSPCX",
+   "name": "SpaceX \nPre-IPO stock (Republic)",
+   "chain": "base",
+   "address": "0x903b8063a78a3309e48cb6002815ff5a46f4596d",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13136.863,
+   "first_seen": 1788808798
+  },
+  {
+   "symbol": "PC",
+   "name": "COMPUTER",
+   "chain": "base",
+   "address": "0xb200000000000000000000d4fa1977a43ffffb01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3713.167,
+   "first_seen": 1788808610
+  },
+  {
+   "symbol": "BONER",
+   "name": "Boner Coin",
+   "chain": "base",
+   "address": "0xd0b2c938d5c7e19f1bcdfd8dfcc5fc31cac8ec17",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12456.3,
+   "first_seen": 1788807198
+  },
   {
    "symbol": "JOHNDOE",
    "name": "John Doe",
@@ -239,96 +324,6 @@
    "verdict": "green",
    "liquidity_usd": 14323026.7981,
    "first_seen": 1788803112
-  },
-  {
-   "symbol": "LAPTOP",
-   "name": "LAPTOP",
-   "chain": "base",
-   "address": "0xb200000000000000000000603169793649ee5d84",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3449392085.0681,
-   "first_seen": 1788803111
-  },
-  {
-   "symbol": "Laptop",
-   "name": "Laptop token",
-   "chain": "base",
-   "address": "0x9c826aad86a616ecaec24bc11df0ed040d1b3b07",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3799.5301,
-   "first_seen": 1788803109
-  },
-  {
-   "symbol": "LAPTOP",
-   "name": "Hunter Biden's Laptop",
-   "chain": "base",
-   "address": "0xb20000000000000000000084286146efc029cc9e",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 15469.9159,
-   "first_seen": 1788803108
-  },
-  {
-   "symbol": "GOOGL",
-   "name": "Alphabet Class A Tokenized Stock (Robinhood)",
-   "chain": "base",
-   "address": "0x1968d98851b65ed77f8ef8dae7f16eeceec6ef06",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12541.1150420512,
-   "first_seen": 1788786889
-  },
-  {
-   "symbol": "TRUMP",
-   "name": "TRUMP",
-   "chain": "base",
-   "address": "0x37b5dd11451e312bc526739e17ed7de8e9228b07",
-   "score": 70,
-   "verdict": "green",
-   "liquidity_usd": 2700784.3672,
-   "first_seen": 1788786841
-  },
-  {
-   "symbol": "cheefrog",
-   "name": "CHEEFROG",
-   "chain": "base",
-   "address": "0xb200000000000000000000531ad1e489c9f414e7",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13602.2296,
-   "first_seen": 1788786838
-  },
-  {
-   "symbol": "BALLSE",
-   "name": "I can feel it in my BALLSE",
-   "chain": "base",
-   "address": "0xb20000000000000000000066e527d6820eb73f01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4141.0053,
-   "first_seen": 1788785066
-  },
-  {
-   "symbol": "24/7/365",
-   "name": "While Fiat",
-   "chain": "base",
-   "address": "0xb2000000000000000000005677e95542f840e601",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4211.2384,
-   "first_seen": 1788785064
-  },
-  {
-   "symbol": "RDDT",
-   "name": "Reddit (Derivatives)",
-   "chain": "base",
-   "address": "0x6ce2afbb42947343b0a41f7232aa2e3a6abf8e0d",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 13977.6021,
-   "first_seen": 1788785061
   }
  ],
  "confirmed": [
@@ -464,9 +459,9 @@
   }
  ],
  "probation": {
-  "waiting": 59,
+  "waiting": 56,
   "confirmed": 11,
-  "dropped": 420
+  "dropped": 432
  },
  "recent_drains": [
   {
@@ -658,7 +653,7 @@
   "rug": 937
  },
  "watchlist_active": 6,
- "price_snapshots": 12182,
+ "price_snapshots": 12095,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
