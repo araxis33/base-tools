@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-07T01:02:52Z",
- "generated_at_unix": 1788742972,
+ "generated_at": "2026-09-07T08:54:48Z",
+ "generated_at_unix": 1788771287,
  "period": {
   "start": "2026-07-15",
-  "days": 53
+  "days": 54
  },
  "totals": {
-  "seen": 159159,
-  "base": 25044,
+  "seen": 159217,
+  "base": 25102,
   "robinhood": 134115,
-  "below_liquidity_threshold": 156541,
-  "spam_filtered": 267,
-  "scored": 2351,
-  "green": 1038,
+  "below_liquidity_threshold": 156572,
+  "spam_filtered": 275,
+  "scored": 2370,
+  "green": 1055,
   "yellow": 434,
-  "red": 879
+  "red": 881
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-17",
-   "base": 515,
-   "robinhood": 1236
+   "base": 450,
+   "robinhood": 1107
   },
   {
    "date": "2026-08-18",
@@ -125,11 +125,181 @@
   },
   {
    "date": "2026-09-07",
-   "base": 42,
+   "base": 100,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "CNF",
+   "name": "Catference",
+   "chain": "base",
+   "address": "0xb2000000000000000000004dfd0a29bb7404bc38",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 26377.8772,
+   "first_seen": 1788771235
+  },
+  {
+   "symbol": "CLAN",
+   "name": "clan.tech",
+   "chain": "base",
+   "address": "0x3908fd9d6c3716757b98a76189ea83bfee578a61",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12458.8649455667,
+   "first_seen": 1788771234
+  },
+  {
+   "symbol": "MEMELORD",
+   "name": "memelord",
+   "chain": "base",
+   "address": "0x0fac0c87a0af90199bb854dde9dd31cb9b1420f1",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 74753.2096311971,
+   "first_seen": 1788771233
+  },
+  {
+   "symbol": "RTD",
+   "name": "The Retarded Index",
+   "chain": "base",
+   "address": "0xb200000000000000000000ba48bfb52f33ec5ba6",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 27887.3048,
+   "first_seen": 1788771140
+  },
+  {
+   "symbol": "PRO",
+   "name": "Propy",
+   "chain": "base",
+   "address": "0x12fde6981a74a2e3ec03981730037d849416f5e0",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 34676.8362,
+   "first_seen": 1788770954
+  },
+  {
+   "symbol": "YOLO",
+   "name": "YOLO",
+   "chain": "base",
+   "address": "0xb20000000000000000000072d9046a6cf186e576",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 31593.045,
+   "first_seen": 1788770953
+  },
+  {
+   "symbol": "ZEN",
+   "name": "Horizen",
+   "chain": "base",
+   "address": "0xf095e72bf83bcde5eacfdd77248b867ba23f9d5d",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 34676.8362,
+   "first_seen": 1788770950
+  },
+  {
+   "symbol": "DEBIT",
+   "name": "Teller",
+   "chain": "base",
+   "address": "0xe3306dfd80636acafeaf9c8bbe9e3fa33da99ed4",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 1129237.1143,
+   "first_seen": 1788770949
+  },
+  {
+   "symbol": "METEOPAD",
+   "name": "Meteopad",
+   "chain": "base",
+   "address": "0xb2000000000000000000007df5cf2abb2441acab",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 29827.7169,
+   "first_seen": 1788770947
+  },
+  {
+   "symbol": "CEAR",
+   "name": "CharacteristicEARTHWORM",
+   "chain": "base",
+   "address": "0x6082d6bb5891105bc627874f0fdafe37cd98868d",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 24922.8,
+   "first_seen": 1788770946
+  },
+  {
+   "symbol": "MOONKIN",
+   "name": "MOONKIN (moonkin.online)",
+   "chain": "base",
+   "address": "0xeead131f178e3d27fd18f101f405a585627686ac",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 12446.4649260915,
+   "first_seen": 1788769005
+  },
+  {
+   "symbol": "NUBIQ",
+   "name": "Noobique",
+   "chain": "base",
+   "address": "0xb200000000000000000000026118c229de01961d",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 32838.3201,
+   "first_seen": 1788767737
+  },
+  {
+   "symbol": "NXRGT",
+   "name": "NoXeR Global Trust",
+   "chain": "base",
+   "address": "0x0859f0e1e1f57eca43c6e00ab59a255d6a107b07",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 21838.6106,
+   "first_seen": 1788767735
+  },
+  {
+   "symbol": "INFR",
+   "name": "Inference",
+   "chain": "base",
+   "address": "0xc851603d24445da6df59a46b00e23f018021b3a9",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3789.3814,
+   "first_seen": 1788767730
+  },
+  {
+   "symbol": "HARVEST",
+   "name": "OnchainHarvest",
+   "chain": "base",
+   "address": "0xb20000000000000000000007ff36b3196d5f5f9a",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 23910.2683,
+   "first_seen": 1788767727
+  },
+  {
+   "symbol": "SPACEPEG",
+   "name": "Space Peg",
+   "chain": "base",
+   "address": "0x07ba2a0260d452efcc50ee50f20fee7634030c1d",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4006.5786,
+   "first_seen": 1788767726
+  },
+  {
+   "symbol": "THINKCAT",
+   "name": "Let me think",
+   "chain": "base",
+   "address": "0x3dc0427f231c892cda8e78b17fd787e3748e51b9",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4138.697,
+   "first_seen": 1788767724
+  },
   {
    "symbol": "AGI",
    "name": "Artificial Goyim Intelligence",
@@ -159,176 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 4120.6061,
    "first_seen": 1788730765
-  },
-  {
-   "symbol": "FATCOIN",
-   "name": "FATCOIN",
-   "chain": "base",
-   "address": "0xf83b9815fe370f00f3f30f3553f9dbf5492d5fe8",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 453358498.7697,
-   "first_seen": 1788729489
-  },
-  {
-   "symbol": "METASTONK",
-   "name": "METASTONK",
-   "chain": "base",
-   "address": "0xaf806d1f93d1148be7c5edbc544a907fd108b9cb",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4093.9488,
-   "first_seen": 1788728943
-  },
-  {
-   "symbol": "STONKDOGE",
-   "name": "Stonks Doge",
-   "chain": "base",
-   "address": "0xe16cb23c60f142f9a8703f5958e36d86ab2a0684",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4016.0055,
-   "first_seen": 1788728074
-  },
-  {
-   "symbol": "PIRANHA",
-   "name": "PIRANHA",
-   "chain": "base",
-   "address": "0x3d5807e2d5c34078d795bb67481802d4e9d4f185",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 5101.9584,
-   "first_seen": 1788727748
-  },
-  {
-   "symbol": "MEMESTOCK",
-   "name": "MEMESTOCK",
-   "chain": "base",
-   "address": "0xb200000000000000000000d7a2107260fd58a401",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4025.3321,
-   "first_seen": 1788727110
-  },
-  {
-   "symbol": "SWAHT",
-   "name": "Special Weapons and Hat Tricks",
-   "chain": "base",
-   "address": "0xa8c66137b9574b850fc08bc15f8ee0307d12c989",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4132.124,
-   "first_seen": 1788727108
-  },
-  {
-   "symbol": "BLUE",
-   "name": "The Stonkex Bull",
-   "chain": "base",
-   "address": "0x1d0c1be75f32c1238da27dbb59d21c7df8d311b2",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 24038.8889,
-   "first_seen": 1788727107
-  },
-  {
-   "symbol": "SOXXx",
-   "name": "iShares Semiconductor tokenized ETF (xStock)",
-   "chain": "base",
-   "address": "0x39862d5b547a27b1f7ab60f403a53d0beecca2b7",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12458.4649477181,
-   "first_seen": 1788725878
-  },
-  {
-   "symbol": "WHL",
-   "name": "AwkwardWHALE",
-   "chain": "base",
-   "address": "0xdcd807cb72566dd60352ca3ce9a0749f33f24ae0",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 24898.0,
-   "first_seen": 1788725829
-  },
-  {
-   "symbol": "CATTERY",
-   "name": "BaseCattery",
-   "chain": "base",
-   "address": "0x48fbeae4f985ff483fb5e1ee3b5cbc71e58b23a1",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 77705.9295,
-   "first_seen": 1788725692
-  },
-  {
-   "symbol": "XPIN",
-   "name": "XPIN Network (XPIN)",
-   "chain": "base",
-   "address": "0x7f5faddc1684a92ad239b42f346009def20a804a",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 195662.1076,
-   "first_seen": 1788725504
-  },
-  {
-   "symbol": "ATR",
-   "name": "ALTAR",
-   "chain": "base",
-   "address": "0x77db8b47325a804e8bd474c0711b99d932346b07",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 24826.1456,
-   "first_seen": 1788725502
-  },
-  {
-   "symbol": "PEPE",
-   "name": "PEPECOIN (pepecoin.bar)",
-   "chain": "base",
-   "address": "0x3b3f89d2a9d7485882375933e20bdc4bf4acbda6",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12451.05,
-   "first_seen": 1788725223
-  },
-  {
-   "symbol": "PAIR",
-   "name": "PAIR",
-   "chain": "base",
-   "address": "0xe8ff7dd85a470992ff0415332f0ba20eb1150b6c",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 2066061.9452,
-   "first_seen": 1788724905
-  },
-  {
-   "symbol": "SPEPE",
-   "name": "Stonk Pepe",
-   "chain": "base",
-   "address": "0xca458dc3ff0d7af1021ff5b903eb26f09945ed6a",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4066.1933,
-   "first_seen": 1788723319
-  },
-  {
-   "symbol": "USDC",
-   "name": "Upside Down Cat",
-   "chain": "base",
-   "address": "0x44679af4931e56812f944f69556b9b77b5c4ba5e",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 2536.8399,
-   "first_seen": 1788723136
-  },
-  {
-   "symbol": "LOWL",
-   "name": "LegitimateOWL",
-   "chain": "base",
-   "address": "0xc46155d5c4a8ea42411cea7040799d0bc84bb5f5",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 24907.5,
-   "first_seen": 1788722635
   }
  ],
  "confirmed": [
@@ -464,9 +464,9 @@
   }
  ],
  "probation": {
-  "waiting": 64,
+  "waiting": 71,
   "confirmed": 11,
-  "dropped": 355
+  "dropped": 365
  },
  "recent_drains": [
   {
@@ -658,7 +658,7 @@
   "rug": 937
  },
  "watchlist_active": 6,
- "price_snapshots": 12976,
+ "price_snapshots": 12738,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
