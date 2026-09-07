@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-07T17:45:07Z",
- "generated_at_unix": 1788803106,
+ "generated_at": "2026-09-07T18:45:12Z",
+ "generated_at_unix": 1788806712,
  "period": {
   "start": "2026-07-15",
   "days": 54
  },
  "totals": {
-  "seen": 159435,
-  "base": 25320,
+  "seen": 159537,
+  "base": 25422,
   "robinhood": 134115,
-  "below_liquidity_threshold": 156733,
-  "spam_filtered": 298,
-  "scored": 2402,
-  "green": 1084,
-  "yellow": 434,
+  "below_liquidity_threshold": 156814,
+  "spam_filtered": 307,
+  "scored": 2416,
+  "green": 1097,
+  "yellow": 435,
   "red": 884
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-17",
-   "base": 97,
-   "robinhood": 345
+   "base": 55,
+   "robinhood": 194
   },
   {
    "date": "2026-08-18",
@@ -125,11 +125,151 @@
   },
   {
    "date": "2026-09-07",
-   "base": 320,
+   "base": 420,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "JOHNDOE",
+   "name": "John Doe",
+   "chain": "base",
+   "address": "0x15955f6e42990249197afe75e34a86e3b20e35fc",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 5585.9334,
+   "first_seen": 1788806695
+  },
+  {
+   "symbol": "FLOW",
+   "name": "ApexFlow  by Virtuals",
+   "chain": "base",
+   "address": "0x77885db785150d5d282ab3019d4548cd649f9e2d",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 74996.9741,
+   "first_seen": 1788805925
+  },
+  {
+   "symbol": "CATE",
+   "name": "Catecoin (cate.life)",
+   "chain": "base",
+   "address": "0xf62f20d5066421969d7cc0fe59d55153954d1f3d",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12460.5149454078,
+   "first_seen": 1788805697
+  },
+  {
+   "symbol": "ZUNICORN",
+   "name": "Zebra Unicorn",
+   "chain": "base",
+   "address": "0xb200000000000000000000ae65e52973e5c1d401",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 5573.1784,
+   "first_seen": 1788804476
+  },
+  {
+   "symbol": "qBTC",
+   "name": "Quantum Bitcoin",
+   "chain": "base",
+   "address": "0x9d63b8b62a16047780ab853c9ff79708192b7734",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 74780.2096646029,
+   "first_seen": 1788803479
+  },
+  {
+   "symbol": "WORF",
+   "name": "World Oil Reserve Fund",
+   "chain": "base",
+   "address": "0x61506d7bcaab6e3b115b91891d4fa8f3a4aa333d",
+   "score": 57,
+   "verdict": "yellow",
+   "liquidity_usd": 116664.8025,
+   "first_seen": 1788803388
+  },
+  {
+   "symbol": "BIDEN2028",
+   "name": "BIDEN2028",
+   "chain": "base",
+   "address": "0xb200000000000000000000ca38c6de4e225a6301",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4302.51458040782,
+   "first_seen": 1788803387
+  },
+  {
+   "symbol": "MANIFEST",
+   "name": "Manifesting (manifesting.meme)",
+   "chain": "base",
+   "address": "0x09afa290660bb57a0431c5596e4365206ddc2875",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12467.2849,
+   "first_seen": 1788803386
+  },
+  {
+   "symbol": "SLTH",
+   "name": "MinimumSLOTH",
+   "chain": "base",
+   "address": "0x7723e7c43c977fc66867ac3148b22e1c28431bed",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 24919.9,
+   "first_seen": 1788803385
+  },
+  {
+   "symbol": "LAPTOP",
+   "name": "LAPTOP TOKEN",
+   "chain": "base",
+   "address": "0x0925ee245376eaad40592996d84a0315e1b2dead",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 24558.719,
+   "first_seen": 1788803113
+  },
+  {
+   "symbol": "LAPTOP",
+   "name": "Laptop",
+   "chain": "base",
+   "address": "0x4fb636434b05c5dbcf0070f2e810f8e706277b07",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 14323026.7981,
+   "first_seen": 1788803112
+  },
+  {
+   "symbol": "LAPTOP",
+   "name": "LAPTOP",
+   "chain": "base",
+   "address": "0xb200000000000000000000603169793649ee5d84",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3449392085.0681,
+   "first_seen": 1788803111
+  },
+  {
+   "symbol": "Laptop",
+   "name": "Laptop token",
+   "chain": "base",
+   "address": "0x9c826aad86a616ecaec24bc11df0ed040d1b3b07",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3799.5301,
+   "first_seen": 1788803109
+  },
+  {
+   "symbol": "LAPTOP",
+   "name": "Hunter Biden's Laptop",
+   "chain": "base",
+   "address": "0xb20000000000000000000084286146efc029cc9e",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 15469.9159,
+   "first_seen": 1788803108
+  },
   {
    "symbol": "GOOGL",
    "name": "Alphabet Class A Tokenized Stock (Robinhood)",
@@ -189,146 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 13977.6021,
    "first_seen": 1788785061
-  },
-  {
-   "symbol": "NUTSAQ",
-   "name": "NUTSAQ 100",
-   "chain": "base",
-   "address": "0x96962d7bee23c74a60d5dffefd36ba07daab2694",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 435737.8081,
-   "first_seen": 1788785057
-  },
-  {
-   "symbol": "OL",
-   "name": "OpenLaunch",
-   "chain": "base",
-   "address": "0xb200000000000000000000248c4a404f0ddaf496",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12849.8217,
-   "first_seen": 1788785053
-  },
-  {
-   "symbol": "touch some grass",
-   "name": "touch some grass",
-   "chain": "base",
-   "address": "0xb200000000000000000000acb975c6f7f7018fcd",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12317.236,
-   "first_seen": 1788785052
-  },
-  {
-   "symbol": "HOVER",
-   "name": "Hover",
-   "chain": "base",
-   "address": "0xa201689f24c395b587f03858c727e95f08448a35",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13223.5535,
-   "first_seen": 1788783918
-  },
-  {
-   "symbol": "カイル",
-   "name": "Blue Dolphin",
-   "chain": "base",
-   "address": "0xb200000000000000000000d818f072cb0039e501",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4083.8274,
-   "first_seen": 1788783360
-  },
-  {
-   "symbol": "FISH",
-   "name": "How To Fish",
-   "chain": "base",
-   "address": "0xac742d9821419f5a11021fd089dbbe0b5b718b97",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 27268.9505,
-   "first_seen": 1788783084
-  },
-  {
-   "symbol": "HYPE",
-   "name": "Hyperliquid",
-   "chain": "base",
-   "address": "0x2d6226dce98e4fea6ca2de5e78af84b4a5b932d9",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 27268.9505,
-   "first_seen": 1788783081
-  },
-  {
-   "symbol": "HBAR",
-   "name": "Hedera",
-   "chain": "base",
-   "address": "0x2a9f4878667874bd68e28597e7f4def9aeb92944",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 2896410235.3859,
-   "first_seen": 1788783077
-  },
-  {
-   "symbol": "BaseLlama",
-   "name": "The Base Llama",
-   "chain": "base",
-   "address": "0xb2000000000000000000007f49deb1a6a9829001",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4177.9027,
-   "first_seen": 1788783074
-  },
-  {
-   "symbol": "GOAF",
-   "name": "Global Oil Asset Fund",
-   "chain": "base",
-   "address": "0xb200000000000000000000ee62557d10ca34da9b",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 10226.836,
-   "first_seen": 1788783072
-  },
-  {
-   "symbol": "維尼來了",
-   "name": "小熊維尼",
-   "chain": "base",
-   "address": "0xb20000000000000000000021f3839d29fcb09dbe",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 10767.8662,
-   "first_seen": 1788783065
-  },
-  {
-   "symbol": "LABOR",
-   "name": "Labor Day",
-   "chain": "base",
-   "address": "0xb200000000000000000000956615ee9131a46701",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4617.50677204367,
-   "first_seen": 1788783063
-  },
-  {
-   "symbol": "ZT2",
-   "name": "fun Zero Two",
-   "chain": "base",
-   "address": "0x68dc7628be3f3738e986bd8d368d3f5af9905845",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 4441.6656810492,
-   "first_seen": 1788777136
-  },
-  {
-   "symbol": "AQUA",
-   "name": "fun Aqua",
-   "chain": "base",
-   "address": "0x54ec157d001e72bc7af15a86b4d8e8146d2a3ebe",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 5065.9575167254,
-   "first_seen": 1788777134
   }
  ],
  "confirmed": [
@@ -464,9 +464,9 @@
   }
  ],
  "probation": {
-  "waiting": 61,
+  "waiting": 59,
   "confirmed": 11,
-  "dropped": 404
+  "dropped": 420
  },
  "recent_drains": [
   {
@@ -653,12 +653,12 @@
   }
  ],
  "alerts": {
-  "dump": 688,
+  "dump": 689,
   "pump": 260,
   "rug": 937
  },
  "watchlist_active": 6,
- "price_snapshots": 12295,
+ "price_snapshots": 12182,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
