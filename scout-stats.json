@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-06T21:19:19Z",
- "generated_at_unix": 1788729558,
+ "generated_at": "2026-09-07T01:02:52Z",
+ "generated_at_unix": 1788742972,
  "period": {
   "start": "2026-07-15",
   "days": 53
  },
  "totals": {
-  "seen": 159134,
-  "base": 25019,
+  "seen": 159159,
+  "base": 25044,
   "robinhood": 134115,
-  "below_liquidity_threshold": 156523,
-  "spam_filtered": 263,
-  "scored": 2348,
-  "green": 1035,
+  "below_liquidity_threshold": 156541,
+  "spam_filtered": 267,
+  "scored": 2351,
+  "green": 1038,
   "yellow": 434,
   "red": 879
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-17",
-   "base": 532,
-   "robinhood": 1307
+   "base": 515,
+   "robinhood": 1236
   },
   {
    "date": "2026-08-18",
@@ -125,11 +125,41 @@
   },
   {
    "date": "2026-09-07",
-   "base": 17,
+   "base": 42,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "AGI",
+   "name": "Artificial Goyim Intelligence",
+   "chain": "base",
+   "address": "0xb200000000000000000000e6108e5fcd094efa01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4045.6708,
+   "first_seen": 1788731525
+  },
+  {
+   "symbol": "YOLO",
+   "name": "YOLO (yolorh.com)",
+   "chain": "base",
+   "address": "0xda93c8bb9a585184956332c885111cae2597a152",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12533.65,
+   "first_seen": 1788731042
+  },
+  {
+   "symbol": "JACKET",
+   "name": "Leather Jacket AI",
+   "chain": "base",
+   "address": "0x872f164280934ee6149704e55d7c4af9c3ada88d",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4120.6061,
+   "first_seen": 1788730765
+  },
   {
    "symbol": "FATCOIN",
    "name": "FATCOIN",
@@ -299,39 +329,19 @@
    "verdict": "green",
    "liquidity_usd": 24907.5,
    "first_seen": 1788722635
-  },
-  {
-   "symbol": "memestock",
-   "name": "the memestock cambrian explosion",
-   "chain": "base",
-   "address": "0xb20000000000000000000001cf7968fd247fbf01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4389.1019,
-   "first_seen": 1788722406
-  },
-  {
-   "symbol": "PECCY",
-   "name": "Amazon Peccy",
-   "chain": "base",
-   "address": "0x836c77a70b2072f4d4f3f2a6e3c0345a580e2490",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4486.9934,
-   "first_seen": 1788722403
-  },
-  {
-   "symbol": "WOFI",
-   "name": "WOFI",
-   "chain": "base",
-   "address": "0xb200000000000000000000bc7ec1d2c6a4880f4a",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 971406071.1826,
-   "first_seen": 1788722402
   }
  ],
  "confirmed": [
+  {
+   "symbol": "BLUE",
+   "chain": "base",
+   "address": "0x1d0c1be75f32c1238da27dbb59d21c7df8d311b2",
+   "buyers_h1": 211,
+   "volume_h1": 110323.082859831,
+   "liquidity_usd": 34990.9014,
+   "confirmed_at": 1788727107,
+   "hours_waited": 0.8
+  },
   {
    "symbol": "BLUEBALLS",
    "chain": "base",
@@ -454,9 +464,9 @@
   }
  ],
  "probation": {
-  "waiting": 63,
-  "confirmed": 10,
-  "dropped": 354
+  "waiting": 64,
+  "confirmed": 11,
+  "dropped": 355
  },
  "recent_drains": [
   {
@@ -647,8 +657,8 @@
   "pump": 259,
   "rug": 937
  },
- "watchlist_active": 5,
- "price_snapshots": 13048,
+ "watchlist_active": 6,
+ "price_snapshots": 12976,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
