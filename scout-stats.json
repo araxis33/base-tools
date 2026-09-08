@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-08T19:44:07Z",
- "generated_at_unix": 1788896645,
+ "generated_at": "2026-09-08T20:44:14Z",
+ "generated_at_unix": 1788900253,
  "period": {
   "start": "2026-07-15",
   "days": 55
  },
  "totals": {
-  "seen": 160994,
-  "base": 26879,
+  "seen": 161122,
+  "base": 27007,
   "robinhood": 134115,
-  "below_liquidity_threshold": 158038,
-  "spam_filtered": 410,
-  "scored": 2546,
-  "green": 1206,
-  "yellow": 443,
-  "red": 897
+  "below_liquidity_threshold": 158133,
+  "spam_filtered": 425,
+  "scored": 2564,
+  "green": 1221,
+  "yellow": 444,
+  "red": 899
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-18",
-   "base": 98,
-   "robinhood": 221
+   "base": 20,
+   "robinhood": 41
   },
   {
    "date": "2026-08-19",
@@ -125,11 +125,171 @@
   },
   {
    "date": "2026-09-08",
-   "base": 1294,
+   "base": 1422,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "SPCXBRETT",
+   "name": "SpaceBrett",
+   "chain": "base",
+   "address": "0x4a73d37fa5f10b8c43aacf0ddab67b511f01cf17",
+   "score": 92,
+   "verdict": "green",
+   "liquidity_usd": 2665.5284,
+   "first_seen": 1788899843
+  },
+  {
+   "symbol": "LARPTOP",
+   "name": "LARPTOP",
+   "chain": "base",
+   "address": "0x6237580b4cebd5b855a81c264fb76f91b5aabbbb",
+   "score": 71,
+   "verdict": "green",
+   "liquidity_usd": 2329.5968,
+   "first_seen": 1788899842
+  },
+  {
+   "symbol": "67",
+   "name": "SIXSEVEN",
+   "chain": "base",
+   "address": "0x5ba52a61f111d1b04d53a018a280f46ed1862bf8",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12411.25,
+   "first_seen": 1788899750
+  },
+  {
+   "symbol": "柴犬金融",
+   "name": "柴犬金融",
+   "chain": "base",
+   "address": "0x70014414eb4f6c8f5d2987769f00cb4ddbf8d237",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 5692.5931,
+   "first_seen": 1788898885
+  },
+  {
+   "symbol": "FAPTOP",
+   "name": "FAPTOP",
+   "chain": "base",
+   "address": "0x4aa09caa7541c8197bdc76dfc4f008a3788ebbbb",
+   "score": 71,
+   "verdict": "green",
+   "liquidity_usd": 2016.7077,
+   "first_seen": 1788898656
+  },
+  {
+   "symbol": "BB",
+   "name": "Brett Bonk",
+   "chain": "base",
+   "address": "0xef92225e6c45f5a6095f7a1cf39a7da9f9974ba3",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 5647.21174693761,
+   "first_seen": 1788898059
+  },
+  {
+   "symbol": "ChatGPT Images 2.5",
+   "name": "ChatGPT Images 2.5",
+   "chain": "base",
+   "address": "0xb2000000000000000000002c1c0d5d93374ab71c",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 10646.7807,
+   "first_seen": 1788898011
+  },
+  {
+   "symbol": "Laptop",
+   "name": "Hunter Biden's Laptop",
+   "chain": "base",
+   "address": "0xca60c941dfecf786b4132e959e496e524bf70d3a",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 14809.5019,
+   "first_seen": 1788898009
+  },
+  {
+   "symbol": "incremental",
+   "name": "incremental",
+   "chain": "base",
+   "address": "0x0b850ed1bef4e0c58acaaa2089f7fb30644a58b0",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 2452287.63743689,
+   "first_seen": 1788897963
+  },
+  {
+   "symbol": "HUNTER",
+   "name": "Hunter Biden 2028",
+   "chain": "base",
+   "address": "0xb200000000000000000000328c9c51734127a463",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 35010114.2647,
+   "first_seen": 1788897871
+  },
+  {
+   "symbol": "BARRON",
+   "name": "BARRON",
+   "chain": "base",
+   "address": "0xb200000000000000000000349e7e0293ce8a605e",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 18437000.4604719,
+   "first_seen": 1788897822
+  },
+  {
+   "symbol": "CHARLEY",
+   "name": "Charley Davidson",
+   "chain": "base",
+   "address": "0x6fc804bb38be3635f2fe7fa57d5e3ccd2685bbbb",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 2008.4386,
+   "first_seen": 1788897774
+  },
+  {
+   "symbol": "USMS",
+   "name": "USMS",
+   "chain": "base",
+   "address": "0xb200000000000000000000425fb5ac111671ac9a",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 51091508.7915477,
+   "first_seen": 1788897636
+  },
+  {
+   "symbol": "LAPTOP",
+   "name": "OFFICIAL LAPTOP",
+   "chain": "base",
+   "address": "0xce6340d444a8d3c7cb1606968e220e095ad5a9e5",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 20011.1587,
+   "first_seen": 1788897633
+  },
+  {
+   "symbol": "TTBRO",
+   "name": "Trust The Bro",
+   "chain": "base",
+   "address": "0x4685804d0280f95156ac2aaa8624c6de056c8114",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 483843.3672,
+   "first_seen": 1788897586
+  },
+  {
+   "symbol": "WEREY",
+   "name": "Motiyawerey",
+   "chain": "base",
+   "address": "0xb200000000000000000000e00902de2461586487",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 6245.7062,
+   "first_seen": 1788896721
+  },
   {
    "symbol": "AERODOME",
    "name": "AERODOME",
@@ -169,166 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 12421.7667,
    "first_seen": 1788895749
-  },
-  {
-   "symbol": "Laptop",
-   "name": "Laptop",
-   "chain": "base",
-   "address": "0xa690e332b7ea1d71ed9b3b4b7d585ca159ca4f82",
-   "score": 92,
-   "verdict": "green",
-   "liquidity_usd": 1792.3643310176,
-   "first_seen": 1788895521
-  },
-  {
-   "symbol": "TOESCOIN",
-   "name": "TOES",
-   "chain": "base",
-   "address": "0x2dd055fd5ed3fe56760a5706210eef5b9fda3905",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12793.5211,
-   "first_seen": 1788895058
-  },
-  {
-   "symbol": "WEED",
-   "name": "WEED",
-   "chain": "base",
-   "address": "0x9e13cd81ba9f4eedcd24cbdbdfc67af8262451f5",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 17176.36,
-   "first_seen": 1788893866
-  },
-  {
-   "symbol": "CHUBBY",
-   "name": "Chubby",
-   "chain": "base",
-   "address": "0x05c3cfb30e2392c8630caf15e9dcbe8d3050c6a2",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13576.0076,
-   "first_seen": 1788893362
-  },
-  {
-   "symbol": "Laptop",
-   "name": "0xB095274743941e953c746F9C228DA9c18Bb6ec29",
-   "chain": "base",
-   "address": "0x927559771394b9c7aa2c369241cbe181f2e316b6",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 14932.5284,
-   "first_seen": 1788893315
-  },
-  {
-   "symbol": "COMP",
-   "name": "Compute",
-   "chain": "base",
-   "address": "0xb200000000000000000000126d3f5d04bdf123ed",
-   "score": 75,
-   "verdict": "green",
-   "liquidity_usd": 2875.8786,
-   "first_seen": 1788893132
-  },
-  {
-   "symbol": "DRB",
-   "name": "DebtReliefBot",
-   "chain": "base",
-   "address": "0x03e09e320aef86b74835073d5fbc3f45f4846a79",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 12671.8555,
-   "first_seen": 1788893130
-  },
-  {
-   "symbol": "TRY",
-   "name": "try",
-   "chain": "base",
-   "address": "0xb200000000000000000000f717963d72cdd67a87",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3311.67617452442,
-   "first_seen": 1788892763
-  },
-  {
-   "symbol": "LAPTOP",
-   "name": "Hunter Bidens Laptop 0xB095274743941e953c746F9C228DA9c18Bb6ec29",
-   "chain": "base",
-   "address": "0x753462c6c689703971353d6147bd3c4b0fdcbc74",
-   "score": 55,
-   "verdict": "yellow",
-   "liquidity_usd": 5000.98,
-   "first_seen": 1788892579
-  },
-  {
-   "symbol": "BITO",
-   "name": "ProShares Bitcoin ETF (Derivatives)",
-   "chain": "base",
-   "address": "0x86caa1ee9a951837627576a6ba756458621d19db",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12502.15,
-   "first_seen": 1788892440
-  },
-  {
-   "symbol": "AJEL",
-   "name": "AliveJELLYFISH",
-   "chain": "base",
-   "address": "0x3424d640ef1d812077beac9936c47c56569bb687",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 25020.3,
-   "first_seen": 1788892027
-  },
-  {
-   "symbol": "CLANKER",
-   "name": "C",
-   "chain": "base",
-   "address": "0x3550e9997948cdce2d612f7cde640f6581d9ccf1",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 74694.3149275812,
-   "first_seen": 1788890745
-  },
-  {
-   "symbol": "CHIP",
-   "name": "ChipWorks",
-   "chain": "base",
-   "address": "0xcc8027b6d12bde506986dedd8a355697968b0f71",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 74709.9,
-   "first_seen": 1788890698
-  },
-  {
-   "symbol": "INFQ",
-   "name": "Infleqtion Inc (Derivatives)",
-   "chain": "base",
-   "address": "0x324d28bbe621d826e8686d1d6ed99d7ff7cc993e",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 12448.4149326724,
-   "first_seen": 1788890425
-  },
-  {
-   "symbol": "BTRUMP",
-   "name": "Bad Trump",
-   "chain": "base",
-   "address": "0xa8366996605c0ade19c1008ac65fd6af3c8bc7e3",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 3963.1705,
-   "first_seen": 1788890235
-  },
-  {
-   "symbol": "PONSBULL",
-   "name": "PonsBull",
-   "chain": "base",
-   "address": "0x6c039dc8b23c701e2041d0cd4d8a341707e8efb6",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3984.6721,
-   "first_seen": 1788890006
   }
  ],
  "confirmed": [
@@ -474,9 +474,9 @@
   }
  ],
  "probation": {
-  "waiting": 60,
+  "waiting": 71,
   "confirmed": 12,
-  "dropped": 535
+  "dropped": 540
  },
  "recent_drains": [
   {
@@ -668,7 +668,7 @@
   "rug": 937
  },
  "watchlist_active": 6,
- "price_snapshots": 11898,
+ "price_snapshots": 11905,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
