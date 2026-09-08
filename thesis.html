@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thesis · personal stock baskets on Base</title>
+<meta name="description" content="Write a one-line investment thesis, get a basket of Coinbase Tokenized Stocks on Base, and buy it in the pool that isn't overcharging you. Live onchain prices, no wallet connection.">
+<link rel="canonical" href="https://deftools.xyz/thesis.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="base.tools">
+<meta property="og:url" content="https://deftools.xyz/thesis.html">
+<meta property="og:title" content="Thesis · personal stock baskets on Base">
+<meta property="og:description" content="Type what you believe. Get a basket of Coinbase Tokenized Stocks on Base, priced live across every pool, routed to the one that isn't overcharging you.">
+<meta property="og:image" content="https://deftools.xyz/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Def7771">
+<meta name="twitter:creator" content="@Def7771">
+<meta name="twitter:title" content="Thesis · personal stock baskets on Base">
+<meta name="twitter:description" content="Type what you believe. Get a basket of Coinbase Tokenized Stocks on Base, priced live across every pool, routed to the one that isn't overcharging you.">
+<meta name="twitter:image" content="https://deftools.xyz/og.png">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b6eff'/%3E%3Cpath d='M10.5 6.5v19' stroke='%23fff' stroke-width='4' stroke-linecap='round'/%3E%3Ccircle cx='18' cy='19.5' r='5.5' fill='none' stroke='%23fff' stroke-width='4'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#0a0e1c">
+<style>
+:root{
+  --bg:#0a0e1c; --bg2:#0d1226; --card:#111730; --card-hover:#151c3a;
+  --border:#232c4d; --border-hover:#33406b;
+  --blue:#3b6eff; --blue-soft:#182252; --blue-text:#7ea0ff; --blue-bright:#9db8ff;
+  --yellow:#ffcf40; --green:#3fbf87; --green-text:#6fd7ab; --red:#ff6b6b;
+  --text:#eef1fb; --muted:#8791b3; --muted2:#7a84a8;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  line-height:1.55; -webkit-font-smoothing:antialiased;
+}
+a{color:var(--blue-text); text-decoration:none}
+a:hover{color:var(--blue-bright)}
+.wrap{max-width:1080px; margin:0 auto; padding:0 20px}
+.num{font-variant-numeric:tabular-nums}
+
+header{border-bottom:1px solid var(--border); background:var(--bg2)}
+.head-in{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:16px 0; flex-wrap:wrap}
+.back{display:inline-flex; align-items:center; min-height:32px; font-size:14px; color:var(--muted)}
+.back:hover{color:var(--text)}
+.head-links{display:flex; gap:14px}
+.head-links a{font-size:14px; min-height:32px; display:inline-flex; align-items:center}
+
+.hero{padding:38px 0 22px}
+h1{margin:0 0 10px; font-size:33px; line-height:1.18; letter-spacing:-.025em; max-width:20ch}
+.sub{margin:0; color:var(--muted); font-size:16.5px; max-width:60ch}
+.stamp{margin-top:14px; font-size:13px; color:var(--muted2)}
+.dot{display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--green); margin-right:7px; vertical-align:middle}
+.dot.stale{background:var(--yellow)}
+.dot.dead{background:var(--red)}
+
+section{padding:22px 0}
+h2{font-size:19px; margin:0 0 4px; letter-spacing:-.01em}
+.note{color:var(--muted2); font-size:13.5px; margin:0 0 16px; max-width:70ch}
+
+/* ---- thesis input ---- */
+.panel{background:var(--card); border:1px solid var(--border); border-radius:14px; padding:18px}
+.thesis-row{display:flex; gap:10px; flex-wrap:wrap}
+#thesis{
+  flex:1 1 320px; min-width:0; background:var(--bg2); color:var(--text);
+  border:1px solid var(--border-hover); border-radius:10px; padding:13px 15px;
+  font-size:16px; font-family:inherit;
+}
+#thesis:focus{outline:none; border-color:var(--blue); box-shadow:0 0 0 3px rgba(59,110,255,.16)}
+#thesis::placeholder{color:var(--muted2)}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  background:var(--blue); color:#fff; border:1px solid var(--blue); border-radius:10px;
+  padding:13px 20px; font-size:15px; font-weight:600; font-family:inherit; cursor:pointer;
+  min-height:44px; white-space:nowrap;
+}
+.btn:hover{background:#2f5fe6}
+.btn.ghost{background:transparent; color:var(--text); border-color:var(--border-hover)}
+.btn.ghost:hover{background:var(--card-hover); border-color:var(--blue)}
+.btn.small{padding:8px 14px; font-size:13.5px; min-height:36px; font-weight:500}
+.btn:disabled{opacity:.5; cursor:default}
+
+.chips{display:flex; gap:8px; flex-wrap:wrap; margin-top:14px}
+.chip{
+  background:var(--bg2); border:1px solid var(--border); color:var(--muted);
+  border-radius:999px; padding:7px 14px; font-size:13.5px; cursor:pointer;
+  font-family:inherit; min-height:34px;
+}
+.chip:hover{border-color:var(--border-hover); color:var(--text)}
+.chip.on{background:var(--blue-soft); border-color:var(--blue); color:var(--blue-bright)}
+.parsed{margin-top:13px; font-size:13.5px; color:var(--muted2); min-height:20px}
+.parsed b{color:var(--blue-text); font-weight:600}
+
+/* ---- amount ---- */
+.amount-row{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-top:16px}
+.amount-row label{font-size:14px; color:var(--muted)}
+.money{position:relative; display:inline-flex; align-items:center}
+.money span{position:absolute; left:14px; color:var(--muted); font-size:16px}
+#amount{
+  background:var(--bg2); color:var(--text); border:1px solid var(--border-hover);
+  border-radius:10px; padding:11px 14px 11px 30px; font-size:16px; width:150px;
+  font-family:inherit; font-variant-numeric:tabular-nums;
+}
+#amount:focus{outline:none; border-color:var(--blue); box-shadow:0 0 0 3px rgba(59,110,255,.16)}
+
+/* ---- weights ---- */
+.weights{display:grid; gap:8px; margin-top:6px}
+.w-row{
+  display:grid; grid-template-columns:auto 1fr 92px auto; align-items:center; gap:14px;
+  background:var(--card); border:1px solid var(--border); border-radius:11px; padding:11px 15px;
+}
+.w-row.off{opacity:.42}
+.w-tick{min-width:118px}
+.w-tick .s{font-weight:650; font-size:15px}
+.w-tick .n{font-size:12.5px; color:var(--muted2)}
+input[type=range]{
+  -webkit-appearance:none; appearance:none; width:100%; height:5px; border-radius:99px;
+  background:var(--border-hover); outline:none; cursor:pointer; margin:0;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none; appearance:none; width:19px; height:19px; border-radius:50%;
+  background:var(--blue); border:2px solid var(--bg); cursor:pointer;
+}
+input[type=range]::-moz-range-thumb{
+  width:17px; height:17px; border-radius:50%; background:var(--blue);
+  border:2px solid var(--bg); cursor:pointer;
+}
+.w-pct{text-align:right; font-variant-numeric:tabular-nums; font-size:15px; color:var(--muted)}
+.w-pct b{color:var(--text); font-weight:650}
+.w-usd{font-size:12.5px; color:var(--muted2); font-variant-numeric:tabular-nums}
+.w-px{text-align:right; min-width:96px}
+.w-px .p{font-variant-numeric:tabular-nums; font-size:14.5px}
+.w-px .c{font-size:12px; font-variant-numeric:tabular-nums}
+.up{color:var(--green-text)} .down{color:var(--red)}
+
+.tot{display:flex; justify-content:space-between; align-items:center; gap:12px;
+     margin-top:12px; font-size:14px; color:var(--muted); flex-wrap:wrap}
+.tot .warn{color:var(--yellow)}
+
+/* ---- result ---- */
+.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:12px}
+.card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px}
+.card.hi{border-left:3px solid var(--green)}
+.card .k{color:var(--muted); font-size:13px; margin-bottom:6px}
+.card .v{font-size:23px; font-weight:700; font-variant-numeric:tabular-nums; letter-spacing:-.02em}
+.card .s{color:var(--muted2); font-size:12.5px; margin-top:4px}
+
+.tbl-wrap{overflow-x:auto; background:var(--card); border:1px solid var(--border); border-radius:12px}
+table{width:100%; border-collapse:collapse; min-width:680px}
+th,td{text-align:left; padding:12px 16px; font-size:14.5px; border-bottom:1px solid var(--border); vertical-align:middle}
+th{color:var(--muted); font-weight:500; font-size:12.5px; text-transform:uppercase; letter-spacing:.04em}
+tr:last-child td{border-bottom:none}
+td.n{font-variant-numeric:tabular-nums; white-space:nowrap}
+td.r{text-align:right}
+th.r{text-align:right}
+.sym{font-weight:650}
+.co{color:var(--muted2); font-size:12.5px}
+.addr{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:11.5px; color:var(--muted2)}
+.pill{display:inline-block; padding:2px 9px; border-radius:999px; font-size:12px; font-weight:600; white-space:nowrap}
+.pill.green{background:rgba(63,191,135,.14); color:var(--green-text)}
+.pill.yellow{background:rgba(255,207,64,.14); color:var(--yellow)}
+.pill.red{background:rgba(255,107,107,.14); color:var(--red)}
+.pill.blue{background:var(--blue-soft); color:var(--blue-bright)}
+.buy{
+  display:inline-flex; align-items:center; gap:6px; background:var(--blue-soft);
+  border:1px solid var(--blue); color:var(--blue-bright); border-radius:8px;
+  padding:6px 12px; font-size:13px; font-weight:600; min-height:32px; white-space:nowrap;
+}
+.buy:hover{background:var(--blue); color:#fff}
+
+.savings{
+  background:linear-gradient(180deg,#132a20,#111d1a); border:1px solid #23543d;
+  border-left:3px solid var(--green); border-radius:12px; padding:18px 20px; margin-top:14px;
+}
+.savings .big{font-size:25px; font-weight:700; letter-spacing:-.02em; font-variant-numeric:tabular-nums; color:#8fe3bd}
+.savings .txt{color:var(--muted); font-size:14px; margin-top:5px; max-width:74ch}
+.traps{
+  background:var(--card); border:1px solid var(--border); border-left:3px solid var(--red);
+  border-radius:12px; padding:16px 18px; margin-top:12px; font-size:14px; color:var(--muted);
+}
+.traps b{color:var(--text)}
+.traps ul{margin:8px 0 0; padding-left:20px}
+.traps li{margin:3px 0; font-variant-numeric:tabular-nums}
+
+.actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; align-items:center}
+.copied{font-size:13.5px; color:var(--green-text)}
+
+.how{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px}
+.how div{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px}
+.how h3{margin:0 0 6px; font-size:15px}
+.how p{margin:0; color:var(--muted); font-size:13.5px}
+
+.disclaim{background:var(--card); border:1px solid var(--border); border-left:3px solid var(--yellow);
+          border-radius:12px; padding:16px 18px; color:var(--muted); font-size:13.5px; margin-top:8px}
+footer{border-top:1px solid var(--border); margin-top:30px; padding:22px 0 40px; color:var(--muted2); font-size:13.5px}
+.err{background:var(--card); border:1px solid var(--border); border-left:3px solid var(--red);
+     border-radius:12px; padding:20px; color:var(--muted)}
+.skel{color:var(--muted2); font-size:14px; padding:8px 0}
+
+@media (max-width:720px){
+  h1{font-size:26px}
+  .hero{padding:26px 0 18px}
+  .w-row{grid-template-columns:1fr auto; gap:8px 12px; padding:12px 14px}
+  .w-row input[type=range]{grid-column:1 / -1; order:3}
+  .w-tick{min-width:0}
+  .w-px{order:2}
+  .w-pct{order:4; text-align:left; grid-column:1 / -1}
+  .savings .big{font-size:22px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap head-in">
+    <a class="back" href="/">&larr;&nbsp; base.tools</a>
+    <nav class="head-links">
+      <a href="/scout.html">Scout stats</a>
+      <a href="https://www.base.org/stocks" target="_blank" rel="noopener">Official token list</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>Own the idea, not the index.</h1>
+    <p class="sub">Write one line about what you believe. Get a basket of Coinbase Tokenized Stocks on Base &mdash; priced live across every pool on the chain, and routed to the one that isn&rsquo;t quietly charging you 6% more for the same share.</p>
+    <p class="stamp" id="stamp"><span class="dot stale"></span>Loading pools&hellip;</p>
+  </div>
+
+  <section>
+    <div class="panel">
+      <div class="thesis-row">
+        <input id="thesis" type="text" autocomplete="off" spellcheck="false"
+               placeholder="ai chips and cloud, no tesla">
+        <button class="btn" id="go">Build basket</button>
+      </div>
+      <div class="chips" id="chips"></div>
+      <p class="parsed" id="parsed"></p>
+      <div class="amount-row">
+        <label for="amount">I want to put in</label>
+        <span class="money"><span>$</span><input id="amount" type="text" inputmode="decimal" value="1,000"></span>
+        <span style="font-size:13.5px;color:var(--muted2)">USDC on Base</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Your basket</h2>
+    <p class="note">Drag any weight to change it. Prices are read live from every Base pool holding these tokens; the price shown is from the deepest pool, which is the one you should actually trade in.</p>
+    <div class="weights" id="weights"><p class="skel">Reading pools on Base&hellip;</p></div>
+    <div class="tot">
+      <span id="tot-left"></span>
+      <span id="tot-right"></span>
+    </div>
+  </section>
+
+  <section id="result"></section>
+
+  <section>
+    <h2>How this works</h2>
+    <div class="how">
+      <div>
+        <h3>No black box</h3>
+        <p>Your sentence is matched against tickers, company names and a handful of themes. Every match is shown, and you can override any weight by hand. Nothing is picked for you in secret.</p>
+      </div>
+      <div>
+        <h3>Every pool, not just one</h3>
+        <p>Each stock trades in several pools on Base at once, and their prices drift apart. The page reads all of them, trades in the deepest, and shows you what the same basket would have cost in the priciest.</p>
+      </div>
+      <div>
+        <h3>Nothing to connect</h3>
+        <p>No wallet connection, no approvals, no keys, no accounts. The page only reads public data. Buying happens in Aerodrome&rsquo;s own interface, with the pair already filled in.</p>
+      </div>
+      <div>
+        <h3>Only the real tokens</h3>
+        <p>The ten contract addresses here are the ones Coinbase publishes on base.org. Anything else using these tickers on Base was not issued by Coinbase; the page flags pools quoting impossible prices.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="disclaim">
+      <b>Not investment advice.</b> This is a read-only calculator built for the Base Builder Quest. Coinbase Tokenized Stocks are issued by Coinbase and are only available to eligible users outside the United States &mdash; check the <a href="https://www.base.org/stocks" target="_blank" rel="noopener">official token list and prospectus</a> before you buy anything. Prices, liquidity and price-impact figures are estimates read from public DEX data and can be wrong or stale. Verify the contract address in your own wallet before every trade.
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    Built by <a href="https://x.com/Def7771" target="_blank" rel="noopener">@Def7771</a> for the Base Builder Quest &middot;
+    part of <a href="/">base.tools</a> &middot;
+    live prices from <a href="https://dexscreener.com" target="_blank" rel="noopener">DexScreener</a>, token list from <a href="https://www.base.org/stocks" target="_blank" rel="noopener">base.org</a>
+  </div>
+</footer>
+
+<script>
+"use strict";
+
+/* The ten Coinbase Tokenized Stocks published on base.org/stocks. These
+   addresses are the whole point of the list: any other contract using these
+   tickers on Base was not issued by Coinbase. All ten carry 8 decimals,
+   checked onchain. */
+var TOKENS = [
+  {s:"NVDAc",  co:"NVIDIA",        a:"0xb20000000000000000000078ee7ce2fE4908108C", tags:["ai","chips","semis","nvidia","gpu","hardware","tech"]},
+  {s:"METAc",  co:"Meta",          a:"0xb2000000000000000000008bC8786B856E61707C", tags:["ai","social","meta","facebook","ads","tech"]},
+  {s:"AAPLc",  co:"Apple",         a:"0xb200000000000000000000C2e324d24d7eEcd1fb", tags:["apple","consumer","hardware","phones","tech"]},
+  {s:"GOOGLc", co:"Alphabet",      a:"0xb2000000000000000000002D0BA3164cc74f58B7", tags:["ai","cloud","google","alphabet","search","ads","tech"]},
+  {s:"AMZNc",  co:"Amazon",        a:"0xb200000000000000000000d9192b6B456483C2E8", tags:["cloud","amazon","retail","ecommerce","aws","tech"]},
+  {s:"MSFTc",  co:"Microsoft",     a:"0xB200000000000000000000Ab99cFa739E253872B", tags:["ai","cloud","microsoft","software","azure","tech"]},
+  {s:"MSTRc",  co:"Strategy",      a:"0xb2000000000000000000004884b426556b92883d", tags:["bitcoin","btc","crypto","strategy","microstrategy","treasury"]},
+  {s:"SNDKc",  co:"SanDisk",       a:"0xb200000000000000000000397293Cb8cda9a10c5", tags:["memory","storage","chips","semis","sandisk","hardware"]},
+  {s:"SPCXc",  co:"SpaceX",        a:"0xb2000000000000000000007b9fcbd005511aCBd5", tags:["space","spacex","rockets","satellites","defense","frontier"]},
+  {s:"TSLAc",  co:"Tesla",         a:"0xb2000000000000000000001e800a7f5189430cD0", tags:["tesla","ev","cars","robots","energy","musk","frontier"]}
+];
+var USDC = "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913";
+
+/* Themes are plain weight maps. They exist so the first click produces
+   something sensible; every one of them is editable afterwards. */
+var THEMES = [
+  {id:"ai",     label:"AI buildout",        w:{NVDAc:35, MSFTc:20, GOOGLc:20, METAc:15, SNDKc:10}},
+  {id:"big",    label:"Big tech, no Tesla", w:{AAPLc:20, MSFTc:20, GOOGLc:20, AMZNc:20, METAc:20}},
+  {id:"space",  label:"Space & frontier",   w:{SPCXc:50, TSLAc:30, NVDAc:20}},
+  {id:"btc",    label:"Bitcoin exposure",   w:{MSTRc:70, NVDAc:30}},
+  {id:"even",   label:"All ten, even",      w:null}
+];
+
+var state = {
+  weights:{},        // symbol -> percent (raw, normalised on display)
+  amount:1000,
+  data:null,         // symbol -> pool summary
+  loadedAt:0,
+  error:null
+};
+
+/* ---------- helpers ---------- */
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+function money(n, dp){
+  if(!isFinite(n)) return "—";
+  if(dp === undefined) dp = n >= 1000 ? 0 : 2;
+  return "$" + n.toLocaleString("en-US",{minimumFractionDigits:dp, maximumFractionDigits:dp});
+}
+function pct(n, dp){
+  if(!isFinite(n)) return "—";
+  if(dp === undefined) dp = 2;
+  return n.toFixed(dp) + "%";
+}
+function shares(n){
+  if(!isFinite(n)) return "—";
+  if(n >= 100) return n.toFixed(2);
+  if(n >= 1)   return n.toFixed(3);
+  return n.toFixed(5);
+}
+function tok(sym){ for(var i=0;i<TOKENS.length;i++){ if(TOKENS[i].s===sym) return TOKENS[i]; } return null; }
+function totalWeight(){
+  var t=0; for(var k in state.weights){ t += state.weights[k]; } return t;
+}
+
+/* ---------- pool data ---------- */
+/* One request per token: the batch endpoint caps at 30 pairs total and would
+   silently drop half the list. Ten parallel requests come back in well under
+   a second. */
+function loadPools(){
+  var jobs = TOKENS.map(function(t){
+    return fetch("https://api.dexscreener.com/latest/dex/tokens/" + t.a)
+      .then(function(r){ return r.json(); })
+      .then(function(j){ return {t:t, pairs:(j && j.pairs) || []}; })
+      .catch(function(){ return {t:t, pairs:[]}; });
+  });
+  return Promise.all(jobs).then(function(res){
+    var out = {};
+    res.forEach(function(r){
+      var mine = r.pairs.filter(function(p){
+        return p.chainId === "base"
+          && p.baseToken && p.baseToken.address
+          && p.baseToken.address.toLowerCase() === r.t.a.toLowerCase()
+          && p.priceUsd && parseFloat(p.priceUsd) > 0
+          && p.liquidity && p.liquidity.usd >= 500;
+      }).map(function(p){
+        return {
+          dex: p.dexId,
+          price: parseFloat(p.priceUsd),
+          liq: p.liquidity.usd,
+          vol: (p.volume && p.volume.h24) || 0,
+          chg: (p.priceChange && p.priceChange.h24) || 0,
+          quote: (p.quoteToken && p.quoteToken.symbol) || "",
+          url: p.url
+        };
+      });
+      if(!mine.length){ out[r.t.s] = null; return; }
+      mine.sort(function(a,b){ return b.liq - a.liq; });
+      var deep = mine[0];
+      /* A pool more than 50% away from the deepest pool's price is not a
+         venue, it is a trap: nobody is arbitraging it because there is
+         nothing in it. Keep it, but keep it out of the maths. */
+      var sane  = mine.filter(function(p){ return p.price > deep.price*0.5 && p.price < deep.price*1.5; });
+      var traps = mine.filter(function(p){ return !(p.price > deep.price*0.5 && p.price < deep.price*1.5); });
+      var worst = sane.reduce(function(a,b){ return b.price > a.price ? b : a; }, sane[0]);
+      out[r.t.s] = {
+        deep: deep, worst: worst, sane: sane, traps: traps,
+        pools: sane.length,
+        gap: (worst.price - deep.price) / deep.price * 100,
+        tvl: sane.reduce(function(s,p){ return s + p.liq; }, 0),
+        vol: sane.reduce(function(s,p){ return s + p.vol; }, 0)
+      };
+    });
+    state.data = out;
+    state.loadedAt = Date.now();
+    return out;
+  });
+}
+
+/* ---------- thesis parsing ---------- */
+/* Deliberately dumb and fully visible: words are matched against tickers,
+   company names and tags. "no x" / "without x" removes. Everything matched
+   gets an equal slice, which the user then drags around. */
+function parseThesis(text){
+  var t = " " + text.toLowerCase().replace(/[^a-z0-9\s&-]/g," ").replace(/\s+/g," ") + " ";
+  var score = {}, dropped = {}, why = [];
+
+  /* A company's weight is simply how many of your words it answers to:
+     "ai chips and cloud" counts twice for NVIDIA (ai, chips) and once for
+     Amazon (cloud). Crude, but you can read it off your own sentence. */
+  TOKENS.forEach(function(tk){
+    var words = [tk.s.toLowerCase(), tk.s.toLowerCase().replace(/c$/,""), tk.co.toLowerCase()].concat(tk.tags);
+    var hits = [];
+    words.forEach(function(w){
+      /* two letters is fine because matching is whole-word only: "ai" is a
+         real tag, "ev" is a real tag, neither can fire inside another word */
+      if(w.length < 2) return;
+      if(hits.indexOf(w) > -1) return;
+      if(t.indexOf(" " + w + " ") > -1 || t.indexOf(" " + w + "s ") > -1) hits.push(w);
+    });
+    if(!hits.length) return;
+    /* "no tesla", "without chips", "minus the ev stuff" all remove */
+    var neg = hits.some(function(w){
+      return new RegExp("(no|not|without|except|minus|skip|drop)\\s+(\\w+\\s+){0,2}" + w).test(t);
+    });
+    if(neg){ dropped[tk.s] = true; return; }
+    score[tk.s] = hits.length;
+    hits.forEach(function(w){ if(why.indexOf(w) < 0) why.push(w); });
+  });
+
+  var syms = Object.keys(score);
+  if(!syms.length) return {weights:null, why:[], dropped:Object.keys(dropped)};
+
+  var sum = syms.reduce(function(a,s){ return a + score[s]; }, 0);
+  var w = {}, given = 0;
+  syms.forEach(function(s){ w[s] = Math.floor(score[s] / sum * 100); given += w[s]; });
+  /* hand the rounding crumbs to the strongest match */
+  var top = syms.reduce(function(a,b){ return score[b] > score[a] ? b : a; }, syms[0]);
+  w[top] += 100 - given;
+  return {weights:w, why:why, dropped:Object.keys(dropped)};
+}
+
+/* ---------- rendering ---------- */
+function renderChips(){
+  var html = THEMES.map(function(th){
+    return '<button class="chip" data-theme="' + th.id + '">' + esc(th.label) + '</button>';
+  }).join("");
+  $("chips").innerHTML = html;
+  Array.prototype.forEach.call($("chips").querySelectorAll(".chip"), function(b){
+    b.addEventListener("click", function(){
+      var th = THEMES.filter(function(x){ return x.id === b.dataset.theme; })[0];
+      applyTheme(th);
+    });
+  });
+}
+
+function applyTheme(th){
+  var w = {};
+  if(th.w){ for(var k in th.w){ w[k] = th.w[k]; } }
+  else { TOKENS.forEach(function(t){ w[t.s] = 10; }); }
+  state.weights = w;
+  $("thesis").value = "";
+  $("parsed").innerHTML = 'Theme: <b>' + esc(th.label) + '</b> — drag any weight to make it yours.';
+  Array.prototype.forEach.call($("chips").querySelectorAll(".chip"), function(b){
+    b.classList.toggle("on", b.dataset.theme === th.id);
+  });
+  render();
+}
+
+function buildFromThesis(){
+  var text = $("thesis").value.trim();
+  if(!text){ $("parsed").textContent = "Type something first — or pick a theme below."; return; }
+  var r = parseThesis(text);
+  Array.prototype.forEach.call($("chips").querySelectorAll(".chip"), function(b){ b.classList.remove("on"); });
+  if(!r.weights){
+    $("parsed").innerHTML = 'Nothing matched. Try words like <b>ai</b>, <b>cloud</b>, <b>space</b>, <b>bitcoin</b>, <b>chips</b>, or a company name.';
+    return;
+  }
+  state.weights = r.weights;
+  var msg = 'Matched <b>' + Object.keys(r.weights).length + '</b> stocks on: <b>' +
+            esc(r.why.filter(function(v,i,a){ return a.indexOf(v)===i; }).join(", ")) + '</b>';
+  if(r.dropped.length) msg += ' — removed <b>' + esc(r.dropped.join(", ")) + '</b>';
+  $("parsed").innerHTML = msg + '. Equal slices to start; drag them around.';
+  render();
+}
+
+function renderWeights(){
+  var el = $("weights");
+  var tot = totalWeight();
+  var amt = state.amount;
+  el.innerHTML = TOKENS.map(function(t){
+    var raw = state.weights[t.s] || 0;
+    var share = tot > 0 ? raw / tot : 0;
+    var d = state.data ? state.data[t.s] : null;
+    var px = d ? money(d.deep.price, 2) : "—";
+    var chg = d ? d.deep.chg : 0;
+    var chgCls = chg >= 0 ? "up" : "down";
+    var chgTxt = d ? (chg >= 0 ? "+" : "") + chg.toFixed(2) + "%" : "";
+    return '' +
+      '<div class="w-row' + (raw > 0 ? '' : ' off') + '">' +
+        '<div class="w-tick"><div class="s">' + t.s + '</div><div class="n">' + esc(t.co) + '</div></div>' +
+        '<input type="range" min="0" max="100" step="1" value="' + raw + '" data-sym="' + t.s + '" aria-label="' + t.s + ' weight">' +
+        '<div class="w-pct"><b>' + Math.round(share * 100) + '%</b>' +
+          '<div class="w-usd">' + (share > 0 ? money(share * amt, 2) : "&nbsp;") + '</div></div>' +
+        '<div class="w-px"><div class="p">' + px + '</div>' +
+          '<div class="c ' + chgCls + '">' + chgTxt + '</div></div>' +
+      '</div>';
+  }).join("");
+
+  Array.prototype.forEach.call(el.querySelectorAll("input[type=range]"), function(r){
+    r.addEventListener("input", function(){
+      state.weights[r.dataset.sym] = parseInt(r.value, 10);
+      Array.prototype.forEach.call($("chips").querySelectorAll(".chip"), function(b){ b.classList.remove("on"); });
+      render(true);
+    });
+  });
+
+  var n = Object.keys(state.weights).filter(function(k){ return state.weights[k] > 0; }).length;
+  $("tot-left").innerHTML = n ? (n + ' stock' + (n>1?'s':'') + ' · ' + money(amt, 2) + ' total') : 'Nothing selected yet.';
+  $("tot-right").innerHTML = n ? '<button class="btn ghost small" id="clear">Clear</button>' : '';
+  if($("clear")) $("clear").addEventListener("click", function(){ state.weights = {}; render(); });
+}
+
+function renderResult(){
+  var el = $("result");
+  var tot = totalWeight();
+  if(!tot || !state.data){ el.innerHTML = ""; return; }
+
+  var amt = state.amount;
+  var rows = [], overpay = 0, spent = 0, worstImpact = 0, missing = [];
+  var allTraps = [];
+
+  TOKENS.forEach(function(t){
+    var raw = state.weights[t.s] || 0;
+    if(raw <= 0) return;
+    var d = state.data[t.s];
+    if(!d){ missing.push(t.s); return; }
+    var usd = amt * raw / tot;
+    var qty = usd / d.deep.price;
+    /* v2-style pools hold roughly half their reported liquidity on each side,
+       so this is the standard first-order price-impact estimate. Flagged as an
+       estimate everywhere it is shown. */
+    var impact = d.deep.liq > 0 ? (usd / (d.deep.liq / 2)) * 100 : Infinity;
+    if(impact > worstImpact) worstImpact = impact;
+    var costWorst = qty * d.worst.price;
+    overpay += costWorst - usd;
+    spent += usd;
+    if(d.traps.length) allTraps.push({s:t.s, traps:d.traps, fair:d.deep.price});
+    rows.push({t:t, d:d, usd:usd, qty:qty, impact:impact});
+  });
+
+  if(!rows.length){ el.innerHTML = ""; return; }
+
+  var impactPill = worstImpact < 0.5 ? "green" : worstImpact < 2 ? "yellow" : "red";
+  var overpayPct = spent > 0 ? overpay / spent * 100 : 0;
+
+  var html = '<h2>What you get</h2>' +
+    '<p class="note">Shares are what your money buys at the deepest pool&rsquo;s price right now. ' +
+    'Price impact is an estimate from pool depth &mdash; the bigger your order, the more it matters.</p>';
+
+  html += '<div class="cards">' +
+    '<div class="card"><div class="k">Basket size</div><div class="v">' + money(amt, 2) + '</div>' +
+      '<div class="s">' + rows.length + ' stocks, ' + rows.length + ' swaps</div></div>' +
+    '<div class="card"><div class="k">Worst price impact</div><div class="v">' + pct(worstImpact, 2) + '</div>' +
+      '<div class="s"><span class="pill ' + impactPill + '">' +
+        (worstImpact < 0.5 ? "size is fine" : worstImpact < 2 ? "getting heavy" : "too big for these pools") +
+      '</span></div></div>' +
+    '<div class="card hi"><div class="k">Saved by routing</div><div class="v">' + money(overpay, 2) + '</div>' +
+      '<div class="s">vs. the priciest live pool per stock</div></div>' +
+    '</div>';
+
+  html += '<div class="tbl-wrap" style="margin-top:14px"><table><thead><tr>' +
+    '<th>Stock</th><th class="r">Amount</th><th class="r">Shares</th>' +
+    '<th class="r">Price</th><th>Pool</th><th class="r">Impact</th><th class="r">Worst pool</th><th></th>' +
+    '</tr></thead><tbody>';
+
+  rows.forEach(function(r){
+    var buyUrl = "https://aerodrome.finance/swap?from=" + USDC + "&to=" + r.t.a;
+    var gapTxt = r.d.gap >= 0.5
+      ? '<span class="pill ' + (r.d.gap >= 3 ? "red" : "yellow") + '">+' + r.d.gap.toFixed(2) + '%</span>'
+      : '<span class="pill green">' + r.d.gap.toFixed(2) + '%</span>';
+    html += '<tr>' +
+      '<td><span class="sym">' + r.t.s + '</span><div class="co">' + esc(r.t.co) + '</div>' +
+        '<div class="addr">' + r.t.a.slice(0,10) + "…" + r.t.a.slice(-6) + '</div></td>' +
+      '<td class="n r">' + money(r.usd, 2) + '</td>' +
+      '<td class="n r">' + shares(r.qty) + '</td>' +
+      '<td class="n r">' + money(r.d.deep.price, 2) + '</td>' +
+      '<td><a href="' + r.d.deep.url + '" target="_blank" rel="noopener">' + esc(r.d.deep.dex) + '</a>' +
+        '<div class="co">' + money(r.d.deep.liq, 0) + ' deep · ' + r.d.pools + ' pools</div></td>' +
+      '<td class="n r">' + pct(r.impact, 2) + '</td>' +
+      '<td class="n r">' + gapTxt + '</td>' +
+      '<td class="r"><a class="buy" href="' + buyUrl + '" target="_blank" rel="noopener">Buy</a></td>' +
+      '</tr>';
+  });
+  html += '</tbody></table></div>';
+
+  if(overpay > 0.005){
+    html += '<div class="savings">' +
+      '<div class="big">' + money(overpay, 2) + ' saved on a ' + money(amt, 0) + ' basket</div>' +
+      '<div class="txt">Same shares, same chain, same minute. That is what this basket would have cost ' +
+      'if each stock were bought in the priciest pool currently quoting it on Base instead of the deepest one &mdash; ' +
+      pct(overpayPct, 2) + ' of your money, gone to nothing.</div></div>';
+  }
+
+  if(allTraps.length){
+    html += '<div class="traps"><b>Pools quoting impossible prices</b> — ignored in the maths above, ' +
+      'listed so you know they exist. A wallet or aggregator that routes into one of these will take your money:' +
+      '<ul>';
+    allTraps.forEach(function(x){
+      x.traps.slice(0,3).forEach(function(p){
+        html += '<li>' + x.s + ' at ' + money(p.price, 2) + ' on ' + esc(p.dex) +
+                ' — fair price is ' + money(x.fair, 2) + '</li>';
+      });
+    });
+    html += '</ul></div>';
+  }
+
+  if(missing.length){
+    html += '<div class="traps"><b>No live pool found</b> for ' + esc(missing.join(", ")) +
+            '. Left out of the basket.</div>';
+  }
+
+  html += '<div class="actions">' +
+    '<a class="btn" id="buyall" href="#">Open every swap</a>' +
+    '<button class="btn ghost" id="share">Copy share link</button>' +
+    '<span class="copied" id="copied"></span></div>';
+
+  el.innerHTML = html;
+
+  $("share").addEventListener("click", function(){
+    var url = shareUrl();
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(url).then(function(){
+        $("copied").textContent = "Copied — the link carries the whole basket.";
+        setTimeout(function(){ $("copied").textContent = ""; }, 3500);
+      });
+    } else {
+      window.prompt("Copy this link", url);
+    }
+  });
+
+  $("buyall").addEventListener("click", function(e){
+    e.preventDefault();
+    rows.forEach(function(r, i){
+      setTimeout(function(){
+        window.open("https://aerodrome.finance/swap?from=" + USDC + "&to=" + r.t.a, "_blank", "noopener");
+      }, i * 250);
+    });
+  });
+}
+
+function shareUrl(){
+  var tot = totalWeight();
+  var parts = [];
+  TOKENS.forEach(function(t){
+    var raw = state.weights[t.s] || 0;
+    if(raw > 0) parts.push(t.s + "-" + Math.round(raw / tot * 100));
+  });
+  return location.origin + location.pathname + "?b=" + parts.join("_") + "&a=" + Math.round(state.amount);
+}
+
+function readUrl(){
+  var q = new URLSearchParams(location.search);
+  var b = q.get("b"), a = q.get("a");
+  if(a && !isNaN(parseFloat(a))) state.amount = Math.max(1, parseFloat(a));
+  if(!b) return false;
+  var w = {}, ok = false;
+  b.split("_").forEach(function(part){
+    var bits = part.split("-");
+    if(bits.length !== 2) return;
+    if(!tok(bits[0])) return;
+    var v = parseInt(bits[1], 10);
+    if(isNaN(v) || v <= 0) return;
+    w[bits[0]] = v; ok = true;
+  });
+  if(ok){ state.weights = w; }
+  return ok;
+}
+
+function renderStamp(){
+  var el = $("stamp");
+  if(state.error){
+    el.innerHTML = '<span class="dot dead"></span>' + esc(state.error);
+    return;
+  }
+  if(!state.data){ el.innerHTML = '<span class="dot stale"></span>Loading pools…'; return; }
+  var live = 0, tvl = 0, vol = 0, pools = 0;
+  TOKENS.forEach(function(t){
+    var d = state.data[t.s];
+    if(!d) return;
+    live++; tvl += d.tvl; vol += d.vol; pools += d.pools;
+  });
+  el.innerHTML = '<span class="dot"></span>' + live + ' stocks · ' + pools + ' live pools · ' +
+    money(tvl, 0) + ' liquidity · ' + money(vol, 0) + ' traded in 24h · ' +
+    'read ' + new Date(state.loadedAt).toUTCString().slice(17, 22) + ' UTC';
+}
+
+var renderTimer = null;
+function render(debounced){
+  renderStamp();
+  renderWeights();
+  if(debounced){
+    clearTimeout(renderTimer);
+    renderTimer = setTimeout(renderResult, 90);
+  } else {
+    renderResult();
+  }
+  if(totalWeight() > 0){
+    history.replaceState(null, "", shareUrl());
+  }
+}
+
+function readAmount(){
+  var v = parseFloat($("amount").value.replace(/[^0-9.]/g, ""));
+  state.amount = (isNaN(v) || v <= 0) ? 1000 : v;
+}
+
+/* ---------- boot ---------- */
+renderChips();
+
+var fromUrl = readUrl();
+if(fromUrl){
+  $("amount").value = state.amount.toLocaleString("en-US");
+  $("parsed").innerHTML = "Loaded a shared basket — change anything you like.";
+} else {
+  applyTheme(THEMES[0]);
+}
+renderWeights();
+
+$("go").addEventListener("click", buildFromThesis);
+$("thesis").addEventListener("keydown", function(e){ if(e.key === "Enter") buildFromThesis(); });
+$("amount").addEventListener("input", function(){ readAmount(); render(true); });
+$("amount").addEventListener("blur", function(){
+  readAmount();
+  $("amount").value = state.amount.toLocaleString("en-US");
+  render();
+});
+
+loadPools().then(function(){
+  render();
+}).catch(function(e){
+  state.error = "Could not read pool data. Reload the page.";
+  renderStamp();
+});
+
+/* Prices move; a quiet refresh every 60s keeps the page honest without
+   fighting the user's sliders. */
+setInterval(function(){
+  loadPools().then(function(){ render(); }).catch(function(){});
+}, 60000);
+</script>
+</body>
+</html>
