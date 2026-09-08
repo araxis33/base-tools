@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-08T18:43:59Z",
- "generated_at_unix": 1788893038,
+ "generated_at": "2026-09-08T19:44:07Z",
+ "generated_at_unix": 1788896645,
  "period": {
   "start": "2026-07-15",
   "days": 55
  },
  "totals": {
-  "seen": 160786,
-  "base": 26671,
+  "seen": 160994,
+  "base": 26879,
   "robinhood": 134115,
-  "below_liquidity_threshold": 157859,
-  "spam_filtered": 395,
-  "scored": 2532,
-  "green": 1195,
+  "below_liquidity_threshold": 158038,
+  "spam_filtered": 410,
+  "scored": 2546,
+  "green": 1206,
   "yellow": 443,
-  "red": 894
+  "red": 897
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-18",
-   "base": 131,
-   "robinhood": 357
+   "base": 98,
+   "robinhood": 221
   },
   {
    "date": "2026-08-19",
@@ -125,11 +125,121 @@
   },
   {
    "date": "2026-09-08",
-   "base": 1086,
+   "base": 1294,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "AERODOME",
+   "name": "AERODOME",
+   "chain": "base",
+   "address": "0xb200000000000000000000efcc9300c9ca5d7e01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 5037.9621,
+   "first_seen": 1788896583
+  },
+  {
+   "symbol": "MUSE",
+   "name": "Muse",
+   "chain": "base",
+   "address": "0x9721084fab87b98937d913dfa0aef1eb125b893a",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4016.651,
+   "first_seen": 1788896582
+  },
+  {
+   "symbol": "QUE🍕",
+   "name": "QueenChain🍕",
+   "chain": "base",
+   "address": "0x7072af8731745274ecf0ff985a0b3e39ab3da122",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 5852.5819,
+   "first_seen": 1788896210
+  },
+  {
+   "symbol": "ILY",
+   "name": "ILITY",
+   "chain": "base",
+   "address": "0x8b62e224f0edf1a14227b7d6ce036bbc0eb36721",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12421.7667,
+   "first_seen": 1788895749
+  },
+  {
+   "symbol": "Laptop",
+   "name": "Laptop",
+   "chain": "base",
+   "address": "0xa690e332b7ea1d71ed9b3b4b7d585ca159ca4f82",
+   "score": 92,
+   "verdict": "green",
+   "liquidity_usd": 1792.3643310176,
+   "first_seen": 1788895521
+  },
+  {
+   "symbol": "TOESCOIN",
+   "name": "TOES",
+   "chain": "base",
+   "address": "0x2dd055fd5ed3fe56760a5706210eef5b9fda3905",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12793.5211,
+   "first_seen": 1788895058
+  },
+  {
+   "symbol": "WEED",
+   "name": "WEED",
+   "chain": "base",
+   "address": "0x9e13cd81ba9f4eedcd24cbdbdfc67af8262451f5",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 17176.36,
+   "first_seen": 1788893866
+  },
+  {
+   "symbol": "CHUBBY",
+   "name": "Chubby",
+   "chain": "base",
+   "address": "0x05c3cfb30e2392c8630caf15e9dcbe8d3050c6a2",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13576.0076,
+   "first_seen": 1788893362
+  },
+  {
+   "symbol": "Laptop",
+   "name": "0xB095274743941e953c746F9C228DA9c18Bb6ec29",
+   "chain": "base",
+   "address": "0x927559771394b9c7aa2c369241cbe181f2e316b6",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 14932.5284,
+   "first_seen": 1788893315
+  },
+  {
+   "symbol": "COMP",
+   "name": "Compute",
+   "chain": "base",
+   "address": "0xb200000000000000000000126d3f5d04bdf123ed",
+   "score": 75,
+   "verdict": "green",
+   "liquidity_usd": 2875.8786,
+   "first_seen": 1788893132
+  },
+  {
+   "symbol": "DRB",
+   "name": "DebtReliefBot",
+   "chain": "base",
+   "address": "0x03e09e320aef86b74835073d5fbc3f45f4846a79",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 12671.8555,
+   "first_seen": 1788893130
+  },
   {
    "symbol": "TRY",
    "name": "try",
@@ -219,116 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 3984.6721,
    "first_seen": 1788890006
-  },
-  {
-   "symbol": "BASECAT",
-   "name": "Basecat",
-   "chain": "base",
-   "address": "0xc07ee0d085a2a19c3d36aab8dd1688b7d718e48e",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4948.8855,
-   "first_seen": 1788889775
-  },
-  {
-   "symbol": "TART",
-   "name": "TartSwap",
-   "chain": "base",
-   "address": "0x20d4df9a677076ec239d510a6a51974e31f21690",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 12449.4149274332,
-   "first_seen": 1788889774
-  },
-  {
-   "symbol": "FLY",
-   "name": "Fly Escape Room",
-   "chain": "base",
-   "address": "0x961e3e2bce9d7f3cdb3b389498d22902437b464e",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 75032.9702080692,
-   "first_seen": 1788888673
-  },
-  {
-   "symbol": "BOBLOX",
-   "name": "BasedRoblox",
-   "chain": "base",
-   "address": "0xb200000000000000000000d48ee406b726f25601",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4137.4095,
-   "first_seen": 1788887881
-  },
-  {
-   "symbol": "DUOLINGO",
-   "name": "Duolingo",
-   "chain": "base",
-   "address": "0x2ef316e92c6aa693d02beee5c564d474cf115222",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3122.9556,
-   "first_seen": 1788887880
-  },
-  {
-   "symbol": "astro",
-   "name": "astronaut",
-   "chain": "base",
-   "address": "0x591cd09de84c94c84da9ac71094c1a8b02afbb07",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 18792.7306,
-   "first_seen": 1788887879
-  },
-  {
-   "symbol": "astrokids",
-   "name": "astrokidsart",
-   "chain": "base",
-   "address": "0xb2000000000000000000001a9149266766dd0e01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4136.6768,
-   "first_seen": 1788887876
-  },
-  {
-   "symbol": "VVVCAT",
-   "name": "Private Cat",
-   "chain": "base",
-   "address": "0xb200000000000000000000664425b305f66662a3",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4818.3054,
-   "first_seen": 1788887829
-  },
-  {
-   "symbol": "GHOST",
-   "name": "Ghost",
-   "chain": "base",
-   "address": "0xb200000000000000000000176182c70753b7cd38",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3771.4648,
-   "first_seen": 1788887737
-  },
-  {
-   "symbol": "🍎",
-   "name": "🍎",
-   "chain": "base",
-   "address": "0x3f49046c38972d0f56f911b1e7c341c6f7954175",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 77020.3006,
-   "first_seen": 1788887690
-  },
-  {
-   "symbol": "VVVPAD",
-   "name": "vvvpad.com",
-   "chain": "base",
-   "address": "0xb20000000000000000000004e315996b2715df5b",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12369.372435853,
-   "first_seen": 1788887506
   }
  ],
  "confirmed": [
@@ -476,7 +476,7 @@
  "probation": {
   "waiting": 60,
   "confirmed": 12,
-  "dropped": 524
+  "dropped": 535
  },
  "recent_drains": [
   {
@@ -668,7 +668,7 @@
   "rug": 937
  },
  "watchlist_active": 6,
- "price_snapshots": 11887,
+ "price_snapshots": 11898,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
