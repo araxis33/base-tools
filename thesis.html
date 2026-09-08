@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Thesis · personal stock baskets on Base</title>
-<meta name="description" content="Write a one-line investment thesis, get a basket of Coinbase Tokenized Stocks on Base, and buy it in the pool that isn't overcharging you. Live onchain prices, no wallet connection.">
+<meta name="description" content="Write a one-line investment thesis, get a basket of Coinbase Tokenized Stocks on Base, and buy the whole thing in one transaction through the pool that isn't overcharging you.">
 <link rel="canonical" href="https://deftools.xyz/thesis.html">
 
 <meta property="og:type" content="website">
@@ -263,6 +263,8 @@ footer{border-top:1px solid var(--border); margin-top:30px; padding:22px 0 40px;
 
   <section id="result"></section>
 
+  <section id="execute"></section>
+
   <section id="chaincheck"></section>
 
   <section>
@@ -277,8 +279,8 @@ footer{border-top:1px solid var(--border); margin-top:30px; padding:22px 0 40px;
         <p>Each stock trades in several pools on Base at once, and their prices drift apart. The page reads all of them, trades in the deepest, and shows you what the same basket would have cost in the priciest.</p>
       </div>
       <div>
-        <h3>Nothing to connect</h3>
-        <p>No wallet connection, no approvals, no keys, no accounts. The page only reads public data. Buying happens in Aerodrome&rsquo;s own interface, with the pair already filled in.</p>
+        <h3>Read first, wallet last</h3>
+        <p>Everything above works with no wallet at all. Connect only if you want the whole basket bought in one confirmation &mdash; and even then the allowance asked for is exactly the size of that basket, nothing standing.</p>
       </div>
       <div>
         <h3>Only the real tokens</h3>
@@ -289,7 +291,7 @@ footer{border-top:1px solid var(--border); margin-top:30px; padding:22px 0 40px;
 
   <section>
     <div class="disclaim">
-      <b>Not investment advice.</b> This is a read-only calculator built for the Base Builder Quest. Coinbase Tokenized Stocks are issued by Coinbase and are only available to eligible users outside the United States &mdash; check the <a href="https://www.base.org/stocks" target="_blank" rel="noopener">official token list and prospectus</a> before you buy anything. Prices, liquidity and price-impact figures are estimates read from public DEX data and can be wrong or stale. Verify the contract address in your own wallet before every trade.
+      <b>Not investment advice.</b> Built for the Base Builder Quest. The page reads public data and, only if you ask it to, hands your wallet a batch of swaps to confirm; it never holds funds or keys. Coinbase Tokenized Stocks are issued by Coinbase and are only available to eligible users outside the United States &mdash; check the <a href="https://www.base.org/stocks" target="_blank" rel="noopener">official token list and prospectus</a> before you buy anything. Prices, liquidity and price-impact figures are estimates read from public DEX data and can be wrong or stale. Verify the contract address in your own wallet before every trade.
     </div>
   </section>
 
@@ -672,6 +674,271 @@ function renderResult(){
   });
 }
 
+/* ---------- one-transaction basket ---------- */
+/* Everything above is read-only. This is the only place a wallet is ever
+   touched, and only after an explicit click. Routes come from the KyberSwap
+   aggregator, which prices across every DEX on Base and — checked against our
+   own pool data — lands in the same deep Aerodrome pools this page
+   recommends. Each swap carries the ERC-8021 attribution suffix for builder
+   code bc_mrkwu2m0, byte for byte the string the Base dashboard publishes. */
+var CHAIN_HEX = "0x2105";           // Base, 8453
+var KYBER = "https://aggregator-api.kyberswap.com/base/api/v1";
+var BUILDER_SUFFIX = "62635f6d726b7775326d300b0080218021802180218021802180218021";
+var SLIPPAGE_BPS = 100;             // 1%
+
+var ex = { state:"idle", account:null, quotes:null, msg:"", txt:"", error:null, busy:false };
+
+function hex32(n){
+  var h = BigInt(n).toString(16);
+  while(h.length < 64) h = "0" + h;
+  return h;
+}
+function encodeApprove(spender, amount){
+  return "0x095ea7b3" + hex32(BigInt("0x" + spender.toLowerCase().replace("0x",""))) + hex32(amount);
+}
+function provider(){
+  if(typeof window.ethereum === "undefined") return null;
+  var p = window.ethereum;
+  if(p.providers && p.providers.length){
+    for(var i=0;i<p.providers.length;i++){ if(p.providers[i].isCoinbaseWallet) return p.providers[i]; }
+    return p.providers[0];
+  }
+  return p;
+}
+function basketRows(){
+  var tot = totalWeight();
+  if(!tot || !state.data) return [];
+  var out = [];
+  TOKENS.forEach(function(t){
+    var raw = state.weights[t.s] || 0;
+    if(raw <= 0) return;
+    var d = state.data[t.s];
+    if(!d) return;
+    var usd = state.amount * raw / tot;
+    if(usd < 0.5) return;               // dust is not worth a swap
+    out.push({t:t, d:d, usd:usd, wei:BigInt(Math.round(usd * 1e6))});
+  });
+  return out;
+}
+
+function kyberRoute(row, from){
+  var url = KYBER + "/routes?tokenIn=" + USDC + "&tokenOut=" + row.t.a +
+            "&amountIn=" + row.wei.toString() + "&gasInclude=true";
+  return fetch(url).then(function(r){ return r.json(); }).then(function(j){
+    if(!j || j.code !== 0 || !j.data) throw new Error(row.t.s + ": no route found");
+    return fetch(KYBER + "/route/build", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({
+        routeSummary: j.data.routeSummary,
+        sender: from, recipient: from,
+        slippageTolerance: SLIPPAGE_BPS,
+        source: "thesis.deftools.xyz"
+      })
+    }).then(function(r){ return r.json(); }).then(function(b){
+      if(!b || b.code !== 0 || !b.data) throw new Error(row.t.s + ": could not build the swap");
+      return { row: row, router: b.data.routerAddress, data: b.data.data, out: BigInt(b.data.amountOut) };
+    });
+  });
+}
+
+function renderExecute(){
+  var el = $("execute");
+  var rows = basketRows();
+  if(!rows.length){ el.innerHTML = ""; return; }
+
+  var html = '<h2>Buy it in one transaction</h2>' +
+    '<p class="note">Optional, and the only part of this page that touches a wallet. ' +
+    'Every swap is quoted across all of Base, batched into a single confirmation, and tagged ' +
+    'with builder code <span class="addr">bc_mrkwu2m0</span>.</p>' +
+    '<div class="panel">';
+
+  if(ex.error){
+    html += '<div class="traps" style="margin:0 0 14px"><b>' + esc(ex.error) + '</b></div>';
+  }
+
+  if(ex.quotes){
+    html += '<div class="tbl-wrap" style="margin-bottom:14px"><table><thead><tr>' +
+      '<th>Stock</th><th class="r">Spends</th><th class="r">You receive</th>' +
+      '<th class="r">Effective price</th><th class="r">vs. pool quote</th></tr></thead><tbody>';
+    ex.quotes.forEach(function(q){
+      var got = Number(q.out) / 1e8;
+      var eff = got > 0 ? q.row.usd / got : Infinity;
+      var diff = (eff - q.row.d.deep.price) / q.row.d.deep.price * 100;
+      html += '<tr><td class="sym">' + q.row.t.s + '</td>' +
+        '<td class="n r">' + money(q.row.usd, 2) + '</td>' +
+        '<td class="n r">' + shares(got) + '</td>' +
+        '<td class="n r">' + money(eff, 2) + '</td>' +
+        '<td class="n r"><span class="pill ' + (diff <= 0.35 ? "green" : diff <= 1.5 ? "yellow" : "red") + '">' +
+          (diff >= 0 ? "+" : "") + diff.toFixed(2) + '%</span></td></tr>';
+    });
+    html += '</tbody></table></div>' +
+      '<p class="note" style="margin:0 0 14px">Executable quotes, slippage limit 1%. The last column is ' +
+      'how far the live route sits from the pool price quoted above — that gap is what moving the money costs.</p>';
+  }
+
+  html += '<div class="actions" style="margin-top:0">';
+  if(ex.state === "idle"){
+    html += '<button class="btn" id="ex-quote">Get live quotes</button>';
+  } else if(ex.state === "quoting"){
+    html += '<button class="btn" disabled>Quoting ' + rows.length + ' swaps…</button>';
+  } else if(ex.state === "ready"){
+    html += '<button class="btn" id="ex-buy">Buy ' + rows.length + ' stocks in one transaction</button>' +
+            '<button class="btn ghost" id="ex-requote">Requote</button>';
+  } else if(ex.state === "sending"){
+    html += '<button class="btn" disabled>Confirm in your wallet…</button>';
+  } else if(ex.state === "done"){
+    html += '<a class="btn" href="' + ex.txt + '" target="_blank" rel="noopener">See it onchain</a>' +
+            '<button class="btn ghost" id="ex-again">Start again</button>';
+  }
+  html += '<span class="copied">' + esc(ex.msg || "") + '</span></div>';
+
+  html += '<p class="note" style="margin:14px 0 0">No wallet is contacted until you press a button here, ' +
+    'and the allowance asked for is exactly the size of this basket — nothing standing, nothing custodied.</p></div>';
+  el.innerHTML = html;
+
+  if($("ex-quote")) $("ex-quote").addEventListener("click", doQuote);
+  if($("ex-requote")) $("ex-requote").addEventListener("click", doQuote);
+  if($("ex-buy")) $("ex-buy").addEventListener("click", doBuy);
+  if($("ex-again")) $("ex-again").addEventListener("click", function(){
+    ex = { state:"idle", account:ex.account, quotes:null, msg:"", txt:"", error:null, busy:false };
+    renderExecute();
+  });
+}
+
+function connect(){
+  var p = provider();
+  if(!p) return Promise.reject(new Error("No wallet found in this browser. Everything else on the page works without one."));
+  return p.request({method:"eth_requestAccounts"}).then(function(accs){
+    if(!accs || !accs.length) throw new Error("The wallet returned no account.");
+    ex.account = accs[0];
+    return p.request({method:"eth_chainId"}).then(function(id){
+      if(id === CHAIN_HEX) return accs[0];
+      return p.request({method:"wallet_switchEthereumChain", params:[{chainId:CHAIN_HEX}]})
+              .then(function(){ return accs[0]; });
+    });
+  });
+}
+
+function doQuote(){
+  if(ex.busy) return;
+  ex.busy = true; ex.error = null; ex.msg = "";
+  var rows = basketRows();
+  connect().then(function(from){
+    ex.state = "quoting"; renderExecute();
+    return Promise.all(rows.map(function(r){ return kyberRoute(r, from); }));
+  }).then(function(qs){
+    ex.quotes = qs; ex.state = "ready";
+    ex.msg = "Quotes are good for a couple of minutes.";
+  }).catch(function(e){
+    ex.error = e.message || String(e);
+    ex.state = ex.quotes ? "ready" : "idle";
+  }).then(function(){
+    ex.busy = false; renderExecute();
+  });
+}
+
+function doBuy(){
+  if(ex.busy || !ex.quotes || !ex.quotes.length) return;
+  ex.busy = true; ex.error = null; ex.msg = ""; ex.state = "sending"; renderExecute();
+
+  var p = provider();
+  var from = ex.account;
+  var total = ex.quotes.reduce(function(a,q){ return a + q.row.wei; }, BigInt(0));
+  var router = ex.quotes[0].router;
+
+  /* Ask for an allowance only if the standing one is too small. */
+  allowanceOf(p, from, router).then(function(have){
+    var calls = [];
+    if(have < total) calls.push({ to: USDC, data: encodeApprove(router, total), value: "0x0" });
+    ex.quotes.forEach(function(q){
+      calls.push({ to: q.router, data: q.data + BUILDER_SUFFIX, value: "0x0" });
+    });
+    return sendCalls(p, from, calls);
+  }).then(function(){
+    ex.busy = false; renderExecute();
+  });
+}
+
+function allowanceOf(p, owner, spender){
+  var data = "0xdd62ed3e" + hex32(BigInt("0x" + owner.toLowerCase().replace("0x",""))) +
+             hex32(BigInt("0x" + spender.toLowerCase().replace("0x","")));
+  return p.request({method:"eth_call", params:[{to:USDC, data:data}, "latest"]})
+    .then(function(r){ return (r && r !== "0x") ? BigInt(r) : BigInt(0); })
+    .catch(function(){ return BigInt(0); });
+}
+
+function waitForReceipt(p, hash){
+  var tries = 0;
+  return new Promise(function(resolve, reject){
+    (function poll(){
+      p.request({method:"eth_getTransactionReceipt", params:[hash]}).then(function(r){
+        if(r && r.blockNumber){
+          if(r.status === "0x0") return reject(new Error("A transaction reverted onchain."));
+          return resolve(r);
+        }
+        if(++tries > 60) return reject(new Error("Timed out waiting for confirmation."));
+        setTimeout(poll, 2000);
+      }).catch(function(){ setTimeout(poll, 2500); });
+    })();
+  });
+}
+
+function sendCalls(p, from, calls){
+  return p.request({
+    method: "wallet_sendCalls",
+    params: [{ version:"2.0.0", chainId:CHAIN_HEX, from:from, atomicRequired:true, calls:calls }]
+  }).then(function(res){
+    var id = (res && res.id) ? res.id : res;
+    ex.state = "done";
+    ex.txt = "https://basescan.org/address/" + from;
+    ex.msg = "Sent as one batch of " + calls.length + " calls. Waiting for the receipt…";
+    renderExecute();
+    /* Swap the link for the real transaction as soon as the wallet reports it. */
+    var tries = 0;
+    (function poll(){
+      p.request({method:"wallet_getCallsStatus", params:[id]}).then(function(st){
+        var rc = st && st.receipts && st.receipts[0];
+        if(rc && rc.transactionHash){
+          ex.txt = "https://basescan.org/tx/" + rc.transactionHash;
+          ex.msg = "Confirmed onchain, one transaction, builder code attached.";
+          renderExecute();
+          return;
+        }
+        if(++tries < 40) setTimeout(poll, 2000);
+      }).catch(function(){ /* wallet does not report status; the address link stands */ });
+    })();
+  }).catch(function(e){
+    if(e && e.code === 4001){
+      ex.error = "Cancelled in the wallet.";
+      ex.state = "ready"; return;
+    }
+    /* Wallets without EIP-5792 get the honest fallback: the same calls, one
+       confirmation each, in the same order. */
+    ex.msg = "This wallet cannot batch — sending the calls one at a time.";
+    renderExecute();
+    /* Each one has to be mined before the next is sent: the swaps depend on
+       the allowance the first call sets. */
+    var seq = Promise.resolve(), last = null, n = 0;
+    calls.forEach(function(c){
+      seq = seq.then(function(){
+        ex.msg = "Confirm " + (++n) + " of " + calls.length + " in your wallet…";
+        renderExecute();
+        return p.request({method:"eth_sendTransaction", params:[{from:from, to:c.to, data:c.data, value:"0x0"}]})
+                .then(function(h){ last = h; return waitForReceipt(p, h); });
+      });
+    });
+    return seq.then(function(){
+      ex.state = "done";
+      ex.txt = "https://basescan.org/tx/" + last;
+      ex.msg = "Done — " + calls.length + " transactions.";
+    }).catch(function(err){
+      ex.error = (err && err.message) ? err.message : "The wallet rejected the transaction.";
+      ex.state = "ready";
+    });
+  });
+}
+
 /* A standing scan of all ten stocks, whatever is in your basket. A pool
    quoting Tesla at $15,000 harms nobody until something routes an order into
    it, and the people most likely to hit one are the ones who never look. */
@@ -768,10 +1035,11 @@ function render(debounced){
   renderWeights();
   if(debounced){
     clearTimeout(renderTimer);
-    renderTimer = setTimeout(function(){ renderResult(); renderChainCheck(); }, 90);
+    renderTimer = setTimeout(function(){ renderResult(); renderChainCheck(); renderExecute(); }, 90);
   } else {
     renderResult();
     renderChainCheck();
+    renderExecute();
   }
   if(totalWeight() > 0){
     history.replaceState(null, "", shareUrl());
@@ -814,6 +1082,8 @@ loadPools().then(function(){
 /* Prices move; a quiet refresh every 60s keeps the page honest without
    fighting the user's sliders. */
 setInterval(function(){
+  /* never redraw underneath a wallet flow */
+  if(ex.busy || ex.state === "sending" || ex.state === "ready") return;
   loadPools().then(function(){ render(); }).catch(function(){});
 }, 60000);
 </script>
