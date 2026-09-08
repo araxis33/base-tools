@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-08T10:14:00Z",
- "generated_at_unix": 1788862438,
+ "generated_at": "2026-09-08T15:43:42Z",
+ "generated_at_unix": 1788882221,
  "period": {
   "start": "2026-07-15",
   "days": 55
  },
  "totals": {
-  "seen": 159910,
-  "base": 25795,
+  "seen": 160236,
+  "base": 26121,
   "robinhood": 134115,
-  "below_liquidity_threshold": 157096,
-  "spam_filtered": 346,
-  "scored": 2468,
-  "green": 1144,
-  "yellow": 439,
-  "red": 885
+  "below_liquidity_threshold": 157380,
+  "spam_filtered": 365,
+  "scored": 2491,
+  "green": 1164,
+  "yellow": 440,
+  "red": 887
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-18",
-   "base": 356,
-   "robinhood": 907
+   "base": 258,
+   "robinhood": 635
   },
   {
    "date": "2026-08-19",
@@ -125,210 +125,210 @@
   },
   {
    "date": "2026-09-08",
-   "base": 210,
+   "base": 536,
    "robinhood": 0
   }
  ],
  "recent_finds": [
   {
-   "symbol": "GITLAWB",
-   "name": "Gitlawb",
+   "symbol": "AMC",
+   "name": "A Meme Coin",
    "chain": "base",
-   "address": "0x7e16e8722ac78fef399e6dc6f824ca9841ce03d4",
+   "address": "0x2f116b2088987735b7763b4fe8fa3bdfeb9623b2",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 6248.0516,
-   "first_seen": 1788861692
+   "liquidity_usd": 12417.6648873964,
+   "first_seen": 1788881817
   },
   {
-   "symbol": "BODEN",
-   "name": "honter boden",
+   "symbol": "LAPTOPTEST",
+   "name": "LAPTOP rehearsal",
    "chain": "base",
-   "address": "0x6b046665d59f88a0e503c2fb37224cba6dea3337",
+   "address": "0x6761d5d0f3787e8a73e383ed6d8fbe4a19995312",
    "score": 73,
    "verdict": "green",
-   "liquidity_usd": 75938.5057,
-   "first_seen": 1788861690
+   "liquidity_usd": 9395.3527,
+   "first_seen": 1788881545
   },
   {
-   "symbol": "RUN",
-   "name": "RUNWAY",
+   "symbol": "MRKT",
+   "name": "BitterMEERKAT",
    "chain": "base",
-   "address": "0xef2ab45e0ae67ae4baa4919977a64e315e5310fb",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 24860.0462,
-   "first_seen": 1788861320
-  },
-  {
-   "symbol": "WOLF",
-   "name": "The Wolf of Wall Street",
-   "chain": "base",
-   "address": "0x70521ed8e7137deb815ad13558c25cdf14b7619e",
+   "address": "0xc60dc32bfb8e143c440535f20bb08d3847b9f3d9",
    "score": 73,
    "verdict": "green",
-   "liquidity_usd": 34673.7752,
-   "first_seen": 1788861319
+   "liquidity_usd": 24872.4,
+   "first_seen": 1788880638
   },
   {
-   "symbol": "HNT",
-   "name": "Helium Network Token",
+   "symbol": "CRMB",
+   "name": "Salesforce Tokenized bStocks",
    "chain": "base",
-   "address": "0xbad494cb7d8337abe8db1d6c19d1bb6b818eed67",
+   "address": "0x8914f9f07d79c5b85d503908d99efb2404348ed8",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 25968.0129,
+   "first_seen": 1788880455
+  },
+  {
+   "symbol": "土豪链🐼",
+   "name": "土豪链🐼",
+   "chain": "base",
+   "address": "0x433f962f31902bf331278876dadc416d84ff1f76",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 7070.6895,
+   "first_seen": 1788880454
+  },
+  {
+   "symbol": "SOPH",
+   "name": "SOPHON",
+   "chain": "base",
+   "address": "0x9e921178150ead62e360fc6e2d467026f07f2b2c",
    "score": 57,
    "verdict": "yellow",
-   "liquidity_usd": 78750.7612,
-   "first_seen": 1788861045
+   "liquidity_usd": 99100.2624,
+   "first_seen": 1788880363
   },
   {
-   "symbol": "PNZI",
-   "name": "Ponzi Strategy",
+   "symbol": "4Stock",
+   "name": "4Stock",
    "chain": "base",
-   "address": "0xb200000000000000000000791fe09a563c570cdd",
+   "address": "0xaf09799028f02b3560f65c09d96a862b5b2e9b07",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 24726.9254,
-   "first_seen": 1788861043
+   "liquidity_usd": 18379.4416,
+   "first_seen": 1788879996
   },
   {
-   "symbol": "TOAD",
-   "name": "The Toad Pepe",
+   "symbol": "MAC",
+   "name": "The Mac Shop",
    "chain": "base",
-   "address": "0x6e0d7f7e683ad24f5d6b6b90ba92a26927bff3ac",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 13770.7084,
-   "first_seen": 1788861042
-  },
-  {
-   "symbol": "PRE-CRIME",
-   "name": "Pre-Crime",
-   "chain": "base",
-   "address": "0x7a84846911b8b48b1d2067637e003c40d2756080",
+   "address": "0x125fe0f8e2e3693338608b08be1224fd40e01760",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 74975.5796,
-   "first_seen": 1788858977
+   "liquidity_usd": 76785.7675,
+   "first_seen": 1788879806
   },
   {
-   "symbol": "CHCKD",
-   "name": "FoolishCHICKADEE",
+   "symbol": "JBUILD",
+   "name": "JBUILD",
    "chain": "base",
-   "address": "0x892fb6ce9ad5016a5fee5f0524fcae5cb6eb1a78",
+   "address": "0xc083e4068b5851ce8ed9e0cd8bf66e5fe745108e",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4464.3512,
+   "first_seen": 1788865907
+  },
+  {
+   "symbol": "CRCL",
+   "name": "Circle Internet Group Tokenized Stock (Robinhood)",
+   "chain": "base",
+   "address": "0x3970d9284ea1472bd5347d66cd6d348f04e4eecf",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12827.4412,
+   "first_seen": 1788865860
+  },
+  {
+   "symbol": "BG",
+   "name": "Base Genie",
+   "chain": "base",
+   "address": "0x1009e6234159254b5a24f13a77d0e24dc8cd230e",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4107.9736,
+   "first_seen": 1788865678
+  },
+  {
+   "symbol": "Satoshi",
+   "name": "Satoshi",
+   "chain": "base",
+   "address": "0xb200000000000000000000a536372865b6e89301",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3973.67154425373,
+   "first_seen": 1788865676
+  },
+  {
+   "symbol": "NASDUQ",
+   "name": "NASDUQ",
+   "chain": "base",
+   "address": "0xb2000000000000000000007bbaff9604a4c312c8",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 32964.2877,
+   "first_seen": 1788865083
+  },
+  {
+   "symbol": "AGAI",
+   "name": "Aegis AI",
+   "chain": "base",
+   "address": "0x510b7bd66f53d0b9b735250edf1e6e2562a66a18",
    "score": 73,
    "verdict": "green",
-   "liquidity_usd": 24763.8,
-   "first_seen": 1788858705
+   "liquidity_usd": 26883.7074,
+   "first_seen": 1788865081
   },
   {
-   "symbol": "CUP",
-   "name": "Ticker Cup",
+   "symbol": "BNKR",
+   "name": "Banker Coin",
    "chain": "base",
-   "address": "0xb200000000000000000000a87cc77b5daf7b339b",
+   "address": "0xc0340f70dc9c366178120486b3abaeedadf4cb07",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 27323.634,
-   "first_seen": 1788858658
+   "liquidity_usd": 20210.5979,
+   "first_seen": 1788865080
   },
   {
-   "symbol": "AMAT",
-   "name": "Applied Materials Tokenized Stock (Robinhood)",
+   "symbol": "NOJEANS",
+   "name": "Zack NoJeans",
    "chain": "base",
-   "address": "0x0280d3bbe6547c067678dfe4d1fbfa9d6fe6ce8c",
+   "address": "0xb200000000000000000000950fe965f386ee367c",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 16196.7118,
-   "first_seen": 1788858656
+   "liquidity_usd": 32096.3456,
+   "first_seen": 1788865079
   },
   {
-   "symbol": "PENS",
-   "name": "PENIS",
+   "symbol": "BLUE",
+   "name": "Blue Coin",
    "chain": "base",
-   "address": "0xb200000000000000000000b2f4f2fdb375d4c36d",
+   "address": "0xb20000000000000000000003a02623b9de94d701",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 36966.3229,
-   "first_seen": 1788858653
+   "liquidity_usd": 4683.4629,
+   "first_seen": 1788865077
   },
   {
-   "symbol": "GME",
-   "name": "Greatest Meme Ever",
+   "symbol": "IM",
+   "name": "Internet Money",
    "chain": "base",
-   "address": "0xae30dc3059e7179d45f05e9951c08fea12fb9a43",
+   "address": "0xb200000000000000000000e219258a64f41fdd2a",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 12858.2352,
-   "first_seen": 1788858651
+   "liquidity_usd": 27595.5669,
+   "first_seen": 1788865076
   },
   {
-   "symbol": "LAPTOP",
-   "name": "Hunter Boden’s Laptop",
+   "symbol": "NOVA",
+   "name": "NOVA",
    "chain": "base",
-   "address": "0x108868346c646775ba1769044f8737b429f05a3e",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 90737.4673,
-   "first_seen": 1788856875
-  },
-  {
-   "symbol": "AION",
-   "name": "Aoin",
-   "chain": "base",
-   "address": "0xb200000000000000000000071b35fdc6d2c2289d",
+   "address": "0xb20000000000000000000061b525bf2c9fb4e501",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 31123.1301,
-   "first_seen": 1788856875
+   "liquidity_usd": 28853.7474,
+   "first_seen": 1788865075
   },
   {
-   "symbol": "LAVA",
-   "name": "LAVA",
+   "symbol": "SPARK",
+   "name": "Spark Finance",
    "chain": "base",
-   "address": "0xb2000000000000000000004ca94881bef4f0ab1a",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 24071.5497,
-   "first_seen": 1788856602
-  },
-  {
-   "symbol": "LAPTOP",
-   "name": "Biden’s Laptop",
-   "chain": "base",
-   "address": "0x40e0624f4764981b7852d623c526be90fa1a5e16",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 89148.1774,
-   "first_seen": 1788856555
-  },
-  {
-   "symbol": "XYZ",
-   "name": "Web3 Growth Agent (wga.xyz)",
-   "chain": "base",
-   "address": "0xb03b3536937bf2a41b6a593d931091a895274e64",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12359.0648221691,
-   "first_seen": 1788855376
-  },
-  {
-   "symbol": "POONKS",
-   "name": "poonks",
-   "chain": "base",
-   "address": "0xb20000000000000000000061c476781a464260ab",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 36415.164,
-   "first_seen": 1788855330
-  },
-  {
-   "symbol": "BASESZN",
-   "name": "Base Season",
-   "chain": "base",
-   "address": "0x17755edff19adc30ba6e10f6b6318117c6023e46",
+   "address": "0x35fbee2c468c81ad0b0bcfe85148c101bd40e416",
    "score": 73,
    "verdict": "green",
-   "liquidity_usd": 3863.2444,
-   "first_seen": 1788855329
+   "liquidity_usd": 34709.9508,
+   "first_seen": 1788863244
   }
  ],
  "confirmed": [
@@ -474,9 +474,9 @@
   }
  ],
  "probation": {
-  "waiting": 46,
+  "waiting": 42,
   "confirmed": 12,
-  "dropped": 483
+  "dropped": 508
  },
  "recent_drains": [
   {
@@ -668,7 +668,7 @@
   "rug": 937
  },
  "watchlist_active": 6,
- "price_snapshots": 12056,
+ "price_snapshots": 11817,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
