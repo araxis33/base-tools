@@ -263,6 +263,8 @@ footer{border-top:1px solid var(--border); margin-top:30px; padding:22px 0 40px;
 
   <section id="result"></section>
 
+  <section id="chaincheck"></section>
+
   <section>
     <h2>How this works</h2>
     <div class="how">
@@ -670,6 +672,50 @@ function renderResult(){
   });
 }
 
+/* A standing scan of all ten stocks, whatever is in your basket. A pool
+   quoting Tesla at $15,000 harms nobody until something routes an order into
+   it, and the people most likely to hit one are the ones who never look. */
+function renderChainCheck(){
+  var el = $("chaincheck");
+  if(!state.data){ el.innerHTML = ""; return; }
+  var bad = [], spreads = [];
+  TOKENS.forEach(function(t){
+    var d = state.data[t.s];
+    if(!d) return;
+    d.traps.forEach(function(p){ bad.push({s:t.s, p:p, fair:d.deep.price}); });
+    if(d.gap >= 1) spreads.push({s:t.s, gap:d.gap, fair:d.deep.price, worst:d.worst.price});
+  });
+  spreads.sort(function(a,b){ return b.gap - a.gap; });
+
+  var html = '<h2>Chain check</h2>' +
+    '<p class="note">Refreshed every minute across all ten stocks, whether or not they are in your basket.</p>';
+
+  if(spreads.length){
+    html += '<div class="traps" style="border-left-color:var(--yellow)"><b>Same share, different price</b> — ' +
+      'the gap between the deepest pool and the priciest one quoting it right now:<ul>';
+    spreads.slice(0, 5).forEach(function(x){
+      html += '<li>' + x.s + ': ' + money(x.fair, 2) + ' vs ' + money(x.worst, 2) +
+              ' — <b>' + x.gap.toFixed(2) + '%</b></li>';
+    });
+    html += '</ul></div>';
+  }
+
+  if(bad.length){
+    html += '<div class="traps"><b>' + bad.length + ' pool' + (bad.length > 1 ? 's' : '') +
+      ' quoting a price that cannot be real.</b> Nothing routes through them here, but a careless ' +
+      'aggregator or a hand-typed swap can still land in one:<ul>';
+    bad.slice(0, 6).forEach(function(x){
+      html += '<li>' + x.s + ' at ' + money(x.p.price, 2) + ' on ' + esc(x.p.dex) +
+              ' — the real price is ' + money(x.fair, 2) + '</li>';
+    });
+    html += '</ul></div>';
+  } else if(spreads.length === 0){
+    html += '<div class="traps" style="border-left-color:var(--green)">' +
+      'Every live pool is quoting a sane price right now. That is not the usual state of this market.</div>';
+  }
+  el.innerHTML = html;
+}
+
 function shareUrl(){
   var tot = totalWeight();
   var parts = [];
@@ -722,9 +768,10 @@ function render(debounced){
   renderWeights();
   if(debounced){
     clearTimeout(renderTimer);
-    renderTimer = setTimeout(renderResult, 90);
+    renderTimer = setTimeout(function(){ renderResult(); renderChainCheck(); }, 90);
   } else {
     renderResult();
+    renderChainCheck();
   }
   if(totalWeight() > 0){
     history.replaceState(null, "", shareUrl());
