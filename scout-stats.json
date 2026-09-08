@@ -1,32 +1,27 @@
 {
- "generated_at": "2026-09-08T20:44:14Z",
- "generated_at_unix": 1788900253,
+ "generated_at": "2026-09-08T21:44:18Z",
+ "generated_at_unix": 1788903857,
  "period": {
   "start": "2026-07-15",
   "days": 55
  },
  "totals": {
-  "seen": 161122,
-  "base": 27007,
+  "seen": 161225,
+  "base": 27110,
   "robinhood": 134115,
-  "below_liquidity_threshold": 158133,
-  "spam_filtered": 425,
-  "scored": 2564,
-  "green": 1221,
+  "below_liquidity_threshold": 158217,
+  "spam_filtered": 436,
+  "scored": 2572,
+  "green": 1228,
   "yellow": 444,
-  "red": 899
+  "red": 900
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
-   "date": "2026-08-18",
-   "base": 20,
-   "robinhood": 41
-  },
-  {
    "date": "2026-08-19",
-   "base": 333,
-   "robinhood": 1174
+   "base": 325,
+   "robinhood": 1149
   },
   {
    "date": "2026-08-20",
@@ -125,11 +120,86 @@
   },
   {
    "date": "2026-09-08",
-   "base": 1422,
+   "base": 1447,
+   "robinhood": 0
+  },
+  {
+   "date": "2026-09-09",
+   "base": 78,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "RNDR",
+   "name": "ComparativeREINDEER",
+   "chain": "base",
+   "address": "0xd8e34439077a9b5727ae41342fe71b590daeec14",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 24828.3,
+   "first_seen": 1788903310
+  },
+  {
+   "symbol": "STONKS",
+   "name": "Stonks (stonksbnb.com)",
+   "chain": "base",
+   "address": "0xcac0a72759339521e2045d054c12df4d5b4afbce",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12415.9648898727,
+   "first_seen": 1788903263
+  },
+  {
+   "symbol": "MAX",
+   "name": "Giggle Mascot",
+   "chain": "base",
+   "address": "0xb8aa3030b1bc5e2f208fd4d1598b233ed7a2e7e8",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12426.9,
+   "first_seen": 1788902396
+  },
+  {
+   "symbol": "LAP",
+   "name": "Biden Fighter",
+   "chain": "base",
+   "address": "0xb200000000000000000000ec8458a7c12fb4ae53",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 10155.984,
+   "first_seen": 1788901440
+  },
+  {
+   "symbol": "STONKGUY",
+   "name": "Just a Stonk Guy",
+   "chain": "base",
+   "address": "0x57f772ee443a761c6d9fa6043e2fc7969231f199",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 4061.6863,
+   "first_seen": 1788901257
+  },
+  {
+   "symbol": "LITE",
+   "name": "Lumentum Tokenized Stock (Robinhood)",
+   "chain": "base",
+   "address": "0x0d20a176a5ed1b714b4c79c2cd77ff008f09beac",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12421.25,
+   "first_seen": 1788900846
+  },
+  {
+   "symbol": "LAPCAT",
+   "name": "LAPCAT",
+   "chain": "base",
+   "address": "0x32945d69bf2d98676c83d964a243d0e6d7ebbbbb",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 3342.9961,
+   "first_seen": 1788900845
+  },
   {
    "symbol": "SPCXBRETT",
    "name": "SpaceBrett",
@@ -259,76 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 51091508.7915477,
    "first_seen": 1788897636
-  },
-  {
-   "symbol": "LAPTOP",
-   "name": "OFFICIAL LAPTOP",
-   "chain": "base",
-   "address": "0xce6340d444a8d3c7cb1606968e220e095ad5a9e5",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 20011.1587,
-   "first_seen": 1788897633
-  },
-  {
-   "symbol": "TTBRO",
-   "name": "Trust The Bro",
-   "chain": "base",
-   "address": "0x4685804d0280f95156ac2aaa8624c6de056c8114",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 483843.3672,
-   "first_seen": 1788897586
-  },
-  {
-   "symbol": "WEREY",
-   "name": "Motiyawerey",
-   "chain": "base",
-   "address": "0xb200000000000000000000e00902de2461586487",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 6245.7062,
-   "first_seen": 1788896721
-  },
-  {
-   "symbol": "AERODOME",
-   "name": "AERODOME",
-   "chain": "base",
-   "address": "0xb200000000000000000000efcc9300c9ca5d7e01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 5037.9621,
-   "first_seen": 1788896583
-  },
-  {
-   "symbol": "MUSE",
-   "name": "Muse",
-   "chain": "base",
-   "address": "0x9721084fab87b98937d913dfa0aef1eb125b893a",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4016.651,
-   "first_seen": 1788896582
-  },
-  {
-   "symbol": "QUE🍕",
-   "name": "QueenChain🍕",
-   "chain": "base",
-   "address": "0x7072af8731745274ecf0ff985a0b3e39ab3da122",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 5852.5819,
-   "first_seen": 1788896210
-  },
-  {
-   "symbol": "ILY",
-   "name": "ILITY",
-   "chain": "base",
-   "address": "0x8b62e224f0edf1a14227b7d6ce036bbc0eb36721",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12421.7667,
-   "first_seen": 1788895749
   }
  ],
  "confirmed": [
@@ -474,9 +474,9 @@
   }
  ],
  "probation": {
-  "waiting": 71,
+  "waiting": 61,
   "confirmed": 12,
-  "dropped": 540
+  "dropped": 557
  },
  "recent_drains": [
   {
@@ -668,7 +668,7 @@
   "rug": 937
  },
  "watchlist_active": 6,
- "price_snapshots": 11905,
+ "price_snapshots": 11918,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
