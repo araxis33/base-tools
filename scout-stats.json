@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-08T09:13:53Z",
- "generated_at_unix": 1788858833,
+ "generated_at": "2026-09-08T10:14:00Z",
+ "generated_at_unix": 1788862438,
  "period": {
   "start": "2026-07-15",
   "days": 55
  },
  "totals": {
-  "seen": 159851,
-  "base": 25736,
+  "seen": 159910,
+  "base": 25795,
   "robinhood": 134115,
-  "below_liquidity_threshold": 157055,
-  "spam_filtered": 336,
-  "scored": 2460,
-  "green": 1137,
-  "yellow": 438,
+  "below_liquidity_threshold": 157096,
+  "spam_filtered": 346,
+  "scored": 2468,
+  "green": 1144,
+  "yellow": 439,
   "red": 885
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-18",
-   "base": 397,
-   "robinhood": 978
+   "base": 356,
+   "robinhood": 907
   },
   {
    "date": "2026-08-19",
@@ -125,11 +125,91 @@
   },
   {
    "date": "2026-09-08",
-   "base": 151,
+   "base": 210,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "GITLAWB",
+   "name": "Gitlawb",
+   "chain": "base",
+   "address": "0x7e16e8722ac78fef399e6dc6f824ca9841ce03d4",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 6248.0516,
+   "first_seen": 1788861692
+  },
+  {
+   "symbol": "BODEN",
+   "name": "honter boden",
+   "chain": "base",
+   "address": "0x6b046665d59f88a0e503c2fb37224cba6dea3337",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 75938.5057,
+   "first_seen": 1788861690
+  },
+  {
+   "symbol": "RUN",
+   "name": "RUNWAY",
+   "chain": "base",
+   "address": "0xef2ab45e0ae67ae4baa4919977a64e315e5310fb",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 24860.0462,
+   "first_seen": 1788861320
+  },
+  {
+   "symbol": "WOLF",
+   "name": "The Wolf of Wall Street",
+   "chain": "base",
+   "address": "0x70521ed8e7137deb815ad13558c25cdf14b7619e",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 34673.7752,
+   "first_seen": 1788861319
+  },
+  {
+   "symbol": "HNT",
+   "name": "Helium Network Token",
+   "chain": "base",
+   "address": "0xbad494cb7d8337abe8db1d6c19d1bb6b818eed67",
+   "score": 57,
+   "verdict": "yellow",
+   "liquidity_usd": 78750.7612,
+   "first_seen": 1788861045
+  },
+  {
+   "symbol": "PNZI",
+   "name": "Ponzi Strategy",
+   "chain": "base",
+   "address": "0xb200000000000000000000791fe09a563c570cdd",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 24726.9254,
+   "first_seen": 1788861043
+  },
+  {
+   "symbol": "TOAD",
+   "name": "The Toad Pepe",
+   "chain": "base",
+   "address": "0x6e0d7f7e683ad24f5d6b6b90ba92a26927bff3ac",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 13770.7084,
+   "first_seen": 1788861042
+  },
+  {
+   "symbol": "PRE-CRIME",
+   "name": "Pre-Crime",
+   "chain": "base",
+   "address": "0x7a84846911b8b48b1d2067637e003c40d2756080",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 74975.5796,
+   "first_seen": 1788858977
+  },
   {
    "symbol": "CHCKD",
    "name": "FoolishCHICKADEE",
@@ -249,86 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 3863.2444,
    "first_seen": 1788855329
-  },
-  {
-   "symbol": "CETH",
-   "name": "caglahaneth",
-   "chain": "base",
-   "address": "0xb200000000000000000000538c8071be8c3eba77",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 32492.7931,
-   "first_seen": 1788855327
-  },
-  {
-   "symbol": "BHS",
-   "name": "Based Humors",
-   "chain": "base",
-   "address": "0xb200000000000000000000ffcad758746c125f01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4096.99456902556,
-   "first_seen": 1788855326
-  },
-  {
-   "symbol": "HOODRAT",
-   "name": "Hoodrat (certifiedhoodrat.com)",
-   "chain": "base",
-   "address": "0xfa8f5daa469e6a79bfb1b51e447ccdaa634eeb6d",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13651.2926,
-   "first_seen": 1788855325
-  },
-  {
-   "symbol": "DataLift",
-   "name": "Dataline",
-   "chain": "base",
-   "address": "0x58d699670a4b43354fce09acdb80de3c22c6a1f7",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 7617.3162,
-   "first_seen": 1788818208
-  },
-  {
-   "symbol": "GIAC",
-   "name": "Gorilla in a Coupe (gorillainacoupe.com)",
-   "chain": "base",
-   "address": "0x99c2ba670f817446910dca92743eba78f151a36e",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12454.1649368649,
-   "first_seen": 1788817935
-  },
-  {
-   "symbol": "ZARP",
-   "name": "ZARP Stablecoin",
-   "chain": "base",
-   "address": "0xb755506531786c8ac63b756bab1ac387bacb0c04",
-   "score": 40,
-   "verdict": "yellow",
-   "liquidity_usd": 19426.0635,
-   "first_seen": 1788816251
-  },
-  {
-   "symbol": "MUSK",
-   "name": "MUSK",
-   "chain": "base",
-   "address": "0xb2000000000000000000006b62580924d63c0e01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4152.6599,
-   "first_seen": 1788816203
-  },
-  {
-   "symbol": "DATABASE",
-   "name": "Database",
-   "chain": "base",
-   "address": "0xf0e10d21981ed0162c0928a45806ce34c9f9cec0",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4440.5493,
-   "first_seen": 1788816014
   }
  ],
  "confirmed": [
@@ -474,9 +474,9 @@
   }
  ],
  "probation": {
-  "waiting": 51,
+  "waiting": 46,
   "confirmed": 12,
-  "dropped": 470
+  "dropped": 483
  },
  "recent_drains": [
   {
@@ -668,7 +668,7 @@
   "rug": 937
  },
  "watchlist_active": 6,
- "price_snapshots": 11930,
+ "price_snapshots": 12056,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
