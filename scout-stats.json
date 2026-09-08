@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-08T17:43:52Z",
- "generated_at_unix": 1788889431,
+ "generated_at": "2026-09-08T18:43:59Z",
+ "generated_at_unix": 1788893038,
  "period": {
   "start": "2026-07-15",
   "days": 55
  },
  "totals": {
-  "seen": 160638,
-  "base": 26523,
+  "seen": 160786,
+  "base": 26671,
   "robinhood": 134115,
-  "below_liquidity_threshold": 157733,
-  "spam_filtered": 385,
-  "scored": 2520,
-  "green": 1185,
-  "yellow": 442,
-  "red": 893
+  "below_liquidity_threshold": 157859,
+  "spam_filtered": 395,
+  "scored": 2532,
+  "green": 1195,
+  "yellow": 443,
+  "red": 894
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-18",
-   "base": 214,
-   "robinhood": 509
+   "base": 131,
+   "robinhood": 357
   },
   {
    "date": "2026-08-19",
@@ -125,11 +125,121 @@
   },
   {
    "date": "2026-09-08",
-   "base": 938,
+   "base": 1086,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "TRY",
+   "name": "try",
+   "chain": "base",
+   "address": "0xb200000000000000000000f717963d72cdd67a87",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3311.67617452442,
+   "first_seen": 1788892763
+  },
+  {
+   "symbol": "LAPTOP",
+   "name": "Hunter Bidens Laptop 0xB095274743941e953c746F9C228DA9c18Bb6ec29",
+   "chain": "base",
+   "address": "0x753462c6c689703971353d6147bd3c4b0fdcbc74",
+   "score": 55,
+   "verdict": "yellow",
+   "liquidity_usd": 5000.98,
+   "first_seen": 1788892579
+  },
+  {
+   "symbol": "BITO",
+   "name": "ProShares Bitcoin ETF (Derivatives)",
+   "chain": "base",
+   "address": "0x86caa1ee9a951837627576a6ba756458621d19db",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12502.15,
+   "first_seen": 1788892440
+  },
+  {
+   "symbol": "AJEL",
+   "name": "AliveJELLYFISH",
+   "chain": "base",
+   "address": "0x3424d640ef1d812077beac9936c47c56569bb687",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 25020.3,
+   "first_seen": 1788892027
+  },
+  {
+   "symbol": "CLANKER",
+   "name": "C",
+   "chain": "base",
+   "address": "0x3550e9997948cdce2d612f7cde640f6581d9ccf1",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 74694.3149275812,
+   "first_seen": 1788890745
+  },
+  {
+   "symbol": "CHIP",
+   "name": "ChipWorks",
+   "chain": "base",
+   "address": "0xcc8027b6d12bde506986dedd8a355697968b0f71",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 74709.9,
+   "first_seen": 1788890698
+  },
+  {
+   "symbol": "INFQ",
+   "name": "Infleqtion Inc (Derivatives)",
+   "chain": "base",
+   "address": "0x324d28bbe621d826e8686d1d6ed99d7ff7cc993e",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 12448.4149326724,
+   "first_seen": 1788890425
+  },
+  {
+   "symbol": "BTRUMP",
+   "name": "Bad Trump",
+   "chain": "base",
+   "address": "0xa8366996605c0ade19c1008ac65fd6af3c8bc7e3",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 3963.1705,
+   "first_seen": 1788890235
+  },
+  {
+   "symbol": "PONSBULL",
+   "name": "PonsBull",
+   "chain": "base",
+   "address": "0x6c039dc8b23c701e2041d0cd4d8a341707e8efb6",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3984.6721,
+   "first_seen": 1788890006
+  },
+  {
+   "symbol": "BASECAT",
+   "name": "Basecat",
+   "chain": "base",
+   "address": "0xc07ee0d085a2a19c3d36aab8dd1688b7d718e48e",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4948.8855,
+   "first_seen": 1788889775
+  },
+  {
+   "symbol": "TART",
+   "name": "TartSwap",
+   "chain": "base",
+   "address": "0x20d4df9a677076ec239d510a6a51974e31f21690",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 12449.4149274332,
+   "first_seen": 1788889774
+  },
   {
    "symbol": "FLY",
    "name": "Fly Escape Room",
@@ -219,116 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 12369.372435853,
    "first_seen": 1788887506
-  },
-  {
-   "symbol": "NISA",
-   "name": "Nock ISA",
-   "chain": "base",
-   "address": "0xb200000000000000000000234bd98b6d3601dcc0",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4234.6899,
-   "first_seen": 1788887415
-  },
-  {
-   "symbol": "ORCLB",
-   "name": "Oracle Tokenized bStocks",
-   "chain": "base",
-   "address": "0x5472d81b72beaf45e62bc015c252562f4c6baf7f",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12641.6601,
-   "first_seen": 1788887322
-  },
-  {
-   "symbol": "Basephone",
-   "name": "Base iPhone",
-   "chain": "base",
-   "address": "0xb200000000000000000000dbfff51288928d6401",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3998.4132,
-   "first_seen": 1788886812
-  },
-  {
-   "symbol": "ZBTC",
-   "name": "GM",
-   "chain": "base",
-   "address": "0xb2000000000000000000002f34bab70a3c2ce4f3",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 7971123.8754,
-   "first_seen": 1788886672
-  },
-  {
-   "symbol": "BABYCAT",
-   "name": "Baby Cat",
-   "chain": "base",
-   "address": "0xb200000000000000000000a040757e2f2616ccc0",
-   "score": 75,
-   "verdict": "green",
-   "liquidity_usd": 1853.6713,
-   "first_seen": 1788885480
-  },
-  {
-   "symbol": "QUARTER",
-   "name": "The Original Memecoin",
-   "chain": "base",
-   "address": "0x0abfab3d8a93d67c93692a9fab525ab7455cd672",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 2717.2881,
-   "first_seen": 1788885479
-  },
-  {
-   "symbol": "WCP",
-   "name": "Warp Cat Privacy",
-   "chain": "base",
-   "address": "0xb20000000000000000000071c8e83c59a523de16",
-   "score": 75,
-   "verdict": "green",
-   "liquidity_usd": 2488.9186,
-   "first_seen": 1788885297
-  },
-  {
-   "symbol": "VCU",
-   "name": "Venice Cat Units",
-   "chain": "base",
-   "address": "0xb20000000000000000000024795858449d94fcc0",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3491.4282,
-   "first_seen": 1788884610
-  },
-  {
-   "symbol": "DICE",
-   "name": "SatoshiDICE",
-   "chain": "base",
-   "address": "0xb200000000000000000000679b70584aa05d5cc0",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4195.575,
-   "first_seen": 1788884199
-  },
-  {
-   "symbol": "VVVTRENCH",
-   "name": "Privacy Trench",
-   "chain": "base",
-   "address": "0xb20000000000000000000049dfd79f335e288853",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3505.36184579757,
-   "first_seen": 1788884106
-  },
-  {
-   "symbol": "PHONE",
-   "name": "PhoneX402",
-   "chain": "base",
-   "address": "0xd3b25f2691d2307c89966f432be14927899cbcb6",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3956.7772,
-   "first_seen": 1788884103
   }
  ],
  "confirmed": [
@@ -474,9 +474,9 @@
   }
  ],
  "probation": {
-  "waiting": 59,
+  "waiting": 60,
   "confirmed": 12,
-  "dropped": 514
+  "dropped": 524
  },
  "recent_drains": [
   {
@@ -668,7 +668,7 @@
   "rug": 937
  },
  "watchlist_active": 6,
- "price_snapshots": 11806,
+ "price_snapshots": 11887,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
