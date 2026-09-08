@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-08T16:43:46Z",
- "generated_at_unix": 1788885826,
+ "generated_at": "2026-09-08T17:43:52Z",
+ "generated_at_unix": 1788889431,
  "period": {
   "start": "2026-07-15",
   "days": 55
  },
  "totals": {
-  "seen": 160493,
-  "base": 26378,
+  "seen": 160638,
+  "base": 26523,
   "robinhood": 134115,
-  "below_liquidity_threshold": 157612,
-  "spam_filtered": 377,
-  "scored": 2504,
-  "green": 1173,
-  "yellow": 441,
-  "red": 890
+  "below_liquidity_threshold": 157733,
+  "spam_filtered": 385,
+  "scored": 2520,
+  "green": 1185,
+  "yellow": 442,
+  "red": 893
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-18",
-   "base": 218,
-   "robinhood": 519
+   "base": 214,
+   "robinhood": 509
   },
   {
    "date": "2026-08-19",
@@ -125,11 +125,141 @@
   },
   {
    "date": "2026-09-08",
-   "base": 793,
+   "base": 938,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "FLY",
+   "name": "Fly Escape Room",
+   "chain": "base",
+   "address": "0x961e3e2bce9d7f3cdb3b389498d22902437b464e",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 75032.9702080692,
+   "first_seen": 1788888673
+  },
+  {
+   "symbol": "BOBLOX",
+   "name": "BasedRoblox",
+   "chain": "base",
+   "address": "0xb200000000000000000000d48ee406b726f25601",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4137.4095,
+   "first_seen": 1788887881
+  },
+  {
+   "symbol": "DUOLINGO",
+   "name": "Duolingo",
+   "chain": "base",
+   "address": "0x2ef316e92c6aa693d02beee5c564d474cf115222",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3122.9556,
+   "first_seen": 1788887880
+  },
+  {
+   "symbol": "astro",
+   "name": "astronaut",
+   "chain": "base",
+   "address": "0x591cd09de84c94c84da9ac71094c1a8b02afbb07",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 18792.7306,
+   "first_seen": 1788887879
+  },
+  {
+   "symbol": "astrokids",
+   "name": "astrokidsart",
+   "chain": "base",
+   "address": "0xb2000000000000000000001a9149266766dd0e01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4136.6768,
+   "first_seen": 1788887876
+  },
+  {
+   "symbol": "VVVCAT",
+   "name": "Private Cat",
+   "chain": "base",
+   "address": "0xb200000000000000000000664425b305f66662a3",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4818.3054,
+   "first_seen": 1788887829
+  },
+  {
+   "symbol": "GHOST",
+   "name": "Ghost",
+   "chain": "base",
+   "address": "0xb200000000000000000000176182c70753b7cd38",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3771.4648,
+   "first_seen": 1788887737
+  },
+  {
+   "symbol": "🍎",
+   "name": "🍎",
+   "chain": "base",
+   "address": "0x3f49046c38972d0f56f911b1e7c341c6f7954175",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 77020.3006,
+   "first_seen": 1788887690
+  },
+  {
+   "symbol": "VVVPAD",
+   "name": "vvvpad.com",
+   "chain": "base",
+   "address": "0xb20000000000000000000004e315996b2715df5b",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12369.372435853,
+   "first_seen": 1788887506
+  },
+  {
+   "symbol": "NISA",
+   "name": "Nock ISA",
+   "chain": "base",
+   "address": "0xb200000000000000000000234bd98b6d3601dcc0",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4234.6899,
+   "first_seen": 1788887415
+  },
+  {
+   "symbol": "ORCLB",
+   "name": "Oracle Tokenized bStocks",
+   "chain": "base",
+   "address": "0x5472d81b72beaf45e62bc015c252562f4c6baf7f",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12641.6601,
+   "first_seen": 1788887322
+  },
+  {
+   "symbol": "Basephone",
+   "name": "Base iPhone",
+   "chain": "base",
+   "address": "0xb200000000000000000000dbfff51288928d6401",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3998.4132,
+   "first_seen": 1788886812
+  },
+  {
+   "symbol": "ZBTC",
+   "name": "GM",
+   "chain": "base",
+   "address": "0xb2000000000000000000002f34bab70a3c2ce4f3",
+   "score": 57,
+   "verdict": "yellow",
+   "liquidity_usd": 7971123.8754,
+   "first_seen": 1788886672
+  },
   {
    "symbol": "BABYCAT",
    "name": "Baby Cat",
@@ -199,136 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 3956.7772,
    "first_seen": 1788884103
-  },
-  {
-   "symbol": "BuETH",
-   "name": "BuETH",
-   "chain": "base",
-   "address": "0x0ebbd0a3751483aef138ad6e9aa3867cfdb8651d",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 16897.1497,
-   "first_seen": 1788883557
-  },
-  {
-   "symbol": "OSCR",
-   "name": "Oscar Health Inc (Derivatives)",
-   "chain": "base",
-   "address": "0x62e931376ecfdba62ee2fa2da92b051259109c91",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12472.9649600263,
-   "first_seen": 1788882454
-  },
-  {
-   "symbol": "SOLCAT",
-   "name": "SOLCAT",
-   "chain": "base",
-   "address": "0x9b6d48b34acb16c561c54c7d1a7ed60e8394262f",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4067.0383,
-   "first_seen": 1788882317
-  },
-  {
-   "symbol": "AMC",
-   "name": "A Meme Coin",
-   "chain": "base",
-   "address": "0x2f116b2088987735b7763b4fe8fa3bdfeb9623b2",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12417.6648873964,
-   "first_seen": 1788881817
-  },
-  {
-   "symbol": "LAPTOPTEST",
-   "name": "LAPTOP rehearsal",
-   "chain": "base",
-   "address": "0x6761d5d0f3787e8a73e383ed6d8fbe4a19995312",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 9395.3527,
-   "first_seen": 1788881545
-  },
-  {
-   "symbol": "MRKT",
-   "name": "BitterMEERKAT",
-   "chain": "base",
-   "address": "0xc60dc32bfb8e143c440535f20bb08d3847b9f3d9",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 24872.4,
-   "first_seen": 1788880638
-  },
-  {
-   "symbol": "CRMB",
-   "name": "Salesforce Tokenized bStocks",
-   "chain": "base",
-   "address": "0x8914f9f07d79c5b85d503908d99efb2404348ed8",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 25968.0129,
-   "first_seen": 1788880455
-  },
-  {
-   "symbol": "土豪链🐼",
-   "name": "土豪链🐼",
-   "chain": "base",
-   "address": "0x433f962f31902bf331278876dadc416d84ff1f76",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 7070.6895,
-   "first_seen": 1788880454
-  },
-  {
-   "symbol": "SOPH",
-   "name": "SOPHON",
-   "chain": "base",
-   "address": "0x9e921178150ead62e360fc6e2d467026f07f2b2c",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 99100.2624,
-   "first_seen": 1788880363
-  },
-  {
-   "symbol": "4Stock",
-   "name": "4Stock",
-   "chain": "base",
-   "address": "0xaf09799028f02b3560f65c09d96a862b5b2e9b07",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 18379.4416,
-   "first_seen": 1788879996
-  },
-  {
-   "symbol": "MAC",
-   "name": "The Mac Shop",
-   "chain": "base",
-   "address": "0x125fe0f8e2e3693338608b08be1224fd40e01760",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 76785.7675,
-   "first_seen": 1788879806
-  },
-  {
-   "symbol": "JBUILD",
-   "name": "JBUILD",
-   "chain": "base",
-   "address": "0xc083e4068b5851ce8ed9e0cd8bf66e5fe745108e",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4464.3512,
-   "first_seen": 1788865907
-  },
-  {
-   "symbol": "CRCL",
-   "name": "Circle Internet Group Tokenized Stock (Robinhood)",
-   "chain": "base",
-   "address": "0x3970d9284ea1472bd5347d66cd6d348f04e4eecf",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12827.4412,
-   "first_seen": 1788865860
   }
  ],
  "confirmed": [
@@ -474,9 +474,9 @@
   }
  ],
  "probation": {
-  "waiting": 47,
+  "waiting": 59,
   "confirmed": 12,
-  "dropped": 513
+  "dropped": 514
  },
  "recent_drains": [
   {
@@ -668,7 +668,7 @@
   "rug": 937
  },
  "watchlist_active": 6,
- "price_snapshots": 11793,
+ "price_snapshots": 11806,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
