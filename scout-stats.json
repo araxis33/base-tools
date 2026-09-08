@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-08T15:43:42Z",
- "generated_at_unix": 1788882221,
+ "generated_at": "2026-09-08T16:43:46Z",
+ "generated_at_unix": 1788885826,
  "period": {
   "start": "2026-07-15",
   "days": 55
  },
  "totals": {
-  "seen": 160236,
-  "base": 26121,
+  "seen": 160493,
+  "base": 26378,
   "robinhood": 134115,
-  "below_liquidity_threshold": 157380,
-  "spam_filtered": 365,
-  "scored": 2491,
-  "green": 1164,
-  "yellow": 440,
-  "red": 887
+  "below_liquidity_threshold": 157612,
+  "spam_filtered": 377,
+  "scored": 2504,
+  "green": 1173,
+  "yellow": 441,
+  "red": 890
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-18",
-   "base": 258,
-   "robinhood": 635
+   "base": 218,
+   "robinhood": 519
   },
   {
    "date": "2026-08-19",
@@ -125,11 +125,111 @@
   },
   {
    "date": "2026-09-08",
-   "base": 536,
+   "base": 793,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "BABYCAT",
+   "name": "Baby Cat",
+   "chain": "base",
+   "address": "0xb200000000000000000000a040757e2f2616ccc0",
+   "score": 75,
+   "verdict": "green",
+   "liquidity_usd": 1853.6713,
+   "first_seen": 1788885480
+  },
+  {
+   "symbol": "QUARTER",
+   "name": "The Original Memecoin",
+   "chain": "base",
+   "address": "0x0abfab3d8a93d67c93692a9fab525ab7455cd672",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 2717.2881,
+   "first_seen": 1788885479
+  },
+  {
+   "symbol": "WCP",
+   "name": "Warp Cat Privacy",
+   "chain": "base",
+   "address": "0xb20000000000000000000071c8e83c59a523de16",
+   "score": 75,
+   "verdict": "green",
+   "liquidity_usd": 2488.9186,
+   "first_seen": 1788885297
+  },
+  {
+   "symbol": "VCU",
+   "name": "Venice Cat Units",
+   "chain": "base",
+   "address": "0xb20000000000000000000024795858449d94fcc0",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3491.4282,
+   "first_seen": 1788884610
+  },
+  {
+   "symbol": "DICE",
+   "name": "SatoshiDICE",
+   "chain": "base",
+   "address": "0xb200000000000000000000679b70584aa05d5cc0",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4195.575,
+   "first_seen": 1788884199
+  },
+  {
+   "symbol": "VVVTRENCH",
+   "name": "Privacy Trench",
+   "chain": "base",
+   "address": "0xb20000000000000000000049dfd79f335e288853",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3505.36184579757,
+   "first_seen": 1788884106
+  },
+  {
+   "symbol": "PHONE",
+   "name": "PhoneX402",
+   "chain": "base",
+   "address": "0xd3b25f2691d2307c89966f432be14927899cbcb6",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3956.7772,
+   "first_seen": 1788884103
+  },
+  {
+   "symbol": "BuETH",
+   "name": "BuETH",
+   "chain": "base",
+   "address": "0x0ebbd0a3751483aef138ad6e9aa3867cfdb8651d",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 16897.1497,
+   "first_seen": 1788883557
+  },
+  {
+   "symbol": "OSCR",
+   "name": "Oscar Health Inc (Derivatives)",
+   "chain": "base",
+   "address": "0x62e931376ecfdba62ee2fa2da92b051259109c91",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12472.9649600263,
+   "first_seen": 1788882454
+  },
+  {
+   "symbol": "SOLCAT",
+   "name": "SOLCAT",
+   "chain": "base",
+   "address": "0x9b6d48b34acb16c561c54c7d1a7ed60e8394262f",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4067.0383,
+   "first_seen": 1788882317
+  },
   {
    "symbol": "AMC",
    "name": "A Meme Coin",
@@ -229,106 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 12827.4412,
    "first_seen": 1788865860
-  },
-  {
-   "symbol": "BG",
-   "name": "Base Genie",
-   "chain": "base",
-   "address": "0x1009e6234159254b5a24f13a77d0e24dc8cd230e",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4107.9736,
-   "first_seen": 1788865678
-  },
-  {
-   "symbol": "Satoshi",
-   "name": "Satoshi",
-   "chain": "base",
-   "address": "0xb200000000000000000000a536372865b6e89301",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3973.67154425373,
-   "first_seen": 1788865676
-  },
-  {
-   "symbol": "NASDUQ",
-   "name": "NASDUQ",
-   "chain": "base",
-   "address": "0xb2000000000000000000007bbaff9604a4c312c8",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 32964.2877,
-   "first_seen": 1788865083
-  },
-  {
-   "symbol": "AGAI",
-   "name": "Aegis AI",
-   "chain": "base",
-   "address": "0x510b7bd66f53d0b9b735250edf1e6e2562a66a18",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 26883.7074,
-   "first_seen": 1788865081
-  },
-  {
-   "symbol": "BNKR",
-   "name": "Banker Coin",
-   "chain": "base",
-   "address": "0xc0340f70dc9c366178120486b3abaeedadf4cb07",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 20210.5979,
-   "first_seen": 1788865080
-  },
-  {
-   "symbol": "NOJEANS",
-   "name": "Zack NoJeans",
-   "chain": "base",
-   "address": "0xb200000000000000000000950fe965f386ee367c",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 32096.3456,
-   "first_seen": 1788865079
-  },
-  {
-   "symbol": "BLUE",
-   "name": "Blue Coin",
-   "chain": "base",
-   "address": "0xb20000000000000000000003a02623b9de94d701",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4683.4629,
-   "first_seen": 1788865077
-  },
-  {
-   "symbol": "IM",
-   "name": "Internet Money",
-   "chain": "base",
-   "address": "0xb200000000000000000000e219258a64f41fdd2a",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 27595.5669,
-   "first_seen": 1788865076
-  },
-  {
-   "symbol": "NOVA",
-   "name": "NOVA",
-   "chain": "base",
-   "address": "0xb20000000000000000000061b525bf2c9fb4e501",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 28853.7474,
-   "first_seen": 1788865075
-  },
-  {
-   "symbol": "SPARK",
-   "name": "Spark Finance",
-   "chain": "base",
-   "address": "0x35fbee2c468c81ad0b0bcfe85148c101bd40e416",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 34709.9508,
-   "first_seen": 1788863244
   }
  ],
  "confirmed": [
@@ -474,9 +474,9 @@
   }
  ],
  "probation": {
-  "waiting": 42,
+  "waiting": 47,
   "confirmed": 12,
-  "dropped": 508
+  "dropped": 513
  },
  "recent_drains": [
   {
@@ -668,7 +668,7 @@
   "rug": 937
  },
  "watchlist_active": 6,
- "price_snapshots": 11817,
+ "price_snapshots": 11793,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
