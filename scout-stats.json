@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-08T21:44:18Z",
- "generated_at_unix": 1788903857,
+ "generated_at": "2026-09-09T05:41:10Z",
+ "generated_at_unix": 1788932469,
  "period": {
   "start": "2026-07-15",
-  "days": 55
+  "days": 56
  },
  "totals": {
-  "seen": 161225,
-  "base": 27110,
+  "seen": 161327,
+  "base": 27212,
   "robinhood": 134115,
-  "below_liquidity_threshold": 158217,
-  "spam_filtered": 436,
-  "scored": 2572,
-  "green": 1228,
+  "below_liquidity_threshold": 158302,
+  "spam_filtered": 447,
+  "scored": 2578,
+  "green": 1232,
   "yellow": 444,
-  "red": 900
+  "red": 902
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-19",
-   "base": 325,
-   "robinhood": 1149
+   "base": 315,
+   "robinhood": 1129
   },
   {
    "date": "2026-08-20",
@@ -125,11 +125,51 @@
   },
   {
    "date": "2026-09-09",
-   "base": 78,
+   "base": 180,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "PEPSI",
+   "name": "Pepsi",
+   "chain": "base",
+   "address": "0x6588985d734499195846bc13859dae4d5514393c",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 27423.0575,
+   "first_seen": 1788930326
+  },
+  {
+   "symbol": "Jacob",
+   "name": "Be like Jacob",
+   "chain": "base",
+   "address": "0x462c62d59a0c560b491c694eac7505f3ee88bb07",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 16203.8557672609,
+   "first_seen": 1788930322
+  },
+  {
+   "symbol": "STREAM",
+   "name": "Ponstream",
+   "chain": "base",
+   "address": "0x8489940ae8ce57f4585dfcd9b2154c60b21e4617",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 27468.1513,
+   "first_seen": 1788930321
+  },
+  {
+   "symbol": "COSA",
+   "name": "Cosanta",
+   "chain": "base",
+   "address": "0x1b5ffee6e821c50ff006f6c62a4c102e7e8c135d",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12545.1150453284,
+   "first_seen": 1788930319
+  },
   {
    "symbol": "RNDR",
    "name": "ComparativeREINDEER",
@@ -289,46 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 2452287.63743689,
    "first_seen": 1788897963
-  },
-  {
-   "symbol": "HUNTER",
-   "name": "Hunter Biden 2028",
-   "chain": "base",
-   "address": "0xb200000000000000000000328c9c51734127a463",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 35010114.2647,
-   "first_seen": 1788897871
-  },
-  {
-   "symbol": "BARRON",
-   "name": "BARRON",
-   "chain": "base",
-   "address": "0xb200000000000000000000349e7e0293ce8a605e",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 18437000.4604719,
-   "first_seen": 1788897822
-  },
-  {
-   "symbol": "CHARLEY",
-   "name": "Charley Davidson",
-   "chain": "base",
-   "address": "0x6fc804bb38be3635f2fe7fa57d5e3ccd2685bbbb",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 2008.4386,
-   "first_seen": 1788897774
-  },
-  {
-   "symbol": "USMS",
-   "name": "USMS",
-   "chain": "base",
-   "address": "0xb200000000000000000000425fb5ac111671ac9a",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 51091508.7915477,
-   "first_seen": 1788897636
   }
  ],
  "confirmed": [
@@ -474,9 +474,9 @@
   }
  ],
  "probation": {
-  "waiting": 61,
+  "waiting": 52,
   "confirmed": 12,
-  "dropped": 557
+  "dropped": 570
  },
  "recent_drains": [
   {
@@ -668,7 +668,7 @@
   "rug": 937
  },
  "watchlist_active": 6,
- "price_snapshots": 11918,
+ "price_snapshots": 12018,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
