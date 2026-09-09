@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-09T05:41:10Z",
- "generated_at_unix": 1788932469,
+ "generated_at": "2026-09-09T17:10:09Z",
+ "generated_at_unix": 1788973808,
  "period": {
   "start": "2026-07-15",
   "days": 56
  },
  "totals": {
-  "seen": 161327,
-  "base": 27212,
+  "seen": 161399,
+  "base": 27284,
   "robinhood": 134115,
-  "below_liquidity_threshold": 158302,
-  "spam_filtered": 447,
-  "scored": 2578,
-  "green": 1232,
+  "below_liquidity_threshold": 158349,
+  "spam_filtered": 458,
+  "scored": 2592,
+  "green": 1246,
   "yellow": 444,
   "red": 902
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-19",
-   "base": 315,
-   "robinhood": 1129
+   "base": 32,
+   "robinhood": 115
   },
   {
    "date": "2026-08-20",
@@ -125,11 +125,151 @@
   },
   {
    "date": "2026-09-09",
-   "base": 180,
+   "base": 252,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "FYL",
+   "name": "Fuck Yo Laptop",
+   "chain": "base",
+   "address": "0x4f55c2046e8d1645113cb7fd5ef0ed93c5ee4b07",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 22516.7858,
+   "first_seen": 1788973419
+  },
+  {
+   "symbol": "BLACKY",
+   "name": "Blacky",
+   "chain": "base",
+   "address": "0x9b3405c565848e344b8d096da2e0a79f07b8b25f",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 4060.6017,
+   "first_seen": 1788973414
+  },
+  {
+   "symbol": "BIFC",
+   "name": "Base is for crackheads",
+   "chain": "base",
+   "address": "0xb200000000000000000000cc70b9bcf7366b1001",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4010.4315,
+   "first_seen": 1788966397
+  },
+  {
+   "symbol": "LAPFLOP",
+   "name": "LAPFLOP",
+   "chain": "base",
+   "address": "0xb20000000000000000000069fb1b6e5dca313101",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4155.06030806483,
+   "first_seen": 1788966257
+  },
+  {
+   "symbol": "CRAPTOP",
+   "name": "CRAPTOP",
+   "chain": "base",
+   "address": "0xb200000000000000000000a7542e0120c9a8b701",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4301.6962,
+   "first_seen": 1788966209
+  },
+  {
+   "symbol": "TCK",
+   "name": "EverydayTICK",
+   "chain": "base",
+   "address": "0x6a9de5ed67794f9127106fd782473ffe88696dc7",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 24973.7,
+   "first_seen": 1788966207
+  },
+  {
+   "symbol": "CP",
+   "name": "Hunter Biden Files",
+   "chain": "base",
+   "address": "0x899e6f9736eb7748969fcf0959a1267e9a2a7352",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 5333.4736,
+   "first_seen": 1788966205
+  },
+  {
+   "symbol": "ORC",
+   "name": "Orbit Chain",
+   "chain": "base",
+   "address": "0x04e225f1fa518db8dea6d647776b2c03847c2312",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 33354.7285,
+   "first_seen": 1788932620
+  },
+  {
+   "symbol": "HBL",
+   "name": "Hunter Biden's Laptop",
+   "chain": "base",
+   "address": "0xe6a5463f08d4f028b8c94138b983a4ea9d282394",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 38369.7668,
+   "first_seen": 1788932572
+  },
+  {
+   "symbol": "WOSI",
+   "name": "World Oil Stability Initiative",
+   "chain": "base",
+   "address": "0x3c1feb863a208274c7c2f3addb45299e04dec57f",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 33745.5527,
+   "first_seen": 1788932480
+  },
+  {
+   "symbol": "EPSW",
+   "name": "Swap Echo",
+   "chain": "base",
+   "address": "0x9d61c516d981cfb144a78fd94b3eccf03e48e536",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 2259.1842,
+   "first_seen": 1788932478
+  },
+  {
+   "symbol": "LAPTOP",
+   "name": "0xB095274743941e953c746F9C228DA9c18Bb6ec29",
+   "chain": "base",
+   "address": "0x5cf13c4e1ce18aa11290d7212b152419753d646d",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 16768.034054744,
+   "first_seen": 1788932476
+  },
+  {
+   "symbol": "STRATTON",
+   "name": "Stratton Market",
+   "chain": "base",
+   "address": "0xb2c3bd902182a54fde18cdfc8e1da5d17b9575d0",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 12485.85,
+   "first_seen": 1788932473
+  },
+  {
+   "symbol": "CFTC",
+   "name": "COMMODITY FUTURES TRADING COMMISSION",
+   "chain": "base",
+   "address": "0x388f94b9422146dfa7bea563ec4fcf1eda4dddb0",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 37642.5869,
+   "first_seen": 1788932472
+  },
   {
    "symbol": "PEPSI",
    "name": "Pepsi",
@@ -189,146 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 12415.9648898727,
    "first_seen": 1788903263
-  },
-  {
-   "symbol": "MAX",
-   "name": "Giggle Mascot",
-   "chain": "base",
-   "address": "0xb8aa3030b1bc5e2f208fd4d1598b233ed7a2e7e8",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12426.9,
-   "first_seen": 1788902396
-  },
-  {
-   "symbol": "LAP",
-   "name": "Biden Fighter",
-   "chain": "base",
-   "address": "0xb200000000000000000000ec8458a7c12fb4ae53",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 10155.984,
-   "first_seen": 1788901440
-  },
-  {
-   "symbol": "STONKGUY",
-   "name": "Just a Stonk Guy",
-   "chain": "base",
-   "address": "0x57f772ee443a761c6d9fa6043e2fc7969231f199",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 4061.6863,
-   "first_seen": 1788901257
-  },
-  {
-   "symbol": "LITE",
-   "name": "Lumentum Tokenized Stock (Robinhood)",
-   "chain": "base",
-   "address": "0x0d20a176a5ed1b714b4c79c2cd77ff008f09beac",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12421.25,
-   "first_seen": 1788900846
-  },
-  {
-   "symbol": "LAPCAT",
-   "name": "LAPCAT",
-   "chain": "base",
-   "address": "0x32945d69bf2d98676c83d964a243d0e6d7ebbbbb",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 3342.9961,
-   "first_seen": 1788900845
-  },
-  {
-   "symbol": "SPCXBRETT",
-   "name": "SpaceBrett",
-   "chain": "base",
-   "address": "0x4a73d37fa5f10b8c43aacf0ddab67b511f01cf17",
-   "score": 92,
-   "verdict": "green",
-   "liquidity_usd": 2665.5284,
-   "first_seen": 1788899843
-  },
-  {
-   "symbol": "LARPTOP",
-   "name": "LARPTOP",
-   "chain": "base",
-   "address": "0x6237580b4cebd5b855a81c264fb76f91b5aabbbb",
-   "score": 71,
-   "verdict": "green",
-   "liquidity_usd": 2329.5968,
-   "first_seen": 1788899842
-  },
-  {
-   "symbol": "67",
-   "name": "SIXSEVEN",
-   "chain": "base",
-   "address": "0x5ba52a61f111d1b04d53a018a280f46ed1862bf8",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12411.25,
-   "first_seen": 1788899750
-  },
-  {
-   "symbol": "柴犬金融",
-   "name": "柴犬金融",
-   "chain": "base",
-   "address": "0x70014414eb4f6c8f5d2987769f00cb4ddbf8d237",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 5692.5931,
-   "first_seen": 1788898885
-  },
-  {
-   "symbol": "FAPTOP",
-   "name": "FAPTOP",
-   "chain": "base",
-   "address": "0x4aa09caa7541c8197bdc76dfc4f008a3788ebbbb",
-   "score": 71,
-   "verdict": "green",
-   "liquidity_usd": 2016.7077,
-   "first_seen": 1788898656
-  },
-  {
-   "symbol": "BB",
-   "name": "Brett Bonk",
-   "chain": "base",
-   "address": "0xef92225e6c45f5a6095f7a1cf39a7da9f9974ba3",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 5647.21174693761,
-   "first_seen": 1788898059
-  },
-  {
-   "symbol": "ChatGPT Images 2.5",
-   "name": "ChatGPT Images 2.5",
-   "chain": "base",
-   "address": "0xb2000000000000000000002c1c0d5d93374ab71c",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 10646.7807,
-   "first_seen": 1788898011
-  },
-  {
-   "symbol": "Laptop",
-   "name": "Hunter Biden's Laptop",
-   "chain": "base",
-   "address": "0xca60c941dfecf786b4132e959e496e524bf70d3a",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 14809.5019,
-   "first_seen": 1788898009
-  },
-  {
-   "symbol": "incremental",
-   "name": "incremental",
-   "chain": "base",
-   "address": "0x0b850ed1bef4e0c58acaaa2089f7fb30644a58b0",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 2452287.63743689,
-   "first_seen": 1788897963
   }
  ],
  "confirmed": [
@@ -474,9 +474,9 @@
   }
  ],
  "probation": {
-  "waiting": 52,
+  "waiting": 33,
   "confirmed": 12,
-  "dropped": 570
+  "dropped": 603
  },
  "recent_drains": [
   {
@@ -668,7 +668,7 @@
   "rug": 937
  },
  "watchlist_active": 6,
- "price_snapshots": 12018,
+ "price_snapshots": 10883,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
