@@ -1,20 +1,20 @@
 {
- "generated_at": "2026-09-09T19:15:37Z",
- "generated_at_unix": 1788981336,
+ "generated_at": "2026-09-09T20:15:44Z",
+ "generated_at_unix": 1788984942,
  "period": {
   "start": "2026-07-15",
   "days": 56
  },
  "totals": {
-  "seen": 161599,
-  "base": 27484,
+  "seen": 161704,
+  "base": 27589,
   "robinhood": 134115,
-  "below_liquidity_threshold": 158506,
-  "spam_filtered": 477,
-  "scored": 2616,
-  "green": 1265,
-  "yellow": 446,
-  "red": 905
+  "below_liquidity_threshold": 158593,
+  "spam_filtered": 484,
+  "scored": 2627,
+  "green": 1273,
+  "yellow": 447,
+  "red": 907
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
@@ -120,11 +120,101 @@
   },
   {
    "date": "2026-09-09",
-   "base": 452,
+   "base": 557,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "bShare",
+   "name": "bShare",
+   "chain": "base",
+   "address": "0xc8772b9bbfdda1563f28aff9ca3c0851fd8d686f",
+   "score": 55,
+   "verdict": "yellow",
+   "liquidity_usd": 12369.0001,
+   "first_seen": 1788984868
+  },
+  {
+   "symbol": "A0X",
+   "name": "A0x",
+   "chain": "base",
+   "address": "0x8e7eb951de4e23aca8a9852297bc7cf948a660b6",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 16360.5642,
+   "first_seen": 1788984681
+  },
+  {
+   "symbol": "CHIP",
+   "name": "fun AI Agent CHIP ( DAO )",
+   "chain": "base",
+   "address": "0x76231852bf087310e00c47e51b558385965ce781",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 4190.1342,
+   "first_seen": 1788984633
+  },
+  {
+   "symbol": "Grok",
+   "name": "Grok Coin",
+   "chain": "base",
+   "address": "0xa54506de21b1cc049d4d636c647c2f7e2aeba796",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 75269.7078,
+   "first_seen": 1788984449
+  },
+  {
+   "symbol": "MEMESONBASE",
+   "name": "THIS IS MEMES ON BASE",
+   "chain": "base",
+   "address": "0xb20000000000000000000097a573ee9b5215c601",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4081.0279,
+   "first_seen": 1788984215
+  },
+  {
+   "symbol": "STAR",
+   "name": "StarCoin",
+   "chain": "base",
+   "address": "0xb200000000000000000000cbcfabd846c60e9701",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4508.99353611001,
+   "first_seen": 1788984214
+  },
+  {
+   "symbol": "GRK",
+   "name": "Grokster",
+   "chain": "base",
+   "address": "0xb2000000000000000000004c42340e08da873801",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4145.1159,
+   "first_seen": 1788983392
+  },
+  {
+   "symbol": "bot",
+   "name": "@bot",
+   "chain": "base",
+   "address": "0xb200000000000000000000492a7d368751449601",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3798.4778,
+   "first_seen": 1788983345
+  },
+  {
+   "symbol": "WLY",
+   "name": "THERE IS NO MEME",
+   "chain": "base",
+   "address": "0x819322fa9306a77d2f3cf8f0258b6d39c9ce6a27",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 74924.5467,
+   "first_seen": 1788982345
+  },
   {
    "symbol": "NIULAI",
    "name": "BASED NIU LAI",
@@ -234,96 +324,6 @@
    "verdict": "green",
    "liquidity_usd": 15163.7302,
    "first_seen": 1788975964
-  },
-  {
-   "symbol": "2025",
-   "name": "2025",
-   "chain": "base",
-   "address": "0x10c5052a76f4feb14df5c83942d8aaad025625c1",
-   "score": 70,
-   "verdict": "green",
-   "liquidity_usd": 238974.3813,
-   "first_seen": 1788975871
-  },
-  {
-   "symbol": "BLUECHIP",
-   "name": "BLUE CHIP",
-   "chain": "base",
-   "address": "0x0c4b50bb0ed466c277b35e303fb99c4253d22648",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 149709.1236,
-   "first_seen": 1788975825
-  },
-  {
-   "symbol": "XXX",
-   "name": "PenisAI",
-   "chain": "base",
-   "address": "0xb200000000000000000000540e42d81a4cee9701",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4579.0682,
-   "first_seen": 1788975638
-  },
-  {
-   "symbol": "BBM",
-   "name": "Big Bad Mom",
-   "chain": "base",
-   "address": "0xf8839c2f4d3f795caabecf6b4738b9232460fba3",
-   "score": 70,
-   "verdict": "green",
-   "liquidity_usd": 9429.0279,
-   "first_seen": 1788975636
-  },
-  {
-   "symbol": "ARBBAN",
-   "name": "Anti-Reserve",
-   "chain": "base",
-   "address": "0xfb278609b2779b8a771f52809fd8b2135f4701fd",
-   "score": 40,
-   "verdict": "yellow",
-   "liquidity_usd": 1857162.19412121,
-   "first_seen": 1788975636
-  },
-  {
-   "symbol": "LIST",
-   "name": "To do list",
-   "chain": "base",
-   "address": "0xb2000000000000000000007fabc4c6284b7d6301",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4259.9262,
-   "first_seen": 1788975362
-  },
-  {
-   "symbol": "BIDEN",
-   "name": "Biden",
-   "chain": "base",
-   "address": "0xfbe7500efb8d95bb7a78ee0a600637110c44a61c",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 19063.6206,
-   "first_seen": 1788974584
-  },
-  {
-   "symbol": "WWDC",
-   "name": "WWDC",
-   "chain": "base",
-   "address": "0xb20000000000000000000010c0981400b3ea8901",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 8053.9825,
-   "first_seen": 1788974395
-  },
-  {
-   "symbol": "LAPTOP",
-   "name": "Biden Laptop",
-   "chain": "base",
-   "address": "0x585bd71ba5f69c6081b87cf654bffe2c34e7fd6e",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 19063.086,
-   "first_seen": 1788974258
   }
  ],
  "confirmed": [
@@ -471,7 +471,7 @@
  "probation": {
   "waiting": 40,
   "confirmed": 12,
-  "dropped": 617
+  "dropped": 626
  },
  "recent_drains": [
   {
@@ -663,7 +663,7 @@
   "rug": 937
  },
  "watchlist_active": 6,
- "price_snapshots": 10820,
+ "price_snapshots": 10799,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
