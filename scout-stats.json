@@ -1,20 +1,20 @@
 {
- "generated_at": "2026-09-09T18:15:29Z",
- "generated_at_unix": 1788977729,
+ "generated_at": "2026-09-09T19:15:37Z",
+ "generated_at_unix": 1788981336,
  "period": {
   "start": "2026-07-15",
   "days": 56
  },
  "totals": {
-  "seen": 161510,
-  "base": 27395,
+  "seen": 161599,
+  "base": 27484,
   "robinhood": 134115,
-  "below_liquidity_threshold": 158428,
-  "spam_filtered": 473,
-  "scored": 2609,
-  "green": 1259,
+  "below_liquidity_threshold": 158506,
+  "spam_filtered": 477,
+  "scored": 2616,
+  "green": 1265,
   "yellow": 446,
-  "red": 904
+  "red": 905
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
@@ -120,11 +120,71 @@
   },
   {
    "date": "2026-09-09",
-   "base": 363,
+   "base": 452,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "NIULAI",
+   "name": "BASED NIU LAI",
+   "chain": "base",
+   "address": "0x001251a11978a4e6c0f1dbe4bd47c9537c196df5",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3234.0655,
+   "first_seen": 1788980023
+  },
+  {
+   "symbol": "MNTR",
+   "name": "Mentra",
+   "chain": "base",
+   "address": "0x2e9853f1d4378231ad44b32c94c4eb7d5c5ab294",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 74800.7933,
+   "first_seen": 1788979745
+  },
+  {
+   "symbol": "MURK",
+   "name": "MURKET",
+   "chain": "base",
+   "address": "0x2cbd49ed26fb325aadaecad74f981aa6016cf4e8",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3965.5044,
+   "first_seen": 1788979337
+  },
+  {
+   "symbol": "KAI",
+   "name": "Kairence",
+   "chain": "base",
+   "address": "0xbc3c18584d0d4f38e0076bea5c86fae825afc352",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 54594.7299,
+   "first_seen": 1788979244
+  },
+  {
+   "symbol": "BAP",
+   "name": "BAPCAT",
+   "chain": "base",
+   "address": "0x0b65361eca4f0aeb7d3f91517783914274672604",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3936.7078,
+   "first_seen": 1788979242
+  },
+  {
+   "symbol": "AAPLx",
+   "name": "Apple xStock",
+   "chain": "base",
+   "address": "0x2a173c03b7191f1c49224fca834630516ee7d1ec",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 186692.0738,
+   "first_seen": 1788977967
+  },
   {
    "symbol": "OURI",
    "name": "OutsideURIAL",
@@ -264,66 +324,6 @@
    "verdict": "green",
    "liquidity_usd": 19063.086,
    "first_seen": 1788974258
-  },
-  {
-   "symbol": "MARSCAT",
-   "name": "Martian Bionic Cat",
-   "chain": "base",
-   "address": "0x0c67567289c18bdad32f5bb9bbc0c046b14044bd",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 6990.956,
-   "first_seen": 1788973810
-  },
-  {
-   "symbol": "FYL",
-   "name": "Fuck Yo Laptop",
-   "chain": "base",
-   "address": "0x4f55c2046e8d1645113cb7fd5ef0ed93c5ee4b07",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 22516.7858,
-   "first_seen": 1788973419
-  },
-  {
-   "symbol": "BLACKY",
-   "name": "Blacky",
-   "chain": "base",
-   "address": "0x9b3405c565848e344b8d096da2e0a79f07b8b25f",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 4060.6017,
-   "first_seen": 1788973414
-  },
-  {
-   "symbol": "BIFC",
-   "name": "Base is for crackheads",
-   "chain": "base",
-   "address": "0xb200000000000000000000cc70b9bcf7366b1001",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4010.4315,
-   "first_seen": 1788966397
-  },
-  {
-   "symbol": "LAPFLOP",
-   "name": "LAPFLOP",
-   "chain": "base",
-   "address": "0xb20000000000000000000069fb1b6e5dca313101",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4155.06030806483,
-   "first_seen": 1788966257
-  },
-  {
-   "symbol": "CRAPTOP",
-   "name": "CRAPTOP",
-   "chain": "base",
-   "address": "0xb200000000000000000000a7542e0120c9a8b701",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4301.6962,
-   "first_seen": 1788966209
   }
  ],
  "confirmed": [
@@ -469,9 +469,9 @@
   }
  ],
  "probation": {
-  "waiting": 47,
+  "waiting": 40,
   "confirmed": 12,
-  "dropped": 604
+  "dropped": 617
  },
  "recent_drains": [
   {
@@ -663,7 +663,7 @@
   "rug": 937
  },
  "watchlist_active": 6,
- "price_snapshots": 10847,
+ "price_snapshots": 10820,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
