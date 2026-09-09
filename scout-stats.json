@@ -1,28 +1,23 @@
 {
- "generated_at": "2026-09-09T17:15:22Z",
- "generated_at_unix": 1788974120,
+ "generated_at": "2026-09-09T18:15:29Z",
+ "generated_at_unix": 1788977729,
  "period": {
   "start": "2026-07-15",
   "days": 56
  },
  "totals": {
-  "seen": 161412,
-  "base": 27297,
+  "seen": 161510,
+  "base": 27395,
   "robinhood": 134115,
-  "below_liquidity_threshold": 158356,
-  "spam_filtered": 460,
-  "scored": 2594,
-  "green": 1247,
-  "yellow": 444,
-  "red": 903
+  "below_liquidity_threshold": 158428,
+  "spam_filtered": 473,
+  "scored": 2609,
+  "green": 1259,
+  "yellow": 446,
+  "red": 904
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
-  {
-   "date": "2026-08-19",
-   "base": 32,
-   "robinhood": 115
-  },
   {
    "date": "2026-08-20",
    "base": 644,
@@ -125,11 +120,151 @@
   },
   {
    "date": "2026-09-09",
-   "base": 267,
+   "base": 363,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "OURI",
+   "name": "OutsideURIAL",
+   "chain": "base",
+   "address": "0x8e7036825638055eb451a46a08559887bc12f249",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 24935.2,
+   "first_seen": 1788977010
+  },
+  {
+   "symbol": "BOXCAT",
+   "name": "cat in box",
+   "chain": "base",
+   "address": "0x7fa60c1be820e78e70683f328719c54b58b9ebdd",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 2474930.362,
+   "first_seen": 1788976738
+  },
+  {
+   "symbol": "$ingularity",
+   "name": "$ingularity",
+   "chain": "base",
+   "address": "0x37bd5a5563148433fed07015fa86904053bd4ce2",
+   "score": 82,
+   "verdict": "green",
+   "liquidity_usd": 251338.389911584,
+   "first_seen": 1788975966
+  },
+  {
+   "symbol": "HYDREX",
+   "name": "HYDREX",
+   "chain": "base",
+   "address": "0x97056b2c8f5e2a0a21316449e8f2e0ef41c0a686",
+   "score": 55,
+   "verdict": "yellow",
+   "liquidity_usd": 16201.8715,
+   "first_seen": 1788975965
+  },
+  {
+   "symbol": "STONKIT",
+   "name": "STONKIT",
+   "chain": "base",
+   "address": "0xb200000000000000000000a09d3c91840e2e9ffe",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 15163.7302,
+   "first_seen": 1788975964
+  },
+  {
+   "symbol": "2025",
+   "name": "2025",
+   "chain": "base",
+   "address": "0x10c5052a76f4feb14df5c83942d8aaad025625c1",
+   "score": 70,
+   "verdict": "green",
+   "liquidity_usd": 238974.3813,
+   "first_seen": 1788975871
+  },
+  {
+   "symbol": "BLUECHIP",
+   "name": "BLUE CHIP",
+   "chain": "base",
+   "address": "0x0c4b50bb0ed466c277b35e303fb99c4253d22648",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 149709.1236,
+   "first_seen": 1788975825
+  },
+  {
+   "symbol": "XXX",
+   "name": "PenisAI",
+   "chain": "base",
+   "address": "0xb200000000000000000000540e42d81a4cee9701",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4579.0682,
+   "first_seen": 1788975638
+  },
+  {
+   "symbol": "BBM",
+   "name": "Big Bad Mom",
+   "chain": "base",
+   "address": "0xf8839c2f4d3f795caabecf6b4738b9232460fba3",
+   "score": 70,
+   "verdict": "green",
+   "liquidity_usd": 9429.0279,
+   "first_seen": 1788975636
+  },
+  {
+   "symbol": "ARBBAN",
+   "name": "Anti-Reserve",
+   "chain": "base",
+   "address": "0xfb278609b2779b8a771f52809fd8b2135f4701fd",
+   "score": 40,
+   "verdict": "yellow",
+   "liquidity_usd": 1857162.19412121,
+   "first_seen": 1788975636
+  },
+  {
+   "symbol": "LIST",
+   "name": "To do list",
+   "chain": "base",
+   "address": "0xb2000000000000000000007fabc4c6284b7d6301",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4259.9262,
+   "first_seen": 1788975362
+  },
+  {
+   "symbol": "BIDEN",
+   "name": "Biden",
+   "chain": "base",
+   "address": "0xfbe7500efb8d95bb7a78ee0a600637110c44a61c",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 19063.6206,
+   "first_seen": 1788974584
+  },
+  {
+   "symbol": "WWDC",
+   "name": "WWDC",
+   "chain": "base",
+   "address": "0xb20000000000000000000010c0981400b3ea8901",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 8053.9825,
+   "first_seen": 1788974395
+  },
+  {
+   "symbol": "LAPTOP",
+   "name": "Biden Laptop",
+   "chain": "base",
+   "address": "0x585bd71ba5f69c6081b87cf654bffe2c34e7fd6e",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 19063.086,
+   "first_seen": 1788974258
+  },
   {
    "symbol": "MARSCAT",
    "name": "Martian Bionic Cat",
@@ -189,146 +324,6 @@
    "verdict": "green",
    "liquidity_usd": 4301.6962,
    "first_seen": 1788966209
-  },
-  {
-   "symbol": "TCK",
-   "name": "EverydayTICK",
-   "chain": "base",
-   "address": "0x6a9de5ed67794f9127106fd782473ffe88696dc7",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 24973.7,
-   "first_seen": 1788966207
-  },
-  {
-   "symbol": "CP",
-   "name": "Hunter Biden Files",
-   "chain": "base",
-   "address": "0x899e6f9736eb7748969fcf0959a1267e9a2a7352",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 5333.4736,
-   "first_seen": 1788966205
-  },
-  {
-   "symbol": "ORC",
-   "name": "Orbit Chain",
-   "chain": "base",
-   "address": "0x04e225f1fa518db8dea6d647776b2c03847c2312",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 33354.7285,
-   "first_seen": 1788932620
-  },
-  {
-   "symbol": "HBL",
-   "name": "Hunter Biden's Laptop",
-   "chain": "base",
-   "address": "0xe6a5463f08d4f028b8c94138b983a4ea9d282394",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 38369.7668,
-   "first_seen": 1788932572
-  },
-  {
-   "symbol": "WOSI",
-   "name": "World Oil Stability Initiative",
-   "chain": "base",
-   "address": "0x3c1feb863a208274c7c2f3addb45299e04dec57f",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 33745.5527,
-   "first_seen": 1788932480
-  },
-  {
-   "symbol": "EPSW",
-   "name": "Swap Echo",
-   "chain": "base",
-   "address": "0x9d61c516d981cfb144a78fd94b3eccf03e48e536",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 2259.1842,
-   "first_seen": 1788932478
-  },
-  {
-   "symbol": "LAPTOP",
-   "name": "0xB095274743941e953c746F9C228DA9c18Bb6ec29",
-   "chain": "base",
-   "address": "0x5cf13c4e1ce18aa11290d7212b152419753d646d",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 16768.034054744,
-   "first_seen": 1788932476
-  },
-  {
-   "symbol": "STRATTON",
-   "name": "Stratton Market",
-   "chain": "base",
-   "address": "0xb2c3bd902182a54fde18cdfc8e1da5d17b9575d0",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 12485.85,
-   "first_seen": 1788932473
-  },
-  {
-   "symbol": "CFTC",
-   "name": "COMMODITY FUTURES TRADING COMMISSION",
-   "chain": "base",
-   "address": "0x388f94b9422146dfa7bea563ec4fcf1eda4dddb0",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 37642.5869,
-   "first_seen": 1788932472
-  },
-  {
-   "symbol": "PEPSI",
-   "name": "Pepsi",
-   "chain": "base",
-   "address": "0x6588985d734499195846bc13859dae4d5514393c",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 27423.0575,
-   "first_seen": 1788930326
-  },
-  {
-   "symbol": "Jacob",
-   "name": "Be like Jacob",
-   "chain": "base",
-   "address": "0x462c62d59a0c560b491c694eac7505f3ee88bb07",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 16203.8557672609,
-   "first_seen": 1788930322
-  },
-  {
-   "symbol": "STREAM",
-   "name": "Ponstream",
-   "chain": "base",
-   "address": "0x8489940ae8ce57f4585dfcd9b2154c60b21e4617",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 27468.1513,
-   "first_seen": 1788930321
-  },
-  {
-   "symbol": "COSA",
-   "name": "Cosanta",
-   "chain": "base",
-   "address": "0x1b5ffee6e821c50ff006f6c62a4c102e7e8c135d",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12545.1150453284,
-   "first_seen": 1788930319
-  },
-  {
-   "symbol": "RNDR",
-   "name": "ComparativeREINDEER",
-   "chain": "base",
-   "address": "0xd8e34439077a9b5727ae41342fe71b590daeec14",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 24828.3,
-   "first_seen": 1788903310
   }
  ],
  "confirmed": [
@@ -474,9 +469,9 @@
   }
  ],
  "probation": {
-  "waiting": 34,
+  "waiting": 47,
   "confirmed": 12,
-  "dropped": 603
+  "dropped": 604
  },
  "recent_drains": [
   {
@@ -668,7 +663,7 @@
   "rug": 937
  },
  "watchlist_active": 6,
- "price_snapshots": 10860,
+ "price_snapshots": 10847,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
