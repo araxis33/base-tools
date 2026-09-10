@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-10T10:36:26Z",
- "generated_at_unix": 1789036585,
+ "generated_at": "2026-09-10T14:59:16Z",
+ "generated_at_unix": 1789052355,
  "period": {
   "start": "2026-07-15",
   "days": 57
  },
  "totals": {
-  "seen": 161914,
-  "base": 27799,
+  "seen": 162072,
+  "base": 27957,
   "robinhood": 134115,
-  "below_liquidity_threshold": 158756,
-  "spam_filtered": 512,
-  "scored": 2646,
-  "green": 1291,
-  "yellow": 447,
-  "red": 908
+  "below_liquidity_threshold": 158847,
+  "spam_filtered": 545,
+  "scored": 2680,
+  "green": 1321,
+  "yellow": 448,
+  "red": 911
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-20",
-   "base": 508,
-   "robinhood": 2298
+   "base": 258,
+   "robinhood": 1322
   },
   {
    "date": "2026-08-21",
@@ -125,213 +125,223 @@
   },
   {
    "date": "2026-09-10",
-   "base": 186,
+   "base": 344,
    "robinhood": 0
   }
  ],
  "recent_finds": [
   {
-   "symbol": "baton",
-   "name": "baton",
+   "symbol": "ROAD",
+   "name": "Roads Token",
    "chain": "base",
-   "address": "0xe42e7214a2255fa08e51c1f08dc8e0ffde06ec15",
+   "address": "0xd3ed17d8f1bf9389f3967712469277d6b82ab101",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 10695.0124678409,
-   "first_seen": 1789036170
+   "liquidity_usd": 22405.8112558871,
+   "first_seen": 1789052319
   },
   {
-   "symbol": "LMAX",
-   "name": "Lumax AI",
+   "symbol": "HOLE",
+   "name": "Farthole",
    "chain": "base",
-   "address": "0x38014ff4ca2129541ba6b3ba871fe40d72144b57",
+   "address": "0xf8e7980f9f84785292b69f8053f54198ddb8dddf",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 19255.2816,
+   "first_seen": 1789051929
+  },
+  {
+   "symbol": "MARIO",
+   "name": "SuerMarioBrosCoin",
+   "chain": "base",
+   "address": "0x598571ddba2855069be10b80f0a3d3664164ec29",
+   "score": 75,
+   "verdict": "green",
+   "liquidity_usd": 18666.6954,
+   "first_seen": 1789051928
+  },
+  {
+   "symbol": "catalyst",
+   "name": "catalyst",
+   "chain": "base",
+   "address": "0xb2000000000000000000009e18dd1cbe5f2d0ef1",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13952.1517,
+   "first_seen": 1789051926
+  },
+  {
+   "symbol": "D",
+   "name": "d",
+   "chain": "base",
+   "address": "0x4b4d8c59ae4193025ca75c99f0f3b5ca2bf02e93",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4090.893,
+   "first_seen": 1789051925
+  },
+  {
+   "symbol": "TIM",
+   "name": "TIM",
+   "chain": "base",
+   "address": "0xb2000000000000000000000f45cc5dca5e15bdad",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13523.335,
+   "first_seen": 1789051922
+  },
+  {
+   "symbol": "zearn",
+   "name": "zearn",
+   "chain": "base",
+   "address": "0xfcb41fe348e5e3a904f504c2c948e515dfd055b6",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 1316436.26607964,
+   "first_seen": 1789051921
+  },
+  {
+   "symbol": "Basefly",
+   "name": "Basefly",
+   "chain": "base",
+   "address": "0xb2000000000000000000000a28fbb710d1d8b301",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4204.46715301362,
+   "first_seen": 1789051915
+  },
+  {
+   "symbol": "NJN",
+   "name": "NJN",
+   "chain": "base",
+   "address": "0xaa584503cb82644715c9f9fbb2f8205a6b1c9221",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4904.6126,
+   "first_seen": 1789051868
+  },
+  {
+   "symbol": "doji",
+   "name": "doji app",
+   "chain": "base",
+   "address": "0xb00b8c331e1805a6f80ef6dabae5f0b64f3921e9",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 76348.2394,
+   "first_seen": 1789051865
+  },
+  {
+   "symbol": "chair",
+   "name": "slightly shat chair",
+   "chain": "base",
+   "address": "0x91e2ab07c926b7c32fb3f18b04309867a8df75e7",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 19268.4016,
+   "first_seen": 1789051818
+  },
+  {
+   "symbol": "moar",
+   "name": "moar",
+   "chain": "base",
+   "address": "0xe8cd4687056924c51feb2274282db936ad0a9640",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 2743782.6248,
+   "first_seen": 1789051816
+  },
+  {
+   "symbol": "ZUCK",
+   "name": "Zuck sucks",
+   "chain": "base",
+   "address": "0x47c6fdaecf6e7334052c9d2969234dd36244d620",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4104.9106,
+   "first_seen": 1789049992
+  },
+  {
+   "symbol": "SDROP",
+   "name": "Stonkexdrop",
+   "chain": "base",
+   "address": "0x0a1e71ab5806dd4e45b32e83e614a531f23a3cf2",
    "score": 73,
    "verdict": "green",
-   "liquidity_usd": 5009.3295,
-   "first_seen": 1789034974
+   "liquidity_usd": 14133.3219,
+   "first_seen": 1789049214
   },
   {
-   "symbol": "MTEST",
-   "name": "METATEST",
+   "symbol": "GIVEBASE",
+   "name": "GiveBase",
    "chain": "base",
-   "address": "0x168c15272c81ffa7ff0e3e56a545c6eca287d0ed",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 3919.5343,
-   "first_seen": 1789033242
-  },
-  {
-   "symbol": "BEPE",
-   "name": "Bepe",
-   "chain": "base",
-   "address": "0xeb91b7ae1cfaf3c4caaf0ef310b75243a6580bb2",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 3712684.9502,
-   "first_seen": 1789032187
-  },
-  {
-   "symbol": "cirBTC",
-   "name": "Circle Wrapped Bitcoin",
-   "chain": "base",
-   "address": "0x6a2afe4a67dc4b77735b1051d928e7989976724d",
+   "address": "0x802740d380117edb7a7dc26b1a97f0bf889af292",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 7925741.4484,
-   "first_seen": 1789032186
+   "liquidity_usd": 4120.4397,
+   "first_seen": 1789049031
   },
   {
-   "symbol": "HERECOMESTHEBULL",
-   "name": "Here comes the bull",
+   "symbol": "2MARS",
+   "name": "send it to Mars",
    "chain": "base",
-   "address": "0xd34bdb0608afc9bc7ac80691613d12fa89d582f4",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 6925.56283784808,
-   "first_seen": 1789032003
-  },
-  {
-   "symbol": "MOON",
-   "name": "Moon",
-   "chain": "base",
-   "address": "0xc6ccb074c6ad2797d38d00e3620cfd58680c0cd9",
+   "address": "0x9bd1a97d410f62e88a53b6ec2161c6409dc66b36",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 4902.9321,
-   "first_seen": 1789031912
+   "liquidity_usd": 4353.2337,
+   "first_seen": 1789048848
   },
   {
-   "symbol": "3DIFY",
-   "name": "3Dification",
+   "symbol": "Cutecat",
+   "name": "Cutecat",
    "chain": "base",
-   "address": "0xb2000000000000000000001210eced2515292ba3",
+   "address": "0x266a106de56c0299f8505cb2a51ff35bfb881faa",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 28467.6598198192,
-   "first_seen": 1789030061
+   "liquidity_usd": 16993.68,
+   "first_seen": 1789048846
   },
   {
-   "symbol": "UPONLY",
-   "name": "UPONLY",
+   "symbol": "stonkfly",
+   "name": "stonkfly",
    "chain": "base",
-   "address": "0x28f5fe5f3a1c157befb19c5ac185ab7aad55ec29",
+   "address": "0x0ca76afa624e9e64723e79f70ae48816fe78b3aa",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 3705.06,
-   "first_seen": 1789030060
+   "liquidity_usd": 72539.7144974217,
+   "first_seen": 1789046035
   },
   {
-   "symbol": "HIGHER",
-   "name": "Higher",
+   "symbol": "POWBASE",
+   "name": "Powbase",
    "chain": "base",
-   "address": "0xb20000000000000000000064262b5182739ed7ef",
+   "address": "0xc863e86b4dc5a22753e3ca70ca6e5d9e8b39efed",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 19668.3803,
-   "first_seen": 1789029969
+   "liquidity_usd": 4293.7676,
+   "first_seen": 1789045670
   },
   {
-   "symbol": "HONTER",
-   "name": "honter boden",
+   "symbol": "TSTBASE",
+   "name": "TSTBase",
    "chain": "base",
-   "address": "0xf478f1ed49f5266dde1a52da1134641886e1d810",
+   "address": "0x8b4489496e85e8cc5619f4fbfe5b88c5629a9b1a",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 6175.8287,
-   "first_seen": 1789029968
-  },
-  {
-   "symbol": "TDOG",
-   "name": "TurboDog",
-   "chain": "base",
-   "address": "0xedcfc2f94bfde146859263150c3aff858b0a27f9",
-   "score": 76,
-   "verdict": "green",
-   "liquidity_usd": 2509.249799572,
-   "first_seen": 1789029922
-  },
-  {
-   "symbol": "YUTA",
-   "name": "yfwyuta",
-   "chain": "base",
-   "address": "0x554f43ce422e391c4b1c6400998b66d1ba0dfee1",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 10284.871,
-   "first_seen": 1789029781
-  },
-  {
-   "symbol": "POOPCOIN",
-   "name": "POOPCOIN",
-   "chain": "base",
-   "address": "0xb20000000000000000000040fbbbc95f74055d01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 5949.4204,
-   "first_seen": 1789029780
-  },
-  {
-   "symbol": "MCBK",
-   "name": "MACBOOK",
-   "chain": "base",
-   "address": "0x12701d95933eb0ca6f003d1c75fb07b837f5fee1",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 10063.8019,
-   "first_seen": 1789029779
-  },
-  {
-   "symbol": "feet",
-   "name": "feet",
-   "chain": "base",
-   "address": "0xb2000000000000000000005bfd992b4bc5b5ca01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 8754.0126,
-   "first_seen": 1789029778
-  },
-  {
-   "symbol": "CATTRAIN",
-   "name": "CAT TRAIN",
-   "chain": "base",
-   "address": "0xb200000000000000000000f91fa594a927ebfb6c",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 16237.6481,
-   "first_seen": 1789029777
-  },
-  {
-   "symbol": "EXECUTOR",
-   "name": "Executor robot",
-   "chain": "base",
-   "address": "0xb20000000000000000000003e7e2364b45ee5851",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 16892.9129,
-   "first_seen": 1789029596
-  },
-  {
-   "symbol": "bShare",
-   "name": "bShare",
-   "chain": "base",
-   "address": "0xc8772b9bbfdda1563f28aff9ca3c0851fd8d686f",
-   "score": 55,
-   "verdict": "yellow",
-   "liquidity_usd": 12369.0001,
-   "first_seen": 1788984868
-  },
-  {
-   "symbol": "A0X",
-   "name": "A0x",
-   "chain": "base",
-   "address": "0x8e7eb951de4e23aca8a9852297bc7cf948a660b6",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 16360.5642,
-   "first_seen": 1788984681
+   "liquidity_usd": 4174.9299,
+   "first_seen": 1789045397
   }
  ],
  "confirmed": [
+  {
+   "symbol": "STONKFLY",
+   "chain": "base",
+   "address": "0x06cd4e890e893b1d485485b282f78179ad05e845",
+   "buyers_h1": 186,
+   "volume_h1": 37686.4555451095,
+   "liquidity_usd": 7961.7668,
+   "confirmed_at": 1789045396,
+   "hours_waited": 1.0
+  },
   {
    "symbol": "PC",
    "chain": "base",
@@ -474,11 +484,17 @@
   }
  ],
  "probation": {
-  "waiting": 37,
-  "confirmed": 12,
-  "dropped": 647
+  "waiting": 56,
+  "confirmed": 13,
+  "dropped": 658
  },
  "recent_drains": [
+  {
+   "symbol": "BLUE",
+   "chain": "base",
+   "address": "0x1d0c1be75f32c1238da27dbb59d21c7df8d311b2",
+   "ts": 1789048873
+  },
   {
    "symbol": "ROBIN",
    "chain": "robinhood",
@@ -562,12 +578,6 @@
    "chain": "base",
    "address": "0xa5078ac8f585de7947941aabdee9bf6dc0432748",
    "ts": 1787584247
-  },
-  {
-   "symbol": "DTCC RIPPLE XRP",
-   "chain": "base",
-   "address": "0x23003b37056e6353a82ace2d80daa8f834f377f1",
-   "ts": 1787554150
   }
  ],
  "survivors": [
@@ -665,10 +675,10 @@
  "alerts": {
   "dump": 690,
   "pump": 260,
-  "rug": 937
+  "rug": 938
  },
- "watchlist_active": 6,
- "price_snapshots": 10539,
+ "watchlist_active": 7,
+ "price_snapshots": 10466,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
