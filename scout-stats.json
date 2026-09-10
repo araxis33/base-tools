@@ -1,32 +1,27 @@
 {
- "generated_at": "2026-09-10T20:02:21Z",
- "generated_at_unix": 1789070540,
+ "generated_at": "2026-09-10T21:02:29Z",
+ "generated_at_unix": 1789074147,
  "period": {
   "start": "2026-07-15",
   "days": 57
  },
  "totals": {
-  "seen": 162438,
-  "base": 28323,
+  "seen": 162531,
+  "base": 28416,
   "robinhood": 134115,
-  "below_liquidity_threshold": 159155,
-  "spam_filtered": 579,
-  "scored": 2704,
-  "green": 1345,
+  "below_liquidity_threshold": 159229,
+  "spam_filtered": 590,
+  "scored": 2712,
+  "green": 1353,
   "yellow": 448,
   "red": 911
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
-   "date": "2026-08-20",
-   "base": 64,
-   "robinhood": 287
-  },
-  {
    "date": "2026-08-21",
-   "base": 1032,
-   "robinhood": 2686
+   "base": 1031,
+   "robinhood": 2664
   },
   {
    "date": "2026-08-22",
@@ -125,11 +120,96 @@
   },
   {
    "date": "2026-09-10",
-   "base": 710,
+   "base": 798,
+   "robinhood": 0
+  },
+  {
+   "date": "2026-09-11",
+   "base": 5,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "BADAPPLES",
+   "name": "BAD APPLES",
+   "chain": "base",
+   "address": "0x4c496b3f2f5b709a6c231a152fed9fc22a83c998",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 74224.7722,
+   "first_seen": 1789074114
+  },
+  {
+   "symbol": "Bell",
+   "name": "Bell on Base",
+   "chain": "base",
+   "address": "0xd1d2369366518651c9cdc8ee32a02d6ffaaa8f62",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 24200.6959,
+   "first_seen": 1789071430
+  },
+  {
+   "symbol": "kiwicoin",
+   "name": "kiwicoin",
+   "chain": "base",
+   "address": "0x5917787bb28b1b8e485e902f125fa4c1d023d7de",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4041.1226,
+   "first_seen": 1789071242
+  },
+  {
+   "symbol": "Mooncoin",
+   "name": "Mooncoin",
+   "chain": "base",
+   "address": "0x03a50cbb6e125447886ad3d43f93d2c08c282b2a",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 19028.9605,
+   "first_seen": 1789071240
+  },
+  {
+   "symbol": "maniac",
+   "name": "maniac",
+   "chain": "base",
+   "address": "0xb200000000000000000000625eedb6c869e0c201",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4902.7293,
+   "first_seen": 1789071056
+  },
+  {
+   "symbol": "CobieWallet",
+   "name": "cobie wallet",
+   "chain": "base",
+   "address": "0xb20000000000000000000076b61ab80f0cea2930",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 16010.9479,
+   "first_seen": 1789071008
+  },
+  {
+   "symbol": "Elon Coin",
+   "name": "ELON",
+   "chain": "base",
+   "address": "0xe2573b9e55df5a105e600d7c9b1db130093163b6",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 18218.5565,
+   "first_seen": 1789071007
+  },
+  {
+   "symbol": "RocketFrog",
+   "name": "Rocket Frog",
+   "chain": "base",
+   "address": "0x83a354957eb318d78be2a576edcca61724b5ec29",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 14343.2247,
+   "first_seen": 1789070732
+  },
   {
    "symbol": "SUMMER",
    "name": "sol",
@@ -249,86 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 4435.14439328178,
    "first_seen": 1789062269
-  },
-  {
-   "symbol": "coinbasewallet",
-   "name": "Coinbase Wallet",
-   "chain": "base",
-   "address": "0xb2000000000000000000008928cf87d2194d6a01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 5730.4081,
-   "first_seen": 1789062268
-  },
-  {
-   "symbol": "Win",
-   "name": "Trade to Win",
-   "chain": "base",
-   "address": "0xb2000000000000000000007fc95b5cfffaf14401",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 32950.2162,
-   "first_seen": 1789062267
-  },
-  {
-   "symbol": "Wallet",
-   "name": "Coinbase Wallet",
-   "chain": "base",
-   "address": "0xb200000000000000000000eacbba06cf81592001",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4586.83317078647,
-   "first_seen": 1789062266
-  },
-  {
-   "symbol": "DIDDYOIL",
-   "name": "Diddy's Baby Oil",
-   "chain": "base",
-   "address": "0x676f94e5f3a3f41d94e6620970c30ae083469c75",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 18160.3435,
-   "first_seen": 1789062129
-  },
-  {
-   "symbol": "coin123123",
-   "name": "coin123123",
-   "chain": "base",
-   "address": "0xb200000000000000000000ccc1049a0e29cbd401",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 5716.9901,
-   "first_seen": 1789062036
-  },
-  {
-   "symbol": "wallet",
-   "name": "coinbasewallet",
-   "chain": "base",
-   "address": "0xb200000000000000000000c09f25f66d38ddaf01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4985.1856,
-   "first_seen": 1789061852
-  },
-  {
-   "symbol": "coinbasewallet",
-   "name": "coinbasewallet",
-   "chain": "base",
-   "address": "0xb2000000000000000000002157e63c8df072f501",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 8603.1059,
-   "first_seen": 1789061851
-  },
-  {
-   "symbol": "CNBSWALLET",
-   "name": "coinbasewallet",
-   "chain": "base",
-   "address": "0xb200000000000000000000c17189566e38157e01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4833.715,
-   "first_seen": 1789061850
   }
  ],
  "confirmed": [
@@ -494,9 +494,9 @@
   }
  ],
  "probation": {
-  "waiting": 47,
+  "waiting": 45,
   "confirmed": 14,
-  "dropped": 690
+  "dropped": 700
  },
  "recent_drains": [
   {
@@ -688,7 +688,7 @@
   "rug": 939
  },
  "watchlist_active": 6,
- "price_snapshots": 10553,
+ "price_snapshots": 10554,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
