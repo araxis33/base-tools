@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-10T09:36:18Z",
- "generated_at_unix": 1789032975,
+ "generated_at": "2026-09-10T10:36:26Z",
+ "generated_at_unix": 1789036585,
  "period": {
   "start": "2026-07-15",
   "days": 57
  },
  "totals": {
-  "seen": 161851,
-  "base": 27736,
+  "seen": 161914,
+  "base": 27799,
   "robinhood": 134115,
-  "below_liquidity_threshold": 158707,
-  "spam_filtered": 502,
-  "scored": 2642,
-  "green": 1288,
+  "below_liquidity_threshold": 158756,
+  "spam_filtered": 512,
+  "scored": 2646,
+  "green": 1291,
   "yellow": 447,
-  "red": 907
+  "red": 908
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-20",
-   "base": 554,
-   "robinhood": 2510
+   "base": 508,
+   "robinhood": 2298
   },
   {
    "date": "2026-08-21",
@@ -125,11 +125,41 @@
   },
   {
    "date": "2026-09-10",
-   "base": 123,
+   "base": 186,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "baton",
+   "name": "baton",
+   "chain": "base",
+   "address": "0xe42e7214a2255fa08e51c1f08dc8e0ffde06ec15",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 10695.0124678409,
+   "first_seen": 1789036170
+  },
+  {
+   "symbol": "LMAX",
+   "name": "Lumax AI",
+   "chain": "base",
+   "address": "0x38014ff4ca2129541ba6b3ba871fe40d72144b57",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 5009.3295,
+   "first_seen": 1789034974
+  },
+  {
+   "symbol": "MTEST",
+   "name": "METATEST",
+   "chain": "base",
+   "address": "0x168c15272c81ffa7ff0e3e56a545c6eca287d0ed",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 3919.5343,
+   "first_seen": 1789033242
+  },
   {
    "symbol": "BEPE",
    "name": "Bepe",
@@ -299,36 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 16360.5642,
    "first_seen": 1788984681
-  },
-  {
-   "symbol": "CHIP",
-   "name": "fun AI Agent CHIP ( DAO )",
-   "chain": "base",
-   "address": "0x76231852bf087310e00c47e51b558385965ce781",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 4190.1342,
-   "first_seen": 1788984633
-  },
-  {
-   "symbol": "Grok",
-   "name": "Grok Coin",
-   "chain": "base",
-   "address": "0xa54506de21b1cc049d4d636c647c2f7e2aeba796",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 75269.7078,
-   "first_seen": 1788984449
-  },
-  {
-   "symbol": "MEMESONBASE",
-   "name": "THIS IS MEMES ON BASE",
-   "chain": "base",
-   "address": "0xb20000000000000000000097a573ee9b5215c601",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4081.0279,
-   "first_seen": 1788984215
   }
  ],
  "confirmed": [
@@ -474,9 +474,9 @@
   }
  ],
  "probation": {
-  "waiting": 38,
+  "waiting": 37,
   "confirmed": 12,
-  "dropped": 643
+  "dropped": 647
  },
  "recent_drains": [
   {
@@ -668,7 +668,7 @@
   "rug": 937
  },
  "watchlist_active": 6,
- "price_snapshots": 10460,
+ "price_snapshots": 10539,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
