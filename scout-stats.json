@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-10T18:02:10Z",
- "generated_at_unix": 1789063329,
+ "generated_at": "2026-09-10T19:02:15Z",
+ "generated_at_unix": 1789066933,
  "period": {
   "start": "2026-07-15",
   "days": 57
  },
  "totals": {
-  "seen": 162183,
-  "base": 28068,
+  "seen": 162333,
+  "base": 28218,
   "robinhood": 134115,
-  "below_liquidity_threshold": 158931,
-  "spam_filtered": 558,
-  "scored": 2694,
-  "green": 1335,
+  "below_liquidity_threshold": 159067,
+  "spam_filtered": 569,
+  "scored": 2697,
+  "green": 1338,
   "yellow": 448,
   "red": 911
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-20",
-   "base": 199,
-   "robinhood": 1042
+   "base": 134,
+   "robinhood": 681
   },
   {
    "date": "2026-08-21",
@@ -125,11 +125,41 @@
   },
   {
    "date": "2026-09-10",
-   "base": 455,
+   "base": 605,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "BI16Z",
+   "name": "fun BI16Z",
+   "chain": "base",
+   "address": "0xba8dfa42dde6bfe8002645821275b102f17e74ab",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 4059.0028,
+   "first_seen": 1789066881
+  },
+  {
+   "symbol": "DONUT",
+   "name": "Donutcoin",
+   "chain": "base",
+   "address": "0xe470a7f339ab8f88f0a5a7408d599c619092447f",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 74327.6811,
+   "first_seen": 1789064771
+  },
+  {
+   "symbol": "PEPONS",
+   "name": "PEPONS",
+   "chain": "base",
+   "address": "0x2b87506b1755ba2b81838af9fdb1a98d6987bbbb",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 6597.7044,
+   "first_seen": 1789063624
+  },
   {
    "symbol": "ASS",
    "name": "ASS",
@@ -299,39 +329,19 @@
    "verdict": "green",
    "liquidity_usd": 18666.6954,
    "first_seen": 1789051928
-  },
-  {
-   "symbol": "catalyst",
-   "name": "catalyst",
-   "chain": "base",
-   "address": "0xb2000000000000000000009e18dd1cbe5f2d0ef1",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13952.1517,
-   "first_seen": 1789051926
-  },
-  {
-   "symbol": "D",
-   "name": "d",
-   "chain": "base",
-   "address": "0x4b4d8c59ae4193025ca75c99f0f3b5ca2bf02e93",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4090.893,
-   "first_seen": 1789051925
-  },
-  {
-   "symbol": "TIM",
-   "name": "TIM",
-   "chain": "base",
-   "address": "0xb2000000000000000000000f45cc5dca5e15bdad",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13523.335,
-   "first_seen": 1789051922
   }
  ],
  "confirmed": [
+  {
+   "symbol": "Win",
+   "chain": "base",
+   "address": "0xb2000000000000000000007fc95b5cfffaf14401",
+   "buyers_h1": 584,
+   "volume_h1": 473067.511929925,
+   "liquidity_usd": 29142.6724,
+   "confirmed_at": 1789062267,
+   "hours_waited": 0.8
+  },
   {
    "symbol": "STONKFLY",
    "chain": "base",
@@ -484,9 +494,9 @@
   }
  ],
  "probation": {
-  "waiting": 56,
-  "confirmed": 13,
-  "dropped": 672
+  "waiting": 42,
+  "confirmed": 14,
+  "dropped": 688
  },
  "recent_drains": [
   {
@@ -678,7 +688,7 @@
   "rug": 939
  },
  "watchlist_active": 6,
- "price_snapshots": 10535,
+ "price_snapshots": 10559,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
