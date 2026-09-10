@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-09T20:15:44Z",
- "generated_at_unix": 1788984942,
+ "generated_at": "2026-09-10T09:36:18Z",
+ "generated_at_unix": 1789032975,
  "period": {
   "start": "2026-07-15",
-  "days": 56
+  "days": 57
  },
  "totals": {
-  "seen": 161704,
-  "base": 27589,
+  "seen": 161851,
+  "base": 27736,
   "robinhood": 134115,
-  "below_liquidity_threshold": 158593,
-  "spam_filtered": 484,
-  "scored": 2627,
-  "green": 1273,
+  "below_liquidity_threshold": 158707,
+  "spam_filtered": 502,
+  "scored": 2642,
+  "green": 1288,
   "yellow": 447,
   "red": 907
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-20",
-   "base": 644,
-   "robinhood": 2855
+   "base": 554,
+   "robinhood": 2510
   },
   {
    "date": "2026-08-21",
@@ -120,11 +120,166 @@
   },
   {
    "date": "2026-09-09",
-   "base": 557,
+   "base": 581,
+   "robinhood": 0
+  },
+  {
+   "date": "2026-09-10",
+   "base": 123,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "BEPE",
+   "name": "Bepe",
+   "chain": "base",
+   "address": "0xeb91b7ae1cfaf3c4caaf0ef310b75243a6580bb2",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 3712684.9502,
+   "first_seen": 1789032187
+  },
+  {
+   "symbol": "cirBTC",
+   "name": "Circle Wrapped Bitcoin",
+   "chain": "base",
+   "address": "0x6a2afe4a67dc4b77735b1051d928e7989976724d",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 7925741.4484,
+   "first_seen": 1789032186
+  },
+  {
+   "symbol": "HERECOMESTHEBULL",
+   "name": "Here comes the bull",
+   "chain": "base",
+   "address": "0xd34bdb0608afc9bc7ac80691613d12fa89d582f4",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 6925.56283784808,
+   "first_seen": 1789032003
+  },
+  {
+   "symbol": "MOON",
+   "name": "Moon",
+   "chain": "base",
+   "address": "0xc6ccb074c6ad2797d38d00e3620cfd58680c0cd9",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4902.9321,
+   "first_seen": 1789031912
+  },
+  {
+   "symbol": "3DIFY",
+   "name": "3Dification",
+   "chain": "base",
+   "address": "0xb2000000000000000000001210eced2515292ba3",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 28467.6598198192,
+   "first_seen": 1789030061
+  },
+  {
+   "symbol": "UPONLY",
+   "name": "UPONLY",
+   "chain": "base",
+   "address": "0x28f5fe5f3a1c157befb19c5ac185ab7aad55ec29",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3705.06,
+   "first_seen": 1789030060
+  },
+  {
+   "symbol": "HIGHER",
+   "name": "Higher",
+   "chain": "base",
+   "address": "0xb20000000000000000000064262b5182739ed7ef",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 19668.3803,
+   "first_seen": 1789029969
+  },
+  {
+   "symbol": "HONTER",
+   "name": "honter boden",
+   "chain": "base",
+   "address": "0xf478f1ed49f5266dde1a52da1134641886e1d810",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 6175.8287,
+   "first_seen": 1789029968
+  },
+  {
+   "symbol": "TDOG",
+   "name": "TurboDog",
+   "chain": "base",
+   "address": "0xedcfc2f94bfde146859263150c3aff858b0a27f9",
+   "score": 76,
+   "verdict": "green",
+   "liquidity_usd": 2509.249799572,
+   "first_seen": 1789029922
+  },
+  {
+   "symbol": "YUTA",
+   "name": "yfwyuta",
+   "chain": "base",
+   "address": "0x554f43ce422e391c4b1c6400998b66d1ba0dfee1",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 10284.871,
+   "first_seen": 1789029781
+  },
+  {
+   "symbol": "POOPCOIN",
+   "name": "POOPCOIN",
+   "chain": "base",
+   "address": "0xb20000000000000000000040fbbbc95f74055d01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 5949.4204,
+   "first_seen": 1789029780
+  },
+  {
+   "symbol": "MCBK",
+   "name": "MACBOOK",
+   "chain": "base",
+   "address": "0x12701d95933eb0ca6f003d1c75fb07b837f5fee1",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 10063.8019,
+   "first_seen": 1789029779
+  },
+  {
+   "symbol": "feet",
+   "name": "feet",
+   "chain": "base",
+   "address": "0xb2000000000000000000005bfd992b4bc5b5ca01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 8754.0126,
+   "first_seen": 1789029778
+  },
+  {
+   "symbol": "CATTRAIN",
+   "name": "CAT TRAIN",
+   "chain": "base",
+   "address": "0xb200000000000000000000f91fa594a927ebfb6c",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 16237.6481,
+   "first_seen": 1789029777
+  },
+  {
+   "symbol": "EXECUTOR",
+   "name": "Executor robot",
+   "chain": "base",
+   "address": "0xb20000000000000000000003e7e2364b45ee5851",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 16892.9129,
+   "first_seen": 1789029596
+  },
   {
    "symbol": "bShare",
    "name": "bShare",
@@ -174,156 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 4081.0279,
    "first_seen": 1788984215
-  },
-  {
-   "symbol": "STAR",
-   "name": "StarCoin",
-   "chain": "base",
-   "address": "0xb200000000000000000000cbcfabd846c60e9701",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4508.99353611001,
-   "first_seen": 1788984214
-  },
-  {
-   "symbol": "GRK",
-   "name": "Grokster",
-   "chain": "base",
-   "address": "0xb2000000000000000000004c42340e08da873801",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4145.1159,
-   "first_seen": 1788983392
-  },
-  {
-   "symbol": "bot",
-   "name": "@bot",
-   "chain": "base",
-   "address": "0xb200000000000000000000492a7d368751449601",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3798.4778,
-   "first_seen": 1788983345
-  },
-  {
-   "symbol": "WLY",
-   "name": "THERE IS NO MEME",
-   "chain": "base",
-   "address": "0x819322fa9306a77d2f3cf8f0258b6d39c9ce6a27",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 74924.5467,
-   "first_seen": 1788982345
-  },
-  {
-   "symbol": "NIULAI",
-   "name": "BASED NIU LAI",
-   "chain": "base",
-   "address": "0x001251a11978a4e6c0f1dbe4bd47c9537c196df5",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3234.0655,
-   "first_seen": 1788980023
-  },
-  {
-   "symbol": "MNTR",
-   "name": "Mentra",
-   "chain": "base",
-   "address": "0x2e9853f1d4378231ad44b32c94c4eb7d5c5ab294",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 74800.7933,
-   "first_seen": 1788979745
-  },
-  {
-   "symbol": "MURK",
-   "name": "MURKET",
-   "chain": "base",
-   "address": "0x2cbd49ed26fb325aadaecad74f981aa6016cf4e8",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3965.5044,
-   "first_seen": 1788979337
-  },
-  {
-   "symbol": "KAI",
-   "name": "Kairence",
-   "chain": "base",
-   "address": "0xbc3c18584d0d4f38e0076bea5c86fae825afc352",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 54594.7299,
-   "first_seen": 1788979244
-  },
-  {
-   "symbol": "BAP",
-   "name": "BAPCAT",
-   "chain": "base",
-   "address": "0x0b65361eca4f0aeb7d3f91517783914274672604",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3936.7078,
-   "first_seen": 1788979242
-  },
-  {
-   "symbol": "AAPLx",
-   "name": "Apple xStock",
-   "chain": "base",
-   "address": "0x2a173c03b7191f1c49224fca834630516ee7d1ec",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 186692.0738,
-   "first_seen": 1788977967
-  },
-  {
-   "symbol": "OURI",
-   "name": "OutsideURIAL",
-   "chain": "base",
-   "address": "0x8e7036825638055eb451a46a08559887bc12f249",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 24935.2,
-   "first_seen": 1788977010
-  },
-  {
-   "symbol": "BOXCAT",
-   "name": "cat in box",
-   "chain": "base",
-   "address": "0x7fa60c1be820e78e70683f328719c54b58b9ebdd",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 2474930.362,
-   "first_seen": 1788976738
-  },
-  {
-   "symbol": "$ingularity",
-   "name": "$ingularity",
-   "chain": "base",
-   "address": "0x37bd5a5563148433fed07015fa86904053bd4ce2",
-   "score": 82,
-   "verdict": "green",
-   "liquidity_usd": 251338.389911584,
-   "first_seen": 1788975966
-  },
-  {
-   "symbol": "HYDREX",
-   "name": "HYDREX",
-   "chain": "base",
-   "address": "0x97056b2c8f5e2a0a21316449e8f2e0ef41c0a686",
-   "score": 55,
-   "verdict": "yellow",
-   "liquidity_usd": 16201.8715,
-   "first_seen": 1788975965
-  },
-  {
-   "symbol": "STONKIT",
-   "name": "STONKIT",
-   "chain": "base",
-   "address": "0xb200000000000000000000a09d3c91840e2e9ffe",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 15163.7302,
-   "first_seen": 1788975964
   }
  ],
  "confirmed": [
@@ -469,9 +474,9 @@
   }
  ],
  "probation": {
-  "waiting": 40,
+  "waiting": 38,
   "confirmed": 12,
-  "dropped": 626
+  "dropped": 643
  },
  "recent_drains": [
   {
@@ -663,7 +668,7 @@
   "rug": 937
  },
  "watchlist_active": 6,
- "price_snapshots": 10799,
+ "price_snapshots": 10460,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
