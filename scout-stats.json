@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-10T14:59:16Z",
- "generated_at_unix": 1789052355,
+ "generated_at": "2026-09-10T18:02:10Z",
+ "generated_at_unix": 1789063329,
  "period": {
   "start": "2026-07-15",
   "days": 57
  },
  "totals": {
-  "seen": 162072,
-  "base": 27957,
+  "seen": 162183,
+  "base": 28068,
   "robinhood": 134115,
-  "below_liquidity_threshold": 158847,
-  "spam_filtered": 545,
-  "scored": 2680,
-  "green": 1321,
+  "below_liquidity_threshold": 158931,
+  "spam_filtered": 558,
+  "scored": 2694,
+  "green": 1335,
   "yellow": 448,
   "red": 911
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-20",
-   "base": 258,
-   "robinhood": 1322
+   "base": 199,
+   "robinhood": 1042
   },
   {
    "date": "2026-08-21",
@@ -125,11 +125,151 @@
   },
   {
    "date": "2026-09-10",
-   "base": 344,
+   "base": 455,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "ASS",
+   "name": "ASS",
+   "chain": "base",
+   "address": "0x083130f86050286c2948e79a616b1896884b2cf7",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3904.8949,
+   "first_seen": 1789062680
+  },
+  {
+   "symbol": "CW",
+   "name": "Coinbase Wallet",
+   "chain": "base",
+   "address": "0xb20000000000000000000045511e0fe0ea470c01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4435.14439328178,
+   "first_seen": 1789062269
+  },
+  {
+   "symbol": "coinbasewallet",
+   "name": "Coinbase Wallet",
+   "chain": "base",
+   "address": "0xb2000000000000000000008928cf87d2194d6a01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 5730.4081,
+   "first_seen": 1789062268
+  },
+  {
+   "symbol": "Win",
+   "name": "Trade to Win",
+   "chain": "base",
+   "address": "0xb2000000000000000000007fc95b5cfffaf14401",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 32950.2162,
+   "first_seen": 1789062267
+  },
+  {
+   "symbol": "Wallet",
+   "name": "Coinbase Wallet",
+   "chain": "base",
+   "address": "0xb200000000000000000000eacbba06cf81592001",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4586.83317078647,
+   "first_seen": 1789062266
+  },
+  {
+   "symbol": "DIDDYOIL",
+   "name": "Diddy's Baby Oil",
+   "chain": "base",
+   "address": "0x676f94e5f3a3f41d94e6620970c30ae083469c75",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 18160.3435,
+   "first_seen": 1789062129
+  },
+  {
+   "symbol": "coin123123",
+   "name": "coin123123",
+   "chain": "base",
+   "address": "0xb200000000000000000000ccc1049a0e29cbd401",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 5716.9901,
+   "first_seen": 1789062036
+  },
+  {
+   "symbol": "wallet",
+   "name": "coinbasewallet",
+   "chain": "base",
+   "address": "0xb200000000000000000000c09f25f66d38ddaf01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4985.1856,
+   "first_seen": 1789061852
+  },
+  {
+   "symbol": "coinbasewallet",
+   "name": "coinbasewallet",
+   "chain": "base",
+   "address": "0xb2000000000000000000002157e63c8df072f501",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 8603.1059,
+   "first_seen": 1789061851
+  },
+  {
+   "symbol": "CNBSWALLET",
+   "name": "coinbasewallet",
+   "chain": "base",
+   "address": "0xb200000000000000000000c17189566e38157e01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4833.715,
+   "first_seen": 1789061850
+  },
+  {
+   "symbol": "GEMINAI",
+   "name": "Geminai",
+   "chain": "base",
+   "address": "0xf6c3322a46548431df5fc0c0c137b99bcdfbeea9",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4551.17,
+   "first_seen": 1789061803
+  },
+  {
+   "symbol": "MM",
+   "name": "Meme Man",
+   "chain": "base",
+   "address": "0x41e2a5dd635beb5917845fe0467ec80f1f787886",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 23688.0289,
+   "first_seen": 1789060489
+  },
+  {
+   "symbol": "NVDAx",
+   "name": "NVIDIA xStock",
+   "chain": "base",
+   "address": "0xd36e2b78338835cffef25d5e45bfced0deb3e9cf",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 182982.9578,
+   "first_seen": 1789052779
+  },
+  {
+   "symbol": "WOLF",
+   "name": "Wolf of Wallstreet",
+   "chain": "base",
+   "address": "0xc06e2fa9effca74338ea856f595c2e8940ef5ca1",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 15638.2579,
+   "first_seen": 1789052686
+  },
   {
    "symbol": "ROAD",
    "name": "Roads Token",
@@ -189,146 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 13523.335,
    "first_seen": 1789051922
-  },
-  {
-   "symbol": "zearn",
-   "name": "zearn",
-   "chain": "base",
-   "address": "0xfcb41fe348e5e3a904f504c2c948e515dfd055b6",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 1316436.26607964,
-   "first_seen": 1789051921
-  },
-  {
-   "symbol": "Basefly",
-   "name": "Basefly",
-   "chain": "base",
-   "address": "0xb2000000000000000000000a28fbb710d1d8b301",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4204.46715301362,
-   "first_seen": 1789051915
-  },
-  {
-   "symbol": "NJN",
-   "name": "NJN",
-   "chain": "base",
-   "address": "0xaa584503cb82644715c9f9fbb2f8205a6b1c9221",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4904.6126,
-   "first_seen": 1789051868
-  },
-  {
-   "symbol": "doji",
-   "name": "doji app",
-   "chain": "base",
-   "address": "0xb00b8c331e1805a6f80ef6dabae5f0b64f3921e9",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 76348.2394,
-   "first_seen": 1789051865
-  },
-  {
-   "symbol": "chair",
-   "name": "slightly shat chair",
-   "chain": "base",
-   "address": "0x91e2ab07c926b7c32fb3f18b04309867a8df75e7",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 19268.4016,
-   "first_seen": 1789051818
-  },
-  {
-   "symbol": "moar",
-   "name": "moar",
-   "chain": "base",
-   "address": "0xe8cd4687056924c51feb2274282db936ad0a9640",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 2743782.6248,
-   "first_seen": 1789051816
-  },
-  {
-   "symbol": "ZUCK",
-   "name": "Zuck sucks",
-   "chain": "base",
-   "address": "0x47c6fdaecf6e7334052c9d2969234dd36244d620",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4104.9106,
-   "first_seen": 1789049992
-  },
-  {
-   "symbol": "SDROP",
-   "name": "Stonkexdrop",
-   "chain": "base",
-   "address": "0x0a1e71ab5806dd4e45b32e83e614a531f23a3cf2",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 14133.3219,
-   "first_seen": 1789049214
-  },
-  {
-   "symbol": "GIVEBASE",
-   "name": "GiveBase",
-   "chain": "base",
-   "address": "0x802740d380117edb7a7dc26b1a97f0bf889af292",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4120.4397,
-   "first_seen": 1789049031
-  },
-  {
-   "symbol": "2MARS",
-   "name": "send it to Mars",
-   "chain": "base",
-   "address": "0x9bd1a97d410f62e88a53b6ec2161c6409dc66b36",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4353.2337,
-   "first_seen": 1789048848
-  },
-  {
-   "symbol": "Cutecat",
-   "name": "Cutecat",
-   "chain": "base",
-   "address": "0x266a106de56c0299f8505cb2a51ff35bfb881faa",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 16993.68,
-   "first_seen": 1789048846
-  },
-  {
-   "symbol": "stonkfly",
-   "name": "stonkfly",
-   "chain": "base",
-   "address": "0x0ca76afa624e9e64723e79f70ae48816fe78b3aa",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 72539.7144974217,
-   "first_seen": 1789046035
-  },
-  {
-   "symbol": "POWBASE",
-   "name": "Powbase",
-   "chain": "base",
-   "address": "0xc863e86b4dc5a22753e3ca70ca6e5d9e8b39efed",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4293.7676,
-   "first_seen": 1789045670
-  },
-  {
-   "symbol": "TSTBASE",
-   "name": "TSTBase",
-   "chain": "base",
-   "address": "0x8b4489496e85e8cc5619f4fbfe5b88c5629a9b1a",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4174.9299,
-   "first_seen": 1789045397
   }
  ],
  "confirmed": [
@@ -486,9 +486,15 @@
  "probation": {
   "waiting": 56,
   "confirmed": 13,
-  "dropped": 658
+  "dropped": 672
  },
  "recent_drains": [
+  {
+   "symbol": "AI",
+   "chain": "robinhood",
+   "address": "0x2e8c31162b855a2ffa90f6f8634643ad6f111e18",
+   "ts": 1789062571
+  },
   {
    "symbol": "BLUE",
    "chain": "base",
@@ -572,12 +578,6 @@
    "chain": "base",
    "address": "0x1929a588f27d3366384320844f85bf10a52a0d72",
    "ts": 1787584378
-  },
-  {
-   "symbol": "BEAT",
-   "chain": "base",
-   "address": "0xa5078ac8f585de7947941aabdee9bf6dc0432748",
-   "ts": 1787584247
   }
  ],
  "survivors": [
@@ -673,12 +673,12 @@
   }
  ],
  "alerts": {
-  "dump": 690,
+  "dump": 691,
   "pump": 260,
-  "rug": 938
+  "rug": 939
  },
- "watchlist_active": 7,
- "price_snapshots": 10466,
+ "watchlist_active": 6,
+ "price_snapshots": 10535,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
