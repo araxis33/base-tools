@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-10T19:02:15Z",
- "generated_at_unix": 1789066933,
+ "generated_at": "2026-09-10T20:02:21Z",
+ "generated_at_unix": 1789070540,
  "period": {
   "start": "2026-07-15",
   "days": 57
  },
  "totals": {
-  "seen": 162333,
-  "base": 28218,
+  "seen": 162438,
+  "base": 28323,
   "robinhood": 134115,
-  "below_liquidity_threshold": 159067,
-  "spam_filtered": 569,
-  "scored": 2697,
-  "green": 1338,
+  "below_liquidity_threshold": 159155,
+  "spam_filtered": 579,
+  "scored": 2704,
+  "green": 1345,
   "yellow": 448,
   "red": 911
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-20",
-   "base": 134,
-   "robinhood": 681
+   "base": 64,
+   "robinhood": 287
   },
   {
    "date": "2026-08-21",
@@ -125,11 +125,81 @@
   },
   {
    "date": "2026-09-10",
-   "base": 605,
+   "base": 710,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "SUMMER",
+   "name": "sol",
+   "chain": "base",
+   "address": "0x631b637abc97604371b6b71b1115ac81750196ef",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 6211.7291,
+   "first_seen": 1789069361
+  },
+  {
+   "symbol": "BM",
+   "name": "Basemoon",
+   "chain": "base",
+   "address": "0x2b09f7dcf82711442747c982c0fc12149e54cb70",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 3946.569,
+   "first_seen": 1789068397
+  },
+  {
+   "symbol": "GOAT",
+   "name": "Longhorn",
+   "chain": "base",
+   "address": "0xbb152cc1bb5966782aaae218fc03b77628d2c8d4",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4763.6076,
+   "first_seen": 1789068305
+  },
+  {
+   "symbol": "BAST",
+   "name": "BaseAsset",
+   "chain": "base",
+   "address": "0x10a74bef5a749b82c1938d1be09234992b8b8e75",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 49860.4811,
+   "first_seen": 1789067804
+  },
+  {
+   "symbol": "BARM",
+   "name": "Barm Armstrong",
+   "chain": "base",
+   "address": "0xb200000000000000000000b526f2b926b4dc7a01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 10745.9603,
+   "first_seen": 1789067711
+  },
+  {
+   "symbol": "cobie",
+   "name": "CobieWallet",
+   "chain": "base",
+   "address": "0xa81f5a8c2a477ae96db52a1ba77737853113eb07",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 23651.1539,
+   "first_seen": 1789067254
+  },
+  {
+   "symbol": "frxUSD",
+   "name": "Frax USD",
+   "chain": "base",
+   "address": "0xe5020a6d073a794b6e7f05678707de47986fb0b6",
+   "score": 70,
+   "verdict": "green",
+   "liquidity_usd": 19757.2675,
+   "first_seen": 1789067115
+  },
   {
    "symbol": "BI16Z",
    "name": "fun BI16Z",
@@ -259,76 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 4833.715,
    "first_seen": 1789061850
-  },
-  {
-   "symbol": "GEMINAI",
-   "name": "Geminai",
-   "chain": "base",
-   "address": "0xf6c3322a46548431df5fc0c0c137b99bcdfbeea9",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4551.17,
-   "first_seen": 1789061803
-  },
-  {
-   "symbol": "MM",
-   "name": "Meme Man",
-   "chain": "base",
-   "address": "0x41e2a5dd635beb5917845fe0467ec80f1f787886",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 23688.0289,
-   "first_seen": 1789060489
-  },
-  {
-   "symbol": "NVDAx",
-   "name": "NVIDIA xStock",
-   "chain": "base",
-   "address": "0xd36e2b78338835cffef25d5e45bfced0deb3e9cf",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 182982.9578,
-   "first_seen": 1789052779
-  },
-  {
-   "symbol": "WOLF",
-   "name": "Wolf of Wallstreet",
-   "chain": "base",
-   "address": "0xc06e2fa9effca74338ea856f595c2e8940ef5ca1",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 15638.2579,
-   "first_seen": 1789052686
-  },
-  {
-   "symbol": "ROAD",
-   "name": "Roads Token",
-   "chain": "base",
-   "address": "0xd3ed17d8f1bf9389f3967712469277d6b82ab101",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 22405.8112558871,
-   "first_seen": 1789052319
-  },
-  {
-   "symbol": "HOLE",
-   "name": "Farthole",
-   "chain": "base",
-   "address": "0xf8e7980f9f84785292b69f8053f54198ddb8dddf",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 19255.2816,
-   "first_seen": 1789051929
-  },
-  {
-   "symbol": "MARIO",
-   "name": "SuerMarioBrosCoin",
-   "chain": "base",
-   "address": "0x598571ddba2855069be10b80f0a3d3664164ec29",
-   "score": 75,
-   "verdict": "green",
-   "liquidity_usd": 18666.6954,
-   "first_seen": 1789051928
   }
  ],
  "confirmed": [
@@ -494,9 +494,9 @@
   }
  ],
  "probation": {
-  "waiting": 42,
+  "waiting": 47,
   "confirmed": 14,
-  "dropped": 688
+  "dropped": 690
  },
  "recent_drains": [
   {
@@ -688,7 +688,7 @@
   "rug": 939
  },
  "watchlist_active": 6,
- "price_snapshots": 10559,
+ "price_snapshots": 10553,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
