@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-11T17:34:20Z",
- "generated_at_unix": 1789148059,
+ "generated_at": "2026-09-11T17:55:14Z",
+ "generated_at_unix": 1789149312,
  "period": {
   "start": "2026-07-15",
   "days": 58
  },
  "totals": {
-  "seen": 163221,
-  "base": 29106,
+  "seen": 163254,
+  "base": 29139,
   "robinhood": 134115,
-  "below_liquidity_threshold": 159736,
-  "spam_filtered": 694,
-  "scored": 2791,
-  "green": 1420,
+  "below_liquidity_threshold": 159753,
+  "spam_filtered": 705,
+  "scored": 2796,
+  "green": 1423,
   "yellow": 451,
-  "red": 920
+  "red": 922
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-21",
-   "base": 607,
-   "robinhood": 889
+   "base": 574,
+   "robinhood": 785
   },
   {
    "date": "2026-08-22",
@@ -125,11 +125,41 @@
   },
   {
    "date": "2026-09-11",
-   "base": 695,
+   "base": 729,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "UNITREE",
+   "name": "Yushu Technology Co (Derivatives)",
+   "chain": "base",
+   "address": "0x7c56a6eb6b1ba669809ddf53f961c87ae1c05659",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12849.2154104053,
+   "first_seen": 1789148859
+  },
+  {
+   "symbol": "Interfold",
+   "name": "Interfold",
+   "chain": "base",
+   "address": "0xb2000000000000000000002078f3858d69ae04b5",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 10455.3237,
+   "first_seen": 1789148721
+  },
+  {
+   "symbol": "DEGEN",
+   "name": "Degen on Base",
+   "chain": "base",
+   "address": "0xb200000000000000000000c5e5f2e24fa37b2b93",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 28415.8439,
+   "first_seen": 1789148396
+  },
   {
    "symbol": "vAPI Network",
    "name": "vAPI Network",
@@ -299,36 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 3951.2523,
    "first_seen": 1789137339
-  },
-  {
-   "symbol": "SOLCEX",
-   "name": "SolCex",
-   "chain": "base",
-   "address": "0x154ca15f44ac8843798ae4d7c4916d51c42087f7",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 296315.3954,
-   "first_seen": 1789137338
-  },
-  {
-   "symbol": "9MM",
-   "name": "9MM",
-   "chain": "base",
-   "address": "0xe290816384416fb1db9225e176b716346db9f9fe",
-   "score": 72,
-   "verdict": "green",
-   "liquidity_usd": 2963.1512,
-   "first_seen": 1789137337
-  },
-  {
-   "symbol": "KGEN",
-   "name": "KGEN",
-   "chain": "base",
-   "address": "0xf3d5b4c34ed623478cc5141861776e6cf7ae3a1e",
-   "score": 65,
-   "verdict": "yellow",
-   "liquidity_usd": 200169.1424,
-   "first_seen": 1789136426
   }
  ],
  "confirmed": [
@@ -494,7 +494,7 @@
   }
  ],
  "probation": {
-  "waiting": 50,
+  "waiting": 53,
   "confirmed": 14,
   "dropped": 765
  },
@@ -688,7 +688,7 @@
   "rug": 939
  },
  "watchlist_active": 6,
- "price_snapshots": 10470,
+ "price_snapshots": 10506,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
