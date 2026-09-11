@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-11T17:55:14Z",
- "generated_at_unix": 1789149312,
+ "generated_at": "2026-09-11T18:55:23Z",
+ "generated_at_unix": 1789152922,
  "period": {
   "start": "2026-07-15",
   "days": 58
  },
  "totals": {
-  "seen": 163254,
-  "base": 29139,
+  "seen": 163356,
+  "base": 29241,
   "robinhood": 134115,
-  "below_liquidity_threshold": 159753,
-  "spam_filtered": 705,
-  "scored": 2796,
-  "green": 1423,
+  "below_liquidity_threshold": 159825,
+  "spam_filtered": 720,
+  "scored": 2811,
+  "green": 1438,
   "yellow": 451,
   "red": 922
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-21",
-   "base": 574,
-   "robinhood": 785
+   "base": 465,
+   "robinhood": 508
   },
   {
    "date": "2026-08-22",
@@ -125,11 +125,161 @@
   },
   {
    "date": "2026-09-11",
-   "base": 729,
+   "base": 830,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "BABYPS",
+   "name": "Babylon Bypass",
+   "chain": "base",
+   "address": "0xf5d12911bad708d5406f4437fe0fe5d421af4c26",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 25345.179089172,
+   "first_seen": 1789152436
+  },
+  {
+   "symbol": "HOME",
+   "name": "HOMECOIN",
+   "chain": "base",
+   "address": "0x0541afb201ff6c0dfb8066df09f60d76f3b2e741",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 76247.7152438672,
+   "first_seen": 1789152434
+  },
+  {
+   "symbol": "RECEIVED",
+   "name": "BTC",
+   "chain": "base",
+   "address": "0x85860f7880bbea9617a8911e0f959586a3b1895a",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 1.15925945737836e+24,
+   "first_seen": 1789151979
+  },
+  {
+   "symbol": "BREW",
+   "name": "BREEW",
+   "chain": "base",
+   "address": "0x1ff31754af103a095960981302777f8c6a8547f4",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 2235162.7521,
+   "first_seen": 1789151475
+  },
+  {
+   "symbol": "ALB",
+   "name": "AlienBase Token",
+   "chain": "base",
+   "address": "0xb2000000000000000000001c1bcb87339a582daa",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 14085.9993,
+   "first_seen": 1789150471
+  },
+  {
+   "symbol": "Sport.fun",
+   "name": "Sport.fun",
+   "chain": "base",
+   "address": "0xb200000000000000000000ca65af2afba458e7c1",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 14990.9799,
+   "first_seen": 1789150469
+  },
+  {
+   "symbol": "ACAT",
+   "name": "AppleCat",
+   "chain": "base",
+   "address": "0xb20000000000000000000084124339d94135fb01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4136.98080017654,
+   "first_seen": 1789150239
+  },
+  {
+   "symbol": "cbHCAT",
+   "name": "HYPE CAT",
+   "chain": "base",
+   "address": "0xb200000000000000000000fa386cbaa5c1ca7d01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4467.0545,
+   "first_seen": 1789149326
+  },
+  {
+   "symbol": "STEVE",
+   "name": "STEVE",
+   "chain": "base",
+   "address": "0x1d04115764e14aec2e06b7675c91d4a7a7b39ef2",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 23233.0,
+   "first_seen": 1789149324
+  },
+  {
+   "symbol": "BASEPLANE",
+   "name": "BASEPLANE",
+   "chain": "base",
+   "address": "0xb200000000000000000000633380459b5efd107c",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 23261.2628,
+   "first_seen": 1789149323
+  },
+  {
+   "symbol": "BRIAN",
+   "name": "Brian The Hungry Bull",
+   "chain": "base",
+   "address": "0xb200000000000000000000089b84a7e5f1f91333",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 5300.0346,
+   "first_seen": 1789149322
+  },
+  {
+   "symbol": "TNT",
+   "name": "TANGENT",
+   "chain": "base",
+   "address": "0x3b0283d11ebc18b9cb90786f3b53e34479511efe",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 94433.0503,
+   "first_seen": 1789149320
+  },
+  {
+   "symbol": "beaniebabies",
+   "name": "beaniebabies",
+   "chain": "base",
+   "address": "0x711752af2a09dcbbcc8743607ff514aeda2a41af",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 27419615.8393597,
+   "first_seen": 1789149318
+  },
+  {
+   "symbol": "GLOOMBITS",
+   "name": "GLOOMBITS",
+   "chain": "base",
+   "address": "0x5a28a9a21bd2322153ce777560776b32d30cfee1",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 10053.5072420345,
+   "first_seen": 1789149317
+  },
+  {
+   "symbol": "STKLYNX",
+   "name": "Stonklynx",
+   "chain": "base",
+   "address": "0x5bb4634d82fe15362d7f343baeb4ba329de7e7bc",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 17057.8670888076,
+   "first_seen": 1789149315
+  },
   {
    "symbol": "UNITREE",
    "name": "Yushu Technology Co (Derivatives)",
@@ -179,156 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 77505.592,
    "first_seen": 1789147524
-  },
-  {
-   "symbol": "vAPI",
-   "name": "vAPI Network",
-   "chain": "base",
-   "address": "0x32b8a449f2d0df5847e3aa1def6fc4650b571b07",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4197.31599733281,
-   "first_seen": 1789147478
-  },
-  {
-   "symbol": "MSFT",
-   "name": "Meme Solana Feline Token",
-   "chain": "base",
-   "address": "0x606e7f124bda323d422fd4eff5109dd2099a7a51",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13401.3079,
-   "first_seen": 1789147477
-  },
-  {
-   "symbol": "LilLover",
-   "name": "Based Lil Lover",
-   "chain": "base",
-   "address": "0xb200000000000000000000f20a6b1727ec151b01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4736.112,
-   "first_seen": 1789145343
-  },
-  {
-   "symbol": "Rocket100",
-   "name": "Coinbase Rocket 100",
-   "chain": "base",
-   "address": "0xb2000000000000000000001507f15fb9c628bb38",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 23342.4998,
-   "first_seen": 1789144364
-  },
-  {
-   "symbol": "NDTA",
-   "name": "National Digital Trump Accounts",
-   "chain": "base",
-   "address": "0xa4607712418b66c0a8f2c909760e09628ad9d597",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 58046.0539,
-   "first_seen": 1789144363
-  },
-  {
-   "symbol": "APLD",
-   "name": "Applied Digital Tokenized Stock (Robinhood)",
-   "chain": "base",
-   "address": "0x6e5e5addbc892240b1b7ae789767d1922ffcb6c7",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 14377.3831,
-   "first_seen": 1789144361
-  },
-  {
-   "symbol": "AMATB",
-   "name": "Applied Materials Tokenized bStocks",
-   "chain": "base",
-   "address": "0xc0cfb8aa3c2153aecb251d693161d3b6ad834332",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13064.6656736136,
-   "first_seen": 1789141143
-  },
-  {
-   "symbol": "AIPon",
-   "name": "Arteris Tokenized Stock (Ondo)",
-   "chain": "base",
-   "address": "0xdf5c50799b2dde47a6caff06a45cc76a2c1d9c8b",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13068.3156760949,
-   "first_seen": 1789141052
-  },
-  {
-   "symbol": "CLANKFLY",
-   "name": "AiFi CLANKFLY",
-   "chain": "base",
-   "address": "0x58e0c45f77558e6a027842e31001c2fe0bdd6b07",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 26057.0286,
-   "first_seen": 1789140547
-  },
-  {
-   "symbol": "CAPYFI",
-   "name": "CapyFi",
-   "chain": "base",
-   "address": "0xb13ff60f4bb9b45633dd72bd299e9eed9f8fb225",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 1003104.40490432,
-   "first_seen": 1789140501
-  },
-  {
-   "symbol": "XXX",
-   "name": "cryptoxxx",
-   "chain": "base",
-   "address": "0xd705d93e4ad89b279c6f021ec24703c2f4e97989",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3760.8068,
-   "first_seen": 1789139999
-  },
-  {
-   "symbol": "STASH",
-   "name": "Stash",
-   "chain": "base",
-   "address": "0xc53e409c9d54b058aa50474fa7c57b1ca755eba3",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 9502.4438,
-   "first_seen": 1789139174
-  },
-  {
-   "symbol": "MICROFLY",
-   "name": "MICROFLY",
-   "chain": "base",
-   "address": "0xb200000000000000000000ddc1341fe6246d6e01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4085.701,
-   "first_seen": 1789139081
-  },
-  {
-   "symbol": "CME",
-   "name": "Commodity Market Exchange",
-   "chain": "base",
-   "address": "0x0aa45c8db200a61897127639c15645e4796374c8",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 8173408.8749,
-   "first_seen": 1789138579
-  },
-  {
-   "symbol": "ISTONKS",
-   "name": "iSTONKS",
-   "chain": "base",
-   "address": "0x69d76966c95c3da326f1c5a17b0a413e136e9c25",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3951.2523,
-   "first_seen": 1789137339
   }
  ],
  "confirmed": [
@@ -494,9 +494,9 @@
   }
  ],
  "probation": {
-  "waiting": 53,
+  "waiting": 54,
   "confirmed": 14,
-  "dropped": 765
+  "dropped": 779
  },
  "recent_drains": [
   {
@@ -688,7 +688,7 @@
   "rug": 939
  },
  "watchlist_active": 6,
- "price_snapshots": 10506,
+ "price_snapshots": 10566,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
