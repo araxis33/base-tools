@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-11T16:34:14Z",
- "generated_at_unix": 1789144453,
+ "generated_at": "2026-09-11T17:34:20Z",
+ "generated_at_unix": 1789148059,
  "period": {
   "start": "2026-07-15",
   "days": 58
  },
  "totals": {
-  "seen": 163144,
-  "base": 29029,
+  "seen": 163221,
+  "base": 29106,
   "robinhood": 134115,
-  "below_liquidity_threshold": 159676,
-  "spam_filtered": 682,
-  "scored": 2786,
-  "green": 1415,
+  "below_liquidity_threshold": 159736,
+  "spam_filtered": 694,
+  "scored": 2791,
+  "green": 1420,
   "yellow": 451,
   "red": 920
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-21",
-   "base": 652,
-   "robinhood": 1054
+   "base": 607,
+   "robinhood": 889
   },
   {
    "date": "2026-08-22",
@@ -125,11 +125,61 @@
   },
   {
    "date": "2026-09-11",
-   "base": 618,
+   "base": 695,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "vAPI Network",
+   "name": "vAPI Network",
+   "chain": "base",
+   "address": "0x72a970ec73e13df5af5e3ea132499b01f672ab07",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 5501.90302502051,
+   "first_seen": 1789147525
+  },
+  {
+   "symbol": "ND4",
+   "name": "ND4",
+   "chain": "base",
+   "address": "0x6f13b0da3a5a6ca60fafd5b68161765c0e805f76",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 77505.592,
+   "first_seen": 1789147524
+  },
+  {
+   "symbol": "vAPI",
+   "name": "vAPI Network",
+   "chain": "base",
+   "address": "0x32b8a449f2d0df5847e3aa1def6fc4650b571b07",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4197.31599733281,
+   "first_seen": 1789147478
+  },
+  {
+   "symbol": "MSFT",
+   "name": "Meme Solana Feline Token",
+   "chain": "base",
+   "address": "0x606e7f124bda323d422fd4eff5109dd2099a7a51",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13401.3079,
+   "first_seen": 1789147477
+  },
+  {
+   "symbol": "LilLover",
+   "name": "Based Lil Lover",
+   "chain": "base",
+   "address": "0xb200000000000000000000f20a6b1727ec151b01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4736.112,
+   "first_seen": 1789145343
+  },
   {
    "symbol": "Rocket100",
    "name": "Coinbase Rocket 100",
@@ -279,56 +329,6 @@
    "verdict": "yellow",
    "liquidity_usd": 200169.1424,
    "first_seen": 1789136426
-  },
-  {
-   "symbol": "OPAI",
-   "name": "OPAI",
-   "chain": "base",
-   "address": "0x74ff2149645a64ca29d07f10e20178f47c92ec29",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 9956.5698,
-   "first_seen": 1789136191
-  },
-  {
-   "symbol": "MICROSOFT",
-   "name": "Microsoft",
-   "chain": "base",
-   "address": "0xb2000000000000000000002dbf10a952ec44e092",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 20787.0439674724,
-   "first_seen": 1789135771
-  },
-  {
-   "symbol": "Stoki",
-   "name": "Stoki",
-   "chain": "base",
-   "address": "0xb200000000000000000000223c774a4a81956a01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4549.5281,
-   "first_seen": 1789135448
-  },
-  {
-   "symbol": "SHILL",
-   "name": "shill this coin",
-   "chain": "base",
-   "address": "0xb200000000000000000000f61814e873e53d1f01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 5578.1131,
-   "first_seen": 1789135447
-  },
-  {
-   "symbol": "fdsa",
-   "name": "fdsa",
-   "chain": "base",
-   "address": "0xb2000000000000000000000e0bd9f82f3de73c01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4214.2493,
-   "first_seen": 1789135127
   }
  ],
  "confirmed": [
@@ -494,9 +494,9 @@
   }
  ],
  "probation": {
-  "waiting": 47,
+  "waiting": 50,
   "confirmed": 14,
-  "dropped": 763
+  "dropped": 765
  },
  "recent_drains": [
   {
@@ -688,7 +688,7 @@
   "rug": 939
  },
  "watchlist_active": 6,
- "price_snapshots": 10414,
+ "price_snapshots": 10470,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
