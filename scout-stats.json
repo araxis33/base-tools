@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-11T19:55:31Z",
- "generated_at_unix": 1789156530,
+ "generated_at": "2026-09-11T20:55:37Z",
+ "generated_at_unix": 1789160136,
  "period": {
   "start": "2026-07-15",
   "days": 58
  },
  "totals": {
-  "seen": 163439,
-  "base": 29324,
+  "seen": 163532,
+  "base": 29417,
   "robinhood": 134115,
-  "below_liquidity_threshold": 159890,
-  "spam_filtered": 732,
-  "scored": 2817,
-  "green": 1444,
+  "below_liquidity_threshold": 159957,
+  "spam_filtered": 751,
+  "scored": 2824,
+  "green": 1451,
   "yellow": 451,
   "red": 922
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-21",
-   "base": 279,
-   "robinhood": 275
+   "base": 25,
+   "robinhood": 48
   },
   {
    "date": "2026-08-22",
@@ -125,11 +125,81 @@
   },
   {
    "date": "2026-09-11",
-   "base": 913,
+   "base": 1006,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "ROBINHOOD",
+   "name": "Robinhood (robinhood.win)",
+   "chain": "base",
+   "address": "0xde292063806d6cd4346dc0bda3afdb08a709738c",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12682.4652173268,
+   "first_seen": 1789159854
+  },
+  {
+   "symbol": "STONKLESS",
+   "name": "USELESS STONK",
+   "chain": "base",
+   "address": "0xcb7646eafad3782671171be7ad5436352b580290",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13659.4845,
+   "first_seen": 1789159474
+  },
+  {
+   "symbol": "DOGGO",
+   "name": "Dancing Dog",
+   "chain": "base",
+   "address": "0xa8ffaba617ffb6cad1762604c9370c2f2567ec29",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13109.6819,
+   "first_seen": 1789159426
+  },
+  {
+   "symbol": "PRIME",
+   "name": "PRIME",
+   "chain": "base",
+   "address": "0x8275266534cd08b3cd3333c87396484c6e3ce323",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12716.9463,
+   "first_seen": 1789159424
+  },
+  {
+   "symbol": "fatgirls",
+   "name": "buying bitcoin in 2009",
+   "chain": "base",
+   "address": "0xade7fc11d37d98616aa147b3320084419de1d913",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 20788.4454,
+   "first_seen": 1789158787
+  },
+  {
+   "symbol": "ARTC",
+   "name": "Artifical Cat",
+   "chain": "base",
+   "address": "0x0ddb31c0397a66f08997752f8205259afc3adae9",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4204.0316,
+   "first_seen": 1789158101
+  },
+  {
+   "symbol": "MILKING",
+   "name": "Michael Saylor's Treasury Reserve",
+   "chain": "base",
+   "address": "0xb200000000000000000000bcad7f8b3758000f01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 18198.2403,
+   "first_seen": 1789156681
+  },
   {
    "symbol": "CHAMPIONS",
    "name": "CHAMPIONS COIN",
@@ -259,76 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 4136.98080017654,
    "first_seen": 1789150239
-  },
-  {
-   "symbol": "cbHCAT",
-   "name": "HYPE CAT",
-   "chain": "base",
-   "address": "0xb200000000000000000000fa386cbaa5c1ca7d01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4467.0545,
-   "first_seen": 1789149326
-  },
-  {
-   "symbol": "STEVE",
-   "name": "STEVE",
-   "chain": "base",
-   "address": "0x1d04115764e14aec2e06b7675c91d4a7a7b39ef2",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 23233.0,
-   "first_seen": 1789149324
-  },
-  {
-   "symbol": "BASEPLANE",
-   "name": "BASEPLANE",
-   "chain": "base",
-   "address": "0xb200000000000000000000633380459b5efd107c",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 23261.2628,
-   "first_seen": 1789149323
-  },
-  {
-   "symbol": "BRIAN",
-   "name": "Brian The Hungry Bull",
-   "chain": "base",
-   "address": "0xb200000000000000000000089b84a7e5f1f91333",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 5300.0346,
-   "first_seen": 1789149322
-  },
-  {
-   "symbol": "TNT",
-   "name": "TANGENT",
-   "chain": "base",
-   "address": "0x3b0283d11ebc18b9cb90786f3b53e34479511efe",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 94433.0503,
-   "first_seen": 1789149320
-  },
-  {
-   "symbol": "beaniebabies",
-   "name": "beaniebabies",
-   "chain": "base",
-   "address": "0x711752af2a09dcbbcc8743607ff514aeda2a41af",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 27419615.8393597,
-   "first_seen": 1789149318
-  },
-  {
-   "symbol": "GLOOMBITS",
-   "name": "GLOOMBITS",
-   "chain": "base",
-   "address": "0x5a28a9a21bd2322153ce777560776b32d30cfee1",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 10053.5072420345,
-   "first_seen": 1789149317
   }
  ],
  "confirmed": [
@@ -494,9 +494,9 @@
   }
  ],
  "probation": {
-  "waiting": 50,
+  "waiting": 54,
   "confirmed": 14,
-  "dropped": 789
+  "dropped": 792
  },
  "recent_drains": [
   {
@@ -688,7 +688,7 @@
   "rug": 939
  },
  "watchlist_active": 6,
- "price_snapshots": 10566,
+ "price_snapshots": 10554,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
