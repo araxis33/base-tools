@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-10T21:02:29Z",
- "generated_at_unix": 1789074147,
+ "generated_at": "2026-09-11T09:14:38Z",
+ "generated_at_unix": 1789118077,
  "period": {
   "start": "2026-07-15",
-  "days": 57
+  "days": 58
  },
  "totals": {
-  "seen": 162531,
-  "base": 28416,
+  "seen": 162645,
+  "base": 28530,
   "robinhood": 134115,
-  "below_liquidity_threshold": 159229,
-  "spam_filtered": 590,
-  "scored": 2712,
-  "green": 1353,
+  "below_liquidity_threshold": 159316,
+  "spam_filtered": 609,
+  "scored": 2720,
+  "green": 1361,
   "yellow": 448,
   "red": 911
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-21",
-   "base": 1031,
-   "robinhood": 2664
+   "base": 931,
+   "robinhood": 2368
   },
   {
    "date": "2026-08-22",
@@ -125,11 +125,91 @@
   },
   {
    "date": "2026-09-11",
-   "base": 5,
+   "base": 119,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "GITLAWB",
+   "name": "GITLAWB",
+   "chain": "base",
+   "address": "0x70f5f42b39610f24bad8345e29c238aedc926f37",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 6921.78282438019,
+   "first_seen": 1789115199
+  },
+  {
+   "symbol": "SPACEXCOIN",
+   "name": "SpaceXcoin",
+   "chain": "base",
+   "address": "0x1c5e655a14ce062114c2a0fd1cf59a441eb415bf",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13010.0589,
+   "first_seen": 1789114785
+  },
+  {
+   "symbol": "IWC",
+   "name": "iWorld Cruise",
+   "chain": "base",
+   "address": "0x3df889c525cae1c10c6a43223a741595962240a9",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12329.5799,
+   "first_seen": 1789114784
+  },
+  {
+   "symbol": "[invalid]",
+   "name": "POLYMARKET SpaceX LAPTOP CLANKER BankrCoin RUNNER CLX COBALT AZUL",
+   "chain": "base",
+   "address": "0x8725f53b615dc2b366410fd8f032487093871b07",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3648.08,
+   "first_seen": 1789114602
+  },
+  {
+   "symbol": "PERPSCEO",
+   "name": "PERPS CEO",
+   "chain": "base",
+   "address": "0xb20000000000000000000006cfe952d451525a33",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 32674.6418,
+   "first_seen": 1789114600
+  },
+  {
+   "symbol": "FLIES",
+   "name": "MUTATIO",
+   "chain": "base",
+   "address": "0x8b67f2e56139ca052a7ec49cbcd1aa9c83f2752a",
+   "score": 78,
+   "verdict": "green",
+   "liquidity_usd": 24023.8297,
+   "first_seen": 1789114599
+  },
+  {
+   "symbol": "FLYB",
+   "name": "Flybroker",
+   "chain": "base",
+   "address": "0xb20000000000000000000084df8141888470707b",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 22861.1711,
+   "first_seen": 1789114598
+  },
+  {
+   "symbol": "FLYBRAIN",
+   "name": "flybrain",
+   "chain": "base",
+   "address": "0x420cc133a2de91a1f563a264acd8a509fa57ec29",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 16043.7833,
+   "first_seen": 1789114597
+  },
   {
    "symbol": "BADAPPLES",
    "name": "BAD APPLES",
@@ -249,86 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 49860.4811,
    "first_seen": 1789067804
-  },
-  {
-   "symbol": "BARM",
-   "name": "Barm Armstrong",
-   "chain": "base",
-   "address": "0xb200000000000000000000b526f2b926b4dc7a01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 10745.9603,
-   "first_seen": 1789067711
-  },
-  {
-   "symbol": "cobie",
-   "name": "CobieWallet",
-   "chain": "base",
-   "address": "0xa81f5a8c2a477ae96db52a1ba77737853113eb07",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 23651.1539,
-   "first_seen": 1789067254
-  },
-  {
-   "symbol": "frxUSD",
-   "name": "Frax USD",
-   "chain": "base",
-   "address": "0xe5020a6d073a794b6e7f05678707de47986fb0b6",
-   "score": 70,
-   "verdict": "green",
-   "liquidity_usd": 19757.2675,
-   "first_seen": 1789067115
-  },
-  {
-   "symbol": "BI16Z",
-   "name": "fun BI16Z",
-   "chain": "base",
-   "address": "0xba8dfa42dde6bfe8002645821275b102f17e74ab",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 4059.0028,
-   "first_seen": 1789066881
-  },
-  {
-   "symbol": "DONUT",
-   "name": "Donutcoin",
-   "chain": "base",
-   "address": "0xe470a7f339ab8f88f0a5a7408d599c619092447f",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 74327.6811,
-   "first_seen": 1789064771
-  },
-  {
-   "symbol": "PEPONS",
-   "name": "PEPONS",
-   "chain": "base",
-   "address": "0x2b87506b1755ba2b81838af9fdb1a98d6987bbbb",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 6597.7044,
-   "first_seen": 1789063624
-  },
-  {
-   "symbol": "ASS",
-   "name": "ASS",
-   "chain": "base",
-   "address": "0x083130f86050286c2948e79a616b1896884b2cf7",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3904.8949,
-   "first_seen": 1789062680
-  },
-  {
-   "symbol": "CW",
-   "name": "Coinbase Wallet",
-   "chain": "base",
-   "address": "0xb20000000000000000000045511e0fe0ea470c01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4435.14439328178,
-   "first_seen": 1789062269
   }
  ],
  "confirmed": [
@@ -496,14 +496,14 @@
  "probation": {
   "waiting": 45,
   "confirmed": 14,
-  "dropped": 700
+  "dropped": 708
  },
  "recent_drains": [
   {
    "symbol": "AI",
    "chain": "robinhood",
    "address": "0x2e8c31162b855a2ffa90f6f8634643ad6f111e18",
-   "ts": 1789062571
+   "ts": 1789114602
   },
   {
    "symbol": "BLUE",
@@ -688,7 +688,7 @@
   "rug": 939
  },
  "watchlist_active": 6,
- "price_snapshots": 10554,
+ "price_snapshots": 10536,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
