@@ -181,8 +181,11 @@
   .section-sub{color:var(--muted); font-size:var(--fs-sm); margin-top:4px;}
   .updated{font-size:var(--fs-xs); color:var(--muted2); font-weight:600;}
 
-  /* trending: 2 x 2 boards */
-  .trend-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:16px;}
+  /* trending: four boards across */
+  .trend-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap:12px;}
+  /* The boards are the one part of the page that wants more width than the
+     1180px column the rest of the site reads at. */
+  .wrap-boards{max-width:1280px;}
   .trend-col{
     border:1px solid var(--border); border-radius:var(--r-lg); background:var(--card);
     overflow:hidden;
@@ -202,15 +205,15 @@
   .trend-col-title{font-weight:800; font-size:var(--fs-sm);}
   .trend-col-desc{font-size:var(--fs-xxs); color:var(--muted2); font-weight:600;}
   .trend-row{
-    display:flex; align-items:center; justify-content:space-between; gap:12px;
-    padding:12px 16px; border-bottom:1px solid rgba(255,255,255,0.03); font-size:var(--fs-sm);
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+    padding:12px 14px; border-bottom:1px solid rgba(255,255,255,0.03); font-size:var(--fs-sm);
   }
   .trend-row:last-child{border-bottom:none;}
   .trend-row:hover{background:var(--card-hover);}
-  .trend-left{display:flex; align-items:center; gap:12px; min-width:0;}
+  .trend-left{display:flex; align-items:center; gap:10px; min-width:0;}
   .trend-rank{color:var(--muted2); font-weight:700; font-size:var(--fs-xs); width:16px; flex-shrink:0;}
   .trend-logo{width:24px; height:24px; border-radius:50%; flex-shrink:0; background:var(--blue-soft); object-fit:cover;}
-  .trend-sym{font-weight:800; color:var(--text); transition:color var(--t); display:block;}
+  .trend-sym{font-weight:800; color:var(--text); transition:color var(--t); display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
   .trend-sym:hover{color:var(--blue-text);}
   .trend-addr{font-size:var(--fs-xxs); color:var(--muted2); display:flex; align-items:center; gap:4px;}
   .trend-addr a{color:var(--muted2);}
@@ -239,13 +242,17 @@
   .buy-btn{
     flex-shrink:0; border:1px solid var(--border); background:transparent;
     color:var(--muted); font-size:var(--fs-xxs); font-weight:800; letter-spacing:0.02em;
-    padding:7px 12px; border-radius:999px; cursor:pointer;
+    padding:7px 10px; border-radius:999px; cursor:pointer;
     transition:background var(--t), color var(--t), border-color var(--t);
   }
   .trend-row:hover .buy-btn{border-color:var(--blue); color:var(--blue-text);}
   .buy-btn:hover, .buy-btn:focus-visible{background:var(--blue); color:var(--white); border-color:var(--blue);}
 
   /* buy dialog */
+  /* display:flex on a class beats the browser's own [hidden]{display:none},
+     which left this dialog open on every page load and made its close button
+     look broken. Anything hidden stays hidden, whatever else says otherwise. */
+  [hidden]{display:none !important;}
   .modal-back{
     position:fixed; inset:0; z-index:100; padding:16px;
     background:rgba(4,8,22,0.74); display:flex; align-items:center; justify-content:center;
@@ -465,6 +472,9 @@
   .x-follow:hover{background:var(--white);}
   .split{display:grid; grid-template-columns:1.55fr 1fr; gap:16px; align-items:stretch;}
 
+  @media(max-width:1180px){
+    .trend-grid{grid-template-columns:repeat(2, 1fr);}
+  }
   @media(max-width:900px){
     h1{font-size:var(--fs-display-sm);}
     .grid{grid-template-columns:1fr;}
@@ -544,7 +554,7 @@
   <p class="sub">Base ecosystem tools in one place, plus four live boards: the day’s biggest drops, biggest gains, the blue-chips and the stocks that trade on Base.</p>
 </div>
 
-<div class="wrap">
+<div class="wrap wrap-boards">
   <section id="trending">
     <div class="section-head">
       <div>
@@ -584,7 +594,9 @@
       </div>
     </div>
   </section>
+</div>
 
+<div class="wrap">
   <section id="directory">
     <div class="section-head">
       <div>
@@ -738,6 +750,7 @@
       <input id="buy-amount" type="text" inputmode="decimal" value="0.01" aria-label="Amount of ETH to spend">
       <span class="buy-unit">ETH</span>
     </div>
+    <div class="trend-addr" id="buy-addr"></div>
     <div class="buy-quote" id="buy-quote">Enter an amount.</div>
     <div class="buy-fee" id="buy-fee"></div>
     <button class="buy-cta" id="buy-action" type="button">Connect wallet</button>
@@ -1172,13 +1185,7 @@ function renderColumn(elId, items, emptyMsg){
       <div class="trend-left">
         <div class="trend-rank">${i+1}</div>
         <img class="trend-logo" src="${t.logo}" alt="${t.symbol}" loading="lazy">
-        <div>
-          <a class="trend-sym" href="${tradeUrl}" target="_blank" rel="noopener" title="Open where ${t.symbol} trades">${t.symbol}</a>
-          <div class="trend-addr">
-            <a href="https://basescan.org/token/${t.contract}" target="_blank" rel="noopener">${shortAddr(t.contract)}</a>
-            ${copyBtnHtml(t.contract)}
-          </div>
-        </div>
+        <a class="trend-sym" href="${tradeUrl}" target="_blank" rel="noopener" title="Open where ${t.symbol} trades">${t.symbol}</a>
       </div>
       <a class="trend-right" href="${tradeUrl}" target="_blank" rel="noopener" title="Open where ${t.symbol} trades">
         <div class="trend-price">${fmtPrice(t.price)}</div>
@@ -1334,6 +1341,10 @@ function openBuy(token, symbol, logo){
   buyEl("buy-presets").innerHTML = PRESETS.map(function(v){
     return '<button class="buy-preset' + (v === "0.01" ? " on" : "") + '" type="button" data-preset="' + v + '">' + v + ' ETH</button>';
   }).join("");
+  buyEl("buy-addr").innerHTML =
+    '<a href="https://basescan.org/token/' + token + '" target="_blank" rel="noopener">' + shortAddr(token) + '</a>' +
+    copyBtnHtml(token);
+  bindCopyButtons(buyEl("buy-addr"));
   buyEl("buy-amount").value = "0.01";
   buyEl("buy-back").hidden = false;
   document.body.style.overflow = "hidden";
