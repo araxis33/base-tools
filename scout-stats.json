@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-11T15:34:07Z",
- "generated_at_unix": 1789140846,
+ "generated_at": "2026-09-11T16:34:14Z",
+ "generated_at_unix": 1789144453,
  "period": {
   "start": "2026-07-15",
   "days": 58
  },
  "totals": {
-  "seen": 163091,
-  "base": 28976,
+  "seen": 163144,
+  "base": 29029,
   "robinhood": 134115,
-  "below_liquidity_threshold": 159634,
-  "spam_filtered": 677,
-  "scored": 2780,
-  "green": 1410,
+  "below_liquidity_threshold": 159676,
+  "spam_filtered": 682,
+  "scored": 2786,
+  "green": 1415,
   "yellow": 451,
-  "red": 919
+  "red": 920
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-21",
-   "base": 697,
-   "robinhood": 1291
+   "base": 652,
+   "robinhood": 1054
   },
   {
    "date": "2026-08-22",
@@ -125,11 +125,61 @@
   },
   {
    "date": "2026-09-11",
-   "base": 565,
+   "base": 618,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "Rocket100",
+   "name": "Coinbase Rocket 100",
+   "chain": "base",
+   "address": "0xb2000000000000000000001507f15fb9c628bb38",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 23342.4998,
+   "first_seen": 1789144364
+  },
+  {
+   "symbol": "NDTA",
+   "name": "National Digital Trump Accounts",
+   "chain": "base",
+   "address": "0xa4607712418b66c0a8f2c909760e09628ad9d597",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 58046.0539,
+   "first_seen": 1789144363
+  },
+  {
+   "symbol": "APLD",
+   "name": "Applied Digital Tokenized Stock (Robinhood)",
+   "chain": "base",
+   "address": "0x6e5e5addbc892240b1b7ae789767d1922ffcb6c7",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 14377.3831,
+   "first_seen": 1789144361
+  },
+  {
+   "symbol": "AMATB",
+   "name": "Applied Materials Tokenized bStocks",
+   "chain": "base",
+   "address": "0xc0cfb8aa3c2153aecb251d693161d3b6ad834332",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13064.6656736136,
+   "first_seen": 1789141143
+  },
+  {
+   "symbol": "AIPon",
+   "name": "Arteris Tokenized Stock (Ondo)",
+   "chain": "base",
+   "address": "0xdf5c50799b2dde47a6caff06a45cc76a2c1d9c8b",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13068.3156760949,
+   "first_seen": 1789141052
+  },
   {
    "symbol": "CLANKFLY",
    "name": "AiFi CLANKFLY",
@@ -279,56 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 4214.2493,
    "first_seen": 1789135127
-  },
-  {
-   "symbol": "PTKR",
-   "name": "preticker.fun",
-   "chain": "base",
-   "address": "0x215b5a9db77abd27292de56e4619305160cbec29",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 7827.3989,
-   "first_seen": 1789135081
-  },
-  {
-   "symbol": "Loinbase",
-   "name": "Loinbase",
-   "chain": "base",
-   "address": "0xb20000000000000000000027f7c283bcc2132ca1",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 10425.8629,
-   "first_seen": 1789134942
-  },
-  {
-   "symbol": "Bigbase",
-   "name": "Bigbase",
-   "chain": "base",
-   "address": "0xb200000000000000000000d799cb78ccd591162f",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 18429.6002,
-   "first_seen": 1789134940
-  },
-  {
-   "symbol": "CROWS",
-   "name": "Crows",
-   "chain": "base",
-   "address": "0xb6121f1b4fe9afe03cc45b17c2f1247c73aa2b07",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 22248.2694,
-   "first_seen": 1789134799
-  },
-  {
-   "symbol": "OpenServe",
-   "name": "Openserv.ai",
-   "chain": "base",
-   "address": "0xb200000000000000000000d661a50fd735b9c801",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4100.52579363748,
-   "first_seen": 1789134610
   }
  ],
  "confirmed": [
@@ -496,7 +496,7 @@
  "probation": {
   "waiting": 47,
   "confirmed": 14,
-  "dropped": 758
+  "dropped": 763
  },
  "recent_drains": [
   {
@@ -688,7 +688,7 @@
   "rug": 939
  },
  "watchlist_active": 6,
- "price_snapshots": 10510,
+ "price_snapshots": 10414,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
