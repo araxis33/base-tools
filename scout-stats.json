@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-11T10:14:48Z",
- "generated_at_unix": 1789121686,
+ "generated_at": "2026-09-11T12:33:49Z",
+ "generated_at_unix": 1789130028,
  "period": {
   "start": "2026-07-15",
   "days": 58
  },
  "totals": {
-  "seen": 162736,
-  "base": 28621,
+  "seen": 162863,
+  "base": 28748,
   "robinhood": 134115,
-  "below_liquidity_threshold": 159388,
-  "spam_filtered": 621,
-  "scored": 2727,
-  "green": 1367,
+  "below_liquidity_threshold": 159483,
+  "spam_filtered": 643,
+  "scored": 2737,
+  "green": 1377,
   "yellow": 449,
   "red": 911
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-21",
-   "base": 879,
-   "robinhood": 2168
+   "base": 845,
+   "robinhood": 2013
   },
   {
    "date": "2026-08-22",
@@ -125,11 +125,111 @@
   },
   {
    "date": "2026-09-11",
-   "base": 210,
+   "base": 337,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "Flybook",
+   "name": "Flybook",
+   "chain": "base",
+   "address": "0x642aa980b55a1c31f7fc2885252b615a37729f4b",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 73969.5646,
+   "first_seen": 1789128362
+  },
+  {
+   "symbol": "STONKCAT",
+   "name": "StonkCat",
+   "chain": "base",
+   "address": "0x6c6ff8c0bdbc9675bb0b7a6b1055f0628edbe91c",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 49827.5358,
+   "first_seen": 1789127657
+  },
+  {
+   "symbol": "AMZN",
+   "name": "Amazon Tokenized Stock (Robinhood)",
+   "chain": "base",
+   "address": "0x02d78eb43d6af95d0afd4cf03fec4c1a6695bd7a",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13319.3537,
+   "first_seen": 1789127655
+  },
+  {
+   "symbol": "SAL",
+   "name": "SAS Worldwide Logistics",
+   "chain": "base",
+   "address": "0x685a0c5e4847be4bed128e1522b6e943dc920226",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12291.9148,
+   "first_seen": 1789127653
+  },
+  {
+   "symbol": "EQR",
+   "name": "Equora",
+   "chain": "base",
+   "address": "0x71303d1560031587266177fb590aeb9e58067dd2",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 19144.7642,
+   "first_seen": 1789127651
+  },
+  {
+   "symbol": "CUMMIES",
+   "name": "Cum Rocket",
+   "chain": "base",
+   "address": "0x554f3331669635233b6eeb336ea790a4e608a3fc",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 73883.7147666032,
+   "first_seen": 1789123664
+  },
+  {
+   "symbol": "SPONGE",
+   "name": "Sponge",
+   "chain": "base",
+   "address": "0x600038e382f8068f7e786c41440b62305c5e3952",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4173.6872,
+   "first_seen": 1789123138
+  },
+  {
+   "symbol": "BETH",
+   "name": "BURNETH",
+   "chain": "base",
+   "address": "0x45e80604d8446d4611000f9a66e978146bd3b594",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 9863.92,
+   "first_seen": 1789122439
+  },
+  {
+   "symbol": "BCASH",
+   "name": "Bcash",
+   "chain": "base",
+   "address": "0x0577969096dbb030800521af1d9bd34b099af765",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 5767.3215,
+   "first_seen": 1789122024
+  },
+  {
+   "symbol": "SMCI",
+   "name": "Super Micro Computer Tokenized Stock (Robinhood)",
+   "chain": "base",
+   "address": "0x78b555a4cf5bf17db96a30099b1e763265dbab71",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12338.1148033955,
+   "first_seen": 1789122023
+  },
   {
    "symbol": "STONKXCAT",
    "name": "STONKxCAT",
@@ -229,106 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 12329.5799,
    "first_seen": 1789114784
-  },
-  {
-   "symbol": "[invalid]",
-   "name": "POLYMARKET SpaceX LAPTOP CLANKER BankrCoin RUNNER CLX COBALT AZUL",
-   "chain": "base",
-   "address": "0x8725f53b615dc2b366410fd8f032487093871b07",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3648.08,
-   "first_seen": 1789114602
-  },
-  {
-   "symbol": "PERPSCEO",
-   "name": "PERPS CEO",
-   "chain": "base",
-   "address": "0xb20000000000000000000006cfe952d451525a33",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 32674.6418,
-   "first_seen": 1789114600
-  },
-  {
-   "symbol": "FLIES",
-   "name": "MUTATIO",
-   "chain": "base",
-   "address": "0x8b67f2e56139ca052a7ec49cbcd1aa9c83f2752a",
-   "score": 78,
-   "verdict": "green",
-   "liquidity_usd": 24023.8297,
-   "first_seen": 1789114599
-  },
-  {
-   "symbol": "FLYB",
-   "name": "Flybroker",
-   "chain": "base",
-   "address": "0xb20000000000000000000084df8141888470707b",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 22861.1711,
-   "first_seen": 1789114598
-  },
-  {
-   "symbol": "FLYBRAIN",
-   "name": "flybrain",
-   "chain": "base",
-   "address": "0x420cc133a2de91a1f563a264acd8a509fa57ec29",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 16043.7833,
-   "first_seen": 1789114597
-  },
-  {
-   "symbol": "BADAPPLES",
-   "name": "BAD APPLES",
-   "chain": "base",
-   "address": "0x4c496b3f2f5b709a6c231a152fed9fc22a83c998",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 74224.7722,
-   "first_seen": 1789074114
-  },
-  {
-   "symbol": "Bell",
-   "name": "Bell on Base",
-   "chain": "base",
-   "address": "0xd1d2369366518651c9cdc8ee32a02d6ffaaa8f62",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 24200.6959,
-   "first_seen": 1789071430
-  },
-  {
-   "symbol": "kiwicoin",
-   "name": "kiwicoin",
-   "chain": "base",
-   "address": "0x5917787bb28b1b8e485e902f125fa4c1d023d7de",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4041.1226,
-   "first_seen": 1789071242
-  },
-  {
-   "symbol": "Mooncoin",
-   "name": "Mooncoin",
-   "chain": "base",
-   "address": "0x03a50cbb6e125447886ad3d43f93d2c08c282b2a",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 19028.9605,
-   "first_seen": 1789071240
-  },
-  {
-   "symbol": "maniac",
-   "name": "maniac",
-   "chain": "base",
-   "address": "0xb200000000000000000000625eedb6c869e0c201",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4902.7293,
-   "first_seen": 1789071056
   }
  ],
  "confirmed": [
@@ -494,9 +494,9 @@
   }
  ],
  "probation": {
-  "waiting": 41,
+  "waiting": 45,
   "confirmed": 14,
-  "dropped": 719
+  "dropped": 725
  },
  "recent_drains": [
   {
@@ -688,7 +688,7 @@
   "rug": 939
  },
  "watchlist_active": 6,
- "price_snapshots": 10518,
+ "price_snapshots": 10516,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
