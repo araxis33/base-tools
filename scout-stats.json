@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-11T21:55:43Z",
- "generated_at_unix": 1789163742,
+ "generated_at": "2026-09-11T22:55:47Z",
+ "generated_at_unix": 1789167347,
  "period": {
   "start": "2026-07-15",
   "days": 58
  },
  "totals": {
-  "seen": 163637,
-  "base": 29522,
+  "seen": 163726,
+  "base": 29611,
   "robinhood": 134115,
-  "below_liquidity_threshold": 160043,
-  "spam_filtered": 764,
-  "scored": 2830,
-  "green": 1457,
+  "below_liquidity_threshold": 160106,
+  "spam_filtered": 781,
+  "scored": 2839,
+  "green": 1464,
   "yellow": 451,
-  "red": 922
+  "red": 924
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-22",
-   "base": 918,
-   "robinhood": 1733
+   "base": 808,
+   "robinhood": 1576
   },
   {
    "date": "2026-08-23",
@@ -125,11 +125,81 @@
   },
   {
    "date": "2026-09-12",
-   "base": 93,
+   "base": 182,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "KAREN",
+   "name": "Karen",
+   "chain": "base",
+   "address": "0x21bf8584d7a739343a7f01dcd6ece1047627d68f",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 2282.1809,
+   "first_seen": 1789167318
+  },
+  {
+   "symbol": "PLC",
+   "name": "Pearl Chain (pearlchaintoken.com)",
+   "chain": "base",
+   "address": "0x60d4d7f2a6a3978047c14b5678e215326a652747",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12588.4150916386,
+   "first_seen": 1789164909
+  },
+  {
+   "symbol": "FLM",
+   "name": "Fly Language Model",
+   "chain": "base",
+   "address": "0x39988bf0638edb8c65ce0fb9e1e457c575157ba3",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 50165.7971,
+   "first_seen": 1789164726
+  },
+  {
+   "symbol": "DANGER",
+   "name": "Danger",
+   "chain": "base",
+   "address": "0x5bdc072a8bc8691161cccc0dfc1c0c353fdb64d8",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 5463.9895,
+   "first_seen": 1789164725
+  },
+  {
+   "symbol": "FLY",
+   "name": "Fly Language Model",
+   "chain": "base",
+   "address": "0x8d292bc85c0652522d8a6325c7f1888f33e1cba3",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 46044.7639,
+   "first_seen": 1789164633
+  },
+  {
+   "symbol": "S&amp;P 500",
+   "name": "Sock &amp; Pussy 500",
+   "chain": "base",
+   "address": "0xa92d8ccfc52381b9c0051fad8a98696b2219d450",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 16351.4249,
+   "first_seen": 1789164632
+  },
+  {
+   "symbol": "ITEMS",
+   "name": "ItemBase",
+   "chain": "base",
+   "address": "0x29204f40a2b8f1acff7f692268d8189ea055ec29",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 14333.6899,
+   "first_seen": 1789164359
+  },
   {
    "symbol": "BACMOOK",
    "name": "bacmook",
@@ -259,76 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 18198.2403,
    "first_seen": 1789156681
-  },
-  {
-   "symbol": "CHAMPIONS",
-   "name": "CHAMPIONS COIN",
-   "chain": "base",
-   "address": "0xb2000000000000000000004726e9d780a31fe701",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4131.6172,
-   "first_seen": 1789156402
-  },
-  {
-   "symbol": "MONEY",
-   "name": "own.money",
-   "chain": "base",
-   "address": "0x4badc06673b96d281f1074e6282f48c5093fec29",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 16049.6712,
-   "first_seen": 1789155625
-  },
-  {
-   "symbol": "COBIE",
-   "name": "Cobie mode",
-   "chain": "base",
-   "address": "0xb200000000000000000000220650944166d25367",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 26739.6329,
-   "first_seen": 1789155533
-  },
-  {
-   "symbol": "WFOI",
-   "name": "World Fund Oil Institute (WOFI)",
-   "chain": "base",
-   "address": "0x4dabeb5bbe2ce5b5899faa76d11a2289b5e5bd5c",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 203342.848709294,
-   "first_seen": 1789155441
-  },
-  {
-   "symbol": "🪰",
-   "name": "🪰",
-   "chain": "base",
-   "address": "0xb20000000000000000000031b28c5230fefb6c01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4296.752,
-   "first_seen": 1789155349
-  },
-  {
-   "symbol": "ELON",
-   "name": "ELON",
-   "chain": "base",
-   "address": "0x1d126599f9e7966f7b71134385832259e51d295e",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 76870.7967,
-   "first_seen": 1789154615
-  },
-  {
-   "symbol": "BABYPS",
-   "name": "Babylon Bypass",
-   "chain": "base",
-   "address": "0xf5d12911bad708d5406f4437fe0fe5d421af4c26",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 25345.179089172,
-   "first_seen": 1789152436
   }
  ],
  "confirmed": [
@@ -494,9 +494,9 @@
   }
  ],
  "probation": {
-  "waiting": 52,
+  "waiting": 56,
   "confirmed": 14,
-  "dropped": 800
+  "dropped": 803
  },
  "recent_drains": [
   {
@@ -688,7 +688,7 @@
   "rug": 939
  },
  "watchlist_active": 6,
- "price_snapshots": 10554,
+ "price_snapshots": 10722,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
