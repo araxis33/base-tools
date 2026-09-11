@@ -1,32 +1,27 @@
 {
- "generated_at": "2026-09-11T20:55:37Z",
- "generated_at_unix": 1789160136,
+ "generated_at": "2026-09-11T21:55:43Z",
+ "generated_at_unix": 1789163742,
  "period": {
   "start": "2026-07-15",
   "days": 58
  },
  "totals": {
-  "seen": 163532,
-  "base": 29417,
+  "seen": 163637,
+  "base": 29522,
   "robinhood": 134115,
-  "below_liquidity_threshold": 159957,
-  "spam_filtered": 751,
-  "scored": 2824,
-  "green": 1451,
+  "below_liquidity_threshold": 160043,
+  "spam_filtered": 764,
+  "scored": 2830,
+  "green": 1457,
   "yellow": 451,
   "red": 922
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
-   "date": "2026-08-21",
-   "base": 25,
-   "robinhood": 48
-  },
-  {
    "date": "2026-08-22",
-   "base": 1154,
-   "robinhood": 2004
+   "base": 918,
+   "robinhood": 1733
   },
   {
    "date": "2026-08-23",
@@ -125,11 +120,76 @@
   },
   {
    "date": "2026-09-11",
-   "base": 1006,
+   "base": 1018,
+   "robinhood": 0
+  },
+  {
+   "date": "2026-09-12",
+   "base": 93,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "BACMOOK",
+   "name": "bacmook",
+   "chain": "base",
+   "address": "0x21ce0dd7cc4a120d38f154cbb2ecd3e472b3b768",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4054.068,
+   "first_seen": 1789162812
+  },
+  {
+   "symbol": "0xDeployer",
+   "name": "0xDeployer",
+   "chain": "base",
+   "address": "0x031fc9982a4f8942bdc859cb925d9317267c6ba3",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4458.5434,
+   "first_seen": 1789162357
+  },
+  {
+   "symbol": "HAPPYCAT",
+   "name": "Happycat",
+   "chain": "base",
+   "address": "0xc01559652b2844db337516c83665ec851300559d",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 6308.9416,
+   "first_seen": 1789162126
+  },
+  {
+   "symbol": "RXRXon",
+   "name": "Recursion Pharmaceuticals Tokenized Stock (Ondo)",
+   "chain": "base",
+   "address": "0x895e82cea8660280059b379572a9592e4308c742",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12686.1152134401,
+   "first_seen": 1789161943
+  },
+  {
+   "symbol": "BOMB",
+   "name": "Bomb Coin",
+   "chain": "base",
+   "address": "0x323bf00d20f2b17875b91c4709c447afd371b693",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4543.4822,
+   "first_seen": 1789161807
+  },
+  {
+   "symbol": "DANCEDOG",
+   "name": "Dancing DOG",
+   "chain": "base",
+   "address": "0x1326d10bc080b5424a9fbc2a5f7ebedf16115d80",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4027.7114,
+   "first_seen": 1789160217
+  },
   {
    "symbol": "ROBINHOOD",
    "name": "Robinhood (robinhood.win)",
@@ -269,66 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 25345.179089172,
    "first_seen": 1789152436
-  },
-  {
-   "symbol": "HOME",
-   "name": "HOMECOIN",
-   "chain": "base",
-   "address": "0x0541afb201ff6c0dfb8066df09f60d76f3b2e741",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 76247.7152438672,
-   "first_seen": 1789152434
-  },
-  {
-   "symbol": "RECEIVED",
-   "name": "BTC",
-   "chain": "base",
-   "address": "0x85860f7880bbea9617a8911e0f959586a3b1895a",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 1.15925945737836e+24,
-   "first_seen": 1789151979
-  },
-  {
-   "symbol": "BREW",
-   "name": "BREEW",
-   "chain": "base",
-   "address": "0x1ff31754af103a095960981302777f8c6a8547f4",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 2235162.7521,
-   "first_seen": 1789151475
-  },
-  {
-   "symbol": "ALB",
-   "name": "AlienBase Token",
-   "chain": "base",
-   "address": "0xb2000000000000000000001c1bcb87339a582daa",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 14085.9993,
-   "first_seen": 1789150471
-  },
-  {
-   "symbol": "Sport.fun",
-   "name": "Sport.fun",
-   "chain": "base",
-   "address": "0xb200000000000000000000ca65af2afba458e7c1",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 14990.9799,
-   "first_seen": 1789150469
-  },
-  {
-   "symbol": "ACAT",
-   "name": "AppleCat",
-   "chain": "base",
-   "address": "0xb20000000000000000000084124339d94135fb01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4136.98080017654,
-   "first_seen": 1789150239
   }
  ],
  "confirmed": [
@@ -494,9 +494,9 @@
   }
  ],
  "probation": {
-  "waiting": 54,
+  "waiting": 52,
   "confirmed": 14,
-  "dropped": 792
+  "dropped": 800
  },
  "recent_drains": [
   {
