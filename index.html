@@ -248,7 +248,9 @@
   .trend-row:hover .buy-btn{border-color:var(--blue); color:var(--blue-text);}
   .buy-btn:hover, .buy-btn:focus-visible{background:var(--blue); color:var(--white); border-color:var(--blue);}
 
-  /* buy dialog */
+  /* buy / sell dialog. The ids and classes still read `buy-`: the dialog was
+     one-way first, and renaming every selector would churn CSS that has
+     already been measured on a phone. */
   /* display:flex on a class beats the browser's own [hidden]{display:none},
      which left this dialog open on every page load and made its close button
      look broken. Anything hidden stays hidden, whatever else says otherwise. */
@@ -270,6 +272,20 @@
     font-size:var(--fs-md); cursor:pointer; padding:8px; margin-right:-8px; line-height:1;
   }
   .modal-x:hover{color:var(--text);}
+  /* Selling is not a second dialog: same token, same router, reversed
+     direction. So it is a switch at the top of the one that already exists. */
+  .buy-tabs{
+    display:flex; gap:4px; padding:4px; background:var(--bg);
+    border:1px solid var(--border); border-radius:var(--r-pill);
+  }
+  .buy-tab{
+    flex:1; border:none; background:transparent; color:var(--muted); cursor:pointer;
+    font-family:inherit; font-size:var(--fs-xs); font-weight:800; padding:9px 0;
+    border-radius:var(--r-pill); transition:background var(--t), color var(--t);
+  }
+  .buy-tab:hover{color:var(--text);}
+  .buy-tab.on{background:var(--blue); color:var(--white);}
+  .buy-tab.on[data-mode="sell"]{background:var(--red);}
   .buy-presets{display:flex; gap:8px;}
   .buy-preset{
     flex:1; border:1px solid var(--border); background:transparent; color:var(--muted);
@@ -277,6 +293,14 @@
   }
   .buy-preset:hover{border-color:var(--blue); color:var(--blue-text);}
   .buy-preset.on{background:var(--blue); border-color:var(--blue); color:var(--white);}
+  .buy-presets.sell .buy-preset:hover{border-color:var(--red); color:var(--red);}
+  .buy-presets.sell .buy-preset.on{background:var(--red); border-color:var(--red); color:var(--white);}
+  /* What you actually hold, which is the number a sell dialog is really about. */
+  .buy-bal{
+    display:flex; align-items:baseline; gap:6px;
+    font-size:var(--fs-xxs); color:var(--muted2); font-weight:700;
+  }
+  .buy-bal b{color:var(--text); font-weight:800;}
   .buy-field{
     display:flex; align-items:center; gap:10px; border:1px solid var(--border);
     border-radius:var(--r-md); padding:12px 14px; background:var(--bg);
@@ -294,6 +318,7 @@
     padding:14px; font-size:var(--fs-sm); font-weight:800; cursor:pointer; font-family:inherit;
   }
   .buy-cta:disabled{opacity:0.5; cursor:default;}
+  .buy-cta.sell{background:var(--red);}
   .buy-link{
     display:block; text-align:center; border:1px solid var(--border);
     border-radius:var(--r-md); padding:12px; font-size:var(--fs-xs); font-weight:800;
@@ -752,18 +777,23 @@
       </div>
       <button class="modal-x" id="buy-close" type="button" aria-label="Close">&#215;</button>
     </div>
+    <div class="buy-tabs" id="buy-tabs" role="group" aria-label="Buy or sell">
+      <button class="buy-tab on" type="button" data-mode="buy">Buy</button>
+      <button class="buy-tab" type="button" data-mode="sell">Sell</button>
+    </div>
     <div class="buy-presets" id="buy-presets"></div>
     <div class="buy-field">
-      <input id="buy-amount" type="text" inputmode="decimal" value="0.01" aria-label="Amount of ETH to spend">
-      <span class="buy-unit">ETH</span>
+      <input id="buy-amount" type="text" inputmode="decimal" value="0.01" aria-label="Amount to spend">
+      <span class="buy-unit" id="buy-unit">ETH</span>
     </div>
+    <div class="buy-bal" id="buy-bal" hidden></div>
     <div class="trend-addr" id="buy-addr"></div>
     <div class="buy-quote" id="buy-quote">Enter an amount.</div>
     <div class="buy-fee" id="buy-fee"></div>
     <div class="buy-status" id="buy-status"></div>
     <button class="buy-cta" id="buy-action" type="button">Connect wallet</button>
     <a class="buy-link" id="buy-tx" target="_blank" rel="noopener" hidden>View the transaction</a>
-    <p class="buy-note">Quoted across every pool on Base by KyberSwap and signed in your own wallet. This page never holds your funds and never asks for a key.</p>
+    <p class="buy-note" id="buy-note">Quoted across every pool on Base by KyberSwap and signed in your own wallet. This page never holds your funds and never asks for a key.</p>
   </div>
 </div>
 
@@ -1270,11 +1300,13 @@ document.getElementById("trend-grid").addEventListener("click", (e)=>{
 
 loadBoards();
 
-/* ---------------- buying ----------------
-   One transaction and no approval: paying with native ETH means there is no
-   allowance to grant, which removes the step that usually breaks. Routes come
-   from KyberSwap (no key, every pool on Base), the swap is signed in the
-   user's own wallet, and the calldata carries the ERC-8021 builder suffix. */
+/* ---------------- buying and selling ----------------
+   Both directions run through the same route: KyberSwap (no key, every pool on
+   Base), signed in the user's own wallet, with the ERC-8021 builder suffix on
+   the calldata. Buying with native ETH is one transaction and no approval,
+   which removes the step that usually breaks. Selling a token cannot avoid an
+   allowance, so it grants one for exactly the amount being sold rather than
+   the unlimited approval most interfaces ask for. */
 const CHAIN_HEX = "0x2105";                 // Base, 8453
 const KYBER = "https://aggregator-api.kyberswap.com/base/api/v1";
 const NATIVE_ETH = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
@@ -1286,10 +1318,20 @@ const SLIPPAGE_BPS = 100;                   // 1%
 const FEE_WALLET = "0x2ab08a231389fD6c1cb368769aE5Ba3f999209e4";
 const FEE_BPS = 0;
 const PRESETS = ["0.005", "0.01", "0.025", "0.05"];
+// Selling is measured against what you hold, not against a round number of
+// ETH, so the presets on that side are shares of the balance.
+const SELL_PRESETS = [["25%", 25], ["50%", 50], ["75%", 75], ["Max", 100]];
 const AMOUNT_RE = new RegExp("^[0-9]*[.]?[0-9]*$");
 const REJECTED_RE = new RegExp("user rejected|denied|User denied", "i");
+const SEL_DECIMALS  = "0x313ce567";
+const SEL_BALANCEOF = "0x70a08231";
+const SEL_ALLOWANCE = "0xdd62ed3e";
+const SEL_APPROVE   = "0x095ea7b3";
 
-const buy = { token:null, symbol:"", account:null, summary:null, busy:false, seq:0, decimals:{}, done:null };
+const trade = {
+  mode:"buy", token:null, symbol:"", account:null, summary:null,
+  busy:false, seq:0, decimals:{}, balance:null, done:null
+};
 
 function ethProvider(){
   const p = window.ethereum;
@@ -1312,6 +1354,7 @@ function toUnits(str, dec){
 }
 
 function fromUnits(v, dec){
+  if (!dec) return v.toString();
   const s = v.toString().padStart(dec + 1, "0");
   const n = Number(s.slice(0, -dec) + "." + s.slice(-dec));
   if (n >= 1000) return n.toLocaleString("en-US", { maximumFractionDigits: 0 });
@@ -1319,86 +1362,179 @@ function fromUnits(v, dec){
   return n.toLocaleString("en-US", { maximumFractionDigits: 8 });
 }
 
-// decimals() off a public node, so the dialog can say how many tokens you get
-// before a wallet is anywhere near the page.
+// What a share of the balance writes into the amount field. fromUnits is for
+// reading — it groups thousands and rounds — and both of those would be parsed
+// back as a different number, so "Max" needs its own exact spelling.
+function unitsToInput(v, dec){
+  if (!dec) return v.toString();
+  const s = v.toString().padStart(dec + 1, "0");
+  const frac = s.slice(-dec).replace(/0+$/, "");
+  return frac ? s.slice(0, -dec) + "." + frac : s.slice(0, -dec);
+}
+
+// Reads off a public node, so the dialog knows decimals, balances and
+// allowances before a wallet is anywhere near the page.
+async function ethCall(to, data){
+  const res = await fetch(BASE_RPC, {
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({ jsonrpc:"2.0", id:1, method:"eth_call", params:[{ to:to, data:data }, "latest"] })
+  });
+  const j = await res.json();
+  return (j && j.result && j.result !== "0x") ? j.result : null;
+}
+
+function addrArg(a){ return a.toLowerCase().replace("0x", "").padStart(64, "0"); }
+function uintArg(v){ return v.toString(16).padStart(64, "0"); }
+
 async function decimalsOf(token){
-  if (buy.decimals[token] !== undefined) return buy.decimals[token];
+  if (trade.decimals[token] !== undefined) return trade.decimals[token];
   try {
-    const res = await fetch(BASE_RPC, {
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body: JSON.stringify({ jsonrpc:"2.0", id:1, method:"eth_call", params:[{ to:token, data:"0x313ce567" }, "latest"] })
-    });
-    const j = await res.json();
-    const d = (j && j.result && j.result !== "0x") ? parseInt(j.result, 16) : 18;
-    buy.decimals[token] = d;
+    const r = await ethCall(token, SEL_DECIMALS);
+    const d = r ? parseInt(r, 16) : 18;
+    trade.decimals[token] = d;
     return d;
   } catch(e){ return 18; }
 }
 
+async function balanceOf(token, owner){
+  const r = await ethCall(token, SEL_BALANCEOF + addrArg(owner));
+  return r ? BigInt(r) : 0n;
+}
+
+async function allowanceOf(token, owner, spender){
+  const r = await ethCall(token, SEL_ALLOWANCE + addrArg(owner) + addrArg(spender));
+  return r ? BigInt(r) : 0n;
+}
+
 function buyEl(id){ return document.getElementById(id); }
 
-function openBuy(token, symbol, logo){
-  buy.token = token; buy.symbol = symbol; buy.summary = null; buy.done = null;
-  buyEl("buy-tx").hidden = true;
-  buyEl("buy-title").textContent = "Buy " + symbol;
+function openTrade(token, symbol, logo, mode){
+  trade.token = token; trade.symbol = symbol;
   buyEl("buy-logo").src = logo || "";
   buyEl("buy-logo").style.visibility = logo ? "visible" : "hidden";
-  buyEl("buy-status").textContent = "";
-  buyEl("buy-status").className = "buy-status";
   buyEl("buy-fee").textContent = FEE_BPS > 0
     ? "Fee " + (FEE_BPS/100).toFixed(2) + "% to this site, already counted in the number above."
     : "No fee from this site. You get the aggregator's price, minus Base gas.";
-  buyEl("buy-presets").innerHTML = PRESETS.map(function(v){
-    return '<button class="buy-preset' + (v === "0.01" ? " on" : "") + '" type="button" data-preset="' + v + '">' + v + ' ETH</button>';
-  }).join("");
   buyEl("buy-addr").innerHTML =
     '<a href="https://basescan.org/token/' + token + '" target="_blank" rel="noopener">' + shortAddr(token) + '</a>' +
     copyBtnHtml(token);
   bindCopyButtons(buyEl("buy-addr"));
-  buyEl("buy-amount").value = "0.01";
   buyEl("buy-back").hidden = false;
   document.body.style.overflow = "hidden";
-  renderBuyCta();
-  quoteBuy();
+  setMode(mode || "buy");
+}
+
+// Everything that differs between the two directions is set in one place, so
+// the switch cannot leave a label from the other side on screen.
+function setMode(mode){
+  const sell = mode === "sell";
+  trade.mode = mode;
+  trade.summary = null; trade.done = null; trade.balance = null;
+  trade.seq++;                               // strand any quote still in flight
+  buyEl("buy-tx").hidden = true;
+  buyStatus(trade.account ? "Connected " + shortAddr(trade.account) : "");
+  document.querySelectorAll(".buy-tab").forEach(function(b){
+    b.classList.toggle("on", b.dataset.mode === mode);
+  });
+  buyEl("buy-title").textContent = (sell ? "Sell " : "Buy ") + trade.symbol;
+  buyEl("buy-sub").textContent = sell ? "on Base, for ETH" : "on Base, with ETH";
+  buyEl("buy-unit").textContent = sell ? trade.symbol : "ETH";
+  buyEl("buy-amount").setAttribute("aria-label",
+    sell ? "Amount of " + trade.symbol + " to sell" : "Amount of ETH to spend");
+  buyEl("buy-amount").value = sell ? "" : "0.01";
+  buyEl("buy-presets").classList.toggle("sell", sell);
+  buyEl("buy-presets").innerHTML = sell
+    ? SELL_PRESETS.map(function(p){
+        return '<button class="buy-preset" type="button" data-pct="' + p[1] + '">' + p[0] + '</button>';
+      }).join("")
+    : PRESETS.map(function(v){
+        return '<button class="buy-preset' + (v === "0.01" ? " on" : "") + '" type="button" data-preset="' + v + '">' + v + ' ETH</button>';
+      }).join("");
+  buyEl("buy-bal").hidden = !sell;
+  buyEl("buy-bal").textContent = "";
+  buyEl("buy-quote").textContent = sell ? "Enter an amount, or take a share of your balance." : "Enter an amount.";
+  buyEl("buy-note").textContent = sell
+    ? "Selling needs two signatures: an allowance for exactly the amount you are selling, then the swap itself. Quoted across every pool on Base by KyberSwap. This page never holds your funds and never asks for a key."
+    : "Quoted across every pool on Base by KyberSwap and signed in your own wallet. This page never holds your funds and never asks for a key.";
+  renderCta();
+  if (sell) refreshBalance(); else quoteTrade();
+}
+
+// The balance is what a sell dialog is really about, so it is read the moment
+// there is an address to read it for.
+async function refreshBalance(){
+  if (trade.mode !== "sell") return;
+  const el = buyEl("buy-bal");
+  if (!trade.account){ el.textContent = "Connect a wallet to see what you hold."; return; }
+  const token = trade.token;
+  el.textContent = "Reading your balance…";
+  try {
+    const pair = await Promise.all([balanceOf(token, trade.account), decimalsOf(token)]);
+    if (trade.token !== token || trade.mode !== "sell") return;
+    trade.balance = pair[0];
+    el.innerHTML = pair[0] > 0n
+      ? "You hold <b>" + fromUnits(pair[0], pair[1]) + " " + trade.symbol + "</b>"
+      : "You hold none of this token.";
+  } catch(e){
+    el.textContent = "Could not read your balance.";
+  }
+  renderCta();
 }
 
 function closeBuy(){
   buyEl("buy-back").hidden = true;
   document.body.style.overflow = "";
-  buy.seq++;                                 // strand any quote still in flight
+  trade.seq++;                               // strand any quote still in flight
 }
 
-function renderBuyCta(){
+function renderCta(){
   const cta = buyEl("buy-action");
-  if (buy.busy){ cta.disabled = true; return; }
+  const sell = trade.mode === "sell";
+  cta.classList.toggle("sell", sell);
+  if (trade.busy){ cta.disabled = true; return; }
   cta.disabled = false;
-  // Once the tokens have landed the only thing left to do is leave, so the
-  // button that got you here says so rather than inviting a second purchase.
-  if (buy.done){ cta.textContent = "Done"; return; }
-  if (!buy.account){ cta.textContent = "Connect wallet"; return; }
-  cta.textContent = buy.summary ? "Buy " + buy.symbol : "Enter an amount";
-  cta.disabled = !buy.summary;
+  // Once the trade has landed the only thing left to do is leave, so the
+  // button that got you here says so rather than inviting a second one.
+  if (trade.done){ cta.textContent = "Done"; return; }
+  if (!trade.account){ cta.textContent = "Connect wallet"; return; }
+  cta.textContent = trade.summary ? (sell ? "Sell " : "Buy ") + trade.symbol : "Enter an amount";
+  cta.disabled = !trade.summary;
 }
 
-async function quoteBuy(){
-  const seq = ++buy.seq;
-  const wei = toUnits(buyEl("buy-amount").value, 18);
+async function quoteTrade(){
+  const seq = ++trade.seq;
+  const sell = trade.mode === "sell";
   const out = buyEl("buy-quote");
-  buy.summary = null;
-  if (!wei){ out.textContent = "Enter an amount."; renderBuyCta(); return; }
+  trade.summary = null;
+  const tokenDec = await decimalsOf(trade.token);
+  if (seq !== trade.seq) return;
+  const inDec = sell ? tokenDec : 18;
+  const outDec = sell ? 18 : tokenDec;
+  const amountIn = toUnits(buyEl("buy-amount").value, inDec);
+  if (!amountIn){
+    out.textContent = sell ? "Enter an amount, or take a share of your balance." : "Enter an amount.";
+    renderCta(); return;
+  }
+  // Catching this here rather than in the wallet: an oversized sell would only
+  // fail after a gas-burning approval.
+  if (sell && trade.balance !== null && amountIn > trade.balance){
+    out.textContent = "That is more " + trade.symbol + " than you hold.";
+    renderCta(); return;
+  }
   out.textContent = "Finding the best route…";
-  renderBuyCta();
+  renderCta();
   try {
-    const url = KYBER + "/routes?tokenIn=" + NATIVE_ETH + "&tokenOut=" + buy.token + "&amountIn=" + wei + "&gasInclude=true";
-    const pair = await Promise.all([fetch(url), decimalsOf(buy.token)]);
-    const j = await pair[0].json();
-    const dec = pair[1];
-    if (seq !== buy.seq) return;             // a newer keystroke already won
+    const url = KYBER + "/routes?tokenIn=" + (sell ? trade.token : NATIVE_ETH) +
+      "&tokenOut=" + (sell ? NATIVE_ETH : trade.token) +
+      "&amountIn=" + amountIn + "&gasInclude=true";
+    const res = await fetch(url);
+    const j = await res.json();
+    if (seq !== trade.seq) return;           // a newer keystroke already won
     if (!j || j.code !== 0 || !j.data) throw new Error("No route for this amount.");
     const sum = j.data.routeSummary;
-    buy.summary = sum;
-    const got = fromUnits(BigInt(sum.amountOut), dec);
+    trade.summary = sum;
+    const got = fromUnits(BigInt(sum.amountOut), outDec) + " " + (sell ? "ETH" : trade.symbol);
     const inUsd = parseFloat(sum.amountInUsd);
     const outUsd = parseFloat(sum.amountOutUsd);
     // What the trade costs in the only terms that matter: dollars in against
@@ -1412,14 +1548,14 @@ async function quoteBuy(){
       // named and the two dollar figures are left to speak for themselves.
       if (cost > 0) tail = " · " + cost.toFixed(2) + "% to fees and price impact";
     }
-    out.innerHTML = "≈ " + got + " " + buy.symbol +
+    out.innerHTML = "≈ " + got +
       '<span class="dim">' + fmtPrice(inUsd) + " in → " + fmtPrice(outUsd) + " out" + tail + "</span>";
   } catch(e){
-    if (seq !== buy.seq) return;
-    buy.summary = null;
+    if (seq !== trade.seq) return;
+    trade.summary = null;
     out.textContent = e.message || "Could not price this swap.";
   }
-  renderBuyCta();
+  renderCta();
 }
 
 function buyStatus(html, bad, good){
@@ -1432,20 +1568,20 @@ async function connectWallet(){
   const p = ethProvider();
   if (!p) throw new Error("No wallet in this browser. Open the page inside Coinbase Wallet, or install one.");
   const accounts = await p.request({ method:"eth_requestAccounts" });
-  buy.account = accounts[0];
+  trade.account = accounts[0];
   const chain = await p.request({ method:"eth_chainId" });
   if (chain !== CHAIN_HEX){
     await p.request({ method:"wallet_switchEthereumChain", params:[{ chainId: CHAIN_HEX }] });
   }
-  buyStatus("Connected " + shortAddr(buy.account));
+  buyStatus("Connected " + shortAddr(trade.account));
 }
 
-async function waitForReceipt(p, hash){
+async function waitForReceipt(p, hash, what){
   for (let i = 0; i < 60; i++){
     try {
       const r = await p.request({ method:"eth_getTransactionReceipt", params:[hash] });
       if (r && r.blockNumber){
-        if (r.status === "0x0") throw new Error("The swap reverted onchain. Nothing left your wallet but gas.");
+        if (r.status === "0x0") throw new Error("The " + (what || "swap") + " reverted onchain. Nothing left your wallet but gas.");
         return r;
       }
     } catch(e){
@@ -1456,48 +1592,97 @@ async function waitForReceipt(p, hash){
   throw new Error("Timed out waiting for the confirmation.");
 }
 
-async function doBuy(){
-  if (buy.busy) return;
-  if (buy.done){ closeBuy(); return; }
-  if (!buy.account){
-    buy.busy = true; renderBuyCta();
+async function sendAndWait(p, to, data, what){
+  const hash = await p.request({
+    method:"eth_sendTransaction",
+    params:[{ from: trade.account, to: to, data: data, value: "0x0" }]
+  });
+  await waitForReceipt(p, hash, what);
+  return hash;
+}
+
+// Exactly the amount being sold, and not a wei more: an unlimited approval to
+// an aggregator router outlives the trade it was granted for.
+async function approveExactly(p, token, spender, amount){
+  const current = await allowanceOf(token, trade.account, spender);
+  if (current >= amount) return;
+  // A handful of tokens still refuse to move an allowance from one non-zero
+  // number to another, so an old one is cleared before the new one is set.
+  if (current > 0n){
+    buyStatus("Clearing the old allowance — confirm it in your wallet.");
+    await sendAndWait(p, token, SEL_APPROVE + addrArg(spender) + uintArg(0n), "approval");
+  }
+  buyStatus("Approve " + trade.symbol + " in your wallet. This lets the router take what you are selling, and nothing more.");
+  await sendAndWait(p, token, SEL_APPROVE + addrArg(spender) + uintArg(amount), "approval");
+}
+
+async function buildSwap(){
+  const body = {
+    routeSummary: trade.summary,
+    sender: trade.account,
+    recipient: trade.account,
+    slippageTolerance: SLIPPAGE_BPS,
+    source: "deftools.xyz"
+  };
+  if (FEE_BPS > 0){
+    body.extraFee = {
+      // On a sale the fee is taken out of the ETH coming back, never out of
+      // the tokens going in, which would need a larger allowance than the
+      // dialog just asked for.
+      feeAmount: String(FEE_BPS), chargeFeeBy: trade.mode === "sell" ? "currency_out" : "currency_in",
+      isInBps: true, feeReceiver: FEE_WALLET
+    };
+  }
+  const res = await fetch(KYBER + "/route/build", {
+    method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(body)
+  });
+  const b = await res.json();
+  if (!b || b.code !== 0 || !b.data) throw new Error("Could not build this swap. Try a different amount.");
+  return b.data;
+}
+
+async function doTrade(){
+  if (trade.busy) return;
+  if (trade.done){ closeBuy(); return; }
+  if (!trade.account){
+    trade.busy = true; renderCta();
     try { await connectWallet(); }
     catch(e){ buyStatus(e.message || "The wallet refused the connection.", true); }
-    buy.busy = false; renderBuyCta();
-    if (buy.account) quoteBuy();
+    trade.busy = false; renderCta();
+    if (trade.account){
+      if (trade.mode === "sell") await refreshBalance();
+      quoteTrade();
+    }
     return;
   }
-  if (!buy.summary) return;
-  buy.busy = true; renderBuyCta();
+  if (!trade.summary) return;
+  const sell = trade.mode === "sell";
+  trade.busy = true; renderCta();
   buyStatus("Building the swap…");
   try {
     const p = ethProvider();
-    const body = {
-      routeSummary: buy.summary,
-      sender: buy.account,
-      recipient: buy.account,
-      slippageTolerance: SLIPPAGE_BPS,
-      source: "deftools.xyz"
-    };
-    if (FEE_BPS > 0){
-      body.extraFee = {
-        feeAmount: String(FEE_BPS), chargeFeeBy: "currency_in",
-        isInBps: true, feeReceiver: FEE_WALLET
-      };
+    let built = await buildSwap();
+    if (sell){
+      const need = BigInt(trade.summary.amountIn);
+      const have = await allowanceOf(trade.token, trade.account, built.routerAddress);
+      if (have < need){
+        await approveExactly(p, trade.token, built.routerAddress, need);
+        // The price moved while that block was mined, so the route is priced
+        // again instead of being sent stale.
+        buyStatus("Approved. Pricing the sale again…");
+        await quoteTrade();
+        if (!trade.summary) throw new Error("The route went stale while the approval confirmed. Try again.");
+        built = await buildSwap();
+      }
     }
-    const res = await fetch(KYBER + "/route/build", {
-      method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(body)
-    });
-    const b = await res.json();
-    if (!b || b.code !== 0 || !b.data) throw new Error("Could not build this swap. Try a different amount.");
     buyStatus("Confirm it in your wallet.");
     const hash = await p.request({
       method:"eth_sendTransaction",
       params:[{
-        from: buy.account,
-        to: b.data.routerAddress,
-        value: "0x" + BigInt(buy.summary.amountIn).toString(16),
-        data: b.data.data + BUILDER_SUFFIX
+        from: trade.account,
+        to: built.routerAddress,
+        value: sell ? "0x0" : "0x" + BigInt(trade.summary.amountIn).toString(16),
+        data: built.data + BUILDER_SUFFIX
       }]
     });
     const tx = buyEl("buy-tx");
@@ -1505,39 +1690,58 @@ async function doBuy(){
     tx.textContent = "Watch it confirm on Basescan";
     tx.hidden = false;
     buyStatus("Sent. Waiting for the block…");
-    await waitForReceipt(p, hash);
-    buy.done = hash;
+    await waitForReceipt(p, hash, "swap");
+    trade.done = hash;
     tx.textContent = "View the transaction on Basescan";
-    buyStatus(buy.symbol + " is in your wallet.", false, true);
+    buyStatus(sell ? "Sold. The ETH is in your wallet." : trade.symbol + " is in your wallet.", false, true);
+    if (sell) refreshBalance();
   } catch(e){
     const m = (e && (e.message || String(e))) || "";
     buyStatus(REJECTED_RE.test(m) ? "Cancelled in the wallet." : (m || "The swap failed."), true);
   }
-  buy.busy = false; renderBuyCta();
+  trade.busy = false; renderCta();
 }
 
 document.getElementById("trend-grid").addEventListener("click", function(e){
   const b = e.target.closest("[data-buy]");
   if (!b) return;
-  openBuy(b.dataset.buy, b.dataset.sym, b.dataset.logo);
+  openTrade(b.dataset.buy, b.dataset.sym, b.dataset.logo, "buy");
 });
 buyEl("buy-close").addEventListener("click", closeBuy);
 buyEl("buy-back").addEventListener("click", function(e){ if (e.target.id === "buy-back") closeBuy(); });
 document.addEventListener("keydown", function(e){ if (e.key === "Escape" && !buyEl("buy-back").hidden) closeBuy(); });
-buyEl("buy-action").addEventListener("click", doBuy);
-buyEl("buy-presets").addEventListener("click", function(e){
-  const b = e.target.closest("[data-preset]");
+buyEl("buy-action").addEventListener("click", doTrade);
+buyEl("buy-tabs").addEventListener("click", function(e){
+  const b = e.target.closest("[data-mode]");
+  if (!b || trade.busy || b.dataset.mode === trade.mode) return;
+  setMode(b.dataset.mode);
+});
+buyEl("buy-presets").addEventListener("click", async function(e){
+  const b = e.target.closest("[data-preset],[data-pct]");
   if (!b) return;
-  buyEl("buy-amount").value = b.dataset.preset;
   document.querySelectorAll(".buy-preset").forEach(function(x){ x.classList.toggle("on", x === b); });
-  quoteBuy();
+  if (b.dataset.preset !== undefined){
+    buyEl("buy-amount").value = b.dataset.preset;
+    quoteTrade();
+    return;
+  }
+  if (!trade.account){
+    buyStatus("Connect a wallet first — a share is taken from your own balance.");
+    b.classList.remove("on");
+    return;
+  }
+  if (trade.balance === null) await refreshBalance();
+  if (!trade.balance){ b.classList.remove("on"); return; }
+  const dec = await decimalsOf(trade.token);
+  buyEl("buy-amount").value = unitsToInput(trade.balance * BigInt(b.dataset.pct) / 100n, dec);
+  quoteTrade();
 });
 let quoteTimer = null;
 buyEl("buy-amount").addEventListener("input", function(){
   document.querySelectorAll(".buy-preset").forEach(function(x){ x.classList.remove("on"); });
-  if (buy.done){ buy.done = null; buyEl("buy-tx").hidden = true; buyStatus(""); }
+  if (trade.done){ trade.done = null; buyEl("buy-tx").hidden = true; buyStatus(""); }
   clearTimeout(quoteTimer);
-  quoteTimer = setTimeout(quoteBuy, 400);
+  quoteTimer = setTimeout(quoteTrade, 400);
 });
 </script>
 
