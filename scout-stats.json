@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-11T12:33:49Z",
- "generated_at_unix": 1789130028,
+ "generated_at": "2026-09-11T13:33:55Z",
+ "generated_at_unix": 1789133634,
  "period": {
   "start": "2026-07-15",
   "days": 58
  },
  "totals": {
-  "seen": 162863,
-  "base": 28748,
+  "seen": 162937,
+  "base": 28822,
   "robinhood": 134115,
-  "below_liquidity_threshold": 159483,
-  "spam_filtered": 643,
-  "scored": 2737,
-  "green": 1377,
+  "below_liquidity_threshold": 159533,
+  "spam_filtered": 652,
+  "scored": 2752,
+  "green": 1390,
   "yellow": 449,
-  "red": 911
+  "red": 913
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-21",
-   "base": 845,
-   "robinhood": 2013
+   "base": 797,
+   "robinhood": 1813
   },
   {
    "date": "2026-08-22",
@@ -125,11 +125,141 @@
   },
   {
    "date": "2026-09-11",
-   "base": 337,
+   "base": 411,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "BITCOIN",
+   "name": "AuraSaylorFortniteYoda",
+   "chain": "base",
+   "address": "0xd251167927b9016d28782770a18ece79e7778efe",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 1127311.1821,
+   "first_seen": 1789133459
+  },
+  {
+   "symbol": "rANET",
+   "name": "Arista Networks Tokenized Stock (Reality)",
+   "chain": "base",
+   "address": "0x326cf262ea9fa05d241abd14bb093102505c19d5",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12538.2,
+   "first_seen": 1789133138
+  },
+  {
+   "symbol": "DJTB",
+   "name": "Trump Media &amp; Technology Group Tokenized bStocks",
+   "chain": "base",
+   "address": "0x0f275762ba17f275173a5b7c21890485c2a75a06",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12494.764979306,
+   "first_seen": 1789132631
+  },
+  {
+   "symbol": "RACOON",
+   "name": "Racoon",
+   "chain": "base",
+   "address": "0xcd60d2938ef4fb822c2e158e57135c8877c9a276",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 5012.4176,
+   "first_seen": 1789132079
+  },
+  {
+   "symbol": "OCTN",
+   "name": "OCTANE",
+   "chain": "base",
+   "address": "0xb128ea7239b32bb8e159b9fd12cdc60ae6710d47",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 15155.3461,
+   "first_seen": 1789131802
+  },
+  {
+   "symbol": "EMBER",
+   "name": "embercurve",
+   "chain": "base",
+   "address": "0x17728b56e9feb4ab42c473a8c321db4fec724ba3",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 25163.5367,
+   "first_seen": 1789131801
+  },
+  {
+   "symbol": "USELESSLAPTOP",
+   "name": "Useless Laptop",
+   "chain": "base",
+   "address": "0xd298bf1f8d342390c0a333b9b3ab2d490cf4ffe4",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13091.7979,
+   "first_seen": 1789131435
+  },
+  {
+   "symbol": "Boingbase",
+   "name": "Boingbase",
+   "chain": "base",
+   "address": "0xb200000000000000000000f951a55c32af13d6df",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 10173.0324197903,
+   "first_seen": 1789131386
+  },
+  {
+   "symbol": "𐓎SD𖼊",
+   "name": "𐓎SD𖼊",
+   "chain": "base",
+   "address": "0xb200000000000000000000b840dd4932d93a3133",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 10213.0050486034,
+   "first_seen": 1789131384
+  },
+  {
+   "symbol": "AICAT",
+   "name": "Artificial Cat",
+   "chain": "base",
+   "address": "0x5b6cb09ded7a2d9ce9b2ac6203c930f7a2f7cdd8",
+   "score": 82,
+   "verdict": "green",
+   "liquidity_usd": 13288.3616,
+   "first_seen": 1789131292
+  },
+  {
+   "symbol": "Midge",
+   "name": "Midge",
+   "chain": "base",
+   "address": "0xb2000000000000000000005e6368cd51c12ef85e",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 10696.8089,
+   "first_seen": 1789130832
+  },
+  {
+   "symbol": "FLYBOOK",
+   "name": "Flybook",
+   "chain": "base",
+   "address": "0x7b907f684377fcbacda795c17d2572863389b098",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 74661.3149270038,
+   "first_seen": 1789130694
+  },
+  {
+   "symbol": "LADYBUG",
+   "name": "LADYBUG",
+   "chain": "base",
+   "address": "0xc4b67de6d3f46183a142c5c673252270c2075cd9",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12351.3648196487,
+   "first_seen": 1789130326
+  },
   {
    "symbol": "Flybook",
    "name": "Flybook",
@@ -199,136 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 4173.6872,
    "first_seen": 1789123138
-  },
-  {
-   "symbol": "BETH",
-   "name": "BURNETH",
-   "chain": "base",
-   "address": "0x45e80604d8446d4611000f9a66e978146bd3b594",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 9863.92,
-   "first_seen": 1789122439
-  },
-  {
-   "symbol": "BCASH",
-   "name": "Bcash",
-   "chain": "base",
-   "address": "0x0577969096dbb030800521af1d9bd34b099af765",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 5767.3215,
-   "first_seen": 1789122024
-  },
-  {
-   "symbol": "SMCI",
-   "name": "Super Micro Computer Tokenized Stock (Robinhood)",
-   "chain": "base",
-   "address": "0x78b555a4cf5bf17db96a30099b1e763265dbab71",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12338.1148033955,
-   "first_seen": 1789122023
-  },
-  {
-   "symbol": "STONKXCAT",
-   "name": "STONKxCAT",
-   "chain": "base",
-   "address": "0x6f2fbb1a4f0609893bd8b3f654a9ca7236e9a0d9",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4030.5686,
-   "first_seen": 1789121386
-  },
-  {
-   "symbol": "MOO",
-   "name": "Memory cow Moo",
-   "chain": "base",
-   "address": "0x0049382ce188d779fee13634e82936981ff2f52d",
-   "score": 65,
-   "verdict": "yellow",
-   "liquidity_usd": 201886.8274,
-   "first_seen": 1789120688
-  },
-  {
-   "symbol": "TICKER",
-   "name": "A Life Off The Ticker",
-   "chain": "base",
-   "address": "0xb2000000000000000000000d69ec00284749d1cd",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 24779.724,
-   "first_seen": 1789120686
-  },
-  {
-   "symbol": "LOOP",
-   "name": "LOOP",
-   "chain": "base",
-   "address": "0xcd004cfd0a612b92ff0fd0346adef3fcaa1ab661",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 85741.3004,
-   "first_seen": 1789120684
-  },
-  {
-   "symbol": "MUU",
-   "name": "Direxion Daily MU Bull 2X ETF (Derivatives)",
-   "chain": "base",
-   "address": "0x452f8e47b1a2da26625cbadb8df434cbd8425e69",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12332.8647915763,
-   "first_seen": 1789119591
-  },
-  {
-   "symbol": "BUBBLE",
-   "name": "Bubbles",
-   "chain": "base",
-   "address": "0xacf23b077693c0b71c5c7ce32163c4913627a187",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4560.6997,
-   "first_seen": 1789119313
-  },
-  {
-   "symbol": "ASTEROID",
-   "name": "Asteroid",
-   "chain": "base",
-   "address": "0x010852cd5f9d31e3a076b578cbe902612317547a",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 185436.9972,
-   "first_seen": 1789119219
-  },
-  {
-   "symbol": "GITLAWB",
-   "name": "GITLAWB",
-   "chain": "base",
-   "address": "0x70f5f42b39610f24bad8345e29c238aedc926f37",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 6921.78282438019,
-   "first_seen": 1789115199
-  },
-  {
-   "symbol": "SPACEXCOIN",
-   "name": "SpaceXcoin",
-   "chain": "base",
-   "address": "0x1c5e655a14ce062114c2a0fd1cf59a441eb415bf",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13010.0589,
-   "first_seen": 1789114785
-  },
-  {
-   "symbol": "IWC",
-   "name": "iWorld Cruise",
-   "chain": "base",
-   "address": "0x3df889c525cae1c10c6a43223a741595962240a9",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12329.5799,
-   "first_seen": 1789114784
   }
  ],
  "confirmed": [
@@ -494,9 +494,9 @@
   }
  ],
  "probation": {
-  "waiting": 45,
+  "waiting": 47,
   "confirmed": 14,
-  "dropped": 725
+  "dropped": 736
  },
  "recent_drains": [
   {
@@ -688,7 +688,7 @@
   "rug": 939
  },
  "watchlist_active": 6,
- "price_snapshots": 10516,
+ "price_snapshots": 10522,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
