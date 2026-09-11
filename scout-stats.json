@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-11T18:55:23Z",
- "generated_at_unix": 1789152922,
+ "generated_at": "2026-09-11T19:55:31Z",
+ "generated_at_unix": 1789156530,
  "period": {
   "start": "2026-07-15",
   "days": 58
  },
  "totals": {
-  "seen": 163356,
-  "base": 29241,
+  "seen": 163439,
+  "base": 29324,
   "robinhood": 134115,
-  "below_liquidity_threshold": 159825,
-  "spam_filtered": 720,
-  "scored": 2811,
-  "green": 1438,
+  "below_liquidity_threshold": 159890,
+  "spam_filtered": 732,
+  "scored": 2817,
+  "green": 1444,
   "yellow": 451,
   "red": 922
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-21",
-   "base": 465,
-   "robinhood": 508
+   "base": 279,
+   "robinhood": 275
   },
   {
    "date": "2026-08-22",
@@ -125,11 +125,71 @@
   },
   {
    "date": "2026-09-11",
-   "base": 830,
+   "base": 913,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "CHAMPIONS",
+   "name": "CHAMPIONS COIN",
+   "chain": "base",
+   "address": "0xb2000000000000000000004726e9d780a31fe701",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4131.6172,
+   "first_seen": 1789156402
+  },
+  {
+   "symbol": "MONEY",
+   "name": "own.money",
+   "chain": "base",
+   "address": "0x4badc06673b96d281f1074e6282f48c5093fec29",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 16049.6712,
+   "first_seen": 1789155625
+  },
+  {
+   "symbol": "COBIE",
+   "name": "Cobie mode",
+   "chain": "base",
+   "address": "0xb200000000000000000000220650944166d25367",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 26739.6329,
+   "first_seen": 1789155533
+  },
+  {
+   "symbol": "WFOI",
+   "name": "World Fund Oil Institute (WOFI)",
+   "chain": "base",
+   "address": "0x4dabeb5bbe2ce5b5899faa76d11a2289b5e5bd5c",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 203342.848709294,
+   "first_seen": 1789155441
+  },
+  {
+   "symbol": "🪰",
+   "name": "🪰",
+   "chain": "base",
+   "address": "0xb20000000000000000000031b28c5230fefb6c01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4296.752,
+   "first_seen": 1789155349
+  },
+  {
+   "symbol": "ELON",
+   "name": "ELON",
+   "chain": "base",
+   "address": "0x1d126599f9e7966f7b71134385832259e51d295e",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 76870.7967,
+   "first_seen": 1789154615
+  },
   {
    "symbol": "BABYPS",
    "name": "Babylon Bypass",
@@ -269,66 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 10053.5072420345,
    "first_seen": 1789149317
-  },
-  {
-   "symbol": "STKLYNX",
-   "name": "Stonklynx",
-   "chain": "base",
-   "address": "0x5bb4634d82fe15362d7f343baeb4ba329de7e7bc",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 17057.8670888076,
-   "first_seen": 1789149315
-  },
-  {
-   "symbol": "UNITREE",
-   "name": "Yushu Technology Co (Derivatives)",
-   "chain": "base",
-   "address": "0x7c56a6eb6b1ba669809ddf53f961c87ae1c05659",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12849.2154104053,
-   "first_seen": 1789148859
-  },
-  {
-   "symbol": "Interfold",
-   "name": "Interfold",
-   "chain": "base",
-   "address": "0xb2000000000000000000002078f3858d69ae04b5",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 10455.3237,
-   "first_seen": 1789148721
-  },
-  {
-   "symbol": "DEGEN",
-   "name": "Degen on Base",
-   "chain": "base",
-   "address": "0xb200000000000000000000c5e5f2e24fa37b2b93",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 28415.8439,
-   "first_seen": 1789148396
-  },
-  {
-   "symbol": "vAPI Network",
-   "name": "vAPI Network",
-   "chain": "base",
-   "address": "0x72a970ec73e13df5af5e3ea132499b01f672ab07",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 5501.90302502051,
-   "first_seen": 1789147525
-  },
-  {
-   "symbol": "ND4",
-   "name": "ND4",
-   "chain": "base",
-   "address": "0x6f13b0da3a5a6ca60fafd5b68161765c0e805f76",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 77505.592,
-   "first_seen": 1789147524
   }
  ],
  "confirmed": [
@@ -494,9 +494,9 @@
   }
  ],
  "probation": {
-  "waiting": 54,
+  "waiting": 50,
   "confirmed": 14,
-  "dropped": 779
+  "dropped": 789
  },
  "recent_drains": [
   {
