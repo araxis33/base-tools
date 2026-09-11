@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-11T14:34:02Z",
- "generated_at_unix": 1789137241,
+ "generated_at": "2026-09-11T15:34:07Z",
+ "generated_at_unix": 1789140846,
  "period": {
   "start": "2026-07-15",
   "days": 58
  },
  "totals": {
-  "seen": 163010,
-  "base": 28895,
+  "seen": 163091,
+  "base": 28976,
   "robinhood": 134115,
-  "below_liquidity_threshold": 159572,
-  "spam_filtered": 667,
-  "scored": 2771,
-  "green": 1401,
+  "below_liquidity_threshold": 159634,
+  "spam_filtered": 677,
+  "scored": 2780,
+  "green": 1410,
   "yellow": 451,
   "red": 919
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-21",
-   "base": 746,
-   "robinhood": 1561
+   "base": 697,
+   "robinhood": 1291
   },
   {
    "date": "2026-08-22",
@@ -125,11 +125,101 @@
   },
   {
    "date": "2026-09-11",
-   "base": 484,
+   "base": 565,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "CLANKFLY",
+   "name": "AiFi CLANKFLY",
+   "chain": "base",
+   "address": "0x58e0c45f77558e6a027842e31001c2fe0bdd6b07",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 26057.0286,
+   "first_seen": 1789140547
+  },
+  {
+   "symbol": "CAPYFI",
+   "name": "CapyFi",
+   "chain": "base",
+   "address": "0xb13ff60f4bb9b45633dd72bd299e9eed9f8fb225",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 1003104.40490432,
+   "first_seen": 1789140501
+  },
+  {
+   "symbol": "XXX",
+   "name": "cryptoxxx",
+   "chain": "base",
+   "address": "0xd705d93e4ad89b279c6f021ec24703c2f4e97989",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3760.8068,
+   "first_seen": 1789139999
+  },
+  {
+   "symbol": "STASH",
+   "name": "Stash",
+   "chain": "base",
+   "address": "0xc53e409c9d54b058aa50474fa7c57b1ca755eba3",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 9502.4438,
+   "first_seen": 1789139174
+  },
+  {
+   "symbol": "MICROFLY",
+   "name": "MICROFLY",
+   "chain": "base",
+   "address": "0xb200000000000000000000ddc1341fe6246d6e01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4085.701,
+   "first_seen": 1789139081
+  },
+  {
+   "symbol": "CME",
+   "name": "Commodity Market Exchange",
+   "chain": "base",
+   "address": "0x0aa45c8db200a61897127639c15645e4796374c8",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 8173408.8749,
+   "first_seen": 1789138579
+  },
+  {
+   "symbol": "ISTONKS",
+   "name": "iSTONKS",
+   "chain": "base",
+   "address": "0x69d76966c95c3da326f1c5a17b0a413e136e9c25",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3951.2523,
+   "first_seen": 1789137339
+  },
+  {
+   "symbol": "SOLCEX",
+   "name": "SolCex",
+   "chain": "base",
+   "address": "0x154ca15f44ac8843798ae4d7c4916d51c42087f7",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 296315.3954,
+   "first_seen": 1789137338
+  },
+  {
+   "symbol": "9MM",
+   "name": "9MM",
+   "chain": "base",
+   "address": "0xe290816384416fb1db9225e176b716346db9f9fe",
+   "score": 72,
+   "verdict": "green",
+   "liquidity_usd": 2963.1512,
+   "first_seen": 1789137337
+  },
   {
    "symbol": "KGEN",
    "name": "KGEN",
@@ -239,96 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 4100.52579363748,
    "first_seen": 1789134610
-  },
-  {
-   "symbol": "FLYBOOK",
-   "name": "The Flybook",
-   "chain": "base",
-   "address": "0x73b4824d0d144ec5e9a908ff4baf8a40a441656e",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 75795.6151493272,
-   "first_seen": 1789134608
-  },
-  {
-   "symbol": "KWAK",
-   "name": "Kwak",
-   "chain": "base",
-   "address": "0xe6156e9e68de24c0d8f71bd0c61b12c4c2ad2b65",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 2021.4552,
-   "first_seen": 1789133869
-  },
-  {
-   "symbol": "BITCOIN",
-   "name": "AuraSaylorFortniteYoda",
-   "chain": "base",
-   "address": "0xd251167927b9016d28782770a18ece79e7778efe",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 1127311.1821,
-   "first_seen": 1789133459
-  },
-  {
-   "symbol": "rANET",
-   "name": "Arista Networks Tokenized Stock (Reality)",
-   "chain": "base",
-   "address": "0x326cf262ea9fa05d241abd14bb093102505c19d5",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12538.2,
-   "first_seen": 1789133138
-  },
-  {
-   "symbol": "DJTB",
-   "name": "Trump Media &amp; Technology Group Tokenized bStocks",
-   "chain": "base",
-   "address": "0x0f275762ba17f275173a5b7c21890485c2a75a06",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12494.764979306,
-   "first_seen": 1789132631
-  },
-  {
-   "symbol": "RACOON",
-   "name": "Racoon",
-   "chain": "base",
-   "address": "0xcd60d2938ef4fb822c2e158e57135c8877c9a276",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 5012.4176,
-   "first_seen": 1789132079
-  },
-  {
-   "symbol": "OCTN",
-   "name": "OCTANE",
-   "chain": "base",
-   "address": "0xb128ea7239b32bb8e159b9fd12cdc60ae6710d47",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 15155.3461,
-   "first_seen": 1789131802
-  },
-  {
-   "symbol": "EMBER",
-   "name": "embercurve",
-   "chain": "base",
-   "address": "0x17728b56e9feb4ab42c473a8c321db4fec724ba3",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 25163.5367,
-   "first_seen": 1789131801
-  },
-  {
-   "symbol": "USELESSLAPTOP",
-   "name": "Useless Laptop",
-   "chain": "base",
-   "address": "0xd298bf1f8d342390c0a333b9b3ab2d490cf4ffe4",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13091.7979,
-   "first_seen": 1789131435
   }
  ],
  "confirmed": [
@@ -494,9 +494,9 @@
   }
  ],
  "probation": {
-  "waiting": 51,
+  "waiting": 47,
   "confirmed": 14,
-  "dropped": 745
+  "dropped": 758
  },
  "recent_drains": [
   {
@@ -688,7 +688,7 @@
   "rug": 939
  },
  "watchlist_active": 6,
- "price_snapshots": 10516,
+ "price_snapshots": 10510,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
