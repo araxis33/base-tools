@@ -401,12 +401,20 @@ function loadPools(){
       });
       if(!mine.length){ out[r.t.s] = null; return; }
       mine.sort(function(a,b){ return b.liq - a.liq; });
-      var deep = mine[0];
-      /* A pool more than 50% away from the deepest pool's price is not a
-         venue, it is a trap: nobody is arbitraging it because there is
-         nothing in it. Keep it, but keep it out of the maths. */
-      var sane  = mine.filter(function(p){ return p.price > deep.price*0.5 && p.price < deep.price*1.5; });
-      var traps = mine.filter(function(p){ return !(p.price > deep.price*0.5 && p.price < deep.price*1.5); });
+      /* A pool far away from the others is not a venue, it is a trap: nobody
+         is arbitraging it because nobody trades there. The reference cannot be
+         the deepest pool, though — a pool quoting forty times the real price
+         reports forty times the liquidity to match, so the trap can sit at the
+         top. TSLAc did exactly that on 11.09: $14,460 in a pool holding $264k
+         of paper, against two real pools at $364. The median price is immune
+         to one outlier, so it decides who is sane; depth only ranks the
+         survivors. */
+      var ordered = mine.map(function(p){ return p.price; }).sort(function(a,b){ return a-b; });
+      var ref = ordered[Math.floor(ordered.length/2)];
+      var isSane = function(p){ return p.price > ref*0.5 && p.price < ref*1.5; };
+      var sane  = mine.filter(isSane);
+      var traps = mine.filter(function(p){ return !isSane(p); });
+      var deep = sane[0];
       var worst = sane.reduce(function(a,b){ return b.price > a.price ? b : a; }, sane[0]);
       out[r.t.s] = {
         deep: deep, worst: worst, sane: sane, traps: traps,
