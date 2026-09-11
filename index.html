@@ -294,7 +294,14 @@
     padding:14px; font-size:var(--fs-sm); font-weight:800; cursor:pointer; font-family:inherit;
   }
   .buy-cta:disabled{opacity:0.5; cursor:default;}
+  .buy-link{
+    display:block; text-align:center; border:1px solid var(--border);
+    border-radius:var(--r-md); padding:12px; font-size:var(--fs-xs); font-weight:800;
+    color:var(--muted); transition:border-color var(--t), color var(--t);
+  }
+  .buy-link:hover{border-color:var(--blue); color:var(--blue-text);}
   .buy-status{font-size:var(--fs-xs); color:var(--muted); font-weight:600;}
+  .buy-status.good{color:var(--green);}
   .buy-status.bad{color:var(--red);}
   .buy-status a{color:var(--blue-text); text-decoration:underline;}
   .buy-note{font-size:var(--fs-xxs); color:var(--muted2); line-height:1.5;}
@@ -753,8 +760,9 @@
     <div class="trend-addr" id="buy-addr"></div>
     <div class="buy-quote" id="buy-quote">Enter an amount.</div>
     <div class="buy-fee" id="buy-fee"></div>
-    <button class="buy-cta" id="buy-action" type="button">Connect wallet</button>
     <div class="buy-status" id="buy-status"></div>
+    <button class="buy-cta" id="buy-action" type="button">Connect wallet</button>
+    <a class="buy-link" id="buy-tx" target="_blank" rel="noopener" hidden>View the transaction</a>
     <p class="buy-note">Quoted across every pool on Base by KyberSwap and signed in your own wallet. This page never holds your funds and never asks for a key.</p>
   </div>
 </div>
@@ -1279,7 +1287,7 @@ const PRESETS = ["0.005", "0.01", "0.025", "0.05"];
 const AMOUNT_RE = new RegExp("^[0-9]*[.]?[0-9]*$");
 const REJECTED_RE = new RegExp("user rejected|denied|User denied", "i");
 
-const buy = { token:null, symbol:"", account:null, summary:null, busy:false, seq:0, decimals:{} };
+const buy = { token:null, symbol:"", account:null, summary:null, busy:false, seq:0, decimals:{}, done:null };
 
 function ethProvider(){
   const p = window.ethereum;
@@ -1329,7 +1337,8 @@ async function decimalsOf(token){
 function buyEl(id){ return document.getElementById(id); }
 
 function openBuy(token, symbol, logo){
-  buy.token = token; buy.symbol = symbol; buy.summary = null;
+  buy.token = token; buy.symbol = symbol; buy.summary = null; buy.done = null;
+  buyEl("buy-tx").hidden = true;
   buyEl("buy-title").textContent = "Buy " + symbol;
   buyEl("buy-logo").src = logo || "";
   buyEl("buy-logo").style.visibility = logo ? "visible" : "hidden";
@@ -1362,6 +1371,9 @@ function renderBuyCta(){
   const cta = buyEl("buy-action");
   if (buy.busy){ cta.disabled = true; return; }
   cta.disabled = false;
+  // Once the tokens have landed the only thing left to do is leave, so the
+  // button that got you here says so rather than inviting a second purchase.
+  if (buy.done){ cta.textContent = "Done"; return; }
   if (!buy.account){ cta.textContent = "Connect wallet"; return; }
   cta.textContent = buy.summary ? "Buy " + buy.symbol : "Enter an amount";
   cta.disabled = !buy.summary;
@@ -1408,9 +1420,9 @@ async function quoteBuy(){
   renderBuyCta();
 }
 
-function buyStatus(html, bad){
+function buyStatus(html, bad, good){
   const el = buyEl("buy-status");
-  el.className = "buy-status" + (bad ? " bad" : "");
+  el.className = "buy-status" + (bad ? " bad" : "") + (good ? " good" : "");
   el.innerHTML = html;
 }
 
@@ -1444,6 +1456,7 @@ async function waitForReceipt(p, hash){
 
 async function doBuy(){
   if (buy.busy) return;
+  if (buy.done){ closeBuy(); return; }
   if (!buy.account){
     buy.busy = true; renderBuyCta();
     try { await connectWallet(); }
@@ -1485,10 +1498,15 @@ async function doBuy(){
         data: b.data.data + BUILDER_SUFFIX
       }]
     });
-    const link = '<a href="https://basescan.org/tx/' + hash + '" target="_blank" rel="noopener">';
-    buyStatus("Sent. " + link + "Watch it confirm</a>.");
+    const tx = buyEl("buy-tx");
+    tx.href = "https://basescan.org/tx/" + hash;
+    tx.textContent = "Watch it confirm on Basescan";
+    tx.hidden = false;
+    buyStatus("Sent. Waiting for the block…");
     await waitForReceipt(p, hash);
-    buyStatus("Done — " + buy.symbol + " is in your wallet. " + link + "Receipt</a>.");
+    buy.done = hash;
+    tx.textContent = "View the transaction on Basescan";
+    buyStatus(buy.symbol + " is in your wallet.", false, true);
   } catch(e){
     const m = (e && (e.message || String(e))) || "";
     buyStatus(REJECTED_RE.test(m) ? "Cancelled in the wallet." : (m || "The swap failed."), true);
@@ -1515,6 +1533,7 @@ buyEl("buy-presets").addEventListener("click", function(e){
 let quoteTimer = null;
 buyEl("buy-amount").addEventListener("input", function(){
   document.querySelectorAll(".buy-preset").forEach(function(x){ x.classList.remove("on"); });
+  if (buy.done){ buy.done = null; buyEl("buy-tx").hidden = true; buyStatus(""); }
   clearTimeout(quoteTimer);
   quoteTimer = setTimeout(quoteBuy, 400);
 });
