@@ -234,6 +234,63 @@
   .trend-chg{font-size:var(--fs-xs); font-weight:800;}
   .trend-chg.pos{color:var(--green);}
   .trend-chg.neg{color:var(--red);}
+  /* Quiet until the row is hovered: a board is a list of prices, not a row of
+     sales pitches. On touch there is no hover, so it stays visible but muted. */
+  .buy-btn{
+    flex-shrink:0; border:1px solid var(--border); background:transparent;
+    color:var(--muted); font-size:var(--fs-xxs); font-weight:800; letter-spacing:0.02em;
+    padding:7px 12px; border-radius:999px; cursor:pointer;
+    transition:background var(--t), color var(--t), border-color var(--t);
+  }
+  .trend-row:hover .buy-btn{border-color:var(--blue); color:var(--blue-text);}
+  .buy-btn:hover, .buy-btn:focus-visible{background:var(--blue); color:var(--white); border-color:var(--blue);}
+
+  /* buy dialog */
+  .modal-back{
+    position:fixed; inset:0; z-index:100; padding:16px;
+    background:rgba(4,8,22,0.74); display:flex; align-items:center; justify-content:center;
+  }
+  .modal{
+    width:100%; max-width:400px; max-height:92vh; overflow:auto;
+    background:var(--card); border:1px solid var(--border-hover); border-radius:var(--r-lg);
+    padding:20px; display:flex; flex-direction:column; gap:14px;
+  }
+  .modal-head{display:flex; align-items:center; gap:12px;}
+  .modal-title{font-weight:800; font-size:var(--fs-md);}
+  .modal-sub{font-size:var(--fs-xxs); color:var(--muted2); font-weight:600;}
+  .modal-x{
+    margin-left:auto; background:none; border:none; color:var(--muted2);
+    font-size:var(--fs-md); cursor:pointer; padding:8px; margin-right:-8px; line-height:1;
+  }
+  .modal-x:hover{color:var(--text);}
+  .buy-presets{display:flex; gap:8px;}
+  .buy-preset{
+    flex:1; border:1px solid var(--border); background:transparent; color:var(--muted);
+    border-radius:var(--r-sm); padding:8px 0; font-size:var(--fs-xs); font-weight:700; cursor:pointer;
+  }
+  .buy-preset:hover{border-color:var(--blue); color:var(--blue-text);}
+  .buy-preset.on{background:var(--blue); border-color:var(--blue); color:var(--white);}
+  .buy-field{
+    display:flex; align-items:center; gap:10px; border:1px solid var(--border);
+    border-radius:var(--r-md); padding:12px 14px; background:var(--bg);
+  }
+  .buy-field input{
+    flex:1; min-width:0; background:none; border:none; outline:none;
+    color:var(--text); font-size:var(--fs-md); font-weight:800; font-family:inherit;
+  }
+  .buy-unit{font-size:var(--fs-xs); font-weight:800; color:var(--muted2);}
+  .buy-quote{font-size:var(--fs-sm); color:var(--text); font-weight:700; min-height:38px;}
+  .buy-quote .dim{display:block; font-size:var(--fs-xxs); color:var(--muted2); font-weight:600; margin-top:4px;}
+  .buy-fee{font-size:var(--fs-xxs); color:var(--green); font-weight:700;}
+  .buy-cta{
+    background:var(--blue); color:var(--white); border:none; border-radius:var(--r-md);
+    padding:14px; font-size:var(--fs-sm); font-weight:800; cursor:pointer; font-family:inherit;
+  }
+  .buy-cta:disabled{opacity:0.5; cursor:default;}
+  .buy-status{font-size:var(--fs-xs); color:var(--muted); font-weight:600;}
+  .buy-status.bad{color:var(--red);}
+  .buy-status a{color:var(--blue-text); text-decoration:underline;}
+  .buy-note{font-size:var(--fs-xxs); color:var(--muted2); line-height:1.5;}
   .trend-empty{padding:24px 16px; color:var(--muted); font-size:var(--fs-sm); text-align:center;}
   /* A dead end told people to "refresh the page later" and left them to do it
      by hand. The board can reload on its own, so it offers to. */
@@ -424,6 +481,9 @@
      type, CTA padding -- and hide the words "Built by " so the four links fit
      on one row under the logo. */
   @media(max-width:620px){
+    /* 31px tall is a miss on a phone; the extra padding takes the tap target
+       to 40 without changing how the button looks. */
+    .buy-btn{padding:11px 14px;}
     header .wrap{height:auto; flex-wrap:wrap; gap:8px; padding-top:12px; padding-bottom:12px;}
     nav{gap:12px; font-size:var(--fs-xs); flex-wrap:wrap;}
     .logo{font-size:var(--fs-md);}
@@ -662,6 +722,29 @@
     </span>
   </div>
 </footer>
+
+<div class="modal-back" id="buy-back" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="buy-title">
+    <div class="modal-head">
+      <img class="trend-logo" id="buy-logo" alt="" width="24" height="24">
+      <div>
+        <div class="modal-title" id="buy-title">Buy</div>
+        <div class="modal-sub" id="buy-sub">on Base, with ETH</div>
+      </div>
+      <button class="modal-x" id="buy-close" type="button" aria-label="Close">&#215;</button>
+    </div>
+    <div class="buy-presets" id="buy-presets"></div>
+    <div class="buy-field">
+      <input id="buy-amount" type="text" inputmode="decimal" value="0.01" aria-label="Amount of ETH to spend">
+      <span class="buy-unit">ETH</span>
+    </div>
+    <div class="buy-quote" id="buy-quote">Enter an amount.</div>
+    <div class="buy-fee" id="buy-fee"></div>
+    <button class="buy-cta" id="buy-action" type="button">Connect wallet</button>
+    <div class="buy-status" id="buy-status"></div>
+    <p class="buy-note">Quoted across every pool on Base by KyberSwap and signed in your own wallet. This page never holds your funds and never asks for a key.</p>
+  </div>
+</div>
 
 <script>
 // ---------- Directory data ----------
@@ -1101,6 +1184,7 @@ function renderColumn(elId, items, emptyMsg){
         <div class="trend-price">${fmtPrice(t.price)}</div>
         ${chgHtml(t.change24h)}
       </a>
+      <button class="buy-btn" type="button" data-buy="${t.contract}" data-sym="${t.symbol}" data-logo="${t.logo}">Buy</button>
     </div>
   `;
   }).join("");
@@ -1168,7 +1252,263 @@ document.getElementById("trend-grid").addEventListener("click", (e)=>{
 });
 
 loadBoards();
+
+/* ---------------- buying ----------------
+   One transaction and no approval: paying with native ETH means there is no
+   allowance to grant, which removes the step that usually breaks. Routes come
+   from KyberSwap (no key, every pool on Base), the swap is signed in the
+   user's own wallet, and the calldata carries the ERC-8021 builder suffix. */
+const CHAIN_HEX = "0x2105";                 // Base, 8453
+const KYBER = "https://aggregator-api.kyberswap.com/base/api/v1";
+const NATIVE_ETH = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
+const BASE_RPC = "https://mainnet.base.org";
+const BUILDER_SUFFIX = "62635f6d726b7775326d300b0080218021802180218021802180218021";
+const SLIPPAGE_BPS = 100;                   // 1%
+// Switched on the day there is volume worth charging for. Until then the site
+// takes nothing and says so, which is the only edge a new page has over Matcha.
+const FEE_WALLET = "0x2ab08a231389fD6c1cb368769aE5Ba3f999209e4";
+const FEE_BPS = 0;
+const PRESETS = ["0.005", "0.01", "0.025", "0.05"];
+const AMOUNT_RE = new RegExp("^[0-9]*[.]?[0-9]*$");
+const REJECTED_RE = new RegExp("user rejected|denied|User denied", "i");
+
+const buy = { token:null, symbol:"", account:null, summary:null, busy:false, seq:0, decimals:{} };
+
+function ethProvider(){
+  const p = window.ethereum;
+  if (!p) return null;
+  if (p.providers && p.providers.length){
+    return p.providers.find(x=>x.isCoinbaseWallet) || p.providers[0];
+  }
+  return p;
+}
+
+function toUnits(str, dec){
+  const clean = String(str).trim().replace(",", ".");
+  if (clean === "" || clean === "." || !AMOUNT_RE.test(clean)) return null;
+  const parts = clean.split(".");
+  const whole = parts[0] || "0";
+  const frac = parts[1] || "";
+  const padded = (frac + "0".repeat(dec)).slice(0, dec);
+  const v = BigInt(whole + padded);
+  return v > 0n ? v : null;
+}
+
+function fromUnits(v, dec){
+  const s = v.toString().padStart(dec + 1, "0");
+  const n = Number(s.slice(0, -dec) + "." + s.slice(-dec));
+  if (n >= 1000) return n.toLocaleString("en-US", { maximumFractionDigits: 0 });
+  if (n >= 1) return n.toLocaleString("en-US", { maximumFractionDigits: 4 });
+  return n.toLocaleString("en-US", { maximumFractionDigits: 8 });
+}
+
+// decimals() off a public node, so the dialog can say how many tokens you get
+// before a wallet is anywhere near the page.
+async function decimalsOf(token){
+  if (buy.decimals[token] !== undefined) return buy.decimals[token];
+  try {
+    const res = await fetch(BASE_RPC, {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({ jsonrpc:"2.0", id:1, method:"eth_call", params:[{ to:token, data:"0x313ce567" }, "latest"] })
+    });
+    const j = await res.json();
+    const d = (j && j.result && j.result !== "0x") ? parseInt(j.result, 16) : 18;
+    buy.decimals[token] = d;
+    return d;
+  } catch(e){ return 18; }
+}
+
+function buyEl(id){ return document.getElementById(id); }
+
+function openBuy(token, symbol, logo){
+  buy.token = token; buy.symbol = symbol; buy.summary = null;
+  buyEl("buy-title").textContent = "Buy " + symbol;
+  buyEl("buy-logo").src = logo || "";
+  buyEl("buy-logo").style.visibility = logo ? "visible" : "hidden";
+  buyEl("buy-status").textContent = "";
+  buyEl("buy-status").className = "buy-status";
+  buyEl("buy-fee").textContent = FEE_BPS > 0
+    ? "Fee " + (FEE_BPS/100).toFixed(2) + "% to this site, already counted in the number above."
+    : "No fee from this site. You get the aggregator's price, minus Base gas.";
+  buyEl("buy-presets").innerHTML = PRESETS.map(function(v){
+    return '<button class="buy-preset' + (v === "0.01" ? " on" : "") + '" type="button" data-preset="' + v + '">' + v + ' ETH</button>';
+  }).join("");
+  buyEl("buy-amount").value = "0.01";
+  buyEl("buy-back").hidden = false;
+  document.body.style.overflow = "hidden";
+  renderBuyCta();
+  quoteBuy();
+}
+
+function closeBuy(){
+  buyEl("buy-back").hidden = true;
+  document.body.style.overflow = "";
+  buy.seq++;                                 // strand any quote still in flight
+}
+
+function renderBuyCta(){
+  const cta = buyEl("buy-action");
+  if (buy.busy){ cta.disabled = true; return; }
+  cta.disabled = false;
+  if (!buy.account){ cta.textContent = "Connect wallet"; return; }
+  cta.textContent = buy.summary ? "Buy " + buy.symbol : "Enter an amount";
+  cta.disabled = !buy.summary;
+}
+
+async function quoteBuy(){
+  const seq = ++buy.seq;
+  const wei = toUnits(buyEl("buy-amount").value, 18);
+  const out = buyEl("buy-quote");
+  buy.summary = null;
+  if (!wei){ out.textContent = "Enter an amount."; renderBuyCta(); return; }
+  out.textContent = "Finding the best route…";
+  renderBuyCta();
+  try {
+    const url = KYBER + "/routes?tokenIn=" + NATIVE_ETH + "&tokenOut=" + buy.token + "&amountIn=" + wei + "&gasInclude=true";
+    const pair = await Promise.all([fetch(url), decimalsOf(buy.token)]);
+    const j = await pair[0].json();
+    const dec = pair[1];
+    if (seq !== buy.seq) return;             // a newer keystroke already won
+    if (!j || j.code !== 0 || !j.data) throw new Error("No route for this amount.");
+    const sum = j.data.routeSummary;
+    buy.summary = sum;
+    const got = fromUnits(BigInt(sum.amountOut), dec);
+    const inUsd = parseFloat(sum.amountInUsd);
+    const outUsd = parseFloat(sum.amountOutUsd);
+    // What the trade costs in the only terms that matter: dollars in against
+    // dollars out. Pool fees and price impact are already inside that gap.
+    let tail = "";
+    if (inUsd > 0 && outUsd > 0){
+      const cost = (inUsd - outUsd) / inUsd * 100;
+      // A negative gap is not profit, it is two price feeds disagreeing — the
+      // aggregator values the token slightly higher than the pool the board
+      // quoted. Claiming a gain there would be a lie, so only a real cost is
+      // named and the two dollar figures are left to speak for themselves.
+      if (cost > 0) tail = " · " + cost.toFixed(2) + "% to fees and price impact";
+    }
+    out.innerHTML = "≈ " + got + " " + buy.symbol +
+      '<span class="dim">' + fmtPrice(inUsd) + " in → " + fmtPrice(outUsd) + " out" + tail + "</span>";
+  } catch(e){
+    if (seq !== buy.seq) return;
+    buy.summary = null;
+    out.textContent = e.message || "Could not price this swap.";
+  }
+  renderBuyCta();
+}
+
+function buyStatus(html, bad){
+  const el = buyEl("buy-status");
+  el.className = "buy-status" + (bad ? " bad" : "");
+  el.innerHTML = html;
+}
+
+async function connectWallet(){
+  const p = ethProvider();
+  if (!p) throw new Error("No wallet in this browser. Open the page inside Coinbase Wallet, or install one.");
+  const accounts = await p.request({ method:"eth_requestAccounts" });
+  buy.account = accounts[0];
+  const chain = await p.request({ method:"eth_chainId" });
+  if (chain !== CHAIN_HEX){
+    await p.request({ method:"wallet_switchEthereumChain", params:[{ chainId: CHAIN_HEX }] });
+  }
+  buyStatus("Connected " + shortAddr(buy.account));
+}
+
+async function waitForReceipt(p, hash){
+  for (let i = 0; i < 60; i++){
+    try {
+      const r = await p.request({ method:"eth_getTransactionReceipt", params:[hash] });
+      if (r && r.blockNumber){
+        if (r.status === "0x0") throw new Error("The swap reverted onchain. Nothing left your wallet but gas.");
+        return r;
+      }
+    } catch(e){
+      if (e && e.message && e.message.indexOf("reverted") !== -1) throw e;
+    }
+    await new Promise(function(r){ setTimeout(r, 2000); });
+  }
+  throw new Error("Timed out waiting for the confirmation.");
+}
+
+async function doBuy(){
+  if (buy.busy) return;
+  if (!buy.account){
+    buy.busy = true; renderBuyCta();
+    try { await connectWallet(); }
+    catch(e){ buyStatus(e.message || "The wallet refused the connection.", true); }
+    buy.busy = false; renderBuyCta();
+    if (buy.account) quoteBuy();
+    return;
+  }
+  if (!buy.summary) return;
+  buy.busy = true; renderBuyCta();
+  buyStatus("Building the swap…");
+  try {
+    const p = ethProvider();
+    const body = {
+      routeSummary: buy.summary,
+      sender: buy.account,
+      recipient: buy.account,
+      slippageTolerance: SLIPPAGE_BPS,
+      source: "deftools.xyz"
+    };
+    if (FEE_BPS > 0){
+      body.extraFee = {
+        feeAmount: String(FEE_BPS), chargeFeeBy: "currency_in",
+        isInBps: true, feeReceiver: FEE_WALLET
+      };
+    }
+    const res = await fetch(KYBER + "/route/build", {
+      method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(body)
+    });
+    const b = await res.json();
+    if (!b || b.code !== 0 || !b.data) throw new Error("Could not build this swap. Try a different amount.");
+    buyStatus("Confirm it in your wallet.");
+    const hash = await p.request({
+      method:"eth_sendTransaction",
+      params:[{
+        from: buy.account,
+        to: b.data.routerAddress,
+        value: "0x" + BigInt(buy.summary.amountIn).toString(16),
+        data: b.data.data + BUILDER_SUFFIX
+      }]
+    });
+    const link = '<a href="https://basescan.org/tx/' + hash + '" target="_blank" rel="noopener">';
+    buyStatus("Sent. " + link + "Watch it confirm</a>.");
+    await waitForReceipt(p, hash);
+    buyStatus("Done — " + buy.symbol + " is in your wallet. " + link + "Receipt</a>.");
+  } catch(e){
+    const m = (e && (e.message || String(e))) || "";
+    buyStatus(REJECTED_RE.test(m) ? "Cancelled in the wallet." : (m || "The swap failed."), true);
+  }
+  buy.busy = false; renderBuyCta();
+}
+
+document.getElementById("trend-grid").addEventListener("click", function(e){
+  const b = e.target.closest("[data-buy]");
+  if (!b) return;
+  openBuy(b.dataset.buy, b.dataset.sym, b.dataset.logo);
+});
+buyEl("buy-close").addEventListener("click", closeBuy);
+buyEl("buy-back").addEventListener("click", function(e){ if (e.target.id === "buy-back") closeBuy(); });
+document.addEventListener("keydown", function(e){ if (e.key === "Escape" && !buyEl("buy-back").hidden) closeBuy(); });
+buyEl("buy-action").addEventListener("click", doBuy);
+buyEl("buy-presets").addEventListener("click", function(e){
+  const b = e.target.closest("[data-preset]");
+  if (!b) return;
+  buyEl("buy-amount").value = b.dataset.preset;
+  document.querySelectorAll(".buy-preset").forEach(function(x){ x.classList.toggle("on", x === b); });
+  quoteBuy();
+});
+let quoteTimer = null;
+buyEl("buy-amount").addEventListener("input", function(){
+  document.querySelectorAll(".buy-preset").forEach(function(x){ x.classList.remove("on"); });
+  clearTimeout(quoteTimer);
+  quoteTimer = setTimeout(quoteBuy, 400);
+});
 </script>
+
 
 </body>
 </html>
