@@ -1423,6 +1423,25 @@ function openTrade(token, symbol, logo, mode){
   buyEl("buy-back").hidden = false;
   document.body.style.overflow = "hidden";
   setMode(mode || "buy");
+  adoptExistingAccount();
+}
+
+// A wallet that has been to this site before still holds the permission, and
+// eth_accounts asks for it without opening anything. Without this the sell
+// dialog met people who were already connected with "connect a wallet", and
+// the share buttons refused to do arithmetic on a balance it could have read.
+async function adoptExistingAccount(){
+  const p = ethProvider();
+  if (!p || trade.account) return null;
+  try {
+    const accounts = await p.request({ method:"eth_accounts" });
+    if (!accounts || !accounts.length) return null;
+    trade.account = accounts[0];
+    buyStatus("Connected " + shortAddr(trade.account));
+    renderCta();
+    if (trade.mode === "sell") refreshBalance();
+    return trade.account;
+  } catch(e){ return null; }
 }
 
 // Everything that differs between the two directions is set in one place, so
@@ -1569,11 +1588,19 @@ async function connectWallet(){
   if (!p) throw new Error("No wallet in this browser. Open the page inside Coinbase Wallet, or install one.");
   const accounts = await p.request({ method:"eth_requestAccounts" });
   trade.account = accounts[0];
-  const chain = await p.request({ method:"eth_chainId" });
-  if (chain !== CHAIN_HEX){
-    await p.request({ method:"wallet_switchEthereumChain", params:[{ chainId: CHAIN_HEX }] });
-  }
+  await ensureBaseChain(p);
   buyStatus("Connected " + shortAddr(trade.account));
+}
+
+// Balances and quotes are read straight off a Base node, so they are right no
+// matter what network the wallet is sitting on — which means an adopted
+// account can reach the signing step still pointed somewhere else. Every
+// transaction checks the network for itself rather than trusting the connect
+// button to have done it.
+async function ensureBaseChain(p){
+  const chain = await p.request({ method:"eth_chainId" });
+  if (chain === CHAIN_HEX) return;
+  await p.request({ method:"wallet_switchEthereumChain", params:[{ chainId: CHAIN_HEX }] });
 }
 
 async function waitForReceipt(p, hash, what){
@@ -1661,6 +1688,7 @@ async function doTrade(){
   buyStatus("Building the swap…");
   try {
     const p = ethProvider();
+    await ensureBaseChain(p);
     let built = await buildSwap();
     if (sell){
       const need = BigInt(trade.summary.amountIn);
@@ -1725,17 +1753,37 @@ buyEl("buy-presets").addEventListener("click", async function(e){
     quoteTrade();
     return;
   }
+  // A share is a share of your own balance, so the button quietly does the
+  // connecting the number needs rather than telling you to go and do it.
+  if (!trade.account) await adoptExistingAccount();
   if (!trade.account){
-    buyStatus("Connect a wallet first — a share is taken from your own balance.");
-    b.classList.remove("on");
-    return;
+    try { await connectWallet(); }
+    catch(e){ buyStatus(e.message || "The wallet refused the connection.", true); }
   }
+  if (!trade.account){ b.classList.remove("on"); return; }
   if (trade.balance === null) await refreshBalance();
   if (!trade.balance){ b.classList.remove("on"); return; }
   const dec = await decimalsOf(trade.token);
   buyEl("buy-amount").value = unitsToInput(trade.balance * BigInt(b.dataset.pct) / 100n, dec);
   quoteTrade();
 });
+// Switching accounts in the wallet used to leave someone else's balance on
+// screen, with a sell button willing to act on it.
+(function watchWallet(){
+  const p = ethProvider();
+  if (!p || !p.on) return;
+  p.on("accountsChanged", function(accounts){
+    trade.account = (accounts && accounts[0]) || null;
+    trade.balance = null;
+    buyStatus(trade.account ? "Connected " + shortAddr(trade.account) : "Wallet disconnected.");
+    if (!buyEl("buy-back").hidden){
+      if (trade.mode === "sell") refreshBalance();
+      quoteTrade();
+    }
+    renderCta();
+  });
+})();
+
 let quoteTimer = null;
 buyEl("buy-amount").addEventListener("input", function(){
   document.querySelectorAll(".buy-preset").forEach(function(x){ x.classList.remove("on"); });
