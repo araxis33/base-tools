@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-11T09:14:38Z",
- "generated_at_unix": 1789118077,
+ "generated_at": "2026-09-11T10:14:48Z",
+ "generated_at_unix": 1789121686,
  "period": {
   "start": "2026-07-15",
   "days": 58
  },
  "totals": {
-  "seen": 162645,
-  "base": 28530,
+  "seen": 162736,
+  "base": 28621,
   "robinhood": 134115,
-  "below_liquidity_threshold": 159316,
-  "spam_filtered": 609,
-  "scored": 2720,
-  "green": 1361,
-  "yellow": 448,
+  "below_liquidity_threshold": 159388,
+  "spam_filtered": 621,
+  "scored": 2727,
+  "green": 1367,
+  "yellow": 449,
   "red": 911
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-21",
-   "base": 931,
-   "robinhood": 2368
+   "base": 879,
+   "robinhood": 2168
   },
   {
    "date": "2026-08-22",
@@ -125,11 +125,81 @@
   },
   {
    "date": "2026-09-11",
-   "base": 119,
+   "base": 210,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "STONKXCAT",
+   "name": "STONKxCAT",
+   "chain": "base",
+   "address": "0x6f2fbb1a4f0609893bd8b3f654a9ca7236e9a0d9",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4030.5686,
+   "first_seen": 1789121386
+  },
+  {
+   "symbol": "MOO",
+   "name": "Memory cow Moo",
+   "chain": "base",
+   "address": "0x0049382ce188d779fee13634e82936981ff2f52d",
+   "score": 65,
+   "verdict": "yellow",
+   "liquidity_usd": 201886.8274,
+   "first_seen": 1789120688
+  },
+  {
+   "symbol": "TICKER",
+   "name": "A Life Off The Ticker",
+   "chain": "base",
+   "address": "0xb2000000000000000000000d69ec00284749d1cd",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 24779.724,
+   "first_seen": 1789120686
+  },
+  {
+   "symbol": "LOOP",
+   "name": "LOOP",
+   "chain": "base",
+   "address": "0xcd004cfd0a612b92ff0fd0346adef3fcaa1ab661",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 85741.3004,
+   "first_seen": 1789120684
+  },
+  {
+   "symbol": "MUU",
+   "name": "Direxion Daily MU Bull 2X ETF (Derivatives)",
+   "chain": "base",
+   "address": "0x452f8e47b1a2da26625cbadb8df434cbd8425e69",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12332.8647915763,
+   "first_seen": 1789119591
+  },
+  {
+   "symbol": "BUBBLE",
+   "name": "Bubbles",
+   "chain": "base",
+   "address": "0xacf23b077693c0b71c5c7ce32163c4913627a187",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4560.6997,
+   "first_seen": 1789119313
+  },
+  {
+   "symbol": "ASTEROID",
+   "name": "Asteroid",
+   "chain": "base",
+   "address": "0x010852cd5f9d31e3a076b578cbe902612317547a",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 185436.9972,
+   "first_seen": 1789119219
+  },
   {
    "symbol": "GITLAWB",
    "name": "GITLAWB",
@@ -259,76 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 4902.7293,
    "first_seen": 1789071056
-  },
-  {
-   "symbol": "CobieWallet",
-   "name": "cobie wallet",
-   "chain": "base",
-   "address": "0xb20000000000000000000076b61ab80f0cea2930",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 16010.9479,
-   "first_seen": 1789071008
-  },
-  {
-   "symbol": "Elon Coin",
-   "name": "ELON",
-   "chain": "base",
-   "address": "0xe2573b9e55df5a105e600d7c9b1db130093163b6",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 18218.5565,
-   "first_seen": 1789071007
-  },
-  {
-   "symbol": "RocketFrog",
-   "name": "Rocket Frog",
-   "chain": "base",
-   "address": "0x83a354957eb318d78be2a576edcca61724b5ec29",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 14343.2247,
-   "first_seen": 1789070732
-  },
-  {
-   "symbol": "SUMMER",
-   "name": "sol",
-   "chain": "base",
-   "address": "0x631b637abc97604371b6b71b1115ac81750196ef",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 6211.7291,
-   "first_seen": 1789069361
-  },
-  {
-   "symbol": "BM",
-   "name": "Basemoon",
-   "chain": "base",
-   "address": "0x2b09f7dcf82711442747c982c0fc12149e54cb70",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 3946.569,
-   "first_seen": 1789068397
-  },
-  {
-   "symbol": "GOAT",
-   "name": "Longhorn",
-   "chain": "base",
-   "address": "0xbb152cc1bb5966782aaae218fc03b77628d2c8d4",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4763.6076,
-   "first_seen": 1789068305
-  },
-  {
-   "symbol": "BAST",
-   "name": "BaseAsset",
-   "chain": "base",
-   "address": "0x10a74bef5a749b82c1938d1be09234992b8b8e75",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 49860.4811,
-   "first_seen": 1789067804
   }
  ],
  "confirmed": [
@@ -494,9 +494,9 @@
   }
  ],
  "probation": {
-  "waiting": 45,
+  "waiting": 41,
   "confirmed": 14,
-  "dropped": 708
+  "dropped": 719
  },
  "recent_drains": [
   {
@@ -688,7 +688,7 @@
   "rug": 939
  },
  "watchlist_active": 6,
- "price_snapshots": 10536,
+ "price_snapshots": 10518,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
