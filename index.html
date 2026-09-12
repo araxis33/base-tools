@@ -1414,16 +1414,29 @@ function unitsToInput(v, dec){
   return frac ? s.slice(0, -dec) + "." + frac : s.slice(0, -dec);
 }
 
-// Reads off a public node, so the dialog knows decimals, balances and
-// allowances before a wallet is anywhere near the page.
-async function ethCall(to, data){
+function sleep(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
+
+// Everything this page needs to read, it reads from a public Base node rather
+// than from the wallet. A wallet is for signing. Asking one to answer
+// eth_getTransactionReceipt is how this dialog used to hang: smart accounts
+// and in-app browsers frequently never reply to it, and the flow stopped dead
+// between an approval and the swap it was granted for.
+async function baseRpc(method, params){
   const res = await fetch(BASE_RPC, {
     method:"POST",
     headers:{"Content-Type":"application/json"},
-    body: JSON.stringify({ jsonrpc:"2.0", id:1, method:"eth_call", params:[{ to:to, data:data }, "latest"] })
+    body: JSON.stringify({ jsonrpc:"2.0", id:1, method:method, params:params })
   });
   const j = await res.json();
-  return (j && j.result && j.result !== "0x") ? j.result : null;
+  if (j && j.error) throw new Error(j.error.message || "The node refused that read.");
+  return j ? j.result : null;
+}
+
+// Reads off a public node, so the dialog knows decimals, balances and
+// allowances before a wallet is anywhere near the page.
+async function ethCall(to, data){
+  const r = await baseRpc("eth_call", [{ to:to, data:data }, "latest"]);
+  return (r && r !== "0x") ? r : null;
 }
 
 function addrArg(a){ return a.toLowerCase().replace("0x", "").padStart(64, "0"); }
@@ -1673,28 +1686,73 @@ async function ensureBaseChain(p){
 }
 
 async function waitForReceipt(p, hash, what){
-  for (let i = 0; i < 60; i++){
-    try {
-      const r = await p.request({ method:"eth_getTransactionReceipt", params:[hash] });
-      if (r && r.blockNumber){
-        if (r.status === "0x0") throw new Error("The " + (what || "swap") + " reverted onchain. Nothing left your wallet but gas.");
-        return r;
-      }
-    } catch(e){
-      if (e && e.message && e.message.indexOf("reverted") !== -1) throw e;
+  for (let i = 0; i < 90; i++){
+    let r = null;
+    // The node first, because it always answers. The wallet second, because a
+    // smart account sometimes knows about its own transaction before a public
+    // node has indexed it — and sometimes does not answer at all, which is
+    // exactly why it is no longer asked on its own.
+    try { r = await baseRpc("eth_getTransactionReceipt", [hash]); } catch(e){ r = null; }
+    if (!r && p && p.request){
+      try { r = await p.request({ method:"eth_getTransactionReceipt", params:[hash] }); } catch(e){ r = null; }
     }
-    await new Promise(function(r){ setTimeout(r, 2000); });
+    if (r && r.blockNumber){
+      if (r.status === "0x0") throw new Error("The " + (what || "swap") + " reverted onchain. Nothing left your wallet but gas.");
+      return r;
+    }
+    await sleep(2000);
   }
   throw new Error("Timed out waiting for the confirmation.");
 }
 
-async function sendAndWait(p, to, data, what){
-  const hash = await p.request({
-    method:"eth_sendTransaction",
-    params:[{ from: trade.account, to: to, data: data, value: "0x0" }]
-  });
-  await waitForReceipt(p, hash, what);
-  return hash;
+// The wallet's reply to eth_sendTransaction cannot be relied on either: an
+// in-app browser regularly loses it while handing control back to the page,
+// and the promise then never settles. So every signature is confirmed by the
+// chain in parallel: `landed` is asked every few seconds and decides for
+// itself whether the thing this signature was for has actually happened.
+// Whichever answers first wins, and neither can leave the dialog hanging.
+// Returns the hash when the wallet answered, null when only the chain did.
+async function signAndConfirm(p, txParams, what, landed){
+  const abort = { stop:false };
+  const sent = p.request({ method:"eth_sendTransaction", params:[txParams] });
+  sent.catch(function(){});   // settled below; this only silences a stray rejection
+  const watch = async function(seconds){
+    const until = Date.now() + seconds * 1000;
+    while (Date.now() < until){
+      await sleep(3000);
+      if (abort.stop) return false;
+      try { if (await landed()) return true; } catch(e){}
+    }
+    return false;
+  };
+  let answer = null;
+  try {
+    answer = await Promise.race([sent, watch(240)]);
+  } catch(err){
+    // Saying no in the wallet is final. Any other failure may still have put a
+    // transaction on the chain, so the chain gets the last word.
+    if (REJECTED_RE.test((err && err.message) || "")) throw err;
+    answer = await watch(45);
+  }
+  abort.stop = true;
+  if (typeof answer === "string" && answer){
+    await waitForReceipt(p, answer, what);
+    return answer;
+  }
+  if (answer === true) return null;
+  throw new Error("The wallet never came back on the " + what + ". Nothing is stuck on this page — check the wallet, then try again.");
+}
+
+// An approval that confirms is worth a few attempts at a fresh route: losing
+// it to one failed fetch would make the user sign the allowance all over
+// again for nothing.
+async function requoteAfterApproval(){
+  for (let i = 0; i < 3; i++){
+    await quoteTrade();
+    if (trade.summary) return true;
+    await sleep(1500);
+  }
+  return false;
 }
 
 // Exactly the amount being sold, and not a wei more: an unlimited approval to
@@ -1702,14 +1760,22 @@ async function sendAndWait(p, to, data, what){
 async function approveExactly(p, token, spender, amount){
   const current = await allowanceOf(token, trade.account, spender);
   if (current >= amount) return;
+  const approval = function(value){
+    return { from: trade.account, to: token, value: "0x0",
+             data: SEL_APPROVE + addrArg(spender) + uintArg(value) };
+  };
   // A handful of tokens still refuse to move an allowance from one non-zero
   // number to another, so an old one is cleared before the new one is set.
   if (current > 0n){
     buyStatus("Clearing the old allowance — confirm it in your wallet.");
-    await sendAndWait(p, token, SEL_APPROVE + addrArg(spender) + uintArg(0n), "approval");
+    await signAndConfirm(p, approval(0n), "approval", async function(){
+      return await allowanceOf(token, trade.account, spender) === 0n;
+    });
   }
   buyStatus("Approve " + spendSymbol() + " in your wallet. This lets the router take exactly what this trade spends, and nothing more.");
-  await sendAndWait(p, token, SEL_APPROVE + addrArg(spender) + uintArg(amount), "approval");
+  await signAndConfirm(p, approval(amount), "approval", async function(){
+    return await allowanceOf(token, trade.account, spender) >= amount;
+  });
 }
 
 async function buildSwap(){
@@ -1771,31 +1837,37 @@ async function doTrade(){
         // The price moved while that block was mined, so the route is priced
         // again instead of being sent stale.
         buyStatus("Approved. Pricing it again…");
-        await quoteTrade();
-        if (!trade.summary) throw new Error("The route went stale while the approval confirmed. Try again.");
+        if (!await requoteAfterApproval()) throw new Error("The allowance is granted, but a fresh price would not load. Press the button again — you will not be asked to approve twice.");
         built = await buildSwap();
       }
     }
     buyStatus("Confirm it in your wallet.");
-    const hash = await p.request({
-      method:"eth_sendTransaction",
-      params:[{
-        from: trade.account,
-        to: built.routerAddress,
-        // Only a native-ETH purchase carries value; every other direction
-        // moves an ERC-20 the router was just approved to take.
-        value: spends ? "0x0" : "0x" + BigInt(trade.summary.amountIn).toString(16),
-        data: built.data + BUILDER_SUFFIX
-      }]
+    // Read before asking, so the watcher has something to compare against. The
+    // traded token moves either way: up on a purchase, down on a sale.
+    const before = await balanceOf(trade.token, trade.account);
+    const token = trade.token;
+    const hash = await signAndConfirm(p, {
+      from: trade.account,
+      to: built.routerAddress,
+      // Only a native-ETH purchase carries value; every other direction moves
+      // an ERC-20 the router was just approved to take.
+      value: spends ? "0x0" : "0x" + BigInt(trade.summary.amountIn).toString(16),
+      data: built.data + BUILDER_SUFFIX
+    }, "swap", async function(){
+      return await balanceOf(token, trade.account) !== before;
     });
     const tx = buyEl("buy-tx");
-    tx.href = "https://basescan.org/tx/" + hash;
-    tx.textContent = "Watch it confirm on Basescan";
+    if (hash){
+      tx.href = "https://basescan.org/tx/" + hash;
+      tx.textContent = "View the transaction on Basescan";
+    } else {
+      // The wallet never answered, but the balance moved: the swap is done and
+      // only its hash is missing. The address page shows it at the top.
+      tx.href = "https://basescan.org/address/" + trade.account;
+      tx.textContent = "See it on Basescan";
+    }
     tx.hidden = false;
-    buyStatus("Sent. Waiting for the block…");
-    await waitForReceipt(p, hash, "swap");
-    trade.done = hash;
-    tx.textContent = "View the transaction on Basescan";
+    trade.done = hash || "onchain";
     buyStatus(sell ? "Sold. The " + pa.sym + " is in your wallet." : trade.symbol + " is in your wallet.", false, true);
     if (spends) refreshBalance();
   } catch(e){
