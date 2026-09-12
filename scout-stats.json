@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-11T22:55:47Z",
- "generated_at_unix": 1789167347,
+ "generated_at": "2026-09-12T11:22:06Z",
+ "generated_at_unix": 1789212125,
  "period": {
   "start": "2026-07-15",
-  "days": 58
+  "days": 59
  },
  "totals": {
-  "seen": 163726,
-  "base": 29611,
+  "seen": 163890,
+  "base": 29775,
   "robinhood": 134115,
-  "below_liquidity_threshold": 160106,
-  "spam_filtered": 781,
-  "scored": 2839,
-  "green": 1464,
+  "below_liquidity_threshold": 160207,
+  "spam_filtered": 820,
+  "scored": 2863,
+  "green": 1488,
   "yellow": 451,
   "red": 924
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-22",
-   "base": 808,
-   "robinhood": 1576
+   "base": 760,
+   "robinhood": 1468
   },
   {
    "date": "2026-08-23",
@@ -125,213 +125,233 @@
   },
   {
    "date": "2026-09-12",
-   "base": 182,
+   "base": 346,
    "robinhood": 0
   }
  ],
  "recent_finds": [
   {
-   "symbol": "KAREN",
-   "name": "Karen",
+   "symbol": "MCAT",
+   "name": "MarsCat",
    "chain": "base",
-   "address": "0x21bf8584d7a739343a7f01dcd6ece1047627d68f",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 2282.1809,
-   "first_seen": 1789167318
-  },
-  {
-   "symbol": "PLC",
-   "name": "Pearl Chain (pearlchaintoken.com)",
-   "chain": "base",
-   "address": "0x60d4d7f2a6a3978047c14b5678e215326a652747",
+   "address": "0x21861ab3ba5415d32f4612197df7f55dd2755dc3",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 12588.4150916386,
-   "first_seen": 1789164909
+   "liquidity_usd": 12661.3,
+   "first_seen": 1789211394
   },
   {
-   "symbol": "FLM",
-   "name": "Fly Language Model",
+   "symbol": "ANON",
+   "name": "HeyAnon",
    "chain": "base",
-   "address": "0x39988bf0638edb8c65ce0fb9e1e457c575157ba3",
+   "address": "0x0c6a97f04a5efa0256f1dde649468440f60101e8",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 50165.7971,
-   "first_seen": 1789164726
+   "liquidity_usd": 33181.0758,
+   "first_seen": 1789211207
   },
   {
-   "symbol": "DANGER",
-   "name": "Danger",
+   "symbol": "TEQOIN",
+   "name": "TeQoin",
    "chain": "base",
-   "address": "0x5bdc072a8bc8691161cccc0dfc1c0c353fdb64d8",
+   "address": "0x4ca51f382d9195fd0469107501dd1312abe15a57",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 5463.9895,
-   "first_seen": 1789164725
+   "liquidity_usd": 33203.7449,
+   "first_seen": 1789211068
   },
   {
-   "symbol": "FLY",
-   "name": "Fly Language Model",
+   "symbol": "ASTRA",
+   "name": "Pepe-d-ASTRA",
    "chain": "base",
-   "address": "0x8d292bc85c0652522d8a6325c7f1888f33e1cba3",
-   "score": 100,
+   "address": "0xedc373748db0c877c04fc5e70d28d571fbe397a0",
+   "score": 73,
    "verdict": "green",
-   "liquidity_usd": 46044.7639,
-   "first_seen": 1789164633
+   "liquidity_usd": 5064.12453760177,
+   "first_seen": 1789210838
   },
   {
-   "symbol": "S&amp;P 500",
-   "name": "Sock &amp; Pussy 500",
+   "symbol": "SEAL",
+   "name": "SEAL AI",
    "chain": "base",
-   "address": "0xa92d8ccfc52381b9c0051fad8a98696b2219d450",
+   "address": "0x52175be090704eb184ceabd11715003154e4eabf",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 16351.4249,
-   "first_seen": 1789164632
+   "liquidity_usd": 76149.8299585436,
+   "first_seen": 1789210700
   },
   {
-   "symbol": "ITEMS",
-   "name": "ItemBase",
+   "symbol": "LIN",
+   "name": "fun AzFlin",
    "chain": "base",
-   "address": "0x29204f40a2b8f1acff7f692268d8189ea055ec29",
-   "score": 100,
+   "address": "0xebe0b1baa5635e8cfa6aeccfc8e41d6026c9eb4b",
+   "score": 80,
    "verdict": "green",
-   "liquidity_usd": 14333.6899,
-   "first_seen": 1789164359
+   "liquidity_usd": 3874.7403,
+   "first_seen": 1789210195
   },
   {
-   "symbol": "BACMOOK",
-   "name": "bacmook",
+   "symbol": "MSTR",
+   "name": "Strategy Inc. Tokenized Stock (Robinhood)",
    "chain": "base",
-   "address": "0x21ce0dd7cc4a120d38f154cbb2ecd3e472b3b768",
+   "address": "0x6012197b004dfd39704ccd0ddf8ef8e87323a961",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 4054.068,
-   "first_seen": 1789162812
+   "liquidity_usd": 12655.0651848907,
+   "first_seen": 1789209736
   },
   {
-   "symbol": "0xDeployer",
-   "name": "0xDeployer",
+   "symbol": "LPRD",
+   "name": "ExperiencedLEOPARD",
    "chain": "base",
-   "address": "0x031fc9982a4f8942bdc859cb925d9317267c6ba3",
-   "score": 100,
+   "address": "0xc013dc15b825ec121e271c338faad4786249ffc1",
+   "score": 73,
    "verdict": "green",
-   "liquidity_usd": 4458.5434,
-   "first_seen": 1789162357
+   "liquidity_usd": 25315.7,
+   "first_seen": 1789208812
   },
   {
-   "symbol": "HAPPYCAT",
-   "name": "Happycat",
+   "symbol": "MICRODOG",
+   "name": "MICRODOG",
    "chain": "base",
-   "address": "0xc01559652b2844db337516c83665ec851300559d",
+   "address": "0xf35045440b3034c88f9dca6220af76bc7e068dfd",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 6308.9416,
-   "first_seen": 1789162126
+   "liquidity_usd": 81657.9994,
+   "first_seen": 1789208809
   },
   {
-   "symbol": "RXRXon",
-   "name": "Recursion Pharmaceuticals Tokenized Stock (Ondo)",
+   "symbol": "RFOX",
+   "name": "ROB Fox",
    "chain": "base",
-   "address": "0x895e82cea8660280059b379572a9592e4308c742",
+   "address": "0xcf030b3c3ef40986a3fcb4619decd4169f2789b3",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 12686.1152134401,
-   "first_seen": 1789161943
+   "liquidity_usd": 4071.7937,
+   "first_seen": 1789208806
   },
   {
-   "symbol": "BOMB",
-   "name": "Bomb Coin",
+   "symbol": "TENDIE",
+   "name": "Tendie",
    "chain": "base",
-   "address": "0x323bf00d20f2b17875b91c4709c447afd371b693",
+   "address": "0x17139ed728631bca6f591183b8655642e7815efb",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 4543.4822,
-   "first_seen": 1789161807
+   "liquidity_usd": 22815.7746,
+   "first_seen": 1789208804
   },
   {
-   "symbol": "DANCEDOG",
-   "name": "Dancing DOG",
+   "symbol": "ALGO",
+   "name": "AlgoCats",
    "chain": "base",
-   "address": "0x1326d10bc080b5424a9fbc2a5f7ebedf16115d80",
+   "address": "0xb200000000000000000000a311989f809d1953a8",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 4027.7114,
-   "first_seen": 1789160217
+   "liquidity_usd": 23396.0105,
+   "first_seen": 1789208803
   },
   {
-   "symbol": "ROBINHOOD",
-   "name": "Robinhood (robinhood.win)",
+   "symbol": "KILLER",
+   "name": "Robinhood Killer",
    "chain": "base",
-   "address": "0xde292063806d6cd4346dc0bda3afdb08a709738c",
+   "address": "0xdeffc0c0dd1b2f534efa170c38b11d3d8e3de966",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 12682.4652173268,
-   "first_seen": 1789159854
+   "liquidity_usd": 19702.4498,
+   "first_seen": 1789208800
   },
   {
-   "symbol": "STONKLESS",
-   "name": "USELESS STONK",
+   "symbol": "Maple",
+   "name": "Maple",
    "chain": "base",
-   "address": "0xcb7646eafad3782671171be7ad5436352b580290",
+   "address": "0x0e829024af81e33bf7d6a7644032c7449e7cec29",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 13659.4845,
-   "first_seen": 1789159474
+   "liquidity_usd": 16870.1293,
+   "first_seen": 1789208799
   },
   {
-   "symbol": "DOGGO",
-   "name": "Dancing Dog",
+   "symbol": "FOLD",
+   "name": "The Interfold",
    "chain": "base",
-   "address": "0xa8ffaba617ffb6cad1762604c9370c2f2567ec29",
+   "address": "0xc9b53de3551c5e0db6e2809bee415a048aa77de5",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 13109.6819,
-   "first_seen": 1789159426
+   "liquidity_usd": 12657.9651752466,
+   "first_seen": 1789208797
   },
   {
-   "symbol": "PRIME",
-   "name": "PRIME",
+   "symbol": "MYRGon",
+   "name": "MYR Group Tokenized Stock (Ondo)",
    "chain": "base",
-   "address": "0x8275266534cd08b3cd3333c87396484c6e3ce323",
+   "address": "0x8d37a1ae644d580bd532b94331ee5c68fc09f8f6",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 12716.9463,
-   "first_seen": 1789159424
+   "liquidity_usd": 12674.2,
+   "first_seen": 1789203402
   },
   {
-   "symbol": "fatgirls",
-   "name": "buying bitcoin in 2009",
+   "symbol": "SUREHAND",
+   "name": "SureHand",
    "chain": "base",
-   "address": "0xade7fc11d37d98616aa147b3320084419de1d913",
+   "address": "0xb2000000000000000000004023e2bd50384d0abe",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 20788.4454,
-   "first_seen": 1789158787
+   "liquidity_usd": 33600.7382,
+   "first_seen": 1789202722
   },
   {
-   "symbol": "ARTC",
-   "name": "Artifical Cat",
+   "symbol": "LAPCAT",
+   "name": "LAPTOP CAT",
    "chain": "base",
-   "address": "0x0ddb31c0397a66f08997752f8205259afc3adae9",
+   "address": "0x324db7a4e622886f8e38d27b9c743168e492aa11",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 4204.0316,
-   "first_seen": 1789158101
+   "liquidity_usd": 24351.0439,
+   "first_seen": 1789202721
   },
   {
-   "symbol": "MILKING",
-   "name": "Michael Saylor's Treasury Reserve",
+   "symbol": "SN120",
+   "name": "affine",
    "chain": "base",
-   "address": "0xb200000000000000000000bcad7f8b3758000f01",
+   "address": "0x5a5e7812aa1907c9b2e7e5580a454e390584998c",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 18198.2403,
-   "first_seen": 1789156681
+   "liquidity_usd": 14528.5893,
+   "first_seen": 1789202719
+  },
+  {
+   "symbol": "Dogue",
+   "name": "Doguecoin",
+   "chain": "base",
+   "address": "0xb20000000000000000000028f1a8832fd4c20b75",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 18444.11,
+   "first_seen": 1789202717
   }
  ],
  "confirmed": [
+  {
+   "symbol": "FLM",
+   "chain": "base",
+   "address": "0x39988bf0638edb8c65ce0fb9e1e457c575157ba3",
+   "buyers_h1": 574,
+   "volume_h1": 898930.029067176,
+   "liquidity_usd": 96556.392,
+   "confirmed_at": 1789164726,
+   "hours_waited": 0.8
+  },
+  {
+   "symbol": "FLY",
+   "chain": "base",
+   "address": "0x8d292bc85c0652522d8a6325c7f1888f33e1cba3",
+   "buyers_h1": 243,
+   "volume_h1": 130106.36876685,
+   "liquidity_usd": 50970.6052,
+   "confirmed_at": 1789164633,
+   "hours_waited": 0.8
+  },
   {
    "symbol": "Win",
    "chain": "base",
@@ -495,8 +515,8 @@
  ],
  "probation": {
   "waiting": 56,
-  "confirmed": 14,
-  "dropped": 803
+  "confirmed": 16,
+  "dropped": 825
  },
  "recent_drains": [
   {
@@ -684,11 +704,11 @@
  ],
  "alerts": {
   "dump": 691,
-  "pump": 260,
+  "pump": 261,
   "rug": 939
  },
- "watchlist_active": 6,
- "price_snapshots": 10722,
+ "watchlist_active": 8,
+ "price_snapshots": 10488,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
