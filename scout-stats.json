@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-12T16:13:05Z",
- "generated_at_unix": 1789229582,
+ "generated_at": "2026-09-12T17:13:12Z",
+ "generated_at_unix": 1789233190,
  "period": {
   "start": "2026-07-15",
   "days": 59
  },
  "totals": {
-  "seen": 164147,
-  "base": 30032,
+  "seen": 164253,
+  "base": 30138,
   "robinhood": 134115,
-  "below_liquidity_threshold": 160368,
-  "spam_filtered": 886,
-  "scored": 2893,
-  "green": 1509,
-  "yellow": 459,
+  "below_liquidity_threshold": 160447,
+  "spam_filtered": 904,
+  "scored": 2902,
+  "green": 1517,
+  "yellow": 460,
   "red": 925
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-22",
-   "base": 490,
-   "robinhood": 1049
+   "base": 304,
+   "robinhood": 813
   },
   {
    "date": "2026-08-23",
@@ -125,11 +125,101 @@
   },
   {
    "date": "2026-09-12",
-   "base": 603,
+   "base": 709,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "POOLS",
+   "name": "pools.trade",
+   "chain": "base",
+   "address": "0xc5e578e7d8af014489e302062a3e4c93ba193361",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12651.8151706216,
+   "first_seen": 1789232103
+  },
+  {
+   "symbol": "DAYC",
+   "name": "Daybreak",
+   "chain": "base",
+   "address": "0xd550ddff701030b2e884b3787ab6203ba54599ac",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 76562.2244,
+   "first_seen": 1789231874
+  },
+  {
+   "symbol": "牛梦",
+   "name": "牛梦",
+   "chain": "base",
+   "address": "0x069dbe33d6931332273bd9d3ace0ddc1698206dc",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 78524.7708591729,
+   "first_seen": 1789231556
+  },
+  {
+   "symbol": "PREDI",
+   "name": "Predi Markets",
+   "chain": "base",
+   "address": "0x1fed4cdbcf6997a6f82b880a0421e7a449f83b07",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12621.7653422068,
+   "first_seen": 1789231460
+  },
+  {
+   "symbol": "SWARM",
+   "name": "swarmboard",
+   "chain": "base",
+   "address": "0x12249d0b43e08d39483edd2e97963c55cff5ec29",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 16365.754,
+   "first_seen": 1789229866
+  },
+  {
+   "symbol": "POLYFLY",
+   "name": "Polyfly",
+   "chain": "base",
+   "address": "0xb200000000000000000000bfcd76f8aaebfa7f5f",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 14157.4476,
+   "first_seen": 1789229638
+  },
+  {
+   "symbol": "NUTS",
+   "name": "NUTS",
+   "chain": "base",
+   "address": "0x23988273b262757c1c1a5c01a4bfdbf1af4be2ba",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 7674.5743,
+   "first_seen": 1789229591
+  },
+  {
+   "symbol": "DIEMCAT",
+   "name": "Diem Cat",
+   "chain": "base",
+   "address": "0xb2000000000000000000001381213e9ce54afca7",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 22085.3848,
+   "first_seen": 1789229589
+  },
+  {
+   "symbol": "JACKET",
+   "name": "JACKET",
+   "chain": "base",
+   "address": "0x06c78606cea7b47e1fed756a5684fde50a157669",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 2191.1056,
+   "first_seen": 1789229587
+  },
   {
    "symbol": "AI",
    "name": "Artificial Inu",
@@ -239,96 +329,6 @@
    "verdict": "yellow",
    "liquidity_usd": 1680.3036,
    "first_seen": 1789224564
-  },
-  {
-   "symbol": "ELLIOR",
-   "name": "Ellior Finance",
-   "chain": "base",
-   "address": "0x78f852d10c446c4914d0d62c12843a4636ce64ea",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 33294.8142,
-   "first_seen": 1789224423
-  },
-  {
-   "symbol": "NVDAW",
-   "name": "NVIDIA Worker",
-   "chain": "base",
-   "address": "0x3684c547681067ce24a688168583b0b617b514ff",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 1550.6932,
-   "first_seen": 1789224148
-  },
-  {
-   "symbol": "STOCK",
-   "name": "MemeStock",
-   "chain": "base",
-   "address": "0x258859c6c835a4603b469d0930db474e3f130843",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 4145.908,
-   "first_seen": 1789223649
-  },
-  {
-   "symbol": "STKB",
-   "name": "StockBase.fun",
-   "chain": "base",
-   "address": "0x0557317478e2470f3b50d0af86677e18f23849cf",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 6418.0815,
-   "first_seen": 1789222834
-  },
-  {
-   "symbol": "FRONG",
-   "name": "frong",
-   "chain": "base",
-   "address": "0xc9d8954ccb40063cd8a93e06311362f26407c9ac",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12702.4652337485,
-   "first_seen": 1789222692
-  },
-  {
-   "symbol": "Nforge",
-   "name": "Nebula Forge",
-   "chain": "base",
-   "address": "0xb2000000000000000000001244912b198dc33e2f",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 11285.0467,
-   "first_seen": 1789222510
-  },
-  {
-   "symbol": "BABYCASHCAT",
-   "name": "Baby Cash Cat",
-   "chain": "base",
-   "address": "0x4171c8413e6ec64564b74e5ede979664f34ee054",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12709.2652492851,
-   "first_seen": 1789222056
-  },
-  {
-   "symbol": "DELTA",
-   "name": "Delta",
-   "chain": "base",
-   "address": "0x8412b87c868b29f5445c9157c5d6f410966e8a7c",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 14066.581,
-   "first_seen": 1789220832
-  },
-  {
-   "symbol": "DEGENFLY",
-   "name": "Degenfly",
-   "chain": "base",
-   "address": "0xb200000000000000000000128a02814b626502ec",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 21684.2598,
-   "first_seen": 1789220831
   }
  ],
  "confirmed": [
@@ -524,9 +524,9 @@
   }
  ],
  "probation": {
-  "waiting": 50,
+  "waiting": 48,
   "confirmed": 17,
-  "dropped": 859
+  "dropped": 870
  },
  "recent_drains": [
   {
@@ -713,12 +713,12 @@
   }
  ],
  "alerts": {
-  "dump": 691,
+  "dump": 692,
   "pump": 261,
   "rug": 939
  },
  "watchlist_active": 9,
- "price_snapshots": 10381,
+ "price_snapshots": 10505,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
