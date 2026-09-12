@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-12T13:47:04Z",
- "generated_at_unix": 1789220823,
+ "generated_at": "2026-09-12T14:47:10Z",
+ "generated_at_unix": 1789224429,
  "period": {
   "start": "2026-07-15",
   "days": 59
  },
  "totals": {
-  "seen": 163972,
-  "base": 29857,
+  "seen": 164063,
+  "base": 29948,
   "robinhood": 134115,
-  "below_liquidity_threshold": 160260,
-  "spam_filtered": 843,
-  "scored": 2869,
-  "green": 1492,
-  "yellow": 452,
+  "below_liquidity_threshold": 160323,
+  "spam_filtered": 858,
+  "scored": 2882,
+  "green": 1504,
+  "yellow": 453,
   "red": 925
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-22",
-   "base": 743,
-   "robinhood": 1444
+   "base": 726,
+   "robinhood": 1385
   },
   {
    "date": "2026-08-23",
@@ -125,11 +125,141 @@
   },
   {
    "date": "2026-09-12",
-   "base": 428,
+   "base": 519,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "ELLIOR",
+   "name": "Ellior Finance",
+   "chain": "base",
+   "address": "0x78f852d10c446c4914d0d62c12843a4636ce64ea",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 33294.8142,
+   "first_seen": 1789224423
+  },
+  {
+   "symbol": "NVDAW",
+   "name": "NVIDIA Worker",
+   "chain": "base",
+   "address": "0x3684c547681067ce24a688168583b0b617b514ff",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 1550.6932,
+   "first_seen": 1789224148
+  },
+  {
+   "symbol": "STOCK",
+   "name": "MemeStock",
+   "chain": "base",
+   "address": "0x258859c6c835a4603b469d0930db474e3f130843",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 4145.908,
+   "first_seen": 1789223649
+  },
+  {
+   "symbol": "STKB",
+   "name": "StockBase.fun",
+   "chain": "base",
+   "address": "0x0557317478e2470f3b50d0af86677e18f23849cf",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 6418.0815,
+   "first_seen": 1789222834
+  },
+  {
+   "symbol": "FRONG",
+   "name": "frong",
+   "chain": "base",
+   "address": "0xc9d8954ccb40063cd8a93e06311362f26407c9ac",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12702.4652337485,
+   "first_seen": 1789222692
+  },
+  {
+   "symbol": "Nforge",
+   "name": "Nebula Forge",
+   "chain": "base",
+   "address": "0xb2000000000000000000001244912b198dc33e2f",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 11285.0467,
+   "first_seen": 1789222510
+  },
+  {
+   "symbol": "BABYCASHCAT",
+   "name": "Baby Cash Cat",
+   "chain": "base",
+   "address": "0x4171c8413e6ec64564b74e5ede979664f34ee054",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12709.2652492851,
+   "first_seen": 1789222056
+  },
+  {
+   "symbol": "DELTA",
+   "name": "Delta",
+   "chain": "base",
+   "address": "0x8412b87c868b29f5445c9157c5d6f410966e8a7c",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 14066.581,
+   "first_seen": 1789220832
+  },
+  {
+   "symbol": "DEGENFLY",
+   "name": "Degenfly",
+   "chain": "base",
+   "address": "0xb200000000000000000000128a02814b626502ec",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 21684.2598,
+   "first_seen": 1789220831
+  },
+  {
+   "symbol": "红尘飞",
+   "name": "Hong Chen Fei",
+   "chain": "base",
+   "address": "0x8806ea8a861fbb662a49a7d961d8ad877120caac",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 19972.7988,
+   "first_seen": 1789220830
+  },
+  {
+   "symbol": "basenoun",
+   "name": "basenoun",
+   "chain": "base",
+   "address": "0xb200000000000000000000553b1918481048d019",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 14503.3001,
+   "first_seen": 1789220829
+  },
+  {
+   "symbol": "LILBANK",
+   "name": "Lil Bank",
+   "chain": "base",
+   "address": "0xb200000000000000000000379a7433f71680dc63",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 15598.5855,
+   "first_seen": 1789220828
+  },
+  {
+   "symbol": "DONG",
+   "name": "Dongcoin",
+   "chain": "base",
+   "address": "0xa459f1fa97c70c4dfabdfd97cf61108952beec29",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 19799.5631,
+   "first_seen": 1789220826
+  },
   {
    "symbol": "TEST",
    "name": "Testv1",
@@ -199,136 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 33181.0758,
    "first_seen": 1789211207
-  },
-  {
-   "symbol": "TEQOIN",
-   "name": "TeQoin",
-   "chain": "base",
-   "address": "0x4ca51f382d9195fd0469107501dd1312abe15a57",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 33203.7449,
-   "first_seen": 1789211068
-  },
-  {
-   "symbol": "ASTRA",
-   "name": "Pepe-d-ASTRA",
-   "chain": "base",
-   "address": "0xedc373748db0c877c04fc5e70d28d571fbe397a0",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 5064.12453760177,
-   "first_seen": 1789210838
-  },
-  {
-   "symbol": "SEAL",
-   "name": "SEAL AI",
-   "chain": "base",
-   "address": "0x52175be090704eb184ceabd11715003154e4eabf",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 76149.8299585436,
-   "first_seen": 1789210700
-  },
-  {
-   "symbol": "LIN",
-   "name": "fun AzFlin",
-   "chain": "base",
-   "address": "0xebe0b1baa5635e8cfa6aeccfc8e41d6026c9eb4b",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 3874.7403,
-   "first_seen": 1789210195
-  },
-  {
-   "symbol": "MSTR",
-   "name": "Strategy Inc. Tokenized Stock (Robinhood)",
-   "chain": "base",
-   "address": "0x6012197b004dfd39704ccd0ddf8ef8e87323a961",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12655.0651848907,
-   "first_seen": 1789209736
-  },
-  {
-   "symbol": "LPRD",
-   "name": "ExperiencedLEOPARD",
-   "chain": "base",
-   "address": "0xc013dc15b825ec121e271c338faad4786249ffc1",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 25315.7,
-   "first_seen": 1789208812
-  },
-  {
-   "symbol": "MICRODOG",
-   "name": "MICRODOG",
-   "chain": "base",
-   "address": "0xf35045440b3034c88f9dca6220af76bc7e068dfd",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 81657.9994,
-   "first_seen": 1789208809
-  },
-  {
-   "symbol": "RFOX",
-   "name": "ROB Fox",
-   "chain": "base",
-   "address": "0xcf030b3c3ef40986a3fcb4619decd4169f2789b3",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4071.7937,
-   "first_seen": 1789208806
-  },
-  {
-   "symbol": "TENDIE",
-   "name": "Tendie",
-   "chain": "base",
-   "address": "0x17139ed728631bca6f591183b8655642e7815efb",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 22815.7746,
-   "first_seen": 1789208804
-  },
-  {
-   "symbol": "ALGO",
-   "name": "AlgoCats",
-   "chain": "base",
-   "address": "0xb200000000000000000000a311989f809d1953a8",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 23396.0105,
-   "first_seen": 1789208803
-  },
-  {
-   "symbol": "KILLER",
-   "name": "Robinhood Killer",
-   "chain": "base",
-   "address": "0xdeffc0c0dd1b2f534efa170c38b11d3d8e3de966",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 19702.4498,
-   "first_seen": 1789208800
-  },
-  {
-   "symbol": "Maple",
-   "name": "Maple",
-   "chain": "base",
-   "address": "0x0e829024af81e33bf7d6a7644032c7449e7cec29",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 16870.1293,
-   "first_seen": 1789208799
-  },
-  {
-   "symbol": "FOLD",
-   "name": "The Interfold",
-   "chain": "base",
-   "address": "0xc9b53de3551c5e0db6e2809bee415a048aa77de5",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12657.9651752466,
-   "first_seen": 1789208797
   }
  ],
  "confirmed": [
@@ -514,9 +514,9 @@
   }
  ],
  "probation": {
-  "waiting": 54,
+  "waiting": 57,
   "confirmed": 16,
-  "dropped": 832
+  "dropped": 842
  },
  "recent_drains": [
   {
@@ -708,7 +708,7 @@
   "rug": 939
  },
  "watchlist_active": 8,
- "price_snapshots": 10513,
+ "price_snapshots": 10350,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
