@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-12T17:13:12Z",
- "generated_at_unix": 1789233190,
+ "generated_at": "2026-09-12T18:13:17Z",
+ "generated_at_unix": 1789236796,
  "period": {
   "start": "2026-07-15",
   "days": 59
  },
  "totals": {
-  "seen": 164253,
-  "base": 30138,
+  "seen": 164311,
+  "base": 30196,
   "robinhood": 134115,
-  "below_liquidity_threshold": 160447,
-  "spam_filtered": 904,
-  "scored": 2902,
-  "green": 1517,
+  "below_liquidity_threshold": 160488,
+  "spam_filtered": 916,
+  "scored": 2907,
+  "green": 1522,
   "yellow": 460,
   "red": 925
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-22",
-   "base": 304,
-   "robinhood": 813
+   "base": 156,
+   "robinhood": 540
   },
   {
    "date": "2026-08-23",
@@ -125,11 +125,61 @@
   },
   {
    "date": "2026-09-12",
-   "base": 709,
+   "base": 767,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "BABY",
+   "name": "BaseBaby",
+   "chain": "base",
+   "address": "0x6ba9154acbd7788f22b01b497fd4e45e428f5424",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 25440.4024501085,
+   "first_seen": 1789236656
+  },
+  {
+   "symbol": "XAEAXII",
+   "name": "X AE A-XII",
+   "chain": "base",
+   "address": "0xa27188fedef092b6e8606471eb6b300ef1200b6a",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4673.7393,
+   "first_seen": 1789236608
+  },
+  {
+   "symbol": "RSTR",
+   "name": "BoredROOSTER",
+   "chain": "base",
+   "address": "0x47a4d667279648c4db46eda1662c63707e3078e0",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 25253.9,
+   "first_seen": 1789236606
+  },
+  {
+   "symbol": "RBHXBASE",
+   "name": "Is Base Dead?!",
+   "chain": "base",
+   "address": "0xe3bff194b1ccb8557eac019d1856d207c0757b07",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 25178.5568,
+   "first_seen": 1789235743
+  },
+  {
+   "symbol": "CMC",
+   "name": "CoinMarketCap",
+   "chain": "base",
+   "address": "0xde4d43b21bf1002e9d96cf9034051412ded6bb07",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 21861.7924887676,
+   "first_seen": 1789234653
+  },
   {
    "symbol": "POOLS",
    "name": "pools.trade",
@@ -279,56 +329,6 @@
    "verdict": "yellow",
    "liquidity_usd": 2663.4568,
    "first_seen": 1789225711
-  },
-  {
-   "symbol": "MYID",
-   "name": "My Identity Coin",
-   "chain": "base",
-   "address": "0x828e2699e990eecc7fce19e378838837f950072f",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 52710.4627,
-   "first_seen": 1789225663
-  },
-  {
-   "symbol": "TIK",
-   "name": "TikCoin Network",
-   "chain": "base",
-   "address": "0x673368c6399d64920063a5f3d2ba46fde535d4e4",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 52706.519,
-   "first_seen": 1789225662
-  },
-  {
-   "symbol": "FRONTIER",
-   "name": "We Must Pace the Frontier",
-   "chain": "base",
-   "address": "0x263b8ece615c910a657d8428e4e31fb5d001ec29",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 14428.9413,
-   "first_seen": 1789225661
-  },
-  {
-   "symbol": "BLUECHIP",
-   "name": "BlueChip",
-   "chain": "base",
-   "address": "0x3d362588b4e6f92075937a34bcdb83cb7b650408",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 2089.8235,
-   "first_seen": 1789224978
-  },
-  {
-   "symbol": "STOCK",
-   "name": "Stock Base",
-   "chain": "base",
-   "address": "0x124a1965a8d45234d850b0c825f5d563d8b9b5fd",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 1680.3036,
-   "first_seen": 1789224564
   }
  ],
  "confirmed": [
@@ -524,9 +524,9 @@
   }
  ],
  "probation": {
-  "waiting": 48,
+  "waiting": 51,
   "confirmed": 17,
-  "dropped": 870
+  "dropped": 872
  },
  "recent_drains": [
   {
@@ -718,7 +718,7 @@
   "rug": 939
  },
  "watchlist_active": 9,
- "price_snapshots": 10505,
+ "price_snapshots": 10582,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
