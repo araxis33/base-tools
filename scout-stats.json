@@ -1,20 +1,20 @@
 {
- "generated_at": "2026-09-12T11:22:06Z",
- "generated_at_unix": 1789212125,
+ "generated_at": "2026-09-12T12:22:13Z",
+ "generated_at_unix": 1789215732,
  "period": {
   "start": "2026-07-15",
   "days": 59
  },
  "totals": {
-  "seen": 163890,
-  "base": 29775,
+  "seen": 163956,
+  "base": 29841,
   "robinhood": 134115,
-  "below_liquidity_threshold": 160207,
-  "spam_filtered": 820,
-  "scored": 2863,
-  "green": 1488,
-  "yellow": 451,
-  "red": 924
+  "below_liquidity_threshold": 160250,
+  "spam_filtered": 838,
+  "scored": 2868,
+  "green": 1491,
+  "yellow": 452,
+  "red": 925
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
@@ -125,11 +125,51 @@
   },
   {
    "date": "2026-09-12",
-   "base": 346,
+   "base": 412,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "TEST",
+   "name": "Testpair",
+   "chain": "base",
+   "address": "0x0811c6ec8882012b504326aff3eaf987f3d31dc3",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 1977.8254,
+   "first_seen": 1789215208
+  },
+  {
+   "symbol": "MEMU",
+   "name": "MultipleEMU",
+   "chain": "base",
+   "address": "0x38851782bd65355aeed5e0ac731c36fdba03774e",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 25354.4,
+   "first_seen": 1789214567
+  },
+  {
+   "symbol": "XDC",
+   "name": "XDC Network",
+   "chain": "base",
+   "address": "0x611067f74c38e5ca9639958c50536072ff75b4cf",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 8020668.5262,
+   "first_seen": 1789213461
+  },
+  {
+   "symbol": "ECX",
+   "name": "eCash.com",
+   "chain": "base",
+   "address": "0x8014ef9cee977fe7ddef1e33114d5272626302f1",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 25323.0,
+   "first_seen": 1789212773
+  },
   {
    "symbol": "MCAT",
    "name": "MarsCat",
@@ -289,46 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 12674.2,
    "first_seen": 1789203402
-  },
-  {
-   "symbol": "SUREHAND",
-   "name": "SureHand",
-   "chain": "base",
-   "address": "0xb2000000000000000000004023e2bd50384d0abe",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 33600.7382,
-   "first_seen": 1789202722
-  },
-  {
-   "symbol": "LAPCAT",
-   "name": "LAPTOP CAT",
-   "chain": "base",
-   "address": "0x324db7a4e622886f8e38d27b9c743168e492aa11",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 24351.0439,
-   "first_seen": 1789202721
-  },
-  {
-   "symbol": "SN120",
-   "name": "affine",
-   "chain": "base",
-   "address": "0x5a5e7812aa1907c9b2e7e5580a454e390584998c",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 14528.5893,
-   "first_seen": 1789202719
-  },
-  {
-   "symbol": "Dogue",
-   "name": "Doguecoin",
-   "chain": "base",
-   "address": "0xb20000000000000000000028f1a8832fd4c20b75",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 18444.11,
-   "first_seen": 1789202717
   }
  ],
  "confirmed": [
@@ -514,9 +514,9 @@
   }
  ],
  "probation": {
-  "waiting": 56,
+  "waiting": 53,
   "confirmed": 16,
-  "dropped": 825
+  "dropped": 832
  },
  "recent_drains": [
   {
@@ -708,7 +708,7 @@
   "rug": 939
  },
  "watchlist_active": 8,
- "price_snapshots": 10488,
+ "price_snapshots": 10540,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
