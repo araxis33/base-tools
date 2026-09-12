@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-12T18:13:17Z",
- "generated_at_unix": 1789236796,
+ "generated_at": "2026-09-12T19:13:23Z",
+ "generated_at_unix": 1789240402,
  "period": {
   "start": "2026-07-15",
   "days": 59
  },
  "totals": {
-  "seen": 164311,
-  "base": 30196,
+  "seen": 164383,
+  "base": 30268,
   "robinhood": 134115,
-  "below_liquidity_threshold": 160488,
-  "spam_filtered": 916,
-  "scored": 2907,
-  "green": 1522,
+  "below_liquidity_threshold": 160545,
+  "spam_filtered": 926,
+  "scored": 2912,
+  "green": 1527,
   "yellow": 460,
   "red": 925
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-22",
-   "base": 156,
-   "robinhood": 540
+   "base": 55,
+   "robinhood": 273
   },
   {
    "date": "2026-08-23",
@@ -125,11 +125,61 @@
   },
   {
    "date": "2026-09-12",
-   "base": 767,
+   "base": 839,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "ITOAD",
+   "name": "iToad",
+   "chain": "base",
+   "address": "0xdf7fdedc2573fa3ca7ddf5d34c7aede4e3b0f6ab",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4084.46,
+   "first_seen": 1789240355
+  },
+  {
+   "symbol": "HYDBon",
+   "name": "iShares High Yield Systematic Bond Tokenized ETF (Ondo)",
+   "chain": "base",
+   "address": "0x3cb1eced67af4f2c4955a716da4977e24fb7b9e9",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12604.2151143617,
+   "first_seen": 1789240353
+  },
+  {
+   "symbol": "CNT",
+   "name": "Centel (centel.io)",
+   "chain": "base",
+   "address": "0x5925dba3e3c07d27ef3789c1fa5aa02d14afdd8b",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12622.2651426558,
+   "first_seen": 1789238626
+  },
+  {
+   "symbol": "FLNCB",
+   "name": "Fluence Energy Tokenized bStocks",
+   "chain": "base",
+   "address": "0x002b57bfa57ef65fcc5d8010b5dc9cf9e6fde66a",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12629.0151425398,
+   "first_seen": 1789237662
+  },
+  {
+   "symbol": "FLYBASE",
+   "name": "Fly Base",
+   "chain": "base",
+   "address": "0x369d2ac19ac0fd8eaa16056b178363a4a94d9a63",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 5047.0952,
+   "first_seen": 1789237480
+  },
   {
    "symbol": "BABY",
    "name": "BaseBaby",
@@ -279,56 +329,6 @@
    "verdict": "yellow",
    "liquidity_usd": 1573.0468,
    "first_seen": 1789226860
-  },
-  {
-   "symbol": "SBDOG",
-   "name": "StockBaseDog",
-   "chain": "base",
-   "address": "0x0d493542a91f0c370064f497fad640de7ddc5076",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 2603.0701,
-   "first_seen": 1789226126
-  },
-  {
-   "symbol": "SBDOG",
-   "name": "Stockbase Dog",
-   "chain": "base",
-   "address": "0x1f42d888b7e82c4ea8896991cafc98e092989216",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 2326.7341,
-   "first_seen": 1789225898
-  },
-  {
-   "symbol": "LRK",
-   "name": "PlasticLARK",
-   "chain": "base",
-   "address": "0x98cd0231dea35a9296e8519fcb064f29ac8f97cd",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 25394.8,
-   "first_seen": 1789225850
-  },
-  {
-   "symbol": "cadd",
-   "name": "CAD Digital",
-   "chain": "base",
-   "address": "0x16f93ebc5320c89efc8701577efe49d14a276a06",
-   "score": 70,
-   "verdict": "green",
-   "liquidity_usd": 25542.6305,
-   "first_seen": 1789225712
-  },
-  {
-   "symbol": "SBCAT",
-   "name": "Stockbase Cat",
-   "chain": "base",
-   "address": "0x073f0566012c19ff39b46b01db6d14dc4b8eddcb",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 2663.4568,
-   "first_seen": 1789225711
   }
  ],
  "confirmed": [
@@ -524,9 +524,9 @@
   }
  ],
  "probation": {
-  "waiting": 51,
+  "waiting": 47,
   "confirmed": 17,
-  "dropped": 872
+  "dropped": 881
  },
  "recent_drains": [
   {
@@ -718,7 +718,7 @@
   "rug": 939
  },
  "watchlist_active": 9,
- "price_snapshots": 10582,
+ "price_snapshots": 10663,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
