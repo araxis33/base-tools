@@ -1,19 +1,19 @@
 {
- "generated_at": "2026-09-12T20:13:28Z",
- "generated_at_unix": 1789244007,
+ "generated_at": "2026-09-12T21:13:34Z",
+ "generated_at_unix": 1789247613,
  "period": {
   "start": "2026-07-15",
   "days": 59
  },
  "totals": {
-  "seen": 164447,
-  "base": 30332,
+  "seen": 164524,
+  "base": 30409,
   "robinhood": 134115,
-  "below_liquidity_threshold": 160592,
-  "spam_filtered": 940,
-  "scored": 2915,
-  "green": 1530,
-  "yellow": 460,
+  "below_liquidity_threshold": 160651,
+  "spam_filtered": 952,
+  "scored": 2921,
+  "green": 1535,
+  "yellow": 461,
   "red": 925
  },
  "liquidity_threshold_usd": 1500.0,
@@ -120,11 +120,76 @@
   },
   {
    "date": "2026-09-12",
-   "base": 903,
+   "base": 962,
+   "robinhood": 0
+  },
+  {
+   "date": "2026-09-13",
+   "base": 18,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "LUNIS",
+   "name": "LuniSwap",
+   "chain": "base",
+   "address": "0xb2000000000000000000001ad331a84426e3ac07",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3125.8207,
+   "first_seen": 1789247239
+  },
+  {
+   "symbol": "GME",
+   "name": "GameStop (thegameneverstopped.com)",
+   "chain": "base",
+   "address": "0x41e13a478771aa7bfb29d1b6db77ae0b35c5efac",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12607.9151251984,
+   "first_seen": 1789247102
+  },
+  {
+   "symbol": "MBAPPE",
+   "name": "DICTATOR MBAPPE",
+   "chain": "base",
+   "address": "0x02d8a185ca6cecbb7e6c1f66cfc482b69a6d72b8",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3173.133,
+   "first_seen": 1789246648
+  },
+  {
+   "symbol": "LUCIA",
+   "name": "Lucia",
+   "chain": "base",
+   "address": "0xb2000000000000000000004b488e391df1690b7f",
+   "score": 75,
+   "verdict": "green",
+   "liquidity_usd": 2372.2043,
+   "first_seen": 1789246420
+  },
+  {
+   "symbol": "CHUMP",
+   "name": "Chump Coin",
+   "chain": "base",
+   "address": "0x74e7dd1e389e052266fe301e220a8cf1d9d4613a",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12609.4151238203,
+   "first_seen": 1789245695
+  },
+  {
+   "symbol": "CLANKCAT",
+   "name": "Clankcat",
+   "chain": "base",
+   "address": "0x177897b8bc4355e2e3409f22c06ca2125f87da45",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 1738.2685,
+   "first_seen": 1789245372
+  },
   {
    "symbol": "ZTH",
    "name": "Zenith Protocol",
@@ -264,66 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 12651.8151706216,
    "first_seen": 1789232103
-  },
-  {
-   "symbol": "DAYC",
-   "name": "Daybreak",
-   "chain": "base",
-   "address": "0xd550ddff701030b2e884b3787ab6203ba54599ac",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 76562.2244,
-   "first_seen": 1789231874
-  },
-  {
-   "symbol": "牛梦",
-   "name": "牛梦",
-   "chain": "base",
-   "address": "0x069dbe33d6931332273bd9d3ace0ddc1698206dc",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 78524.7708591729,
-   "first_seen": 1789231556
-  },
-  {
-   "symbol": "PREDI",
-   "name": "Predi Markets",
-   "chain": "base",
-   "address": "0x1fed4cdbcf6997a6f82b880a0421e7a449f83b07",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12621.7653422068,
-   "first_seen": 1789231460
-  },
-  {
-   "symbol": "SWARM",
-   "name": "swarmboard",
-   "chain": "base",
-   "address": "0x12249d0b43e08d39483edd2e97963c55cff5ec29",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 16365.754,
-   "first_seen": 1789229866
-  },
-  {
-   "symbol": "POLYFLY",
-   "name": "Polyfly",
-   "chain": "base",
-   "address": "0xb200000000000000000000bfcd76f8aaebfa7f5f",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 14157.4476,
-   "first_seen": 1789229638
-  },
-  {
-   "symbol": "NUTS",
-   "name": "NUTS",
-   "chain": "base",
-   "address": "0x23988273b262757c1c1a5c01a4bfdbf1af4be2ba",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 7674.5743,
-   "first_seen": 1789229591
   }
  ],
  "confirmed": [
@@ -519,9 +524,9 @@
   }
  ],
  "probation": {
-  "waiting": 41,
+  "waiting": 44,
   "confirmed": 17,
-  "dropped": 890
+  "dropped": 893
  },
  "recent_drains": [
   {
@@ -708,12 +713,12 @@
   }
  ],
  "alerts": {
-  "dump": 692,
+  "dump": 693,
   "pump": 262,
   "rug": 939
  },
  "watchlist_active": 8,
- "price_snapshots": 10706,
+ "price_snapshots": 10766,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
