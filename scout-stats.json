@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-12T14:47:10Z",
- "generated_at_unix": 1789224429,
+ "generated_at": "2026-09-12T16:13:05Z",
+ "generated_at_unix": 1789229582,
  "period": {
   "start": "2026-07-15",
   "days": 59
  },
  "totals": {
-  "seen": 164063,
-  "base": 29948,
+  "seen": 164147,
+  "base": 30032,
   "robinhood": 134115,
-  "below_liquidity_threshold": 160323,
-  "spam_filtered": 858,
-  "scored": 2882,
-  "green": 1504,
-  "yellow": 453,
+  "below_liquidity_threshold": 160368,
+  "spam_filtered": 886,
+  "scored": 2893,
+  "green": 1509,
+  "yellow": 459,
   "red": 925
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-22",
-   "base": 726,
-   "robinhood": 1385
+   "base": 490,
+   "robinhood": 1049
   },
   {
    "date": "2026-08-23",
@@ -125,11 +125,121 @@
   },
   {
    "date": "2026-09-12",
-   "base": 519,
+   "base": 603,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "AI",
+   "name": "Artificial Inu",
+   "chain": "base",
+   "address": "0x3add0f7024244a5a42f9c49f2c64497ea1812d2e",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 1573.0468,
+   "first_seen": 1789226860
+  },
+  {
+   "symbol": "SBDOG",
+   "name": "StockBaseDog",
+   "chain": "base",
+   "address": "0x0d493542a91f0c370064f497fad640de7ddc5076",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 2603.0701,
+   "first_seen": 1789226126
+  },
+  {
+   "symbol": "SBDOG",
+   "name": "Stockbase Dog",
+   "chain": "base",
+   "address": "0x1f42d888b7e82c4ea8896991cafc98e092989216",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 2326.7341,
+   "first_seen": 1789225898
+  },
+  {
+   "symbol": "LRK",
+   "name": "PlasticLARK",
+   "chain": "base",
+   "address": "0x98cd0231dea35a9296e8519fcb064f29ac8f97cd",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 25394.8,
+   "first_seen": 1789225850
+  },
+  {
+   "symbol": "cadd",
+   "name": "CAD Digital",
+   "chain": "base",
+   "address": "0x16f93ebc5320c89efc8701577efe49d14a276a06",
+   "score": 70,
+   "verdict": "green",
+   "liquidity_usd": 25542.6305,
+   "first_seen": 1789225712
+  },
+  {
+   "symbol": "SBCAT",
+   "name": "Stockbase Cat",
+   "chain": "base",
+   "address": "0x073f0566012c19ff39b46b01db6d14dc4b8eddcb",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 2663.4568,
+   "first_seen": 1789225711
+  },
+  {
+   "symbol": "MYID",
+   "name": "My Identity Coin",
+   "chain": "base",
+   "address": "0x828e2699e990eecc7fce19e378838837f950072f",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 52710.4627,
+   "first_seen": 1789225663
+  },
+  {
+   "symbol": "TIK",
+   "name": "TikCoin Network",
+   "chain": "base",
+   "address": "0x673368c6399d64920063a5f3d2ba46fde535d4e4",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 52706.519,
+   "first_seen": 1789225662
+  },
+  {
+   "symbol": "FRONTIER",
+   "name": "We Must Pace the Frontier",
+   "chain": "base",
+   "address": "0x263b8ece615c910a657d8428e4e31fb5d001ec29",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 14428.9413,
+   "first_seen": 1789225661
+  },
+  {
+   "symbol": "BLUECHIP",
+   "name": "BlueChip",
+   "chain": "base",
+   "address": "0x3d362588b4e6f92075937a34bcdb83cb7b650408",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 2089.8235,
+   "first_seen": 1789224978
+  },
+  {
+   "symbol": "STOCK",
+   "name": "Stock Base",
+   "chain": "base",
+   "address": "0x124a1965a8d45234d850b0c825f5d563d8b9b5fd",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 1680.3036,
+   "first_seen": 1789224564
+  },
   {
    "symbol": "ELLIOR",
    "name": "Ellior Finance",
@@ -219,119 +329,19 @@
    "verdict": "green",
    "liquidity_usd": 21684.2598,
    "first_seen": 1789220831
-  },
-  {
-   "symbol": "红尘飞",
-   "name": "Hong Chen Fei",
-   "chain": "base",
-   "address": "0x8806ea8a861fbb662a49a7d961d8ad877120caac",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 19972.7988,
-   "first_seen": 1789220830
-  },
-  {
-   "symbol": "basenoun",
-   "name": "basenoun",
-   "chain": "base",
-   "address": "0xb200000000000000000000553b1918481048d019",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 14503.3001,
-   "first_seen": 1789220829
-  },
-  {
-   "symbol": "LILBANK",
-   "name": "Lil Bank",
-   "chain": "base",
-   "address": "0xb200000000000000000000379a7433f71680dc63",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 15598.5855,
-   "first_seen": 1789220828
-  },
-  {
-   "symbol": "DONG",
-   "name": "Dongcoin",
-   "chain": "base",
-   "address": "0xa459f1fa97c70c4dfabdfd97cf61108952beec29",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 19799.5631,
-   "first_seen": 1789220826
-  },
-  {
-   "symbol": "TEST",
-   "name": "Testv1",
-   "chain": "base",
-   "address": "0x0f0214d7d3792adfac5eeb88de62c8b9153ee71e",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 10047.5015,
-   "first_seen": 1789216036
-  },
-  {
-   "symbol": "TEST",
-   "name": "Testpair",
-   "chain": "base",
-   "address": "0x0811c6ec8882012b504326aff3eaf987f3d31dc3",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 1977.8254,
-   "first_seen": 1789215208
-  },
-  {
-   "symbol": "MEMU",
-   "name": "MultipleEMU",
-   "chain": "base",
-   "address": "0x38851782bd65355aeed5e0ac731c36fdba03774e",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 25354.4,
-   "first_seen": 1789214567
-  },
-  {
-   "symbol": "XDC",
-   "name": "XDC Network",
-   "chain": "base",
-   "address": "0x611067f74c38e5ca9639958c50536072ff75b4cf",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 8020668.5262,
-   "first_seen": 1789213461
-  },
-  {
-   "symbol": "ECX",
-   "name": "eCash.com",
-   "chain": "base",
-   "address": "0x8014ef9cee977fe7ddef1e33114d5272626302f1",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 25323.0,
-   "first_seen": 1789212773
-  },
-  {
-   "symbol": "MCAT",
-   "name": "MarsCat",
-   "chain": "base",
-   "address": "0x21861ab3ba5415d32f4612197df7f55dd2755dc3",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12661.3,
-   "first_seen": 1789211394
-  },
-  {
-   "symbol": "ANON",
-   "name": "HeyAnon",
-   "chain": "base",
-   "address": "0x0c6a97f04a5efa0256f1dde649468440f60101e8",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 33181.0758,
-   "first_seen": 1789211207
   }
  ],
  "confirmed": [
+  {
+   "symbol": "STKB",
+   "chain": "base",
+   "address": "0x0557317478e2470f3b50d0af86677e18f23849cf",
+   "buyers_h1": 284,
+   "volume_h1": 156259.088898677,
+   "liquidity_usd": 17915.6646,
+   "confirmed_at": 1789222834,
+   "hours_waited": 0.8
+  },
   {
    "symbol": "FLM",
    "chain": "base",
@@ -514,9 +524,9 @@
   }
  ],
  "probation": {
-  "waiting": 57,
-  "confirmed": 16,
-  "dropped": 842
+  "waiting": 50,
+  "confirmed": 17,
+  "dropped": 859
  },
  "recent_drains": [
   {
@@ -707,8 +717,8 @@
   "pump": 261,
   "rug": 939
  },
- "watchlist_active": 8,
- "price_snapshots": 10350,
+ "watchlist_active": 9,
+ "price_snapshots": 10381,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
