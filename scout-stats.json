@@ -1,28 +1,23 @@
 {
- "generated_at": "2026-09-12T19:13:23Z",
- "generated_at_unix": 1789240402,
+ "generated_at": "2026-09-12T20:13:28Z",
+ "generated_at_unix": 1789244007,
  "period": {
   "start": "2026-07-15",
   "days": 59
  },
  "totals": {
-  "seen": 164383,
-  "base": 30268,
+  "seen": 164447,
+  "base": 30332,
   "robinhood": 134115,
-  "below_liquidity_threshold": 160545,
-  "spam_filtered": 926,
-  "scored": 2912,
-  "green": 1527,
+  "below_liquidity_threshold": 160592,
+  "spam_filtered": 940,
+  "scored": 2915,
+  "green": 1530,
   "yellow": 460,
   "red": 925
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
-  {
-   "date": "2026-08-22",
-   "base": 55,
-   "robinhood": 273
-  },
   {
    "date": "2026-08-23",
    "base": 413,
@@ -125,11 +120,41 @@
   },
   {
    "date": "2026-09-12",
-   "base": 839,
+   "base": 903,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "ZTH",
+   "name": "Zenith Protocol",
+   "chain": "base",
+   "address": "0xc41b9a8eef47f3165836dd121a178f05318f3f46",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 12602.4151118252,
+   "first_seen": 1789241598
+  },
+  {
+   "symbol": "Tulip",
+   "name": "Tulip Coin",
+   "chain": "base",
+   "address": "0xf7b4ac2180dc3d0c149b0078d414f534abbbec29",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 16885.1391,
+   "first_seen": 1789241371
+  },
+  {
+   "symbol": "BASED10",
+   "name": "Base10 Index",
+   "chain": "base",
+   "address": "0xe656e6855913353d9bc65bac38bdee9a66784224",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 79066.0336,
+   "first_seen": 1789241367
+  },
   {
    "symbol": "ITOAD",
    "name": "iToad",
@@ -299,36 +324,6 @@
    "verdict": "green",
    "liquidity_usd": 7674.5743,
    "first_seen": 1789229591
-  },
-  {
-   "symbol": "DIEMCAT",
-   "name": "Diem Cat",
-   "chain": "base",
-   "address": "0xb2000000000000000000001381213e9ce54afca7",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 22085.3848,
-   "first_seen": 1789229589
-  },
-  {
-   "symbol": "JACKET",
-   "name": "JACKET",
-   "chain": "base",
-   "address": "0x06c78606cea7b47e1fed756a5684fde50a157669",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 2191.1056,
-   "first_seen": 1789229587
-  },
-  {
-   "symbol": "AI",
-   "name": "Artificial Inu",
-   "chain": "base",
-   "address": "0x3add0f7024244a5a42f9c49f2c64497ea1812d2e",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 1573.0468,
-   "first_seen": 1789226860
   }
  ],
  "confirmed": [
@@ -524,9 +519,9 @@
   }
  ],
  "probation": {
-  "waiting": 47,
+  "waiting": 41,
   "confirmed": 17,
-  "dropped": 881
+  "dropped": 890
  },
  "recent_drains": [
   {
@@ -714,11 +709,11 @@
  ],
  "alerts": {
   "dump": 692,
-  "pump": 261,
+  "pump": 262,
   "rug": 939
  },
- "watchlist_active": 9,
- "price_snapshots": 10663,
+ "watchlist_active": 8,
+ "price_snapshots": 10706,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
