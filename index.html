@@ -1054,6 +1054,40 @@ const STOCK_TOKENS = [
 ];
 const CACHE_TTL_MS = 5 * 60 * 1000;
 
+// Every board read and wrote localStorage directly. In a private window, or
+// with site data blocked, the *getter itself* throws — which happened before
+// the first fetch and left the boards stuck on "Loading…" with no error state
+// and no retry button. Storage is a cache here, never the source of truth, so
+// losing it has to be silent.
+function storageGet(key){
+  try { return localStorage.getItem(key); } catch(e){ return null; }
+}
+function storageSet(key, value){
+  try { localStorage.setItem(key, value); } catch(e){}
+}
+
+// Symbols, logo URLs and contract addresses come from CoinGecko, not from this
+// file, and they land inside HTML attributes and text. Escaping them keeps a
+// stray quote in an upstream token name from breaking out of the attribute it
+// sits in.
+function esc(s){
+  return String(s == null ? "" : s).replace(/[&<>"']/g, c => (
+    { "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]
+  ));
+}
+
+// The stamp said "cached · just now" for anything served from storage, which
+// could be five minutes old on this visit and a day old on the offline path.
+// The boards are the one part of this page that claims to be current, so the
+// age they report has to be the real one.
+function ageLabel(ts){
+  const s = Math.max(0, (Date.now() - ts) / 1000);
+  if (s < 60) return "just now";
+  if (s < 5400) return Math.round(s / 60) + " min ago";
+  if (s < 172800) return Math.round(s / 3600) + " h ago";
+  return Math.round(s / 86400) + " days ago";
+}
+
 function fmtPrice(n){
   if (!isFinite(n)) return "—";
   if (n >= 1000) return "$" + n.toLocaleString(undefined,{maximumFractionDigits:0});
@@ -1098,7 +1132,7 @@ async function fetchWithTimeout(url, ms){
 
 // id -> base contract address, for every coin whose only platform is Base.
 async function fetchNativeBaseMap(){
-  const cachedRaw = localStorage.getItem(PLATFORMS_CACHE_KEY);
+  const cachedRaw = storageGet(PLATFORMS_CACHE_KEY);
   if (cachedRaw){
     try {
       const cached = JSON.parse(cachedRaw);
@@ -1112,7 +1146,7 @@ async function fetchNativeBaseMap(){
   for (const c of list){
     if (isNativeToBase(c)) map[c.id] = c.platforms.base;
   }
-  localStorage.setItem(PLATFORMS_CACHE_KEY, JSON.stringify({ ts: Date.now(), data: map }));
+  storageSet(PLATFORMS_CACHE_KEY, JSON.stringify({ ts: Date.now(), data: map }));
   return map;
 }
 
@@ -1201,23 +1235,45 @@ async function fetchBlueChips(){
   }).filter(Boolean).sort((a,b)=>(b.marketCap||0) - (a.marketCap||0));
 }
 
+// The market calls used to be a Promise.all, so a single rate-limited request
+// took down every board — including the ones the other calls had already paid
+// for. They are settled independently now: a complete result still returns
+// straight away, and a half-loaded one is only accepted once the retries are
+// spent, so a transient failure still gets its second chance.
 async function fetchBoardsDataWithRetry(){
-  let lastErr;
+  let lastErr, partial = null;
   for (const delay of [0, 800, 2000]){
     if (delay) await new Promise(r=>setTimeout(r, delay));
-    try {
-      const nativeMap = await fetchNativeBaseMap();
-      const [dynamicTokens, blueChips, stocks] = await Promise.all([
-        fetchMarketsOnce(nativeMap),
-        fetchBlueChips(),
-        // A different source from the other three, so it fails on its own
-        // schedule. One dead board beats four.
-        fetchStocks().catch(()=>null),
-      ]);
-      return { dynamicTokens, blueChips, stocks };
+
+    let nativeMap;
+    try { nativeMap = await fetchNativeBaseMap(); }
+    catch(e){ lastErr = e; continue; }
+
+    // Stocks come from a different source than the other three, so they fail
+    // on their own schedule. One dead board beats four.
+    const [markets, chips, stocks] = await Promise.allSettled([
+      fetchMarketsOnce(nativeMap),
+      fetchBlueChips(),
+      fetchStocks(),
+    ]);
+    const taken = r => r.status === "fulfilled" ? r.value : null;
+    const data = {
+      dynamicTokens: taken(markets),
+      blueChips: taken(chips),
+      stocks: taken(stocks),
+    };
+
+    if (data.dynamicTokens && data.blueChips && data.stocks){
+      data.complete = true;
+      return data;
     }
-    catch(e){ lastErr = e; }
+    lastErr = markets.reason || chips.reason || stocks.reason || lastErr;
+    if (data.dynamicTokens || data.blueChips || data.stocks){
+      data.complete = false;
+      partial = data;
+    }
   }
+  if (partial) return partial;
   throw lastErr;
 }
 
@@ -1257,43 +1313,48 @@ function renderColumn(elId, items, emptyMsg){
   bindCopyButtons(el);
 }
 
-function renderBoards(data, meta){
+function renderBoards(data, label){
   const tokens = data.dynamicTokens;
   // Without a floor the worst drop of the day is usually a token nobody traded:
   // a few hundred dollars of volume moves its price further than any real sell-off.
   const LOSER_MIN_VOLUME_USD = 25000;
-  const byLosers = [...tokens]
+
+  // Any half may be absent when only some of the calls came back. renderColumn
+  // already draws the error-with-retry state for a null, so a board that did
+  // load is shown and a board that didn't says so on its own.
+  const byLosers = tokens && [...tokens]
     .filter(t=>isFinite(t.change24h) && t.change24h < 0 && t.volume24h >= LOSER_MIN_VOLUME_USD)
     .sort((a,b)=>a.change24h - b.change24h)
     .slice(0,10);
-  const byGainers = [...tokens].filter(t=>isFinite(t.change24h)).sort((a,b)=>b.change24h - a.change24h).slice(0,10);
+  const byGainers = tokens && [...tokens].filter(t=>isFinite(t.change24h)).sort((a,b)=>b.change24h - a.change24h).slice(0,10);
 
   renderColumn("col-losers", byLosers, "Nothing down over the last 24h.");
   renderColumn("col-gainers", byGainers);
-  renderColumn("col-bluechip", data.blueChips.slice(0,10));
+  renderColumn("col-bluechip", data.blueChips && data.blueChips.slice(0,10));
   renderColumn("col-stocks", data.stocks);
 
-  document.getElementById("trend-updated").textContent = meta === "cache" ? "cached · just now" : "live · just now";
+  document.getElementById("trend-updated").textContent = label;
 }
 
 async function loadBoards(){
-  const cachedRaw = localStorage.getItem(CACHE_KEY);
+  const cachedRaw = storageGet(CACHE_KEY);
   let cached = null;
   if (cachedRaw){
     try { cached = JSON.parse(cachedRaw); } catch(e){}
   }
   if (cached && (Date.now() - cached.ts) < CACHE_TTL_MS){
-    renderBoards(cached.data, "cache");
+    renderBoards(cached.data, "cached · " + ageLabel(cached.ts));
     return;
   }
   try {
     const data = await fetchBoardsDataWithRetry();
-    localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
-    renderBoards(data, "live");
+    // A half-loaded result is worth showing but not worth pinning for the next
+    // five minutes: leaving it out of the cache lets the following visit retry.
+    if (data.complete) storageSet(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
+    renderBoards(data, data.complete ? "live · just now" : "live · partly unavailable");
   } catch(e){
     if (cached){
-      renderBoards(cached.data, "cache");
-      document.getElementById("trend-updated").textContent = "cached (offline)";
+      renderBoards(cached.data, "cached · " + ageLabel(cached.ts) + " · offline");
     } else {
       renderColumn("col-losers", null);
       renderColumn("col-gainers", null);
