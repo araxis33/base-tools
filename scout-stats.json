@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-13T19:14:18Z",
- "generated_at_unix": 1789326857,
+ "generated_at": "2026-09-13T20:14:25Z",
+ "generated_at_unix": 1789330464,
  "period": {
   "start": "2026-07-15",
   "days": 60
  },
  "totals": {
-  "seen": 164916,
-  "base": 30801,
+  "seen": 164988,
+  "base": 30873,
   "robinhood": 134115,
-  "below_liquidity_threshold": 160898,
-  "spam_filtered": 1059,
-  "scored": 2959,
-  "green": 1570,
+  "below_liquidity_threshold": 160945,
+  "spam_filtered": 1078,
+  "scored": 2965,
+  "green": 1576,
   "yellow": 463,
   "red": 926
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-23",
-   "base": 137,
-   "robinhood": 399
+   "base": 64,
+   "robinhood": 150
   },
   {
    "date": "2026-08-24",
@@ -125,11 +125,71 @@
   },
   {
    "date": "2026-09-13",
-   "base": 410,
+   "base": 482,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "CHCKD",
+   "name": "LatinCHICKADEE",
+   "chain": "base",
+   "address": "0x40d250c84ac76c1d7d46cc55f7fbbff26329cfdc",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 25039.2,
+   "first_seen": 1789328828
+  },
+  {
+   "symbol": "XL",
+   "name": "X Link",
+   "chain": "base",
+   "address": "0x2a20aa807c0fec47971c07365634f0d3c3ccec29",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 15266.6939,
+   "first_seen": 1789328826
+  },
+  {
+   "symbol": "FGAI",
+   "name": "FGAI",
+   "chain": "base",
+   "address": "0x0bd65296e25e9a08b48e5cb8ee2f14d5590947b0",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 7462.5693,
+   "first_seen": 1789328733
+  },
+  {
+   "symbol": "RTPLV2",
+   "name": "RT-Pool.cc Token V2",
+   "chain": "base",
+   "address": "0x824504f91d6761e3a0f9eb4b46f8b0640a6996bc",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13694.0393,
+   "first_seen": 1789328732
+  },
+  {
+   "symbol": "LSBK",
+   "name": "Locksley Bank",
+   "chain": "base",
+   "address": "0x31c47f7da967fb4f301008edbd22ef27ad6f0441",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 20177.1681,
+   "first_seen": 1789326994
+  },
+  {
+   "symbol": "SHAZ",
+   "name": "SharonAI Holdings Inc (Derivatives)",
+   "chain": "base",
+   "address": "0xd932aafb3fe104b9314277e0fe8ab78f97318dd6",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12546.05,
+   "first_seen": 1789326993
+  },
   {
    "symbol": "REZ",
    "name": "Renzo",
@@ -269,66 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 75499.779,
    "first_seen": 1789300780
-  },
-  {
-   "symbol": "FLNC",
-   "name": "Fluence Energy, Inc. Class A Common Stock (Derivatives)",
-   "chain": "base",
-   "address": "0x8264ec091c9a0c7e8ddd7eaf414bbbd1c180a3c2",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12386.6,
-   "first_seen": 1789299640
-  },
-  {
-   "symbol": "HAKIMI",
-   "name": "Hakimi",
-   "chain": "base",
-   "address": "0x6ce406ce3f4c64083e82cff6a3742507f760330d",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 7424.37,
-   "first_seen": 1789299410
-  },
-  {
-   "symbol": "蝴蝶人生",
-   "name": "蝴蝶人生",
-   "chain": "base",
-   "address": "0x9effa57357ec6a54aedfc460957870c8f757f6fc",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12361.9148306308,
-   "first_seen": 1789298498
-  },
-  {
-   "symbol": "CDXR",
-   "name": "Codex (codexblockchain.com)",
-   "chain": "base",
-   "address": "0x0e4350db1ff08e9156c535100d42f01f5586db47",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12375.6648466218,
-   "first_seen": 1789297082
-  },
-  {
-   "symbol": "LAW",
-   "name": "Journal",
-   "chain": "base",
-   "address": "0x76f6961c8a9c520a7b95da74e982b1f979a67e1f",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 1.50419945194515e+19,
-   "first_seen": 1789296806
-  },
-  {
-   "symbol": "ZODL",
-   "name": "ZODL",
-   "chain": "base",
-   "address": "0xe8dbac925c36482efe2cb892dffdb181e352ce55",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 75273.7002,
-   "first_seen": 1789295345
   }
  ],
  "confirmed": [
@@ -534,9 +534,9 @@
   }
  ],
  "probation": {
-  "waiting": 19,
+  "waiting": 22,
   "confirmed": 18,
-  "dropped": 954
+  "dropped": 957
  },
  "recent_drains": [
   {
@@ -728,7 +728,7 @@
   "rug": 940
  },
  "watchlist_active": 8,
- "price_snapshots": 11222,
+ "price_snapshots": 11314,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
