@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-13T18:14:11Z",
- "generated_at_unix": 1789323249,
+ "generated_at": "2026-09-13T19:14:18Z",
+ "generated_at_unix": 1789326857,
  "period": {
   "start": "2026-07-15",
   "days": 60
  },
  "totals": {
-  "seen": 164845,
-  "base": 30730,
+  "seen": 164916,
+  "base": 30801,
   "robinhood": 134115,
-  "below_liquidity_threshold": 160853,
-  "spam_filtered": 1039,
-  "scored": 2953,
-  "green": 1564,
+  "below_liquidity_threshold": 160898,
+  "spam_filtered": 1059,
+  "scored": 2959,
+  "green": 1570,
   "yellow": 463,
   "red": 926
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-23",
-   "base": 245,
-   "robinhood": 644
+   "base": 137,
+   "robinhood": 399
   },
   {
    "date": "2026-08-24",
@@ -125,11 +125,71 @@
   },
   {
    "date": "2026-09-13",
-   "base": 339,
+   "base": 410,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "REZ",
+   "name": "Renzo",
+   "chain": "base",
+   "address": "0xb4e5f49b0946f34c91db62a0df3902df89b0627c",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 19165.182,
+   "first_seen": 1789326488
+  },
+  {
+   "symbol": "LOTTO",
+   "name": "Lotto Coin",
+   "chain": "base",
+   "address": "0xb1235a32f6728f1d8f8c7ce04a0ed2502ac9ad02",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 19158.9967,
+   "first_seen": 1789326260
+  },
+  {
+   "symbol": "SPY",
+   "name": "SPDR S&amp;P 500 ETF Trust",
+   "chain": "base",
+   "address": "0x43dc8d347ecea29fd02446f576427f7af15c2735",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12541.45,
+   "first_seen": 1789325531
+  },
+  {
+   "symbol": "FO",
+   "name": "FOOT",
+   "chain": "base",
+   "address": "0x60c0477268b7b2b0079327a33b38b188c051cb07",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 25009.8909357857,
+   "first_seen": 1789325031
+  },
+  {
+   "symbol": "ETHANOL",
+   "name": "ETHanol",
+   "chain": "base",
+   "address": "0x8d81bd4b2182078824cb1ecce3948dad40abbd34",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3992.1668,
+   "first_seen": 1789324891
+  },
+  {
+   "symbol": "MIM",
+   "name": "Magic Internet Money",
+   "chain": "base",
+   "address": "0xb308e9cdc53f2e635d0cf435da418804582b6252",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12531.65,
+   "first_seen": 1789324345
+  },
   {
    "symbol": "$TTB",
    "name": "TO THE BASE",
@@ -269,66 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 75273.7002,
    "first_seen": 1789295345
-  },
-  {
-   "symbol": "LSK",
-   "name": "Lisk",
-   "chain": "base",
-   "address": "0x62de84bbbca6c5f3b17e7adf7a0e4eef97dc38d4",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 366865.1163,
-   "first_seen": 1789295027
-  },
-  {
-   "symbol": "COCOLATE",
-   "name": "cocolate",
-   "chain": "base",
-   "address": "0xd496b5cc67310715b46d8633bebf3f6f0d9d7991",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 28284.4519,
-   "first_seen": 1789294753
-  },
-  {
-   "symbol": "CYBERLEEK",
-   "name": "CyberLeek",
-   "chain": "base",
-   "address": "0x3290898900f4f9db0ed7546bbc83c8f8fd51a60e",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 14615.5576,
-   "first_seen": 1789294660
-  },
-  {
-   "symbol": "ACAT",
-   "name": "Privacy Cat",
-   "chain": "base",
-   "address": "0xead4224d8912f44439cf201b682e7190be4cec29",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 16788.0164,
-   "first_seen": 1789294657
-  },
-  {
-   "symbol": "SHITCOIN",
-   "name": "Shitcoin",
-   "chain": "base",
-   "address": "0x4c454efae4d5cfad029f54fe2dc1dbc7cbec25db",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 17725.5254,
-   "first_seen": 1789294655
-  },
-  {
-   "symbol": "HTZon",
-   "name": "Hertz Global Holdings Tokenized Stock (Ondo)",
-   "chain": "base",
-   "address": "0xbdb46647fb3b12dfb69cc4504f0cd08150210184",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12658.7079,
-   "first_seen": 1789278306
   }
  ],
  "confirmed": [
@@ -536,7 +536,7 @@
  "probation": {
   "waiting": 19,
   "confirmed": 18,
-  "dropped": 948
+  "dropped": 954
  },
  "recent_drains": [
   {
@@ -728,7 +728,7 @@
   "rug": 940
  },
  "watchlist_active": 8,
- "price_snapshots": 11135,
+ "price_snapshots": 11222,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
