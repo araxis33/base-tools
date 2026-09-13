@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>base.tools · Base ecosystem directory</title>
-<meta name="description" content="Directory of Base ecosystem tools plus live boards for Base tokens: biggest 24h drops, biggest 24h gains, blue-chips and tokenized stocks.">
+<title>base.tools · tools for Base, live boards, trades you sign yourself</title>
+<meta name="description" content="Tools for Base, live token boards, and trades you sign yourself. 23 apps worth using, four live boards, and four of my own — Thesis, Aero Vote Radar, Meme Scout and Rug or Ape.">
 <link rel="canonical" href="https://deftools.xyz/">
 <!-- Share card. Everything on this page is drawn by JavaScript, and the
      crawlers behind link previews on X, Telegram and Discord do not run it —
@@ -14,17 +14,17 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="base.tools">
 <meta property="og:url" content="https://deftools.xyz/">
-<meta property="og:title" content="base.tools · the directory and live token board for Base">
-<meta property="og:description" content="22 Base ecosystem tools in one place: wallets, AI agents, bots, terminals, bridges, DEXs and lending. Plus live boards for Base tokens: biggest 24h drops, biggest 24h gains, blue-chips and tokenized stocks.">
+<meta property="og:title" content="base.tools · tools for Base, live boards, trades you sign yourself">
+<meta property="og:description" content="23 apps worth using — wallets, AI agents, bots, terminals, bridges, DEXs and lending — four live token boards, and four tools of my own: Thesis, Aero Vote Radar, Meme Scout and Rug or Ape. Buy and sell from the page, signed in your own wallet.">
 <meta property="og:image" content="https://deftools.xyz/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="base.tools, the directory and live token board for Base. 22 tools, 8 categories, Base only.">
+<meta property="og:image:alt" content="base.tools — tools for Base, live boards, trades you sign yourself. 23 tools, 8 categories, Base only.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@Def7771">
 <meta name="twitter:creator" content="@Def7771">
-<meta name="twitter:title" content="base.tools · the directory and live token board for Base">
-<meta name="twitter:description" content="22 Base ecosystem tools in one place, plus live boards for Base tokens: biggest 24h drops, biggest 24h gains, blue-chips and tokenized stocks.">
+<meta name="twitter:title" content="base.tools · tools for Base, live boards, trades you sign yourself">
+<meta name="twitter:description" content="23 apps worth using, four live token boards, and four tools of my own: Thesis, Aero Vote Radar, Meme Scout and Rug or Ape. Buy and sell from the page, signed in your own wallet.">
 <meta name="twitter:image" content="https://deftools.xyz/og.png">
 <!-- Base Dashboard domain verification: proves this domain belongs to the
      registered Base app. Must stay in <head> on the homepage. -->
@@ -601,6 +601,9 @@
      type, CTA padding -- and hide the words "Built by " so the four links fit
      on one row under the logo. */
   @media(max-width:620px){
+    /* The headline's hard break is placed for a wide screen. On a phone the
+       line wraps on its own, and forcing the break splits a sentence mid-way. */
+    .h1-break{display:none;}
     /* 31px tall is a miss on a phone; the extra padding takes the tap target
        to 40 without changing how the button looks. */
     .buy-btn{padding:11px 14px;}
@@ -661,8 +664,8 @@
 
 <div class="wrap hero">
   <div class="pill"><span class="dot"></span> <span id="tool-count">14</span> TOOLS · <span id="cat-count">5</span> CATEGORIES · BASE ONLY</div>
-  <h1>The <span class="accent">directory</span> and live<br>token board for <span class="accent">Base</span>.</h1>
-  <p class="sub">Base ecosystem tools in one place, plus four live boards: the day’s biggest drops, biggest gains, the blue-chips and the stocks that trade on Base.</p>
+  <h1>Tools for <span class="accent">Base</span>. Live boards. <br class="h1-break">Trades you <span class="accent">sign yourself</span>.</h1>
+  <p class="sub">23 apps worth using, four live boards, and four of my own — Thesis, Aero Vote Radar, Meme Scout and Rug or Ape — free and open source.</p>
 </div>
 
 <div class="wrap wrap-boards">
