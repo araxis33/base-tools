@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-12T21:13:34Z",
- "generated_at_unix": 1789247613,
+ "generated_at": "2026-09-13T11:17:20Z",
+ "generated_at_unix": 1789298237,
  "period": {
   "start": "2026-07-15",
-  "days": 59
+  "days": 60
  },
  "totals": {
-  "seen": 164524,
-  "base": 30409,
+  "seen": 164665,
+  "base": 30550,
   "robinhood": 134115,
-  "below_liquidity_threshold": 160651,
-  "spam_filtered": 952,
-  "scored": 2921,
-  "green": 1535,
-  "yellow": 461,
-  "red": 925
+  "below_liquidity_threshold": 160735,
+  "spam_filtered": 988,
+  "scored": 2942,
+  "green": 1553,
+  "yellow": 463,
+  "red": 926
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-23",
-   "base": 413,
-   "robinhood": 1101
+   "base": 322,
+   "robinhood": 839
   },
   {
    "date": "2026-08-24",
@@ -125,210 +125,210 @@
   },
   {
    "date": "2026-09-13",
-   "base": 18,
+   "base": 159,
    "robinhood": 0
   }
  ],
  "recent_finds": [
   {
-   "symbol": "LUNIS",
-   "name": "LuniSwap",
+   "symbol": "CDXR",
+   "name": "Codex (codexblockchain.com)",
    "chain": "base",
-   "address": "0xb2000000000000000000001ad331a84426e3ac07",
+   "address": "0x0e4350db1ff08e9156c535100d42f01f5586db47",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 3125.8207,
-   "first_seen": 1789247239
+   "liquidity_usd": 12375.6648466218,
+   "first_seen": 1789297082
   },
   {
-   "symbol": "GME",
-   "name": "GameStop (thegameneverstopped.com)",
+   "symbol": "LAW",
+   "name": "Journal",
    "chain": "base",
-   "address": "0x41e13a478771aa7bfb29d1b6db77ae0b35c5efac",
+   "address": "0x76f6961c8a9c520a7b95da74e982b1f979a67e1f",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 12607.9151251984,
-   "first_seen": 1789247102
+   "liquidity_usd": 1.50419945194515e+19,
+   "first_seen": 1789296806
   },
   {
-   "symbol": "MBAPPE",
-   "name": "DICTATOR MBAPPE",
+   "symbol": "ZODL",
+   "name": "ZODL",
    "chain": "base",
-   "address": "0x02d8a185ca6cecbb7e6c1f66cfc482b69a6d72b8",
-   "score": 100,
+   "address": "0xe8dbac925c36482efe2cb892dffdb181e352ce55",
+   "score": 73,
    "verdict": "green",
-   "liquidity_usd": 3173.133,
-   "first_seen": 1789246648
+   "liquidity_usd": 75273.7002,
+   "first_seen": 1789295345
   },
   {
-   "symbol": "LUCIA",
-   "name": "Lucia",
+   "symbol": "LSK",
+   "name": "Lisk",
    "chain": "base",
-   "address": "0xb2000000000000000000004b488e391df1690b7f",
-   "score": 75,
-   "verdict": "green",
-   "liquidity_usd": 2372.2043,
-   "first_seen": 1789246420
-  },
-  {
-   "symbol": "CHUMP",
-   "name": "Chump Coin",
-   "chain": "base",
-   "address": "0x74e7dd1e389e052266fe301e220a8cf1d9d4613a",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12609.4151238203,
-   "first_seen": 1789245695
-  },
-  {
-   "symbol": "CLANKCAT",
-   "name": "Clankcat",
-   "chain": "base",
-   "address": "0x177897b8bc4355e2e3409f22c06ca2125f87da45",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 1738.2685,
-   "first_seen": 1789245372
-  },
-  {
-   "symbol": "ZTH",
-   "name": "Zenith Protocol",
-   "chain": "base",
-   "address": "0xc41b9a8eef47f3165836dd121a178f05318f3f46",
+   "address": "0x62de84bbbca6c5f3b17e7adf7a0e4eef97dc38d4",
    "score": 79,
    "verdict": "green",
-   "liquidity_usd": 12602.4151118252,
-   "first_seen": 1789241598
+   "liquidity_usd": 366865.1163,
+   "first_seen": 1789295027
   },
   {
-   "symbol": "Tulip",
-   "name": "Tulip Coin",
+   "symbol": "COCOLATE",
+   "name": "cocolate",
    "chain": "base",
-   "address": "0xf7b4ac2180dc3d0c149b0078d414f534abbbec29",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 16885.1391,
-   "first_seen": 1789241371
-  },
-  {
-   "symbol": "BASED10",
-   "name": "Base10 Index",
-   "chain": "base",
-   "address": "0xe656e6855913353d9bc65bac38bdee9a66784224",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 79066.0336,
-   "first_seen": 1789241367
-  },
-  {
-   "symbol": "ITOAD",
-   "name": "iToad",
-   "chain": "base",
-   "address": "0xdf7fdedc2573fa3ca7ddf5d34c7aede4e3b0f6ab",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4084.46,
-   "first_seen": 1789240355
-  },
-  {
-   "symbol": "HYDBon",
-   "name": "iShares High Yield Systematic Bond Tokenized ETF (Ondo)",
-   "chain": "base",
-   "address": "0x3cb1eced67af4f2c4955a716da4977e24fb7b9e9",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12604.2151143617,
-   "first_seen": 1789240353
-  },
-  {
-   "symbol": "CNT",
-   "name": "Centel (centel.io)",
-   "chain": "base",
-   "address": "0x5925dba3e3c07d27ef3789c1fa5aa02d14afdd8b",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12622.2651426558,
-   "first_seen": 1789238626
-  },
-  {
-   "symbol": "FLNCB",
-   "name": "Fluence Energy Tokenized bStocks",
-   "chain": "base",
-   "address": "0x002b57bfa57ef65fcc5d8010b5dc9cf9e6fde66a",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12629.0151425398,
-   "first_seen": 1789237662
-  },
-  {
-   "symbol": "FLYBASE",
-   "name": "Fly Base",
-   "chain": "base",
-   "address": "0x369d2ac19ac0fd8eaa16056b178363a4a94d9a63",
+   "address": "0xd496b5cc67310715b46d8633bebf3f6f0d9d7991",
    "score": 73,
    "verdict": "green",
-   "liquidity_usd": 5047.0952,
-   "first_seen": 1789237480
+   "liquidity_usd": 28284.4519,
+   "first_seen": 1789294753
   },
   {
-   "symbol": "BABY",
-   "name": "BaseBaby",
+   "symbol": "CYBERLEEK",
+   "name": "CyberLeek",
    "chain": "base",
-   "address": "0x6ba9154acbd7788f22b01b497fd4e45e428f5424",
+   "address": "0x3290898900f4f9db0ed7546bbc83c8f8fd51a60e",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 25440.4024501085,
-   "first_seen": 1789236656
+   "liquidity_usd": 14615.5576,
+   "first_seen": 1789294660
   },
   {
-   "symbol": "XAEAXII",
-   "name": "X AE A-XII",
+   "symbol": "ACAT",
+   "name": "Privacy Cat",
    "chain": "base",
-   "address": "0xa27188fedef092b6e8606471eb6b300ef1200b6a",
+   "address": "0xead4224d8912f44439cf201b682e7190be4cec29",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 4673.7393,
-   "first_seen": 1789236608
+   "liquidity_usd": 16788.0164,
+   "first_seen": 1789294657
   },
   {
-   "symbol": "RSTR",
-   "name": "BoredROOSTER",
+   "symbol": "SHITCOIN",
+   "name": "Shitcoin",
    "chain": "base",
-   "address": "0x47a4d667279648c4db46eda1662c63707e3078e0",
+   "address": "0x4c454efae4d5cfad029f54fe2dc1dbc7cbec25db",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 17725.5254,
+   "first_seen": 1789294655
+  },
+  {
+   "symbol": "HTZon",
+   "name": "Hertz Global Holdings Tokenized Stock (Ondo)",
+   "chain": "base",
+   "address": "0xbdb46647fb3b12dfb69cc4504f0cd08150210184",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12658.7079,
+   "first_seen": 1789278306
+  },
+  {
+   "symbol": "中国奥",
+   "name": "中国奥兹",
+   "chain": "base",
+   "address": "0x57ff4cf1c0efdc8a184ef77d324104afbcb4ec29",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 17340.5592,
+   "first_seen": 1789278169
+  },
+  {
+   "symbol": "BUST",
+   "name": "BUST",
+   "chain": "base",
+   "address": "0x2e33d4dcb1f3d79b6004ea403c6b5ee96c7ce61e",
+   "score": 76,
+   "verdict": "green",
+   "liquidity_usd": 2292.3026,
+   "first_seen": 1789278166
+  },
+  {
+   "symbol": "SAFEAI",
+   "name": "Trust Me Bro",
+   "chain": "base",
+   "address": "0xb200000000000000000000460974e2e45e082d14",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 28061.4322,
+   "first_seen": 1789278165
+  },
+  {
+   "symbol": "INU",
+   "name": "Long INU",
+   "chain": "base",
+   "address": "0xb200000000000000000000a1121f1ba0ccf7a1c0",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 27177.7724,
+   "first_seen": 1789278163
+  },
+  {
+   "symbol": "blohard",
+   "name": "blohard",
+   "chain": "base",
+   "address": "0xa314bf3aaf6fa52fd235b4b7b65c2d0afb47aca5",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 76536.0862,
+   "first_seen": 1789278162
+  },
+  {
+   "symbol": "456",
+   "name": "123",
+   "chain": "base",
+   "address": "0x388db6b85605d565d0f7c581e7089e49c9933244",
+   "score": 40,
+   "verdict": "yellow",
+   "liquidity_usd": 40155.1259,
+   "first_seen": 1789249736
+  },
+  {
+   "symbol": "STKB",
+   "name": "STOCKBASE.FUN",
+   "chain": "base",
+   "address": "0x088edca3a323c7fcb0e2f775a839010ccde9bc74",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 1689.1372,
+   "first_seen": 1789249735
+  },
+  {
+   "symbol": "CRWV",
+   "name": "CoreWeave Tokenized Stock (Robinhood)",
+   "chain": "base",
+   "address": "0xfaaad99af824c0849c08fc52bd65bb99359b05c2",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12616.8151396755,
+   "first_seen": 1789249734
+  },
+  {
+   "symbol": "BASEBULL",
+   "name": "BASEBULL",
+   "chain": "base",
+   "address": "0x4f4750b74d98fdddcc241f17d530cf7d511405bb",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4491.2217,
+   "first_seen": 1789248192
+  },
+  {
+   "symbol": "BASECOIN",
+   "name": "basecoin",
+   "chain": "base",
+   "address": "0xe9cb03833ba357fa78c8a2829a955a71d6f3828e",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4139.76,
+   "first_seen": 1789248056
+  },
+  {
+   "symbol": "SHRS",
+   "name": "GracefulSEAHORSE",
+   "chain": "base",
+   "address": "0xd1491b676abbadb6f6252054196d3942b9c2cf59",
    "score": 73,
    "verdict": "green",
-   "liquidity_usd": 25253.9,
-   "first_seen": 1789236606
-  },
-  {
-   "symbol": "RBHXBASE",
-   "name": "Is Base Dead?!",
-   "chain": "base",
-   "address": "0xe3bff194b1ccb8557eac019d1856d207c0757b07",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 25178.5568,
-   "first_seen": 1789235743
-  },
-  {
-   "symbol": "CMC",
-   "name": "CoinMarketCap",
-   "chain": "base",
-   "address": "0xde4d43b21bf1002e9d96cf9034051412ded6bb07",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 21861.7924887676,
-   "first_seen": 1789234653
-  },
-  {
-   "symbol": "POOLS",
-   "name": "pools.trade",
-   "chain": "base",
-   "address": "0xc5e578e7d8af014489e302062a3e4c93ba193361",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12651.8151706216,
-   "first_seen": 1789232103
+   "liquidity_usd": 25271.9,
+   "first_seen": 1789247648
   }
  ],
  "confirmed": [
@@ -524,9 +524,9 @@
   }
  ],
  "probation": {
-  "waiting": 44,
+  "waiting": 41,
   "confirmed": 17,
-  "dropped": 893
+  "dropped": 916
  },
  "recent_drains": [
   {
@@ -718,7 +718,7 @@
   "rug": 939
  },
  "watchlist_active": 8,
- "price_snapshots": 10766,
+ "price_snapshots": 10942,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
