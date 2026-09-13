@@ -1654,6 +1654,11 @@ async function baseRpc(method, params){
     headers:{"Content-Type":"application/json"},
     body: JSON.stringify({ jsonrpc:"2.0", id:1, method:method, params:params })
   });
+  // A throttled node answers 429 with a body that is not JSON at all, so this
+  // has to be caught before parsing or it surfaces as a syntax error.
+  if (!res.ok) throw new Error(res.status === 429
+    ? "The public Base node is busy. Try again in a moment."
+    : "The node answered " + res.status + ".");
   const j = await res.json();
   if (j && j.error) throw new Error(j.error.message || "The node refused that read.");
   return j ? j.result : null;
@@ -1709,11 +1714,22 @@ async function chainBalances(owner, contracts){
   const found = new Map();
   for (let i = 0; i < contracts.length; i += MULTICALL_CHUNK){
     const slice = contracts.slice(i, i + MULTICALL_CHUNK);
-    const hex = await baseRpc("eth_call", [
-      { to: MULTICALL3, data: encodeBalanceCalls(owner, slice) }, "latest"]);
-    if (typeof hex !== "string" || hex.length < 130) throw new Error("multicall refused");
+    const data = encodeBalanceCalls(owner, slice);
+    // The public node answers 429 often enough to see it on a normal load, and
+    // one refused chunk used to drop the whole wallet back to the explorer's
+    // stale numbers — the very thing this reading exists to avoid. A chunk is
+    // worth three tries before that happens.
+    let hex = null, lastErr = null;
+    for (let attempt = 0; attempt < 3 && hex === null; attempt++){
+      if (attempt) await sleep(500 * attempt);
+      try {
+        const r = await baseRpc("eth_call", [{ to: MULTICALL3, data: data }, "latest"]);
+        if (typeof r === "string" && r.length >= 130) hex = r;
+      } catch(e){ lastErr = e; }
+    }
+    if (hex === null) throw lastErr || new Error("the node would not read this wallet");
     decodeBalanceCalls(hex).forEach(function(v, j){ if (v !== null) found.set(slice[j], v); });
-    if (i + MULTICALL_CHUNK < contracts.length) await sleep(200);
+    if (i + MULTICALL_CHUNK < contracts.length) await sleep(250);
   }
   return found;
 }
