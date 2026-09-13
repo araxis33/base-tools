@@ -180,6 +180,19 @@
   .section-title{font-size:var(--fs-xl); font-weight:800; color:var(--text);}
   .section-sub{color:var(--muted); font-size:var(--fs-sm); margin-top:4px;}
   .updated{font-size:var(--fs-xs); color:var(--muted2); font-weight:600;}
+  /* The boards sell you someone else's token; this opens the one board that is
+     yours. It sits with them rather than in the header because everything it
+     does — price, sell — is the boards' own machinery pointed at your wallet. */
+  .head-side{display:flex; align-items:center; gap:12px; flex-wrap:wrap;}
+  .wal-open{
+    border:1px solid var(--border); background:var(--card); color:var(--blue-text);
+    border-radius:var(--r-pill); padding:7px 14px; font-family:inherit;
+    font-size:var(--fs-xs); font-weight:800; cursor:pointer; white-space:nowrap;
+    display:flex; align-items:center; gap:6px;
+    transition:background var(--t), border-color var(--t), color var(--t);
+  }
+  .wal-open:hover{border-color:var(--blue); color:var(--blue-bright);}
+  .wal-open .ic{width:13px; height:13px;}
 
   /* trending: four boards across */
   .trend-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap:12px;}
@@ -273,6 +286,52 @@
     font-size:var(--fs-md); cursor:pointer; padding:8px; margin-right:-8px; line-height:1;
   }
   .modal-x:hover{color:var(--text);}
+  /* wallet panel. Wider than the trade dialog because every row carries an
+     amount, a dollar value and a button, and narrower than the boards because
+     it is still a dialog. */
+  .modal.modal-wide{max-width:460px;}
+  .wal-total{
+    display:flex; align-items:baseline; justify-content:space-between; gap:12px;
+    padding:14px 16px; background:var(--bg); border:1px solid var(--border);
+    border-radius:var(--r-md);
+  }
+  .wal-total-sum{font-size:var(--fs-xl); font-weight:800; letter-spacing:-0.02em;}
+  .wal-total-label{font-size:var(--fs-xxs); color:var(--muted2); font-weight:700;}
+  .wal-list{display:flex; flex-direction:column;}
+  .wal-row{
+    display:flex; align-items:center; gap:10px; padding:10px 2px;
+    border-bottom:1px solid var(--border);
+  }
+  .wal-row:last-child{border-bottom:none;}
+  .wal-logo{width:26px; height:26px; border-radius:50%; background:var(--bg2); flex-shrink:0;}
+  .wal-id{min-width:0; flex:1;}
+  .wal-sym{font-weight:800; font-size:var(--fs-sm); display:block;}
+  /* Two tokens in this list can carry the same ticker and only one of them is
+     the real one, so the address is part of the name, not a detail. */
+  .wal-addr{font-size:var(--fs-xxs); color:var(--muted2); font-weight:600;}
+  .wal-amt{text-align:right; flex-shrink:0;}
+  .wal-usd{font-weight:800; font-size:var(--fs-sm);}
+  .wal-qty{font-size:var(--fs-xxs); color:var(--muted2); font-weight:600;}
+  .wal-sell{
+    border:1px solid var(--border); background:transparent; color:var(--red);
+    border-radius:var(--r-pill); padding:6px 14px; font-family:inherit;
+    font-size:var(--fs-xxs); font-weight:800; cursor:pointer; flex-shrink:0;
+    transition:background var(--t), border-color var(--t), color var(--t);
+  }
+  .wal-sell:hover{border-color:var(--red); background:rgba(255,93,93,0.1);}
+  .wal-gas{
+    font-size:var(--fs-xxs); color:var(--muted2); font-weight:700; flex-shrink:0;
+    padding:6px 0;
+  }
+  .wal-more{
+    border:1px dashed var(--border); background:transparent; color:var(--muted);
+    border-radius:var(--r-sm); padding:9px 0; width:100%; font-family:inherit;
+    font-size:var(--fs-xxs); font-weight:700; cursor:pointer;
+  }
+  .wal-more:hover{border-color:var(--blue); color:var(--blue-text);}
+  .wal-note{font-size:var(--fs-xxs); color:var(--muted2); line-height:1.5; margin:0;}
+  .wal-status{font-size:var(--fs-xs); color:var(--muted); font-weight:600;}
+  .wal-status.bad{color:var(--red);}
   /* Selling is not a second dialog: same token, same router, reversed
      direction. So it is a switch at the top of the one that already exists. */
   .buy-tabs{
@@ -584,6 +643,7 @@
   <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4.5A1.5 1.5 0 0 1 3 13.5v-9A1.5 1.5 0 0 1 4.5 3h9A1.5 1.5 0 0 1 15 4.5V5"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6.5L9.5 17 4 11.5"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17L17 7"/><path d="M8.5 7H17v8.5"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M3.5 7.5A2 2 0 0 1 5.5 5.5h11A2 2 0 0 1 18.5 7.5v1"/><rect x="3.5" y="7.5" width="17" height="11" rx="2.2"/><path d="M16 13h1.5"/></symbol>
 </svg>
 
 <header>
@@ -611,7 +671,12 @@
         <div class="section-title">Live token boards</div>
         <div class="section-sub">Losers &amp; Gainers scan every Base-native token live · Blue-chips are hand-picked · Stocks are priced from their deepest pool</div>
       </div>
-      <div class="updated" id="trend-updated">loading…</div>
+      <div class="head-side">
+        <div class="updated" id="trend-updated">loading…</div>
+        <button class="wal-open" id="wal-open" type="button">
+          <svg class="ic" aria-hidden="true"><use href="#i-wallet"/></svg> My wallet
+        </button>
+      </div>
     </div>
     <div class="trend-grid" id="trend-grid">
       <div class="trend-col">
@@ -784,6 +849,30 @@
     </span>
   </div>
 </footer>
+
+<div class="modal-back" id="wal-back" hidden>
+  <div class="modal modal-wide" role="dialog" aria-modal="true" aria-labelledby="wal-title">
+    <div class="modal-head">
+      <div>
+        <div class="modal-title" id="wal-title">My wallet</div>
+        <div class="modal-sub" id="wal-sub">on Base</div>
+      </div>
+      <button class="modal-x" id="wal-close" type="button" aria-label="Close">&#215;</button>
+    </div>
+    <div class="wal-total" id="wal-total" hidden>
+      <div>
+        <div class="wal-total-label">TOTAL ON BASE</div>
+        <div class="wal-total-sum" id="wal-sum">$0.00</div>
+      </div>
+      <div class="wal-total-label" id="wal-count"></div>
+    </div>
+    <div class="wal-status" id="wal-status">Connect a wallet to see what is in it.</div>
+    <div class="wal-list" id="wal-list"></div>
+    <button class="wal-more" id="wal-more" type="button" hidden></button>
+    <button class="buy-cta" id="wal-action" type="button">Connect wallet</button>
+    <p class="wal-note" id="wal-note">Read-only: balances come from the chain, prices from the pools that actually trade the token. Airdropped tokens with no pool behind them are counted, not listed — they cannot be priced and cannot be sold. A row marked <b>no pool</b> is a deposit receipt: real money, withdrawn where you deposited it, not here.</p>
+  </div>
+</div>
 
 <div class="modal-back" id="buy-back" hidden>
   <div class="modal" role="dialog" aria-modal="true" aria-labelledby="buy-title">
@@ -1211,6 +1300,37 @@ async function fetchMarketsOnce(nativeMap){
     }));
 }
 
+// The honest price for a token given every pool DexScreener knows about it.
+// These tokens have live pools quoting forty times the real price, and the
+// reported liquidity of such a pool is inflated by that same wrong price — so
+// "deepest pool wins" hands you the trap. The median price across pools cannot
+// be moved by one outlier: take it as the reference, throw out anything more
+// than 50% away from it, and only then pick the deepest. Returns null when the
+// token has no pool at all, which is also the test for "can this be sold".
+function pickPoolPrice(pairs, contract){
+  const addr = String(contract).toLowerCase();
+  const mine = (pairs || []).filter(p => p.chainId === "base"
+    && p.baseToken && String(p.baseToken.address).toLowerCase() === addr
+    && parseFloat(p.priceUsd) > 0);
+  if (!mine.length) return null;
+  const prices = mine.map(p=>parseFloat(p.priceUsd)).sort((a,b)=>a-b);
+  const median = prices[Math.floor(prices.length/2)];
+  const sane = mine.filter(p=>{
+    const px = parseFloat(p.priceUsd);
+    return px > median*0.5 && px < median*1.5;
+  });
+  if (!sane.length) return null;
+  sane.sort((a,b)=>((b.liquidity&&b.liquidity.usd)||0) - ((a.liquidity&&a.liquidity.usd)||0));
+  const deep = sane[0];
+  return {
+    price: parseFloat(deep.priceUsd),
+    liquidity: (deep.liquidity && deep.liquidity.usd) || 0,
+    logo: (deep.info && deep.info.imageUrl) || "",
+    change24h: (deep.priceChange && deep.priceChange.h24),
+    volume24h: (deep.volume && deep.volume.h24) || 0,
+  };
+}
+
 async function fetchStocks(){
   // One request per token: the batched endpoint caps its reply at 30 pairs, and
   // ten of these tokens have far more pools than that between them, so asking
@@ -1222,31 +1342,15 @@ async function fetchStocks(){
       .catch(()=>({ t, pairs: [] }))
   ));
   const out = results.map(({t, pairs})=>{
-    const mine = pairs.filter(p => p.chainId === "base"
-      && p.baseToken && p.baseToken.address.toLowerCase() === t.contract.toLowerCase()
-      && parseFloat(p.priceUsd) > 0);
-    if (!mine.length) return null;
-    // These tokens have live pools quoting forty times the real price, and the
-    // reported liquidity of such a pool is inflated by that same wrong price —
-    // so "deepest pool wins" hands the board the trap. The median price across
-    // pools cannot be moved by one outlier: take it as the reference, throw out
-    // anything more than 50% away from it, and only then pick the deepest.
-    const prices = mine.map(p=>parseFloat(p.priceUsd)).sort((a,b)=>a-b);
-    const median = prices[Math.floor(prices.length/2)];
-    const sane = mine.filter(p=>{
-      const px = parseFloat(p.priceUsd);
-      return px > median*0.5 && px < median*1.5;
-    });
-    if (!sane.length) return null;
-    sane.sort((a,b)=>((b.liquidity&&b.liquidity.usd)||0) - ((a.liquidity&&a.liquidity.usd)||0));
-    const deep = sane[0];
+    const pool = pickPoolPrice(pairs, t.contract);
+    if (!pool) return null;
     return {
       symbol: t.symbol,
-      logo: (deep.info && deep.info.imageUrl) || "",
+      logo: pool.logo,
       contract: t.contract,
-      price: parseFloat(deep.priceUsd),
-      change24h: (deep.priceChange && deep.priceChange.h24),
-      volume24h: (deep.volume && deep.volume.h24) || 0,
+      price: pool.price,
+      change24h: pool.change24h,
+      volume24h: pool.volume24h,
       marketCap: 0,
     };
   }).filter(Boolean);
@@ -2036,6 +2140,18 @@ buyEl("buy-presets").addEventListener("click", async function(e){
   p.on("accountsChanged", function(accounts){
     trade.account = (accounts && accounts[0]) || null;
     trade.balance = null;
+    // The wallet panel is a picture of one address. Switching accounts has to
+    // repaint it or put it away, never leave someone else's holdings on screen
+    // with a Sell button under them.
+    wallet.account = trade.account;
+    if (!walEl("wal-back").hidden){
+      if (trade.account){
+        walEl("wal-sub").textContent = "on Base · " + shortAddr(trade.account);
+        loadWallet();
+      } else {
+        closeWallet();
+      }
+    }
     buyStatus(trade.account ? "Connected " + shortAddr(trade.account) : "Wallet disconnected.");
     if (!buyEl("buy-back").hidden){
       if (spendsToken()) refreshBalance();
@@ -2044,6 +2160,292 @@ buyEl("buy-presets").addEventListener("click", async function(e){
     renderCta();
   });
 })();
+
+/* ---------------- my wallet ----------------
+   The boards show you somebody else's tokens; this shows yours, with the same
+   Sell button pointed at them. Nothing is signed here and no key is asked for:
+   balances come from a public explorer, prices from the pools themselves.
+
+   The filtering is the feature, not decoration. A real Base wallet carries
+   hundreds of ERC-20s it never asked for — airdropped spam, most of it named
+   after a website you are meant to visit. Measured on one live wallet: 445
+   ERC-20 balances, of which 6 are worth anything. So a token is shown only if
+   a pool actually trades it, which is the same test as "could I sell this".
+   Everything else is counted, not listed.
+
+   Prices are not taken from the explorer: it carries a rate for only 18 of
+   those 445, and it is wrong on thin tokens. They come from the pools through
+   the same median-of-pools rule the stock board uses, in small batches because
+   the batched endpoint truncates its reply at 30 pairs. */
+const BLOCKSCOUT_BASE = "https://base.blockscout.com/api/v2";
+const WALLET_BATCH = 8;          // addresses per DexScreener call
+const WALLET_LANES = 5;          // batches in flight at once
+const WALLET_DUST_USD = 1;       // below this a row hides behind "show all"
+const WETH_BASE = "0x4200000000000000000000000000000000000006";
+
+const wallet = { account:null, rows:[], hidden:0, showAll:false, busy:false };
+
+function walEl(id){ return document.getElementById(id); }
+
+function walStatus(text, bad){
+  const el = walEl("wal-status");
+  el.className = "wal-status" + (bad ? " bad" : "");
+  el.textContent = text || "";
+  el.hidden = !text;
+}
+
+async function fetchWalletTokens(addr){
+  const res = await fetchWithTimeout(
+    BLOCKSCOUT_BASE + "/addresses/" + encodeURIComponent(addr) + "/token-balances", 15000);
+  if (!res.ok) throw new Error("http " + res.status);
+  const list = await res.json();
+  if (!Array.isArray(list)) return [];
+  // The address field in this reply is `address_hash`, not `address`, and a few
+  // entries come back with no token object at all.
+  return list.map(function(x){
+    const t = x && x.token;
+    if (!t || t.type !== "ERC-20" || !t.address_hash) return null;
+    const dec = parseInt(t.decimals, 10);
+    const raw = String(x.value || "0");
+    if (!/^[0-9]+$/.test(raw) || raw === "0") return null;
+    const rate = parseFloat(t.exchange_rate);
+    return {
+      contract: t.address_hash,
+      symbol: t.symbol || "?",
+      decimals: isFinite(dec) ? dec : 18,
+      raw: raw,
+      logo: t.icon_url || "",
+      // Only used for the receipt-token case below. It is not a price we would
+      // quote: the explorer carries a rate for 18 of 445 tokens here and is
+      // wrong on thin ones, which is why the pools are asked first.
+      rate: isFinite(rate) && rate > 0 ? rate : 0,
+    };
+  }).filter(Boolean);
+}
+
+// One map of contract -> pool price, built from many small batched calls so a
+// token with a lot of pools cannot push another token out of the reply.
+async function fetchPoolPrices(contracts){
+  const groups = [];
+  for (let i = 0; i < contracts.length; i += WALLET_BATCH){
+    groups.push(contracts.slice(i, i + WALLET_BATCH));
+  }
+  const found = {};
+  let next = 0;
+  async function lane(){
+    while (next < groups.length){
+      const group = groups[next++];
+      try {
+        const res = await fetchWithTimeout(
+          "https://api.dexscreener.com/tokens/v1/base/" + group.join(","), 9000);
+        if (!res.ok) continue;
+        const pairs = await res.json();
+        if (!Array.isArray(pairs)) continue;
+        group.forEach(function(addr){
+          const pool = pickPoolPrice(pairs, addr);
+          if (pool) found[addr.toLowerCase()] = pool;
+        });
+      } catch(e){}
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(WALLET_LANES, groups.length) }, lane));
+  return found;
+}
+
+function fmtQty(n){
+  if (!isFinite(n)) return "—";
+  if (n >= 1000) return n.toLocaleString(undefined, { maximumFractionDigits:0 });
+  if (n >= 1) return n.toLocaleString(undefined, { maximumFractionDigits:4 });
+  return n.toPrecision(3);
+}
+
+function fmtUsd(n){
+  return "$" + (n || 0).toLocaleString(undefined, { minimumFractionDigits:2, maximumFractionDigits:2 });
+}
+
+async function loadWallet(){
+  if (wallet.busy) return;
+  wallet.busy = true;
+  wallet.rows = []; wallet.hidden = 0; wallet.showAll = false;
+  walEl("wal-list").innerHTML = "";
+  walEl("wal-total").hidden = true;
+  walEl("wal-more").hidden = true;
+  walStatus("Reading the chain…");
+  try {
+    const addr = wallet.account;
+    const [tokens, ethRaw] = await Promise.all([
+      fetchWalletTokens(addr),
+      baseRpc("eth_getBalance", [addr, "latest"]).catch(function(){ return "0x0"; }),
+    ]);
+    walStatus("Pricing " + tokens.length + " tokens against their pools…");
+
+    // WETH is asked for alongside them: it is the price of the native ETH row.
+    const prices = await fetchPoolPrices(
+      tokens.map(t=>t.contract).concat([WETH_BASE]));
+
+    const rows = [];
+    let hidden = 0;
+    tokens.forEach(function(t){
+      const pool = prices[t.contract.toLowerCase()];
+      const amount = Number(t.raw) / Math.pow(10, t.decimals);
+      if (!pool){
+        // No pool means nothing can be sold here, and for spam it also means
+        // nothing is there. But a lending receipt — Moonwell's mwUSDC, say — is
+        // real money with no pool behind it, and dropping it understates the
+        // total. The explorer carries a rate for exactly those: real tokens
+        // with a market somewhere. Spam has none, so this lets the deposit
+        // through without letting the airdrops back in.
+        if (t.rate && amount * t.rate >= WALLET_DUST_USD){
+          rows.push({
+            contract: t.contract, symbol: t.symbol, logo: t.logo,
+            amount: amount, usd: amount * t.rate, native: false, noPool: true,
+          });
+        } else {
+          hidden++;
+        }
+        return;
+      }
+      rows.push({
+        contract: t.contract,
+        symbol: t.symbol,
+        logo: t.logo || pool.logo || "",
+        amount: amount,
+        usd: amount * pool.price,
+        native: false,
+      });
+    });
+
+    const ethPool = prices[WETH_BASE.toLowerCase()];
+    const ethAmount = Number(BigInt(ethRaw)) / 1e18;
+    rows.sort((a,b)=>b.usd - a.usd);
+    if (ethAmount > 0){
+      rows.unshift({
+        contract: NATIVE_ETH,
+        symbol: "ETH",
+        logo: "",
+        amount: ethAmount,
+        usd: ethPool ? ethAmount * ethPool.price : 0,
+        native: true,
+      });
+    }
+
+    wallet.rows = rows;
+    wallet.hidden = hidden;
+    walStatus("");
+    renderWallet();
+  } catch(e){
+    walStatus(e.message || "Could not read this wallet.", true);
+  }
+  wallet.busy = false;
+}
+
+function walletRowHtml(r){
+  const sym = esc(r.symbol);
+  const addr = esc(r.contract);
+  const logo = esc(r.logo);
+  // The ticker is written by whoever deployed the token, and this wallet holds
+  // several pairs that share one — so the address travels with the name, and
+  // every sale is addressed by contract, never by symbol.
+  return '<div class="wal-row">' +
+    (r.logo
+      ? '<img class="wal-logo" src="' + logo + '" alt="" width="26" height="26" loading="lazy">'
+      : '<div class="wal-logo"></div>') +
+    '<div class="wal-id">' +
+      '<span class="wal-sym">' + sym + '</span>' +
+      '<span class="wal-addr">' + (r.native ? "native" : esc(shortAddr(r.contract))) + '</span>' +
+    '</div>' +
+    '<div class="wal-amt">' +
+      '<div class="wal-usd">' + fmtUsd(r.usd) + '</div>' +
+      '<div class="wal-qty">' + esc(fmtQty(r.amount)) + " " + sym + '</div>' +
+    '</div>' +
+    (r.native
+      ? '<div class="wal-gas">gas &amp; cash</div>'
+      : r.noPool
+        ? '<div class="wal-gas" title="No pool trades this token, so it cannot be sold from here. Withdraw it where you deposited it.">no pool</div>'
+        : '<button class="wal-sell" type="button" data-sell="' + addr + '" data-sym="' + sym +
+          '" data-logo="' + logo + '">Sell</button>') +
+    '</div>';
+}
+
+function renderWallet(){
+  const rows = wallet.rows;
+  const shown = wallet.showAll ? rows : rows.filter(r=>r.usd >= WALLET_DUST_USD || r.native);
+  const dust = rows.length - rows.filter(r=>r.usd >= WALLET_DUST_USD || r.native).length;
+  const total = rows.reduce((sum,r)=>sum + (r.usd || 0), 0);
+
+  walEl("wal-total").hidden = false;
+  walEl("wal-sum").textContent = fmtUsd(total);
+  walEl("wal-count").textContent = rows.length + (rows.length === 1 ? " token" : " tokens") +
+    (wallet.hidden ? " · " + wallet.hidden + " empty hidden" : "");
+
+  walEl("wal-list").innerHTML = shown.length
+    ? shown.map(walletRowHtml).join("")
+    : '<div class="trend-empty"><div>Nothing here with a pool behind it.</div></div>';
+
+  const more = walEl("wal-more");
+  more.hidden = dust === 0;
+  more.textContent = wallet.showAll
+    ? "Hide " + dust + " under $1"
+    : "Show " + dust + " smaller than $1";
+}
+
+function openWallet(){
+  walEl("wal-back").hidden = false;
+  document.body.style.overflow = "hidden";
+  walEl("wal-sub").textContent = wallet.account ? "on Base · " + shortAddr(wallet.account) : "on Base";
+  if (wallet.account) loadWallet();
+}
+
+function closeWallet(){
+  walEl("wal-back").hidden = true;
+  document.body.style.overflow = "";
+}
+
+async function walletConnect(){
+  try {
+    if (!trade.account) await adoptExistingAccount();
+    if (!trade.account) await connectWallet();
+    wallet.account = trade.account;
+    walEl("wal-sub").textContent = "on Base · " + shortAddr(wallet.account);
+    walEl("wal-action").textContent = "Refresh";
+    loadWallet();
+  } catch(e){
+    walStatus(e.message || "The wallet refused the connection.", true);
+  }
+}
+
+walEl("wal-open").addEventListener("click", async function(){
+  if (!wallet.account && trade.account) wallet.account = trade.account;
+  if (!wallet.account){
+    // A wallet that has been here before answers this without opening anything,
+    // so the common case skips the connect step entirely.
+    await adoptExistingAccount();
+    if (trade.account) wallet.account = trade.account;
+  }
+  walEl("wal-action").textContent = wallet.account ? "Refresh" : "Connect wallet";
+  if (!wallet.account) walStatus("Connect a wallet to see what is in it.");
+  openWallet();
+});
+walEl("wal-close").addEventListener("click", closeWallet);
+walEl("wal-back").addEventListener("click", function(e){ if (e.target.id === "wal-back") closeWallet(); });
+document.addEventListener("keydown", function(e){
+  if (e.key === "Escape" && !walEl("wal-back").hidden) closeWallet();
+});
+walEl("wal-action").addEventListener("click", function(){
+  if (wallet.account) loadWallet(); else walletConnect();
+});
+walEl("wal-more").addEventListener("click", function(){
+  wallet.showAll = !wallet.showAll;
+  renderWallet();
+});
+// Selling from here is the trade dialog that already exists, opened on the sell
+// side. The wallet panel steps out of the way rather than stacking on top of it.
+walEl("wal-list").addEventListener("click", function(e){
+  const b = e.target.closest("[data-sell]");
+  if (!b) return;
+  closeWallet();
+  openTrade(b.dataset.sell, b.dataset.sym, b.dataset.logo, "sell");
+});
 
 let quoteTimer = null;
 buyEl("buy-amount").addEventListener("input", function(){
