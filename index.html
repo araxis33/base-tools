@@ -229,6 +229,7 @@
   }
   .copy-btn .ic{width:12px; height:12px; vertical-align:middle;}
   .copy-btn:hover{color:var(--blue-text);}
+  .copy-btn.copy-fail{color:var(--red);}
   .trend-right{text-align:right; flex-shrink:0; display:block;}
   .trend-right:hover .trend-price{color:var(--blue-text);}
   /* Price and symbol are the two things a row exists to show, so they share a
@@ -1108,14 +1109,41 @@ const ICON_COPY  = `<svg class="ic" aria-hidden="true"><use href="#i-copy"/></sv
 const ICON_CHECK = `<svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>`;
 
 function copyBtnHtml(contract){
-  return `<button class="copy-btn" title="Copy address" aria-label="Copy address" data-addr="${contract}">${ICON_COPY}</button>`;
+  return `<button class="copy-btn" type="button" title="Copy address" aria-label="Copy address" data-addr="${esc(contract)}">${ICON_COPY}</button>`;
 }
+
+// The Clipboard API needs a secure context and a permission some browsers
+// refuse outright; the old button showed a checkmark either way, so a contract
+// address you were about to paste into a wallet could quietly not be there.
+async function copyAddr(text){
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    try { await navigator.clipboard.writeText(text); return true; } catch(e){}
+  }
+  try {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.cssText = "position:fixed; top:-1000px; opacity:0";
+    document.body.appendChild(ta);
+    ta.select();
+    const ok = document.execCommand("copy");
+    ta.remove();
+    return ok;
+  } catch(e){ return false; }
+}
+
 function bindCopyButtons(container){
   container.querySelectorAll(".copy-btn").forEach(btn=>{
-    btn.onclick = ()=>{
-      navigator.clipboard?.writeText(btn.dataset.addr);
-      btn.innerHTML = ICON_CHECK;
-      setTimeout(()=>{ btn.innerHTML = ICON_COPY; }, 1200);
+    btn.onclick = async ()=>{
+      const ok = await copyAddr(btn.dataset.addr);
+      btn.classList.toggle("copy-fail", !ok);
+      btn.title = ok ? "Copied" : "Couldn't copy — open the address instead";
+      if (ok) btn.innerHTML = ICON_CHECK;
+      setTimeout(()=>{
+        btn.innerHTML = ICON_COPY;
+        btn.classList.remove("copy-fail");
+        btn.title = "Copy address";
+      }, 1200);
     };
   });
 }
@@ -1294,19 +1322,25 @@ function renderColumn(elId, items, emptyMsg){
     return;
   }
   el.innerHTML = items.map((t,i)=>{
-    const tradeUrl = `https://www.geckoterminal.com/base/tokens/${t.contract}`;
+    // Symbol, logo and contract are upstream strings. They go into hrefs, into
+    // attributes and into the data-* the trade dialog reads back, so each one
+    // is escaped at the point it enters the markup.
+    const sym = esc(t.symbol);
+    const contract = esc(t.contract);
+    const logo = esc(t.logo);
+    const tradeUrl = `https://www.geckoterminal.com/base/tokens/${contract}`;
     return `
     <div class="trend-row">
       <div class="trend-left">
         <div class="trend-rank">${i+1}</div>
-        <img class="trend-logo" src="${t.logo}" alt="${t.symbol}" loading="lazy">
-        <a class="trend-sym" href="${tradeUrl}" target="_blank" rel="noopener" title="Open where ${t.symbol} trades">${t.symbol}</a>
+        <img class="trend-logo" src="${logo}" alt="${sym}" width="24" height="24" loading="lazy">
+        <a class="trend-sym" href="${tradeUrl}" target="_blank" rel="noopener" title="Open where ${sym} trades">${sym}</a>
       </div>
-      <a class="trend-right" href="${tradeUrl}" target="_blank" rel="noopener" title="Open where ${t.symbol} trades">
+      <a class="trend-right" href="${tradeUrl}" target="_blank" rel="noopener" title="Open where ${sym} trades">
         <div class="trend-price">${fmtPrice(t.price)}</div>
         ${chgHtml(t.change24h)}
       </a>
-      <button class="buy-btn" type="button" data-buy="${t.contract}" data-sym="${t.symbol}" data-logo="${t.logo}">Buy</button>
+      <button class="buy-btn" type="button" data-buy="${contract}" data-sym="${sym}" data-logo="${logo}">Buy</button>
     </div>
   `;
   }).join("");
@@ -1533,7 +1567,8 @@ function openTrade(token, symbol, logo, mode){
     ? "Fee " + (FEE_BPS/100).toFixed(2) + "% to this site, already counted in the number above."
     : "No fee from this site. You get the aggregator's price, minus Base gas.";
   buyEl("buy-addr").innerHTML =
-    '<a href="https://basescan.org/token/' + token + '" target="_blank" rel="noopener">' + shortAddr(token) + '</a>' +
+    '<a href="https://basescan.org/token/' + esc(token) + '" target="_blank" rel="noopener">' +
+    esc(shortAddr(token)) + '</a>' +
     copyBtnHtml(token);
   bindCopyButtons(buyEl("buy-addr"));
   buyEl("buy-back").hidden = false;
@@ -1833,7 +1868,7 @@ async function approveExactly(p, token, spender, amount){
       return await allowanceOf(token, trade.account, spender) === 0n;
     });
   }
-  buyStatus("Approve " + spendSymbol() + " in your wallet. This lets the router take exactly what this trade spends, and nothing more.");
+  buyStatus("Approve " + esc(spendSymbol()) + " in your wallet. This lets the router take exactly what this trade spends, and nothing more.");
   await signAndConfirm(p, approval(amount), "approval", async function(){
     return await allowanceOf(token, trade.account, spender) >= amount;
   });
@@ -1929,7 +1964,7 @@ async function doTrade(){
     }
     tx.hidden = false;
     trade.done = hash || "onchain";
-    buyStatus(sell ? "Sold. The " + pa.sym + " is in your wallet." : trade.symbol + " is in your wallet.", false, true);
+    buyStatus(sell ? "Sold. The " + pa.sym + " is in your wallet." : esc(trade.symbol) + " is in your wallet.", false, true);
     if (spends) refreshBalance();
   } catch(e){
     const m = (e && (e.message || String(e))) || "";
