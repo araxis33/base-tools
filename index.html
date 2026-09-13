@@ -356,7 +356,8 @@
     font-size:var(--fs-xxs); font-weight:800; cursor:pointer;
     transition:background var(--t), border-color var(--t), color var(--t);
   }
-  .buy-pay-opt:hover{border-color:var(--blue); color:var(--blue-text);}
+  .buy-pay-opt:hover:not(:disabled){border-color:var(--blue); color:var(--blue-text);}
+  .buy-pay-opt:disabled{opacity:0.35; cursor:not-allowed;}
   .buy-pay-opt.on{background:var(--blue); border-color:var(--blue); color:var(--white);}
   .buy-pay.sell .buy-pay-opt:hover{border-color:var(--red); color:var(--red);}
   .buy-pay.sell .buy-pay-opt.on{background:var(--red); border-color:var(--red); color:var(--white);}
@@ -1580,12 +1581,26 @@ const trade = {
 // The asset on the money side of the trade. Everything that used to say "ETH"
 // asks this instead, so adding a third currency later is one entry in PAY.
 function payAsset(){ return PAY[trade.pay] || PAY.ETH; }
-// Both a sale and a USDC purchase spend an ERC-20, and an ERC-20 cannot be
-// spent without an allowance. This is the one question that decides whether
-// the flow has one signature or two.
-function spendsToken(){ return trade.mode === "sell" || !payAsset().native; }
+// ETH is also something you hold, so it can be the subject of the dialog and
+// not only the money side of it. Selling it is the one sale that spends no
+// ERC-20, which every branch below has to know about.
+function isNativeAsset(t){
+  return !!t && t.toLowerCase() === NATIVE_ETH.toLowerCase();
+}
+// Both an ordinary sale and a USDC purchase spend an ERC-20, and an ERC-20
+// cannot be spent without an allowance. This is the one question that decides
+// whether the flow has one signature or two — selling native ETH has one.
+function spendsToken(){
+  return trade.mode === "sell" ? !isNativeAsset(trade.token) : !payAsset().native;
+}
 function spendToken(){ return trade.mode === "sell" ? trade.token : payAsset().addr; }
 function spendSymbol(){ return trade.mode === "sell" ? trade.symbol : payAsset().sym; }
+// A sale always spends something, ERC-20 or not, so the balance line and the
+// share presets follow this rather than the allowance question.
+function spendsBalance(){ return trade.mode === "sell" || spendsToken(); }
+// Selling every last wei leaves nothing to pay for the transaction that sells
+// it. Base gas is cents, so a small reserve costs nothing and saves the trade.
+const NATIVE_GAS_RESERVE = 30000000000000n;   // 0.00003 ETH
 
 function ethProvider(){
   const p = window.ethereum;
@@ -1728,6 +1743,14 @@ async function balanceOf(token, owner){
   return r ? BigInt(r) : 0n;
 }
 
+// The native coin has no contract to ask, so "how much do you hold" is a
+// different call for it. Everything that watches a balance goes through here.
+async function assetBalance(token, owner){
+  if (!isNativeAsset(token)) return await balanceOf(token, owner);
+  const r = await baseRpc("eth_getBalance", [owner, "latest"]);
+  return r ? BigInt(r) : 0n;
+}
+
 async function allowanceOf(token, owner, spender){
   const r = await ethCall(token, SEL_ALLOWANCE + addrArg(owner) + addrArg(spender));
   return r ? BigInt(r) : 0n;
@@ -1737,15 +1760,18 @@ function buyEl(id){ return document.getElementById(id); }
 
 function openTrade(token, symbol, logo, mode){
   trade.token = token; trade.symbol = symbol;
+  // ETH against ETH is not a trade. When the subject is the native coin the
+  // other side can only be USDC, so the choice is made rather than offered.
+  if (isNativeAsset(token)) trade.pay = "USDC";
   buyEl("buy-logo").src = logo || "";
   buyEl("buy-logo").style.visibility = logo ? "visible" : "hidden";
   buyEl("buy-fee").textContent = FEE_BPS > 0
     ? "Fee " + (FEE_BPS/100).toFixed(2) + "% to this site, already counted in the number above."
     : "No fee from this site. You get the aggregator's price, minus Base gas.";
-  buyEl("buy-addr").innerHTML =
-    '<a href="https://basescan.org/token/' + esc(token) + '" target="_blank" rel="noopener">' +
-    esc(shortAddr(token)) + '</a>' +
-    copyBtnHtml(token);
+  buyEl("buy-addr").innerHTML = isNativeAsset(token)
+    ? "The native coin of Base — no contract, no approval."
+    : '<a href="https://basescan.org/token/' + esc(token) + '" target="_blank" rel="noopener">' +
+      esc(shortAddr(token)) + '</a>' + copyBtnHtml(token);
   bindCopyButtons(buyEl("buy-addr"));
   buyEl("buy-back").hidden = false;
   document.body.style.overflow = "hidden";
@@ -1766,7 +1792,7 @@ async function adoptExistingAccount(){
     trade.account = accounts[0];
     buyStatus("Connected " + shortAddr(trade.account));
     renderCta();
-    if (spendsToken()) refreshBalance();
+    if (spendsBalance()) refreshBalance();
     return trade.account;
   } catch(e){ return null; }
 }
@@ -1786,6 +1812,11 @@ function setMode(mode){
   });
   document.querySelectorAll(".buy-pay-opt").forEach(function(b){
     b.classList.toggle("on", b.dataset.pay === trade.pay);
+    // Nobody buys ETH with ETH: the option is disabled rather than removed, so
+    // the row does not change shape between one token and the next.
+    const impossible = isNativeAsset(trade.token) && PAY[b.dataset.pay] && PAY[b.dataset.pay].native;
+    b.disabled = impossible;
+    b.title = impossible ? "This one is ETH already" : "";
   });
   buyEl("buy-pay").classList.toggle("sell", sell);
   buyEl("buy-pay-label").textContent = sell ? "Get back" : "Pay with";
@@ -1805,7 +1836,7 @@ function setMode(mode){
       }).join("");
   // A USDC purchase spends a balance too, so the line that used to belong to
   // the sell side is shown whenever there is a balance the trade can exceed.
-  buyEl("buy-bal").hidden = !spendsToken();
+  buyEl("buy-bal").hidden = !spendsBalance();
   buyEl("buy-bal").textContent = "";
   buyEl("buy-quote").textContent = sell ? "Enter an amount, or take a share of your balance." : "Enter an amount.";
   buyEl("buy-note").textContent = (spendsToken()
@@ -1817,7 +1848,7 @@ function setMode(mode){
   renderCta();
   // A sale opens with an empty field and nothing to price; a purchase opens
   // with a preset already in it, whichever currency is paying.
-  if (spendsToken()) refreshBalance();
+  if (spendsBalance()) refreshBalance();
   if (!sell) quoteTrade();
 }
 
@@ -1832,14 +1863,14 @@ function setPay(pay){
 // The balance is what a sell dialog is really about, so it is read the moment
 // there is an address to read it for.
 async function refreshBalance(){
-  if (!spendsToken()) return;                // an ETH purchase spends no ERC-20
+  if (!spendsBalance()) return;              // an ETH purchase spends nothing held
   const el = buyEl("buy-bal");
   if (!trade.account){ el.textContent = "Connect a wallet to see what you hold."; return; }
   const token = spendToken();
   const sym = spendSymbol();
   el.textContent = "Reading your balance…";
   try {
-    const pair = await Promise.all([balanceOf(token, trade.account), decimalsOf(token)]);
+    const pair = await Promise.all([assetBalance(token, trade.account), decimalsOf(token)]);
     // The dialog may have flipped direction or currency while that was in the
     // air, in which case this balance belongs to a trade nobody is making.
     if (spendToken() !== token) return;
@@ -1891,8 +1922,15 @@ async function quoteTrade(){
   // Catching this here rather than in the wallet: an oversized trade would only
   // fail after a gas-burning approval. True of a sale and of a USDC purchase,
   // which spend the same way.
-  if (spendsToken() && trade.balance !== null && amountIn > trade.balance){
+  if (trade.balance !== null && amountIn > trade.balance){
     out.textContent = "That is more " + spendSymbol() + " than you hold.";
+    renderCta(); return;
+  }
+  // Spending the last wei of ETH leaves nothing to pay for the transaction
+  // doing the spending, and the wallet would only say so at the signing step.
+  if (isNativeAsset(spendToken()) && trade.balance !== null &&
+      amountIn > trade.balance - NATIVE_GAS_RESERVE){
+    out.textContent = "Leave a little ETH for gas — this would spend all of it.";
     renderCta(); return;
   }
   out.textContent = "Finding the best route…";
@@ -2085,7 +2123,7 @@ async function doTrade(){
     catch(e){ buyStatus(e.message || "The wallet refused the connection.", true); }
     trade.busy = false; renderCta();
     if (trade.account){
-      if (spendsToken()) await refreshBalance();
+      if (spendsBalance()) await refreshBalance();
       quoteTrade();
     }
     return;
@@ -2116,7 +2154,7 @@ async function doTrade(){
     buyStatus("Confirm it in your wallet.");
     // Read before asking, so the watcher has something to compare against. The
     // traded token moves either way: up on a purchase, down on a sale.
-    const before = await balanceOf(trade.token, trade.account);
+    const before = await assetBalance(trade.token, trade.account);
     const token = trade.token;
     const hash = await signAndConfirm(p, {
       from: trade.account,
@@ -2126,7 +2164,13 @@ async function doTrade(){
       value: spends ? "0x0" : "0x" + BigInt(trade.summary.amountIn).toString(16),
       data: built.data + BUILDER_SUFFIX
     }, "swap", async function(){
-      return await balanceOf(token, trade.account) !== before;
+      // Gas alone moves a native balance, so "it changed" is not evidence for
+      // ETH: a sale has to show most of the amount gone, and a purchase has to
+      // show the balance up despite the gas the purchase itself burned.
+      const now = await assetBalance(token, trade.account);
+      if (!isNativeAsset(token)) return now !== before;
+      if (sell) return before - now > BigInt(trade.summary.amountIn) / 2n;
+      return now > before;
     });
     const tx = buyEl("buy-tx");
     if (hash){
@@ -2141,7 +2185,7 @@ async function doTrade(){
     tx.hidden = false;
     trade.done = hash || "onchain";
     buyStatus(sell ? "Sold. The " + pa.sym + " is in your wallet." : esc(trade.symbol) + " is in your wallet.", false, true);
-    if (spends) refreshBalance();
+    if (spendsBalance()) refreshBalance();
   } catch(e){
     const m = (e && (e.message || String(e))) || "";
     buyStatus(REJECTED_RE.test(m) ? "Cancelled in the wallet." : (m || "The swap failed."), true);
@@ -2188,7 +2232,17 @@ buyEl("buy-presets").addEventListener("click", async function(e){
   if (trade.balance === null) await refreshBalance();
   if (!trade.balance){ b.classList.remove("on"); return; }
   const dec = await decimalsOf(trade.token);
-  buyEl("buy-amount").value = unitsToInput(trade.balance * BigInt(b.dataset.pct) / 100n, dec);
+  // Selling ETH is the one case where the whole balance is the wrong number:
+  // the transaction that sells it has to be paid for out of the same balance.
+  const spendable = isNativeAsset(spendToken())
+    ? (trade.balance > NATIVE_GAS_RESERVE ? trade.balance - NATIVE_GAS_RESERVE : 0n)
+    : trade.balance;
+  if (!spendable){
+    buyStatus("That is all the ETH there is, and some of it has to pay for the transaction.", true);
+    b.classList.remove("on");
+    return;
+  }
+  buyEl("buy-amount").value = unitsToInput(spendable * BigInt(b.dataset.pct) / 100n, dec);
   quoteTrade();
 });
 // Switching accounts in the wallet used to leave someone else's balance on
@@ -2213,7 +2267,7 @@ buyEl("buy-presets").addEventListener("click", async function(e){
     }
     buyStatus(trade.account ? "Connected " + shortAddr(trade.account) : "Wallet disconnected.");
     if (!buyEl("buy-back").hidden){
-      if (spendsToken()) refreshBalance();
+      if (spendsBalance()) refreshBalance();
       quoteTrade();
     }
     renderCta();
@@ -2448,12 +2502,10 @@ function walletRowHtml(r){
       '<div class="wal-usd">' + fmtUsd(r.usd) + '</div>' +
       '<div class="wal-qty">' + esc(fmtQty(r.amount)) + " " + sym + '</div>' +
     '</div>' +
-    (r.native
-      ? '<div class="wal-gas">gas &amp; cash</div>'
-      : r.noPool
-        ? '<div class="wal-gas" title="No pool trades this token, so it cannot be sold from here. Withdraw it where you deposited it.">no pool</div>'
-        : '<button class="wal-sell" type="button" data-sell="' + addr + '" data-sym="' + sym +
-          '" data-logo="' + logo + '">Sell</button>') +
+    (r.noPool
+      ? '<div class="wal-gas" title="No pool trades this token, so it cannot be sold from here. Withdraw it where you deposited it.">no pool</div>'
+      : '<button class="wal-sell" type="button" data-sell="' + addr + '" data-sym="' + sym +
+        '" data-logo="' + logo + '">Sell</button>') +
     '</div>';
 }
 
