@@ -1,32 +1,27 @@
 {
- "generated_at": "2026-09-13T20:14:25Z",
- "generated_at_unix": 1789330464,
+ "generated_at": "2026-09-13T21:14:32Z",
+ "generated_at_unix": 1789334070,
  "period": {
   "start": "2026-07-15",
   "days": 60
  },
  "totals": {
-  "seen": 164988,
-  "base": 30873,
+  "seen": 165050,
+  "base": 30935,
   "robinhood": 134115,
-  "below_liquidity_threshold": 160945,
-  "spam_filtered": 1078,
-  "scored": 2965,
-  "green": 1576,
+  "below_liquidity_threshold": 160986,
+  "spam_filtered": 1096,
+  "scored": 2968,
+  "green": 1579,
   "yellow": 463,
   "red": 926
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
-   "date": "2026-08-23",
-   "base": 64,
-   "robinhood": 150
-  },
-  {
    "date": "2026-08-24",
-   "base": 741,
-   "robinhood": 2549
+   "base": 731,
+   "robinhood": 2501
   },
   {
    "date": "2026-08-25",
@@ -125,11 +120,46 @@
   },
   {
    "date": "2026-09-13",
-   "base": 482,
+   "base": 528,
+   "robinhood": 0
+  },
+  {
+   "date": "2026-09-14",
+   "base": 16,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "PANWX",
+   "name": "Palo Alto Networks tokenized stock(xStock)",
+   "chain": "base",
+   "address": "0x4020bc37ec726cc2cfddd1db5c4e52829b94922b",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12560.75,
+   "first_seen": 1789333429
+  },
+  {
+   "symbol": "BMONEY",
+   "name": "B-money",
+   "chain": "base",
+   "address": "0xd20347c689be4dcb4a40b6be15959d8faec74e12",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12543.7513872,
+   "first_seen": 1789332247
+  },
+  {
+   "symbol": "UPDATE",
+   "name": "Gmgn",
+   "chain": "base",
+   "address": "0xae3733ddee867a82f983253fa6103a8a66c9158b",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 1.49397800392902e+19,
+   "first_seen": 1789330604
+  },
   {
    "symbol": "CHCKD",
    "name": "LatinCHICKADEE",
@@ -299,36 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 4152.6383,
    "first_seen": 1789303110
-  },
-  {
-   "symbol": "UCAT",
-   "name": "UpsetCATSHARK",
-   "chain": "base",
-   "address": "0x72fb0d1a6665f4cc218cd41a47457556318e367b",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 24804.7,
-   "first_seen": 1789302927
-  },
-  {
-   "symbol": "NEARon",
-   "name": "iShares Short Duration Bond Active Tokenized ETF (Ondo)",
-   "chain": "base",
-   "address": "0x6826e8692f51df2fee0b347d21f9c4c7051b5821",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12398.9148713151,
-   "first_seen": 1789301102
-  },
-  {
-   "symbol": "COINCAT",
-   "name": "Coinbase Cat",
-   "chain": "base",
-   "address": "0x9b84477f9cd32cd4f8e8e00cfc466ba0da5ee584",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 75499.779,
-   "first_seen": 1789300780
   }
  ],
  "confirmed": [
@@ -341,6 +341,16 @@
    "liquidity_usd": 19726.6262,
    "confirmed_at": 1789299410,
    "hours_waited": 0.8
+  },
+  {
+   "symbol": "BASEBULL",
+   "chain": "base",
+   "address": "0x4f4750b74d98fdddcc241f17d530cf7d511405bb",
+   "buyers_h1": 30,
+   "volume_h1": 8871.182008046,
+   "liquidity_usd": 37813.0444,
+   "confirmed_at": 1789248192,
+   "hours_waited": 22.9
   },
   {
    "symbol": "STKB",
@@ -534,9 +544,9 @@
   }
  ],
  "probation": {
-  "waiting": 22,
-  "confirmed": 18,
-  "dropped": 957
+  "waiting": 21,
+  "confirmed": 19,
+  "dropped": 960
  },
  "recent_drains": [
   {
@@ -727,8 +737,8 @@
   "pump": 262,
   "rug": 940
  },
- "watchlist_active": 8,
- "price_snapshots": 11314,
+ "watchlist_active": 9,
+ "price_snapshots": 11433,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
