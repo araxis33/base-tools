@@ -1644,6 +1644,65 @@ async function baseRpc(method, params){
   return j ? j.result : null;
 }
 
+// Many reads in few HTTP round trips. JSON-RPC takes an array of requests and
+// answers with an array, in any order — the id carries the position back.
+// Ten is not a guess: mainnet.base.org answers "maximum 10 calls in 1 batch"
+// above it, and does so with a single error object rather than an array, which
+// is why a reply that is not an array is treated as a failure and not as a set
+// of empty answers.
+// Hundreds of balances in one read, through Multicall3 — the contract is at the
+// same address on every chain. JSON-RPC batching was tried first and cannot do
+// this job: mainnet.base.org refuses a batch over ten calls outright, and past
+// roughly five in quick succession it answers the rest with "over rate limit"
+// per call, so the batch still looks successful and quietly returns nothing for
+// the tokens it skipped. One eth_call has neither problem.
+const MULTICALL3 = "0xcA11bde05977b3631167028862bE2a173976CA11";
+const MULTICALL_CHUNK = 100;
+const SEL_AGGREGATE3 = "0x82ad56cb";     // aggregate3((address,bool,bytes)[])
+
+function abiWord(n){ return n.toString(16).padStart(64, "0"); }
+
+// Each Call3 is six words: target, allowFailure, the offset of its bytes, their
+// length, and the 36-byte call itself padded out to two words.
+function encodeBalanceCalls(owner, contracts){
+  const inner = SEL_BALANCEOF.slice(2) + addrArg(owner);
+  const padded = inner + "0".repeat(128 - inner.length);
+  let offsets = "", body = "";
+  contracts.forEach(function(c, i){
+    offsets += abiWord(contracts.length * 32 + i * 192);
+    body += addrArg(c) + abiWord(1) + abiWord(0x60) + abiWord(inner.length / 2) + padded;
+  });
+  return SEL_AGGREGATE3 + abiWord(0x20) + abiWord(contracts.length) + offsets + body;
+}
+
+function decodeBalanceCalls(hex){
+  const body = hex.slice(2);
+  const word = function(i){ return body.slice(i * 64, (i + 1) * 64); };
+  const count = parseInt(word(1), 16);
+  const out = [];
+  for (let i = 0; i < count; i++){
+    const at = parseInt(word(2 + i), 16) / 32 + 2;
+    const ok = parseInt(word(at), 16) === 1;
+    const bytesAt = at + parseInt(word(at + 1), 16) / 32;
+    const len = parseInt(word(bytesAt), 16);
+    out.push(ok && len ? BigInt("0x" + word(bytesAt + 1)) : null);
+  }
+  return out;
+}
+
+async function chainBalances(owner, contracts){
+  const found = new Map();
+  for (let i = 0; i < contracts.length; i += MULTICALL_CHUNK){
+    const slice = contracts.slice(i, i + MULTICALL_CHUNK);
+    const hex = await baseRpc("eth_call", [
+      { to: MULTICALL3, data: encodeBalanceCalls(owner, slice) }, "latest"]);
+    if (typeof hex !== "string" || hex.length < 130) throw new Error("multicall refused");
+    decodeBalanceCalls(hex).forEach(function(v, j){ if (v !== null) found.set(slice[j], v); });
+    if (i + MULTICALL_CHUNK < contracts.length) await sleep(200);
+  }
+  return found;
+}
+
 // Reads off a public node, so the dialog knows decimals, balances and
 // allowances before a wallet is anywhere near the page.
 async function ethCall(to, data){
@@ -2223,6 +2282,27 @@ async function fetchWalletTokens(addr){
   }).filter(Boolean);
 }
 
+// The explorer's balances are an indexer snapshot and it runs behind: on
+// 13 Sept it still listed NVDAc and SNDKc that had been sold the evening
+// before, and put USDC three dollars above the real figure. So the explorer
+// answers only "which tokens has this address ever held"; every number next to
+// a Sell button is then read from the chain, and a token that comes back empty
+// was spent and is dropped before anything is priced.
+async function verifyTokens(addr, tokens){
+  let balances;
+  try { balances = await chainBalances(addr, tokens.map(t=>t.contract)); }
+  catch(e){ return { tokens: tokens, checked: false }; }
+  const live = [];
+  tokens.forEach(function(t){
+    const units = balances.get(t.contract);
+    // A token Multicall could not read keeps the explorer's figure rather than
+    // vanishing from a wallet that may well hold it.
+    if (units === undefined){ live.push(t); return; }
+    if (units > 0n) live.push(Object.assign({}, t, { raw: units.toString() }));
+  });
+  return { tokens: live, checked: true };
+}
+
 // One map of contract -> pool price, built from many small batched calls so a
 // token with a lot of pools cannot push another token out of the reply.
 async function fetchPoolPrices(contracts){
@@ -2273,10 +2353,13 @@ async function loadWallet(){
   walStatus("Reading the chain…");
   try {
     const addr = wallet.account;
-    const [tokens, ethRaw] = await Promise.all([
+    const [listed, ethRaw] = await Promise.all([
       fetchWalletTokens(addr),
       baseRpc("eth_getBalance", [addr, "latest"]).catch(function(){ return "0x0"; }),
     ]);
+    walStatus("Checking " + listed.length + " balances against the chain…");
+    const checked = await verifyTokens(addr, listed);
+    const tokens = checked.tokens;
     walStatus("Pricing " + tokens.length + " tokens against their pools…");
 
     // WETH is asked for alongside them: it is the price of the native ETH row.
@@ -2298,7 +2381,8 @@ async function loadWallet(){
         if (t.rate && amount * t.rate >= WALLET_DUST_USD){
           rows.push({
             contract: t.contract, symbol: t.symbol, logo: t.logo,
-            amount: amount, usd: amount * t.rate, native: false, noPool: true,
+            decimals: t.decimals, amount: amount, usd: amount * t.rate,
+            native: false, noPool: true,
           });
         } else {
           hidden++;
@@ -2309,29 +2393,35 @@ async function loadWallet(){
         contract: t.contract,
         symbol: t.symbol,
         logo: t.logo || pool.logo || "",
+        decimals: t.decimals,
         amount: amount,
         usd: amount * pool.price,
         native: false,
       });
     });
 
+    const live = rows;
+    live.sort((a,b)=>b.usd - a.usd);
+
     const ethPool = prices[WETH_BASE.toLowerCase()];
     const ethAmount = Number(BigInt(ethRaw)) / 1e18;
-    rows.sort((a,b)=>b.usd - a.usd);
     if (ethAmount > 0){
-      rows.unshift({
+      live.unshift({
         contract: NATIVE_ETH,
         symbol: "ETH",
         logo: "",
+        decimals: 18,
         amount: ethAmount,
         usd: ethPool ? ethAmount * ethPool.price : 0,
         native: true,
       });
     }
 
-    wallet.rows = rows;
+    wallet.rows = live;
     wallet.hidden = hidden;
-    walStatus("");
+    walStatus(checked.checked
+      ? ""
+      : "These balances come from the explorer — the node did not answer, so a very recent trade may still be missing.", true);
     renderWallet();
   } catch(e){
     walStatus(e.message || "Could not read this wallet.", true);
