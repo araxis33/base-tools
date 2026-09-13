@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-13T12:18:41Z",
- "generated_at_unix": 1789301919,
+ "generated_at": "2026-09-13T18:14:11Z",
+ "generated_at_unix": 1789323249,
  "period": {
   "start": "2026-07-15",
   "days": 60
  },
  "totals": {
-  "seen": 164712,
-  "base": 30597,
+  "seen": 164845,
+  "base": 30730,
   "robinhood": 134115,
-  "below_liquidity_threshold": 160763,
-  "spam_filtered": 1002,
-  "scored": 2947,
-  "green": 1558,
+  "below_liquidity_threshold": 160853,
+  "spam_filtered": 1039,
+  "scored": 2953,
+  "green": 1564,
   "yellow": 463,
   "red": 926
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-23",
-   "base": 303,
-   "robinhood": 749
+   "base": 245,
+   "robinhood": 644
   },
   {
    "date": "2026-08-24",
@@ -125,11 +125,71 @@
   },
   {
    "date": "2026-09-13",
-   "base": 207,
+   "base": 339,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "$TTB",
+   "name": "TO THE BASE",
+   "chain": "base",
+   "address": "0xb2000000000000000000004e6d829b238eea1a01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3986.66606570315,
+   "first_seen": 1789322341
+  },
+  {
+   "symbol": "KAMIRAI",
+   "name": "Kamirai",
+   "chain": "base",
+   "address": "0x11cee3e356636351d8bcb603f497702176ea67f7",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12520.7650132707,
+   "first_seen": 1789321702
+  },
+  {
+   "symbol": "COINCIDENCE",
+   "name": "COINcidence",
+   "chain": "base",
+   "address": "0x0ca15b2d13855289c4c87143dda20337f3c34222",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3045.3137,
+   "first_seen": 1789320565
+  },
+  {
+   "symbol": "Demunyan",
+   "name": "Demunyan",
+   "chain": "base",
+   "address": "0xb20000000000000000000058a56f7ef6f2527bb2",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 21804.4944,
+   "first_seen": 1789319744
+  },
+  {
+   "symbol": "XEKNOTS",
+   "name": "XEKNOTS",
+   "chain": "base",
+   "address": "0x2d8116073f15ac29efa666afe2f2282b174b4966",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4152.6383,
+   "first_seen": 1789303110
+  },
+  {
+   "symbol": "UCAT",
+   "name": "UpsetCATSHARK",
+   "chain": "base",
+   "address": "0x72fb0d1a6665f4cc218cd41a47457556318e367b",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 24804.7,
+   "first_seen": 1789302927
+  },
   {
    "symbol": "NEARon",
    "name": "iShares Short Duration Bond Active Tokenized ETF (Ondo)",
@@ -269,69 +329,19 @@
    "verdict": "green",
    "liquidity_usd": 12658.7079,
    "first_seen": 1789278306
-  },
-  {
-   "symbol": "中国奥",
-   "name": "中国奥兹",
-   "chain": "base",
-   "address": "0x57ff4cf1c0efdc8a184ef77d324104afbcb4ec29",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 17340.5592,
-   "first_seen": 1789278169
-  },
-  {
-   "symbol": "BUST",
-   "name": "BUST",
-   "chain": "base",
-   "address": "0x2e33d4dcb1f3d79b6004ea403c6b5ee96c7ce61e",
-   "score": 76,
-   "verdict": "green",
-   "liquidity_usd": 2292.3026,
-   "first_seen": 1789278166
-  },
-  {
-   "symbol": "SAFEAI",
-   "name": "Trust Me Bro",
-   "chain": "base",
-   "address": "0xb200000000000000000000460974e2e45e082d14",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 28061.4322,
-   "first_seen": 1789278165
-  },
-  {
-   "symbol": "INU",
-   "name": "Long INU",
-   "chain": "base",
-   "address": "0xb200000000000000000000a1121f1ba0ccf7a1c0",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 27177.7724,
-   "first_seen": 1789278163
-  },
-  {
-   "symbol": "blohard",
-   "name": "blohard",
-   "chain": "base",
-   "address": "0xa314bf3aaf6fa52fd235b4b7b65c2d0afb47aca5",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 76536.0862,
-   "first_seen": 1789278162
-  },
-  {
-   "symbol": "456",
-   "name": "123",
-   "chain": "base",
-   "address": "0x388db6b85605d565d0f7c581e7089e49c9933244",
-   "score": 40,
-   "verdict": "yellow",
-   "liquidity_usd": 40155.1259,
-   "first_seen": 1789249736
   }
  ],
  "confirmed": [
+  {
+   "symbol": "HAKIMI",
+   "chain": "base",
+   "address": "0x6ce406ce3f4c64083e82cff6a3742507f760330d",
+   "buyers_h1": 102,
+   "volume_h1": 26710.8577375682,
+   "liquidity_usd": 19726.6262,
+   "confirmed_at": 1789299410,
+   "hours_waited": 0.8
+  },
   {
    "symbol": "STKB",
    "chain": "base",
@@ -524,11 +534,17 @@
   }
  ],
  "probation": {
-  "waiting": 32,
-  "confirmed": 17,
-  "dropped": 930
+  "waiting": 19,
+  "confirmed": 18,
+  "dropped": 948
  },
  "recent_drains": [
+  {
+   "symbol": "HAKIMI",
+   "chain": "base",
+   "address": "0x6ce406ce3f4c64083e82cff6a3742507f760330d",
+   "ts": 1789302778
+  },
   {
    "symbol": "AI",
    "chain": "robinhood",
@@ -612,12 +628,6 @@
    "chain": "base",
    "address": "0x8b1a5f59e75ec900dcab3ac5594ce5070ecafceb",
    "ts": 1787592834
-  },
-  {
-   "symbol": "CANTON",
-   "chain": "base",
-   "address": "0x1929a588f27d3366384320844f85bf10a52a0d72",
-   "ts": 1787584378
   }
  ],
  "survivors": [
@@ -715,10 +725,10 @@
  "alerts": {
   "dump": 693,
   "pump": 262,
-  "rug": 939
+  "rug": 940
  },
  "watchlist_active": 8,
- "price_snapshots": 10992,
+ "price_snapshots": 11135,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
