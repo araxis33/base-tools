@@ -2378,31 +2378,49 @@ async function verifyTokens(addr, tokens){
 
 // One map of contract -> pool price, built from many small batched calls so a
 // token with a lot of pools cannot push another token out of the reply.
+//
+// A batch that fails is not the same as a token with no pool, and conflating
+// the two hid a real holding: the price service rate-limits a run of calls,
+// and one refused batch quietly moved every token in it into the "no pool,
+// not shown" pile — including IPOD, worth $19 on the test wallet. Failed
+// batches are retried, and whatever still will not answer is reported as
+// unpriced rather than silently dropped.
 async function fetchPoolPrices(contracts){
   const groups = [];
   for (let i = 0; i < contracts.length; i += WALLET_BATCH){
     groups.push(contracts.slice(i, i + WALLET_BATCH));
   }
   const found = {};
-  let next = 0;
-  async function lane(){
-    while (next < groups.length){
-      const group = groups[next++];
-      try {
-        const res = await fetchWithTimeout(
-          "https://api.dexscreener.com/tokens/v1/base/" + group.join(","), 9000);
-        if (!res.ok) continue;
-        const pairs = await res.json();
-        if (!Array.isArray(pairs)) continue;
-        group.forEach(function(addr){
-          const pool = pickPoolPrice(pairs, addr);
-          if (pool) found[addr.toLowerCase()] = pool;
-        });
-      } catch(e){}
+  const unpriced = new Set();
+  let pending = groups;
+  for (let attempt = 0; attempt < 3 && pending.length; attempt++){
+    if (attempt) await sleep(700 * attempt);
+    const todo = pending;
+    const failed = [];
+    let next = 0;
+    async function lane(){
+      while (next < todo.length){
+        const group = todo[next++];
+        try {
+          const res = await fetchWithTimeout(
+            "https://api.dexscreener.com/tokens/v1/base/" + group.join(","), 9000);
+          if (!res.ok){ failed.push(group); continue; }
+          const pairs = await res.json();
+          if (!Array.isArray(pairs)){ failed.push(group); continue; }
+          group.forEach(function(addr){
+            const pool = pickPoolPrice(pairs, addr);
+            if (pool) found[addr.toLowerCase()] = pool;
+          });
+        } catch(e){ failed.push(group); }
+      }
     }
+    await Promise.all(Array.from({ length: Math.min(WALLET_LANES, todo.length) }, lane));
+    pending = failed;
   }
-  await Promise.all(Array.from({ length: Math.min(WALLET_LANES, groups.length) }, lane));
-  return found;
+  pending.forEach(function(group){
+    group.forEach(function(addr){ unpriced.add(addr.toLowerCase()); });
+  });
+  return { prices: found, unpriced: unpriced };
 }
 
 function fmtQty(n){
@@ -2436,14 +2454,19 @@ async function loadWallet(){
     walStatus("Pricing " + tokens.length + " tokens against their pools…");
 
     // WETH is asked for alongside them: it is the price of the native ETH row.
-    const prices = await fetchPoolPrices(
+    const priced = await fetchPoolPrices(
       tokens.map(t=>t.contract).concat([WETH_BASE]));
+    const prices = priced.prices;
 
     const rows = [];
-    let hidden = 0;
+    let hidden = 0, unpriced = 0;
     tokens.forEach(function(t){
       const pool = prices[t.contract.toLowerCase()];
       const amount = Number(t.raw) / Math.pow(10, t.decimals);
+      // The price service never answered for this one, so nothing is known
+      // about it either way. Counting it as "no pool" is what hid a real
+      // holding, so it is counted apart and said out loud.
+      if (!pool && priced.unpriced.has(t.contract.toLowerCase())){ unpriced++; return; }
       if (!pool){
         // No pool means nothing can be sold here, and for spam it also means
         // nothing is there. But a lending receipt — Moonwell's mwUSDC, say — is
@@ -2492,9 +2515,15 @@ async function loadWallet(){
 
     wallet.rows = live;
     wallet.hidden = hidden;
-    walStatus(checked.checked
-      ? ""
-      : "These balances come from the explorer — the node did not answer, so a very recent trade may still be missing.", true);
+    const notes = [];
+    if (!checked.checked){
+      notes.push("These balances come from the explorer — the node did not answer, so a very recent trade may still be missing.");
+    }
+    if (unpriced){
+      notes.push(unpriced + (unpriced === 1 ? " token could" : " tokens could") +
+        " not be priced just now — the price service was busy. Refresh to try them again.");
+    }
+    walStatus(notes.join(" "), true);
     renderWallet();
   } catch(e){
     walStatus(e.message || "Could not read this wallet.", true);
