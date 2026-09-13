@@ -290,6 +290,15 @@
      amount, a dollar value and a button, and narrower than the boards because
      it is still a dialog. */
   .modal.modal-wide{max-width:460px;}
+  .wal-chains{display:flex; gap:6px; flex-wrap:wrap;}
+  .wal-chain{
+    border:1px solid var(--border); background:transparent; color:var(--muted);
+    border-radius:var(--r-pill); padding:6px 13px; font-family:inherit;
+    font-size:var(--fs-xxs); font-weight:800; cursor:pointer;
+    transition:background var(--t), border-color var(--t), color var(--t);
+  }
+  .wal-chain:hover{border-color:var(--blue); color:var(--blue-text);}
+  .wal-chain.on{background:var(--blue); color:var(--white); border-color:var(--blue);}
   .wal-total{
     display:flex; align-items:baseline; justify-content:space-between; gap:12px;
     padding:14px 16px; background:var(--bg); border:1px solid var(--border);
@@ -863,6 +872,7 @@
       </div>
       <button class="modal-x" id="wal-close" type="button" aria-label="Close">&#215;</button>
     </div>
+    <div class="wal-chains" id="wal-chains" role="group" aria-label="Chain"></div>
     <div class="wal-total" id="wal-total" hidden>
       <div>
         <div class="wal-total-label">TOTAL ON BASE</div>
@@ -874,7 +884,7 @@
     <div class="wal-list" id="wal-list"></div>
     <button class="wal-more" id="wal-more" type="button" hidden></button>
     <button class="buy-cta" id="wal-action" type="button">Connect wallet</button>
-    <p class="wal-note" id="wal-note">Read-only: balances come from the chain, prices from the pools that actually trade the token. Airdropped tokens with no pool behind them are counted, not listed — they cannot be priced and cannot be sold. A row marked <b>no pool</b> is a deposit receipt: real money, withdrawn where you deposited it, not here.</p>
+    <p class="wal-note" id="wal-note">Balances come from the chain, prices from the pools that actually trade the token. Base and Ethereum can be traded from here; Robinhood Chain has no aggregator, so it is shown but not traded. Airdropped tokens with no pool behind them are counted, not listed — they cannot be priced and cannot be sold. A row marked <b>no pool</b> is a deposit receipt: real money, withdrawn where you deposited it, not here.</p>
   </div>
 </div>
 
@@ -1311,9 +1321,10 @@ async function fetchMarketsOnce(nativeMap){
 // be moved by one outlier: take it as the reference, throw out anything more
 // than 50% away from it, and only then pick the deepest. Returns null when the
 // token has no pool at all, which is also the test for "can this be sold".
-function pickPoolPrice(pairs, contract){
+function pickPoolPrice(pairs, contract, chainId){
+  const want = chainId || "base";
   const addr = String(contract).toLowerCase();
-  const mine = (pairs || []).filter(p => p.chainId === "base"
+  const mine = (pairs || []).filter(p => p.chainId === want
     && p.baseToken && String(p.baseToken.address).toLowerCase() === addr
     && parseFloat(p.priceUsd) > 0);
   if (!mine.length) return null;
@@ -1546,10 +1557,55 @@ loadBoards();
    applies to both directions, because "buy with USDC" and "sell for USDC" are
    the same route read from opposite ends. USDC is an ERC-20, so buying with it
    costs the same allowance a sale does; the dialog says so before you sign. */
-const CHAIN_HEX = "0x2105";                 // Base, 8453
-const KYBER = "https://aggregator-api.kyberswap.com/base/api/v1";
+/* The page is about Base, and everything it sells is on Base — but a wallet is
+   not. The same address holds tokens on other chains, and hiding them does not
+   make them go away: on the wallet this was built against, the largest single
+   holding outside Base was worth more than five of the rows that were shown.
+   So the wallet panel reads three chains, and each one declares how to reach
+   it. Only the chains KyberSwap covers get a Sell button; the rest are read. */
+const CHAINS = {
+  base: {
+    key:"base", name:"Base", hex:"0x2105",
+    rpc:"https://mainnet.base.org",
+    explorer:"https://base.blockscout.com/api/v2",
+    dex:"base",
+    kyber:"https://aggregator-api.kyberswap.com/base/api/v1",
+    usdc:"0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+    wrapped:"0x4200000000000000000000000000000000000006",
+    native:"ETH", scan:"https://basescan.org",
+  },
+  ethereum: {
+    key:"ethereum", name:"Ethereum", hex:"0x1",
+    rpc:"https://ethereum-rpc.publicnode.com",
+    explorer:"https://eth.blockscout.com/api/v2",
+    dex:"ethereum",
+    kyber:"https://aggregator-api.kyberswap.com/ethereum/api/v1",
+    usdc:"0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    wrapped:"0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    native:"ETH", scan:"https://etherscan.io",
+  },
+  // No public explorer API and no aggregator: this one is read-only, and its
+  // tokens are the handful worth naming rather than a list to discover.
+  robinhood: {
+    key:"robinhood", name:"Robinhood", hex:"0x1237",
+    rpc:"https://rpc.mainnet.chain.robinhood.com",
+    explorer:null,
+    dex:"robinhood",
+    kyber:null,
+    usdc:null,
+    wrapped:null,
+    native:"ETH", scan:null,
+    known:[
+      { contract:"0x39dbed3a2bd333467115de45665cc57f813c4571", symbol:"PONS",  decimals:18 },
+      { contract:"0x5fc5360d0400a0fd4f2af552add042d716f1d168", symbol:"USDG",  decimals:6  },
+      { contract:"0xb9972CA7188e511174947E3936a5315ac7073277", symbol:"PROLOGUE", decimals:18 },
+    ],
+  },
+};
+const CHAIN_HEX = CHAINS.base.hex;           // Base, 8453
+const KYBER = CHAINS.base.kyber;
 const NATIVE_ETH = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
-const BASE_RPC = "https://mainnet.base.org";
+const BASE_RPC = CHAINS.base.rpc;
 const BUILDER_SUFFIX = "62635f6d726b7775326d300b0080218021802180218021802180218021";
 const SLIPPAGE_BPS = 100;                   // 1%
 // Switched on the day there is volume worth charging for. Until then the site
@@ -1577,13 +1633,19 @@ const SEL_ALLOWANCE = "0xdd62ed3e";
 const SEL_APPROVE   = "0x095ea7b3";
 
 const trade = {
-  mode:"buy", pay:"ETH", token:null, symbol:"", account:null, summary:null,
+  mode:"buy", pay:"ETH", chainKey:"base", token:null, symbol:"", account:null, summary:null,
   busy:false, seq:0, decimals:{}, balance:null, done:null
 };
 
 // The asset on the money side of the trade. Everything that used to say "ETH"
 // asks this instead, so adding a third currency later is one entry in PAY.
-function payAsset(){ return PAY[trade.pay] || PAY.ETH; }
+function payAsset(){
+  const base = PAY[trade.pay] || PAY.ETH;
+  // USDC lives at a different address on every chain, so the money side is
+  // resolved against the chain the trade is on rather than baked in.
+  if (base.native) return base;
+  return Object.assign({}, base, { addr: tradeChain().usdc || base.addr });
+}
 // ETH is also something you hold, so it can be the subject of the dialog and
 // not only the money side of it. Selling it is the one sale that spends no
 // ERC-20, which every branch below has to know about.
@@ -1651,8 +1713,8 @@ function sleep(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
 // eth_getTransactionReceipt is how this dialog used to hang: smart accounts
 // and in-app browsers frequently never reply to it, and the flow stopped dead
 // between an approval and the swap it was granted for.
-async function baseRpc(method, params){
-  const res = await fetch(BASE_RPC, {
+async function chainRpc(cfg, method, params){
+  const res = await fetch(cfg.rpc, {
     method:"POST",
     headers:{"Content-Type":"application/json"},
     body: JSON.stringify({ jsonrpc:"2.0", id:1, method:method, params:params })
@@ -1660,11 +1722,18 @@ async function baseRpc(method, params){
   // A throttled node answers 429 with a body that is not JSON at all, so this
   // has to be caught before parsing or it surfaces as a syntax error.
   if (!res.ok) throw new Error(res.status === 429
-    ? "The public Base node is busy. Try again in a moment."
-    : "The node answered " + res.status + ".");
+    ? "The public " + cfg.name + " node is busy. Try again in a moment."
+    : "The " + cfg.name + " node answered " + res.status + ".");
   const j = await res.json();
   if (j && j.error) throw new Error(j.error.message || "The node refused that read.");
   return j ? j.result : null;
+}
+
+// The trade dialog reads from whichever chain the trade is on. Everything that
+// was written when this page only knew Base keeps working through here.
+function tradeChain(){ return CHAINS[trade.chainKey] || CHAINS.base; }
+async function baseRpc(method, params){
+  return await chainRpc(tradeChain(), method, params);
 }
 
 // Many reads in few HTTP round trips. JSON-RPC takes an array of requests and
@@ -1713,7 +1782,8 @@ function decodeBalanceCalls(hex){
   return out;
 }
 
-async function chainBalances(owner, contracts){
+async function chainBalances(owner, contracts, cfg){
+  cfg = cfg || CHAINS.base;
   const found = new Map();
   for (let i = 0; i < contracts.length; i += MULTICALL_CHUNK){
     const slice = contracts.slice(i, i + MULTICALL_CHUNK);
@@ -1726,7 +1796,7 @@ async function chainBalances(owner, contracts){
     for (let attempt = 0; attempt < 3 && hex === null; attempt++){
       if (attempt) await sleep(500 * attempt);
       try {
-        const r = await baseRpc("eth_call", [{ to: MULTICALL3, data: data }, "latest"]);
+        const r = await chainRpc(cfg, "eth_call", [{ to: MULTICALL3, data: data }, "latest"]);
         if (typeof r === "string" && r.length >= 130) hex = r;
       } catch(e){ lastErr = e; }
     }
@@ -1777,7 +1847,8 @@ async function allowanceOf(token, owner, spender){
 
 function buyEl(id){ return document.getElementById(id); }
 
-function openTrade(token, symbol, logo, mode){
+function openTrade(token, symbol, logo, mode, chainKey){
+  trade.chainKey = CHAINS[chainKey] ? chainKey : "base";
   trade.token = token; trade.symbol = symbol;
   // ETH against ETH is not a trade. When the subject is the native coin the
   // other side can only be USDC, so the choice is made rather than offered.
@@ -1786,11 +1857,12 @@ function openTrade(token, symbol, logo, mode){
   buyEl("buy-logo").style.visibility = logo ? "visible" : "hidden";
   buyEl("buy-fee").textContent = FEE_BPS > 0
     ? "Fee " + (FEE_BPS/100).toFixed(2) + "% to this site, already counted in the number above."
-    : "No fee from this site. You get the aggregator's price, minus Base gas.";
+    : "No fee from this site. You get the aggregator's price, minus " + tradeChain().name + " gas.";
+  const scan = tradeChain().scan;
   buyEl("buy-addr").innerHTML = isNativeAsset(token)
-    ? "The native coin of Base — no contract, no approval."
-    : '<a href="https://basescan.org/token/' + esc(token) + '" target="_blank" rel="noopener">' +
-      esc(shortAddr(token)) + '</a>' + copyBtnHtml(token);
+    ? "The native coin of " + esc(tradeChain().name) + " — no contract, no approval."
+    : (scan ? '<a href="' + scan + '/token/' + esc(token) + '" target="_blank" rel="noopener">' +
+        esc(shortAddr(token)) + '</a>' : esc(shortAddr(token))) + copyBtnHtml(token);
   bindCopyButtons(buyEl("buy-addr"));
   buyEl("buy-back").hidden = false;
   document.body.style.overflow = "hidden";
@@ -1840,7 +1912,7 @@ function setMode(mode){
   buyEl("buy-pay").classList.toggle("sell", sell);
   buyEl("buy-pay-label").textContent = sell ? "Get back" : "Pay with";
   buyEl("buy-title").textContent = (sell ? "Sell " : "Buy ") + trade.symbol;
-  buyEl("buy-sub").textContent = "on Base, " + (sell ? "for " : "with ") + pa.sym;
+  buyEl("buy-sub").textContent = "on " + tradeChain().name + ", " + (sell ? "for " : "with ") + pa.sym;
   buyEl("buy-unit").textContent = sell ? trade.symbol : pa.sym;
   buyEl("buy-amount").setAttribute("aria-label",
     sell ? "Amount of " + trade.symbol + " to sell" : "Amount of " + pa.sym + " to spend");
@@ -1955,7 +2027,7 @@ async function quoteTrade(){
   out.textContent = "Finding the best route…";
   renderCta();
   try {
-    const url = KYBER + "/routes?tokenIn=" + (sell ? trade.token : pa.addr) +
+    const url = tradeChain().kyber + "/routes?tokenIn=" + (sell ? trade.token : pa.addr) +
       "&tokenOut=" + (sell ? pa.addr : trade.token) +
       "&amountIn=" + amountIn + "&gasInclude=true";
     const res = await fetch(url);
@@ -2009,9 +2081,10 @@ async function connectWallet(){
 // transaction checks the network for itself rather than trusting the connect
 // button to have done it.
 async function ensureBaseChain(p){
+  const cfg = tradeChain();
   const chain = await p.request({ method:"eth_chainId" });
-  if (chain === CHAIN_HEX) return;
-  await p.request({ method:"wallet_switchEthereumChain", params:[{ chainId: CHAIN_HEX }] });
+  if (chain === cfg.hex) return;
+  await p.request({ method:"wallet_switchEthereumChain", params:[{ chainId: cfg.hex }] });
 }
 
 async function waitForReceipt(p, hash, what){
@@ -2125,7 +2198,7 @@ async function buildSwap(){
       isInBps: true, feeReceiver: FEE_WALLET
     };
   }
-  const res = await fetch(KYBER + "/route/build", {
+  const res = await fetch(tradeChain().kyber + "/route/build", {
     method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(body)
   });
   const b = await res.json();
@@ -2193,13 +2266,13 @@ async function doTrade(){
     });
     const tx = buyEl("buy-tx");
     if (hash){
-      tx.href = "https://basescan.org/tx/" + hash;
-      tx.textContent = "View the transaction on Basescan";
+      tx.href = (tradeChain().scan || "") + "/tx/" + hash;
+      tx.textContent = "View the transaction";
     } else {
       // The wallet never answered, but the balance moved: the swap is done and
       // only its hash is missing. The address page shows it at the top.
-      tx.href = "https://basescan.org/address/" + trade.account;
-      tx.textContent = "See it on Basescan";
+      tx.href = (tradeChain().scan || "") + "/address/" + trade.account;
+      tx.textContent = "See it on the explorer";
     }
     tx.hidden = false;
     trade.done = hash || "onchain";
@@ -2309,13 +2382,12 @@ buyEl("buy-presets").addEventListener("click", async function(e){
    those 445, and it is wrong on thin tokens. They come from the pools through
    the same median-of-pools rule the stock board uses, in small batches because
    the batched endpoint truncates its reply at 30 pairs. */
-const BLOCKSCOUT_BASE = "https://base.blockscout.com/api/v2";
 const WALLET_BATCH = 8;          // addresses per DexScreener call
 const WALLET_LANES = 5;          // batches in flight at once
 const WALLET_DUST_USD = 1;       // below this a row hides behind "show all"
-const WETH_BASE = "0x4200000000000000000000000000000000000006";
 
-const wallet = { account:null, rows:[], hidden:0, showAll:false, busy:false };
+const wallet = { account:null, chainKey:"base", rows:[], hidden:0, showAll:false, busy:false };
+function walletChain(){ return CHAINS[wallet.chainKey] || CHAINS.base; }
 
 function walEl(id){ return document.getElementById(id); }
 
@@ -2326,9 +2398,23 @@ function walStatus(text, bad){
   el.hidden = !text;
 }
 
-async function fetchWalletTokens(addr){
+async function fetchWalletTokens(addr, cfg){
+  // A chain without a public explorer API cannot be asked "what does this
+  // address hold" at all, so it declares the tokens worth checking instead and
+  // their balances are read straight from the node.
+  if (!cfg.explorer){
+    const known = cfg.known || [];
+    if (!known.length) return [];
+    const units = await chainBalances(addr, known.map(t=>t.contract), cfg);
+    return known.map(function(t){
+      const v = units.get(t.contract);
+      if (v === undefined || v === 0n) return null;
+      return { contract:t.contract, symbol:t.symbol, decimals:t.decimals,
+               raw:v.toString(), logo:"", rate:0 };
+    }).filter(Boolean);
+  }
   const res = await fetchWithTimeout(
-    BLOCKSCOUT_BASE + "/addresses/" + encodeURIComponent(addr) + "/token-balances", 15000);
+    cfg.explorer + "/addresses/" + encodeURIComponent(addr) + "/token-balances", 15000);
   if (!res.ok) throw new Error("http " + res.status);
   const list = await res.json();
   if (!Array.isArray(list)) return [];
@@ -2361,9 +2447,9 @@ async function fetchWalletTokens(addr){
 // answers only "which tokens has this address ever held"; every number next to
 // a Sell button is then read from the chain, and a token that comes back empty
 // was spent and is dropped before anything is priced.
-async function verifyTokens(addr, tokens){
+async function verifyTokens(addr, tokens, cfg){
   let balances;
-  try { balances = await chainBalances(addr, tokens.map(t=>t.contract)); }
+  try { balances = await chainBalances(addr, tokens.map(t=>t.contract), cfg); }
   catch(e){ return { tokens: tokens, checked: false }; }
   const live = [];
   tokens.forEach(function(t){
@@ -2385,7 +2471,8 @@ async function verifyTokens(addr, tokens){
 // not shown" pile — including IPOD, worth $19 on the test wallet. Failed
 // batches are retried, and whatever still will not answer is reported as
 // unpriced rather than silently dropped.
-async function fetchPoolPrices(contracts){
+async function fetchPoolPrices(contracts, cfg){
+  cfg = cfg || CHAINS.base;
   const groups = [];
   for (let i = 0; i < contracts.length; i += WALLET_BATCH){
     groups.push(contracts.slice(i, i + WALLET_BATCH));
@@ -2403,12 +2490,12 @@ async function fetchPoolPrices(contracts){
         const group = todo[next++];
         try {
           const res = await fetchWithTimeout(
-            "https://api.dexscreener.com/tokens/v1/base/" + group.join(","), 9000);
+            "https://api.dexscreener.com/tokens/v1/" + cfg.dex + "/" + group.join(","), 9000);
           if (!res.ok){ failed.push(group); continue; }
           const pairs = await res.json();
           if (!Array.isArray(pairs)){ failed.push(group); continue; }
           group.forEach(function(addr){
-            const pool = pickPoolPrice(pairs, addr);
+            const pool = pickPoolPrice(pairs, addr, cfg.dex);
             if (pool) found[addr.toLowerCase()] = pool;
           });
         } catch(e){ failed.push(group); }
@@ -2441,22 +2528,37 @@ async function loadWallet(){
   walEl("wal-list").innerHTML = "";
   walEl("wal-total").hidden = true;
   walEl("wal-more").hidden = true;
-  walStatus("Reading the chain…");
+  const cfg = walletChain();
+  walStatus("Reading " + cfg.name + "…");
   try {
     const addr = wallet.account;
     const [listed, ethRaw] = await Promise.all([
-      fetchWalletTokens(addr),
-      baseRpc("eth_getBalance", [addr, "latest"]).catch(function(){ return "0x0"; }),
+      fetchWalletTokens(addr, cfg),
+      chainRpc(cfg, "eth_getBalance", [addr, "latest"]).catch(function(){ return "0x0"; }),
     ]);
-    walStatus("Checking " + listed.length + " balances against the chain…");
-    const checked = await verifyTokens(addr, listed);
-    const tokens = checked.tokens;
+    let tokens = listed, checked = { checked:true };
+    // A chain without an explorer was read from the node in the first place,
+    // so there is nothing to check it against.
+    if (cfg.explorer){
+      walStatus("Checking " + listed.length + " balances against the chain…");
+      checked = await verifyTokens(addr, listed, cfg);
+      tokens = checked.tokens;
+    }
     walStatus("Pricing " + tokens.length + " tokens against their pools…");
 
-    // WETH is asked for alongside them: it is the price of the native ETH row.
+    // The wrapped native token is asked for alongside them: it is the price of
+    // the native row. A chain with no wrapped token of its own borrows the
+    // price of the same asset on Ethereum — bridged ETH is ETH.
+    const priceList = tokens.map(t=>t.contract);
+    const nativeRef = cfg.wrapped || CHAINS.ethereum.wrapped;
+    const nativeCfg = cfg.wrapped ? cfg : CHAINS.ethereum;
     const priced = await fetchPoolPrices(
-      tokens.map(t=>t.contract).concat([WETH_BASE]));
+      cfg.wrapped ? priceList.concat([cfg.wrapped]) : priceList, cfg);
     const prices = priced.prices;
+    if (!cfg.wrapped){
+      const ref = await fetchPoolPrices([nativeRef], nativeCfg);
+      Object.assign(prices, ref.prices);
+    }
 
     const rows = [];
     let hidden = 0, unpriced = 0;
@@ -2478,7 +2580,7 @@ async function loadWallet(){
           rows.push({
             contract: t.contract, symbol: t.symbol, logo: t.logo,
             decimals: t.decimals, amount: amount, usd: amount * t.rate,
-            native: false, noPool: true,
+            native: false, noPool: true, tradeable: false,
           });
         } else {
           hidden++;
@@ -2493,23 +2595,27 @@ async function loadWallet(){
         amount: amount,
         usd: amount * pool.price,
         native: false,
+        // A chain nobody aggregates can be read but not traded, so its rows
+        // carry no Sell button rather than a button that cannot work.
+        tradeable: !!cfg.kyber,
       });
     });
 
     const live = rows;
     live.sort((a,b)=>b.usd - a.usd);
 
-    const ethPool = prices[WETH_BASE.toLowerCase()];
+    const ethPool = prices[nativeRef.toLowerCase()];
     const ethAmount = Number(BigInt(ethRaw)) / 1e18;
     if (ethAmount > 0){
       live.unshift({
         contract: NATIVE_ETH,
-        symbol: "ETH",
+        symbol: cfg.native,
         logo: "",
         decimals: 18,
         amount: ethAmount,
         usd: ethPool ? ethAmount * ethPool.price : 0,
         native: true,
+        tradeable: !!cfg.kyber,
       });
     }
 
@@ -2552,9 +2658,20 @@ function walletRowHtml(r){
     '</div>' +
     (r.noPool
       ? '<div class="wal-gas" title="No pool trades this token, so it cannot be sold from here. Withdraw it where you deposited it.">no pool</div>'
-      : '<button class="wal-sell" type="button" data-sell="' + addr + '" data-sym="' + sym +
-        '" data-logo="' + logo + '">Sell</button>') +
+      : !r.tradeable
+        ? '<div class="wal-gas" title="No aggregator covers this chain, so this page can show the balance but not trade it.">view only</div>'
+        : '<button class="wal-sell" type="button" data-sell="' + addr + '" data-sym="' + sym +
+          '" data-logo="' + logo + '">Sell</button>') +
     '</div>';
+}
+
+function renderChainTabs(){
+  const box = walEl("wal-chains");
+  box.innerHTML = Object.keys(CHAINS).map(function(k){
+    const on = k === wallet.chainKey;
+    return '<button class="wal-chain' + (on ? " on" : "") + '" type="button" data-chain="' + k +
+      '" aria-pressed="' + on + '">' + esc(CHAINS[k].name) + '</button>';
+  }).join("");
 }
 
 function renderWallet(){
@@ -2580,6 +2697,7 @@ function renderWallet(){
 }
 
 function openWallet(){
+  renderChainTabs();
   walEl("wal-back").hidden = false;
   document.body.style.overflow = "hidden";
   walEl("wal-sub").textContent = wallet.account ? "on Base · " + shortAddr(wallet.account) : "on Base";
@@ -2634,7 +2752,14 @@ walEl("wal-list").addEventListener("click", function(e){
   const b = e.target.closest("[data-sell]");
   if (!b) return;
   closeWallet();
-  openTrade(b.dataset.sell, b.dataset.sym, b.dataset.logo, "sell");
+  openTrade(b.dataset.sell, b.dataset.sym, b.dataset.logo, "sell", wallet.chainKey);
+});
+walEl("wal-chains").addEventListener("click", function(e){
+  const b = e.target.closest("[data-chain]");
+  if (!b || wallet.busy || b.dataset.chain === wallet.chainKey) return;
+  wallet.chainKey = b.dataset.chain;
+  renderChainTabs();
+  if (wallet.account) loadWallet();
 });
 
 let quoteTimer = null;
