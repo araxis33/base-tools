@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-13T11:17:20Z",
- "generated_at_unix": 1789298237,
+ "generated_at": "2026-09-13T12:18:41Z",
+ "generated_at_unix": 1789301919,
  "period": {
   "start": "2026-07-15",
   "days": 60
  },
  "totals": {
-  "seen": 164665,
-  "base": 30550,
+  "seen": 164712,
+  "base": 30597,
   "robinhood": 134115,
-  "below_liquidity_threshold": 160735,
-  "spam_filtered": 988,
-  "scored": 2942,
-  "green": 1553,
+  "below_liquidity_threshold": 160763,
+  "spam_filtered": 1002,
+  "scored": 2947,
+  "green": 1558,
   "yellow": 463,
   "red": 926
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-23",
-   "base": 322,
-   "robinhood": 839
+   "base": 303,
+   "robinhood": 749
   },
   {
    "date": "2026-08-24",
@@ -125,11 +125,61 @@
   },
   {
    "date": "2026-09-13",
-   "base": 159,
+   "base": 207,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "NEARon",
+   "name": "iShares Short Duration Bond Active Tokenized ETF (Ondo)",
+   "chain": "base",
+   "address": "0x6826e8692f51df2fee0b347d21f9c4c7051b5821",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12398.9148713151,
+   "first_seen": 1789301102
+  },
+  {
+   "symbol": "COINCAT",
+   "name": "Coinbase Cat",
+   "chain": "base",
+   "address": "0x9b84477f9cd32cd4f8e8e00cfc466ba0da5ee584",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 75499.779,
+   "first_seen": 1789300780
+  },
+  {
+   "symbol": "FLNC",
+   "name": "Fluence Energy, Inc. Class A Common Stock (Derivatives)",
+   "chain": "base",
+   "address": "0x8264ec091c9a0c7e8ddd7eaf414bbbd1c180a3c2",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12386.6,
+   "first_seen": 1789299640
+  },
+  {
+   "symbol": "HAKIMI",
+   "name": "Hakimi",
+   "chain": "base",
+   "address": "0x6ce406ce3f4c64083e82cff6a3742507f760330d",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 7424.37,
+   "first_seen": 1789299410
+  },
+  {
+   "symbol": "蝴蝶人生",
+   "name": "蝴蝶人生",
+   "chain": "base",
+   "address": "0x9effa57357ec6a54aedfc460957870c8f757f6fc",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12361.9148306308,
+   "first_seen": 1789298498
+  },
   {
    "symbol": "CDXR",
    "name": "Codex (codexblockchain.com)",
@@ -279,56 +329,6 @@
    "verdict": "yellow",
    "liquidity_usd": 40155.1259,
    "first_seen": 1789249736
-  },
-  {
-   "symbol": "STKB",
-   "name": "STOCKBASE.FUN",
-   "chain": "base",
-   "address": "0x088edca3a323c7fcb0e2f775a839010ccde9bc74",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 1689.1372,
-   "first_seen": 1789249735
-  },
-  {
-   "symbol": "CRWV",
-   "name": "CoreWeave Tokenized Stock (Robinhood)",
-   "chain": "base",
-   "address": "0xfaaad99af824c0849c08fc52bd65bb99359b05c2",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12616.8151396755,
-   "first_seen": 1789249734
-  },
-  {
-   "symbol": "BASEBULL",
-   "name": "BASEBULL",
-   "chain": "base",
-   "address": "0x4f4750b74d98fdddcc241f17d530cf7d511405bb",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4491.2217,
-   "first_seen": 1789248192
-  },
-  {
-   "symbol": "BASECOIN",
-   "name": "basecoin",
-   "chain": "base",
-   "address": "0xe9cb03833ba357fa78c8a2829a955a71d6f3828e",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4139.76,
-   "first_seen": 1789248056
-  },
-  {
-   "symbol": "SHRS",
-   "name": "GracefulSEAHORSE",
-   "chain": "base",
-   "address": "0xd1491b676abbadb6f6252054196d3942b9c2cf59",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 25271.9,
-   "first_seen": 1789247648
   }
  ],
  "confirmed": [
@@ -524,9 +524,9 @@
   }
  ],
  "probation": {
-  "waiting": 41,
+  "waiting": 32,
   "confirmed": 17,
-  "dropped": 916
+  "dropped": 930
  },
  "recent_drains": [
   {
@@ -718,7 +718,7 @@
   "rug": 939
  },
  "watchlist_active": 8,
- "price_snapshots": 10942,
+ "price_snapshots": 10992,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
