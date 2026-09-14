@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-14T14:35:21Z",
- "generated_at_unix": 1789396519,
+ "generated_at": "2026-09-14T17:59:24Z",
+ "generated_at_unix": 1789408763,
  "period": {
   "start": "2026-07-15",
   "days": 61
  },
  "totals": {
-  "seen": 165344,
-  "base": 31229,
+  "seen": 165465,
+  "base": 31350,
   "robinhood": 134115,
-  "below_liquidity_threshold": 161153,
-  "spam_filtered": 1193,
-  "scored": 2998,
-  "green": 1606,
-  "yellow": 463,
-  "red": 929
+  "below_liquidity_threshold": 161228,
+  "spam_filtered": 1221,
+  "scored": 3016,
+  "green": 1621,
+  "yellow": 464,
+  "red": 931
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-24",
-   "base": 394,
-   "robinhood": 1541
+   "base": 238,
+   "robinhood": 1006
   },
   {
    "date": "2026-08-25",
@@ -125,11 +125,171 @@
   },
   {
    "date": "2026-09-14",
-   "base": 310,
+   "base": 431,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "CTFSH",
+   "name": "AssociatedCATFISH",
+   "chain": "base",
+   "address": "0x27fa9fa13a9f0d8c786acae2fc2a4f1a0a68d445",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 25319.9,
+   "first_seen": 1789408756
+  },
+  {
+   "symbol": "GSB",
+   "name": "Goldman Sachs Tokenized bStocks",
+   "chain": "base",
+   "address": "0x21b723b8b6ee17965ff7f34874bee2b8aaae1ecf",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12647.515163113,
+   "first_seen": 1789408346
+  },
+  {
+   "symbol": "LSK",
+   "name": "Lisk Chain (LSK)",
+   "chain": "base",
+   "address": "0xea6bc85dfe94855bf85ac0007fb63950e3634c9c",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 166001.392092778,
+   "first_seen": 1789407297
+  },
+  {
+   "symbol": "LSK",
+   "name": "Lisk Network (LSK)",
+   "chain": "base",
+   "address": "0x189779a540cff86fa80e6f24346457be98865370",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 135954.388012374,
+   "first_seen": 1789407296
+  },
+  {
+   "symbol": "LSK",
+   "name": "Lisk Chain Network",
+   "chain": "base",
+   "address": "0xfd4d658ff093e07b09bc14c5d6d127065624c6f2",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 172806.955098176,
+   "first_seen": 1789407295
+  },
+  {
+   "symbol": "Lisk (LSK)",
+   "name": "Lisk (LSK)",
+   "chain": "base",
+   "address": "0x5f68e294037625279bf28eca8889161483eea6bd",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 518869.912036826,
+   "first_seen": 1789407294
+  },
+  {
+   "symbol": "Lisk Chain (LSK)",
+   "name": "Lisk Chain (LSK)",
+   "chain": "base",
+   "address": "0x29db56c135b9caefef5646d180abcb49bad65442",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 872655.600149622,
+   "first_seen": 1789407293
+  },
+  {
+   "symbol": "COINBASE",
+   "name": "Coinbase Tokenized Stocks",
+   "chain": "base",
+   "address": "0xb200000000000000000000cc543b79db4d3d2ad8",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 10300.7811,
+   "first_seen": 1789407015
+  },
+  {
+   "symbol": "BILL",
+   "name": "Clarity Bill",
+   "chain": "base",
+   "address": "0xb2000000000000000000003e25adec4b83b7166e",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 11123.3164,
+   "first_seen": 1789406924
+  },
+  {
+   "symbol": "小股东",
+   "name": "小股东",
+   "chain": "base",
+   "address": "0x0a2ae8dba86512c3e0f9f28ff425fafe5d85ec29",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12326.2426,
+   "first_seen": 1789406922
+  },
+  {
+   "symbol": "LIT",
+   "name": "Lighter",
+   "chain": "base",
+   "address": "0xf6753ebd772adf6f79ca579421072f70528ca217",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 11548338.3711,
+   "first_seen": 1789406324
+  },
+  {
+   "symbol": "WLLBY",
+   "name": "InquisitiveWALLABY",
+   "chain": "base",
+   "address": "0xd8c2fb69f3299233c351b03374bd2973ccc908b8",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 25256.4,
+   "first_seen": 1789406174
+  },
+  {
+   "symbol": "MDM",
+   "name": "Mordiem",
+   "chain": "base",
+   "address": "0xe2ef6ea8cb5ef092f068416ff8f9727eb2586ec9",
+   "score": 40,
+   "verdict": "yellow",
+   "liquidity_usd": 10023.5643,
+   "first_seen": 1789405488
+  },
+  {
+   "symbol": "FUCKDEN",
+   "name": "Fuck Hunter biden",
+   "chain": "base",
+   "address": "0x24645977ec713167a097fdc75eb20fb18b37a222",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3296.5641,
+   "first_seen": 1789405259
+  },
+  {
+   "symbol": "ZOTH",
+   "name": "zoth",
+   "chain": "base",
+   "address": "0xb2000000000000000000000fbb4218aa55fcfa37",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 19352.6006,
+   "first_seen": 1789405258
+  },
+  {
+   "symbol": "FAKEFUTURE",
+   "name": "FAKEFUTURE by Virtuals",
+   "chain": "base",
+   "address": "0xb200000000000000000000117fc93174eeaeae28",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 20622.3207,
+   "first_seen": 1789405257
+  },
   {
    "symbol": "SEED",
    "name": "Sproutly",
@@ -169,166 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 20549.1409,
    "first_seen": 1789393662
-  },
-  {
-   "symbol": "FASRSARAS",
-   "name": "fasrsar as by Virtuals",
-   "chain": "base",
-   "address": "0xb2000000000000000000009d982afcfb3be9c91e",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 11698.3163012221,
-   "first_seen": 1789393522
-  },
-  {
-   "symbol": "CLARITY",
-   "name": "Post Nut Clarity",
-   "chain": "base",
-   "address": "0x90b8ec7f5c5bf142a355488e9edd7e26fec04b07",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 21270.2068,
-   "first_seen": 1789393151
-  },
-  {
-   "symbol": "BOT",
-   "name": "BOT Chain",
-   "chain": "base",
-   "address": "0x12678b9130319ec6817f79872b1cb6c976609feb",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 12544.65,
-   "first_seen": 1789393149
-  },
-  {
-   "symbol": "ALHAMA",
-   "name": "ALHAMA",
-   "chain": "base",
-   "address": "0x9b25911c316c23033400832b5f403290aa6d9adf",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 100948.5881,
-   "first_seen": 1789392762
-  },
-  {
-   "symbol": "KLEEM",
-   "name": "KLEEM",
-   "chain": "base",
-   "address": "0x19ec3fc9a954e27305f3a02f6fc274116fba70a4",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 75007.5,
-   "first_seen": 1789391193
-  },
-  {
-   "symbol": "USHYon",
-   "name": "iShares Broad USD High Yield Tokenized ETF (Ondo)",
-   "chain": "base",
-   "address": "0x82c8bdb8807dc4b5c7e9c6511f5eb72e323e3fd4",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12502.2649923331,
-   "first_seen": 1789391145
-  },
-  {
-   "symbol": "ZZZ",
-   "name": "ZZZ",
-   "chain": "base",
-   "address": "0xedf38a0d533a922b5b54ae05060c86c197d9792f",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12543.15,
-   "first_seen": 1789390315
-  },
-  {
-   "symbol": "FATPANDA",
-   "name": "Fat Panda",
-   "chain": "base",
-   "address": "0x233519d98edc4700b9fc2187a5452947add4ec29",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 10991.0599,
-   "first_seen": 1789390082
-  },
-  {
-   "symbol": "STRATEGY",
-   "name": "Strategy Coin",
-   "chain": "base",
-   "address": "0xe5730720477ba5894bf8cf3785cd74c3b31f8a28",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 32916.9092,
-   "first_seen": 1789390080
-  },
-  {
-   "symbol": "TOS",
-   "name": "TokenOS AI",
-   "chain": "base",
-   "address": "0xffecd6dae167c1d9887b3f1b53bd8ea96d8d22d7",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 33584.2605,
-   "first_seen": 1789389987
-  },
-  {
-   "symbol": "WETH",
-   "name": "Wrapped Ether",
-   "chain": "base",
-   "address": "0xb20000000000000000000030621e9aaa080071d1",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 10242.2058,
-   "first_seen": 1789389940
-  },
-  {
-   "symbol": "CME",
-   "name": "Commodity",
-   "chain": "base",
-   "address": "0xa6ffc77cfd77d3d1aa258ee87d99a2fb3bbf70ec",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 33556.3209,
-   "first_seen": 1789389938
-  },
-  {
-   "symbol": "7Stock",
-   "name": "7Stock",
-   "chain": "base",
-   "address": "0x0a404780d8c9febf2fc4e2121a4a6dc56abaec29",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 8838.8905,
-   "first_seen": 1789389890
-  },
-  {
-   "symbol": "BCAT",
-   "name": "Base Cat",
-   "chain": "base",
-   "address": "0xb2000000000000000000006e67395ff599c5e8a0",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 10131.4112,
-   "first_seen": 1789389889
-  },
-  {
-   "symbol": "VS",
-   "name": "VS",
-   "chain": "base",
-   "address": "0xb2000000000000000000009ed0cc694d6f70509d",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 5764.5508,
-   "first_seen": 1789389059
-  },
-  {
-   "symbol": "ZKAT",
-   "name": "ZERO KNOWLEDGE CAT",
-   "chain": "base",
-   "address": "0x52a6135f125c97df56c6599c3c122e492485b978",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 37868.2997,
-   "first_seen": 1789388590
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 23,
+  "waiting": 36,
   "confirmed": 20,
-  "dropped": 984
+  "dropped": 987
  },
  "recent_drains": [
   {
@@ -748,7 +748,7 @@
   "rug": 940
  },
  "watchlist_active": 10,
- "price_snapshots": 11669,
+ "price_snapshots": 11963,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
