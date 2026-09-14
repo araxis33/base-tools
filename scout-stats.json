@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-14T19:59:41Z",
- "generated_at_unix": 1789415980,
+ "generated_at": "2026-09-14T20:59:47Z",
+ "generated_at_unix": 1789419585,
  "period": {
   "start": "2026-07-15",
   "days": 61
  },
  "totals": {
-  "seen": 165606,
-  "base": 31491,
+  "seen": 165677,
+  "base": 31562,
   "robinhood": 134115,
-  "below_liquidity_threshold": 161327,
-  "spam_filtered": 1254,
-  "scored": 3025,
-  "green": 1626,
-  "yellow": 465,
-  "red": 934
+  "below_liquidity_threshold": 161374,
+  "spam_filtered": 1271,
+  "scored": 3032,
+  "green": 1631,
+  "yellow": 466,
+  "red": 935
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-24",
-   "base": 68,
-   "robinhood": 321
+   "base": 0,
+   "robinhood": 8
   },
   {
    "date": "2026-08-25",
@@ -125,11 +125,71 @@
   },
   {
    "date": "2026-09-14",
-   "base": 572,
+   "base": 643,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "RKLBB",
+   "name": "Rocket Lab Tokenized bStocks",
+   "chain": "base",
+   "address": "0xff4b24df0030d219f875cf997b967bcdd23d9e1e",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 12977.4889,
+   "first_seen": 1789418282
+  },
+  {
+   "symbol": "IBMB",
+   "name": "IBM Tokenized bStocks",
+   "chain": "base",
+   "address": "0x81ed3ededa13b5384d379c53c7ba03624b1750d1",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 12898.85,
+   "first_seen": 1789417190
+  },
+  {
+   "symbol": "XVGBASE",
+   "name": "XVGBASE",
+   "chain": "base",
+   "address": "0xe061aa40be525a13296cb4bf69f513242349d708",
+   "score": 68,
+   "verdict": "yellow",
+   "liquidity_usd": 2658.2641,
+   "first_seen": 1789416686
+  },
+  {
+   "symbol": "4CHAN",
+   "name": "4chan",
+   "chain": "base",
+   "address": "0xb200000000000000000000230e1f90084482cd9a",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 18357.8721,
+   "first_seen": 1789416637
+  },
+  {
+   "symbol": "PEG",
+   "name": "Pegcoin",
+   "chain": "base",
+   "address": "0xb200000000000000000000bec3afb64aa201c97e",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 19954.9388,
+   "first_seen": 1789416635
+  },
+  {
+   "symbol": "4",
+   "name": "4",
+   "chain": "base",
+   "address": "0xb200000000000000000000da76f4aaeb40b7e9c4",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 14556.5937,
+   "first_seen": 1789416404
+  },
   {
    "symbol": "BPB",
    "name": "Based Pipe Bitch",
@@ -269,66 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 10300.7811,
    "first_seen": 1789407015
-  },
-  {
-   "symbol": "BILL",
-   "name": "Clarity Bill",
-   "chain": "base",
-   "address": "0xb2000000000000000000003e25adec4b83b7166e",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 11123.3164,
-   "first_seen": 1789406924
-  },
-  {
-   "symbol": "小股东",
-   "name": "小股东",
-   "chain": "base",
-   "address": "0x0a2ae8dba86512c3e0f9f28ff425fafe5d85ec29",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12326.2426,
-   "first_seen": 1789406922
-  },
-  {
-   "symbol": "LIT",
-   "name": "Lighter",
-   "chain": "base",
-   "address": "0xf6753ebd772adf6f79ca579421072f70528ca217",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 11548338.3711,
-   "first_seen": 1789406324
-  },
-  {
-   "symbol": "WLLBY",
-   "name": "InquisitiveWALLABY",
-   "chain": "base",
-   "address": "0xd8c2fb69f3299233c351b03374bd2973ccc908b8",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 25256.4,
-   "first_seen": 1789406174
-  },
-  {
-   "symbol": "MDM",
-   "name": "Mordiem",
-   "chain": "base",
-   "address": "0xe2ef6ea8cb5ef092f068416ff8f9727eb2586ec9",
-   "score": 40,
-   "verdict": "yellow",
-   "liquidity_usd": 10023.5643,
-   "first_seen": 1789405488
-  },
-  {
-   "symbol": "FUCKDEN",
-   "name": "Fuck Hunter biden",
-   "chain": "base",
-   "address": "0x24645977ec713167a097fdc75eb20fb18b37a222",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3296.5641,
-   "first_seen": 1789405259
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 32,
+  "waiting": 27,
   "confirmed": 20,
-  "dropped": 997
+  "dropped": 1008
  },
  "recent_drains": [
   {
@@ -748,7 +748,7 @@
   "rug": 940
  },
  "watchlist_active": 10,
- "price_snapshots": 12189,
+ "price_snapshots": 12278,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
