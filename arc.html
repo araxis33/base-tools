@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arc live — fees in dollars, and the balance trap</title>
+<meta name="description" content="Live view of Circle's Arc network: current fee priced in dollars instead of gwei, what each kind of transaction actually costs, and a checker for the USDC 18/6 decimal mismatch that makes balanceOf read zero on a non-empty account.">
+<meta property="og:title" content="Arc live — fees in dollars, and the balance trap">
+<meta property="og:description" content="Arc prices gas in USDC, so a fee can be shown in cents instead of gwei. Live numbers, plus the 18-vs-6 decimal trap that breaks ported balance checks.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="base.tools">
+<meta property="og:url" content="https://deftools.xyz/arc.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@Def7771">
+<meta name="twitter:creator" content="@Def7771">
+<link rel="canonical" href="https://deftools.xyz/arc.html">
+<meta name="theme-color" content="#0a0e1c">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b6eff'/%3E%3Cpath d='M10.5 6.5v19' stroke='%23fff' stroke-width='4' stroke-linecap='round'/%3E%3Ccircle cx='18' cy='19.5' r='5.5' fill='none' stroke='%23fff' stroke-width='4'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#0a0e1c; --bg2:#0d1226; --card:#111730; --card-hover:#151c3a;
+  --border:#232c4d; --border-hover:#33406b;
+  --blue:#3b6eff; --blue-soft:#182252; --blue-text:#7ea0ff; --blue-bright:#9db8ff;
+  --yellow:#ffcf40; --green:#3fbf87; --red:#ff6b6b;
+  --text:#eef1fb; --muted:#8791b3; --muted2:#7a84a8;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  line-height:1.55; -webkit-font-smoothing:antialiased;
+}
+a{color:var(--blue-text); text-decoration:none}
+a:hover{color:var(--blue-bright)}
+.wrap{max-width:1080px; margin:0 auto; padding:0 20px}
+
+header{border-bottom:1px solid var(--border); background:var(--bg2)}
+.head-in{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:16px 0; flex-wrap:wrap}
+.back{display:inline-flex; align-items:center; min-height:32px; font-size:14px; color:var(--muted)}
+.back:hover{color:var(--text)}
+.head-links{display:flex; gap:14px}
+.head-links a{font-size:14px; min-height:32px; display:inline-flex; align-items:center}
+
+.hero{padding:40px 0 24px}
+h1{margin:0 0 10px; font-size:32px; line-height:1.2; letter-spacing:-.02em}
+.sub{margin:0; color:var(--muted); font-size:16.5px; max-width:64ch}
+.stamp{margin-top:14px; font-size:13px; color:var(--muted2)}
+.dot{display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--green); margin-right:7px; vertical-align:middle}
+.dot.stale{background:var(--yellow)}
+.dot.dead{background:var(--red)}
+
+section{padding:26px 0}
+h2{font-size:19px; margin:0 0 4px; letter-spacing:-.01em}
+.note{color:var(--muted2); font-size:13.5px; margin:0 0 16px; max-width:70ch}
+
+.netbar{display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-top:16px}
+.netbtn{background:var(--card); border:1px solid var(--border); color:var(--muted);
+        border-radius:999px; padding:7px 16px; font-size:14px; cursor:pointer;
+        font-family:inherit; min-height:34px}
+.netbtn:hover{border-color:var(--border-hover); color:var(--text)}
+.netbtn[aria-pressed="true"]{background:var(--blue-soft); border-color:var(--blue); color:var(--blue-bright)}
+.netbtn[disabled]{opacity:.45; cursor:not-allowed}
+.netbtn[disabled]:hover{border-color:var(--border); color:var(--muted)}
+
+.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:12px}
+.card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px}
+.card .k{color:var(--muted); font-size:13px; margin-bottom:6px}
+.card .v{font-size:23px; font-weight:700; font-variant-numeric:tabular-nums; letter-spacing:-.02em}
+.card .s{color:var(--muted2); font-size:12.5px; margin-top:4px}
+.card.hi{border-left:3px solid var(--blue)}
+
+.tbl-wrap{overflow-x:auto; background:var(--card); border:1px solid var(--border); border-radius:12px}
+table{width:100%; border-collapse:collapse; min-width:420px}
+th,td{text-align:left; padding:11px 16px; font-size:14.5px; border-bottom:1px solid var(--border)}
+th{color:var(--muted); font-weight:500; font-size:12.5px; text-transform:uppercase; letter-spacing:.04em}
+tr:last-child td{border-bottom:none}
+td.num{font-variant-numeric:tabular-nums; white-space:nowrap}
+td.cost{font-variant-numeric:tabular-nums; white-space:nowrap; font-weight:600}
+.gasnote{color:var(--muted2); font-size:12.5px}
+
+.checker{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px}
+.row{display:flex; gap:10px; flex-wrap:wrap}
+input[type=text]{
+  flex:1 1 320px; min-width:0; background:var(--bg); border:1px solid var(--border);
+  color:var(--text); border-radius:10px; padding:11px 14px; font-size:15px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace; min-height:44px;
+}
+input[type=text]:focus{outline:none; border-color:var(--blue)}
+button.go{
+  background:var(--blue); border:1px solid var(--blue); color:#fff; border-radius:10px;
+  padding:11px 22px; font-size:15px; font-weight:600; cursor:pointer;
+  font-family:inherit; min-height:44px;
+}
+button.go:hover{background:#2f5ee0}
+button.go[disabled]{opacity:.6; cursor:default}
+
+.result{margin-top:16px; display:none}
+.result.on{display:block}
+.rrow{display:flex; justify-content:space-between; gap:14px; padding:10px 0;
+      border-bottom:1px solid var(--border); font-size:15px; flex-wrap:wrap}
+.rrow:last-child{border-bottom:none}
+.rrow .lab{color:var(--muted)}
+.rrow .val{font-variant-numeric:tabular-nums; font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.rrow.warn .val{color:var(--yellow)}
+.rrow.ok .val{color:var(--green)}
+.verdict{margin-top:14px; border-radius:10px; padding:13px 15px; font-size:14px; line-height:1.5}
+.verdict.ok{background:rgba(63,191,135,.10); border:1px solid rgba(63,191,135,.3); color:#8fe0bd}
+.verdict.warn{background:rgba(255,207,64,.10); border:1px solid rgba(255,207,64,.32); color:#ffe08a}
+.err{color:var(--red); font-size:14.5px; margin-top:12px}
+.samples{margin-top:12px; font-size:13px; color:var(--muted2)}
+.samples button{background:none; border:none; color:var(--blue-text); cursor:pointer;
+                font-size:13px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; padding:0}
+.samples button:hover{color:var(--blue-bright); text-decoration:underline}
+
+.disclaim{background:var(--card); border:1px solid var(--border); border-left:3px solid var(--yellow);
+          border-radius:12px; padding:16px 18px; color:var(--muted); font-size:14px; margin-top:8px}
+.disclaim code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:13px; color:var(--blue-text)}
+footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px; color:var(--muted2); font-size:13.5px}
+
+@media (max-width:640px){
+  h1{font-size:25px}
+  .hero{padding:28px 0 18px}
+  .rrow{font-size:14px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap head-in">
+    <a class="back" href="/">&larr;&nbsp; base.tools</a>
+    <div class="head-links">
+      <a href="https://docs.arc.io/" target="_blank" rel="noopener">Arc docs</a>
+      <a href="https://testnet.arcscan.app" target="_blank" rel="noopener" id="explorer-link">Explorer</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>Arc, priced in dollars</h1>
+    <p class="sub">Arc pays gas in USDC rather than a separate volatile coin, so a fee can be
+      quoted as a number of cents instead of a number of gwei. This page reads the network
+      directly and does that conversion. It also checks the one thing that quietly breaks
+      contracts ported from other chains: native USDC counts in 18 decimals, the ERC-20 view
+      counts in 6, and they share a balance.</p>
+    <div class="netbar" role="group" aria-label="Network">
+      <button class="netbtn" id="btn-testnet" aria-pressed="true">Testnet</button>
+      <button class="netbtn" id="btn-mainnet" disabled>Mainnet &mdash; Sep 16</button>
+    </div>
+    <div class="stamp" id="stamp"><span class="dot stale"></span>Connecting&hellip;</div>
+  </div>
+
+  <section>
+    <h2>Right now</h2>
+    <p class="note">Read straight from the public RPC in your browser. Nothing is stored and
+      there is no server in between.</p>
+    <div class="cards">
+      <div class="card hi">
+        <div class="k">Base fee</div>
+        <div class="v" id="c-fee">&mdash;</div>
+        <div class="s" id="c-fee-sub">per unit of gas</div>
+      </div>
+      <div class="card">
+        <div class="k">Latest block</div>
+        <div class="v" id="c-block">&mdash;</div>
+        <div class="s" id="c-block-sub">&nbsp;</div>
+      </div>
+      <div class="card">
+        <div class="k">Block time</div>
+        <div class="v" id="c-time">&mdash;</div>
+        <div class="s">measured over the last 20 blocks</div>
+      </div>
+      <div class="card">
+        <div class="k">Block fullness</div>
+        <div class="v" id="c-full">&mdash;</div>
+        <div class="s" id="c-full-sub">&nbsp;</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>What that costs</h2>
+    <p class="note">Gas amounts below are the usual figures for each shape of transaction, not a
+      quote for yours &mdash; they are shown so you can see exactly what is being multiplied.
+      The dollar column updates with the live fee.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Transaction</th><th>Cost</th><th>Gas</th></tr>
+        </thead>
+        <tbody id="costs">
+          <tr><td colspan="3" class="gasnote">Loading&hellip;</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="disclaim">
+      Arc targets roughly <strong>$0.01 per transaction</strong> and smooths the base fee with an
+      exponentially weighted moving average of block utilisation instead of recalculating it every
+      block, so a burst of traffic nudges the price rather than tripling it. The protocol also
+      holds a floor and a hard ceiling on the base fee, which is why the number above tends to sit
+      still.
+    </div>
+  </section>
+
+  <section>
+    <h2>The balance trap</h2>
+    <p class="note">On Arc one USDC balance is visible through two interfaces: the native one with
+      18 decimals, and an ERC-20 one at
+      <code style="font-family:ui-monospace,Menlo,monospace;font-size:13px">0x3600&hellip;0000</code>
+      with 6. The ERC-20 view truncates anything below a whole cent of a cent, so
+      <strong>balanceOf can return zero on an account that is not empty</strong>. An
+      "insufficient balance" guard copied from another chain will misread that. Paste an address
+      and see both numbers side by side.</p>
+
+    <div class="checker">
+      <div class="row">
+        <input type="text" id="addr" placeholder="0x…" spellcheck="false" autocomplete="off"
+               aria-label="Address to check">
+        <button class="go" id="check">Check</button>
+      </div>
+      <div class="samples">
+        Try one: <button id="sample" type="button">0x2ab08a…09e4</button>
+      </div>
+      <div class="err" id="err" hidden></div>
+      <div class="result" id="result">
+        <div class="rrow"><span class="lab">Native balance, 18 decimals</span><span class="val" id="r-native">&mdash;</span></div>
+        <div class="rrow"><span class="lab">ERC-20 <code>balanceOf</code>, 6 decimals</span><span class="val" id="r-erc">&mdash;</span></div>
+        <div class="rrow" id="row-lost"><span class="lab">Hidden by truncation</span><span class="val" id="r-lost">&mdash;</span></div>
+        <div class="verdict" id="verdict"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Connecting a wallet</h2>
+    <div class="tbl-wrap">
+      <table>
+        <tbody id="netinfo"></tbody>
+      </table>
+    </div>
+    <p class="note" style="margin-top:14px">Wallets without custom gas-token support still sign and
+      send fine; they may simply label the balance "ETH" while the underlying asset is USDC.</p>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    Reads the public Arc RPC from your browser, nothing server-side.
+    Figures from <a href="https://docs.arc.io/" target="_blank" rel="noopener">the Arc docs</a>
+    and the chain itself. Part of <a href="/">base.tools</a>.
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  // Одна запись на сеть. 16.09 сюда добавляется mainnet и снимается disabled с
+  // кнопки — больше на странице менять нечего, всё остальное считается от этого.
+  var NETWORKS = {
+    testnet: {
+      label: 'Arc Testnet',
+      chainId: 5042002,
+      rpc: 'https://rpc.testnet.arc.io',
+      explorer: 'https://testnet.arcscan.app',
+      usdc: '0x3600000000000000000000000000000000000000',
+      live: true
+    },
+    mainnet: {
+      label: 'Arc Mainnet',
+      chainId: null,       // публикуется в день запуска
+      rpc: null,
+      explorer: null,
+      usdc: null,
+      live: false
+    }
+  };
+
+  // Типовой расход газа. Держим цифры на виду в таблице, чтобы никто не принял
+  // их за точную оценку своей транзакции.
+  var SHAPES = [
+    { name: 'Send USDC (native)',        gas: 21000 },
+    { name: 'Send USDC (ERC-20 call)',   gas: 65000 },
+    { name: 'Approve a spender',         gas: 46000 },
+    { name: 'Swap through a pool',       gas: 150000 },
+    { name: 'Deploy a contract',         gas: 500000 }
+  ];
+
+  var current = 'testnet';
+  var timer = null;
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  function rpc(net, method, params) {
+    return fetch(net.rpc, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: method, params: params || [] })
+    }).then(function (r) {
+      if (!r.ok) throw new Error('RPC returned ' + r.status);
+      return r.json();
+    }).then(function (j) {
+      if (j.error) throw new Error(j.error.message || 'RPC error');
+      return j.result;
+    });
+  }
+
+  // BigInt везде, где считаем деньги: у нативного баланса 18 знаков, в double
+  // он теряет точность уже на десятых цента.
+  function hexToBig(h) { return BigInt(h || '0x0'); }
+
+  // Делит целое на 10^dp и печатает с нужным числом знаков, без Number.
+  function fmtUnits(v, dp, places) {
+    var neg = v < 0n;
+    if (neg) v = -v;
+    var base = 10n ** BigInt(dp);
+    var whole = v / base;
+    var frac = (v % base).toString().padStart(dp, '0');
+    if (places !== undefined) frac = frac.slice(0, places);
+    frac = frac.replace(/0+$/, '');
+    var s = whole.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    return (neg ? '-' : '') + s + (frac ? '.' + frac : '');
+  }
+
+  // Стоимость в долларах: gas * baseFee(wei) / 1e18. Считаем в BigInt с запасом
+  // в 6 знаков, потом округляем вверх — занижать цену хуже, чем завысить.
+  function costUsd(gas, feeWei) {
+    var micro = (BigInt(gas) * feeWei * 1000000n + (10n ** 18n - 1n)) / (10n ** 18n);
+    var d = Number(micro) / 1e6;
+    if (d >= 1) return '$' + d.toFixed(2);
+    if (d >= 0.01) return '$' + d.toFixed(3);
+    return '$' + d.toFixed(5);
+  }
+
+  function setStamp(cls, text) {
+    $('stamp').innerHTML = '<span class="dot ' + cls + '"></span>' + text;
+  }
+
+  function renderNetInfo(net) {
+    var rows = [
+      ['Network name', net.label],
+      ['Chain ID', net.chainId === null ? 'published at launch' : String(net.chainId)],
+      ['RPC URL', net.rpc || '—'],
+      ['Currency symbol', 'USDC'],
+      ['Explorer', net.explorer || '—']
+    ];
+    $('netinfo').innerHTML = rows.map(function (r) {
+      return '<tr><td style="color:var(--muted);width:34%">' + r[0] +
+             '</td><td class="num" style="font-family:ui-monospace,Menlo,monospace;font-size:13.5px">' +
+             r[1] + '</td></tr>';
+    }).join('');
+  }
+
+  function refresh() {
+    var net = NETWORKS[current];
+    if (!net.live) return;
+
+    rpc(net, 'eth_getBlockByNumber', ['latest', false]).then(function (blk) {
+      var num = Number(BigInt(blk.number));
+      var fee = hexToBig(blk.baseFeePerGas);
+      var used = Number(BigInt(blk.gasUsed));
+      var limit = Number(BigInt(blk.gasLimit));
+
+      $('c-fee').textContent = fmtUnits(fee, 9, 2) + ' gwei';
+      $('c-fee-sub').textContent = costUsd(1000000, fee) + ' per million gas';
+
+      $('c-block').textContent = num.toLocaleString('en-US').replace(/,/g, ' ');
+      var age = Math.max(0, Math.round(Date.now() / 1000 - Number(BigInt(blk.timestamp))));
+      $('c-block-sub').textContent = age + 's ago';
+
+      var pct = limit ? (used / limit * 100) : 0;
+      $('c-full').textContent = pct.toFixed(1) + '%';
+      $('c-full-sub').textContent = (used / 1e6).toFixed(1) + 'M of ' +
+                                    (limit / 1e6).toFixed(0) + 'M gas';
+
+      $('costs').innerHTML = SHAPES.map(function (s) {
+        // Стоимость идёт вторым столбцом, а не третьим: на телефоне таблица
+        // прокручивается, и третий столбец уезжает за край — а цена тут главное.
+        return '<tr><td>' + s.name + '</td>' +
+               '<td class="cost">' + costUsd(s.gas, fee) + '</td>' +
+               '<td class="num gasnote">' + s.gas.toLocaleString('en-US').replace(/,/g, ' ') + '</td></tr>';
+      }).join('');
+
+      setStamp('', net.label + ' &middot; updated just now');
+
+      // Время блока меряем по дистанции в 20 блоков, а не по одному интервалу:
+      // отдельная пара блоков скачет слишком сильно, чтобы что-то значить.
+      var back = '0x' + (BigInt(blk.number) - 20n).toString(16);
+      return rpc(net, 'eth_getBlockByNumber', [back, false]).then(function (old) {
+        if (!old) return;
+        var dt = Number(BigInt(blk.timestamp) - BigInt(old.timestamp)) / 20;
+        $('c-time').textContent = dt.toFixed(2) + 's';
+      });
+    }).catch(function (e) {
+      setStamp('dead', 'Cannot reach ' + net.label + ' — ' + e.message);
+    });
+  }
+
+  function check() {
+    var net = NETWORKS[current];
+    var a = ($('addr').value || '').trim();
+    $('err').hidden = true;
+    $('result').classList.remove('on');
+
+    if (!/^0x[0-9a-fA-F]{40}$/.test(a)) {
+      $('err').textContent = 'That does not look like an address — 0x followed by 40 hex characters.';
+      $('err').hidden = false;
+      return;
+    }
+    if (!net.live) {
+      $('err').textContent = net.label + ' is not reachable yet.';
+      $('err').hidden = false;
+      return;
+    }
+
+    $('check').disabled = true;
+    $('check').textContent = 'Reading…';
+
+    var call = { to: net.usdc, data: '0x70a08231' + '0'.repeat(24) + a.slice(2).toLowerCase() };
+
+    Promise.all([
+      rpc(net, 'eth_getBalance', [a, 'latest']),
+      rpc(net, 'eth_call', [call, 'latest'])
+    ]).then(function (res) {
+      var native = hexToBig(res[0]);          // 18 знаков
+      var erc = hexToBig(res[1]);             // 6 знаков
+      // Обе величины приводим к 18 знакам, иначе вычитать нельзя.
+      var ercAs18 = erc * (10n ** 12n);
+      var lost = native - ercAs18;
+
+      $('r-native').textContent = fmtUnits(native, 18) + ' USDC';
+      $('r-erc').textContent = fmtUnits(erc, 6) + ' USDC';
+      $('r-lost').textContent = fmtUnits(lost, 18) + ' USDC';
+
+      var lostRow = $('row-lost');
+      var v = $('verdict');
+      if (native === 0n) {
+        lostRow.className = 'rrow';
+        v.className = 'verdict ok';
+        v.textContent = 'Empty on both views. Nothing to disagree about.';
+      } else if (erc === 0n) {
+        lostRow.className = 'rrow warn';
+        v.className = 'verdict warn';
+        v.textContent = 'This is the trap in its pure form: balanceOf returns 0 while the ' +
+          'account holds ' + fmtUnits(native, 18) + ' USDC natively. Any check that reads only ' +
+          'the ERC-20 view would treat this account as broke.';
+      } else if (lost > 0n) {
+        lostRow.className = 'rrow warn';
+        v.className = 'verdict warn';
+        v.textContent = 'The two views disagree by ' + fmtUnits(lost, 18) + ' USDC. Small here, ' +
+          'but a sweep function that moves the ERC-20 amount leaves that remainder behind every ' +
+          'single time it runs.';
+      } else {
+        lostRow.className = 'rrow ok';
+        v.className = 'verdict ok';
+        v.textContent = 'Both views agree exactly — this balance happens to land on a clean ' +
+          '6-decimal boundary. That is luck, not a guarantee.';
+      }
+      $('result').classList.add('on');
+    }).catch(function (e) {
+      $('err').textContent = 'Could not read that address: ' + e.message;
+      $('err').hidden = false;
+    }).finally(function () {
+      $('check').disabled = false;
+      $('check').textContent = 'Check';
+    });
+  }
+
+  function select(name) {
+    if (!NETWORKS[name].live) return;
+    current = name;
+    $('btn-testnet').setAttribute('aria-pressed', String(name === 'testnet'));
+    $('btn-mainnet').setAttribute('aria-pressed', String(name === 'mainnet'));
+    var net = NETWORKS[name];
+    if (net.explorer) $('explorer-link').href = net.explorer;
+    renderNetInfo(net);
+    setStamp('stale', 'Connecting to ' + net.label + '…');
+    refresh();
+  }
+
+  $('btn-testnet').addEventListener('click', function () { select('testnet'); });
+  $('btn-mainnet').addEventListener('click', function () { select('mainnet'); });
+  $('check').addEventListener('click', check);
+  $('addr').addEventListener('keydown', function (e) { if (e.key === 'Enter') check(); });
+  $('sample').addEventListener('click', function () {
+    $('addr').value = '0x2ab08a231389fD6c1cb368769aE5Ba3f999209e4';
+    check();
+  });
+
+  select('testnet');
+  timer = setInterval(refresh, 12000);
+  document.addEventListener('visibilitychange', function () {
+    // Вкладка в фоне не должна долбить RPC — при возврате обновляем сразу.
+    if (document.hidden) { clearInterval(timer); timer = null; }
+    else if (!timer) { refresh(); timer = setInterval(refresh, 12000); }
+  });
+})();
+</script>
+
+</body>
+</html>
