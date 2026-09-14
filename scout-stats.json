@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-14T17:59:24Z",
- "generated_at_unix": 1789408763,
+ "generated_at": "2026-09-14T18:59:32Z",
+ "generated_at_unix": 1789412371,
  "period": {
   "start": "2026-07-15",
   "days": 61
  },
  "totals": {
-  "seen": 165465,
-  "base": 31350,
+  "seen": 165528,
+  "base": 31413,
   "robinhood": 134115,
-  "below_liquidity_threshold": 161228,
-  "spam_filtered": 1221,
-  "scored": 3016,
-  "green": 1621,
+  "below_liquidity_threshold": 161271,
+  "spam_filtered": 1239,
+  "scored": 3018,
+  "green": 1623,
   "yellow": 464,
   "red": 931
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-24",
-   "base": 238,
-   "robinhood": 1006
+   "base": 159,
+   "robinhood": 687
   },
   {
    "date": "2026-08-25",
@@ -125,11 +125,31 @@
   },
   {
    "date": "2026-09-14",
-   "base": 431,
+   "base": 494,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "LJOHN",
+   "name": "Little John",
+   "chain": "base",
+   "address": "0xc6bccfabd217898f889f7888475429e949f3113c",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12884.9207278939,
+   "first_seen": 1789410866
+  },
+  {
+   "symbol": "Jesski",
+   "name": "Jesski",
+   "chain": "base",
+   "address": "0x24c2af4439d797a6471c4f32c4ec207416d76c8f",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 10176.6865,
+   "first_seen": 1789409811
+  },
   {
    "symbol": "CTFSH",
    "name": "AssociatedCATFISH",
@@ -309,26 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 25075.1,
    "first_seen": 1789394992
-  },
-  {
-   "symbol": "HYDRA",
-   "name": "Hydra Sovereign",
-   "chain": "base",
-   "address": "0x2585ea5ae8bf3b911027043d6d3dbd376d585d2a",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 30109.5598,
-   "first_seen": 1789394486
-  },
-  {
-   "symbol": "GRIDEOS",
-   "name": "Grideos",
-   "chain": "base",
-   "address": "0xb200000000000000000000018d6ce7ab92050520",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 20549.1409,
-   "first_seen": 1789393662
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 36,
+  "waiting": 30,
   "confirmed": 20,
-  "dropped": 987
+  "dropped": 995
  },
  "recent_drains": [
   {
@@ -748,7 +748,7 @@
   "rug": 940
  },
  "watchlist_active": 10,
- "price_snapshots": 11963,
+ "price_snapshots": 12074,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
