@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-14T18:59:32Z",
- "generated_at_unix": 1789412371,
+ "generated_at": "2026-09-14T19:59:41Z",
+ "generated_at_unix": 1789415980,
  "period": {
   "start": "2026-07-15",
   "days": 61
  },
  "totals": {
-  "seen": 165528,
-  "base": 31413,
+  "seen": 165606,
+  "base": 31491,
   "robinhood": 134115,
-  "below_liquidity_threshold": 161271,
-  "spam_filtered": 1239,
-  "scored": 3018,
-  "green": 1623,
-  "yellow": 464,
-  "red": 931
+  "below_liquidity_threshold": 161327,
+  "spam_filtered": 1254,
+  "scored": 3025,
+  "green": 1626,
+  "yellow": 465,
+  "red": 934
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-24",
-   "base": 159,
-   "robinhood": 687
+   "base": 68,
+   "robinhood": 321
   },
   {
    "date": "2026-08-25",
@@ -125,11 +125,51 @@
   },
   {
    "date": "2026-09-14",
-   "base": 494,
+   "base": 572,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "BPB",
+   "name": "Based Pipe Bitch",
+   "chain": "base",
+   "address": "0x0d9ef08795f6fd2af27a7f3add51083ac498050c",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 2311.4054,
+   "first_seen": 1789415904
+  },
+  {
+   "symbol": "PAMP",
+   "name": "PAMP",
+   "chain": "base",
+   "address": "0xb200000000000000000000d4dca4bfd1849e34b3",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 26776.3457,
+   "first_seen": 1789415487
+  },
+  {
+   "symbol": "Apple",
+   "name": "Apple Inc",
+   "chain": "base",
+   "address": "0xd075f78c633eb22a43e492580248ee32210c6170",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 2291281.296,
+   "first_seen": 1789413382
+  },
+  {
+   "symbol": "IGVon",
+   "name": "iShares Expanded Tech-Software ETF Tokenized ETF (Ondo)",
+   "chain": "base",
+   "address": "0x847c9419d0fe2a1a185ff0d09b77ea3ed1918d7b",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 12678.15,
+   "first_seen": 1789413197
+  },
   {
    "symbol": "LJOHN",
    "name": "Little John",
@@ -289,46 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 3296.5641,
    "first_seen": 1789405259
-  },
-  {
-   "symbol": "ZOTH",
-   "name": "zoth",
-   "chain": "base",
-   "address": "0xb2000000000000000000000fbb4218aa55fcfa37",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 19352.6006,
-   "first_seen": 1789405258
-  },
-  {
-   "symbol": "FAKEFUTURE",
-   "name": "FAKEFUTURE by Virtuals",
-   "chain": "base",
-   "address": "0xb200000000000000000000117fc93174eeaeae28",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 20622.3207,
-   "first_seen": 1789405257
-  },
-  {
-   "symbol": "SEED",
-   "name": "Sproutly",
-   "chain": "base",
-   "address": "0x350cc56c6faf933fb5e3a48c61ab3653ce9d77df",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 25132.21507647,
-   "first_seen": 1789395405
-  },
-  {
-   "symbol": "SANG",
-   "name": "SilkyANGELFISH",
-   "chain": "base",
-   "address": "0xa32c368dbfcebafd48d1f90feb96273e61f1dfc8",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 25075.1,
-   "first_seen": 1789394992
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 30,
+  "waiting": 32,
   "confirmed": 20,
-  "dropped": 995
+  "dropped": 997
  },
  "recent_drains": [
   {
@@ -748,7 +748,7 @@
   "rug": 940
  },
  "watchlist_active": 10,
- "price_snapshots": 12074,
+ "price_snapshots": 12189,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
