@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-13T21:14:32Z",
- "generated_at_unix": 1789334070,
+ "generated_at": "2026-09-14T12:35:04Z",
+ "generated_at_unix": 1789389299,
  "period": {
   "start": "2026-07-15",
-  "days": 60
+  "days": 61
  },
  "totals": {
-  "seen": 165050,
-  "base": 30935,
+  "seen": 165191,
+  "base": 31076,
   "robinhood": 134115,
-  "below_liquidity_threshold": 160986,
-  "spam_filtered": 1096,
-  "scored": 2968,
-  "green": 1579,
+  "below_liquidity_threshold": 161064,
+  "spam_filtered": 1149,
+  "scored": 2978,
+  "green": 1588,
   "yellow": 463,
-  "red": 926
+  "red": 927
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-24",
-   "base": 731,
-   "robinhood": 2501
+   "base": 547,
+   "robinhood": 2177
   },
   {
    "date": "2026-08-25",
@@ -125,11 +125,101 @@
   },
   {
    "date": "2026-09-14",
-   "base": 16,
+   "base": 157,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "VS",
+   "name": "VS",
+   "chain": "base",
+   "address": "0xb2000000000000000000009ed0cc694d6f70509d",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 5764.5508,
+   "first_seen": 1789389059
+  },
+  {
+   "symbol": "ZKAT",
+   "name": "ZERO KNOWLEDGE CAT",
+   "chain": "base",
+   "address": "0x52a6135f125c97df56c6599c3c122e492485b978",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 37868.2997,
+   "first_seen": 1789388590
+  },
+  {
+   "symbol": "MANYU",
+   "name": "Manyu",
+   "chain": "base",
+   "address": "0x73cd2e453ba87ac31d1d63f8445dc9ca2247e73e",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 4208.08229307821,
+   "first_seen": 1789386998
+  },
+  {
+   "symbol": "PLX",
+   "name": "Pullix",
+   "chain": "base",
+   "address": "0xfeadf04a5de085b7b9cf22269f4d3ba21c83d7f4",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 37861.6678,
+   "first_seen": 1789386306
+  },
+  {
+   "symbol": "LLD",
+   "name": "Liberland Dollar",
+   "chain": "base",
+   "address": "0x0500e3975009b7ecc4ce9c1a34d0bae6b08aa87b",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 37878.6998,
+   "first_seen": 1789386259
+  },
+  {
+   "symbol": "rORCL",
+   "name": "Oracle Tokenized Stock (Reality)",
+   "chain": "base",
+   "address": "0x006edd7a6f99689aee83223f8a23dfe1c96611bf",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13508.3883,
+   "first_seen": 1789385845
+  },
+  {
+   "symbol": "OL",
+   "name": "OLwallet",
+   "chain": "base",
+   "address": "0x0b44876d2d540f57e2fdca341e7b920d5804326b",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 25960.197,
+   "first_seen": 1789385842
+  },
+  {
+   "symbol": "JUPCAT",
+   "name": "Jupiter Cat",
+   "chain": "base",
+   "address": "0x244c9cb7ce1a4fb18a50d759263e369090f8d516",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 19854.7549,
+   "first_seen": 1789385841
+  },
+  {
+   "symbol": "巨兽BEHE",
+   "name": "巨兽 Behemoth",
+   "chain": "base",
+   "address": "0x61411b1103ee71489c64011be4cce38b3d78ec29",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 16094.1175,
+   "first_seen": 1789385838
+  },
   {
    "symbol": "PANWX",
    "name": "Palo Alto Networks tokenized stock(xStock)",
@@ -239,96 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 19158.9967,
    "first_seen": 1789326260
-  },
-  {
-   "symbol": "SPY",
-   "name": "SPDR S&amp;P 500 ETF Trust",
-   "chain": "base",
-   "address": "0x43dc8d347ecea29fd02446f576427f7af15c2735",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12541.45,
-   "first_seen": 1789325531
-  },
-  {
-   "symbol": "FO",
-   "name": "FOOT",
-   "chain": "base",
-   "address": "0x60c0477268b7b2b0079327a33b38b188c051cb07",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 25009.8909357857,
-   "first_seen": 1789325031
-  },
-  {
-   "symbol": "ETHANOL",
-   "name": "ETHanol",
-   "chain": "base",
-   "address": "0x8d81bd4b2182078824cb1ecce3948dad40abbd34",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3992.1668,
-   "first_seen": 1789324891
-  },
-  {
-   "symbol": "MIM",
-   "name": "Magic Internet Money",
-   "chain": "base",
-   "address": "0xb308e9cdc53f2e635d0cf435da418804582b6252",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12531.65,
-   "first_seen": 1789324345
-  },
-  {
-   "symbol": "$TTB",
-   "name": "TO THE BASE",
-   "chain": "base",
-   "address": "0xb2000000000000000000004e6d829b238eea1a01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3986.66606570315,
-   "first_seen": 1789322341
-  },
-  {
-   "symbol": "KAMIRAI",
-   "name": "Kamirai",
-   "chain": "base",
-   "address": "0x11cee3e356636351d8bcb603f497702176ea67f7",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12520.7650132707,
-   "first_seen": 1789321702
-  },
-  {
-   "symbol": "COINCIDENCE",
-   "name": "COINcidence",
-   "chain": "base",
-   "address": "0x0ca15b2d13855289c4c87143dda20337f3c34222",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3045.3137,
-   "first_seen": 1789320565
-  },
-  {
-   "symbol": "Demunyan",
-   "name": "Demunyan",
-   "chain": "base",
-   "address": "0xb20000000000000000000058a56f7ef6f2527bb2",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 21804.4944,
-   "first_seen": 1789319744
-  },
-  {
-   "symbol": "XEKNOTS",
-   "name": "XEKNOTS",
-   "chain": "base",
-   "address": "0x2d8116073f15ac29efa666afe2f2282b174b4966",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4152.6383,
-   "first_seen": 1789303110
   }
  ],
  "confirmed": [
@@ -544,9 +544,9 @@
   }
  ],
  "probation": {
-  "waiting": 21,
+  "waiting": 16,
   "confirmed": 19,
-  "dropped": 960
+  "dropped": 974
  },
  "recent_drains": [
   {
@@ -733,12 +733,12 @@
   }
  ],
  "alerts": {
-  "dump": 693,
+  "dump": 694,
   "pump": 262,
   "rug": 940
  },
  "watchlist_active": 9,
- "price_snapshots": 11433,
+ "price_snapshots": 11198,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
