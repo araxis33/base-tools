@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-14T13:35:13Z",
- "generated_at_unix": 1789392912,
+ "generated_at": "2026-09-14T14:35:21Z",
+ "generated_at_unix": 1789396519,
  "period": {
   "start": "2026-07-15",
   "days": 61
  },
  "totals": {
-  "seen": 165268,
-  "base": 31153,
+  "seen": 165344,
+  "base": 31229,
   "robinhood": 134115,
-  "below_liquidity_threshold": 161104,
-  "spam_filtered": 1173,
-  "scored": 2991,
-  "green": 1599,
+  "below_liquidity_threshold": 161153,
+  "spam_filtered": 1193,
+  "scored": 2998,
+  "green": 1606,
   "yellow": 463,
   "red": 929
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-24",
-   "base": 466,
-   "robinhood": 1908
+   "base": 394,
+   "robinhood": 1541
   },
   {
    "date": "2026-08-25",
@@ -125,11 +125,81 @@
   },
   {
    "date": "2026-09-14",
-   "base": 234,
+   "base": 310,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "SEED",
+   "name": "Sproutly",
+   "chain": "base",
+   "address": "0x350cc56c6faf933fb5e3a48c61ab3653ce9d77df",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 25132.21507647,
+   "first_seen": 1789395405
+  },
+  {
+   "symbol": "SANG",
+   "name": "SilkyANGELFISH",
+   "chain": "base",
+   "address": "0xa32c368dbfcebafd48d1f90feb96273e61f1dfc8",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 25075.1,
+   "first_seen": 1789394992
+  },
+  {
+   "symbol": "HYDRA",
+   "name": "Hydra Sovereign",
+   "chain": "base",
+   "address": "0x2585ea5ae8bf3b911027043d6d3dbd376d585d2a",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 30109.5598,
+   "first_seen": 1789394486
+  },
+  {
+   "symbol": "GRIDEOS",
+   "name": "Grideos",
+   "chain": "base",
+   "address": "0xb200000000000000000000018d6ce7ab92050520",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 20549.1409,
+   "first_seen": 1789393662
+  },
+  {
+   "symbol": "FASRSARAS",
+   "name": "fasrsar as by Virtuals",
+   "chain": "base",
+   "address": "0xb2000000000000000000009d982afcfb3be9c91e",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 11698.3163012221,
+   "first_seen": 1789393522
+  },
+  {
+   "symbol": "CLARITY",
+   "name": "Post Nut Clarity",
+   "chain": "base",
+   "address": "0x90b8ec7f5c5bf142a355488e9edd7e26fec04b07",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 21270.2068,
+   "first_seen": 1789393151
+  },
+  {
+   "symbol": "BOT",
+   "name": "BOT Chain",
+   "chain": "base",
+   "address": "0x12678b9130319ec6817f79872b1cb6c976609feb",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 12544.65,
+   "first_seen": 1789393149
+  },
   {
    "symbol": "ALHAMA",
    "name": "ALHAMA",
@@ -259,76 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 37868.2997,
    "first_seen": 1789388590
-  },
-  {
-   "symbol": "MANYU",
-   "name": "Manyu",
-   "chain": "base",
-   "address": "0x73cd2e453ba87ac31d1d63f8445dc9ca2247e73e",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 4208.08229307821,
-   "first_seen": 1789386998
-  },
-  {
-   "symbol": "PLX",
-   "name": "Pullix",
-   "chain": "base",
-   "address": "0xfeadf04a5de085b7b9cf22269f4d3ba21c83d7f4",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 37861.6678,
-   "first_seen": 1789386306
-  },
-  {
-   "symbol": "LLD",
-   "name": "Liberland Dollar",
-   "chain": "base",
-   "address": "0x0500e3975009b7ecc4ce9c1a34d0bae6b08aa87b",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 37878.6998,
-   "first_seen": 1789386259
-  },
-  {
-   "symbol": "rORCL",
-   "name": "Oracle Tokenized Stock (Reality)",
-   "chain": "base",
-   "address": "0x006edd7a6f99689aee83223f8a23dfe1c96611bf",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13508.3883,
-   "first_seen": 1789385845
-  },
-  {
-   "symbol": "OL",
-   "name": "OLwallet",
-   "chain": "base",
-   "address": "0x0b44876d2d540f57e2fdca341e7b920d5804326b",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 25960.197,
-   "first_seen": 1789385842
-  },
-  {
-   "symbol": "JUPCAT",
-   "name": "Jupiter Cat",
-   "chain": "base",
-   "address": "0x244c9cb7ce1a4fb18a50d759263e369090f8d516",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 19854.7549,
-   "first_seen": 1789385841
-  },
-  {
-   "symbol": "巨兽BEHE",
-   "name": "巨兽 Behemoth",
-   "chain": "base",
-   "address": "0x61411b1103ee71489c64011be4cce38b3d78ec29",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 16094.1175,
-   "first_seen": 1789385838
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 21,
+  "waiting": 23,
   "confirmed": 20,
-  "dropped": 979
+  "dropped": 984
  },
  "recent_drains": [
   {
@@ -748,7 +748,7 @@
   "rug": 940
  },
  "watchlist_active": 10,
- "price_snapshots": 11379,
+ "price_snapshots": 11669,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
