@@ -1,20 +1,20 @@
 {
- "generated_at": "2026-09-15T12:55:50Z",
- "generated_at_unix": 1789476948,
+ "generated_at": "2026-09-15T13:55:58Z",
+ "generated_at_unix": 1789480557,
  "period": {
   "start": "2026-07-15",
   "days": 62
  },
  "totals": {
-  "seen": 165952,
-  "base": 31837,
+  "seen": 166026,
+  "base": 31911,
   "robinhood": 134115,
-  "below_liquidity_threshold": 161538,
-  "spam_filtered": 1348,
-  "scored": 3066,
-  "green": 1660,
+  "below_liquidity_threshold": 161580,
+  "spam_filtered": 1369,
+  "scored": 3077,
+  "green": 1667,
   "yellow": 466,
-  "red": 940
+  "red": 944
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
@@ -125,11 +125,81 @@
   },
   {
    "date": "2026-09-15",
-   "base": 275,
+   "base": 349,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "BABA",
+   "name": "Alibaba Tokenized Stock (Robinhood)",
+   "chain": "base",
+   "address": "0xc75ae814fd480256a583cc0ad8de672d968a7b2f",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12214.15,
+   "first_seen": 1789480481
+  },
+  {
+   "symbol": "CANADA",
+   "name": "CANADA",
+   "chain": "base",
+   "address": "0xb200000000000000000000405270c9084ccbbdb1",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 10195.2887,
+   "first_seen": 1789480291
+  },
+  {
+   "symbol": "ETCF",
+   "name": "E-Commerce Trust Fund",
+   "chain": "base",
+   "address": "0xb200000000000000000000503fc657f285f29ad0",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 9905.4505,
+   "first_seen": 1789480011
+  },
+  {
+   "symbol": "SWC",
+   "name": "Stand With Crypto",
+   "chain": "base",
+   "address": "0xb200000000000000000000cf0d4fcde48aacd801",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4615.7645,
+   "first_seen": 1789480008
+  },
+  {
+   "symbol": "Giggles",
+   "name": "Google Giggles",
+   "chain": "base",
+   "address": "0xb200000000000000000000b83b1566862d6d71c6",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 8489.9088,
+   "first_seen": 1789479685
+  },
+  {
+   "symbol": "ROVA",
+   "name": "Rova Protocol",
+   "chain": "base",
+   "address": "0x63ca8bd43fdaa0f0b98815e65a8c1b2053755d2a",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 33133.3511,
+   "first_seen": 1789478849
+  },
+  {
+   "symbol": "BUILD",
+   "name": "build",
+   "chain": "base",
+   "address": "0xa994a0329a1b17e3e16e7e91359277506d6e21ab",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 12413.4148938009,
+   "first_seen": 1789477741
+  },
   {
    "symbol": "GNOT",
    "name": "Gno.land",
@@ -259,76 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 4147.5508,
    "first_seen": 1789470256
-  },
-  {
-   "symbol": "MOTO",
-   "name": "Motoswap",
-   "chain": "base",
-   "address": "0x50116264fbbf308a3aa53a859a50c9353d57c2b7",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 46123.9771,
-   "first_seen": 1789469845
-  },
-  {
-   "symbol": "rNOK",
-   "name": "Nokia Tokenized Stock (Reality)",
-   "chain": "base",
-   "address": "0x0516f39937a643263c8ede1d7fe5cc92dad48853",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 12408.2648763353,
-   "first_seen": 1789469568
-  },
-  {
-   "symbol": "FIN",
-   "name": "BitTorture",
-   "chain": "base",
-   "address": "0xfa1db3ad844197c95876bbdf6cfe1500647a50da",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 76326.598,
-   "first_seen": 1789469430
-  },
-  {
-   "symbol": "果蝇",
-   "name": "永生果蝇",
-   "chain": "base",
-   "address": "0x741070bc967992a82c408c209caf9b7c7e75ec29",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 21254.2395,
-   "first_seen": 1789469383
-  },
-  {
-   "symbol": "CLARITY",
-   "name": "Crypto Clarity Act",
-   "chain": "base",
-   "address": "0x157101c728e1ca101025898a0aacfa9956ad796f",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 2276.6217,
-   "first_seen": 1789469382
-  },
-  {
-   "symbol": "IPHENE18",
-   "name": "IPhene 18",
-   "chain": "base",
-   "address": "0x7448dd7e7b985777eca152c578b60670910ffee1",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 10056.3909722625,
-   "first_seen": 1789467740
-  },
-  {
-   "symbol": "FLOWER",
-   "name": "Flower",
-   "chain": "base",
-   "address": "0xc126f537275af12f0083cae6aaae66cd9e5e9bf8",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 6935.11085518369,
-   "first_seen": 1789467194
   }
  ],
  "confirmed": [
@@ -554,11 +554,17 @@
   }
  ],
  "probation": {
-  "waiting": 38,
+  "waiting": 33,
   "confirmed": 21,
-  "dropped": 1025
+  "dropped": 1037
  },
  "recent_drains": [
+  {
+   "symbol": "BCAT",
+   "chain": "base",
+   "address": "0xb2000000000000000000006e67395ff599c5e8a0",
+   "ts": 1789477542
+  },
   {
    "symbol": "HAKIMI",
    "chain": "base",
@@ -642,12 +648,6 @@
    "chain": "base",
    "address": "0x23c1445ad26af18a8b23cc7c1ecbe0ae95291c05",
    "ts": 1787592835
-  },
-  {
-   "symbol": "WLD",
-   "chain": "base",
-   "address": "0x8b1a5f59e75ec900dcab3ac5594ce5070ecafceb",
-   "ts": 1787592834
   }
  ],
  "survivors": [
@@ -744,11 +744,11 @@
  ],
  "alerts": {
   "dump": 694,
-  "pump": 262,
-  "rug": 940
+  "pump": 263,
+  "rug": 941
  },
- "watchlist_active": 11,
- "price_snapshots": 12800,
+ "watchlist_active": 10,
+ "price_snapshots": 13087,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
