@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-15T19:56:48Z",
- "generated_at_unix": 1789502207,
+ "generated_at": "2026-09-15T20:57:02Z",
+ "generated_at_unix": 1789505821,
  "period": {
   "start": "2026-07-15",
   "days": 62
  },
  "totals": {
-  "seen": 166592,
-  "base": 32477,
+  "seen": 166664,
+  "base": 32549,
   "robinhood": 134115,
-  "below_liquidity_threshold": 161967,
-  "spam_filtered": 1501,
-  "scored": 3124,
-  "green": 1704,
+  "below_liquidity_threshold": 162024,
+  "spam_filtered": 1514,
+  "scored": 3126,
+  "green": 1706,
   "yellow": 466,
   "red": 954
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-25",
-   "base": 73,
-   "robinhood": 443
+   "base": 8,
+   "robinhood": 23
   },
   {
    "date": "2026-08-26",
@@ -125,11 +125,31 @@
   },
   {
    "date": "2026-09-15",
-   "base": 915,
+   "base": 987,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "SLV",
+   "name": "iShares Silver Trust Tokenized Commodity (Robinhood)",
+   "chain": "base",
+   "address": "0x8457e85f947b805a74816469134df437431e587e",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 12026.0644233372,
+   "first_seen": 1789505373
+  },
+  {
+   "symbol": "STOCKMEMES",
+   "name": "stockmemes (stockmemesonbsc)",
+   "chain": "base",
+   "address": "0x0407847da75475c8c2b80cf88fdb9b1a16a513d1",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 12032.75,
+   "first_seen": 1789503509
+  },
   {
    "symbol": "Unknown",
    "name": "Unknown",
@@ -309,26 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 72447.0144793588,
    "first_seen": 1789492955
-  },
-  {
-   "symbol": "BLAEEMM",
-   "name": "Blaeemm",
-   "chain": "base",
-   "address": "0xbc1f339f8cd841cc945e87b4dcb050b6717d9dac",
-   "score": 70,
-   "verdict": "green",
-   "liquidity_usd": 5342.9182,
-   "first_seen": 1789492636
-  },
-  {
-   "symbol": "JENSEN",
-   "name": "JENSEN HUANG",
-   "chain": "base",
-   "address": "0xea99050558d97e9ec36999b8b72261cbac83a8a3",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 19968.5123,
-   "first_seen": 1789492462
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 37,
+  "waiting": 38,
   "confirmed": 24,
-  "dropped": 1067
+  "dropped": 1068
  },
  "recent_drains": [
   {
@@ -743,12 +743,12 @@
   }
  ],
  "alerts": {
-  "dump": 695,
+  "dump": 696,
   "pump": 263,
   "rug": 941
  },
  "watchlist_active": 13,
- "price_snapshots": 13756,
+ "price_snapshots": 13933,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
