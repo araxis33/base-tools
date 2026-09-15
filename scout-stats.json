@@ -1,20 +1,20 @@
 {
- "generated_at": "2026-09-15T13:55:58Z",
- "generated_at_unix": 1789480557,
+ "generated_at": "2026-09-15T14:56:10Z",
+ "generated_at_unix": 1789484169,
  "period": {
   "start": "2026-07-15",
   "days": 62
  },
  "totals": {
-  "seen": 166026,
-  "base": 31911,
+  "seen": 166140,
+  "base": 32025,
   "robinhood": 134115,
-  "below_liquidity_threshold": 161580,
-  "spam_filtered": 1369,
-  "scored": 3077,
-  "green": 1667,
+  "below_liquidity_threshold": 161639,
+  "spam_filtered": 1416,
+  "scored": 3085,
+  "green": 1674,
   "yellow": 466,
-  "red": 944
+  "red": 945
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
@@ -125,11 +125,81 @@
   },
   {
    "date": "2026-09-15",
-   "base": 349,
+   "base": 463,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "MFORGE",
+   "name": "MetaForge",
+   "chain": "base",
+   "address": "0xfbd5b9477d6693fb1c71b6ce6e3bd5f4866c6636",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 12168.4,
+   "first_seen": 1789483048
+  },
+  {
+   "symbol": "CHAIN",
+   "name": "Jackie Chain",
+   "chain": "base",
+   "address": "0xb200000000000000000000b2dc9bd03e5e54ec6a",
+   "score": 75,
+   "verdict": "green",
+   "liquidity_usd": 2871.2042,
+   "first_seen": 1789481810
+  },
+  {
+   "symbol": "JACKCAT",
+   "name": "Jackcat",
+   "chain": "base",
+   "address": "0x5634a84e0e795c79d5aa546cb980582f56a6ec29",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 18813.4205,
+   "first_seen": 1789481180
+  },
+  {
+   "symbol": "feg",
+   "name": "feg",
+   "chain": "base",
+   "address": "0xb200000000000000000000d45566aa7a4c25636c",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 27327.2948,
+   "first_seen": 1789481132
+  },
+  {
+   "symbol": "镜隙",
+   "name": "税费给果蝇",
+   "chain": "base",
+   "address": "0x63aeaf3c1213d6e569fa3da685e6565bac5aec29",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 23737.0764,
+   "first_seen": 1789480992
+  },
+  {
+   "symbol": "1EYE",
+   "name": "1EyeChain",
+   "chain": "base",
+   "address": "0xfeeaad2501b0f95c65efcd5f2b454a9f4e1fe909",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 33394.3601,
+   "first_seen": 1789480945
+  },
+  {
+   "symbol": "RUSH",
+   "name": "Sat Rush",
+   "chain": "base",
+   "address": "0x6f1737cf1a9f6fdc9cdc58ddfa4fc699bb486264",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 33342.535,
+   "first_seen": 1789480669
+  },
   {
    "symbol": "BABA",
    "name": "Alibaba Tokenized Stock (Robinhood)",
@@ -259,76 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 6996.91759128026,
    "first_seen": 1789474780
-  },
-  {
-   "symbol": "BSTONKS",
-   "name": "BullStonks",
-   "chain": "base",
-   "address": "0x368bac050618724c76ae14c7552189f3b8e9d94d",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 4347.9334,
-   "first_seen": 1789474543
-  },
-  {
-   "symbol": "AFOB",
-   "name": "All Finance on Binance",
-   "chain": "base",
-   "address": "0xd4248195c06275c6d1e30b700479aabecdbfec29",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 21559.4455,
-   "first_seen": 1789474265
-  },
-  {
-   "symbol": "TDSU",
-   "name": "TDSU",
-   "chain": "base",
-   "address": "0xb200000000000000000000dff3e9d90e9e2cc0b1",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13651.2454,
-   "first_seen": 1789474263
-  },
-  {
-   "symbol": "ECTF",
-   "name": "E-Commerce Trust Fund",
-   "chain": "base",
-   "address": "0xb2000000000000000000007d7a9c3a57c0b5f915",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12378.1916,
-   "first_seen": 1789474261
-  },
-  {
-   "symbol": "ASTEROID",
-   "name": "Asteroid The Space Shiba Inu (asteroid.charity)",
-   "chain": "base",
-   "address": "0x33de80c37a950ca3ebb52da75966f5760abfcc11",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 12504.8876,
-   "first_seen": 1789474258
-  },
-  {
-   "symbol": "𐓎͏SDT",
-   "name": "𐓎͏SDT",
-   "chain": "base",
-   "address": "0x4ddad7f494a9710ee6439432e07c76fa9df28b07",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 20000.2245,
-   "first_seen": 1789470926
-  },
-  {
-   "symbol": "TRUMPEX",
-   "name": "TRUMPEX",
-   "chain": "base",
-   "address": "0xc4ab3def1fe8811ba9797c976011eb736c393257",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4147.5508,
-   "first_seen": 1789470256
   }
  ],
  "confirmed": [
@@ -556,7 +556,7 @@
  "probation": {
   "waiting": 33,
   "confirmed": 21,
-  "dropped": 1037
+  "dropped": 1044
  },
  "recent_drains": [
   {
@@ -748,7 +748,7 @@
   "rug": 941
  },
  "watchlist_active": 10,
- "price_snapshots": 13087,
+ "price_snapshots": 13359,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
