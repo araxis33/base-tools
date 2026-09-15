@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-15T17:56:25Z",
- "generated_at_unix": 1789494985,
+ "generated_at": "2026-09-15T18:56:35Z",
+ "generated_at_unix": 1789498594,
  "period": {
   "start": "2026-07-15",
   "days": 62
  },
  "totals": {
-  "seen": 166424,
-  "base": 32309,
+  "seen": 166507,
+  "base": 32392,
   "robinhood": 134115,
-  "below_liquidity_threshold": 161859,
-  "spam_filtered": 1457,
-  "scored": 3108,
-  "green": 1689,
+  "below_liquidity_threshold": 161921,
+  "spam_filtered": 1471,
+  "scored": 3115,
+  "green": 1695,
   "yellow": 466,
-  "red": 953
+  "red": 954
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-25",
-   "base": 236,
-   "robinhood": 1218
+   "base": 170,
+   "robinhood": 744
   },
   {
    "date": "2026-08-26",
@@ -125,11 +125,71 @@
   },
   {
    "date": "2026-09-15",
-   "base": 747,
+   "base": 830,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "GOOGon",
+   "name": "Alphabet Class C Tokenized Stock (Ondo)",
+   "chain": "base",
+   "address": "0xe1d3ef823edb53a4d311ea8ed2109b94a9bea4aa",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 11874.1,
+   "first_seen": 1789498269
+  },
+  {
+   "symbol": "[invalid]",
+   "name": "[your token\n\nmeow free 7777 cats",
+   "chain": "base",
+   "address": "0x608dc36871ec0633776be6d267ef6ba1db65fa17",
+   "score": 70,
+   "verdict": "green",
+   "liquidity_usd": 5328.4029,
+   "first_seen": 1789497722
+  },
+  {
+   "symbol": "SAGE",
+   "name": "Sage",
+   "chain": "base",
+   "address": "0xb2000000000000000000000643679177fd36469a",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 6112.7498,
+   "first_seen": 1789497533
+  },
+  {
+   "symbol": "KAEL STORMRIDER, KS",
+   "name": "Kael Stormrider, KS",
+   "chain": "base",
+   "address": "0xf5790fb7cf66c20a1bbff907e6725ebf50958c49",
+   "score": 70,
+   "verdict": "green",
+   "liquidity_usd": 5384.8488,
+   "first_seen": 1789496206
+  },
+  {
+   "symbol": "MEBT",
+   "name": "META BYTE",
+   "chain": "base",
+   "address": "0xab2086d62ab5e26803d8b7be7047f4c9dbcef019",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12194.4646319937,
+   "first_seen": 1789495662
+  },
+  {
+   "symbol": "CASHDOG",
+   "name": "cashdog",
+   "chain": "base",
+   "address": "0xc3e35cdeb9a51b1535dea2510b635a433a8d2264",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 73526.835,
+   "first_seen": 1789495526
+  },
   {
    "symbol": "[invalid]",
    "name": "[your token\n\nLet's help the cats find dominance shall we",
@@ -269,66 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 5705.0741,
    "first_seen": 1789489652
-  },
-  {
-   "symbol": "GEMS",
-   "name": "GEMS by Virtuals",
-   "chain": "base",
-   "address": "0xb20000000000000000000088704edb6da099d2ee",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12917.4781,
-   "first_seen": 1789489650
-  },
-  {
-   "symbol": "MFORGE",
-   "name": "MetaForge",
-   "chain": "base",
-   "address": "0xfbd5b9477d6693fb1c71b6ce6e3bd5f4866c6636",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 12168.4,
-   "first_seen": 1789483048
-  },
-  {
-   "symbol": "CHAIN",
-   "name": "Jackie Chain",
-   "chain": "base",
-   "address": "0xb200000000000000000000b2dc9bd03e5e54ec6a",
-   "score": 75,
-   "verdict": "green",
-   "liquidity_usd": 2871.2042,
-   "first_seen": 1789481810
-  },
-  {
-   "symbol": "JACKCAT",
-   "name": "Jackcat",
-   "chain": "base",
-   "address": "0x5634a84e0e795c79d5aa546cb980582f56a6ec29",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 18813.4205,
-   "first_seen": 1789481180
-  },
-  {
-   "symbol": "feg",
-   "name": "feg",
-   "chain": "base",
-   "address": "0xb200000000000000000000d45566aa7a4c25636c",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 27327.2948,
-   "first_seen": 1789481132
-  },
-  {
-   "symbol": "镜隙",
-   "name": "税费给果蝇",
-   "chain": "base",
-   "address": "0x63aeaf3c1213d6e569fa3da685e6565bac5aec29",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 23737.0764,
-   "first_seen": 1789480992
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 39,
+  "waiting": 32,
   "confirmed": 23,
-  "dropped": 1051
+  "dropped": 1064
  },
  "recent_drains": [
   {
@@ -743,12 +743,12 @@
   }
  ],
  "alerts": {
-  "dump": 694,
+  "dump": 695,
   "pump": 263,
   "rug": 941
  },
  "watchlist_active": 12,
- "price_snapshots": 13478,
+ "price_snapshots": 13652,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
