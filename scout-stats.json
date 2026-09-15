@@ -1,20 +1,20 @@
 {
- "generated_at": "2026-09-15T09:55:20Z",
- "generated_at_unix": 1789466119,
+ "generated_at": "2026-09-15T10:55:38Z",
+ "generated_at_unix": 1789469737,
  "period": {
   "start": "2026-07-15",
   "days": 62
  },
  "totals": {
-  "seen": 165791,
-  "base": 31676,
+  "seen": 165859,
+  "base": 31744,
   "robinhood": 134115,
-  "below_liquidity_threshold": 161444,
-  "spam_filtered": 1305,
-  "scored": 3042,
-  "green": 1638,
+  "below_liquidity_threshold": 161485,
+  "spam_filtered": 1323,
+  "scored": 3051,
+  "green": 1646,
   "yellow": 466,
-  "red": 938
+  "red": 939
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
@@ -125,11 +125,91 @@
   },
   {
    "date": "2026-09-15",
-   "base": 114,
+   "base": 182,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "rNOK",
+   "name": "Nokia Tokenized Stock (Reality)",
+   "chain": "base",
+   "address": "0x0516f39937a643263c8ede1d7fe5cc92dad48853",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 12408.2648763353,
+   "first_seen": 1789469568
+  },
+  {
+   "symbol": "FIN",
+   "name": "BitTorture",
+   "chain": "base",
+   "address": "0xfa1db3ad844197c95876bbdf6cfe1500647a50da",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 76326.598,
+   "first_seen": 1789469430
+  },
+  {
+   "symbol": "果蝇",
+   "name": "永生果蝇",
+   "chain": "base",
+   "address": "0x741070bc967992a82c408c209caf9b7c7e75ec29",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 21254.2395,
+   "first_seen": 1789469383
+  },
+  {
+   "symbol": "CLARITY",
+   "name": "Crypto Clarity Act",
+   "chain": "base",
+   "address": "0x157101c728e1ca101025898a0aacfa9956ad796f",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 2276.6217,
+   "first_seen": 1789469382
+  },
+  {
+   "symbol": "IPHENE18",
+   "name": "IPhene 18",
+   "chain": "base",
+   "address": "0x7448dd7e7b985777eca152c578b60670910ffee1",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 10056.3909722625,
+   "first_seen": 1789467740
+  },
+  {
+   "symbol": "FLOWER",
+   "name": "Flower",
+   "chain": "base",
+   "address": "0xc126f537275af12f0083cae6aaae66cd9e5e9bf8",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 6935.11085518369,
+   "first_seen": 1789467194
+  },
+  {
+   "symbol": "ABI",
+   "name": "Artificial Baby Inu (artificialbabyinu.com)",
+   "chain": "base",
+   "address": "0x8caa63677d24396bbb6f3a3eaf1156f3ea94f2fe",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12372.0648374779,
+   "first_seen": 1789466785
+  },
+  {
+   "symbol": "Nirvana",
+   "name": "Nirvana",
+   "chain": "base",
+   "address": "0xd50259ac6be9156332a6fa1e650f57e0bc1be694",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 75596.6897,
+   "first_seen": 1789466737
+  },
   {
    "symbol": "STRAWDOG",
    "name": "STRAWDOG",
@@ -249,86 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 19954.9388,
    "first_seen": 1789416635
-  },
-  {
-   "symbol": "4",
-   "name": "4",
-   "chain": "base",
-   "address": "0xb200000000000000000000da76f4aaeb40b7e9c4",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 14556.5937,
-   "first_seen": 1789416404
-  },
-  {
-   "symbol": "BPB",
-   "name": "Based Pipe Bitch",
-   "chain": "base",
-   "address": "0x0d9ef08795f6fd2af27a7f3add51083ac498050c",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 2311.4054,
-   "first_seen": 1789415904
-  },
-  {
-   "symbol": "PAMP",
-   "name": "PAMP",
-   "chain": "base",
-   "address": "0xb200000000000000000000d4dca4bfd1849e34b3",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 26776.3457,
-   "first_seen": 1789415487
-  },
-  {
-   "symbol": "Apple",
-   "name": "Apple Inc",
-   "chain": "base",
-   "address": "0xd075f78c633eb22a43e492580248ee32210c6170",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 2291281.296,
-   "first_seen": 1789413382
-  },
-  {
-   "symbol": "IGVon",
-   "name": "iShares Expanded Tech-Software ETF Tokenized ETF (Ondo)",
-   "chain": "base",
-   "address": "0x847c9419d0fe2a1a185ff0d09b77ea3ed1918d7b",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 12678.15,
-   "first_seen": 1789413197
-  },
-  {
-   "symbol": "LJOHN",
-   "name": "Little John",
-   "chain": "base",
-   "address": "0xc6bccfabd217898f889f7888475429e949f3113c",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12884.9207278939,
-   "first_seen": 1789410866
-  },
-  {
-   "symbol": "Jesski",
-   "name": "Jesski",
-   "chain": "base",
-   "address": "0x24c2af4439d797a6471c4f32c4ec207416d76c8f",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 10176.6865,
-   "first_seen": 1789409811
-  },
-  {
-   "symbol": "CTFSH",
-   "name": "AssociatedCATFISH",
-   "chain": "base",
-   "address": "0x27fa9fa13a9f0d8c786acae2fc2a4f1a0a68d445",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 25319.9,
-   "first_seen": 1789408756
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 28,
+  "waiting": 32,
   "confirmed": 20,
-  "dropped": 1014
+  "dropped": 1018
  },
  "recent_drains": [
   {
@@ -748,7 +748,7 @@
   "rug": 940
  },
  "watchlist_active": 10,
- "price_snapshots": 12303,
+ "price_snapshots": 12491,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
