@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-15T16:56:17Z",
- "generated_at_unix": 1789491377,
+ "generated_at": "2026-09-15T17:56:25Z",
+ "generated_at_unix": 1789494985,
  "period": {
   "start": "2026-07-15",
   "days": 62
  },
  "totals": {
-  "seen": 166317,
-  "base": 32202,
+  "seen": 166424,
+  "base": 32309,
   "robinhood": 134115,
-  "below_liquidity_threshold": 161781,
-  "spam_filtered": 1439,
-  "scored": 3097,
-  "green": 1682,
+  "below_liquidity_threshold": 161859,
+  "spam_filtered": 1457,
+  "scored": 3108,
+  "green": 1689,
   "yellow": 466,
-  "red": 949
+  "red": 953
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-25",
-   "base": 329,
-   "robinhood": 1676
+   "base": 236,
+   "robinhood": 1218
   },
   {
    "date": "2026-08-26",
@@ -125,11 +125,81 @@
   },
   {
    "date": "2026-09-15",
-   "base": 640,
+   "base": 747,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "[invalid]",
+   "name": "[your token\n\nLet's help the cats find dominance shall we",
+   "chain": "base",
+   "address": "0x9f3e76ded37753e150c55b87a4b71ca32f092fa2",
+   "score": 70,
+   "verdict": "green",
+   "liquidity_usd": 5382.26,
+   "first_seen": 1789493802
+  },
+  {
+   "symbol": "USDB",
+   "name": "Blynex USD",
+   "chain": "base",
+   "address": "0x95f238f7c78ddfd7b7ab059365aa7440b13511ca",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12090.6918,
+   "first_seen": 1789493276
+  },
+  {
+   "symbol": "CASHDOG",
+   "name": "",
+   "chain": "base",
+   "address": "0x362a6505707736abf594c4437d51c076436003f5",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 72447.0144793588,
+   "first_seen": 1789492955
+  },
+  {
+   "symbol": "BLAEEMM",
+   "name": "Blaeemm",
+   "chain": "base",
+   "address": "0xbc1f339f8cd841cc945e87b4dcb050b6717d9dac",
+   "score": 70,
+   "verdict": "green",
+   "liquidity_usd": 5342.9182,
+   "first_seen": 1789492636
+  },
+  {
+   "symbol": "JENSEN",
+   "name": "JENSEN HUANG",
+   "chain": "base",
+   "address": "0xea99050558d97e9ec36999b8b72261cbac83a8a3",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 19968.5123,
+   "first_seen": 1789492462
+  },
+  {
+   "symbol": "AAPLB",
+   "name": "Apple Tokenized bStocks",
+   "chain": "base",
+   "address": "0x247bbc7cd8a3d0fa807c0c1512025a8e3c2d5a9c",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 12062.7413,
+   "first_seen": 1789492323
+  },
+  {
+   "symbol": "INT",
+   "name": "Frontier tokens",
+   "chain": "base",
+   "address": "0xbc68601469e7eca195d4afd14405ebff7f3fb3de",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 100742.9602,
+   "first_seen": 1789492096
+  },
   {
    "symbol": "[YOUR TOKEN",
    "name": "[your token",
@@ -259,79 +329,29 @@
    "verdict": "green",
    "liquidity_usd": 23737.0764,
    "first_seen": 1789480992
-  },
-  {
-   "symbol": "1EYE",
-   "name": "1EyeChain",
-   "chain": "base",
-   "address": "0xfeeaad2501b0f95c65efcd5f2b454a9f4e1fe909",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 33394.3601,
-   "first_seen": 1789480945
-  },
-  {
-   "symbol": "RUSH",
-   "name": "Sat Rush",
-   "chain": "base",
-   "address": "0x6f1737cf1a9f6fdc9cdc58ddfa4fc699bb486264",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 33342.535,
-   "first_seen": 1789480669
-  },
-  {
-   "symbol": "BABA",
-   "name": "Alibaba Tokenized Stock (Robinhood)",
-   "chain": "base",
-   "address": "0xc75ae814fd480256a583cc0ad8de672d968a7b2f",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12214.15,
-   "first_seen": 1789480481
-  },
-  {
-   "symbol": "CANADA",
-   "name": "CANADA",
-   "chain": "base",
-   "address": "0xb200000000000000000000405270c9084ccbbdb1",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 10195.2887,
-   "first_seen": 1789480291
-  },
-  {
-   "symbol": "ETCF",
-   "name": "E-Commerce Trust Fund",
-   "chain": "base",
-   "address": "0xb200000000000000000000503fc657f285f29ad0",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 9905.4505,
-   "first_seen": 1789480011
-  },
-  {
-   "symbol": "SWC",
-   "name": "Stand With Crypto",
-   "chain": "base",
-   "address": "0xb200000000000000000000cf0d4fcde48aacd801",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4615.7645,
-   "first_seen": 1789480008
-  },
-  {
-   "symbol": "Giggles",
-   "name": "Google Giggles",
-   "chain": "base",
-   "address": "0xb200000000000000000000b83b1566862d6d71c6",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 8489.9088,
-   "first_seen": 1789479685
   }
  ],
  "confirmed": [
+  {
+   "symbol": "AIAIAIAI",
+   "chain": "base",
+   "address": "0xeeb306e87ff7257bbd34f46672d9a6d654de6a01",
+   "buyers_h1": 287,
+   "volume_h1": 162989.273405193,
+   "liquidity_usd": 31669.4161,
+   "confirmed_at": 1789489838,
+   "hours_waited": 0.8
+  },
+  {
+   "symbol": "OCCUPY",
+   "chain": "base",
+   "address": "0x45d5ddab8a207b86d751d1c473557760c10b1f1c",
+   "buyers_h1": 684,
+   "volume_h1": 1273690.46579509,
+   "liquidity_usd": 123306.1367,
+   "confirmed_at": 1789489837,
+   "hours_waited": 0.8
+  },
   {
    "symbol": "MOTO",
    "chain": "base",
@@ -511,26 +531,6 @@
    "liquidity_usd": 9011454.4558,
    "confirmed_at": 1787925711,
    "hours_waited": 2.3
-  },
-  {
-   "symbol": "Claude",
-   "chain": "base",
-   "address": "0x838802a0076d4c8ccd92aa5b267d750b0426db07",
-   "buyers_h1": 36,
-   "volume_h1": 13224292.7688832,
-   "liquidity_usd": 4770704.7309,
-   "confirmed_at": 1787750003,
-   "hours_waited": 2.3
-  },
-  {
-   "symbol": "ROBIN",
-   "chain": "robinhood",
-   "address": "0x9e443fd81d8a516f214e89750c017efe0e371fd3",
-   "buyers_h1": 464,
-   "volume_h1": 397479.015096553,
-   "liquidity_usd": 275180.8513,
-   "confirmed_at": 1787682619,
-   "hours_waited": 0.8
   }
  ],
  "verdict_outcomes": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 37,
-  "confirmed": 21,
-  "dropped": 1048
+  "waiting": 39,
+  "confirmed": 23,
+  "dropped": 1051
  },
  "recent_drains": [
   {
@@ -747,8 +747,8 @@
   "pump": 263,
   "rug": 941
  },
- "watchlist_active": 10,
- "price_snapshots": 13300,
+ "watchlist_active": 12,
+ "price_snapshots": 13478,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
