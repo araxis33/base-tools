@@ -1,20 +1,20 @@
 {
- "generated_at": "2026-09-15T08:55:10Z",
- "generated_at_unix": 1789462510,
+ "generated_at": "2026-09-15T09:55:20Z",
+ "generated_at_unix": 1789466119,
  "period": {
   "start": "2026-07-15",
   "days": 62
  },
  "totals": {
-  "seen": 165695,
-  "base": 31580,
+  "seen": 165791,
+  "base": 31676,
   "robinhood": 134115,
-  "below_liquidity_threshold": 161381,
-  "spam_filtered": 1279,
-  "scored": 3035,
-  "green": 1632,
+  "below_liquidity_threshold": 161444,
+  "spam_filtered": 1305,
+  "scored": 3042,
+  "green": 1638,
   "yellow": 466,
-  "red": 937
+  "red": 938
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
@@ -125,11 +125,71 @@
   },
   {
    "date": "2026-09-15",
-   "base": 18,
+   "base": 114,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "STRAWDOG",
+   "name": "STRAWDOG",
+   "chain": "base",
+   "address": "0xb20000000000000000000045c660f62fe465b86d",
+   "score": 75,
+   "verdict": "green",
+   "liquidity_usd": 1551.32445214762,
+   "first_seen": 1789465912
+  },
+  {
+   "symbol": "CLOUT",
+   "name": "Clout Caster",
+   "chain": "base",
+   "address": "0x3802ea796d4605416a32b954cf810fc10ecc0518",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 21990.4255,
+   "first_seen": 1789465729
+  },
+  {
+   "symbol": "BLORB",
+   "name": "BLORB",
+   "chain": "base",
+   "address": "0x54b0905c9ea65d2b9515d575cdf40136aaae8a97",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 31344.1251,
+   "first_seen": 1789465269
+  },
+  {
+   "symbol": "ZCL",
+   "name": "Zclassic Token",
+   "chain": "base",
+   "address": "0x0150f4fc82d89daac77ae8f582f4f400acb23e31",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 31354.5101,
+   "first_seen": 1789465126
+  },
+  {
+   "symbol": "rTQQQ",
+   "name": "ProShares UltraPro QQQ Tokenized Stock (Reality)",
+   "chain": "base",
+   "address": "0x7699768ed15f582af859ba91cf4b3ddf99c6e5bf",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 12367.3648300604,
+   "first_seen": 1789464112
+  },
+  {
+   "symbol": "苍生",
+   "name": "汇聚苍生 同心筑底",
+   "chain": "base",
+   "address": "0x43988991474ba3b61d7670d6e066e01aed63ec29",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 24126.3036,
+   "first_seen": 1789462514
+  },
   {
    "symbol": "EBAT",
    "name": "ExcitingBAT",
@@ -269,66 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 25319.9,
    "first_seen": 1789408756
-  },
-  {
-   "symbol": "GSB",
-   "name": "Goldman Sachs Tokenized bStocks",
-   "chain": "base",
-   "address": "0x21b723b8b6ee17965ff7f34874bee2b8aaae1ecf",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12647.515163113,
-   "first_seen": 1789408346
-  },
-  {
-   "symbol": "LSK",
-   "name": "Lisk Chain (LSK)",
-   "chain": "base",
-   "address": "0xea6bc85dfe94855bf85ac0007fb63950e3634c9c",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 166001.392092778,
-   "first_seen": 1789407297
-  },
-  {
-   "symbol": "LSK",
-   "name": "Lisk Network (LSK)",
-   "chain": "base",
-   "address": "0x189779a540cff86fa80e6f24346457be98865370",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 135954.388012374,
-   "first_seen": 1789407296
-  },
-  {
-   "symbol": "LSK",
-   "name": "Lisk Chain Network",
-   "chain": "base",
-   "address": "0xfd4d658ff093e07b09bc14c5d6d127065624c6f2",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 172806.955098176,
-   "first_seen": 1789407295
-  },
-  {
-   "symbol": "Lisk (LSK)",
-   "name": "Lisk (LSK)",
-   "chain": "base",
-   "address": "0x5f68e294037625279bf28eca8889161483eea6bd",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 518869.912036826,
-   "first_seen": 1789407294
-  },
-  {
-   "symbol": "Lisk Chain (LSK)",
-   "name": "Lisk Chain (LSK)",
-   "chain": "base",
-   "address": "0x29db56c135b9caefef5646d180abcb49bad65442",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 872655.600149622,
-   "first_seen": 1789407293
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 27,
+  "waiting": 28,
   "confirmed": 20,
-  "dropped": 1009
+  "dropped": 1014
  },
  "recent_drains": [
   {
@@ -748,7 +748,7 @@
   "rug": 940
  },
  "watchlist_active": 10,
- "price_snapshots": 12320,
+ "price_snapshots": 12303,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
