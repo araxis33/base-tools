@@ -1,32 +1,27 @@
 {
- "generated_at": "2026-09-14T20:59:47Z",
- "generated_at_unix": 1789419585,
+ "generated_at": "2026-09-15T08:55:10Z",
+ "generated_at_unix": 1789462510,
  "period": {
   "start": "2026-07-15",
-  "days": 61
+  "days": 62
  },
  "totals": {
-  "seen": 165677,
-  "base": 31562,
+  "seen": 165695,
+  "base": 31580,
   "robinhood": 134115,
-  "below_liquidity_threshold": 161374,
-  "spam_filtered": 1271,
-  "scored": 3032,
-  "green": 1631,
+  "below_liquidity_threshold": 161381,
+  "spam_filtered": 1279,
+  "scored": 3035,
+  "green": 1632,
   "yellow": 466,
-  "red": 935
+  "red": 937
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
-   "date": "2026-08-24",
-   "base": 0,
-   "robinhood": 8
-  },
-  {
    "date": "2026-08-25",
-   "base": 375,
-   "robinhood": 1876
+   "base": 329,
+   "robinhood": 1676
   },
   {
    "date": "2026-08-26",
@@ -127,9 +122,24 @@
    "date": "2026-09-14",
    "base": 643,
    "robinhood": 0
+  },
+  {
+   "date": "2026-09-15",
+   "base": 18,
+   "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "EBAT",
+   "name": "ExcitingBAT",
+   "chain": "base",
+   "address": "0x73148b3e364c5f6420f89eb3f3def880dcf9a402",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 25587.3,
+   "first_seen": 1789420155
+  },
   {
    "symbol": "RKLBB",
    "name": "Rocket Lab Tokenized bStocks",
@@ -319,16 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 872655.600149622,
    "first_seen": 1789407293
-  },
-  {
-   "symbol": "COINBASE",
-   "name": "Coinbase Tokenized Stocks",
-   "chain": "base",
-   "address": "0xb200000000000000000000cc543b79db4d3d2ad8",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 10300.7811,
-   "first_seen": 1789407015
   }
  ],
  "confirmed": [
@@ -556,7 +556,7 @@
  "probation": {
   "waiting": 27,
   "confirmed": 20,
-  "dropped": 1008
+  "dropped": 1009
  },
  "recent_drains": [
   {
@@ -748,7 +748,7 @@
   "rug": 940
  },
  "watchlist_active": 10,
- "price_snapshots": 12278,
+ "price_snapshots": 12320,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
