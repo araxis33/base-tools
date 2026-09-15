@@ -1,20 +1,20 @@
 {
- "generated_at": "2026-09-15T10:55:38Z",
- "generated_at_unix": 1789469737,
+ "generated_at": "2026-09-15T12:55:50Z",
+ "generated_at_unix": 1789476948,
  "period": {
   "start": "2026-07-15",
   "days": 62
  },
  "totals": {
-  "seen": 165859,
-  "base": 31744,
+  "seen": 165952,
+  "base": 31837,
   "robinhood": 134115,
-  "below_liquidity_threshold": 161485,
-  "spam_filtered": 1323,
-  "scored": 3051,
-  "green": 1646,
+  "below_liquidity_threshold": 161538,
+  "spam_filtered": 1348,
+  "scored": 3066,
+  "green": 1660,
   "yellow": 466,
-  "red": 939
+  "red": 940
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
@@ -125,11 +125,151 @@
   },
   {
    "date": "2026-09-15",
-   "base": 182,
+   "base": 275,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "GNOT",
+   "name": "Gno.land",
+   "chain": "base",
+   "address": "0xbd34ee6da9d7fe359c23fee396021fc2650f9528",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 68860.3442,
+   "first_seen": 1789476395
+  },
+  {
+   "symbol": "MOLE",
+   "name": "fun Molecule",
+   "chain": "base",
+   "address": "0xdb276905d6b4989bb57250a5181b4b46fad4feb9",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 3634.182,
+   "first_seen": 1789475157
+  },
+  {
+   "symbol": "PXBT",
+   "name": "fun PRAWN_AI_XBT",
+   "chain": "base",
+   "address": "0x559ed4ddccad20d4dc5389c32b6988f53f5047b1",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 3742.4255,
+   "first_seen": 1789475155
+  },
+  {
+   "symbol": "TRAN",
+   "name": "fun Tranched",
+   "chain": "base",
+   "address": "0x8d328f8518152dd8dd0ff4c40a069984e40d6a50",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 3710.7719,
+   "first_seen": 1789475102
+  },
+  {
+   "symbol": "DTRXBT",
+   "name": "fun DTRXBT",
+   "chain": "base",
+   "address": "0xf5e72964690c5e3a18754f376cbf58e749566900",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 3605.9255,
+   "first_seen": 1789475100
+  },
+  {
+   "symbol": "SBASE",
+   "name": "SATOSHI BASE",
+   "chain": "base",
+   "address": "0x915b31a246aed92de29ee2690bbf5f6f34e3db51",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 6996.91759128026,
+   "first_seen": 1789474780
+  },
+  {
+   "symbol": "BSTONKS",
+   "name": "BullStonks",
+   "chain": "base",
+   "address": "0x368bac050618724c76ae14c7552189f3b8e9d94d",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 4347.9334,
+   "first_seen": 1789474543
+  },
+  {
+   "symbol": "AFOB",
+   "name": "All Finance on Binance",
+   "chain": "base",
+   "address": "0xd4248195c06275c6d1e30b700479aabecdbfec29",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 21559.4455,
+   "first_seen": 1789474265
+  },
+  {
+   "symbol": "TDSU",
+   "name": "TDSU",
+   "chain": "base",
+   "address": "0xb200000000000000000000dff3e9d90e9e2cc0b1",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13651.2454,
+   "first_seen": 1789474263
+  },
+  {
+   "symbol": "ECTF",
+   "name": "E-Commerce Trust Fund",
+   "chain": "base",
+   "address": "0xb2000000000000000000007d7a9c3a57c0b5f915",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12378.1916,
+   "first_seen": 1789474261
+  },
+  {
+   "symbol": "ASTEROID",
+   "name": "Asteroid The Space Shiba Inu (asteroid.charity)",
+   "chain": "base",
+   "address": "0x33de80c37a950ca3ebb52da75966f5760abfcc11",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 12504.8876,
+   "first_seen": 1789474258
+  },
+  {
+   "symbol": "𐓎͏SDT",
+   "name": "𐓎͏SDT",
+   "chain": "base",
+   "address": "0x4ddad7f494a9710ee6439432e07c76fa9df28b07",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 20000.2245,
+   "first_seen": 1789470926
+  },
+  {
+   "symbol": "TRUMPEX",
+   "name": "TRUMPEX",
+   "chain": "base",
+   "address": "0xc4ab3def1fe8811ba9797c976011eb736c393257",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4147.5508,
+   "first_seen": 1789470256
+  },
+  {
+   "symbol": "MOTO",
+   "name": "Motoswap",
+   "chain": "base",
+   "address": "0x50116264fbbf308a3aa53a859a50c9353d57c2b7",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 46123.9771,
+   "first_seen": 1789469845
+  },
   {
    "symbol": "rNOK",
    "name": "Nokia Tokenized Stock (Reality)",
@@ -189,149 +329,19 @@
    "verdict": "green",
    "liquidity_usd": 6935.11085518369,
    "first_seen": 1789467194
-  },
-  {
-   "symbol": "ABI",
-   "name": "Artificial Baby Inu (artificialbabyinu.com)",
-   "chain": "base",
-   "address": "0x8caa63677d24396bbb6f3a3eaf1156f3ea94f2fe",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12372.0648374779,
-   "first_seen": 1789466785
-  },
-  {
-   "symbol": "Nirvana",
-   "name": "Nirvana",
-   "chain": "base",
-   "address": "0xd50259ac6be9156332a6fa1e650f57e0bc1be694",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 75596.6897,
-   "first_seen": 1789466737
-  },
-  {
-   "symbol": "STRAWDOG",
-   "name": "STRAWDOG",
-   "chain": "base",
-   "address": "0xb20000000000000000000045c660f62fe465b86d",
-   "score": 75,
-   "verdict": "green",
-   "liquidity_usd": 1551.32445214762,
-   "first_seen": 1789465912
-  },
-  {
-   "symbol": "CLOUT",
-   "name": "Clout Caster",
-   "chain": "base",
-   "address": "0x3802ea796d4605416a32b954cf810fc10ecc0518",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 21990.4255,
-   "first_seen": 1789465729
-  },
-  {
-   "symbol": "BLORB",
-   "name": "BLORB",
-   "chain": "base",
-   "address": "0x54b0905c9ea65d2b9515d575cdf40136aaae8a97",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 31344.1251,
-   "first_seen": 1789465269
-  },
-  {
-   "symbol": "ZCL",
-   "name": "Zclassic Token",
-   "chain": "base",
-   "address": "0x0150f4fc82d89daac77ae8f582f4f400acb23e31",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 31354.5101,
-   "first_seen": 1789465126
-  },
-  {
-   "symbol": "rTQQQ",
-   "name": "ProShares UltraPro QQQ Tokenized Stock (Reality)",
-   "chain": "base",
-   "address": "0x7699768ed15f582af859ba91cf4b3ddf99c6e5bf",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 12367.3648300604,
-   "first_seen": 1789464112
-  },
-  {
-   "symbol": "苍生",
-   "name": "汇聚苍生 同心筑底",
-   "chain": "base",
-   "address": "0x43988991474ba3b61d7670d6e066e01aed63ec29",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 24126.3036,
-   "first_seen": 1789462514
-  },
-  {
-   "symbol": "EBAT",
-   "name": "ExcitingBAT",
-   "chain": "base",
-   "address": "0x73148b3e364c5f6420f89eb3f3def880dcf9a402",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 25587.3,
-   "first_seen": 1789420155
-  },
-  {
-   "symbol": "RKLBB",
-   "name": "Rocket Lab Tokenized bStocks",
-   "chain": "base",
-   "address": "0xff4b24df0030d219f875cf997b967bcdd23d9e1e",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 12977.4889,
-   "first_seen": 1789418282
-  },
-  {
-   "symbol": "IBMB",
-   "name": "IBM Tokenized bStocks",
-   "chain": "base",
-   "address": "0x81ed3ededa13b5384d379c53c7ba03624b1750d1",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 12898.85,
-   "first_seen": 1789417190
-  },
-  {
-   "symbol": "XVGBASE",
-   "name": "XVGBASE",
-   "chain": "base",
-   "address": "0xe061aa40be525a13296cb4bf69f513242349d708",
-   "score": 68,
-   "verdict": "yellow",
-   "liquidity_usd": 2658.2641,
-   "first_seen": 1789416686
-  },
-  {
-   "symbol": "4CHAN",
-   "name": "4chan",
-   "chain": "base",
-   "address": "0xb200000000000000000000230e1f90084482cd9a",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 18357.8721,
-   "first_seen": 1789416637
-  },
-  {
-   "symbol": "PEG",
-   "name": "Pegcoin",
-   "chain": "base",
-   "address": "0xb200000000000000000000bec3afb64aa201c97e",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 19954.9388,
-   "first_seen": 1789416635
   }
  ],
  "confirmed": [
+  {
+   "symbol": "MOTO",
+   "chain": "base",
+   "address": "0x50116264fbbf308a3aa53a859a50c9353d57c2b7",
+   "buyers_h1": 34,
+   "volume_h1": 47137.7807913203,
+   "liquidity_usd": 79605.8865,
+   "confirmed_at": 1789469845,
+   "hours_waited": 1.2
+  },
   {
    "symbol": "BCAT",
    "chain": "base",
@@ -521,16 +531,6 @@
    "liquidity_usd": 275180.8513,
    "confirmed_at": 1787682619,
    "hours_waited": 0.8
-  },
-  {
-   "symbol": "STFX",
-   "chain": "robinhood",
-   "address": "0x98804a141d7508f24cccc8736d7109f169bd7f6d",
-   "buyers_h1": 1003,
-   "volume_h1": 715530.599613221,
-   "liquidity_usd": 215976.0002,
-   "confirmed_at": 1787578582,
-   "hours_waited": 0.8
   }
  ],
  "verdict_outcomes": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 32,
-  "confirmed": 20,
-  "dropped": 1018
+  "waiting": 38,
+  "confirmed": 21,
+  "dropped": 1025
  },
  "recent_drains": [
   {
@@ -747,8 +747,8 @@
   "pump": 262,
   "rug": 940
  },
- "watchlist_active": 10,
- "price_snapshots": 12491,
+ "watchlist_active": 11,
+ "price_snapshots": 12800,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
