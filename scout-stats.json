@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-15T18:56:35Z",
- "generated_at_unix": 1789498594,
+ "generated_at": "2026-09-15T19:56:48Z",
+ "generated_at_unix": 1789502207,
  "period": {
   "start": "2026-07-15",
   "days": 62
  },
  "totals": {
-  "seen": 166507,
-  "base": 32392,
+  "seen": 166592,
+  "base": 32477,
   "robinhood": 134115,
-  "below_liquidity_threshold": 161921,
-  "spam_filtered": 1471,
-  "scored": 3115,
-  "green": 1695,
+  "below_liquidity_threshold": 161967,
+  "spam_filtered": 1501,
+  "scored": 3124,
+  "green": 1704,
   "yellow": 466,
   "red": 954
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-25",
-   "base": 170,
-   "robinhood": 744
+   "base": 73,
+   "robinhood": 443
   },
   {
    "date": "2026-08-26",
@@ -125,11 +125,101 @@
   },
   {
    "date": "2026-09-15",
-   "base": 830,
+   "base": 915,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "Unknown",
+   "name": "Unknown",
+   "chain": "base",
+   "address": "0x04340e4fa62bf11068ac47c1b1c4ecddc843ff3d",
+   "score": 76,
+   "verdict": "green",
+   "liquidity_usd": 2161.4303,
+   "first_seen": 1789501129
+  },
+  {
+   "symbol": "BRAINARM",
+   "name": "Brain Armstrong",
+   "chain": "base",
+   "address": "0xb200000000000000000000e6fcc33529006d665b",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 451344.3883,
+   "first_seen": 1789500422
+  },
+  {
+   "symbol": "Armstrong",
+   "name": "Armstrong",
+   "chain": "base",
+   "address": "0xb200000000000000000000766cbce8b13e51a001",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3852.9813,
+   "first_seen": 1789500420
+  },
+  {
+   "symbol": "KSTR",
+   "name": "KraneShares SSE STAR Market 50 Index ETF (Derivatives)",
+   "chain": "base",
+   "address": "0x8750078d002c80d9235ef9dbb3075215fb0693c0",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12241.4408,
+   "first_seen": 1789500419
+  },
+  {
+   "symbol": "HOLDOKI",
+   "name": "HOLDOKI",
+   "chain": "base",
+   "address": "0x451e679eecfb51616d5b7e590b29bc19580269a5",
+   "score": 70,
+   "verdict": "green",
+   "liquidity_usd": 5323.1145,
+   "first_seen": 1789500416
+  },
+  {
+   "symbol": "CCOIN",
+   "name": "CuntCoin",
+   "chain": "base",
+   "address": "0xb200000000000000000000215bc7a3c63a64a201",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4306.2303,
+   "first_seen": 1789499240
+  },
+  {
+   "symbol": "Basecobie",
+   "name": "Basecobie",
+   "chain": "base",
+   "address": "0xb200000000000000000000fefc8d9f75f95bbc01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3830.8691,
+   "first_seen": 1789499239
+  },
+  {
+   "symbol": "STONKERS",
+   "name": "Stonkers",
+   "chain": "base",
+   "address": "0x8815432962b12f68691911cb0448a982c196919d",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 4269.3462,
+   "first_seen": 1789499237
+  },
+  {
+   "symbol": "OVER",
+   "name": "we're done, it's over",
+   "chain": "base",
+   "address": "0xb2000000000000000000005c7ef5d85a8f025101",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4054.9455,
+   "first_seen": 1789499055
+  },
   {
    "symbol": "GOOGon",
    "name": "Alphabet Class C Tokenized Stock (Ondo)",
@@ -239,99 +329,19 @@
    "verdict": "green",
    "liquidity_usd": 19968.5123,
    "first_seen": 1789492462
-  },
-  {
-   "symbol": "AAPLB",
-   "name": "Apple Tokenized bStocks",
-   "chain": "base",
-   "address": "0x247bbc7cd8a3d0fa807c0c1512025a8e3c2d5a9c",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 12062.7413,
-   "first_seen": 1789492323
-  },
-  {
-   "symbol": "INT",
-   "name": "Frontier tokens",
-   "chain": "base",
-   "address": "0xbc68601469e7eca195d4afd14405ebff7f3fb3de",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 100742.9602,
-   "first_seen": 1789492096
-  },
-  {
-   "symbol": "[YOUR TOKEN",
-   "name": "[your token",
-   "chain": "base",
-   "address": "0x7eab261c8154b13cec7212ff3060da092c2fd2ed",
-   "score": 70,
-   "verdict": "green",
-   "liquidity_usd": 5354.9331,
-   "first_seen": 1789490528
-  },
-  {
-   "symbol": "$CAT",
-   "name": "$CAT",
-   "chain": "base",
-   "address": "0xc83899b3335cfb54def9650c54bdd55a76c375ba",
-   "score": 70,
-   "verdict": "green",
-   "liquidity_usd": 5354.0259,
-   "first_seen": 1789490298
-  },
-  {
-   "symbol": "AIAIAIAI",
-   "name": "AIAIAIAI",
-   "chain": "base",
-   "address": "0xeeb306e87ff7257bbd34f46672d9a6d654de6a01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4763.3474,
-   "first_seen": 1789489838
-  },
-  {
-   "symbol": "OCCUPY",
-   "name": "OCCUPY",
-   "chain": "base",
-   "address": "0x45d5ddab8a207b86d751d1c473557760c10b1f1c",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 19596.1598,
-   "first_seen": 1789489837
-  },
-  {
-   "symbol": "ECAT",
-   "name": "Ethereum Cat (ethereumcat.living)",
-   "chain": "base",
-   "address": "0x54e03e336c98148ab89e4ccb0e05a2d49b2c99ba",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12108.5066897564,
-   "first_seen": 1789489835
-  },
-  {
-   "symbol": "XOGE",
-   "name": "XOGE",
-   "chain": "base",
-   "address": "0xb2000000000000000000007e81fc112a9a825e01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3808.6987,
-   "first_seen": 1789489789
-  },
-  {
-   "symbol": "CASHDOG",
-   "name": "CASHDOG",
-   "chain": "base",
-   "address": "0xb2000000000000000000002c41bb93427b914401",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 5705.0741,
-   "first_seen": 1789489652
   }
  ],
  "confirmed": [
+  {
+   "symbol": "STONKERS",
+   "chain": "base",
+   "address": "0x8815432962b12f68691911cb0448a982c196919d",
+   "buyers_h1": 179,
+   "volume_h1": 66273.9323759018,
+   "liquidity_usd": 21270.844,
+   "confirmed_at": 1789499237,
+   "hours_waited": 0.8
+  },
   {
    "symbol": "AIAIAIAI",
    "chain": "base",
@@ -521,16 +531,6 @@
    "liquidity_usd": 4840457.1003,
    "confirmed_at": 1787990578,
    "hours_waited": 0.9
-  },
-  {
-   "symbol": "我的女友景甜",
-   "chain": "base",
-   "address": "0xdc4f058c103f3879fea72d0fc86eded309f43b07",
-   "buyers_h1": 114,
-   "volume_h1": 27065198.6611428,
-   "liquidity_usd": 9011454.4558,
-   "confirmed_at": 1787925711,
-   "hours_waited": 2.3
   }
  ],
  "verdict_outcomes": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 32,
-  "confirmed": 23,
-  "dropped": 1064
+  "waiting": 37,
+  "confirmed": 24,
+  "dropped": 1067
  },
  "recent_drains": [
   {
@@ -747,8 +747,8 @@
   "pump": 263,
   "rug": 941
  },
- "watchlist_active": 12,
- "price_snapshots": 13652,
+ "watchlist_active": 13,
+ "price_snapshots": 13756,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
