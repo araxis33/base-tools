@@ -1,20 +1,20 @@
 {
- "generated_at": "2026-09-15T14:56:10Z",
- "generated_at_unix": 1789484169,
+ "generated_at": "2026-09-15T16:56:17Z",
+ "generated_at_unix": 1789491377,
  "period": {
   "start": "2026-07-15",
   "days": 62
  },
  "totals": {
-  "seen": 166140,
-  "base": 32025,
+  "seen": 166317,
+  "base": 32202,
   "robinhood": 134115,
-  "below_liquidity_threshold": 161639,
-  "spam_filtered": 1416,
-  "scored": 3085,
-  "green": 1674,
+  "below_liquidity_threshold": 161781,
+  "spam_filtered": 1439,
+  "scored": 3097,
+  "green": 1682,
   "yellow": 466,
-  "red": 945
+  "red": 949
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
@@ -125,11 +125,91 @@
   },
   {
    "date": "2026-09-15",
-   "base": 463,
+   "base": 640,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "[YOUR TOKEN",
+   "name": "[your token",
+   "chain": "base",
+   "address": "0x7eab261c8154b13cec7212ff3060da092c2fd2ed",
+   "score": 70,
+   "verdict": "green",
+   "liquidity_usd": 5354.9331,
+   "first_seen": 1789490528
+  },
+  {
+   "symbol": "$CAT",
+   "name": "$CAT",
+   "chain": "base",
+   "address": "0xc83899b3335cfb54def9650c54bdd55a76c375ba",
+   "score": 70,
+   "verdict": "green",
+   "liquidity_usd": 5354.0259,
+   "first_seen": 1789490298
+  },
+  {
+   "symbol": "AIAIAIAI",
+   "name": "AIAIAIAI",
+   "chain": "base",
+   "address": "0xeeb306e87ff7257bbd34f46672d9a6d654de6a01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4763.3474,
+   "first_seen": 1789489838
+  },
+  {
+   "symbol": "OCCUPY",
+   "name": "OCCUPY",
+   "chain": "base",
+   "address": "0x45d5ddab8a207b86d751d1c473557760c10b1f1c",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 19596.1598,
+   "first_seen": 1789489837
+  },
+  {
+   "symbol": "ECAT",
+   "name": "Ethereum Cat (ethereumcat.living)",
+   "chain": "base",
+   "address": "0x54e03e336c98148ab89e4ccb0e05a2d49b2c99ba",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12108.5066897564,
+   "first_seen": 1789489835
+  },
+  {
+   "symbol": "XOGE",
+   "name": "XOGE",
+   "chain": "base",
+   "address": "0xb2000000000000000000007e81fc112a9a825e01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3808.6987,
+   "first_seen": 1789489789
+  },
+  {
+   "symbol": "CASHDOG",
+   "name": "CASHDOG",
+   "chain": "base",
+   "address": "0xb2000000000000000000002c41bb93427b914401",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 5705.0741,
+   "first_seen": 1789489652
+  },
+  {
+   "symbol": "GEMS",
+   "name": "GEMS by Virtuals",
+   "chain": "base",
+   "address": "0xb20000000000000000000088704edb6da099d2ee",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12917.4781,
+   "first_seen": 1789489650
+  },
   {
    "symbol": "MFORGE",
    "name": "MetaForge",
@@ -249,86 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 8489.9088,
    "first_seen": 1789479685
-  },
-  {
-   "symbol": "ROVA",
-   "name": "Rova Protocol",
-   "chain": "base",
-   "address": "0x63ca8bd43fdaa0f0b98815e65a8c1b2053755d2a",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 33133.3511,
-   "first_seen": 1789478849
-  },
-  {
-   "symbol": "BUILD",
-   "name": "build",
-   "chain": "base",
-   "address": "0xa994a0329a1b17e3e16e7e91359277506d6e21ab",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 12413.4148938009,
-   "first_seen": 1789477741
-  },
-  {
-   "symbol": "GNOT",
-   "name": "Gno.land",
-   "chain": "base",
-   "address": "0xbd34ee6da9d7fe359c23fee396021fc2650f9528",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 68860.3442,
-   "first_seen": 1789476395
-  },
-  {
-   "symbol": "MOLE",
-   "name": "fun Molecule",
-   "chain": "base",
-   "address": "0xdb276905d6b4989bb57250a5181b4b46fad4feb9",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 3634.182,
-   "first_seen": 1789475157
-  },
-  {
-   "symbol": "PXBT",
-   "name": "fun PRAWN_AI_XBT",
-   "chain": "base",
-   "address": "0x559ed4ddccad20d4dc5389c32b6988f53f5047b1",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 3742.4255,
-   "first_seen": 1789475155
-  },
-  {
-   "symbol": "TRAN",
-   "name": "fun Tranched",
-   "chain": "base",
-   "address": "0x8d328f8518152dd8dd0ff4c40a069984e40d6a50",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 3710.7719,
-   "first_seen": 1789475102
-  },
-  {
-   "symbol": "DTRXBT",
-   "name": "fun DTRXBT",
-   "chain": "base",
-   "address": "0xf5e72964690c5e3a18754f376cbf58e749566900",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 3605.9255,
-   "first_seen": 1789475100
-  },
-  {
-   "symbol": "SBASE",
-   "name": "SATOSHI BASE",
-   "chain": "base",
-   "address": "0x915b31a246aed92de29ee2690bbf5f6f34e3db51",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 6996.91759128026,
-   "first_seen": 1789474780
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 33,
+  "waiting": 37,
   "confirmed": 21,
-  "dropped": 1044
+  "dropped": 1048
  },
  "recent_drains": [
   {
@@ -748,7 +748,7 @@
   "rug": 941
  },
  "watchlist_active": 10,
- "price_snapshots": 13359,
+ "price_snapshots": 13300,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
