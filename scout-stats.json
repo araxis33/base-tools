@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-16T14:44:57Z",
- "generated_at_unix": 1789569895,
+ "generated_at": "2026-09-16T16:52:16Z",
+ "generated_at_unix": 1789577535,
  "period": {
   "start": "2026-07-15",
   "days": 63
  },
  "totals": {
-  "seen": 167135,
-  "base": 33020,
+  "seen": 167255,
+  "base": 33140,
   "robinhood": 134115,
-  "below_liquidity_threshold": 162337,
-  "spam_filtered": 1638,
-  "scored": 3160,
-  "green": 1735,
+  "below_liquidity_threshold": 162417,
+  "spam_filtered": 1670,
+  "scored": 3168,
+  "green": 1742,
   "yellow": 467,
-  "red": 958
+  "red": 959
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-26",
-   "base": 596,
-   "robinhood": 3009
+   "base": 447,
+   "robinhood": 2298
   },
   {
    "date": "2026-08-27",
@@ -125,11 +125,81 @@
   },
   {
    "date": "2026-09-16",
-   "base": 464,
+   "base": 583,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "VTI",
+   "name": "VTI",
+   "chain": "base",
+   "address": "0xae5554bd9c91086cce5adb1952f12af3f843163b",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 1.51232596868076e+19,
+   "first_seen": 1789576746
+  },
+  {
+   "symbol": "ONBASE",
+   "name": "onbase",
+   "chain": "base",
+   "address": "0xb200000000000000000000bac171e7709ad8f2de",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 19491.7468,
+   "first_seen": 1789574350
+  },
+  {
+   "symbol": "please",
+   "name": "please",
+   "chain": "base",
+   "address": "0xb200000000000000000000699e03fa1205c4eb00",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 16807.9616,
+   "first_seen": 1789574349
+  },
+  {
+   "symbol": "TOLLY",
+   "name": "Tolly",
+   "chain": "base",
+   "address": "0x19ff725c5364578882d01cb754ab59c0fc531b4b",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 35341.8124,
+   "first_seen": 1789574347
+  },
+  {
+   "symbol": "Jessephone",
+   "name": "Jesseiphone",
+   "chain": "base",
+   "address": "0xb2000000000000000000004e962e1387a6cda501",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4019.3545,
+   "first_seen": 1789574346
+  },
+  {
+   "symbol": "locklaunchinu",
+   "name": "locklaunchinu",
+   "chain": "base",
+   "address": "0xe7dc2c72640e03f52e6749f3bbcc33296684dd95",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 9313.2264,
+   "first_seen": 1789574343
+  },
+  {
+   "symbol": "ORBXon",
+   "name": "Global X Space Tech Tokenized ETF (Ondo)",
+   "chain": "base",
+   "address": "0xf743f7361efd87c3849f8e15bd8f30fa0acc0ee7",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 11959.914347517,
+   "first_seen": 1789571591
+  },
   {
    "symbol": "LAPTOP",
    "name": "Hunter Biden's Laptop",
@@ -259,76 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 215895.1092,
    "first_seen": 1789548376
-  },
-  {
-   "symbol": "DDX",
-   "name": "DerivaDAO",
-   "chain": "base",
-   "address": "0x3250235adec2fe634c985e24bc8dcceb01004d98",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 33257.6388,
-   "first_seen": 1789548375
-  },
-  {
-   "symbol": "TAZA",
-   "name": "Tazapay",
-   "chain": "base",
-   "address": "0xa1327b8fd6e17c33c89a752c10fa9b4b19a2f8c8",
-   "score": 82,
-   "verdict": "green",
-   "liquidity_usd": 33255.6909,
-   "first_seen": 1789548282
-  },
-  {
-   "symbol": "LONG",
-   "name": "LONG",
-   "chain": "base",
-   "address": "0x8c4ec9c9250fb5f3e8e28bbc33e0034fa6db0399",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 2154566.3825,
-   "first_seen": 1789547483
-  },
-  {
-   "symbol": "RAYCAT",
-   "name": "Raydium Cat",
-   "chain": "base",
-   "address": "0x47edc769db588b8095103ba6afb577f92da02434",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 11935.5143138632,
-   "first_seen": 1789547482
-  },
-  {
-   "symbol": "DCDOG",
-   "name": "Dancing Dog",
-   "chain": "base",
-   "address": "0x1d56de7c49ea8dfb8b59ff6accadeb3039a016a8",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4030.8787,
-   "first_seen": 1789546664
-  },
-  {
-   "symbol": "ARGUS",
-   "name": "Argus",
-   "chain": "base",
-   "address": "0x3980ef85f92a3051280a8b34376c4f290c8f2ea9",
-   "score": 65,
-   "verdict": "yellow",
-   "liquidity_usd": 1984533.7939,
-   "first_seen": 1789546572
-  },
-  {
-   "symbol": "NFA",
-   "name": "NFA",
-   "chain": "base",
-   "address": "0xb2000000000000000000006417ab2603e41e4f64",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 41622.304,
-   "first_seen": 1789546571
   }
  ],
  "confirmed": [
@@ -554,11 +554,17 @@
   }
  ],
  "probation": {
-  "waiting": 32,
+  "waiting": 33,
   "confirmed": 24,
-  "dropped": 1104
+  "dropped": 1110
  },
  "recent_drains": [
+  {
+   "symbol": "MOTO",
+   "chain": "base",
+   "address": "0x50116264fbbf308a3aa53a859a50c9353d57c2b7",
+   "ts": 1789574418
+  },
   {
    "symbol": "BCAT",
    "chain": "base",
@@ -642,12 +648,6 @@
    "chain": "robinhood",
    "address": "0x98804a141d7508f24cccc8736d7109f169bd7f6d",
    "ts": 1787592839
-  },
-  {
-   "symbol": "VXRP",
-   "chain": "base",
-   "address": "0x23c1445ad26af18a8b23cc7c1ecbe0ae95291c05",
-   "ts": 1787592835
   }
  ],
  "survivors": [
@@ -755,10 +755,10 @@
  "alerts": {
   "dump": 696,
   "pump": 263,
-  "rug": 941
+  "rug": 942
  },
  "watchlist_active": 13,
- "price_snapshots": 15847,
+ "price_snapshots": 16336,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
