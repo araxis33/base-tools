@@ -1,16 +1,16 @@
 {
- "generated_at": "2026-09-16T09:15:24Z",
- "generated_at_unix": 1789550123,
+ "generated_at": "2026-09-16T10:15:30Z",
+ "generated_at_unix": 1789553729,
  "period": {
   "start": "2026-07-15",
   "days": 63
  },
  "totals": {
-  "seen": 166877,
-  "base": 32762,
+  "seen": 166965,
+  "base": 32850,
   "robinhood": 134115,
-  "below_liquidity_threshold": 162165,
-  "spam_filtered": 1562,
+  "below_liquidity_threshold": 162234,
+  "spam_filtered": 1581,
   "scored": 3150,
   "green": 1726,
   "yellow": 467,
@@ -125,7 +125,7 @@
   },
   {
    "date": "2026-09-16",
-   "base": 205,
+   "base": 293,
    "robinhood": 0
   }
  ],
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 50,
+  "waiting": 44,
   "confirmed": 24,
-  "dropped": 1077
+  "dropped": 1083
  },
  "recent_drains": [
   {
@@ -748,7 +748,7 @@
   "rug": 941
  },
  "watchlist_active": 13,
- "price_snapshots": 14561,
+ "price_snapshots": 14938,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
