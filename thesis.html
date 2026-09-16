@@ -897,30 +897,35 @@ function renderChainCheck(){
 
   var fakes = state.lookalikes || [];
   /* Two different warnings. Ticker and name twins are disguises and get named
-     one by one. Prefix twins are mostly ordinary memecoins that happen to sit
-     at 0xb2 followed by twenty zeros, exactly like Coinbase's addresses; there
-     are dozens, so they get one line that says what the prefix does not prove. */
+     one by one, with the real money in their pools, not the "liquidity" a
+     tracker shows: those tokens price themselves, so a pool holding $2 of ETH
+     can report $609k. Prefix twins are unrelated tokens, some of them busy
+     real projects, that happen to sit at 0xb2 followed by twenty zeros like
+     Coinbase's addresses; there are dozens, so they get one line. */
   var twins = fakes.filter(function(f){ return f.reasons.some(function(r){ return r.kind !== "prefix"; }); });
   var prefixOnly = fakes.filter(function(f){ return f.reasons.every(function(r){ return r.kind === "prefix"; }); });
   if(twins.length){
-    var twinLiq = twins.reduce(function(s,f){ return s + f.liquidity; }, 0);
+    var twinReal = twins.reduce(function(s,f){ return s + f.backing; }, 0);
+    var twinShown = twins.reduce(function(s,f){ return s + f.reportedLiquidity; }, 0);
     html += '<div class="traps"><b>' + twins.length + ' token' + (twins.length > 1 ? 's' : '') +
-      ' on Base use a Coinbase stock’s ticker without being Coinbase’s</b> — ' + money(twinLiq, 0) +
-      ' of liquidity sits in them. Baskets here buy only the ten addresses on ' +
-      '<a href="https://www.base.org/stocks" target="_blank" rel="noopener">base.org/stocks</a>:<ul>';
+      ' on Base use a Coinbase stock’s ticker at another address.</b> Together their pools hold about ' +
+      money(twinReal, 0) + ' of real money, even though trackers list ' + money(twinShown, 0) +
+      ' of “liquidity”: they price themselves. Baskets here buy only the ten addresses on ' +
+      '<a href="https://www.base.org/stocks" target="_blank" rel="noopener">base.org/stocks</a>; ' +
+      'if a search shows you one of these, it is not the stock:<ul>';
     twins.slice(0, 6).forEach(function(f){
       var mimics = f.reasons.filter(function(r){ return r.mimics; }).map(function(r){ return r.mimics; })
         .filter(function(v,i,a){ return a.indexOf(v) === i; }).join(", ");
       html += '<li><b>' + esc(f.symbol) + '</b> “' + esc(f.name.trim()) + '” at <code>' + esc(f.address.slice(0, 8)) +
-              '…' + esc(f.address.slice(-6)) + '</code> — not ' + esc(mimics) + ', ' + money(f.liquidity, 0) + '</li>';
+              '…' + esc(f.address.slice(-6)) + '</code> — not ' + esc(mimics) + ', ' + money(f.backing) + ' real in its pools</li>';
     });
     html += '</ul></div>';
   }
   if(prefixOnly.length){
     html += '<div class="traps" style="border-left-color:var(--yellow)"><b>The address prefix proves nothing.</b> ' +
-      'At least ' + prefixOnly.length + ' other tokens on Base start with <code>0xb2</code> and twenty zeros, ' +
+      'At least ' + prefixOnly.length + ' unrelated tokens on Base start with <code>0xb2</code> and twenty zeros, ' +
       'exactly like Coinbase’s — ' + esc(prefixOnly.slice(0, 3).map(function(f){ return f.symbol; }).join(", ")) +
-      ' and more. Compare the whole address, not the start of it.</div>';
+      ' and more, some of them busy real projects. Compare the whole address, not the start of it.</div>';
   }
 
   if(bad.length){

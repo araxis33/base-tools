@@ -127,42 +127,88 @@ test("summarisePools returns null when there is no usable pool", () => {
   assert.equal(summarisePools(undefined, tsla), null);
 });
 
-function searchPair(base, liq, chainId) {
+// A DexScreener search pair with the suspect as base token against USDC.
+// `usdc` is the real money on the USDC side; `reported` is DexScreener's
+// liquidity.usd, which also counts the suspect's side at its own price.
+function searchPair(base, usdc, chainId, reported) {
   return {
     chainId: chainId || "base",
     baseToken: base,
     quoteToken: { address: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913", symbol: "USDC", name: "USD Coin" },
-    liquidity: { usd: liq },
+    priceUsd: "0.5",
+    priceNative: "0.5",
+    liquidity: { usd: reported === undefined ? usdc * 2 : reported, base: usdc, quote: usdc },
   };
 }
 
 test("findLookalikes flags a token using a Coinbase ticker at another address", () => {
   const found = findLookalikes([
-    searchPair({ address: "0x345c77838a0000000000000000000000000000aa", symbol: "NVDAc", name: "NVIDIA Curenncy" }, 609283),
+    searchPair({ address: "0x345c77838a0000000000000000000000000000aa", symbol: "NVDAc", name: "NVIDIA Curenncy" }, 2),
   ]);
   assert.equal(found.length, 1);
   assert.equal(found[0].symbol, "NVDAc");
   assert.deepEqual(found[0].reasons, [{ kind: "ticker", mimics: "NVDAc" }]);
-  assert.equal(found[0].liquidity, 609283);
+});
+
+test("findLookalikes counts only the real money in a pool, not the suspect pricing itself", () => {
+  // The 16.09 "NVDAc — NVIDIA Curenncy" pool: 749,998,687 tokens against
+  // 0.0004461 ETH. DexScreener reported $609,283; the ETH was worth about $2.
+  const ethUsd = 4500;
+  const fakePriceUsd = 0.0008123;
+  const found = findLookalikes([{
+    chainId: "base",
+    baseToken: { address: "0x345c77838a623a2128a00509f977a973ce2f5f43", symbol: "NVDAc", name: "NVIDIA Curenncy" },
+    quoteToken: { address: "0x0000000000000000000000000000000000000000", symbol: "ETH", name: "Ether" },
+    priceUsd: String(fakePriceUsd),
+    priceNative: String(fakePriceUsd / ethUsd),
+    liquidity: { usd: 609283, base: 749998687, quote: 0.0004461 },
+  }]);
+  assert.equal(found[0].reportedLiquidity, 609283);
+  assert.ok(Math.abs(found[0].backing - 0.0004461 * ethUsd) < 1e-6, `backing ${found[0].backing}`);
+});
+
+test("findLookalikes values the other side correctly when the suspect is the quote token", () => {
+  // BLUECHIP/NVDAc on 16.09: the suspect is quote, real NVDAc is base.
+  const found = findLookalikes([{
+    chainId: "base",
+    baseToken: { address: nvda.a, symbol: "NVDAc", name: "NVIDIA Corporation" },
+    quoteToken: { address: "0xb200000000000000000000cfbdf64a8706a94a01", symbol: "BLUECHIP", name: "BLUE CHIP" },
+    priceUsd: "214.16",
+    priceNative: "12585",
+    liquidity: { usd: 517484, base: 1199.08007, quote: 15095450 },
+  }]);
+  assert.equal(found[0].symbol, "BLUECHIP");
+  assert.ok(Math.abs(found[0].backing - 1199.08007 * 214.16) < 1e-6);
+});
+
+test("findLookalikes treats a pool with missing amounts as holding nothing real", () => {
+  const found = findLookalikes([{
+    chainId: "base",
+    baseToken: { address: "0x00000000000000000000000000000000000000a1", symbol: "AAPLc", name: "Apple" },
+    quoteToken: { address: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913", symbol: "USDC" },
+    priceUsd: "1",
+    liquidity: { usd: 99999 },
+  }]);
+  assert.equal(found[0].backing, 0);
 });
 
 test("findLookalikes flags a ticker variant that also carries the company name", () => {
   const found = findLookalikes([
-    searchPair({ address: "0x4730e86c940000000000000000000000000000bb", symbol: "NVDAcorp", name: "NVIDIA Corporation (NVDAc)" }, 242705),
+    searchPair({ address: "0x4730e86c940000000000000000000000000000bb", symbol: "NVDAcorp", name: "NVIDIA Corporation (NVDAc)" }, 3),
   ]);
   assert.deepEqual(found[0].reasons, [{ kind: "name", mimics: "NVDAc" }]);
 });
 
-test("findLookalikes flags an address dressed up with Coinbase's 0xb2000000 prefix", () => {
+test("findLookalikes flags an address that shares Coinbase's 0xb2 and twenty zeros", () => {
   const found = findLookalikes([
-    searchPair({ address: "0xb200000000000000000000123456789012345678", symbol: "BLUECHIP", name: "BLUE CHIP" }, 557488),
+    searchPair({ address: "0xb200000000000000000000123456789012345678", symbol: "BLUECHIP", name: "BLUE CHIP" }, 149270),
   ]);
   assert.deepEqual(found[0].reasons, [{ kind: "prefix", mimics: null }]);
 });
 
 test("findLookalikes never flags the real Coinbase tokens, USDC, other chains or other issuers", () => {
   const found = findLookalikes([
-    searchPair({ address: nvda.a, symbol: "NVDAc", name: "NVIDIA Corporation" }, 3199845),
+    searchPair({ address: nvda.a, symbol: "NVDAc", name: "NVIDIA Corporation" }, 1500000),
     searchPair({ address: "0x00000000000000000000000000000000000000cc", symbol: "NVDAc", name: "copy" }, 5000, "ethereum"),
     searchPair({ address: "0x00000000000000000000000000000000000000dd", symbol: "TSLAx", name: "Tesla xStock" }, 5000),
     searchPair({ address: "0x00000000000000000000000000000000000000ee", symbol: "ELON", name: "ELON" }, 21500),
@@ -170,15 +216,16 @@ test("findLookalikes never flags the real Coinbase tokens, USDC, other chains or
   assert.deepEqual(found, []);
 });
 
-test("findLookalikes merges one impostor seen in several pairs and sorts by liquidity", () => {
+test("findLookalikes merges one impostor seen in several pairs and sorts by real money", () => {
   const small = { address: "0x00000000000000000000000000000000000000f1", symbol: "TSLA", name: "Tesla" };
   const big = { address: "0x00000000000000000000000000000000000000f2", symbol: "AAPLc", name: "Apple" };
   const found = findLookalikes([
-    searchPair(small, 1000),
-    searchPair(big, 50000),
-    searchPair(small, 2000),
+    searchPair(small, 1000, "base", 900000),
+    searchPair(big, 50000, "base", 60000),
+    searchPair(small, 2000, "base", 900000),
   ]);
-  assert.deepEqual(found.map((f) => [f.symbol, f.liquidity]), [["AAPLc", 50000], ["TSLA", 3000]]);
+  // TSLA reports far more "liquidity", but AAPLc holds more real money.
+  assert.deepEqual(found.map((f) => [f.symbol, f.backing]), [["AAPLc", 50000], ["TSLA", 3000]]);
 });
 
 test("thesis.html's inline script parses", () => {

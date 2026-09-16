@@ -120,17 +120,34 @@
   /* ---------- look-alikes ---------- */
   /* Tokens on Base that borrow a Coinbase stock's identity without being it.
      Two ways to borrow it, both seen live on 16.09:
-       - the ticker: "NVDAc — NVIDIA Curenncy" held $609k of liquidity, and a
-         second "NVDAc — NVIDIA Corporation (NVDAc)" held $243k;
-       - the address: Coinbase's stocks all start 0xb2000000…, and tokens such
-         as BLUECHIP and LiTesla were minted to addresses that start the same
-         way, so a glance at the prefix proves nothing.
+       - the ticker: several launchpad tokens call themselves NVDAc, METAc,
+         GOOGLc or AAPLc at other addresses;
+       - the address: Coinbase's stocks all start 0xb2 and twenty zeros, and
+         dozens of unrelated tokens (BLUECHIP, a live project, among them) sit
+         at addresses that start the same way, so the prefix proves nothing.
      Input is DexScreener search results (any tokens, any chain); output is one
-     entry per impostor address, largest liquidity first. */
+     entry per impostor address, most real money first. */
   var COINBASE_PREFIX = /^0xb2000000000000/i;
 
   function tickerRoot(sym) {
     return sym.replace(/c$/, "").toLowerCase();
+  }
+
+  /* Real money in a pool is the side that is NOT the token under suspicion.
+     DexScreener's liquidity.usd values both sides at the pool's own price, and
+     a token that seeds 750M of itself against 0.0004 ETH prices itself: the
+     16.09 "NVDAc — NVIDIA Curenncy" pool reported $609,283 while holding about
+     $2 of ETH. So only the other side counts. When the suspect is the base
+     token, priceUsd / priceNative is the USD price of the quote token. */
+  function backingUsd(p, suspectIsBase) {
+    var L = p.liquidity || {};
+    var price = parseFloat(p.priceUsd), native = parseFloat(p.priceNative);
+    if (suspectIsBase) {
+      if (!(L.quote > 0) || !(price > 0) || !(native > 0)) return 0;
+      return L.quote * (price / native);
+    }
+    if (!(L.base > 0) || !(price > 0)) return 0;
+    return L.base * price;
   }
 
   function findLookalikes(pairs, tokens) {
@@ -141,8 +158,8 @@
     var found = {};
     (pairs || []).forEach(function (p) {
       if (p.chainId !== "base") return;
-      var liq = (p.liquidity && p.liquidity.usd) || 0;
-      [p.baseToken, p.quoteToken].forEach(function (tk) {
+      var reported = (p.liquidity && p.liquidity.usd) || 0;
+      [p.baseToken, p.quoteToken].forEach(function (tk, i) {
         if (!tk || !tk.address) return;
         var addr = tk.address.toLowerCase();
         if (official[addr]) return;
@@ -168,8 +185,9 @@
         if (COINBASE_PREFIX.test(addr)) reasons.push({kind: "prefix", mimics: null});
         if (!reasons.length) return;
 
-        var entry = found[addr] || (found[addr] = {address: tk.address, symbol: sym, name: name, liquidity: 0, reasons: []});
-        entry.liquidity += liq;
+        var entry = found[addr] || (found[addr] = {address: tk.address, symbol: sym, name: name, backing: 0, reportedLiquidity: 0, reasons: []});
+        entry.backing += backingUsd(p, i === 0);
+        entry.reportedLiquidity += reported;
         reasons.forEach(function (r) {
           var dup = entry.reasons.some(function (x) { return x.kind === r.kind && x.mimics === r.mimics; });
           if (!dup) entry.reasons.push(r);
@@ -178,7 +196,7 @@
     });
 
     return Object.keys(found).map(function (k) { return found[k]; })
-      .sort(function (a, b) { return b.liquidity - a.liquidity; });
+      .sort(function (a, b) { return b.backing - a.backing; });
   }
 
   var api = {
