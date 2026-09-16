@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-15T21:57:26Z",
- "generated_at_unix": 1789509445,
+ "generated_at": "2026-09-16T09:15:24Z",
+ "generated_at_unix": 1789550123,
  "period": {
   "start": "2026-07-15",
-  "days": 62
+  "days": 63
  },
  "totals": {
-  "seen": 166730,
-  "base": 32615,
+  "seen": 166877,
+  "base": 32762,
   "robinhood": 134115,
-  "below_liquidity_threshold": 162074,
-  "spam_filtered": 1525,
-  "scored": 3131,
-  "green": 1711,
-  "yellow": 466,
-  "red": 954
+  "below_liquidity_threshold": 162165,
+  "spam_filtered": 1562,
+  "scored": 3150,
+  "green": 1726,
+  "yellow": 467,
+  "red": 957
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-26",
-   "base": 816,
-   "robinhood": 3737
+   "base": 776,
+   "robinhood": 3648
   },
   {
    "date": "2026-08-27",
@@ -125,11 +125,171 @@
   },
   {
    "date": "2026-09-16",
-   "base": 58,
+   "base": 205,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "MOW",
+   "name": "MowCat",
+   "chain": "base",
+   "address": "0xa46cbd50d2f68639693bb635769b3df09d586d85",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 12006.3144061913,
+   "first_seen": 1789550043
+  },
+  {
+   "symbol": "COOL",
+   "name": "usdc is cool",
+   "chain": "base",
+   "address": "0xe6762d545ab286a148bb5f6f28eb58ec0138b469",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 486610.4557,
+   "first_seen": 1789549132
+  },
+  {
+   "symbol": "JOTPAID",
+   "name": "JOTCHUA PAID",
+   "chain": "base",
+   "address": "0xb200000000000000000000a5754b2081e97a72bc",
+   "score": 75,
+   "verdict": "green",
+   "liquidity_usd": 2549.5708616948,
+   "first_seen": 1789548468
+  },
+  {
+   "symbol": "ARCHITEC",
+   "name": "Architects",
+   "chain": "base",
+   "address": "0xfd765d52fc3a72ed756d9e78bb728dfae9574fac",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 215895.1092,
+   "first_seen": 1789548376
+  },
+  {
+   "symbol": "DDX",
+   "name": "DerivaDAO",
+   "chain": "base",
+   "address": "0x3250235adec2fe634c985e24bc8dcceb01004d98",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 33257.6388,
+   "first_seen": 1789548375
+  },
+  {
+   "symbol": "TAZA",
+   "name": "Tazapay",
+   "chain": "base",
+   "address": "0xa1327b8fd6e17c33c89a752c10fa9b4b19a2f8c8",
+   "score": 82,
+   "verdict": "green",
+   "liquidity_usd": 33255.6909,
+   "first_seen": 1789548282
+  },
+  {
+   "symbol": "LONG",
+   "name": "LONG",
+   "chain": "base",
+   "address": "0x8c4ec9c9250fb5f3e8e28bbc33e0034fa6db0399",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 2154566.3825,
+   "first_seen": 1789547483
+  },
+  {
+   "symbol": "RAYCAT",
+   "name": "Raydium Cat",
+   "chain": "base",
+   "address": "0x47edc769db588b8095103ba6afb577f92da02434",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 11935.5143138632,
+   "first_seen": 1789547482
+  },
+  {
+   "symbol": "DCDOG",
+   "name": "Dancing Dog",
+   "chain": "base",
+   "address": "0x1d56de7c49ea8dfb8b59ff6accadeb3039a016a8",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4030.8787,
+   "first_seen": 1789546664
+  },
+  {
+   "symbol": "ARGUS",
+   "name": "Argus",
+   "chain": "base",
+   "address": "0x3980ef85f92a3051280a8b34376c4f290c8f2ea9",
+   "score": 65,
+   "verdict": "yellow",
+   "liquidity_usd": 1984533.7939,
+   "first_seen": 1789546572
+  },
+  {
+   "symbol": "NFA",
+   "name": "NFA",
+   "chain": "base",
+   "address": "0xb2000000000000000000006417ab2603e41e4f64",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 41622.304,
+   "first_seen": 1789546571
+  },
+  {
+   "symbol": "musebook",
+   "name": "musebook",
+   "chain": "base",
+   "address": "0x776f8aaf034ee6d67d9a6c95087d2fedb15eec29",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 21186.8028,
+   "first_seen": 1789546570
+  },
+  {
+   "symbol": "Munera",
+   "name": "Munera Gaming",
+   "chain": "base",
+   "address": "0xb20000000000000000000018b46efc8f9f9e127f",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 43443.5416,
+   "first_seen": 1789546477
+  },
+  {
+   "symbol": "PAID",
+   "name": "Paid",
+   "chain": "base",
+   "address": "0x7c9945d11eb3f8765ba4c91575112fef30cd1a3f",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 117007.8926,
+   "first_seen": 1789546475
+  },
+  {
+   "symbol": "BASEASS",
+   "name": "BASEASS",
+   "chain": "base",
+   "address": "0x1e0d8e92bdb80c4cac9733afaccd026a07b39597",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 78120.611,
+   "first_seen": 1789546473
+  },
+  {
+   "symbol": "DTF",
+   "name": "Down to Finance",
+   "chain": "base",
+   "address": "0xd046c790d3503cf8e683cfaa15c94e01bb058980",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 11972.25,
+   "first_seen": 1789509484
+  },
   {
    "symbol": "NUTSAQ",
    "name": "NUTSAQ 100",
@@ -169,166 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 3416.3308,
    "first_seen": 1789506665
-  },
-  {
-   "symbol": "JROLLAK",
-   "name": "JESSE ROLLAK",
-   "chain": "base",
-   "address": "0xb2000000000000000000009b58ad4f11efabbae5",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4027.9985,
-   "first_seen": 1789505893
-  },
-  {
-   "symbol": "SLV",
-   "name": "iShares Silver Trust Tokenized Commodity (Robinhood)",
-   "chain": "base",
-   "address": "0x8457e85f947b805a74816469134df437431e587e",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 12026.0644233372,
-   "first_seen": 1789505373
-  },
-  {
-   "symbol": "STOCKMEMES",
-   "name": "stockmemes (stockmemesonbsc)",
-   "chain": "base",
-   "address": "0x0407847da75475c8c2b80cf88fdb9b1a16a513d1",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 12032.75,
-   "first_seen": 1789503509
-  },
-  {
-   "symbol": "Unknown",
-   "name": "Unknown",
-   "chain": "base",
-   "address": "0x04340e4fa62bf11068ac47c1b1c4ecddc843ff3d",
-   "score": 76,
-   "verdict": "green",
-   "liquidity_usd": 2161.4303,
-   "first_seen": 1789501129
-  },
-  {
-   "symbol": "BRAINARM",
-   "name": "Brain Armstrong",
-   "chain": "base",
-   "address": "0xb200000000000000000000e6fcc33529006d665b",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 451344.3883,
-   "first_seen": 1789500422
-  },
-  {
-   "symbol": "Armstrong",
-   "name": "Armstrong",
-   "chain": "base",
-   "address": "0xb200000000000000000000766cbce8b13e51a001",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3852.9813,
-   "first_seen": 1789500420
-  },
-  {
-   "symbol": "KSTR",
-   "name": "KraneShares SSE STAR Market 50 Index ETF (Derivatives)",
-   "chain": "base",
-   "address": "0x8750078d002c80d9235ef9dbb3075215fb0693c0",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12241.4408,
-   "first_seen": 1789500419
-  },
-  {
-   "symbol": "HOLDOKI",
-   "name": "HOLDOKI",
-   "chain": "base",
-   "address": "0x451e679eecfb51616d5b7e590b29bc19580269a5",
-   "score": 70,
-   "verdict": "green",
-   "liquidity_usd": 5323.1145,
-   "first_seen": 1789500416
-  },
-  {
-   "symbol": "CCOIN",
-   "name": "CuntCoin",
-   "chain": "base",
-   "address": "0xb200000000000000000000215bc7a3c63a64a201",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4306.2303,
-   "first_seen": 1789499240
-  },
-  {
-   "symbol": "Basecobie",
-   "name": "Basecobie",
-   "chain": "base",
-   "address": "0xb200000000000000000000fefc8d9f75f95bbc01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3830.8691,
-   "first_seen": 1789499239
-  },
-  {
-   "symbol": "STONKERS",
-   "name": "Stonkers",
-   "chain": "base",
-   "address": "0x8815432962b12f68691911cb0448a982c196919d",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 4269.3462,
-   "first_seen": 1789499237
-  },
-  {
-   "symbol": "OVER",
-   "name": "we're done, it's over",
-   "chain": "base",
-   "address": "0xb2000000000000000000005c7ef5d85a8f025101",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4054.9455,
-   "first_seen": 1789499055
-  },
-  {
-   "symbol": "GOOGon",
-   "name": "Alphabet Class C Tokenized Stock (Ondo)",
-   "chain": "base",
-   "address": "0xe1d3ef823edb53a4d311ea8ed2109b94a9bea4aa",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 11874.1,
-   "first_seen": 1789498269
-  },
-  {
-   "symbol": "[invalid]",
-   "name": "[your token\n\nmeow free 7777 cats",
-   "chain": "base",
-   "address": "0x608dc36871ec0633776be6d267ef6ba1db65fa17",
-   "score": 70,
-   "verdict": "green",
-   "liquidity_usd": 5328.4029,
-   "first_seen": 1789497722
-  },
-  {
-   "symbol": "SAGE",
-   "name": "Sage",
-   "chain": "base",
-   "address": "0xb2000000000000000000000643679177fd36469a",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 6112.7498,
-   "first_seen": 1789497533
-  },
-  {
-   "symbol": "KAEL STORMRIDER, KS",
-   "name": "Kael Stormrider, KS",
-   "chain": "base",
-   "address": "0xf5790fb7cf66c20a1bbff907e6725ebf50958c49",
-   "score": 70,
-   "verdict": "green",
-   "liquidity_usd": 5384.8488,
-   "first_seen": 1789496206
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 39,
+  "waiting": 50,
   "confirmed": 24,
-  "dropped": 1072
+  "dropped": 1077
  },
  "recent_drains": [
   {
@@ -748,7 +748,7 @@
   "rug": 941
  },
  "watchlist_active": 13,
- "price_snapshots": 14136,
+ "price_snapshots": 14561,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
