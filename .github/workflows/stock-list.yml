@@ -1,0 +1,44 @@
+name: stock list
+
+# Once a day, compare Thesis's ten tokens with base.org/stocks. When Coinbase
+# lists or delists a stock, open an issue instead of waiting for a user to
+# notice.
+on:
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - id: check
+        run: |
+          set +e
+          node scripts/check-stock-list.js > report.txt 2>&1
+          code=$?
+          cat report.txt
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+      - name: Open an issue when the lists differ
+        if: steps.check.outputs.code == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          title="base.org/stocks changed: update thesis-core.js"
+          existing=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "$title in:title" --json number --jq 'length')
+          if [ "$existing" = "0" ]; then
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$title" --body-file report.txt
+          else
+            echo "An issue is already open."
+          fi
+      - name: Fail when the check itself broke
+        if: steps.check.outputs.code == '2'
+        run: exit 1
