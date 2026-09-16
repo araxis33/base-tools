@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-16T10:15:30Z",
- "generated_at_unix": 1789553729,
+ "generated_at": "2026-09-16T11:15:36Z",
+ "generated_at_unix": 1789557335,
  "period": {
   "start": "2026-07-15",
   "days": 63
  },
  "totals": {
-  "seen": 166965,
-  "base": 32850,
+  "seen": 167018,
+  "base": 32903,
   "robinhood": 134115,
-  "below_liquidity_threshold": 162234,
-  "spam_filtered": 1581,
-  "scored": 3150,
-  "green": 1726,
+  "below_liquidity_threshold": 162267,
+  "spam_filtered": 1598,
+  "scored": 3153,
+  "green": 1729,
   "yellow": 467,
   "red": 957
  },
@@ -125,11 +125,41 @@
   },
   {
    "date": "2026-09-16",
-   "base": 293,
+   "base": 346,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "HYDRA",
+   "name": "HYDRA v16.0",
+   "chain": "base",
+   "address": "0x1175d5fc330d46e5008ed41d6aa163ceef63f969",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 28885.2597,
+   "first_seen": 1789556519
+  },
+  {
+   "symbol": "HOOKR",
+   "name": "Hookr.fun",
+   "chain": "base",
+   "address": "0x7337cd90cf0aac7031c13aa793a1449daa605bbd",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12014.1144046368,
+   "first_seen": 1789555377
+  },
+  {
+   "symbol": "ORDER",
+   "name": "Blue Box Mattress Co",
+   "chain": "base",
+   "address": "0x03fc710a4bb06653c6c6dbc767e85c45dbadd3a8",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3928.9337,
+   "first_seen": 1789553846
+  },
   {
    "symbol": "MOW",
    "name": "MowCat",
@@ -299,36 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 1657.45152,
    "first_seen": 1789508756
-  },
-  {
-   "symbol": "MEOW CAT",
-   "name": "MEOW CAT",
-   "chain": "base",
-   "address": "0xd36e82947b58d0713a76edcc54806b9857dc17ce",
-   "score": 70,
-   "verdict": "green",
-   "liquidity_usd": 5302.9789,
-   "first_seen": 1789508165
-  },
-  {
-   "symbol": "JESSI",
-   "name": "jessi",
-   "chain": "base",
-   "address": "0xb200000000000000000000d6e0076f6d5ced4b20",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 6225.6043322195,
-   "first_seen": 1789507710
-  },
-  {
-   "symbol": "agai",
-   "name": "AegisAI",
-   "chain": "base",
-   "address": "0x315ff3afa71d345aefc4da8e2330305af59e2c0e",
-   "score": 82,
-   "verdict": "green",
-   "liquidity_usd": 3416.3308,
-   "first_seen": 1789506665
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 44,
+  "waiting": 43,
   "confirmed": 24,
-  "dropped": 1083
+  "dropped": 1087
  },
  "recent_drains": [
   {
@@ -748,7 +748,7 @@
   "rug": 941
  },
  "watchlist_active": 13,
- "price_snapshots": 14938,
+ "price_snapshots": 15302,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
