@@ -41,6 +41,7 @@ header{border-bottom:1px solid var(--border); background:var(--bg2)}
 .back:hover{color:var(--text)}
 .head-links{display:flex; gap:14px}
 .head-links a{font-size:14px; min-height:32px; display:inline-flex; align-items:center}
+.head-links a[hidden]{display:none}
 
 .hero{padding:40px 0 24px}
 h1{margin:0 0 10px; font-size:32px; line-height:1.2; letter-spacing:-.02em}
@@ -147,8 +148,8 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
       contracts ported from other chains: native USDC counts in 18 decimals, the ERC-20 view
       counts in 6, and they share a balance.</p>
     <div class="netbar" role="group" aria-label="Network">
-      <button class="netbtn" id="btn-testnet" aria-pressed="true">Testnet</button>
-      <button class="netbtn" id="btn-mainnet" disabled>Mainnet &mdash; Sep 16</button>
+      <button class="netbtn" id="btn-testnet" aria-pressed="false">Testnet</button>
+      <button class="netbtn" id="btn-mainnet" aria-pressed="false">Mainnet</button>
     </div>
     <div class="stamp" id="stamp"><span class="dot stale"></span>Connecting&hellip;</div>
   </div>
@@ -259,8 +260,8 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
 (function () {
   'use strict';
 
-  // Одна запись на сеть. 16.09 сюда добавляется mainnet и снимается disabled с
-  // кнопки — больше на странице менять нечего, всё остальное считается от этого.
+  // Одна запись на сеть — всё остальное на странице считается от этого.
+  // Мейннет сверен ончейн 16.09: eth_chainId = 0x13b2, у 0x3600… decimals() = 6.
   var NETWORKS = {
     testnet: {
       label: 'Arc Testnet',
@@ -272,11 +273,12 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
     },
     mainnet: {
       label: 'Arc Mainnet',
-      chainId: null,       // публикуется в день запуска
-      rpc: null,
+      chainId: 5042,
+      rpc: 'https://rpc.mainnet.arc.io',
+      // explorer.arc.io на день запуска закрыт логином Circle — не ведём туда людей.
       explorer: null,
-      usdc: null,
-      live: false
+      usdc: '0x3600000000000000000000000000000000000000',
+      live: true
     }
   };
 
@@ -346,7 +348,7 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
       ['Chain ID', net.chainId === null ? 'published at launch' : String(net.chainId)],
       ['RPC URL', net.rpc || '—'],
       ['Currency symbol', 'USDC'],
-      ['Explorer', net.explorer || '—']
+      ['Explorer', net.explorer || 'not public yet']
     ];
     $('netinfo').innerHTML = rows.map(function (r) {
       return '<tr><td style="color:var(--muted);width:34%">' + r[0] +
@@ -476,6 +478,8 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
     $('btn-testnet').setAttribute('aria-pressed', String(name === 'testnet'));
     $('btn-mainnet').setAttribute('aria-pressed', String(name === 'mainnet'));
     var net = NETWORKS[name];
+    // Без публичного обозревателя ссылку прячем, иначе она осталась бы на тестнете.
+    $('explorer-link').hidden = !net.explorer;
     if (net.explorer) $('explorer-link').href = net.explorer;
     renderNetInfo(net);
     setStamp('stale', 'Connecting to ' + net.label + '…');
@@ -491,7 +495,7 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
     check();
   });
 
-  select('testnet');
+  select('mainnet');
   timer = setInterval(refresh, 12000);
   document.addEventListener('visibilitychange', function () {
     // Вкладка в фоне не должна долбить RPC — при возврате обновляем сразу.
