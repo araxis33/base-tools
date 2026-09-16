@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-16T11:15:36Z",
- "generated_at_unix": 1789557335,
+ "generated_at": "2026-09-16T13:44:50Z",
+ "generated_at_unix": 1789566287,
  "period": {
   "start": "2026-07-15",
   "days": 63
  },
  "totals": {
-  "seen": 167018,
-  "base": 32903,
+  "seen": 167083,
+  "base": 32968,
   "robinhood": 134115,
-  "below_liquidity_threshold": 162267,
-  "spam_filtered": 1598,
-  "scored": 3153,
-  "green": 1729,
+  "below_liquidity_threshold": 162304,
+  "spam_filtered": 1620,
+  "scored": 3159,
+  "green": 1734,
   "yellow": 467,
-  "red": 957
+  "red": 958
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-26",
-   "base": 776,
-   "robinhood": 3648
+   "base": 717,
+   "robinhood": 3397
   },
   {
    "date": "2026-08-27",
@@ -125,11 +125,61 @@
   },
   {
    "date": "2026-09-16",
-   "base": 346,
+   "base": 411,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "BRAINARMS",
+   "name": "Brain Armstrong",
+   "chain": "base",
+   "address": "0xb200000000000000000000985c5530d357682ec9",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 10502.4088,
+   "first_seen": 1789566274
+  },
+  {
+   "symbol": "VIRTOCOOL",
+   "name": "Virtocool by Virtuals",
+   "chain": "base",
+   "address": "0xb200000000000000000000395f5ccd0d515d4924",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 9760.71277811774,
+   "first_seen": 1789566267
+  },
+  {
+   "symbol": "HYDRA",
+   "name": "HYDRA v18.0",
+   "chain": "base",
+   "address": "0x0ab2f06b8e12be007851fe5eac2c03227f61942c",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 28836.2108,
+   "first_seen": 1789565209
+  },
+  {
+   "symbol": "MEMELESS",
+   "name": "memes are useless",
+   "chain": "base",
+   "address": "0x8ad75f4d0d9fca055c7d66dda003b34eeccc575a",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 18494.2932,
+   "first_seen": 1789564055
+  },
+  {
+   "symbol": "CINU",
+   "name": "Circle Inu",
+   "chain": "base",
+   "address": "0x7f79b4f7d7e8fd1416534b0dd0de233002dbec29",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 15935.6223,
+   "first_seen": 1789564051
+  },
   {
    "symbol": "HYDRA",
    "name": "HYDRA v16.0",
@@ -279,56 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 21186.8028,
    "first_seen": 1789546570
-  },
-  {
-   "symbol": "Munera",
-   "name": "Munera Gaming",
-   "chain": "base",
-   "address": "0xb20000000000000000000018b46efc8f9f9e127f",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 43443.5416,
-   "first_seen": 1789546477
-  },
-  {
-   "symbol": "PAID",
-   "name": "Paid",
-   "chain": "base",
-   "address": "0x7c9945d11eb3f8765ba4c91575112fef30cd1a3f",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 117007.8926,
-   "first_seen": 1789546475
-  },
-  {
-   "symbol": "BASEASS",
-   "name": "BASEASS",
-   "chain": "base",
-   "address": "0x1e0d8e92bdb80c4cac9733afaccd026a07b39597",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 78120.611,
-   "first_seen": 1789546473
-  },
-  {
-   "symbol": "DTF",
-   "name": "Down to Finance",
-   "chain": "base",
-   "address": "0xd046c790d3503cf8e683cfaa15c94e01bb058980",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 11972.25,
-   "first_seen": 1789509484
-  },
-  {
-   "symbol": "NUTSAQ",
-   "name": "NUTSAQ 100",
-   "chain": "base",
-   "address": "0x8960ab34db56f5c7e4edba723d02ff82ce9d243b",
-   "score": 92,
-   "verdict": "green",
-   "liquidity_usd": 1657.45152,
-   "first_seen": 1789508756
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 43,
+  "waiting": 40,
   "confirmed": 24,
-  "dropped": 1087
+  "dropped": 1095
  },
  "recent_drains": [
   {
@@ -651,6 +651,16 @@
   }
  ],
  "survivors": [
+  {
+   "symbol": "MOTO",
+   "chain": "base",
+   "address": "0x50116264fbbf308a3aa53a859a50c9353d57c2b7",
+   "score": 54,
+   "alerted_at": 1789474278,
+   "liq_0": 79605.8865,
+   "liq_24h": 198150.23,
+   "volume_24h": 492077.58
+  },
   {
    "symbol": "michi",
    "chain": "robinhood",
@@ -748,7 +758,7 @@
   "rug": 941
  },
  "watchlist_active": 13,
- "price_snapshots": 15302,
+ "price_snapshots": 15548,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
