@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-16T13:44:50Z",
- "generated_at_unix": 1789566287,
+ "generated_at": "2026-09-16T14:44:57Z",
+ "generated_at_unix": 1789569895,
  "period": {
   "start": "2026-07-15",
   "days": 63
  },
  "totals": {
-  "seen": 167083,
-  "base": 32968,
+  "seen": 167135,
+  "base": 33020,
   "robinhood": 134115,
-  "below_liquidity_threshold": 162304,
-  "spam_filtered": 1620,
-  "scored": 3159,
-  "green": 1734,
+  "below_liquidity_threshold": 162337,
+  "spam_filtered": 1638,
+  "scored": 3160,
+  "green": 1735,
   "yellow": 467,
   "red": 958
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-26",
-   "base": 717,
-   "robinhood": 3397
+   "base": 596,
+   "robinhood": 3009
   },
   {
    "date": "2026-08-27",
@@ -125,11 +125,21 @@
   },
   {
    "date": "2026-09-16",
-   "base": 411,
+   "base": 464,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "LAPTOP",
+   "name": "Hunter Biden's Laptop",
+   "chain": "base",
+   "address": "0x7dbbdf9928f83065a913754124a37a9dd5087489",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 18722.3541,
+   "first_seen": 1789569622
+  },
   {
    "symbol": "BRAINARMS",
    "name": "Brain Armstrong",
@@ -319,16 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 41622.304,
    "first_seen": 1789546571
-  },
-  {
-   "symbol": "musebook",
-   "name": "musebook",
-   "chain": "base",
-   "address": "0x776f8aaf034ee6d67d9a6c95087d2fedb15eec29",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 21186.8028,
-   "first_seen": 1789546570
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 40,
+  "waiting": 32,
   "confirmed": 24,
-  "dropped": 1095
+  "dropped": 1104
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 941
  },
  "watchlist_active": 13,
- "price_snapshots": 15548,
+ "price_snapshots": 15847,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
