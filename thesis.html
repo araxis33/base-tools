@@ -45,7 +45,7 @@ a:hover{color:var(--blue-bright)}
 .num{font-variant-numeric:tabular-nums}
 
 header{border-bottom:1px solid var(--border); background:var(--bg2)}
-.head-in{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:16px 0; flex-wrap:wrap}
+.head-in{display:flex; align-items:center; justify-content:space-between; gap:16px; padding-block:16px; flex-wrap:wrap}
 .back{display:inline-flex; align-items:center; min-height:32px; font-size:14px; color:var(--muted)}
 .back:hover{color:var(--text)}
 .head-links{display:flex; gap:14px}
@@ -305,25 +305,13 @@ footer{border-top:1px solid var(--border); margin-top:30px; padding:22px 0 40px;
   </div>
 </footer>
 
+<script src="thesis-core.js"></script>
 <script>
 "use strict";
 
-/* The ten Coinbase Tokenized Stocks published on base.org/stocks. These
-   addresses are the whole point of the list: any other contract using these
-   tickers on Base was not issued by Coinbase. All ten carry 8 decimals,
-   checked onchain. */
-var TOKENS = [
-  {s:"NVDAc",  co:"NVIDIA",        a:"0xb20000000000000000000078ee7ce2fE4908108C", tags:["ai","chips","semis","nvidia","gpu","hardware","tech"]},
-  {s:"METAc",  co:"Meta",          a:"0xb2000000000000000000008bC8786B856E61707C", tags:["ai","social","meta","facebook","ads","tech"]},
-  {s:"AAPLc",  co:"Apple",         a:"0xb200000000000000000000C2e324d24d7eEcd1fb", tags:["apple","consumer","hardware","phones","tech"]},
-  {s:"GOOGLc", co:"Alphabet",      a:"0xb2000000000000000000002D0BA3164cc74f58B7", tags:["ai","cloud","google","alphabet","search","ads","tech"]},
-  {s:"AMZNc",  co:"Amazon",        a:"0xb200000000000000000000d9192b6B456483C2E8", tags:["cloud","amazon","retail","ecommerce","aws","tech"]},
-  {s:"MSFTc",  co:"Microsoft",     a:"0xB200000000000000000000Ab99cFa739E253872B", tags:["ai","cloud","microsoft","software","azure","tech"]},
-  {s:"MSTRc",  co:"Strategy",      a:"0xb2000000000000000000004884b426556b92883d", tags:["bitcoin","btc","crypto","strategy","microstrategy","treasury"]},
-  {s:"SNDKc",  co:"SanDisk",       a:"0xb200000000000000000000397293Cb8cda9a10c5", tags:["memory","storage","chips","semis","sandisk","hardware"]},
-  {s:"SPCXc",  co:"SpaceX",        a:"0xb2000000000000000000007b9fcbd005511aCBd5", tags:["space","spacex","rockets","satellites","defense","frontier"]},
-  {s:"TSLAc",  co:"Tesla",         a:"0xb2000000000000000000001e800a7f5189430cD0", tags:["tesla","ev","cars","robots","energy","musk","frontier"]}
-];
+/* The token list, the thesis parser, the pool maths and the look-alike
+   detector live in thesis-core.js, where test/ can reach them. */
+var TOKENS = ThesisCore.TOKENS;
 var USDC = "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913";
 
 /* Themes are plain weight maps. They exist so the first click produces
@@ -341,7 +329,8 @@ var state = {
   amount:1000,
   data:null,         // symbol -> pool summary
   loadedAt:0,
-  error:null
+  error:null,
+  lookalikes:null    // impostor tokens found by ticker or address prefix
 };
 
 /* ---------- helpers ---------- */
@@ -381,96 +370,27 @@ function loadPools(){
   });
   return Promise.all(jobs).then(function(res){
     var out = {};
-    res.forEach(function(r){
-      var mine = r.pairs.filter(function(p){
-        return p.chainId === "base"
-          && p.baseToken && p.baseToken.address
-          && p.baseToken.address.toLowerCase() === r.t.a.toLowerCase()
-          && p.priceUsd && parseFloat(p.priceUsd) > 0
-          && p.liquidity && p.liquidity.usd >= 500;
-      }).map(function(p){
-        return {
-          dex: p.dexId,
-          price: parseFloat(p.priceUsd),
-          liq: p.liquidity.usd,
-          vol: (p.volume && p.volume.h24) || 0,
-          chg: (p.priceChange && p.priceChange.h24) || 0,
-          quote: (p.quoteToken && p.quoteToken.symbol) || "",
-          url: p.url
-        };
-      });
-      if(!mine.length){ out[r.t.s] = null; return; }
-      mine.sort(function(a,b){ return b.liq - a.liq; });
-      /* A pool far away from the others is not a venue, it is a trap: nobody
-         is arbitraging it because nobody trades there. The reference cannot be
-         the deepest pool, though — a pool quoting forty times the real price
-         reports forty times the liquidity to match, so the trap can sit at the
-         top. TSLAc did exactly that on 11.09: $14,460 in a pool holding $264k
-         of paper, against two real pools at $364. The median price is immune
-         to one outlier, so it decides who is sane; depth only ranks the
-         survivors. */
-      var ordered = mine.map(function(p){ return p.price; }).sort(function(a,b){ return a-b; });
-      var ref = ordered[Math.floor(ordered.length/2)];
-      var isSane = function(p){ return p.price > ref*0.5 && p.price < ref*1.5; };
-      var sane  = mine.filter(isSane);
-      var traps = mine.filter(function(p){ return !isSane(p); });
-      var deep = sane[0];
-      var worst = sane.reduce(function(a,b){ return b.price > a.price ? b : a; }, sane[0]);
-      out[r.t.s] = {
-        deep: deep, worst: worst, sane: sane, traps: traps,
-        pools: sane.length,
-        gap: (worst.price - deep.price) / deep.price * 100,
-        tvl: sane.reduce(function(s,p){ return s + p.liq; }, 0),
-        vol: sane.reduce(function(s,p){ return s + p.vol; }, 0)
-      };
-    });
+    res.forEach(function(r){ out[r.t.s] = ThesisCore.summarisePools(r.pairs, r.t); });
     state.data = out;
     state.loadedAt = Date.now();
     return out;
   });
 }
 
-/* ---------- thesis parsing ---------- */
-/* Deliberately dumb and fully visible: words are matched against tickers,
-   company names and tags. "no x" / "without x" removes. Everything matched
-   gets an equal slice, which the user then drags around. */
-function parseThesis(text){
-  var t = " " + text.toLowerCase().replace(/[^a-z0-9\s&-]/g," ").replace(/\s+/g," ") + " ";
-  var score = {}, dropped = {}, why = [];
-
-  /* A company's weight is simply how many of your words it answers to:
-     "ai chips and cloud" counts twice for NVIDIA (ai, chips) and once for
-     Amazon (cloud). Crude, but you can read it off your own sentence. */
-  TOKENS.forEach(function(tk){
-    var words = [tk.s.toLowerCase(), tk.s.toLowerCase().replace(/c$/,""), tk.co.toLowerCase()].concat(tk.tags);
-    var hits = [];
-    words.forEach(function(w){
-      /* two letters is fine because matching is whole-word only: "ai" is a
-         real tag, "ev" is a real tag, neither can fire inside another word */
-      if(w.length < 2) return;
-      if(hits.indexOf(w) > -1) return;
-      if(t.indexOf(" " + w + " ") > -1 || t.indexOf(" " + w + "s ") > -1) hits.push(w);
-    });
-    if(!hits.length) return;
-    /* "no tesla", "without chips", "minus the ev stuff" all remove */
-    var neg = hits.some(function(w){
-      return new RegExp("(no|not|without|except|minus|skip|drop)\\s+(\\w+\\s+){0,2}" + w).test(t);
-    });
-    if(neg){ dropped[tk.s] = true; return; }
-    score[tk.s] = hits.length;
-    hits.forEach(function(w){ if(why.indexOf(w) < 0) why.push(w); });
+/* ---------- look-alikes ---------- */
+/* One search per ticker. Impostors change slowly, so this runs on load and
+   then every ten minutes rather than with the price refresh. */
+function loadLookalikes(){
+  var jobs = TOKENS.map(function(t){
+    return fetch("https://api.dexscreener.com/latest/dex/search?q=" + encodeURIComponent(t.s))
+      .then(function(r){ return r.json(); })
+      .then(function(j){ return (j && j.pairs) || []; })
+      .catch(function(){ return []; });
   });
-
-  var syms = Object.keys(score);
-  if(!syms.length) return {weights:null, why:[], dropped:Object.keys(dropped)};
-
-  var sum = syms.reduce(function(a,s){ return a + score[s]; }, 0);
-  var w = {}, given = 0;
-  syms.forEach(function(s){ w[s] = Math.floor(score[s] / sum * 100); given += w[s]; });
-  /* hand the rounding crumbs to the strongest match */
-  var top = syms.reduce(function(a,b){ return score[b] > score[a] ? b : a; }, syms[0]);
-  w[top] += 100 - given;
-  return {weights:w, why:why, dropped:Object.keys(dropped)};
+  return Promise.all(jobs).then(function(lists){
+    state.lookalikes = ThesisCore.findLookalikes([].concat.apply([], lists), TOKENS);
+    return state.lookalikes;
+  });
 }
 
 /* ---------- rendering ---------- */
@@ -503,7 +423,7 @@ function applyTheme(th){
 function buildFromThesis(){
   var text = $("thesis").value.trim();
   if(!text){ $("parsed").textContent = "Type something first — or pick a theme below."; return; }
-  var r = parseThesis(text);
+  var r = ThesisCore.parseThesis(text, TOKENS);
   Array.prototype.forEach.call($("chips").querySelectorAll(".chip"), function(b){ b.classList.remove("on"); });
   if(!r.weights){
     $("parsed").innerHTML = 'Nothing matched. Try words like <b>ai</b>, <b>cloud</b>, <b>space</b>, <b>bitcoin</b>, <b>chips</b>, or a company name.';
@@ -975,6 +895,34 @@ function renderChainCheck(){
     html += '</ul></div>';
   }
 
+  var fakes = state.lookalikes || [];
+  /* Two different warnings. Ticker and name twins are disguises and get named
+     one by one. Prefix twins are mostly ordinary memecoins that happen to sit
+     at 0xb2 followed by twenty zeros, exactly like Coinbase's addresses; there
+     are dozens, so they get one line that says what the prefix does not prove. */
+  var twins = fakes.filter(function(f){ return f.reasons.some(function(r){ return r.kind !== "prefix"; }); });
+  var prefixOnly = fakes.filter(function(f){ return f.reasons.every(function(r){ return r.kind === "prefix"; }); });
+  if(twins.length){
+    var twinLiq = twins.reduce(function(s,f){ return s + f.liquidity; }, 0);
+    html += '<div class="traps"><b>' + twins.length + ' token' + (twins.length > 1 ? 's' : '') +
+      ' on Base use a Coinbase stock’s ticker without being Coinbase’s</b> — ' + money(twinLiq, 0) +
+      ' of liquidity sits in them. Baskets here buy only the ten addresses on ' +
+      '<a href="https://www.base.org/stocks" target="_blank" rel="noopener">base.org/stocks</a>:<ul>';
+    twins.slice(0, 6).forEach(function(f){
+      var mimics = f.reasons.filter(function(r){ return r.mimics; }).map(function(r){ return r.mimics; })
+        .filter(function(v,i,a){ return a.indexOf(v) === i; }).join(", ");
+      html += '<li><b>' + esc(f.symbol) + '</b> “' + esc(f.name.trim()) + '” at <code>' + esc(f.address.slice(0, 8)) +
+              '…' + esc(f.address.slice(-6)) + '</code> — not ' + esc(mimics) + ', ' + money(f.liquidity, 0) + '</li>';
+    });
+    html += '</ul></div>';
+  }
+  if(prefixOnly.length){
+    html += '<div class="traps" style="border-left-color:var(--yellow)"><b>The address prefix proves nothing.</b> ' +
+      'At least ' + prefixOnly.length + ' other tokens on Base start with <code>0xb2</code> and twenty zeros, ' +
+      'exactly like Coinbase’s — ' + esc(prefixOnly.slice(0, 3).map(function(f){ return f.symbol; }).join(", ")) +
+      ' and more. Compare the whole address, not the start of it.</div>';
+  }
+
   if(bad.length){
     html += '<div class="traps"><b>' + bad.length + ' pool' + (bad.length > 1 ? 's' : '') +
       ' quoting a price that cannot be real.</b> Nothing routes through them here, but a careless ' +
@@ -984,7 +932,7 @@ function renderChainCheck(){
               ' — the real price is ' + money(x.fair, 2) + '</li>';
     });
     html += '</ul></div>';
-  } else if(spreads.length === 0){
+  } else if(spreads.length === 0 && !twins.length){
     html += '<div class="traps" style="border-left-color:var(--green)">' +
       'Every live pool is quoting a sane price right now. That is not the usual state of this market.</div>';
   }
@@ -1079,6 +1027,11 @@ $("amount").addEventListener("blur", function(){
   $("amount").value = state.amount.toLocaleString("en-US");
   render();
 });
+
+loadLookalikes().then(function(){ if(state.data) renderChainCheck(); }).catch(function(){});
+setInterval(function(){
+  loadLookalikes().then(function(){ if(state.data && !ex.busy) renderChainCheck(); }).catch(function(){});
+}, 600000);
 
 loadPools().then(function(){
   render();
