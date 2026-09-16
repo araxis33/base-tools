@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-16T18:52:27Z",
- "generated_at_unix": 1789584746,
+ "generated_at": "2026-09-16T19:52:32Z",
+ "generated_at_unix": 1789588351,
  "period": {
   "start": "2026-07-15",
   "days": 63
  },
  "totals": {
-  "seen": 167403,
-  "base": 33288,
+  "seen": 167471,
+  "base": 33356,
   "robinhood": 134115,
-  "below_liquidity_threshold": 162517,
-  "spam_filtered": 1708,
-  "scored": 3178,
-  "green": 1748,
-  "yellow": 467,
-  "red": 963
+  "below_liquidity_threshold": 162554,
+  "spam_filtered": 1733,
+  "scored": 3184,
+  "green": 1752,
+  "yellow": 468,
+  "red": 964
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-26",
-   "base": 146,
-   "robinhood": 1205
+   "base": 69,
+   "robinhood": 665
   },
   {
    "date": "2026-08-27",
@@ -125,11 +125,61 @@
   },
   {
    "date": "2026-09-16",
-   "base": 731,
+   "base": 799,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "X",
+   "name": "X100",
+   "chain": "base",
+   "address": "0x7efbc98e4a650a716fad2c66e7d89dd669ba9ce4",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 11987.9643719744,
+   "first_seen": 1789587818
+  },
+  {
+   "symbol": "SAD",
+   "name": "SAD",
+   "chain": "base",
+   "address": "0xba5efe15c27d866cabbd596683bf6cddf8297850",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 7532.5892,
+   "first_seen": 1789586808
+  },
+  {
+   "symbol": "PODGAIN",
+   "name": "podcat",
+   "chain": "base",
+   "address": "0x1b9254f10dc2246099a7f5e3eb50eef521e0fee1",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 21020.0847067656,
+   "first_seen": 1789585985
+  },
+  {
+   "symbol": "cobee",
+   "name": "cobee",
+   "chain": "base",
+   "address": "0xcfbe9d387be73df05df39306be18f5f6773a765f",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 72402.5703,
+   "first_seen": 1789585161
+  },
+  {
+   "symbol": "Muse",
+   "name": "Muse on Base",
+   "chain": "base",
+   "address": "0xb2000000000000000000007d2c253d15f8632c01",
+   "score": 57,
+   "verdict": "yellow",
+   "liquidity_usd": 5247.6291,
+   "first_seen": 1789584842
+  },
   {
    "symbol": "$GTRADE",
    "name": "GrokTrade",
@@ -279,56 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 10502.4088,
    "first_seen": 1789566274
-  },
-  {
-   "symbol": "VIRTOCOOL",
-   "name": "Virtocool by Virtuals",
-   "chain": "base",
-   "address": "0xb200000000000000000000395f5ccd0d515d4924",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 9760.71277811774,
-   "first_seen": 1789566267
-  },
-  {
-   "symbol": "HYDRA",
-   "name": "HYDRA v18.0",
-   "chain": "base",
-   "address": "0x0ab2f06b8e12be007851fe5eac2c03227f61942c",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 28836.2108,
-   "first_seen": 1789565209
-  },
-  {
-   "symbol": "MEMELESS",
-   "name": "memes are useless",
-   "chain": "base",
-   "address": "0x8ad75f4d0d9fca055c7d66dda003b34eeccc575a",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 18494.2932,
-   "first_seen": 1789564055
-  },
-  {
-   "symbol": "CINU",
-   "name": "Circle Inu",
-   "chain": "base",
-   "address": "0x7f79b4f7d7e8fd1416534b0dd0de233002dbec29",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 15935.6223,
-   "first_seen": 1789564051
-  },
-  {
-   "symbol": "HYDRA",
-   "name": "HYDRA v16.0",
-   "chain": "base",
-   "address": "0x1175d5fc330d46e5008ed41d6aa163ceef63f969",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 28885.2597,
-   "first_seen": 1789556519
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 31,
+  "waiting": 29,
   "confirmed": 24,
-  "dropped": 1118
+  "dropped": 1125
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 942
  },
  "watchlist_active": 13,
- "price_snapshots": 16770,
+ "price_snapshots": 16959,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
