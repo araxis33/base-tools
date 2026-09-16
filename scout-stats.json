@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-16T17:52:21Z",
- "generated_at_unix": 1789581140,
+ "generated_at": "2026-09-16T18:52:27Z",
+ "generated_at_unix": 1789584746,
  "period": {
   "start": "2026-07-15",
   "days": 63
  },
  "totals": {
-  "seen": 167339,
-  "base": 33224,
+  "seen": 167403,
+  "base": 33288,
   "robinhood": 134115,
-  "below_liquidity_threshold": 162481,
-  "spam_filtered": 1687,
-  "scored": 3171,
-  "green": 1744,
+  "below_liquidity_threshold": 162517,
+  "spam_filtered": 1708,
+  "scored": 3178,
+  "green": 1748,
   "yellow": 467,
-  "red": 960
+  "red": 963
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-26",
-   "base": 284,
-   "robinhood": 1852
+   "base": 146,
+   "robinhood": 1205
   },
   {
    "date": "2026-08-27",
@@ -125,11 +125,51 @@
   },
   {
    "date": "2026-09-16",
-   "base": 667,
+   "base": 731,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "$GTRADE",
+   "name": "GrokTrade",
+   "chain": "base",
+   "address": "0xa913384e0e90837356ba0fc5ab4e30ccd7a677e6",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 6030.0558,
+   "first_seen": 1789584371
+  },
+  {
+   "symbol": "AKARI",
+   "name": "AKARI",
+   "chain": "base",
+   "address": "0x515200446e2a9b8a187f60ca07faead7d5bb1b07",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3913.2973,
+   "first_seen": 1789582758
+  },
+  {
+   "symbol": "FED",
+   "name": "The Fed",
+   "chain": "base",
+   "address": "0xb20000000000000000000049a802c413cef13e01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4733.7434,
+   "first_seen": 1789582347
+  },
+  {
+   "symbol": "real",
+   "name": "@grok is this real?",
+   "chain": "base",
+   "address": "0xb200000000000000000000cf3b5ca06344b9b701",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4497.4632,
+   "first_seen": 1789582346
+  },
   {
    "symbol": "STANDARD",
    "name": "The Standard Reserve",
@@ -289,46 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 28885.2597,
    "first_seen": 1789556519
-  },
-  {
-   "symbol": "HOOKR",
-   "name": "Hookr.fun",
-   "chain": "base",
-   "address": "0x7337cd90cf0aac7031c13aa793a1449daa605bbd",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12014.1144046368,
-   "first_seen": 1789555377
-  },
-  {
-   "symbol": "ORDER",
-   "name": "Blue Box Mattress Co",
-   "chain": "base",
-   "address": "0x03fc710a4bb06653c6c6dbc767e85c45dbadd3a8",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3928.9337,
-   "first_seen": 1789553846
-  },
-  {
-   "symbol": "MOW",
-   "name": "MowCat",
-   "chain": "base",
-   "address": "0xa46cbd50d2f68639693bb635769b3df09d586d85",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 12006.3144061913,
-   "first_seen": 1789550043
-  },
-  {
-   "symbol": "COOL",
-   "name": "usdc is cool",
-   "chain": "base",
-   "address": "0xe6762d545ab286a148bb5f6f28eb58ec0138b469",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 486610.4557,
-   "first_seen": 1789549132
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 28,
+  "waiting": 31,
   "confirmed": 24,
-  "dropped": 1117
+  "dropped": 1118
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 942
  },
  "watchlist_active": 13,
- "price_snapshots": 16580,
+ "price_snapshots": 16770,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
