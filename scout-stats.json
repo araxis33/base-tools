@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-16T19:52:32Z",
- "generated_at_unix": 1789588351,
+ "generated_at": "2026-09-16T20:52:37Z",
+ "generated_at_unix": 1789591956,
  "period": {
   "start": "2026-07-15",
   "days": 63
  },
  "totals": {
-  "seen": 167471,
-  "base": 33356,
+  "seen": 167528,
+  "base": 33413,
   "robinhood": 134115,
-  "below_liquidity_threshold": 162554,
-  "spam_filtered": 1733,
-  "scored": 3184,
-  "green": 1752,
+  "below_liquidity_threshold": 162593,
+  "spam_filtered": 1750,
+  "scored": 3185,
+  "green": 1753,
   "yellow": 468,
   "red": 964
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-26",
-   "base": 69,
-   "robinhood": 665
+   "base": 6,
+   "robinhood": 57
   },
   {
    "date": "2026-08-27",
@@ -125,11 +125,21 @@
   },
   {
    "date": "2026-09-16",
-   "base": 799,
+   "base": 856,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "GME",
+   "name": "Greatest Meme Ever",
+   "chain": "base",
+   "address": "0xc6efc32fdd58424586096cea004422cb8db1d435",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12070.9,
+   "first_seen": 1789590417
+  },
   {
    "symbol": "X",
    "name": "X100",
@@ -319,16 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 18722.3541,
    "first_seen": 1789569622
-  },
-  {
-   "symbol": "BRAINARMS",
-   "name": "Brain Armstrong",
-   "chain": "base",
-   "address": "0xb200000000000000000000985c5530d357682ec9",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 10502.4088,
-   "first_seen": 1789566274
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 29,
+  "waiting": 25,
   "confirmed": 24,
-  "dropped": 1125
+  "dropped": 1130
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 942
  },
  "watchlist_active": 13,
- "price_snapshots": 16959,
+ "price_snapshots": 17228,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
