@@ -1,32 +1,27 @@
 {
- "generated_at": "2026-09-16T20:52:37Z",
- "generated_at_unix": 1789591956,
+ "generated_at": "2026-09-17T09:04:41Z",
+ "generated_at_unix": 1789635881,
  "period": {
   "start": "2026-07-15",
-  "days": 63
+  "days": 64
  },
  "totals": {
-  "seen": 167528,
-  "base": 33413,
+  "seen": 167610,
+  "base": 33495,
   "robinhood": 134115,
-  "below_liquidity_threshold": 162593,
-  "spam_filtered": 1750,
-  "scored": 3185,
-  "green": 1753,
-  "yellow": 468,
-  "red": 964
+  "below_liquidity_threshold": 162639,
+  "spam_filtered": 1778,
+  "scored": 3193,
+  "green": 1757,
+  "yellow": 471,
+  "red": 965
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
-   "date": "2026-08-26",
-   "base": 6,
-   "robinhood": 57
-  },
-  {
    "date": "2026-08-27",
-   "base": 585,
-   "robinhood": 4300
+   "base": 479,
+   "robinhood": 3699
   },
   {
    "date": "2026-08-28",
@@ -125,11 +120,86 @@
   },
   {
    "date": "2026-09-16",
-   "base": 856,
+   "base": 863,
+   "robinhood": 0
+  },
+  {
+   "date": "2026-09-17",
+   "base": 75,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "JUNO",
+   "name": "Juno",
+   "chain": "base",
+   "address": "0xb200000000000000000000d3e689bfdfb6d539a0",
+   "score": 57,
+   "verdict": "yellow",
+   "liquidity_usd": 43988.3746,
+   "first_seen": 1789635439
+  },
+  {
+   "symbol": "MEGACHESS",
+   "name": "Mega Chess",
+   "chain": "base",
+   "address": "0xb2000000000000000000004556b5c64e58e6a290",
+   "score": 57,
+   "verdict": "yellow",
+   "liquidity_usd": 15676.977,
+   "first_seen": 1789635437
+  },
+  {
+   "symbol": "BCDB",
+   "name": "BigchainDB",
+   "chain": "base",
+   "address": "0x7bfd745d322ad6c386f45679d73e9c30a16cd2ee",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 79684.8831,
+   "first_seen": 1789633458
+  },
+  {
+   "symbol": "LITE",
+   "name": "Lumentum Tokenized Stock (Robinhood)",
+   "chain": "base",
+   "address": "0x73997773dece9cce2ac2b136078a3e55f020ed31",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12183.1,
+   "first_seen": 1789633095
+  },
+  {
+   "symbol": "COMET",
+   "name": "Tiny Comet",
+   "chain": "base",
+   "address": "0xb200000000000000000000983cd079442a8e7c61",
+   "score": 57,
+   "verdict": "yellow",
+   "liquidity_usd": 36200.2605,
+   "first_seen": 1789632324
+  },
+  {
+   "symbol": "CORTANA",
+   "name": "Muse Mascot - CORTANA",
+   "chain": "base",
+   "address": "0xb20000000000000000000096c499bcda6540ec88",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 50587.7251,
+   "first_seen": 1789632322
+  },
+  {
+   "symbol": "VANTA-AI",
+   "name": "vanta",
+   "chain": "base",
+   "address": "0xb20000000000000000000055220cd39acf8e62b3",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 14730.6353,
+   "first_seen": 1789632318
+  },
   {
    "symbol": "GME",
    "name": "Greatest Meme Ever",
@@ -259,76 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 1.51232596868076e+19,
    "first_seen": 1789576746
-  },
-  {
-   "symbol": "ONBASE",
-   "name": "onbase",
-   "chain": "base",
-   "address": "0xb200000000000000000000bac171e7709ad8f2de",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 19491.7468,
-   "first_seen": 1789574350
-  },
-  {
-   "symbol": "please",
-   "name": "please",
-   "chain": "base",
-   "address": "0xb200000000000000000000699e03fa1205c4eb00",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 16807.9616,
-   "first_seen": 1789574349
-  },
-  {
-   "symbol": "TOLLY",
-   "name": "Tolly",
-   "chain": "base",
-   "address": "0x19ff725c5364578882d01cb754ab59c0fc531b4b",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 35341.8124,
-   "first_seen": 1789574347
-  },
-  {
-   "symbol": "Jessephone",
-   "name": "Jesseiphone",
-   "chain": "base",
-   "address": "0xb2000000000000000000004e962e1387a6cda501",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4019.3545,
-   "first_seen": 1789574346
-  },
-  {
-   "symbol": "locklaunchinu",
-   "name": "locklaunchinu",
-   "chain": "base",
-   "address": "0xe7dc2c72640e03f52e6749f3bbcc33296684dd95",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 9313.2264,
-   "first_seen": 1789574343
-  },
-  {
-   "symbol": "ORBXon",
-   "name": "Global X Space Tech Tokenized ETF (Ondo)",
-   "chain": "base",
-   "address": "0xf743f7361efd87c3849f8e15bd8f30fa0acc0ee7",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 11959.914347517,
-   "first_seen": 1789571591
-  },
-  {
-   "symbol": "LAPTOP",
-   "name": "Hunter Biden's Laptop",
-   "chain": "base",
-   "address": "0x7dbbdf9928f83065a913754124a37a9dd5087489",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 18722.3541,
-   "first_seen": 1789569622
   }
  ],
  "confirmed": [
@@ -556,9 +556,15 @@
  "probation": {
   "waiting": 25,
   "confirmed": 24,
-  "dropped": 1130
+  "dropped": 1137
  },
  "recent_drains": [
+  {
+   "symbol": "FLY",
+   "chain": "base",
+   "address": "0x8d292bc85c0652522d8a6325c7f1888f33e1cba3",
+   "ts": 1789632283
+  },
   {
    "symbol": "MOTO",
    "chain": "base",
@@ -642,12 +648,6 @@
    "chain": "base",
    "address": "0x676dda0b67e373b1fe3c9ea9a03dadafb899fc57",
    "ts": 1787677267
-  },
-  {
-   "symbol": "STFX",
-   "chain": "robinhood",
-   "address": "0x98804a141d7508f24cccc8736d7109f169bd7f6d",
-   "ts": 1787592839
   }
  ],
  "survivors": [
@@ -755,10 +755,10 @@
  "alerts": {
   "dump": 696,
   "pump": 263,
-  "rug": 942
+  "rug": 943
  },
  "watchlist_active": 13,
- "price_snapshots": 17228,
+ "price_snapshots": 17456,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
