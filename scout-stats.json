@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-17T09:04:41Z",
- "generated_at_unix": 1789635881,
+ "generated_at": "2026-09-17T10:04:48Z",
+ "generated_at_unix": 1789639487,
  "period": {
   "start": "2026-07-15",
   "days": 64
  },
  "totals": {
-  "seen": 167610,
-  "base": 33495,
+  "seen": 167683,
+  "base": 33568,
   "robinhood": 134115,
-  "below_liquidity_threshold": 162639,
-  "spam_filtered": 1778,
-  "scored": 3193,
-  "green": 1757,
+  "below_liquidity_threshold": 162692,
+  "spam_filtered": 1792,
+  "scored": 3199,
+  "green": 1763,
   "yellow": 471,
   "red": 965
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-27",
-   "base": 479,
-   "robinhood": 3699
+   "base": 443,
+   "robinhood": 3430
   },
   {
    "date": "2026-08-28",
@@ -125,11 +125,71 @@
   },
   {
    "date": "2026-09-17",
-   "base": 75,
+   "base": 148,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "PPLA",
+   "name": "ProudPLATYPUS",
+   "chain": "base",
+   "address": "0x8bbe53c3e8a8a862a727cbba2bcc87ab98c78d6c",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 24414.3,
+   "first_seen": 1789638563
+  },
+  {
+   "symbol": "USPR",
+   "name": "United States Power Reserve",
+   "chain": "base",
+   "address": "0x033f673b3397fdbe3bcc14562c31ad6191579520",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 101431.65,
+   "first_seen": 1789637970
+  },
+  {
+   "symbol": "VELO",
+   "name": "Velocity",
+   "chain": "base",
+   "address": "0x678e78c0e85b048e20d2e912fc5cc60cc801a714",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 59836.4204,
+   "first_seen": 1789637592
+  },
+  {
+   "symbol": "Lilly",
+   "name": "Justice For Lilly",
+   "chain": "base",
+   "address": "0xb2000000000000000000004a2106b19282c5a5bb",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 19796.1499,
+   "first_seen": 1789636394
+  },
+  {
+   "symbol": "BATMAN",
+   "name": "New South Gotham",
+   "chain": "base",
+   "address": "0xb200000000000000000000eeadd1b8fd4a18cc01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4047.1004152463,
+   "first_seen": 1789636393
+  },
+  {
+   "symbol": "BREW",
+   "name": "BREW (brew.family)",
+   "chain": "base",
+   "address": "0xb3480fe3f4cba21145678273a80c8a767569d20b",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12655.1972,
+   "first_seen": 1789636391
+  },
   {
    "symbol": "JUNO",
    "name": "Juno",
@@ -269,69 +329,19 @@
    "verdict": "green",
    "liquidity_usd": 6030.0558,
    "first_seen": 1789584371
-  },
-  {
-   "symbol": "AKARI",
-   "name": "AKARI",
-   "chain": "base",
-   "address": "0x515200446e2a9b8a187f60ca07faead7d5bb1b07",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3913.2973,
-   "first_seen": 1789582758
-  },
-  {
-   "symbol": "FED",
-   "name": "The Fed",
-   "chain": "base",
-   "address": "0xb20000000000000000000049a802c413cef13e01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4733.7434,
-   "first_seen": 1789582347
-  },
-  {
-   "symbol": "real",
-   "name": "@grok is this real?",
-   "chain": "base",
-   "address": "0xb200000000000000000000cf3b5ca06344b9b701",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4497.4632,
-   "first_seen": 1789582346
-  },
-  {
-   "symbol": "STANDARD",
-   "name": "The Standard Reserve",
-   "chain": "base",
-   "address": "0x6af5856ff7887a5cde6102bf3d13c5a3e3a7b37f",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 98997.8238022764,
-   "first_seen": 1789580153
-  },
-  {
-   "symbol": "JPYC",
-   "name": "JPY Coin (jpyc.co.jp)",
-   "chain": "base",
-   "address": "0x00fc9fd347c770233a713e1c9357d0350e532a52",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 11939.6643258177,
-   "first_seen": 1789579878
-  },
-  {
-   "symbol": "VTI",
-   "name": "VTI",
-   "chain": "base",
-   "address": "0xae5554bd9c91086cce5adb1952f12af3f843163b",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 1.51232596868076e+19,
-   "first_seen": 1789576746
   }
  ],
  "confirmed": [
+  {
+   "symbol": "BCDB",
+   "chain": "base",
+   "address": "0x7bfd745d322ad6c386f45679d73e9c30a16cd2ee",
+   "buyers_h1": 58,
+   "volume_h1": 24263.8046182878,
+   "liquidity_usd": 95006.9783,
+   "confirmed_at": 1789633458,
+   "hours_waited": 0.8
+  },
   {
    "symbol": "STONKERS",
    "chain": "base",
@@ -521,16 +531,6 @@
    "liquidity_usd": 222555.9363,
    "confirmed_at": 1788030173,
    "hours_waited": 0.8
-  },
-  {
-   "symbol": "OpenAI",
-   "chain": "base",
-   "address": "0x3f261044acefe347b36f7a126f393cbf84ce0b07",
-   "buyers_h1": 29,
-   "volume_h1": 32168580.2259841,
-   "liquidity_usd": 4840457.1003,
-   "confirmed_at": 1787990578,
-   "hours_waited": 0.9
   }
  ],
  "verdict_outcomes": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 25,
-  "confirmed": 24,
-  "dropped": 1137
+  "waiting": 17,
+  "confirmed": 25,
+  "dropped": 1150
  },
  "recent_drains": [
   {
@@ -757,8 +757,8 @@
   "pump": 263,
   "rug": 943
  },
- "watchlist_active": 13,
- "price_snapshots": 17456,
+ "watchlist_active": 14,
+ "price_snapshots": 17699,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
