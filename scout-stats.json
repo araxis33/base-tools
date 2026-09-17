@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-17T13:20:10Z",
- "generated_at_unix": 1789651209,
+ "generated_at": "2026-09-17T14:20:16Z",
+ "generated_at_unix": 1789654814,
  "period": {
   "start": "2026-07-15",
   "days": 64
  },
  "totals": {
-  "seen": 167764,
-  "base": 33649,
+  "seen": 167828,
+  "base": 33713,
   "robinhood": 134115,
-  "below_liquidity_threshold": 162744,
-  "spam_filtered": 1811,
-  "scored": 3209,
-  "green": 1770,
+  "below_liquidity_threshold": 162780,
+  "spam_filtered": 1831,
+  "scored": 3217,
+  "green": 1777,
   "yellow": 471,
-  "red": 968
+  "red": 969
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-27",
-   "base": 334,
-   "robinhood": 2905
+   "base": 275,
+   "robinhood": 2320
   },
   {
    "date": "2026-08-28",
@@ -125,11 +125,81 @@
   },
   {
    "date": "2026-09-17",
-   "base": 229,
+   "base": 293,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "INUVATION",
+   "name": "inuvation",
+   "chain": "base",
+   "address": "0x140ab7cfcbfdcd02ee3ac67661fada44fa061641",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 9508.1467,
+   "first_seen": 1789654733
+  },
+  {
+   "symbol": "BASEDOG",
+   "name": "BASEDOG",
+   "chain": "base",
+   "address": "0xb20000000000000000000022bb7654aa7ee8d37c",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12495.3616,
+   "first_seen": 1789654731
+  },
+  {
+   "symbol": "LITVM",
+   "name": "LITVM by Virtuals",
+   "chain": "base",
+   "address": "0xb200000000000000000000b9fb0f9d0ad7e346f9",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 14185.5614,
+   "first_seen": 1789654729
+  },
+  {
+   "symbol": "MUSK",
+   "name": "MelonMusk",
+   "chain": "base",
+   "address": "0xf740e651ceab7b074b2ee8c6efa3e011eb2d4bd1",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4314.457,
+   "first_seen": 1789653159
+  },
+  {
+   "symbol": "CRACKTOP",
+   "name": "Cracktop",
+   "chain": "base",
+   "address": "0xf7eb03ba2c19342629b7d7b9cb89c0ad5cdff7ca",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 15745.9594637666,
+   "first_seen": 1789652557
+  },
+  {
+   "symbol": "SNDK",
+   "name": "Sandisk Corporation Tokenized Stock (Robinhood)",
+   "chain": "base",
+   "address": "0x2ebae78ece31a788b402d6a79b5f13c21589ba28",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12224.55,
+   "first_seen": 1789652235
+  },
+  {
+   "symbol": "COPPERINU",
+   "name": "Copper inu",
+   "chain": "base",
+   "address": "0xa0c57de431a3912e0064016351d546ef5a14fee1",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 16104.9718060871,
+   "first_seen": 1789651636
+  },
   {
    "symbol": "TEST",
    "name": "Test App Token",
@@ -259,76 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 12655.1972,
    "first_seen": 1789636391
-  },
-  {
-   "symbol": "JUNO",
-   "name": "Juno",
-   "chain": "base",
-   "address": "0xb200000000000000000000d3e689bfdfb6d539a0",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 43988.3746,
-   "first_seen": 1789635439
-  },
-  {
-   "symbol": "MEGACHESS",
-   "name": "Mega Chess",
-   "chain": "base",
-   "address": "0xb2000000000000000000004556b5c64e58e6a290",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 15676.977,
-   "first_seen": 1789635437
-  },
-  {
-   "symbol": "BCDB",
-   "name": "BigchainDB",
-   "chain": "base",
-   "address": "0x7bfd745d322ad6c386f45679d73e9c30a16cd2ee",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 79684.8831,
-   "first_seen": 1789633458
-  },
-  {
-   "symbol": "LITE",
-   "name": "Lumentum Tokenized Stock (Robinhood)",
-   "chain": "base",
-   "address": "0x73997773dece9cce2ac2b136078a3e55f020ed31",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12183.1,
-   "first_seen": 1789633095
-  },
-  {
-   "symbol": "COMET",
-   "name": "Tiny Comet",
-   "chain": "base",
-   "address": "0xb200000000000000000000983cd079442a8e7c61",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 36200.2605,
-   "first_seen": 1789632324
-  },
-  {
-   "symbol": "CORTANA",
-   "name": "Muse Mascot - CORTANA",
-   "chain": "base",
-   "address": "0xb20000000000000000000096c499bcda6540ec88",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 50587.7251,
-   "first_seen": 1789632322
-  },
-  {
-   "symbol": "VANTA-AI",
-   "name": "vanta",
-   "chain": "base",
-   "address": "0xb20000000000000000000055220cd39acf8e62b3",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 14730.6353,
-   "first_seen": 1789632318
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 20,
+  "waiting": 26,
   "confirmed": 25,
-  "dropped": 1154
+  "dropped": 1155
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 943
  },
  "watchlist_active": 14,
- "price_snapshots": 17881,
+ "price_snapshots": 18148,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
