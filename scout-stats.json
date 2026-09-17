@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-17T14:20:16Z",
- "generated_at_unix": 1789654814,
+ "generated_at": "2026-09-17T18:12:49Z",
+ "generated_at_unix": 1789668769,
  "period": {
   "start": "2026-07-15",
   "days": 64
  },
  "totals": {
-  "seen": 167828,
-  "base": 33713,
+  "seen": 167921,
+  "base": 33806,
   "robinhood": 134115,
-  "below_liquidity_threshold": 162780,
-  "spam_filtered": 1831,
-  "scored": 3217,
-  "green": 1777,
+  "below_liquidity_threshold": 162841,
+  "spam_filtered": 1857,
+  "scored": 3223,
+  "green": 1783,
   "yellow": 471,
   "red": 969
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-27",
-   "base": 275,
-   "robinhood": 2320
+   "base": 163,
+   "robinhood": 1577
   },
   {
    "date": "2026-08-28",
@@ -125,11 +125,71 @@
   },
   {
    "date": "2026-09-17",
-   "base": 293,
+   "base": 386,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "AiFi",
+   "name": "Agentic Finance",
+   "chain": "base",
+   "address": "0xb20000000000000000000041cf6977319c5ad018",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 17568.455,
+   "first_seen": 1789668215
+  },
+  {
+   "symbol": "FEED",
+   "name": "FEED",
+   "chain": "base",
+   "address": "0xd39aece709501c7f3eaa7e8cfa397112447f0ba3",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 22830.6148178158,
+   "first_seen": 1789668213
+  },
+  {
+   "symbol": "FLEX",
+   "name": "Flex Ltd. Ordinary Shares (Derivatives)",
+   "chain": "base",
+   "address": "0xef1126cddde001a43f38f0801512ccaea8400264",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12348.9648153021,
+   "first_seen": 1789665861
+  },
+  {
+   "symbol": "COINBOSS",
+   "name": "Coinboss",
+   "chain": "base",
+   "address": "0xb200000000000000000000431d1c8f04de3b7401",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 5247.5963,
+   "first_seen": 1789665406
+  },
+  {
+   "symbol": "ROCKETS",
+   "name": "Doge Force One",
+   "chain": "base",
+   "address": "0xf509ee538966ffac3c784744b1b50bdceb76ab96",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4387.5429,
+   "first_seen": 1789655301
+  },
+  {
+   "symbol": "GPU",
+   "name": "GoonProcessingUnit",
+   "chain": "base",
+   "address": "0xa62bad4b34e94546bfd769caed5b88ae3da8fee1",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13462.3640289691,
+   "first_seen": 1789654837
+  },
   {
    "symbol": "INUVATION",
    "name": "inuvation",
@@ -269,66 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 8667.0288,
    "first_seen": 1789639746
-  },
-  {
-   "symbol": "PPLA",
-   "name": "ProudPLATYPUS",
-   "chain": "base",
-   "address": "0x8bbe53c3e8a8a862a727cbba2bcc87ab98c78d6c",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 24414.3,
-   "first_seen": 1789638563
-  },
-  {
-   "symbol": "USPR",
-   "name": "United States Power Reserve",
-   "chain": "base",
-   "address": "0x033f673b3397fdbe3bcc14562c31ad6191579520",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 101431.65,
-   "first_seen": 1789637970
-  },
-  {
-   "symbol": "VELO",
-   "name": "Velocity",
-   "chain": "base",
-   "address": "0x678e78c0e85b048e20d2e912fc5cc60cc801a714",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 59836.4204,
-   "first_seen": 1789637592
-  },
-  {
-   "symbol": "Lilly",
-   "name": "Justice For Lilly",
-   "chain": "base",
-   "address": "0xb2000000000000000000004a2106b19282c5a5bb",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 19796.1499,
-   "first_seen": 1789636394
-  },
-  {
-   "symbol": "BATMAN",
-   "name": "New South Gotham",
-   "chain": "base",
-   "address": "0xb200000000000000000000eeadd1b8fd4a18cc01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4047.1004152463,
-   "first_seen": 1789636393
-  },
-  {
-   "symbol": "BREW",
-   "name": "BREW (brew.family)",
-   "chain": "base",
-   "address": "0xb3480fe3f4cba21145678273a80c8a767569d20b",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12655.1972,
-   "first_seen": 1789636391
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 26,
+  "waiting": 21,
   "confirmed": 25,
-  "dropped": 1155
+  "dropped": 1166
  },
  "recent_drains": [
   {
@@ -753,12 +753,12 @@
   }
  ],
  "alerts": {
-  "dump": 696,
+  "dump": 697,
   "pump": 263,
   "rug": 943
  },
  "watchlist_active": 14,
- "price_snapshots": 18148,
+ "price_snapshots": 18206,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
