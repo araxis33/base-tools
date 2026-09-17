@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-17T10:04:48Z",
- "generated_at_unix": 1789639487,
+ "generated_at": "2026-09-17T13:20:10Z",
+ "generated_at_unix": 1789651209,
  "period": {
   "start": "2026-07-15",
   "days": 64
  },
  "totals": {
-  "seen": 167683,
-  "base": 33568,
+  "seen": 167764,
+  "base": 33649,
   "robinhood": 134115,
-  "below_liquidity_threshold": 162692,
-  "spam_filtered": 1792,
-  "scored": 3199,
-  "green": 1763,
+  "below_liquidity_threshold": 162744,
+  "spam_filtered": 1811,
+  "scored": 3209,
+  "green": 1770,
   "yellow": 471,
-  "red": 965
+  "red": 968
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-27",
-   "base": 443,
-   "robinhood": 3430
+   "base": 334,
+   "robinhood": 2905
   },
   {
    "date": "2026-08-28",
@@ -125,11 +125,81 @@
   },
   {
    "date": "2026-09-17",
-   "base": 148,
+   "base": 229,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "TEST",
+   "name": "Test App Token",
+   "chain": "base",
+   "address": "0xd70a38c98816fd8cc7da0062d04cd928c7767494",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 22536.1642,
+   "first_seen": 1789650676
+  },
+  {
+   "symbol": "3II®",
+   "name": "Studio ®",
+   "chain": "base",
+   "address": "0x3491998c1e24a347ea52937aa8090d02fd6bc82b",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 1.4999185472937e+19,
+   "first_seen": 1789650220
+  },
+  {
+   "symbol": "ILY",
+   "name": "ILITY",
+   "chain": "base",
+   "address": "0x0b4348d271e1882f1a2b930e509daf2b25fb324b",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13276.8687,
+   "first_seen": 1789649753
+  },
+  {
+   "symbol": "HQUE",
+   "name": "HomelyQUELEA",
+   "chain": "base",
+   "address": "0xc217c8004c11a4724e0f3abab0b7471696f7afc3",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 24622.7,
+   "first_seen": 1789649750
+  },
+  {
+   "symbol": "MUSECLAW",
+   "name": "museclaw",
+   "chain": "base",
+   "address": "0x9a0235f79f7786ecf974c1d97abf7ca8b232c222",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 7114.3642,
+   "first_seen": 1789640889
+  },
+  {
+   "symbol": "SPCX",
+   "name": "SpaceX Tokenized Stock (Robinhood)",
+   "chain": "base",
+   "address": "0x16b7d82c8021efa6bf60d48c367c7bd13e3e2d3b",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12155.1645751237,
+   "first_seen": 1789640661
+  },
+  {
+   "symbol": "INTERFOLD",
+   "name": "The Interfold",
+   "chain": "base",
+   "address": "0xcd1a20be0d5f044588e2dcb21da509549179d7c6",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 8667.0288,
+   "first_seen": 1789639746
+  },
   {
    "symbol": "PPLA",
    "name": "ProudPLATYPUS",
@@ -259,76 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 14730.6353,
    "first_seen": 1789632318
-  },
-  {
-   "symbol": "GME",
-   "name": "Greatest Meme Ever",
-   "chain": "base",
-   "address": "0xc6efc32fdd58424586096cea004422cb8db1d435",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12070.9,
-   "first_seen": 1789590417
-  },
-  {
-   "symbol": "X",
-   "name": "X100",
-   "chain": "base",
-   "address": "0x7efbc98e4a650a716fad2c66e7d89dd669ba9ce4",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 11987.9643719744,
-   "first_seen": 1789587818
-  },
-  {
-   "symbol": "SAD",
-   "name": "SAD",
-   "chain": "base",
-   "address": "0xba5efe15c27d866cabbd596683bf6cddf8297850",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 7532.5892,
-   "first_seen": 1789586808
-  },
-  {
-   "symbol": "PODGAIN",
-   "name": "podcat",
-   "chain": "base",
-   "address": "0x1b9254f10dc2246099a7f5e3eb50eef521e0fee1",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 21020.0847067656,
-   "first_seen": 1789585985
-  },
-  {
-   "symbol": "cobee",
-   "name": "cobee",
-   "chain": "base",
-   "address": "0xcfbe9d387be73df05df39306be18f5f6773a765f",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 72402.5703,
-   "first_seen": 1789585161
-  },
-  {
-   "symbol": "Muse",
-   "name": "Muse on Base",
-   "chain": "base",
-   "address": "0xb2000000000000000000007d2c253d15f8632c01",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 5247.6291,
-   "first_seen": 1789584842
-  },
-  {
-   "symbol": "$GTRADE",
-   "name": "GrokTrade",
-   "chain": "base",
-   "address": "0xa913384e0e90837356ba0fc5ab4e30ccd7a677e6",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 6030.0558,
-   "first_seen": 1789584371
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 17,
+  "waiting": 20,
   "confirmed": 25,
-  "dropped": 1150
+  "dropped": 1154
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 943
  },
  "watchlist_active": 14,
- "price_snapshots": 17699,
+ "price_snapshots": 17881,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
