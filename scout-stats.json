@@ -1,32 +1,27 @@
 {
- "generated_at": "2026-09-17T20:13:00Z",
- "generated_at_unix": 1789675978,
+ "generated_at": "2026-09-17T21:13:06Z",
+ "generated_at_unix": 1789679584,
  "period": {
   "start": "2026-07-15",
   "days": 64
  },
  "totals": {
-  "seen": 168019,
-  "base": 33904,
+  "seen": 168077,
+  "base": 33962,
   "robinhood": 134115,
-  "below_liquidity_threshold": 162893,
-  "spam_filtered": 1899,
-  "scored": 3227,
-  "green": 1787,
+  "below_liquidity_threshold": 162921,
+  "spam_filtered": 1924,
+  "scored": 3232,
+  "green": 1790,
   "yellow": 471,
-  "red": 969
+  "red": 971
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
-   "date": "2026-08-27",
-   "base": 27,
-   "robinhood": 338
-  },
-  {
    "date": "2026-08-28",
-   "base": 805,
-   "robinhood": 4701
+   "base": 799,
+   "robinhood": 4611
   },
   {
    "date": "2026-08-29",
@@ -125,11 +120,46 @@
   },
   {
    "date": "2026-09-17",
-   "base": 484,
+   "base": 535,
+   "robinhood": 0
+  },
+  {
+   "date": "2026-09-18",
+   "base": 7,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "ARC",
+   "name": "Archangel",
+   "chain": "base",
+   "address": "0xb2000000000000000000007330b7009c9f04dfa8",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 11571.8123,
+   "first_seen": 1789679523
+  },
+  {
+   "symbol": "XL",
+   "name": "X Link (xl.money)",
+   "chain": "base",
+   "address": "0x61b0b2982eaa78189d5d261cb2ef9ad526eea903",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12627.9856,
+   "first_seen": 1789676229
+  },
+  {
+   "symbol": "JWP",
+   "name": "JESSE WIF PUMBLER",
+   "chain": "base",
+   "address": "0xb200000000000000000000a791e45ecf82a5cf01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4099.4757,
+   "first_seen": 1789676000
+  },
   {
    "symbol": "ASE",
    "name": "Asentum",
@@ -299,36 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 16104.9718060871,
    "first_seen": 1789651636
-  },
-  {
-   "symbol": "TEST",
-   "name": "Test App Token",
-   "chain": "base",
-   "address": "0xd70a38c98816fd8cc7da0062d04cd928c7767494",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 22536.1642,
-   "first_seen": 1789650676
-  },
-  {
-   "symbol": "3II®",
-   "name": "Studio ®",
-   "chain": "base",
-   "address": "0x3491998c1e24a347ea52937aa8090d02fd6bc82b",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 1.4999185472937e+19,
-   "first_seen": 1789650220
-  },
-  {
-   "symbol": "ILY",
-   "name": "ILITY",
-   "chain": "base",
-   "address": "0x0b4348d271e1882f1a2b930e509daf2b25fb324b",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13276.8687,
-   "first_seen": 1789649753
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 19,
+  "waiting": 17,
   "confirmed": 25,
-  "dropped": 1172
+  "dropped": 1177
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 943
  },
  "watchlist_active": 13,
- "price_snapshots": 18626,
+ "price_snapshots": 18827,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
