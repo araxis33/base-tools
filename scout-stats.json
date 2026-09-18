@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-18T09:28:14Z",
- "generated_at_unix": 1789723694,
+ "generated_at": "2026-09-18T10:28:19Z",
+ "generated_at_unix": 1789727298,
  "period": {
   "start": "2026-07-15",
   "days": 65
  },
  "totals": {
-  "seen": 168236,
-  "base": 34121,
+  "seen": 168308,
+  "base": 34193,
   "robinhood": 134115,
-  "below_liquidity_threshold": 163011,
-  "spam_filtered": 1979,
-  "scored": 3246,
-  "green": 1802,
+  "below_liquidity_threshold": 163030,
+  "spam_filtered": 2018,
+  "scored": 3260,
+  "green": 1814,
   "yellow": 471,
-  "red": 973
+  "red": 975
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-28",
-   "base": 701,
-   "robinhood": 4012
+   "base": 686,
+   "robinhood": 3896
   },
   {
    "date": "2026-08-29",
@@ -125,11 +125,131 @@
   },
   {
    "date": "2026-09-18",
-   "base": 166,
+   "base": 238,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "SDRA",
+   "name": "StingyDRAGONFLY",
+   "chain": "base",
+   "address": "0x2ae663648dbcdff884861bec6847bd617c9e0f56",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 25131.0,
+   "first_seen": 1789726985
+  },
+  {
+   "symbol": "LFOWM",
+   "name": "LFOWM",
+   "chain": "base",
+   "address": "0x4c1a683c0636bd80948d145c249fbb1aa271daa1",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 19179.0799,
+   "first_seen": 1789726748
+  },
+  {
+   "symbol": "RADR",
+   "name": "RADR",
+   "chain": "base",
+   "address": "0x558f95caf0e9d8b55275a1885d3ff39c3666af52",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 19177.4763,
+   "first_seen": 1789726747
+  },
+  {
+   "symbol": "USDF",
+   "name": "United States Dividend Fund",
+   "chain": "base",
+   "address": "0x17a37adb383fdb451e8e39c40ffccceed450b87b",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 37834.2359,
+   "first_seen": 1789726515
+  },
+  {
+   "symbol": "HYPER",
+   "name": "Hyperliquid Ascendancy",
+   "chain": "base",
+   "address": "0x160404ac28e2b117eb6e41c407d36163eefbaed1",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 37793.5401,
+   "first_seen": 1789726378
+  },
+  {
+   "symbol": "DREAM",
+   "name": "1 meme and a dream",
+   "chain": "base",
+   "address": "0xb2764fb47a478e0b22a57f6cc4902e406a98b123",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 77654.6441,
+   "first_seen": 1789726239
+  },
+  {
+   "symbol": "ZAMA",
+   "name": "Zama Labs",
+   "chain": "base",
+   "address": "0xb277a39b8baec061482ee41bd9d16fd4731bb9f0",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 19100.9616,
+   "first_seen": 1789724719
+  },
+  {
+   "symbol": "MCAT",
+   "name": "Mooncat",
+   "chain": "base",
+   "address": "0x0e572f07d7e2b1bfb30b3c25995b99394db892a0",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 19115.2413,
+   "first_seen": 1789724581
+  },
+  {
+   "symbol": "sea",
+   "name": "sea",
+   "chain": "base",
+   "address": "0x11df9f2f27c1b59ee7c1b6146c7d6f283ef6caf1",
+   "score": 76,
+   "verdict": "green",
+   "liquidity_usd": 2251.5442,
+   "first_seen": 1789724488
+  },
+  {
+   "symbol": "GTAVI",
+   "name": "Grand Theft Auto VI (gtavieth.com)",
+   "chain": "base",
+   "address": "0xc0d63479d532d60591277c9afd53c6dcd29ae505",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12512.7650090236,
+   "first_seen": 1789724487
+  },
+  {
+   "symbol": "DCA",
+   "name": "DCA PROTOCOL",
+   "chain": "base",
+   "address": "0x4618d805fc9883af2a43c5739ce5001904dfd08c",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 37781.03,
+   "first_seen": 1789723873
+  },
+  {
+   "symbol": "MALA",
+   "name": "Malachite",
+   "chain": "base",
+   "address": "0xbe39e7ccbbe44a4da416b05ccd65dd997c899a90",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 37776.8097,
+   "first_seen": 1789723872
+  },
   {
    "symbol": "YATE",
    "name": "Investing Yachts",
@@ -209,126 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 59910.1448,
    "first_seen": 1789720100
-  },
-  {
-   "symbol": "MOZI",
-   "name": "Mozi",
-   "chain": "base",
-   "address": "0xc41dbc0a1dcb72efb215019e345f83b8f485af16",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 74296.1924,
-   "first_seen": 1789682132
-  },
-  {
-   "symbol": "AVNT",
-   "name": "[Fake] Veranta (avantisfi.xyz)",
-   "chain": "base",
-   "address": "0x33cb37014e1b51292f950a93f23b1b28de30ba2f",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12241.4146868155,
-   "first_seen": 1789682083
-  },
-  {
-   "symbol": "SketchShiftSync Genesis",
-   "name": "SketchShiftSync Genesis",
-   "chain": "base",
-   "address": "0x138ccb57537a94015d2b53fcdeb9c9873123054a",
-   "score": 76,
-   "verdict": "green",
-   "liquidity_usd": 2203.3833,
-   "first_seen": 1789680162
-  },
-  {
-   "symbol": "OPENAIx1L",
-   "name": "OPENAI 1x Long",
-   "chain": "base",
-   "address": "0xff9307da003235643039557fccc5b0546f71cfe8",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12254.4958,
-   "first_seen": 1789679706
-  },
-  {
-   "symbol": "ARC",
-   "name": "Archangel",
-   "chain": "base",
-   "address": "0xb2000000000000000000007330b7009c9f04dfa8",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 11571.8123,
-   "first_seen": 1789679523
-  },
-  {
-   "symbol": "XL",
-   "name": "X Link (xl.money)",
-   "chain": "base",
-   "address": "0x61b0b2982eaa78189d5d261cb2ef9ad526eea903",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12627.9856,
-   "first_seen": 1789676229
-  },
-  {
-   "symbol": "JWP",
-   "name": "JESSE WIF PUMBLER",
-   "chain": "base",
-   "address": "0xb200000000000000000000a791e45ecf82a5cf01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4099.4757,
-   "first_seen": 1789676000
-  },
-  {
-   "symbol": "ASE",
-   "name": "Asentum",
-   "chain": "base",
-   "address": "0x6cc4df0c6bebabb8c6452afb9aa67320f688317d",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 18552.1084,
-   "first_seen": 1789674361
-  },
-  {
-   "symbol": "PEEPS",
-   "name": "Peeps (peeps.wtf)",
-   "chain": "base",
-   "address": "0x70d384b170f7372d09af0c6713b559e37480880b",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12793.2804,
-   "first_seen": 1789673584
-  },
-  {
-   "symbol": "CLM",
-   "name": "ConsistentCLAM",
-   "chain": "base",
-   "address": "0xa4fd1ebba608f2c79e4cbe68e12c03019bdb07fc",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 24503.9,
-   "first_seen": 1789671898
-  },
-  {
-   "symbol": "ADBE",
-   "name": "Adobe Inc (Derivatives)",
-   "chain": "base",
-   "address": "0x8b333868287106a4bd54c33e0406d327be4d38be",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12300.4147475055,
-   "first_seen": 1789669224
-  },
-  {
-   "symbol": "AiFi",
-   "name": "Agentic Finance",
-   "chain": "base",
-   "address": "0xb20000000000000000000041cf6977319c5ad018",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 17568.455,
-   "first_seen": 1789668215
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 23,
+  "waiting": 32,
   "confirmed": 25,
-  "dropped": 1183
+  "dropped": 1186
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 943
  },
  "watchlist_active": 13,
- "price_snapshots": 19201,
+ "price_snapshots": 19402,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
