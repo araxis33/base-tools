@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-18T14:42:20Z",
- "generated_at_unix": 1789742539,
+ "generated_at": "2026-09-18T15:42:25Z",
+ "generated_at_unix": 1789746145,
  "period": {
   "start": "2026-07-15",
   "days": 65
  },
  "totals": {
-  "seen": 168453,
-  "base": 34338,
+  "seen": 168508,
+  "base": 34393,
   "robinhood": 134115,
-  "below_liquidity_threshold": 163106,
-  "spam_filtered": 2070,
-  "scored": 3277,
-  "green": 1829,
-  "yellow": 471,
+  "below_liquidity_threshold": 163144,
+  "spam_filtered": 2078,
+  "scored": 3286,
+  "green": 1837,
+  "yellow": 472,
   "red": 977
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-28",
-   "base": 492,
-   "robinhood": 2634
+   "base": 343,
+   "robinhood": 2205
   },
   {
    "date": "2026-08-29",
@@ -125,11 +125,101 @@
   },
   {
    "date": "2026-09-18",
-   "base": 383,
+   "base": 438,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "musebook",
+   "name": "Musebook",
+   "chain": "base",
+   "address": "0xfc4d591363c9c5126ccbe3f99653b6c2956d1b98",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12909.05,
+   "first_seen": 1789746063
+  },
+  {
+   "symbol": "waybackmachine",
+   "name": "waybackmachine",
+   "chain": "base",
+   "address": "0xfb63d6708292460596c601f00d3b09f4a37104f2",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 2733270.95697602,
+   "first_seen": 1789745971
+  },
+  {
+   "symbol": "WSOIL",
+   "name": "World Strategic Oil Supply",
+   "chain": "base",
+   "address": "0x11dda0b5f1ef76d6015e860c569923d5e1a84145",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 137518.6597,
+   "first_seen": 1789745610
+  },
+  {
+   "symbol": "MCAT",
+   "name": "Mooncat Base",
+   "chain": "base",
+   "address": "0xa8b0f54b65460c42271e8eb348548fd37f1e5229",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 6559.068,
+   "first_seen": 1789744736
+  },
+  {
+   "symbol": "Tesla Energy",
+   "name": "Tesla Energy",
+   "chain": "base",
+   "address": "0xb2000000000000000000002f85f8a3833e004a8d",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 10810.6383440572,
+   "first_seen": 1789744735
+  },
+  {
+   "symbol": "B20",
+   "name": "B20",
+   "chain": "base",
+   "address": "0xb200000000000000000000356ec9e9cb2adeef01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4196.2101,
+   "first_seen": 1789744552
+  },
+  {
+   "symbol": "‮1DSU",
+   "name": "‮1DSU",
+   "chain": "base",
+   "address": "0x63da1030d7a58e3175db5b2f488bce16d08cfb07",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 17994.6058,
+   "first_seen": 1789743902
+  },
+  {
+   "symbol": "CAR",
+   "name": "Avis Budget Group (Derivatives)",
+   "chain": "base",
+   "address": "0x9268ffeaef2c475026e4daa58cf10e714c272ae4",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13212.7049,
+   "first_seen": 1789743446
+  },
+  {
+   "symbol": "POOF",
+   "name": "Uninstall Wizard",
+   "chain": "base",
+   "address": "0xb200000000000000000000d61c976d6010d17cc0",
+   "score": 57,
+   "verdict": "yellow",
+   "liquidity_usd": 4691.8734,
+   "first_seen": 1789743027
+  },
   {
    "symbol": "24/5",
    "name": "24/5",
@@ -239,96 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 4574.7894,
    "first_seen": 1789730549
-  },
-  {
-   "symbol": "TREAD",
-   "name": "Tread.fi",
-   "chain": "base",
-   "address": "0x3665311e18ec017574374e3254bb6d53a4aa3037",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12513.9650053573,
-   "first_seen": 1789730070
-  },
-  {
-   "symbol": "APM",
-   "name": "apM Fashion",
-   "chain": "base",
-   "address": "0x7a455861b191ef5f639454376564d50727a7f53c",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 12571.1650829362,
-   "first_seen": 1789729698
-  },
-  {
-   "symbol": "BRIAN DOG",
-   "name": "Brian The Dog",
-   "chain": "base",
-   "address": "0x0ef87c139ce5900d9e2f8fba0d5a0a17be2b1698",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4083.2569,
-   "first_seen": 1789727864
-  },
-  {
-   "symbol": "AORP",
-   "name": "AORP",
-   "chain": "base",
-   "address": "0x950548e2ba1d49e1521e513a640ca1b6e15df387",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 6530102.4482,
-   "first_seen": 1789727817
-  },
-  {
-   "symbol": "SDRA",
-   "name": "StingyDRAGONFLY",
-   "chain": "base",
-   "address": "0x2ae663648dbcdff884861bec6847bd617c9e0f56",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 25131.0,
-   "first_seen": 1789726985
-  },
-  {
-   "symbol": "LFOWM",
-   "name": "LFOWM",
-   "chain": "base",
-   "address": "0x4c1a683c0636bd80948d145c249fbb1aa271daa1",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 19179.0799,
-   "first_seen": 1789726748
-  },
-  {
-   "symbol": "RADR",
-   "name": "RADR",
-   "chain": "base",
-   "address": "0x558f95caf0e9d8b55275a1885d3ff39c3666af52",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 19177.4763,
-   "first_seen": 1789726747
-  },
-  {
-   "symbol": "USDF",
-   "name": "United States Dividend Fund",
-   "chain": "base",
-   "address": "0x17a37adb383fdb451e8e39c40ffccceed450b87b",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 37834.2359,
-   "first_seen": 1789726515
-  },
-  {
-   "symbol": "HYPER",
-   "name": "Hyperliquid Ascendancy",
-   "chain": "base",
-   "address": "0x160404ac28e2b117eb6e41c407d36163eefbaed1",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 37793.5401,
-   "first_seen": 1789726378
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 33,
+  "waiting": 39,
   "confirmed": 25,
-  "dropped": 1200
+  "dropped": 1203
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 943
  },
  "watchlist_active": 13,
- "price_snapshots": 19496,
+ "price_snapshots": 19671,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
