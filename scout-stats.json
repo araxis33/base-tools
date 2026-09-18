@@ -1,32 +1,27 @@
 {
- "generated_at": "2026-09-18T21:03:57Z",
- "generated_at_unix": 1789762340,
+ "generated_at": "2026-09-18T22:04:09Z",
+ "generated_at_unix": 1789769048,
  "period": {
   "start": "2026-07-15",
   "days": 65
  },
  "totals": {
-  "seen": 168599,
-  "base": 34484,
+  "seen": 168674,
+  "base": 34559,
   "robinhood": 134115,
-  "below_liquidity_threshold": 163217,
-  "spam_filtered": 2082,
-  "scored": 3300,
-  "green": 1848,
+  "below_liquidity_threshold": 163265,
+  "spam_filtered": 2101,
+  "scored": 3308,
+  "green": 1856,
   "yellow": 474,
   "red": 978
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
-   "date": "2026-08-28",
-   "base": 43,
-   "robinhood": 325
-  },
-  {
    "date": "2026-08-29",
-   "base": 658,
-   "robinhood": 5908
+   "base": 613,
+   "robinhood": 5547
   },
   {
    "date": "2026-08-30",
@@ -127,9 +122,94 @@
    "date": "2026-09-18",
    "base": 529,
    "robinhood": 0
+  },
+  {
+   "date": "2026-09-19",
+   "base": 75,
+   "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "KAT",
+   "name": "CryptoKats",
+   "chain": "base",
+   "address": "0x503dcc3238722017c40125a4906f20e8be9bd310",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4299.4815,
+   "first_seen": 1789768613
+  },
+  {
+   "symbol": "$USGDP",
+   "name": "U.S. Gross Domestic Product",
+   "chain": "base",
+   "address": "0xba5ed371a485cc98a68b96080bd93c74da2716c9",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 7383.7675,
+   "first_seen": 1789768330
+  },
+  {
+   "symbol": "SHIT",
+   "name": "SHITCOIN",
+   "chain": "base",
+   "address": "0x519848b982c61d387a73366c9f2de43f62514907",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 5696.63597195624,
+   "first_seen": 1789768236
+  },
+  {
+   "symbol": "PEPARK",
+   "name": "PEPE Parker Base",
+   "chain": "base",
+   "address": "0xb200000000000000000000bb04222f2ea5be6076",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 16457.5399,
+   "first_seen": 1789767913
+  },
+  {
+   "symbol": "SICK",
+   "name": "sick",
+   "chain": "base",
+   "address": "0xb200000000000000000000bd05e02ec9176ade7c",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 16419.9849,
+   "first_seen": 1789767641
+  },
+  {
+   "symbol": "VCAT",
+   "name": "VCAT",
+   "chain": "base",
+   "address": "0x768d19ec8a1edd4ee338b837fbc6f2ed3e5584a0",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 82265.7164,
+   "first_seen": 1789767549
+  },
+  {
+   "symbol": "PRMD",
+   "name": "Primodium",
+   "chain": "base",
+   "address": "0x33554a4fb5dc435c5e4662d26024b5bdbafc6a0a",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 7593.2147,
+   "first_seen": 1789767003
+  },
+  {
+   "symbol": "AIPon",
+   "name": "Arteris Tokenized Stock (Ondo)",
+   "chain": "base",
+   "address": "0xfce46b9d6f50aca4908d1d9492933cd8a67cec8e",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 15117.7105,
+   "first_seen": 1789765442
+  },
   {
    "symbol": "NDTA",
    "name": "NATIONAL TRUMP DIGITAL ACCOUNTS (NTDA)",
@@ -249,86 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 22108.1694,
    "first_seen": 1789746989
-  },
-  {
-   "symbol": "DEBIT",
-   "name": "Teller",
-   "chain": "base",
-   "address": "0xd45fcba11a50da829dd977c9876ca577216f78a4",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12898.3654669223,
-   "first_seen": 1789746338
-  },
-  {
-   "symbol": "musebook",
-   "name": "Musebook",
-   "chain": "base",
-   "address": "0xfc4d591363c9c5126ccbe3f99653b6c2956d1b98",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12909.05,
-   "first_seen": 1789746063
-  },
-  {
-   "symbol": "waybackmachine",
-   "name": "waybackmachine",
-   "chain": "base",
-   "address": "0xfb63d6708292460596c601f00d3b09f4a37104f2",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 2733270.95697602,
-   "first_seen": 1789745971
-  },
-  {
-   "symbol": "WSOIL",
-   "name": "World Strategic Oil Supply",
-   "chain": "base",
-   "address": "0x11dda0b5f1ef76d6015e860c569923d5e1a84145",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 137518.6597,
-   "first_seen": 1789745610
-  },
-  {
-   "symbol": "MCAT",
-   "name": "Mooncat Base",
-   "chain": "base",
-   "address": "0xa8b0f54b65460c42271e8eb348548fd37f1e5229",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 6559.068,
-   "first_seen": 1789744736
-  },
-  {
-   "symbol": "Tesla Energy",
-   "name": "Tesla Energy",
-   "chain": "base",
-   "address": "0xb2000000000000000000002f85f8a3833e004a8d",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 10810.6383440572,
-   "first_seen": 1789744735
-  },
-  {
-   "symbol": "B20",
-   "name": "B20",
-   "chain": "base",
-   "address": "0xb200000000000000000000356ec9e9cb2adeef01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4196.2101,
-   "first_seen": 1789744552
-  },
-  {
-   "symbol": "‮1DSU",
-   "name": "‮1DSU",
-   "chain": "base",
-   "address": "0x63da1030d7a58e3175db5b2f488bce16d08cfb07",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 17994.6058,
-   "first_seen": 1789743902
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 48,
+  "waiting": 44,
   "confirmed": 25,
-  "dropped": 1207
+  "dropped": 1219
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 943
  },
  "watchlist_active": 13,
- "price_snapshots": 19475,
+ "price_snapshots": 19489,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
