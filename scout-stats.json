@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-18T15:42:25Z",
- "generated_at_unix": 1789746145,
+ "generated_at": "2026-09-18T16:42:30Z",
+ "generated_at_unix": 1789749750,
  "period": {
   "start": "2026-07-15",
   "days": 65
  },
  "totals": {
-  "seen": 168508,
-  "base": 34393,
+  "seen": 168556,
+  "base": 34441,
   "robinhood": 134115,
-  "below_liquidity_threshold": 163144,
-  "spam_filtered": 2078,
-  "scored": 3286,
-  "green": 1837,
-  "yellow": 472,
-  "red": 977
+  "below_liquidity_threshold": 163179,
+  "spam_filtered": 2081,
+  "scored": 3296,
+  "green": 1844,
+  "yellow": 474,
+  "red": 978
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-28",
-   "base": 343,
-   "robinhood": 2205
+   "base": 299,
+   "robinhood": 1768
   },
   {
    "date": "2026-08-29",
@@ -125,11 +125,101 @@
   },
   {
    "date": "2026-09-18",
-   "base": 438,
+   "base": 486,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "NEARKAT",
+   "name": "NearKat",
+   "chain": "base",
+   "address": "0xb200000000000000000000fe1be0ffb1cdae4e3d",
+   "score": 57,
+   "verdict": "yellow",
+   "liquidity_usd": 24881.557,
+   "first_seen": 1789749306
+  },
+  {
+   "symbol": "PENDEV",
+   "name": "Pen Dev",
+   "chain": "base",
+   "address": "0xb2000000000000000000005d43c899ba05eece22",
+   "score": 57,
+   "verdict": "yellow",
+   "liquidity_usd": 24182.5769,
+   "first_seen": 1789749305
+  },
+  {
+   "symbol": "tvl",
+   "name": "tvl",
+   "chain": "base",
+   "address": "0xd7207d233c43309421ebb39b8dd65d1afff498c6",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 288631.4829,
+   "first_seen": 1789749304
+  },
+  {
+   "symbol": "APLD",
+   "name": "Applied Digital Tokenized Stock (Robinhood)",
+   "chain": "base",
+   "address": "0x11dda4538d6b0d582205c5e7258e1a5c624b5853",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 14566.9837,
+   "first_seen": 1789749302
+  },
+  {
+   "symbol": "CPT",
+   "name": "CoinP",
+   "chain": "base",
+   "address": "0x3c65f93af548a272a25ef07516e58301a79da4a9",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13058.7268,
+   "first_seen": 1789749298
+  },
+  {
+   "symbol": "LLGTR",
+   "name": "DevelopingALLIGATOR",
+   "chain": "base",
+   "address": "0xcd08db952ff90cd4d69525ecedf1def066785e14",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 25828.3,
+   "first_seen": 1789747410
+  },
+  {
+   "symbol": "stonkfly",
+   "name": "stonkfly",
+   "chain": "base",
+   "address": "0x5f62bbca8036173f7a425b0ecaf2e90ea78ac6d9",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 77781.7796722042,
+   "first_seen": 1789747265
+  },
+  {
+   "symbol": "宙",
+   "name": "宙",
+   "chain": "base",
+   "address": "0x5586090a75b9b4532ca6619d8ef6eec865ff3ee5",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 22108.1694,
+   "first_seen": 1789746989
+  },
+  {
+   "symbol": "DEBIT",
+   "name": "Teller",
+   "chain": "base",
+   "address": "0xd45fcba11a50da829dd977c9876ca577216f78a4",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12898.3654669223,
+   "first_seen": 1789746338
+  },
   {
    "symbol": "musebook",
    "name": "Musebook",
@@ -239,96 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 30904.4413,
    "first_seen": 1789742516
-  },
-  {
-   "symbol": "TILCAYOCAT",
-   "name": "Leopardus Tilcayo",
-   "chain": "base",
-   "address": "0xb20000000000000000000013cf7cf7bb4be11b01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 5750.7358,
-   "first_seen": 1789742515
-  },
-  {
-   "symbol": "PERK",
-   "name": "perk.money",
-   "chain": "base",
-   "address": "0x1919e26e540e73971d7d42e42a33db74abead14a",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 1641239.0941,
-   "first_seen": 1789742512
-  },
-  {
-   "symbol": "BBALL",
-   "name": "baseBALL",
-   "chain": "base",
-   "address": "0x35b8f118bf884695fc1f75faae82b9c1d236d3e0",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3499598.1698,
-   "first_seen": 1789741586
-  },
-  {
-   "symbol": "COOL",
-   "name": "USDC .COOL",
-   "chain": "base",
-   "address": "0xb4c7232e39d482f3f114ddedd3aeb9a73b4c9834",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 25121.9235,
-   "first_seen": 1789740617
-  },
-  {
-   "symbol": "GPROB",
-   "name": "GoPro Tokenized bStocks",
-   "chain": "base",
-   "address": "0x6fea7683f5604a3eabdf7b3008869c84e5f76402",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12820.8,
-   "first_seen": 1789740570
-  },
-  {
-   "symbol": "EXIT",
-   "name": "$EXIT LIQUIDITY",
-   "chain": "base",
-   "address": "0x4c5649178bdb79bc9ea878fde107decf1d7df961",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 27798.3481,
-   "first_seen": 1789739963
-  },
-  {
-   "symbol": "PERPS",
-   "name": "Single Stock Perps",
-   "chain": "base",
-   "address": "0xb20000000000000000000088b17463ac5416bac2",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13005.944,
-   "first_seen": 1789739310
-  },
-  {
-   "symbol": "DTTC + Patomak Global P",
-   "name": "DTTC + Patomak Global Partners",
-   "chain": "base",
-   "address": "0xb200000000000000000000ed6dcc0a7e937a5351",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12084.2586,
-   "first_seen": 1789739308
-  },
-  {
-   "symbol": "1",
-   "name": "1",
-   "chain": "base",
-   "address": "0x81442397cadd92e9aeddfe06152f3aeb79b51d81",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4574.7894,
-   "first_seen": 1789730549
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 39,
+  "waiting": 45,
   "confirmed": 25,
-  "dropped": 1203
+  "dropped": 1206
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 943
  },
  "watchlist_active": 13,
- "price_snapshots": 19671,
+ "price_snapshots": 19865,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
