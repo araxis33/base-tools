@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-18T10:28:19Z",
- "generated_at_unix": 1789727298,
+ "generated_at": "2026-09-18T14:42:20Z",
+ "generated_at_unix": 1789742539,
  "period": {
   "start": "2026-07-15",
   "days": 65
  },
  "totals": {
-  "seen": 168308,
-  "base": 34193,
+  "seen": 168453,
+  "base": 34338,
   "robinhood": 134115,
-  "below_liquidity_threshold": 163030,
-  "spam_filtered": 2018,
-  "scored": 3260,
-  "green": 1814,
+  "below_liquidity_threshold": 163106,
+  "spam_filtered": 2070,
+  "scored": 3277,
+  "green": 1829,
   "yellow": 471,
-  "red": 975
+  "red": 977
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-28",
-   "base": 686,
-   "robinhood": 3896
+   "base": 492,
+   "robinhood": 2634
   },
   {
    "date": "2026-08-29",
@@ -125,11 +125,161 @@
   },
   {
    "date": "2026-09-18",
-   "base": 238,
+   "base": 383,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "24/5",
+   "name": "24/5",
+   "chain": "base",
+   "address": "0xb2000000000000000000007841c28cba8d37fc01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 5199.4249,
+   "first_seen": 1789742519
+  },
+  {
+   "symbol": "HYDRA",
+   "name": "HYDRA v19.0",
+   "chain": "base",
+   "address": "0x3e180a00219c684f544e2d70e986882ce53e0c95",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 30904.4413,
+   "first_seen": 1789742516
+  },
+  {
+   "symbol": "TILCAYOCAT",
+   "name": "Leopardus Tilcayo",
+   "chain": "base",
+   "address": "0xb20000000000000000000013cf7cf7bb4be11b01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 5750.7358,
+   "first_seen": 1789742515
+  },
+  {
+   "symbol": "PERK",
+   "name": "perk.money",
+   "chain": "base",
+   "address": "0x1919e26e540e73971d7d42e42a33db74abead14a",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 1641239.0941,
+   "first_seen": 1789742512
+  },
+  {
+   "symbol": "BBALL",
+   "name": "baseBALL",
+   "chain": "base",
+   "address": "0x35b8f118bf884695fc1f75faae82b9c1d236d3e0",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3499598.1698,
+   "first_seen": 1789741586
+  },
+  {
+   "symbol": "COOL",
+   "name": "USDC .COOL",
+   "chain": "base",
+   "address": "0xb4c7232e39d482f3f114ddedd3aeb9a73b4c9834",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 25121.9235,
+   "first_seen": 1789740617
+  },
+  {
+   "symbol": "GPROB",
+   "name": "GoPro Tokenized bStocks",
+   "chain": "base",
+   "address": "0x6fea7683f5604a3eabdf7b3008869c84e5f76402",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12820.8,
+   "first_seen": 1789740570
+  },
+  {
+   "symbol": "EXIT",
+   "name": "$EXIT LIQUIDITY",
+   "chain": "base",
+   "address": "0x4c5649178bdb79bc9ea878fde107decf1d7df961",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 27798.3481,
+   "first_seen": 1789739963
+  },
+  {
+   "symbol": "PERPS",
+   "name": "Single Stock Perps",
+   "chain": "base",
+   "address": "0xb20000000000000000000088b17463ac5416bac2",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13005.944,
+   "first_seen": 1789739310
+  },
+  {
+   "symbol": "DTTC + Patomak Global P",
+   "name": "DTTC + Patomak Global Partners",
+   "chain": "base",
+   "address": "0xb200000000000000000000ed6dcc0a7e937a5351",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12084.2586,
+   "first_seen": 1789739308
+  },
+  {
+   "symbol": "1",
+   "name": "1",
+   "chain": "base",
+   "address": "0x81442397cadd92e9aeddfe06152f3aeb79b51d81",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4574.7894,
+   "first_seen": 1789730549
+  },
+  {
+   "symbol": "TREAD",
+   "name": "Tread.fi",
+   "chain": "base",
+   "address": "0x3665311e18ec017574374e3254bb6d53a4aa3037",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12513.9650053573,
+   "first_seen": 1789730070
+  },
+  {
+   "symbol": "APM",
+   "name": "apM Fashion",
+   "chain": "base",
+   "address": "0x7a455861b191ef5f639454376564d50727a7f53c",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 12571.1650829362,
+   "first_seen": 1789729698
+  },
+  {
+   "symbol": "BRIAN DOG",
+   "name": "Brian The Dog",
+   "chain": "base",
+   "address": "0x0ef87c139ce5900d9e2f8fba0d5a0a17be2b1698",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4083.2569,
+   "first_seen": 1789727864
+  },
+  {
+   "symbol": "AORP",
+   "name": "AORP",
+   "chain": "base",
+   "address": "0x950548e2ba1d49e1521e513a640ca1b6e15df387",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 6530102.4482,
+   "first_seen": 1789727817
+  },
   {
    "symbol": "SDRA",
    "name": "StingyDRAGONFLY",
@@ -179,156 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 37793.5401,
    "first_seen": 1789726378
-  },
-  {
-   "symbol": "DREAM",
-   "name": "1 meme and a dream",
-   "chain": "base",
-   "address": "0xb2764fb47a478e0b22a57f6cc4902e406a98b123",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 77654.6441,
-   "first_seen": 1789726239
-  },
-  {
-   "symbol": "ZAMA",
-   "name": "Zama Labs",
-   "chain": "base",
-   "address": "0xb277a39b8baec061482ee41bd9d16fd4731bb9f0",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 19100.9616,
-   "first_seen": 1789724719
-  },
-  {
-   "symbol": "MCAT",
-   "name": "Mooncat",
-   "chain": "base",
-   "address": "0x0e572f07d7e2b1bfb30b3c25995b99394db892a0",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 19115.2413,
-   "first_seen": 1789724581
-  },
-  {
-   "symbol": "sea",
-   "name": "sea",
-   "chain": "base",
-   "address": "0x11df9f2f27c1b59ee7c1b6146c7d6f283ef6caf1",
-   "score": 76,
-   "verdict": "green",
-   "liquidity_usd": 2251.5442,
-   "first_seen": 1789724488
-  },
-  {
-   "symbol": "GTAVI",
-   "name": "Grand Theft Auto VI (gtavieth.com)",
-   "chain": "base",
-   "address": "0xc0d63479d532d60591277c9afd53c6dcd29ae505",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12512.7650090236,
-   "first_seen": 1789724487
-  },
-  {
-   "symbol": "DCA",
-   "name": "DCA PROTOCOL",
-   "chain": "base",
-   "address": "0x4618d805fc9883af2a43c5739ce5001904dfd08c",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 37781.03,
-   "first_seen": 1789723873
-  },
-  {
-   "symbol": "MALA",
-   "name": "Malachite",
-   "chain": "base",
-   "address": "0xbe39e7ccbbe44a4da416b05ccd65dd997c899a90",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 37776.8097,
-   "first_seen": 1789723872
-  },
-  {
-   "symbol": "YATE",
-   "name": "Investing Yachts",
-   "chain": "base",
-   "address": "0x64e6c24431f59a1181e8dd927ece6f9fb41550ba",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 37616.4383,
-   "first_seen": 1789721468
-  },
-  {
-   "symbol": "VAX",
-   "name": "Vaxorum",
-   "chain": "base",
-   "address": "0x7f149a53023e3263a0669f21ad26cf8314bebae2",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 37609.0527,
-   "first_seen": 1789721375
-  },
-  {
-   "symbol": "agenttrader",
-   "name": "agenttrader",
-   "chain": "base",
-   "address": "0xb26203ca2515e0f1b3d6be670d6e1b3780015e36",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3860.8437,
-   "first_seen": 1789720657
-  },
-  {
-   "symbol": "WKC",
-   "name": "WIKI CAT (WKC)",
-   "chain": "base",
-   "address": "0x4511896ade62a5957106fab9a2cc2a19778d4a80",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 163740.684447706,
-   "first_seen": 1789720474
-  },
-  {
-   "symbol": "PIEVERSE",
-   "name": "Pieverse",
-   "chain": "base",
-   "address": "0x76abf51be5f7d095898c31505d2f57ca546ef3f7",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 170479.062644796,
-   "first_seen": 1789720473
-  },
-  {
-   "symbol": "RDDT",
-   "name": "Reddit Tokenized Stock (Robinhood)",
-   "chain": "base",
-   "address": "0x0371e83f8c627ec99463d4c3e48973d17098155c",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13005.1523,
-   "first_seen": 1789720104
-  },
-  {
-   "symbol": "DPONS",
-   "name": "Diamond Pons",
-   "chain": "base",
-   "address": "0x91013359830875e21c63c55025c8b014202ad6a7",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 19106.8415,
-   "first_seen": 1789720103
-  },
-  {
-   "symbol": "AASIai",
-   "name": "AASIai",
-   "chain": "base",
-   "address": "0xc0c03d2d80fa07bf22b5667d59c91be5b2e8d0ac",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 59910.1448,
-   "first_seen": 1789720100
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 32,
+  "waiting": 33,
   "confirmed": 25,
-  "dropped": 1186
+  "dropped": 1200
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 943
  },
  "watchlist_active": 13,
- "price_snapshots": 19402,
+ "price_snapshots": 19496,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
