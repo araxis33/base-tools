@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-17T21:13:06Z",
- "generated_at_unix": 1789679584,
+ "generated_at": "2026-09-18T09:28:14Z",
+ "generated_at_unix": 1789723694,
  "period": {
   "start": "2026-07-15",
-  "days": 64
+  "days": 65
  },
  "totals": {
-  "seen": 168077,
-  "base": 33962,
+  "seen": 168236,
+  "base": 34121,
   "robinhood": 134115,
-  "below_liquidity_threshold": 162921,
-  "spam_filtered": 1924,
-  "scored": 3232,
-  "green": 1790,
+  "below_liquidity_threshold": 163011,
+  "spam_filtered": 1979,
+  "scored": 3246,
+  "green": 1802,
   "yellow": 471,
-  "red": 971
+  "red": 973
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-28",
-   "base": 799,
-   "robinhood": 4611
+   "base": 701,
+   "robinhood": 4012
   },
   {
    "date": "2026-08-29",
@@ -125,11 +125,131 @@
   },
   {
    "date": "2026-09-18",
-   "base": 7,
+   "base": 166,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "YATE",
+   "name": "Investing Yachts",
+   "chain": "base",
+   "address": "0x64e6c24431f59a1181e8dd927ece6f9fb41550ba",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 37616.4383,
+   "first_seen": 1789721468
+  },
+  {
+   "symbol": "VAX",
+   "name": "Vaxorum",
+   "chain": "base",
+   "address": "0x7f149a53023e3263a0669f21ad26cf8314bebae2",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 37609.0527,
+   "first_seen": 1789721375
+  },
+  {
+   "symbol": "agenttrader",
+   "name": "agenttrader",
+   "chain": "base",
+   "address": "0xb26203ca2515e0f1b3d6be670d6e1b3780015e36",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3860.8437,
+   "first_seen": 1789720657
+  },
+  {
+   "symbol": "WKC",
+   "name": "WIKI CAT (WKC)",
+   "chain": "base",
+   "address": "0x4511896ade62a5957106fab9a2cc2a19778d4a80",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 163740.684447706,
+   "first_seen": 1789720474
+  },
+  {
+   "symbol": "PIEVERSE",
+   "name": "Pieverse",
+   "chain": "base",
+   "address": "0x76abf51be5f7d095898c31505d2f57ca546ef3f7",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 170479.062644796,
+   "first_seen": 1789720473
+  },
+  {
+   "symbol": "RDDT",
+   "name": "Reddit Tokenized Stock (Robinhood)",
+   "chain": "base",
+   "address": "0x0371e83f8c627ec99463d4c3e48973d17098155c",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13005.1523,
+   "first_seen": 1789720104
+  },
+  {
+   "symbol": "DPONS",
+   "name": "Diamond Pons",
+   "chain": "base",
+   "address": "0x91013359830875e21c63c55025c8b014202ad6a7",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 19106.8415,
+   "first_seen": 1789720103
+  },
+  {
+   "symbol": "AASIai",
+   "name": "AASIai",
+   "chain": "base",
+   "address": "0xc0c03d2d80fa07bf22b5667d59c91be5b2e8d0ac",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 59910.1448,
+   "first_seen": 1789720100
+  },
+  {
+   "symbol": "MOZI",
+   "name": "Mozi",
+   "chain": "base",
+   "address": "0xc41dbc0a1dcb72efb215019e345f83b8f485af16",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 74296.1924,
+   "first_seen": 1789682132
+  },
+  {
+   "symbol": "AVNT",
+   "name": "[Fake] Veranta (avantisfi.xyz)",
+   "chain": "base",
+   "address": "0x33cb37014e1b51292f950a93f23b1b28de30ba2f",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12241.4146868155,
+   "first_seen": 1789682083
+  },
+  {
+   "symbol": "SketchShiftSync Genesis",
+   "name": "SketchShiftSync Genesis",
+   "chain": "base",
+   "address": "0x138ccb57537a94015d2b53fcdeb9c9873123054a",
+   "score": 76,
+   "verdict": "green",
+   "liquidity_usd": 2203.3833,
+   "first_seen": 1789680162
+  },
+  {
+   "symbol": "OPENAIx1L",
+   "name": "OPENAI 1x Long",
+   "chain": "base",
+   "address": "0xff9307da003235643039557fccc5b0546f71cfe8",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12254.4958,
+   "first_seen": 1789679706
+  },
   {
    "symbol": "ARC",
    "name": "Archangel",
@@ -209,126 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 17568.455,
    "first_seen": 1789668215
-  },
-  {
-   "symbol": "FEED",
-   "name": "FEED",
-   "chain": "base",
-   "address": "0xd39aece709501c7f3eaa7e8cfa397112447f0ba3",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 22830.6148178158,
-   "first_seen": 1789668213
-  },
-  {
-   "symbol": "FLEX",
-   "name": "Flex Ltd. Ordinary Shares (Derivatives)",
-   "chain": "base",
-   "address": "0xef1126cddde001a43f38f0801512ccaea8400264",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12348.9648153021,
-   "first_seen": 1789665861
-  },
-  {
-   "symbol": "COINBOSS",
-   "name": "Coinboss",
-   "chain": "base",
-   "address": "0xb200000000000000000000431d1c8f04de3b7401",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 5247.5963,
-   "first_seen": 1789665406
-  },
-  {
-   "symbol": "ROCKETS",
-   "name": "Doge Force One",
-   "chain": "base",
-   "address": "0xf509ee538966ffac3c784744b1b50bdceb76ab96",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4387.5429,
-   "first_seen": 1789655301
-  },
-  {
-   "symbol": "GPU",
-   "name": "GoonProcessingUnit",
-   "chain": "base",
-   "address": "0xa62bad4b34e94546bfd769caed5b88ae3da8fee1",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13462.3640289691,
-   "first_seen": 1789654837
-  },
-  {
-   "symbol": "INUVATION",
-   "name": "inuvation",
-   "chain": "base",
-   "address": "0x140ab7cfcbfdcd02ee3ac67661fada44fa061641",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 9508.1467,
-   "first_seen": 1789654733
-  },
-  {
-   "symbol": "BASEDOG",
-   "name": "BASEDOG",
-   "chain": "base",
-   "address": "0xb20000000000000000000022bb7654aa7ee8d37c",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12495.3616,
-   "first_seen": 1789654731
-  },
-  {
-   "symbol": "LITVM",
-   "name": "LITVM by Virtuals",
-   "chain": "base",
-   "address": "0xb200000000000000000000b9fb0f9d0ad7e346f9",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 14185.5614,
-   "first_seen": 1789654729
-  },
-  {
-   "symbol": "MUSK",
-   "name": "MelonMusk",
-   "chain": "base",
-   "address": "0xf740e651ceab7b074b2ee8c6efa3e011eb2d4bd1",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4314.457,
-   "first_seen": 1789653159
-  },
-  {
-   "symbol": "CRACKTOP",
-   "name": "Cracktop",
-   "chain": "base",
-   "address": "0xf7eb03ba2c19342629b7d7b9cb89c0ad5cdff7ca",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 15745.9594637666,
-   "first_seen": 1789652557
-  },
-  {
-   "symbol": "SNDK",
-   "name": "Sandisk Corporation Tokenized Stock (Robinhood)",
-   "chain": "base",
-   "address": "0x2ebae78ece31a788b402d6a79b5f13c21589ba28",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12224.55,
-   "first_seen": 1789652235
-  },
-  {
-   "symbol": "COPPERINU",
-   "name": "Copper inu",
-   "chain": "base",
-   "address": "0xa0c57de431a3912e0064016351d546ef5a14fee1",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 16104.9718060871,
-   "first_seen": 1789651636
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 17,
+  "waiting": 23,
   "confirmed": 25,
-  "dropped": 1177
+  "dropped": 1183
  },
  "recent_drains": [
   {
@@ -652,6 +652,16 @@
  ],
  "survivors": [
   {
+   "symbol": "BCDB",
+   "chain": "base",
+   "address": "0x7bfd745d322ad6c386f45679d73e9c30a16cd2ee",
+   "score": 52,
+   "alerted_at": 1789636273,
+   "liq_0": 95006.9783,
+   "liq_24h": 101301.87,
+   "volume_24h": 51582.56
+  },
+  {
    "symbol": "MOTO",
    "chain": "base",
    "address": "0x50116264fbbf308a3aa53a859a50c9353d57c2b7",
@@ -740,16 +750,6 @@
    "liq_0": 67889.0514,
    "liq_24h": 79028.98,
    "volume_24h": 213441.22
-  },
-  {
-   "symbol": "SPX82K",
-   "chain": "base",
-   "address": "0x8fc0c63c1af9169a28c49d156bb2da0479e25689",
-   "score": 64,
-   "alerted_at": 1786559638,
-   "liq_0": 67845.96,
-   "liq_24h": 74479.73,
-   "volume_24h": 194155.48
   }
  ],
  "alerts": {
@@ -758,7 +758,7 @@
   "rug": 943
  },
  "watchlist_active": 13,
- "price_snapshots": 18827,
+ "price_snapshots": 19201,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
