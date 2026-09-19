@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-19T10:30:51Z",
- "generated_at_unix": 1789813849,
+ "generated_at": "2026-09-19T11:30:59Z",
+ "generated_at_unix": 1789817458,
  "period": {
   "start": "2026-07-15",
   "days": 66
  },
  "totals": {
-  "seen": 168811,
-  "base": 34696,
+  "seen": 168891,
+  "base": 34776,
   "robinhood": 134115,
-  "below_liquidity_threshold": 163356,
-  "spam_filtered": 2132,
-  "scored": 3323,
-  "green": 1870,
+  "below_liquidity_threshold": 163397,
+  "spam_filtered": 2165,
+  "scored": 3329,
+  "green": 1876,
   "yellow": 474,
   "red": 979
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-29",
-   "base": 539,
-   "robinhood": 5247
+   "base": 494,
+   "robinhood": 4935
   },
   {
    "date": "2026-08-30",
@@ -125,11 +125,71 @@
   },
   {
    "date": "2026-09-19",
-   "base": 212,
+   "base": 292,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "TTWO",
+   "name": "Take-Two Interactive Software Tokenized Stock (Robinhood)",
+   "chain": "base",
+   "address": "0xa3587ca66724836fdb775b3c16a419cf8dcb12b0",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13198.9658361741,
+   "first_seen": 1789817108
+  },
+  {
+   "symbol": "KINS",
+   "name": "Kintara",
+   "chain": "base",
+   "address": "0x7eb0dd48bc648aae33c1db9b049dc8874ea292c3",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 33207.5999,
+   "first_seen": 1789816651
+  },
+  {
+   "symbol": "WildBeest",
+   "name": "WildBeest",
+   "chain": "base",
+   "address": "0xb94a60537d471ba7e140ed38842111befde6445a",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 79529.6920703649,
+   "first_seen": 1789815645
+  },
+  {
+   "symbol": "CASHCAT",
+   "name": "Cash Cat",
+   "chain": "base",
+   "address": "0x674c08fde1b434a6ffb180e6dc43c887d87541b0",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13205.7658423202,
+   "first_seen": 1789815448
+  },
+  {
+   "symbol": "CREO",
+   "name": "creo family",
+   "chain": "base",
+   "address": "0x7c384fe8bee90dc45e9f9a663d856791b746f4e5",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 33269.793,
+   "first_seen": 1789814666
+  },
+  {
+   "symbol": "PEAR",
+   "name": "Pear Protocol",
+   "chain": "base",
+   "address": "0xb8f0912c748ec4860bfdd3f02df589fa8fcd709b",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 33282.6345,
+   "first_seen": 1789814426
+  },
   {
    "symbol": "CCAT",
    "name": "ConsiderableCATSHARK",
@@ -269,66 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 26297.963,
    "first_seen": 1789769431
-  },
-  {
-   "symbol": "KAT",
-   "name": "CryptoKats",
-   "chain": "base",
-   "address": "0x503dcc3238722017c40125a4906f20e8be9bd310",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4299.4815,
-   "first_seen": 1789768613
-  },
-  {
-   "symbol": "$USGDP",
-   "name": "U.S. Gross Domestic Product",
-   "chain": "base",
-   "address": "0xba5ed371a485cc98a68b96080bd93c74da2716c9",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 7383.7675,
-   "first_seen": 1789768330
-  },
-  {
-   "symbol": "SHIT",
-   "name": "SHITCOIN",
-   "chain": "base",
-   "address": "0x519848b982c61d387a73366c9f2de43f62514907",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 5696.63597195624,
-   "first_seen": 1789768236
-  },
-  {
-   "symbol": "PEPARK",
-   "name": "PEPE Parker Base",
-   "chain": "base",
-   "address": "0xb200000000000000000000bb04222f2ea5be6076",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 16457.5399,
-   "first_seen": 1789767913
-  },
-  {
-   "symbol": "SICK",
-   "name": "sick",
-   "chain": "base",
-   "address": "0xb200000000000000000000bd05e02ec9176ade7c",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 16419.9849,
-   "first_seen": 1789767641
-  },
-  {
-   "symbol": "VCAT",
-   "name": "VCAT",
-   "chain": "base",
-   "address": "0x768d19ec8a1edd4ee338b837fbc6f2ed3e5584a0",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 82265.7164,
-   "first_seen": 1789767549
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 48,
+  "waiting": 46,
   "confirmed": 25,
-  "dropped": 1229
+  "dropped": 1237
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 943
  },
  "watchlist_active": 13,
- "price_snapshots": 19660,
+ "price_snapshots": 19760,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
