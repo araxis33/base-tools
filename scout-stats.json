@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-18T22:04:09Z",
- "generated_at_unix": 1789769048,
+ "generated_at": "2026-09-19T10:30:51Z",
+ "generated_at_unix": 1789813849,
  "period": {
   "start": "2026-07-15",
-  "days": 65
+  "days": 66
  },
  "totals": {
-  "seen": 168674,
-  "base": 34559,
+  "seen": 168811,
+  "base": 34696,
   "robinhood": 134115,
-  "below_liquidity_threshold": 163265,
-  "spam_filtered": 2101,
-  "scored": 3308,
-  "green": 1856,
+  "below_liquidity_threshold": 163356,
+  "spam_filtered": 2132,
+  "scored": 3323,
+  "green": 1870,
   "yellow": 474,
-  "red": 978
+  "red": 979
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-29",
-   "base": 613,
-   "robinhood": 5547
+   "base": 539,
+   "robinhood": 5247
   },
   {
    "date": "2026-08-30",
@@ -125,11 +125,151 @@
   },
   {
    "date": "2026-09-19",
-   "base": 75,
+   "base": 212,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "CCAT",
+   "name": "ConsiderableCATSHARK",
+   "chain": "base",
+   "address": "0x73621578ae285a7f62f1d2a1fe4cdf52f81b850f",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 26421.6,
+   "first_seen": 1789813740
+  },
+  {
+   "symbol": "SUILAMA",
+   "name": "Suilama",
+   "chain": "base",
+   "address": "0xa97d6f8ce24d4f63dcb7878262d081f32a036463",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 38264.7571,
+   "first_seen": 1789813466
+  },
+  {
+   "symbol": "Money",
+   "name": "Money Token",
+   "chain": "base",
+   "address": "0x7c60362dbbb7380d7b9f3d0f1ad6d70ed91e0087",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 26326.0154,
+   "first_seen": 1789813328
+  },
+  {
+   "symbol": "STOS",
+   "name": "Stratos",
+   "chain": "base",
+   "address": "0xd9830a64464a3f40c893245bc16c7b5773677687",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 38224.933,
+   "first_seen": 1789813327
+  },
+  {
+   "symbol": "GROK",
+   "name": "Grok Coin",
+   "chain": "base",
+   "address": "0xeacf66407b51bd2f5af68902837ccdee31ae8f7c",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 80246.0322,
+   "first_seen": 1789813051
+  },
+  {
+   "symbol": "OPTIMUS",
+   "name": "Optimus (optimustracker.ai)",
+   "chain": "base",
+   "address": "0xe4e450f86903b8635f0c463ab996d15f73322f49",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13199.4658361721,
+   "first_seen": 1789812907
+  },
+  {
+   "symbol": "PRL",
+   "name": "Pearl (pearlresearch.ai)",
+   "chain": "base",
+   "address": "0x72a71d42534924638d0ed37b72842350ddd093ac",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13208.15,
+   "first_seen": 1789812080
+  },
+  {
+   "symbol": "REP",
+   "name": "rep",
+   "chain": "base",
+   "address": "0x9f3ee60b66f0f7b97c3f5b75da95144876f8e742",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 59986.9044,
+   "first_seen": 1789810936
+  },
+  {
+   "symbol": "AWall",
+   "name": "Ask Wall",
+   "chain": "base",
+   "address": "0xb2000000000000000000000097a07bbf6a8889b1",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 47587.2562,
+   "first_seen": 1789810346
+  },
+  {
+   "symbol": "SizePrint",
+   "name": "Size Print",
+   "chain": "base",
+   "address": "0xb200000000000000000000c9a55520aa4a6ee94a",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 17761.0152,
+   "first_seen": 1789810344
+  },
+  {
+   "symbol": "AICAT",
+   "name": "Artificial Cat",
+   "chain": "base",
+   "address": "0xa65d7b1655bd722fe9d288cea3dc2b41b3c0def1",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 20961.8019,
+   "first_seen": 1789810343
+  },
+  {
+   "symbol": "FRP",
+   "name": "Federal Reserve Protocol",
+   "chain": "base",
+   "address": "0xb20000000000000000000054490f87560293363b",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 55727.8756,
+   "first_seen": 1789810342
+  },
+  {
+   "symbol": "GOLDEN",
+   "name": "Golden Kitty (goldenkitty.vip)",
+   "chain": "base",
+   "address": "0x83e76204481abbcff66813ecc3d80a5994afcb2f",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13159.2,
+   "first_seen": 1789770360
+  },
+  {
+   "symbol": "USWO",
+   "name": "UnemployedSWORDFISH",
+   "chain": "base",
+   "address": "0x1acfb08466ea283e653d7cf188fa6520d1191f66",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 26297.963,
+   "first_seen": 1789769431
+  },
   {
    "symbol": "KAT",
    "name": "CryptoKats",
@@ -189,146 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 82265.7164,
    "first_seen": 1789767549
-  },
-  {
-   "symbol": "PRMD",
-   "name": "Primodium",
-   "chain": "base",
-   "address": "0x33554a4fb5dc435c5e4662d26024b5bdbafc6a0a",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 7593.2147,
-   "first_seen": 1789767003
-  },
-  {
-   "symbol": "AIPon",
-   "name": "Arteris Tokenized Stock (Ondo)",
-   "chain": "base",
-   "address": "0xfce46b9d6f50aca4908d1d9492933cd8a67cec8e",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 15117.7105,
-   "first_seen": 1789765442
-  },
-  {
-   "symbol": "NDTA",
-   "name": "NATIONAL TRUMP DIGITAL ACCOUNTS (NTDA)",
-   "chain": "base",
-   "address": "0x3d662e1acb0f1a0c21e644b7c7560779d8140337",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 84478.1463239292,
-   "first_seen": 1789751366
-  },
-  {
-   "symbol": "NEKO",
-   "name": "Artificial Neko (artificialneko.com)",
-   "chain": "base",
-   "address": "0x2cb1eebea136d853d9c4c702f8bbaee0f959ef83",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12955.5655418094,
-   "first_seen": 1789751365
-  },
-  {
-   "symbol": "MBG",
-   "name": "MBG AI",
-   "chain": "base",
-   "address": "0x1ffd1264a61b7f2e00c6e466f72f673c6efe7222",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3505.3055,
-   "first_seen": 1789750857
-  },
-  {
-   "symbol": "PRISM",
-   "name": "PrismLangAI",
-   "chain": "base",
-   "address": "0x0dc8d2a468b1f9cab9d75d114538a2d2f5491222",
-   "score": 92,
-   "verdict": "green",
-   "liquidity_usd": 2972.4886,
-   "first_seen": 1789749805
-  },
-  {
-   "symbol": "NEARKAT",
-   "name": "NearKat",
-   "chain": "base",
-   "address": "0xb200000000000000000000fe1be0ffb1cdae4e3d",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 24881.557,
-   "first_seen": 1789749306
-  },
-  {
-   "symbol": "PENDEV",
-   "name": "Pen Dev",
-   "chain": "base",
-   "address": "0xb2000000000000000000005d43c899ba05eece22",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 24182.5769,
-   "first_seen": 1789749305
-  },
-  {
-   "symbol": "tvl",
-   "name": "tvl",
-   "chain": "base",
-   "address": "0xd7207d233c43309421ebb39b8dd65d1afff498c6",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 288631.4829,
-   "first_seen": 1789749304
-  },
-  {
-   "symbol": "APLD",
-   "name": "Applied Digital Tokenized Stock (Robinhood)",
-   "chain": "base",
-   "address": "0x11dda4538d6b0d582205c5e7258e1a5c624b5853",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 14566.9837,
-   "first_seen": 1789749302
-  },
-  {
-   "symbol": "CPT",
-   "name": "CoinP",
-   "chain": "base",
-   "address": "0x3c65f93af548a272a25ef07516e58301a79da4a9",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13058.7268,
-   "first_seen": 1789749298
-  },
-  {
-   "symbol": "LLGTR",
-   "name": "DevelopingALLIGATOR",
-   "chain": "base",
-   "address": "0xcd08db952ff90cd4d69525ecedf1def066785e14",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 25828.3,
-   "first_seen": 1789747410
-  },
-  {
-   "symbol": "stonkfly",
-   "name": "stonkfly",
-   "chain": "base",
-   "address": "0x5f62bbca8036173f7a425b0ecaf2e90ea78ac6d9",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 77781.7796722042,
-   "first_seen": 1789747265
-  },
-  {
-   "symbol": "宙",
-   "name": "宙",
-   "chain": "base",
-   "address": "0x5586090a75b9b4532ca6619d8ef6eec865ff3ee5",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 22108.1694,
-   "first_seen": 1789746989
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 44,
+  "waiting": 48,
   "confirmed": 25,
-  "dropped": 1219
+  "dropped": 1229
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 943
  },
  "watchlist_active": 13,
- "price_snapshots": 19489,
+ "price_snapshots": 19660,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
