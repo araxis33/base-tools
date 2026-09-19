@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-19T12:31:05Z",
- "generated_at_unix": 1789821065,
+ "generated_at": "2026-09-19T17:09:26Z",
+ "generated_at_unix": 1789837763,
  "period": {
   "start": "2026-07-15",
   "days": 66
  },
  "totals": {
-  "seen": 168959,
-  "base": 34844,
+  "seen": 169226,
+  "base": 35111,
   "robinhood": 134115,
-  "below_liquidity_threshold": 163431,
-  "spam_filtered": 2190,
-  "scored": 3338,
-  "green": 1885,
-  "yellow": 474,
+  "below_liquidity_threshold": 163656,
+  "spam_filtered": 2223,
+  "scored": 3347,
+  "green": 1893,
+  "yellow": 475,
   "red": 979
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-29",
-   "base": 443,
-   "robinhood": 4456
+   "base": 235,
+   "robinhood": 2484
   },
   {
    "date": "2026-08-30",
@@ -125,11 +125,101 @@
   },
   {
    "date": "2026-09-19",
-   "base": 360,
+   "base": 627,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "GOOGL",
+   "name": "Alphabet Class A Tokenized Stock (Robinhood)",
+   "chain": "base",
+   "address": "0xa5c20f74c2fd256bae50ecb3220d4d81547e505b",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13241.6,
+   "first_seen": 1789836262
+  },
+  {
+   "symbol": "GRBL",
+   "name": "CommercialGERBIL",
+   "chain": "base",
+   "address": "0x7b776f098d2f3b81ea7f575a8b1eafdcb6849571",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 26493.3,
+   "first_seen": 1789835844
+  },
+  {
+   "symbol": "ACAT",
+   "name": "AEROCAT",
+   "chain": "base",
+   "address": "0xec14f4e0b6384814c952e1c5ea7f2df6e3ce0913",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 79414.2,
+   "first_seen": 1789835249
+  },
+  {
+   "symbol": "zBTC",
+   "name": "zTaySmilezBTC",
+   "chain": "base",
+   "address": "0x88cb2ccda89896103e587c955103e092c60853c2",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 8163821.7543,
+   "first_seen": 1789835008
+  },
+  {
+   "symbol": "ROBIN",
+   "name": "Robin the Frog",
+   "chain": "base",
+   "address": "0x484fac346d12bbd84f85cbea0ff620517956ca29",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 2264731.7119,
+   "first_seen": 1789834689
+  },
+  {
+   "symbol": "SI",
+   "name": "Superior Inu",
+   "chain": "base",
+   "address": "0xb2000000000000000000004fb68c07f6930e1501",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4091.5948,
+   "first_seen": 1789834177
+  },
+  {
+   "symbol": "SI",
+   "name": "Supreme Intelligence",
+   "chain": "base",
+   "address": "0x6b0c3124ef213a93b07ca43624fea83db6f06be2",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 14576.944,
+   "first_seen": 1789834169
+  },
+  {
+   "symbol": "Anthropic",
+   "name": "Anthropic",
+   "chain": "base",
+   "address": "0x4ca6f47ab5415ce1c856d58b4a4151fc4584eb07",
+   "score": 67,
+   "verdict": "yellow",
+   "liquidity_usd": 5401750.2622,
+   "first_seen": 1789823087
+  },
+  {
+   "symbol": "DELL",
+   "name": "Dell Tokenized Stock (Robinhood)",
+   "chain": "base",
+   "address": "0x29339b5fa9a384e1eefc8f8ccc2384b48444fb43",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13197.8158266223,
+   "first_seen": 1789823086
+  },
   {
    "symbol": "CATE",
    "name": "Catecoin (cate.meme)",
@@ -239,96 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 33207.5999,
    "first_seen": 1789816651
-  },
-  {
-   "symbol": "WildBeest",
-   "name": "WildBeest",
-   "chain": "base",
-   "address": "0xb94a60537d471ba7e140ed38842111befde6445a",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 79529.6920703649,
-   "first_seen": 1789815645
-  },
-  {
-   "symbol": "CASHCAT",
-   "name": "Cash Cat",
-   "chain": "base",
-   "address": "0x674c08fde1b434a6ffb180e6dc43c887d87541b0",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13205.7658423202,
-   "first_seen": 1789815448
-  },
-  {
-   "symbol": "CREO",
-   "name": "creo family",
-   "chain": "base",
-   "address": "0x7c384fe8bee90dc45e9f9a663d856791b746f4e5",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 33269.793,
-   "first_seen": 1789814666
-  },
-  {
-   "symbol": "PEAR",
-   "name": "Pear Protocol",
-   "chain": "base",
-   "address": "0xb8f0912c748ec4860bfdd3f02df589fa8fcd709b",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 33282.6345,
-   "first_seen": 1789814426
-  },
-  {
-   "symbol": "CCAT",
-   "name": "ConsiderableCATSHARK",
-   "chain": "base",
-   "address": "0x73621578ae285a7f62f1d2a1fe4cdf52f81b850f",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 26421.6,
-   "first_seen": 1789813740
-  },
-  {
-   "symbol": "SUILAMA",
-   "name": "Suilama",
-   "chain": "base",
-   "address": "0xa97d6f8ce24d4f63dcb7878262d081f32a036463",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 38264.7571,
-   "first_seen": 1789813466
-  },
-  {
-   "symbol": "Money",
-   "name": "Money Token",
-   "chain": "base",
-   "address": "0x7c60362dbbb7380d7b9f3d0f1ad6d70ed91e0087",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 26326.0154,
-   "first_seen": 1789813328
-  },
-  {
-   "symbol": "STOS",
-   "name": "Stratos",
-   "chain": "base",
-   "address": "0xd9830a64464a3f40c893245bc16c7b5773677687",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 38224.933,
-   "first_seen": 1789813327
-  },
-  {
-   "symbol": "GROK",
-   "name": "Grok Coin",
-   "chain": "base",
-   "address": "0xeacf66407b51bd2f5af68902837ccdee31ae8f7c",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 80246.0322,
-   "first_seen": 1789813051
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 51,
+  "waiting": 40,
   "confirmed": 25,
-  "dropped": 1241
+  "dropped": 1261
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 943
  },
  "watchlist_active": 13,
- "price_snapshots": 19824,
+ "price_snapshots": 19660,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
