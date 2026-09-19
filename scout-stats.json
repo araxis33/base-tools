@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-19T17:09:26Z",
- "generated_at_unix": 1789837763,
+ "generated_at": "2026-09-19T18:09:33Z",
+ "generated_at_unix": 1789841371,
  "period": {
   "start": "2026-07-15",
   "days": 66
  },
  "totals": {
-  "seen": 169226,
-  "base": 35111,
+  "seen": 169285,
+  "base": 35170,
   "robinhood": 134115,
-  "below_liquidity_threshold": 163656,
-  "spam_filtered": 2223,
-  "scored": 3347,
-  "green": 1893,
-  "yellow": 475,
+  "below_liquidity_threshold": 163691,
+  "spam_filtered": 2241,
+  "scored": 3353,
+  "green": 1898,
+  "yellow": 476,
   "red": 979
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-29",
-   "base": 235,
-   "robinhood": 2484
+   "base": 169,
+   "robinhood": 1761
   },
   {
    "date": "2026-08-30",
@@ -125,11 +125,71 @@
   },
   {
    "date": "2026-09-19",
-   "base": 627,
+   "base": 686,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "nima",
+   "name": "Nima Owji",
+   "chain": "base",
+   "address": "0x86a4eede7bf90ed317cb5ce83c0aa5dca51f3e22",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 79768.2795,
+   "first_seen": 1789839857
+  },
+  {
+   "symbol": "B8",
+   "name": "B8",
+   "chain": "base",
+   "address": "0x7bc3df20d27210bba46d08ba8ed0b7611e44ca6c",
+   "score": 64,
+   "verdict": "yellow",
+   "liquidity_usd": 2000.9699,
+   "first_seen": 1789839674
+  },
+  {
+   "symbol": "Hbar",
+   "name": "Hbar",
+   "chain": "base",
+   "address": "0xf5b513ba11892586c5ff40f6900111fae5297a78",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 13898785.8433,
+   "first_seen": 1789839447
+  },
+  {
+   "symbol": "zBTC",
+   "name": "Sepolia Wrapped BTC",
+   "chain": "base",
+   "address": "0x681bb98d634716769014f4610ec644f328d8d5bd",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 7954275.9668,
+   "first_seen": 1789838475
+  },
+  {
+   "symbol": "ZIPCAT",
+   "name": "ZIP CAT",
+   "chain": "base",
+   "address": "0x05b24032a95bb5fcae94b69ab79694a0d938c9cd",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13257.4658960856,
+   "first_seen": 1789838244
+  },
+  {
+   "symbol": "ASKR",
+   "name": "heyaskr",
+   "chain": "base",
+   "address": "0x40db2adfba406dd1013ecbc248a7948402ac5f40",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 2560888.4333,
+   "first_seen": 1789838107
+  },
   {
    "symbol": "GOOGL",
    "name": "Alphabet Class A Tokenized Stock (Robinhood)",
@@ -269,66 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 47635.4684,
    "first_seen": 1789819188
-  },
-  {
-   "symbol": "BASCORE",
-   "name": "BaseScore",
-   "chain": "base",
-   "address": "0xb4a89da192b37b084e8512c11e75d9f0dfaa5ea3",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 26184.7929,
-   "first_seen": 1789818763
-  },
-  {
-   "symbol": "RSFIRO",
-   "name": "rsFIRO",
-   "chain": "base",
-   "address": "0x82551914b232f96e3a7399f69a8b614a01dcfeea",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 33215.6573,
-   "first_seen": 1789818761
-  },
-  {
-   "symbol": "ODIN",
-   "name": "ODIN LIQUIDITY NETWORK",
-   "chain": "base",
-   "address": "0xdc212c07275fecc1f4a8eb8e96f6b4993118dc00",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 33215.6573,
-   "first_seen": 1789818760
-  },
-  {
-   "symbol": "AKE",
-   "name": "Akedo",
-   "chain": "base",
-   "address": "0x04fd9bd8f3c2af39302ca8e71acc69599fbb4669",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 1734714091.3642,
-   "first_seen": 1789818759
-  },
-  {
-   "symbol": "TTWO",
-   "name": "Take-Two Interactive Software Tokenized Stock (Robinhood)",
-   "chain": "base",
-   "address": "0xa3587ca66724836fdb775b3c16a419cf8dcb12b0",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13198.9658361741,
-   "first_seen": 1789817108
-  },
-  {
-   "symbol": "KINS",
-   "name": "Kintara",
-   "chain": "base",
-   "address": "0x7eb0dd48bc648aae33c1db9b049dc8874ea292c3",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 33207.5999,
-   "first_seen": 1789816651
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 40,
+  "waiting": 41,
   "confirmed": 25,
-  "dropped": 1261
+  "dropped": 1266
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 943
  },
  "watchlist_active": 13,
- "price_snapshots": 19660,
+ "price_snapshots": 19748,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
