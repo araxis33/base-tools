@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-19T19:09:39Z",
- "generated_at_unix": 1789844978,
+ "generated_at": "2026-09-19T20:09:45Z",
+ "generated_at_unix": 1789848584,
  "period": {
   "start": "2026-07-15",
   "days": 66
  },
  "totals": {
-  "seen": 169340,
-  "base": 35225,
+  "seen": 169402,
+  "base": 35287,
   "robinhood": 134115,
-  "below_liquidity_threshold": 163726,
-  "spam_filtered": 2261,
-  "scored": 3353,
-  "green": 1898,
+  "below_liquidity_threshold": 163758,
+  "spam_filtered": 2280,
+  "scored": 3364,
+  "green": 1908,
   "yellow": 476,
-  "red": 979
+  "red": 980
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-29",
-   "base": 103,
-   "robinhood": 1159
+   "base": 39,
+   "robinhood": 548
   },
   {
    "date": "2026-08-30",
@@ -125,11 +125,111 @@
   },
   {
    "date": "2026-09-19",
-   "base": 741,
+   "base": 803,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "MAKEX",
+   "name": "Make Chain",
+   "chain": "base",
+   "address": "0x18414cc7e54783176ab4479b4079483376a92b51",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4464.62678457202,
+   "first_seen": 1789848474
+  },
+  {
+   "symbol": "CEETA",
+   "name": "Ceeta",
+   "chain": "base",
+   "address": "0x65073d9a42c516711c5982097c7e28b57589a222",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 20043.4223,
+   "first_seen": 1789848380
+  },
+  {
+   "symbol": "FREEBOTS",
+   "name": "FreeBots",
+   "chain": "base",
+   "address": "0xb20000000000000000000069a38fb918db127095",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 15351.7071,
+   "first_seen": 1789848332
+  },
+  {
+   "symbol": "EMBER",
+   "name": "EMBER",
+   "chain": "base",
+   "address": "0xb2000000000000000000000a8070f2c5ed8b01bb",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13343.9810818835,
+   "first_seen": 1789848331
+  },
+  {
+   "symbol": "INCOGNITO",
+   "name": "Incognito",
+   "chain": "base",
+   "address": "0xecb23aedbfd985bcef16054351665aa08cd82b43",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4055.0378,
+   "first_seen": 1789847958
+  },
+  {
+   "symbol": "CRP",
+   "name": "MusicalCARP",
+   "chain": "base",
+   "address": "0x0f5745434eecb23421c4948aa5cac7ace75d1d3c",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 26355.9636,
+   "first_seen": 1789846899
+  },
+  {
+   "symbol": "PBLOB",
+   "name": "PepeTheBlob",
+   "chain": "base",
+   "address": "0xe61d89bc17a4bb2a2f8cdfd1d9a43a3600e0bb07",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 21378.1444975415,
+   "first_seen": 1789846489
+  },
+  {
+   "symbol": "XDNA",
+   "name": "DNA PROTOCOL",
+   "chain": "base",
+   "address": "0xb200000000000000000000ee7313c15305af8cd1",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13572.0601,
+   "first_seen": 1789846300
+  },
+  {
+   "symbol": "RELY",
+   "name": "RELY",
+   "chain": "base",
+   "address": "0xfc28f881426a2931ec01b7392fe7bd87de220222",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 6264.0151,
+   "first_seen": 1789845798
+  },
+  {
+   "symbol": "SADSASDA",
+   "name": "asdasdad",
+   "chain": "base",
+   "address": "0x75315e9f4f1880521c2dbbadc35d5244d4bdaca3",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 26277.9522354784,
+   "first_seen": 1789845379
+  },
   {
    "symbol": "nima",
    "name": "Nima Owji",
@@ -229,109 +329,19 @@
    "verdict": "green",
    "liquidity_usd": 8163821.7543,
    "first_seen": 1789835008
-  },
-  {
-   "symbol": "ROBIN",
-   "name": "Robin the Frog",
-   "chain": "base",
-   "address": "0x484fac346d12bbd84f85cbea0ff620517956ca29",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 2264731.7119,
-   "first_seen": 1789834689
-  },
-  {
-   "symbol": "SI",
-   "name": "Superior Inu",
-   "chain": "base",
-   "address": "0xb2000000000000000000004fb68c07f6930e1501",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4091.5948,
-   "first_seen": 1789834177
-  },
-  {
-   "symbol": "SI",
-   "name": "Supreme Intelligence",
-   "chain": "base",
-   "address": "0x6b0c3124ef213a93b07ca43624fea83db6f06be2",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 14576.944,
-   "first_seen": 1789834169
-  },
-  {
-   "symbol": "Anthropic",
-   "name": "Anthropic",
-   "chain": "base",
-   "address": "0x4ca6f47ab5415ce1c856d58b4a4151fc4584eb07",
-   "score": 67,
-   "verdict": "yellow",
-   "liquidity_usd": 5401750.2622,
-   "first_seen": 1789823087
-  },
-  {
-   "symbol": "DELL",
-   "name": "Dell Tokenized Stock (Robinhood)",
-   "chain": "base",
-   "address": "0x29339b5fa9a384e1eefc8f8ccc2384b48444fb43",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13197.8158266223,
-   "first_seen": 1789823086
-  },
-  {
-   "symbol": "CATE",
-   "name": "Catecoin (cate.meme)",
-   "chain": "base",
-   "address": "0x9dbf48b05fb69ff6b2756a5a9795e7335b9f27b7",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13205.9,
-   "first_seen": 1789820505
-  },
-  {
-   "symbol": "ZAYA",
-   "name": "ZayaAI",
-   "chain": "base",
-   "address": "0x5fab155a774dc5393a82d6fb13624147188be126",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 47684.9114,
-   "first_seen": 1789820414
-  },
-  {
-   "symbol": "MAGNE",
-   "name": "MAGNE.AI",
-   "chain": "base",
-   "address": "0x6553cbe4f4a05d47c992015566fe60745b3be15a",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 47631.1376,
-   "first_seen": 1789819824
-  },
-  {
-   "symbol": "VIBES",
-   "name": "Vibes",
-   "chain": "base",
-   "address": "0xd4e56510eaf88abf4d1f9a2e81fb72f7e51d7927",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13199.2658274899,
-   "first_seen": 1789819687
-  },
-  {
-   "symbol": "TINA",
-   "name": "Tina",
-   "chain": "base",
-   "address": "0x77854859b9165ac1ded89f5fbb94f09397bfe09f",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 47635.4684,
-   "first_seen": 1789819188
   }
  ],
  "confirmed": [
+  {
+   "symbol": "RELY",
+   "chain": "base",
+   "address": "0xfc28f881426a2931ec01b7392fe7bd87de220222",
+   "buyers_h1": 342,
+   "volume_h1": 196641.723084428,
+   "liquidity_usd": 45323.3353,
+   "confirmed_at": 1789845798,
+   "hours_waited": 0.8
+  },
   {
    "symbol": "BCDB",
    "chain": "base",
@@ -521,16 +531,6 @@
    "liquidity_usd": 299748.7185,
    "confirmed_at": 1788076362,
    "hours_waited": 2.6
-  },
-  {
-   "symbol": "OHMEN",
-   "chain": "robinhood",
-   "address": "0xacb57a58360a10cf7ff7b8d9c45019a0810fa292",
-   "buyers_h1": 87,
-   "volume_h1": 43754.8150226527,
-   "liquidity_usd": 222555.9363,
-   "confirmed_at": 1788030173,
-   "hours_waited": 0.8
   }
  ],
  "verdict_outcomes": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 38,
-  "confirmed": 25,
-  "dropped": 1269
+  "waiting": 34,
+  "confirmed": 26,
+  "dropped": 1282
  },
  "recent_drains": [
   {
@@ -757,8 +757,8 @@
   "pump": 263,
   "rug": 943
  },
- "watchlist_active": 13,
- "price_snapshots": 19849,
+ "watchlist_active": 14,
+ "price_snapshots": 19981,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
