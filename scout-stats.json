@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-19T11:30:59Z",
- "generated_at_unix": 1789817458,
+ "generated_at": "2026-09-19T12:31:05Z",
+ "generated_at_unix": 1789821065,
  "period": {
   "start": "2026-07-15",
   "days": 66
  },
  "totals": {
-  "seen": 168891,
-  "base": 34776,
+  "seen": 168959,
+  "base": 34844,
   "robinhood": 134115,
-  "below_liquidity_threshold": 163397,
-  "spam_filtered": 2165,
-  "scored": 3329,
-  "green": 1876,
+  "below_liquidity_threshold": 163431,
+  "spam_filtered": 2190,
+  "scored": 3338,
+  "green": 1885,
   "yellow": 474,
   "red": 979
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-29",
-   "base": 494,
-   "robinhood": 4935
+   "base": 443,
+   "robinhood": 4456
   },
   {
    "date": "2026-08-30",
@@ -125,11 +125,101 @@
   },
   {
    "date": "2026-09-19",
-   "base": 292,
+   "base": 360,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "CATE",
+   "name": "Catecoin (cate.meme)",
+   "chain": "base",
+   "address": "0x9dbf48b05fb69ff6b2756a5a9795e7335b9f27b7",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13205.9,
+   "first_seen": 1789820505
+  },
+  {
+   "symbol": "ZAYA",
+   "name": "ZayaAI",
+   "chain": "base",
+   "address": "0x5fab155a774dc5393a82d6fb13624147188be126",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 47684.9114,
+   "first_seen": 1789820414
+  },
+  {
+   "symbol": "MAGNE",
+   "name": "MAGNE.AI",
+   "chain": "base",
+   "address": "0x6553cbe4f4a05d47c992015566fe60745b3be15a",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 47631.1376,
+   "first_seen": 1789819824
+  },
+  {
+   "symbol": "VIBES",
+   "name": "Vibes",
+   "chain": "base",
+   "address": "0xd4e56510eaf88abf4d1f9a2e81fb72f7e51d7927",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13199.2658274899,
+   "first_seen": 1789819687
+  },
+  {
+   "symbol": "TINA",
+   "name": "Tina",
+   "chain": "base",
+   "address": "0x77854859b9165ac1ded89f5fbb94f09397bfe09f",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 47635.4684,
+   "first_seen": 1789819188
+  },
+  {
+   "symbol": "BASCORE",
+   "name": "BaseScore",
+   "chain": "base",
+   "address": "0xb4a89da192b37b084e8512c11e75d9f0dfaa5ea3",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 26184.7929,
+   "first_seen": 1789818763
+  },
+  {
+   "symbol": "RSFIRO",
+   "name": "rsFIRO",
+   "chain": "base",
+   "address": "0x82551914b232f96e3a7399f69a8b614a01dcfeea",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 33215.6573,
+   "first_seen": 1789818761
+  },
+  {
+   "symbol": "ODIN",
+   "name": "ODIN LIQUIDITY NETWORK",
+   "chain": "base",
+   "address": "0xdc212c07275fecc1f4a8eb8e96f6b4993118dc00",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 33215.6573,
+   "first_seen": 1789818760
+  },
+  {
+   "symbol": "AKE",
+   "name": "Akedo",
+   "chain": "base",
+   "address": "0x04fd9bd8f3c2af39302ca8e71acc69599fbb4669",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 1734714091.3642,
+   "first_seen": 1789818759
+  },
   {
    "symbol": "TTWO",
    "name": "Take-Two Interactive Software Tokenized Stock (Robinhood)",
@@ -239,96 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 80246.0322,
    "first_seen": 1789813051
-  },
-  {
-   "symbol": "OPTIMUS",
-   "name": "Optimus (optimustracker.ai)",
-   "chain": "base",
-   "address": "0xe4e450f86903b8635f0c463ab996d15f73322f49",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13199.4658361721,
-   "first_seen": 1789812907
-  },
-  {
-   "symbol": "PRL",
-   "name": "Pearl (pearlresearch.ai)",
-   "chain": "base",
-   "address": "0x72a71d42534924638d0ed37b72842350ddd093ac",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13208.15,
-   "first_seen": 1789812080
-  },
-  {
-   "symbol": "REP",
-   "name": "rep",
-   "chain": "base",
-   "address": "0x9f3ee60b66f0f7b97c3f5b75da95144876f8e742",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 59986.9044,
-   "first_seen": 1789810936
-  },
-  {
-   "symbol": "AWall",
-   "name": "Ask Wall",
-   "chain": "base",
-   "address": "0xb2000000000000000000000097a07bbf6a8889b1",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 47587.2562,
-   "first_seen": 1789810346
-  },
-  {
-   "symbol": "SizePrint",
-   "name": "Size Print",
-   "chain": "base",
-   "address": "0xb200000000000000000000c9a55520aa4a6ee94a",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 17761.0152,
-   "first_seen": 1789810344
-  },
-  {
-   "symbol": "AICAT",
-   "name": "Artificial Cat",
-   "chain": "base",
-   "address": "0xa65d7b1655bd722fe9d288cea3dc2b41b3c0def1",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 20961.8019,
-   "first_seen": 1789810343
-  },
-  {
-   "symbol": "FRP",
-   "name": "Federal Reserve Protocol",
-   "chain": "base",
-   "address": "0xb20000000000000000000054490f87560293363b",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 55727.8756,
-   "first_seen": 1789810342
-  },
-  {
-   "symbol": "GOLDEN",
-   "name": "Golden Kitty (goldenkitty.vip)",
-   "chain": "base",
-   "address": "0x83e76204481abbcff66813ecc3d80a5994afcb2f",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13159.2,
-   "first_seen": 1789770360
-  },
-  {
-   "symbol": "USWO",
-   "name": "UnemployedSWORDFISH",
-   "chain": "base",
-   "address": "0x1acfb08466ea283e653d7cf188fa6520d1191f66",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 26297.963,
-   "first_seen": 1789769431
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 46,
+  "waiting": 51,
   "confirmed": 25,
-  "dropped": 1237
+  "dropped": 1241
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 943
  },
  "watchlist_active": 13,
- "price_snapshots": 19760,
+ "price_snapshots": 19824,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
