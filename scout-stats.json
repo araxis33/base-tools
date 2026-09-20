@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-20T14:00:32Z",
- "generated_at_unix": 1789912831,
+ "generated_at": "2026-09-20T15:00:48Z",
+ "generated_at_unix": 1789916446,
  "period": {
   "start": "2026-07-15",
   "days": 67
  },
  "totals": {
-  "seen": 169687,
-  "base": 35572,
+  "seen": 169780,
+  "base": 35665,
   "robinhood": 134115,
-  "below_liquidity_threshold": 163968,
-  "spam_filtered": 2333,
-  "scored": 3386,
-  "green": 1930,
+  "below_liquidity_threshold": 164030,
+  "spam_filtered": 2357,
+  "scored": 3393,
+  "green": 1937,
   "yellow": 476,
   "red": 980
  },
@@ -125,11 +125,81 @@
   },
   {
    "date": "2026-09-20",
-   "base": 231,
+   "base": 324,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "PLC",
+   "name": "Pearl Chain (pearlchaintoken.com)",
+   "chain": "base",
+   "address": "0x5cee40f76d76afa299fd84307ef56479d8d2d82b",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13205.4879,
+   "first_seen": 1789913591
+  },
+  {
+   "symbol": "LMR",
+   "name": "TastyLEMUR",
+   "chain": "base",
+   "address": "0x76d0b00872ce3d081caba068db830d13090e9a10",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 25837.3,
+   "first_seen": 1789913358
+  },
+  {
+   "symbol": "WALLET",
+   "name": "Wallet",
+   "chain": "base",
+   "address": "0x10f58a78497cd60033f059fd3e8520bc1c9ec864",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 101222.5634,
+   "first_seen": 1789913175
+  },
+  {
+   "symbol": "4ELON",
+   "name": "4Elon",
+   "chain": "base",
+   "address": "0xb200000000000000000000037f541738a93bd63c",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 20874.9678,
+   "first_seen": 1789912848
+  },
+  {
+   "symbol": "MTRX",
+   "name": "Matrix",
+   "chain": "base",
+   "address": "0xb200000000000000000000925ae3dc5adbcc4466",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 17580.9565,
+   "first_seen": 1789912845
+  },
+  {
+   "symbol": "LAPTOP",
+   "name": "Laptop",
+   "chain": "base",
+   "address": "0x04b8adbe01249cbee090fa25ad2ae8e3fefb2bf3",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 20077.3626,
+   "first_seen": 1789912843
+  },
+  {
+   "symbol": "CAUL",
+   "name": "En caul",
+   "chain": "base",
+   "address": "0xe49f958b36fe101c3c68b2c1546c9f163f4a9457",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 101052.7882,
+   "first_seen": 1789912838
+  },
   {
    "symbol": "BLUECHIP",
    "name": "BLUE CHIP (basebluechip.com)",
@@ -259,79 +329,19 @@
    "verdict": "green",
    "liquidity_usd": 12423.7101320059,
    "first_seen": 1789896281
-  },
-  {
-   "symbol": "TRUMP",
-   "name": "TRUMPBUTT",
-   "chain": "base",
-   "address": "0xb20000000000000000000028e68757b41ca520b4",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 46614.4602,
-   "first_seen": 1789883707
-  },
-  {
-   "symbol": "DSAW",
-   "name": "Digital Supply American Water (DAWS)",
-   "chain": "base",
-   "address": "0x77bd88ad347537c813035905383502c65600f24b",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 56207.126,
-   "first_seen": 1789883706
-  },
-  {
-   "symbol": "CYBER",
-   "name": "Cyber Kitty",
-   "chain": "base",
-   "address": "0x19508c72d54f71807b61fbd84e6e1baf22e2ff65",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 20585.781,
-   "first_seen": 1789883705
-  },
-  {
-   "symbol": "CWF",
-   "name": "Cat Wif Feather",
-   "chain": "base",
-   "address": "0xe74da0675cc5e284b188823b6a85a4ecaf799b94",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 491534.4707,
-   "first_seen": 1789850565
-  },
-  {
-   "symbol": "DELCAT",
-   "name": "Edel Cat",
-   "chain": "base",
-   "address": "0xd616d58533f15051534b8649a716f27c9beda222",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4032.7809,
-   "first_seen": 1789849962
-  },
-  {
-   "symbol": "TIPPED",
-   "name": "TIPPED",
-   "chain": "base",
-   "address": "0x6f1f834dd41ba10f6c7e9c92c96c335840284ada",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 2871198.0797,
-   "first_seen": 1789849960
-  },
-  {
-   "symbol": "Horse",
-   "name": "Fire Horse",
-   "chain": "base",
-   "address": "0xe5b8f510726cdbecd8c895ddedf29c8e72957777",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 18625.9592,
-   "first_seen": 1789849684
   }
  ],
  "confirmed": [
+  {
+   "symbol": "ETAS",
+   "chain": "base",
+   "address": "0x425d01bae2f1fbb694247befef7270429d33727b",
+   "buyers_h1": 160,
+   "volume_h1": 11609.5032396173,
+   "liquidity_usd": 181006.8343,
+   "confirmed_at": 1789898808,
+   "hours_waited": 3.9
+  },
   {
    "symbol": "RELY",
    "chain": "base",
@@ -521,16 +531,6 @@
    "liquidity_usd": 70088.5339,
    "confirmed_at": 1788364112,
    "hours_waited": 0.8
-  },
-  {
-   "symbol": "Zipper",
-   "chain": "robinhood",
-   "address": "0xe1e8b826ebf770133717bd6fd973fd421d9c2614",
-   "buyers_h1": 257,
-   "volume_h1": 916859.701042862,
-   "liquidity_usd": 299748.7185,
-   "confirmed_at": 1788076362,
-   "hours_waited": 2.6
   }
  ],
  "verdict_outcomes": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 38,
-  "confirmed": 26,
-  "dropped": 1300
+  "waiting": 26,
+  "confirmed": 27,
+  "dropped": 1318
  },
  "recent_drains": [
   {
@@ -757,8 +757,8 @@
   "pump": 263,
   "rug": 943
  },
- "watchlist_active": 13,
- "price_snapshots": 20209,
+ "watchlist_active": 14,
+ "price_snapshots": 20293,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
