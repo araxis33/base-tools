@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-20T15:00:48Z",
- "generated_at_unix": 1789916446,
+ "generated_at": "2026-09-20T16:00:53Z",
+ "generated_at_unix": 1789920052,
  "period": {
   "start": "2026-07-15",
   "days": 67
  },
  "totals": {
-  "seen": 169780,
-  "base": 35665,
+  "seen": 169858,
+  "base": 35743,
   "robinhood": 134115,
-  "below_liquidity_threshold": 164030,
-  "spam_filtered": 2357,
-  "scored": 3393,
-  "green": 1937,
+  "below_liquidity_threshold": 164091,
+  "spam_filtered": 2373,
+  "scored": 3394,
+  "green": 1938,
   "yellow": 476,
   "red": 980
  },
@@ -125,11 +125,21 @@
   },
   {
    "date": "2026-09-20",
-   "base": 324,
+   "base": 402,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "JEANPHIL",
+   "name": "Jean Phil",
+   "chain": "base",
+   "address": "0xa014601335f20a53d4d0bced907b32693373804e",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 400524.0975,
+   "first_seen": 1789919537
+  },
   {
    "symbol": "PLC",
    "name": "Pearl Chain (pearlchaintoken.com)",
@@ -319,16 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 19443.8663761084,
    "first_seen": 1789896282
-  },
-  {
-   "symbol": "Olympus",
-   "name": "New Olympus",
-   "chain": "base",
-   "address": "0xb20000000000000000000067b65912574aeebcb9",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12423.7101320059,
-   "first_seen": 1789896281
   }
  ],
  "confirmed": [
@@ -554,7 +554,7 @@
   }
  ],
  "probation": {
-  "waiting": 26,
+  "waiting": 27,
   "confirmed": 27,
   "dropped": 1318
  },
@@ -758,7 +758,7 @@
   "rug": 943
  },
  "watchlist_active": 14,
- "price_snapshots": 20293,
+ "price_snapshots": 20670,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
