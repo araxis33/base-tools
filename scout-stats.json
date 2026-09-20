@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-20T19:17:23Z",
- "generated_at_unix": 1789931842,
+ "generated_at": "2026-09-20T20:17:33Z",
+ "generated_at_unix": 1789935451,
  "period": {
   "start": "2026-07-15",
   "days": 67
  },
  "totals": {
-  "seen": 170058,
-  "base": 35943,
+  "seen": 170123,
+  "base": 36008,
   "robinhood": 134115,
-  "below_liquidity_threshold": 164232,
-  "spam_filtered": 2416,
-  "scored": 3410,
-  "green": 1953,
+  "below_liquidity_threshold": 164283,
+  "spam_filtered": 2426,
+  "scored": 3414,
+  "green": 1956,
   "yellow": 476,
-  "red": 981
+  "red": 982
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-30",
-   "base": 84,
-   "robinhood": 896
+   "base": 38,
+   "robinhood": 417
   },
   {
    "date": "2026-08-31",
@@ -125,11 +125,41 @@
   },
   {
    "date": "2026-09-20",
-   "base": 602,
+   "base": 667,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "RTPLV2",
+   "name": "RT-Pool.cc Token V2",
+   "chain": "base",
+   "address": "0x6010d9db5dd3441f803ba3a55f5850318bf91a51",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13174.0158086103,
+   "first_seen": 1789935004
+  },
+  {
+   "symbol": "META",
+   "name": "Meta Platforms Tokenized Stock (Robinhood)",
+   "chain": "base",
+   "address": "0x516ef93455097ca29dbfe51f974b6f914b9d7f1e",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13136.4,
+   "first_seen": 1789932564
+  },
+  {
+   "symbol": "CASHDOG",
+   "name": "Cash Dog (cashdog.club)",
+   "chain": "base",
+   "address": "0xe2a3be74f3d42aece0443dc8963a7c1bce901a7e",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13136.9255,
+   "first_seen": 1789932563
+  },
   {
    "symbol": "NOIPO",
    "name": "NOIPOXSPACE",
@@ -299,36 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 13205.4879,
    "first_seen": 1789913591
-  },
-  {
-   "symbol": "LMR",
-   "name": "TastyLEMUR",
-   "chain": "base",
-   "address": "0x76d0b00872ce3d081caba068db830d13090e9a10",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 25837.3,
-   "first_seen": 1789913358
-  },
-  {
-   "symbol": "WALLET",
-   "name": "Wallet",
-   "chain": "base",
-   "address": "0x10f58a78497cd60033f059fd3e8520bc1c9ec864",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 101222.5634,
-   "first_seen": 1789913175
-  },
-  {
-   "symbol": "4ELON",
-   "name": "4Elon",
-   "chain": "base",
-   "address": "0xb200000000000000000000037f541738a93bd63c",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 20874.9678,
-   "first_seen": 1789912848
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 24,
+  "waiting": 22,
   "confirmed": 27,
-  "dropped": 1336
+  "dropped": 1341
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 944
  },
  "watchlist_active": 14,
- "price_snapshots": 20912,
+ "price_snapshots": 21058,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
