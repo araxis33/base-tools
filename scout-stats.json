@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-20T10:23:11Z",
- "generated_at_unix": 1789899789,
+ "generated_at": "2026-09-20T11:23:20Z",
+ "generated_at_unix": 1789903400,
  "period": {
   "start": "2026-07-15",
   "days": 67
  },
  "totals": {
-  "seen": 169601,
-  "base": 35486,
+  "seen": 169681,
+  "base": 35566,
   "robinhood": 134115,
-  "below_liquidity_threshold": 163905,
-  "spam_filtered": 2317,
-  "scored": 3379,
-  "green": 1923,
+  "below_liquidity_threshold": 163964,
+  "spam_filtered": 2331,
+  "scored": 3386,
+  "green": 1930,
   "yellow": 476,
   "red": 980
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-30",
-   "base": 391,
-   "robinhood": 3700
+   "base": 313,
+   "robinhood": 3269
   },
   {
    "date": "2026-08-31",
@@ -125,11 +125,81 @@
   },
   {
    "date": "2026-09-20",
-   "base": 145,
+   "base": 225,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "BLUECHIP",
+   "name": "BLUE CHIP (basebluechip.com)",
+   "chain": "base",
+   "address": "0xc85e6d477f5b54fdb2a313f40d998343d7d698b3",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 12852.3654083997,
+   "first_seen": 1789902979
+  },
+  {
+   "symbol": "Weth",
+   "name": "Weth coin",
+   "chain": "base",
+   "address": "0x11b5b583f79c4a3329b178e95dde31f21af1f226",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 26270125.4751,
+   "first_seen": 1789902841
+  },
+  {
+   "symbol": "YOLO",
+   "name": "YOLO",
+   "chain": "base",
+   "address": "0x5b2d921f07cfcd1e2a182fec0a681fec11d3fe73",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 2683659.5299,
+   "first_seen": 1789902840
+  },
+  {
+   "symbol": "KNOTS",
+   "name": "KNOTS",
+   "chain": "base",
+   "address": "0xf54cca3eda821bcc80a0a183625056fd00719c2c",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12852.9571,
+   "first_seen": 1789902837
+  },
+  {
+   "symbol": "JEV",
+   "name": "JEV",
+   "chain": "base",
+   "address": "0x90f7fd73852303255ca6a71df42672ed6d8dab1f",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4063.1464,
+   "first_seen": 1789902596
+  },
+  {
+   "symbol": "TGR",
+   "name": "FinalTIGER",
+   "chain": "base",
+   "address": "0x4111633f85dc432e1501c33ebe6d75964acebf11",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 25708.5,
+   "first_seen": 1789902276
+  },
+  {
+   "symbol": "UCTTon",
+   "name": "Ultra Clean Holdings Tokenized Stock (Ondo)",
+   "chain": "base",
+   "address": "0x3744ae2ffe6bf22086b38364eeedc85a191ad8b1",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 12979.2509826458,
+   "first_seen": 1789900400
+  },
   {
    "symbol": "ETAS",
    "name": "ETAS",
@@ -259,76 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 18625.9592,
    "first_seen": 1789849684
-  },
-  {
-   "symbol": "TIKCAT",
-   "name": "TikTokCat",
-   "chain": "base",
-   "address": "0x462adc8855ec4d5044e4f38f8c37664b81a10622",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 260798.5347,
-   "first_seen": 1789849121
-  },
-  {
-   "symbol": "BANGER",
-   "name": "Banger",
-   "chain": "base",
-   "address": "0xf4dac02d95850330cbd539fe288a2c99ff57bba3",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 8593.8971,
-   "first_seen": 1789848613
-  },
-  {
-   "symbol": "MAKEX",
-   "name": "Make Chain",
-   "chain": "base",
-   "address": "0x18414cc7e54783176ab4479b4079483376a92b51",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4464.62678457202,
-   "first_seen": 1789848474
-  },
-  {
-   "symbol": "CEETA",
-   "name": "Ceeta",
-   "chain": "base",
-   "address": "0x65073d9a42c516711c5982097c7e28b57589a222",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 20043.4223,
-   "first_seen": 1789848380
-  },
-  {
-   "symbol": "FREEBOTS",
-   "name": "FreeBots",
-   "chain": "base",
-   "address": "0xb20000000000000000000069a38fb918db127095",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 15351.7071,
-   "first_seen": 1789848332
-  },
-  {
-   "symbol": "EMBER",
-   "name": "EMBER",
-   "chain": "base",
-   "address": "0xb2000000000000000000000a8070f2c5ed8b01bb",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13343.9810818835,
-   "first_seen": 1789848331
-  },
-  {
-   "symbol": "INCOGNITO",
-   "name": "Incognito",
-   "chain": "base",
-   "address": "0xecb23aedbfd985bcef16054351665aa08cd82b43",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4055.0378,
-   "first_seen": 1789847958
   }
  ],
  "confirmed": [
@@ -556,7 +556,7 @@
  "probation": {
   "waiting": 38,
   "confirmed": 26,
-  "dropped": 1293
+  "dropped": 1300
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 943
  },
  "watchlist_active": 13,
- "price_snapshots": 20107,
+ "price_snapshots": 20201,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
