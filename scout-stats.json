@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-20T17:09:15Z",
- "generated_at_unix": 1789924153,
+ "generated_at": "2026-09-20T18:17:03Z",
+ "generated_at_unix": 1789928217,
  "period": {
   "start": "2026-07-15",
   "days": 67
  },
  "totals": {
-  "seen": 169919,
-  "base": 35804,
+  "seen": 169960,
+  "base": 35845,
   "robinhood": 134115,
-  "below_liquidity_threshold": 164131,
-  "spam_filtered": 2389,
-  "scored": 3397,
-  "green": 1941,
+  "below_liquidity_threshold": 164158,
+  "spam_filtered": 2396,
+  "scored": 3405,
+  "green": 1949,
   "yellow": 476,
   "red": 980
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-30",
-   "base": 190,
-   "robinhood": 2007
+   "base": 141,
+   "robinhood": 1436
   },
   {
    "date": "2026-08-31",
@@ -125,11 +125,91 @@
   },
   {
    "date": "2026-09-20",
-   "base": 466,
+   "base": 505,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "AAPLc",
+   "name": "Apple Income",
+   "chain": "base",
+   "address": "0x563fa334eb4d31c380b4c3a990767c676883ee6b",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 232140.1296,
+   "first_seen": 1789924762
+  },
+  {
+   "symbol": "MFLY",
+   "name": "MultipleFLYINGFISH",
+   "chain": "base",
+   "address": "0x2f75d3dc22ab1c8bc4340e6eaa7938a943d0cd81",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 26367.6,
+   "first_seen": 1789924580
+  },
+  {
+   "symbol": "DELTA",
+   "name": "Delta",
+   "chain": "base",
+   "address": "0xfbd47db2662298a38dc642083d6e683a980a61a5",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13860.7108,
+   "first_seen": 1789924395
+  },
+  {
+   "symbol": "NEAR",
+   "name": "NEAR PROTOCOL",
+   "chain": "base",
+   "address": "0xb200000000000000000000f42e48b8764554877a",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 22233.7675,
+   "first_seen": 1789924161
+  },
+  {
+   "symbol": "BOTCLAW",
+   "name": "BOTCLAW",
+   "chain": "base",
+   "address": "0xb20000000000000000000005afdb990dfab39eb7",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 20604.8926,
+   "first_seen": 1789924160
+  },
+  {
+   "symbol": "FIX6900",
+   "name": "FANTASY INDEX 6900",
+   "chain": "base",
+   "address": "0xe8c49ab5969f3a7575c891cc3a45b6214843d1f3",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 21372.7987,
+   "first_seen": 1789924158
+  },
+  {
+   "symbol": "BALT",
+   "name": "Brett's cat",
+   "chain": "base",
+   "address": "0xd44b3c7da9c33775b1786ecb45fbe2a749f03fa8",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4155.5426,
+   "first_seen": 1789924157
+  },
+  {
+   "symbol": "USD𖼊",
+   "name": "USD𖼊",
+   "chain": "base",
+   "address": "0xb200000000000000000000a5a2ba3eb9f1629402",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 18591.5042,
+   "first_seen": 1789924156
+  },
   {
    "symbol": "HOODRAT",
    "name": "Hoodrat (certifiedhoodrat.com)",
@@ -249,86 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 12852.3654083997,
    "first_seen": 1789902979
-  },
-  {
-   "symbol": "Weth",
-   "name": "Weth coin",
-   "chain": "base",
-   "address": "0x11b5b583f79c4a3329b178e95dde31f21af1f226",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 26270125.4751,
-   "first_seen": 1789902841
-  },
-  {
-   "symbol": "YOLO",
-   "name": "YOLO",
-   "chain": "base",
-   "address": "0x5b2d921f07cfcd1e2a182fec0a681fec11d3fe73",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 2683659.5299,
-   "first_seen": 1789902840
-  },
-  {
-   "symbol": "KNOTS",
-   "name": "KNOTS",
-   "chain": "base",
-   "address": "0xf54cca3eda821bcc80a0a183625056fd00719c2c",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12852.9571,
-   "first_seen": 1789902837
-  },
-  {
-   "symbol": "JEV",
-   "name": "JEV",
-   "chain": "base",
-   "address": "0x90f7fd73852303255ca6a71df42672ed6d8dab1f",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4063.1464,
-   "first_seen": 1789902596
-  },
-  {
-   "symbol": "TGR",
-   "name": "FinalTIGER",
-   "chain": "base",
-   "address": "0x4111633f85dc432e1501c33ebe6d75964acebf11",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 25708.5,
-   "first_seen": 1789902276
-  },
-  {
-   "symbol": "UCTTon",
-   "name": "Ultra Clean Holdings Tokenized Stock (Ondo)",
-   "chain": "base",
-   "address": "0x3744ae2ffe6bf22086b38364eeedc85a191ad8b1",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 12979.2509826458,
-   "first_seen": 1789900400
-  },
-  {
-   "symbol": "ETAS",
-   "name": "ETAS",
-   "chain": "base",
-   "address": "0x425d01bae2f1fbb694247befef7270429d33727b",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 59837.8214,
-   "first_seen": 1789898808
-  },
-  {
-   "symbol": "Yappapa",
-   "name": "Yapapa on base",
-   "chain": "base",
-   "address": "0xb200000000000000000000c79379abd7160d9d01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3947.6799,
-   "first_seen": 1789898659
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 30,
+  "waiting": 33,
   "confirmed": 27,
-  "dropped": 1318
+  "dropped": 1323
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 944
  },
  "watchlist_active": 14,
- "price_snapshots": 20922,
+ "price_snapshots": 20977,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
