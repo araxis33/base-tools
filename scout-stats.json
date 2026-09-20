@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-20T16:00:53Z",
- "generated_at_unix": 1789920052,
+ "generated_at": "2026-09-20T17:09:15Z",
+ "generated_at_unix": 1789924153,
  "period": {
   "start": "2026-07-15",
   "days": 67
  },
  "totals": {
-  "seen": 169858,
-  "base": 35743,
+  "seen": 169919,
+  "base": 35804,
   "robinhood": 134115,
-  "below_liquidity_threshold": 164091,
-  "spam_filtered": 2373,
-  "scored": 3394,
-  "green": 1938,
+  "below_liquidity_threshold": 164131,
+  "spam_filtered": 2389,
+  "scored": 3397,
+  "green": 1941,
   "yellow": 476,
   "red": 980
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-30",
-   "base": 258,
-   "robinhood": 2628
+   "base": 190,
+   "robinhood": 2007
   },
   {
    "date": "2026-08-31",
@@ -125,11 +125,41 @@
   },
   {
    "date": "2026-09-20",
-   "base": 402,
+   "base": 466,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "HOODRAT",
+   "name": "Hoodrat (certifiedhoodrat.com)",
+   "chain": "base",
+   "address": "0xf587dc9a7b7be3e23039d81fc1fd6e6db9f22725",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13101.8157098495,
+   "first_seen": 1789922182
+  },
+  {
+   "symbol": "Lumivium",
+   "name": "Lumivium",
+   "chain": "base",
+   "address": "0xb200000000000000000000adfef7d282fcaeb6f5",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12317.8513655356,
+   "first_seen": 1789921488
+  },
+  {
+   "symbol": "DTCC XRP",
+   "name": "DTCC RIPPLE XRP",
+   "chain": "base",
+   "address": "0x353584311230e277a8fd316c5f118257b6572104",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3839.6995,
+   "first_seen": 1789920321
+  },
   {
    "symbol": "JEANPHIL",
    "name": "Jean Phil",
@@ -299,36 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 3947.6799,
    "first_seen": 1789898659
-  },
-  {
-   "symbol": "SILV",
-   "name": "Dominion Silver",
-   "chain": "base",
-   "address": "0x48dd9bdf380b65e465df617747fdff3b91aa0873",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12910.85,
-   "first_seen": 1789898050
-  },
-  {
-   "symbol": "MACHO",
-   "name": "Macho",
-   "chain": "base",
-   "address": "0xb2000000000000000000008342f58d83d8930511",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 15638.9193,
-   "first_seen": 1789896284
-  },
-  {
-   "symbol": "fundr",
-   "name": "fundr",
-   "chain": "base",
-   "address": "0xb20000000000000000000002ae783b1ab621ab15",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 19443.8663761084,
-   "first_seen": 1789896282
   }
  ],
  "confirmed": [
@@ -554,11 +554,17 @@
   }
  ],
  "probation": {
-  "waiting": 27,
+  "waiting": 30,
   "confirmed": 27,
   "dropped": 1318
  },
  "recent_drains": [
+  {
+   "symbol": "ETAS",
+   "chain": "base",
+   "address": "0x425d01bae2f1fbb694247befef7270429d33727b",
+   "ts": 1789920202
+  },
   {
    "symbol": "FLY",
    "chain": "base",
@@ -642,12 +648,6 @@
    "chain": "base",
    "address": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
    "ts": 1787903634
-  },
-  {
-   "symbol": "UTOF",
-   "chain": "base",
-   "address": "0x676dda0b67e373b1fe3c9ea9a03dadafb899fc57",
-   "ts": 1787677267
   }
  ],
  "survivors": [
@@ -755,10 +755,10 @@
  "alerts": {
   "dump": 697,
   "pump": 263,
-  "rug": 943
+  "rug": 944
  },
  "watchlist_active": 14,
- "price_snapshots": 20670,
+ "price_snapshots": 20922,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
