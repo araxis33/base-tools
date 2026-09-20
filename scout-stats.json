@@ -1,32 +1,27 @@
 {
- "generated_at": "2026-09-19T20:09:45Z",
- "generated_at_unix": 1789848584,
+ "generated_at": "2026-09-20T10:23:11Z",
+ "generated_at_unix": 1789899789,
  "period": {
   "start": "2026-07-15",
-  "days": 66
+  "days": 67
  },
  "totals": {
-  "seen": 169402,
-  "base": 35287,
+  "seen": 169601,
+  "base": 35486,
   "robinhood": 134115,
-  "below_liquidity_threshold": 163758,
-  "spam_filtered": 2280,
-  "scored": 3364,
-  "green": 1908,
+  "below_liquidity_threshold": 163905,
+  "spam_filtered": 2317,
+  "scored": 3379,
+  "green": 1923,
   "yellow": 476,
   "red": 980
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
-   "date": "2026-08-29",
-   "base": 39,
-   "robinhood": 548
-  },
-  {
    "date": "2026-08-30",
-   "base": 475,
-   "robinhood": 4364
+   "base": 391,
+   "robinhood": 3700
   },
   {
    "date": "2026-08-31",
@@ -125,11 +120,166 @@
   },
   {
    "date": "2026-09-19",
-   "base": 803,
+   "base": 857,
+   "robinhood": 0
+  },
+  {
+   "date": "2026-09-20",
+   "base": 145,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "ETAS",
+   "name": "ETAS",
+   "chain": "base",
+   "address": "0x425d01bae2f1fbb694247befef7270429d33727b",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 59837.8214,
+   "first_seen": 1789898808
+  },
+  {
+   "symbol": "Yappapa",
+   "name": "Yapapa on base",
+   "chain": "base",
+   "address": "0xb200000000000000000000c79379abd7160d9d01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3947.6799,
+   "first_seen": 1789898659
+  },
+  {
+   "symbol": "SILV",
+   "name": "Dominion Silver",
+   "chain": "base",
+   "address": "0x48dd9bdf380b65e465df617747fdff3b91aa0873",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12910.85,
+   "first_seen": 1789898050
+  },
+  {
+   "symbol": "MACHO",
+   "name": "Macho",
+   "chain": "base",
+   "address": "0xb2000000000000000000008342f58d83d8930511",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 15638.9193,
+   "first_seen": 1789896284
+  },
+  {
+   "symbol": "fundr",
+   "name": "fundr",
+   "chain": "base",
+   "address": "0xb20000000000000000000002ae783b1ab621ab15",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 19443.8663761084,
+   "first_seen": 1789896282
+  },
+  {
+   "symbol": "Olympus",
+   "name": "New Olympus",
+   "chain": "base",
+   "address": "0xb20000000000000000000067b65912574aeebcb9",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 12423.7101320059,
+   "first_seen": 1789896281
+  },
+  {
+   "symbol": "TRUMP",
+   "name": "TRUMPBUTT",
+   "chain": "base",
+   "address": "0xb20000000000000000000028e68757b41ca520b4",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 46614.4602,
+   "first_seen": 1789883707
+  },
+  {
+   "symbol": "DSAW",
+   "name": "Digital Supply American Water (DAWS)",
+   "chain": "base",
+   "address": "0x77bd88ad347537c813035905383502c65600f24b",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 56207.126,
+   "first_seen": 1789883706
+  },
+  {
+   "symbol": "CYBER",
+   "name": "Cyber Kitty",
+   "chain": "base",
+   "address": "0x19508c72d54f71807b61fbd84e6e1baf22e2ff65",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 20585.781,
+   "first_seen": 1789883705
+  },
+  {
+   "symbol": "CWF",
+   "name": "Cat Wif Feather",
+   "chain": "base",
+   "address": "0xe74da0675cc5e284b188823b6a85a4ecaf799b94",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 491534.4707,
+   "first_seen": 1789850565
+  },
+  {
+   "symbol": "DELCAT",
+   "name": "Edel Cat",
+   "chain": "base",
+   "address": "0xd616d58533f15051534b8649a716f27c9beda222",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4032.7809,
+   "first_seen": 1789849962
+  },
+  {
+   "symbol": "TIPPED",
+   "name": "TIPPED",
+   "chain": "base",
+   "address": "0x6f1f834dd41ba10f6c7e9c92c96c335840284ada",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 2871198.0797,
+   "first_seen": 1789849960
+  },
+  {
+   "symbol": "Horse",
+   "name": "Fire Horse",
+   "chain": "base",
+   "address": "0xe5b8f510726cdbecd8c895ddedf29c8e72957777",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 18625.9592,
+   "first_seen": 1789849684
+  },
+  {
+   "symbol": "TIKCAT",
+   "name": "TikTokCat",
+   "chain": "base",
+   "address": "0x462adc8855ec4d5044e4f38f8c37664b81a10622",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 260798.5347,
+   "first_seen": 1789849121
+  },
+  {
+   "symbol": "BANGER",
+   "name": "Banger",
+   "chain": "base",
+   "address": "0xf4dac02d95850330cbd539fe288a2c99ff57bba3",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 8593.8971,
+   "first_seen": 1789848613
+  },
   {
    "symbol": "MAKEX",
    "name": "Make Chain",
@@ -179,156 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 4055.0378,
    "first_seen": 1789847958
-  },
-  {
-   "symbol": "CRP",
-   "name": "MusicalCARP",
-   "chain": "base",
-   "address": "0x0f5745434eecb23421c4948aa5cac7ace75d1d3c",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 26355.9636,
-   "first_seen": 1789846899
-  },
-  {
-   "symbol": "PBLOB",
-   "name": "PepeTheBlob",
-   "chain": "base",
-   "address": "0xe61d89bc17a4bb2a2f8cdfd1d9a43a3600e0bb07",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 21378.1444975415,
-   "first_seen": 1789846489
-  },
-  {
-   "symbol": "XDNA",
-   "name": "DNA PROTOCOL",
-   "chain": "base",
-   "address": "0xb200000000000000000000ee7313c15305af8cd1",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13572.0601,
-   "first_seen": 1789846300
-  },
-  {
-   "symbol": "RELY",
-   "name": "RELY",
-   "chain": "base",
-   "address": "0xfc28f881426a2931ec01b7392fe7bd87de220222",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 6264.0151,
-   "first_seen": 1789845798
-  },
-  {
-   "symbol": "SADSASDA",
-   "name": "asdasdad",
-   "chain": "base",
-   "address": "0x75315e9f4f1880521c2dbbadc35d5244d4bdaca3",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 26277.9522354784,
-   "first_seen": 1789845379
-  },
-  {
-   "symbol": "nima",
-   "name": "Nima Owji",
-   "chain": "base",
-   "address": "0x86a4eede7bf90ed317cb5ce83c0aa5dca51f3e22",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 79768.2795,
-   "first_seen": 1789839857
-  },
-  {
-   "symbol": "B8",
-   "name": "B8",
-   "chain": "base",
-   "address": "0x7bc3df20d27210bba46d08ba8ed0b7611e44ca6c",
-   "score": 64,
-   "verdict": "yellow",
-   "liquidity_usd": 2000.9699,
-   "first_seen": 1789839674
-  },
-  {
-   "symbol": "Hbar",
-   "name": "Hbar",
-   "chain": "base",
-   "address": "0xf5b513ba11892586c5ff40f6900111fae5297a78",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 13898785.8433,
-   "first_seen": 1789839447
-  },
-  {
-   "symbol": "zBTC",
-   "name": "Sepolia Wrapped BTC",
-   "chain": "base",
-   "address": "0x681bb98d634716769014f4610ec644f328d8d5bd",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 7954275.9668,
-   "first_seen": 1789838475
-  },
-  {
-   "symbol": "ZIPCAT",
-   "name": "ZIP CAT",
-   "chain": "base",
-   "address": "0x05b24032a95bb5fcae94b69ab79694a0d938c9cd",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13257.4658960856,
-   "first_seen": 1789838244
-  },
-  {
-   "symbol": "ASKR",
-   "name": "heyaskr",
-   "chain": "base",
-   "address": "0x40db2adfba406dd1013ecbc248a7948402ac5f40",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 2560888.4333,
-   "first_seen": 1789838107
-  },
-  {
-   "symbol": "GOOGL",
-   "name": "Alphabet Class A Tokenized Stock (Robinhood)",
-   "chain": "base",
-   "address": "0xa5c20f74c2fd256bae50ecb3220d4d81547e505b",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13241.6,
-   "first_seen": 1789836262
-  },
-  {
-   "symbol": "GRBL",
-   "name": "CommercialGERBIL",
-   "chain": "base",
-   "address": "0x7b776f098d2f3b81ea7f575a8b1eafdcb6849571",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 26493.3,
-   "first_seen": 1789835844
-  },
-  {
-   "symbol": "ACAT",
-   "name": "AEROCAT",
-   "chain": "base",
-   "address": "0xec14f4e0b6384814c952e1c5ea7f2df6e3ce0913",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 79414.2,
-   "first_seen": 1789835249
-  },
-  {
-   "symbol": "zBTC",
-   "name": "zTaySmilezBTC",
-   "chain": "base",
-   "address": "0x88cb2ccda89896103e587c955103e092c60853c2",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 8163821.7543,
-   "first_seen": 1789835008
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 34,
+  "waiting": 38,
   "confirmed": 26,
-  "dropped": 1282
+  "dropped": 1293
  },
  "recent_drains": [
   {
@@ -757,8 +757,8 @@
   "pump": 263,
   "rug": 943
  },
- "watchlist_active": 14,
- "price_snapshots": 19981,
+ "watchlist_active": 13,
+ "price_snapshots": 20107,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
