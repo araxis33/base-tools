@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-20T21:17:47Z",
- "generated_at_unix": 1789939066,
+ "generated_at": "2026-09-20T22:18:03Z",
+ "generated_at_unix": 1789942683,
  "period": {
   "start": "2026-07-15",
   "days": 67
  },
  "totals": {
-  "seen": 170193,
-  "base": 36078,
+  "seen": 170248,
+  "base": 36133,
   "robinhood": 134115,
-  "below_liquidity_threshold": 164341,
-  "spam_filtered": 2434,
-  "scored": 3418,
-  "green": 1959,
+  "below_liquidity_threshold": 164378,
+  "spam_filtered": 2448,
+  "scored": 3422,
+  "green": 1963,
   "yellow": 476,
   "red": 983
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-31",
-   "base": 522,
-   "robinhood": 5407
+   "base": 474,
+   "robinhood": 4793
   },
   {
    "date": "2026-09-01",
@@ -125,11 +125,51 @@
   },
   {
    "date": "2026-09-21",
-   "base": 20,
+   "base": 75,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "BASED",
+   "name": "That's Based",
+   "chain": "base",
+   "address": "0x488e3f6c2485b39cb85a83eef4193c8c1f5cd7e9",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 82349.9166,
+   "first_seen": 1789942138
+  },
+  {
+   "symbol": "ClawOS",
+   "name": "ClawOS",
+   "chain": "base",
+   "address": "0x3cf6b6e57d299a005d533c0bd706323bf0a69ba3",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 8714.8684,
+   "first_seen": 1789939567
+  },
+  {
+   "symbol": "(UP)",
+   "name": "up",
+   "chain": "base",
+   "address": "0xc59474e189397ef7030c290a7b21137ae8d29801",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 296125.9129,
+   "first_seen": 1789939520
+  },
+  {
+   "symbol": "Good Company",
+   "name": "Good Company",
+   "chain": "base",
+   "address": "0xabc763c06426320502d4db49bc90b0bbd586d2fa",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 79145.3390236682,
+   "first_seen": 1789939382
+  },
   {
    "symbol": "哈基米",
    "name": "哈基米",
@@ -289,46 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 21372.7987,
    "first_seen": 1789924158
-  },
-  {
-   "symbol": "BALT",
-   "name": "Brett's cat",
-   "chain": "base",
-   "address": "0xd44b3c7da9c33775b1786ecb45fbe2a749f03fa8",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4155.5426,
-   "first_seen": 1789924157
-  },
-  {
-   "symbol": "USD𖼊",
-   "name": "USD𖼊",
-   "chain": "base",
-   "address": "0xb200000000000000000000a5a2ba3eb9f1629402",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 18591.5042,
-   "first_seen": 1789924156
-  },
-  {
-   "symbol": "HOODRAT",
-   "name": "Hoodrat (certifiedhoodrat.com)",
-   "chain": "base",
-   "address": "0xf587dc9a7b7be3e23039d81fc1fd6e6db9f22725",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13101.8157098495,
-   "first_seen": 1789922182
-  },
-  {
-   "symbol": "Lumivium",
-   "name": "Lumivium",
-   "chain": "base",
-   "address": "0xb200000000000000000000adfef7d282fcaeb6f5",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 12317.8513655356,
-   "first_seen": 1789921488
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 23,
+  "waiting": 21,
   "confirmed": 27,
-  "dropped": 1343
+  "dropped": 1349
  },
  "recent_drains": [
   {
@@ -757,8 +757,8 @@
   "pump": 263,
   "rug": 944
  },
- "watchlist_active": 14,
- "price_snapshots": 21178,
+ "watchlist_active": 13,
+ "price_snapshots": 21419,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
