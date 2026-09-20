@@ -1,32 +1,27 @@
 {
- "generated_at": "2026-09-20T20:17:33Z",
- "generated_at_unix": 1789935451,
+ "generated_at": "2026-09-20T21:17:47Z",
+ "generated_at_unix": 1789939066,
  "period": {
   "start": "2026-07-15",
   "days": 67
  },
  "totals": {
-  "seen": 170123,
-  "base": 36008,
+  "seen": 170193,
+  "base": 36078,
   "robinhood": 134115,
-  "below_liquidity_threshold": 164283,
-  "spam_filtered": 2426,
-  "scored": 3414,
-  "green": 1956,
+  "below_liquidity_threshold": 164341,
+  "spam_filtered": 2434,
+  "scored": 3418,
+  "green": 1959,
   "yellow": 476,
-  "red": 982
+  "red": 983
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
-   "date": "2026-08-30",
-   "base": 38,
-   "robinhood": 417
-  },
-  {
    "date": "2026-08-31",
-   "base": 544,
-   "robinhood": 5620
+   "base": 522,
+   "robinhood": 5407
   },
   {
    "date": "2026-09-01",
@@ -125,11 +120,46 @@
   },
   {
    "date": "2026-09-20",
-   "base": 667,
+   "base": 717,
+   "robinhood": 0
+  },
+  {
+   "date": "2026-09-21",
+   "base": 20,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "哈基米",
+   "name": "哈基米",
+   "chain": "base",
+   "address": "0xd2a70bb6c3adadaecfc6d6fc15dd5cbb509516d8",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 11546.806,
+   "first_seen": 1789938550
+  },
+  {
+   "symbol": "妖蝶",
+   "name": "妖蝶",
+   "chain": "base",
+   "address": "0x16a9053a5c02e1bfaf128af0c0d09ca65839e06a",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 13181.9773,
+   "first_seen": 1789937673
+  },
+  {
+   "symbol": "TRT",
+   "name": "ThinTROUT",
+   "chain": "base",
+   "address": "0xe89b5684114c7c9adc2e6e86b9d38a4ca2f32f65",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 26311.0,
+   "first_seen": 1789935881
+  },
   {
    "symbol": "RTPLV2",
    "name": "RT-Pool.cc Token V2",
@@ -299,36 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 12317.8513655356,
    "first_seen": 1789921488
-  },
-  {
-   "symbol": "DTCC XRP",
-   "name": "DTCC RIPPLE XRP",
-   "chain": "base",
-   "address": "0x353584311230e277a8fd316c5f118257b6572104",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3839.6995,
-   "first_seen": 1789920321
-  },
-  {
-   "symbol": "JEANPHIL",
-   "name": "Jean Phil",
-   "chain": "base",
-   "address": "0xa014601335f20a53d4d0bced907b32693373804e",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 400524.0975,
-   "first_seen": 1789919537
-  },
-  {
-   "symbol": "PLC",
-   "name": "Pearl Chain (pearlchaintoken.com)",
-   "chain": "base",
-   "address": "0x5cee40f76d76afa299fd84307ef56479d8d2d82b",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13205.4879,
-   "first_seen": 1789913591
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 22,
+  "waiting": 23,
   "confirmed": 27,
-  "dropped": 1341
+  "dropped": 1343
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 944
  },
  "watchlist_active": 14,
- "price_snapshots": 21058,
+ "price_snapshots": 21178,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
