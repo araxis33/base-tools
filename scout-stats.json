@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-20T18:17:03Z",
- "generated_at_unix": 1789928217,
+ "generated_at": "2026-09-20T19:17:23Z",
+ "generated_at_unix": 1789931842,
  "period": {
   "start": "2026-07-15",
   "days": 67
  },
  "totals": {
-  "seen": 169960,
-  "base": 35845,
+  "seen": 170058,
+  "base": 35943,
   "robinhood": 134115,
-  "below_liquidity_threshold": 164158,
-  "spam_filtered": 2396,
-  "scored": 3405,
-  "green": 1949,
+  "below_liquidity_threshold": 164232,
+  "spam_filtered": 2416,
+  "scored": 3410,
+  "green": 1953,
   "yellow": 476,
-  "red": 980
+  "red": 981
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-30",
-   "base": 141,
-   "robinhood": 1436
+   "base": 84,
+   "robinhood": 896
   },
   {
    "date": "2026-08-31",
@@ -125,11 +125,51 @@
   },
   {
    "date": "2026-09-20",
-   "base": 505,
+   "base": 602,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "NOIPO",
+   "name": "NOIPOXSPACE",
+   "chain": "base",
+   "address": "0x9c1081e40714d38d416973829d1cbad869abb286",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4212.7406,
+   "first_seen": 1789930764
+  },
+  {
+   "symbol": "jeanphil",
+   "name": "jeanphil",
+   "chain": "base",
+   "address": "0xbdad5a2daf7ef82e363f73b25b18f7ae85265ffb",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3829.7144,
+   "first_seen": 1789928241
+  },
+  {
+   "symbol": "MOO",
+   "name": "Memory cow Moo",
+   "chain": "base",
+   "address": "0x17cb7be8bff9dfd8bc1255d34f86fc69e2e19187",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 14450.5327,
+   "first_seen": 1789928230
+  },
+  {
+   "symbol": "USD-C",
+   "name": "USD-C",
+   "chain": "base",
+   "address": "0xe090cca0f654eaf9fc218cbe79eeb22868aa4928",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 10267813.3527,
+   "first_seen": 1789928227
+  },
   {
    "symbol": "AAPLc",
    "name": "Apple Income",
@@ -289,46 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 20874.9678,
    "first_seen": 1789912848
-  },
-  {
-   "symbol": "MTRX",
-   "name": "Matrix",
-   "chain": "base",
-   "address": "0xb200000000000000000000925ae3dc5adbcc4466",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 17580.9565,
-   "first_seen": 1789912845
-  },
-  {
-   "symbol": "LAPTOP",
-   "name": "Laptop",
-   "chain": "base",
-   "address": "0x04b8adbe01249cbee090fa25ad2ae8e3fefb2bf3",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 20077.3626,
-   "first_seen": 1789912843
-  },
-  {
-   "symbol": "CAUL",
-   "name": "En caul",
-   "chain": "base",
-   "address": "0xe49f958b36fe101c3c68b2c1546c9f163f4a9457",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 101052.7882,
-   "first_seen": 1789912838
-  },
-  {
-   "symbol": "BLUECHIP",
-   "name": "BLUE CHIP (basebluechip.com)",
-   "chain": "base",
-   "address": "0xc85e6d477f5b54fdb2a313f40d998343d7d698b3",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 12852.3654083997,
-   "first_seen": 1789902979
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 33,
+  "waiting": 24,
   "confirmed": 27,
-  "dropped": 1323
+  "dropped": 1336
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 944
  },
  "watchlist_active": 14,
- "price_snapshots": 20977,
+ "price_snapshots": 20912,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
