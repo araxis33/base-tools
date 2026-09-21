@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-21T19:18:46Z",
- "generated_at_unix": 1790018325,
+ "generated_at": "2026-09-21T20:18:55Z",
+ "generated_at_unix": 1790021933,
  "period": {
   "start": "2026-07-15",
   "days": 68
  },
  "totals": {
-  "seen": 171079,
-  "base": 36964,
+  "seen": 171163,
+  "base": 37048,
   "robinhood": 134115,
-  "below_liquidity_threshold": 164939,
-  "spam_filtered": 2632,
-  "scored": 3508,
-  "green": 2043,
+  "below_liquidity_threshold": 165002,
+  "spam_filtered": 2648,
+  "scored": 3513,
+  "green": 2048,
   "yellow": 476,
   "red": 989
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-31",
-   "base": 91,
-   "robinhood": 991
+   "base": 37,
+   "robinhood": 455
   },
   {
    "date": "2026-09-01",
@@ -125,11 +125,61 @@
   },
   {
    "date": "2026-09-21",
-   "base": 906,
+   "base": 990,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "VLTC",
+   "name": "VAULTCOIN",
+   "chain": "base",
+   "address": "0xfd1b181dc8c470f6b91863c41988273f2ed3092a",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4000.4145,
+   "first_seen": 1790021729
+  },
+  {
+   "symbol": "REH1",
+   "name": "Rehearsal One",
+   "chain": "base",
+   "address": "0xa866ae59d4caf85f483154df329f7a52cd5d28c5",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4018.5936,
+   "first_seen": 1790020989
+  },
+  {
+   "symbol": "Jollybot",
+   "name": "Jollybot",
+   "chain": "base",
+   "address": "0xb2000000000000000000002b5e71b02585511901",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4208.257,
+   "first_seen": 1790020897
+  },
+  {
+   "symbol": "TEST",
+   "name": "TEST",
+   "chain": "base",
+   "address": "0xa1f18dc29fe6f8d9ba24eb5fff4cb06c861b46fa",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 9550.6423,
+   "first_seen": 1790020797
+  },
+  {
+   "symbol": "SHROOM",
+   "name": "MUSHROOM (shroomnetwork.com)",
+   "chain": "base",
+   "address": "0x855f4df417d81acd98b0047de18dfcffc32d2642",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13813.4665667082,
+   "first_seen": 1790020477
+  },
   {
    "symbol": "BINU",
    "name": "baseinu",
@@ -279,56 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 3292.5856,
    "first_seen": 1790011822
-  },
-  {
-   "symbol": "TERMINATOR",
-   "name": "TERMINATOR",
-   "chain": "base",
-   "address": "0x5d32d7bac28a9d9ce15a208bfcd522c559ce616f",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 21121.0034,
-   "first_seen": 1790010626
-  },
-  {
-   "symbol": "ZEC",
-   "name": "Zero Equity Cat",
-   "chain": "base",
-   "address": "0xad73438a1667468c151a1ef55f215159a0aa64ed",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 108769.0907,
-   "first_seen": 1790010624
-  },
-  {
-   "symbol": "KIND",
-   "name": "Be Kind",
-   "chain": "base",
-   "address": "0x9f7a78131b41e6d2a482220397cf804bf45e3211",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 20756.7893,
-   "first_seen": 1790010622
-  },
-  {
-   "symbol": "BI",
-   "name": "Based Intelligence",
-   "chain": "base",
-   "address": "0x6f4c4a52e5a06c45797464ddc20383344447b9f9",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 73665.1016,
-   "first_seen": 1790010620
-  },
-  {
-   "symbol": "FLIP",
-   "name": "FLIP",
-   "chain": "base",
-   "address": "0x7c4d1f05e1efcc506479e41b44e000fe710100f4",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 84454.0835,
-   "first_seen": 1790008400
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 32,
+  "waiting": 35,
   "confirmed": 30,
-  "dropped": 1415
+  "dropped": 1417
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 945
  },
  "watchlist_active": 13,
- "price_snapshots": 23378,
+ "price_snapshots": 23450,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
