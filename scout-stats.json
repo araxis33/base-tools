@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-21T13:18:15Z",
- "generated_at_unix": 1789996694,
+ "generated_at": "2026-09-21T14:18:21Z",
+ "generated_at_unix": 1790000300,
  "period": {
   "start": "2026-07-15",
   "days": 68
  },
  "totals": {
-  "seen": 170618,
-  "base": 36503,
+  "seen": 170699,
+  "base": 36584,
   "robinhood": 134115,
-  "below_liquidity_threshold": 164627,
-  "spam_filtered": 2538,
-  "scored": 3453,
-  "green": 1990,
+  "below_liquidity_threshold": 164691,
+  "spam_filtered": 2551,
+  "scored": 3457,
+  "green": 1994,
   "yellow": 476,
   "red": 987
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-31",
-   "base": 376,
-   "robinhood": 3841
+   "base": 308,
+   "robinhood": 3338
   },
   {
    "date": "2026-09-01",
@@ -125,11 +125,51 @@
   },
   {
    "date": "2026-09-21",
-   "base": 445,
+   "base": 526,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "DIADEM",
+   "name": "Diadem Sovereign",
+   "chain": "base",
+   "address": "0x14329016c4157e0d7335d54713a04fe01ea9cba8",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 32670.4796,
+   "first_seen": 1790000168
+  },
+  {
+   "symbol": "AEGIS",
+   "name": "Memory Intelligence",
+   "chain": "base",
+   "address": "0x55a3af082c44bc8d7c3960309e647c4c773637ec",
+   "score": 75,
+   "verdict": "green",
+   "liquidity_usd": 3828.9505,
+   "first_seen": 1789999292
+  },
+  {
+   "symbol": "NU",
+   "name": "Nu Tokenized Stock (Robinhood)",
+   "chain": "base",
+   "address": "0xf054c551eeac410c4b1ed561b3eb5e768eac7f68",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 13610.4663227568,
+   "first_seen": 1789998534
+  },
+  {
+   "symbol": "SNDKX",
+   "name": "Sandisk Corporation tokenized stock(xstock)",
+   "chain": "base",
+   "address": "0x248628f044b0611bccb13ef4682dadee05e0965f",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13669.45,
+   "first_seen": 1789997792
+  },
   {
    "symbol": "WIF",
    "name": "World is Flat",
@@ -289,46 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 2836155.0068,
    "first_seen": 1789988739
-  },
-  {
-   "symbol": "ERHA",
-   "name": "Erhafi",
-   "chain": "base",
-   "address": "0x7feaa6f7b0242bac06987dd05ee3b30b96b17518",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 32559.2562707313,
-   "first_seen": 1789987815
-  },
-  {
-   "symbol": "MIGGLES",
-   "name": "MIGGLES",
-   "chain": "base",
-   "address": "0x19280898a37095c6e61fa2abe195d13a6bac276d",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 11349.868,
-   "first_seen": 1789986789
-  },
-  {
-   "symbol": "FLAP",
-   "name": "[Fake] FLAP",
-   "chain": "base",
-   "address": "0x08bada7267e1022b65b106645022bde37d91deb1",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13659.05,
-   "first_seen": 1789984413
-  },
-  {
-   "symbol": "ZUZALU",
-   "name": "Zuzalu",
-   "chain": "base",
-   "address": "0x92f9c320d1d3efc115323b35cb83e48338528fff",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 10803.92,
-   "first_seen": 1789982905
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 22,
+  "waiting": 23,
   "confirmed": 28,
-  "dropped": 1374
+  "dropped": 1377
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 945
  },
  "watchlist_active": 13,
- "price_snapshots": 22629,
+ "price_snapshots": 22692,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
