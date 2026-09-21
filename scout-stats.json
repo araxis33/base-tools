@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-21T16:18:30Z",
- "generated_at_unix": 1790007508,
+ "generated_at": "2026-09-21T17:18:36Z",
+ "generated_at_unix": 1790011115,
  "period": {
   "start": "2026-07-15",
   "days": 68
  },
  "totals": {
-  "seen": 170860,
-  "base": 36745,
+  "seen": 170913,
+  "base": 36798,
   "robinhood": 134115,
-  "below_liquidity_threshold": 164784,
-  "spam_filtered": 2589,
-  "scored": 3487,
-  "green": 2022,
+  "below_liquidity_threshold": 164822,
+  "spam_filtered": 2598,
+  "scored": 3493,
+  "green": 2028,
   "yellow": 476,
   "red": 989
  },
@@ -125,11 +125,71 @@
   },
   {
    "date": "2026-09-21",
-   "base": 687,
+   "base": 740,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "TERMINATOR",
+   "name": "TERMINATOR",
+   "chain": "base",
+   "address": "0x5d32d7bac28a9d9ce15a208bfcd522c559ce616f",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 21121.0034,
+   "first_seen": 1790010626
+  },
+  {
+   "symbol": "ZEC",
+   "name": "Zero Equity Cat",
+   "chain": "base",
+   "address": "0xad73438a1667468c151a1ef55f215159a0aa64ed",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 108769.0907,
+   "first_seen": 1790010624
+  },
+  {
+   "symbol": "KIND",
+   "name": "Be Kind",
+   "chain": "base",
+   "address": "0x9f7a78131b41e6d2a482220397cf804bf45e3211",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 20756.7893,
+   "first_seen": 1790010622
+  },
+  {
+   "symbol": "BI",
+   "name": "Based Intelligence",
+   "chain": "base",
+   "address": "0x6f4c4a52e5a06c45797464ddc20383344447b9f9",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 73665.1016,
+   "first_seen": 1790010620
+  },
+  {
+   "symbol": "FLIP",
+   "name": "FLIP",
+   "chain": "base",
+   "address": "0x7c4d1f05e1efcc506479e41b44e000fe710100f4",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 84454.0835,
+   "first_seen": 1790008400
+  },
+  {
+   "symbol": "LOADING",
+   "name": "More stocks loading",
+   "chain": "base",
+   "address": "0x2baa380805fa5ca05d029db41ccd1c16d78a9e7e",
+   "score": 75,
+   "verdict": "green",
+   "liquidity_usd": 4236.2592,
+   "first_seen": 1790008030
+  },
   {
    "symbol": "INU",
    "name": "I Nuke U",
@@ -269,66 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 62640.824,
    "first_seen": 1790004176
-  },
-  {
-   "symbol": "BURN",
-   "name": "fomoFurnace",
-   "chain": "base",
-   "address": "0x05c097e9fdd672edd33b039df802aed37236ef81",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 21054.8919,
-   "first_seen": 1790004175
-  },
-  {
-   "symbol": "OnlyCats",
-   "name": "OnlyCats",
-   "chain": "base",
-   "address": "0x05843aa41704b99ae6065e4503d5994abbfe5ac6",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 20480.8162,
-   "first_seen": 1790004172
-  },
-  {
-   "symbol": "MUSECLUB",
-   "name": "MUSCLUB",
-   "chain": "base",
-   "address": "0xfa28ccbfddc50a97ec97f349bb86558ff9e9e497",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 26294.5536,
-   "first_seen": 1790004170
-  },
-  {
-   "symbol": "NRWHL",
-   "name": "IntenseNARWHAL",
-   "chain": "base",
-   "address": "0x92c37b33261de1c4d97343e71afbbb29bb5b0009",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 27452.5,
-   "first_seen": 1790004169
-  },
-  {
-   "symbol": "TTL",
-   "name": "Time To Live",
-   "chain": "base",
-   "address": "0xb2000000000000000000009e86bbe3cc965a01a8",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 15014.0363,
-   "first_seen": 1790004168
-  },
-  {
-   "symbol": "FEELSBAD",
-   "name": "Feels Bad Man",
-   "chain": "base",
-   "address": "0x8b809f145e5a85fa58687b919c7cb87fad9c2c4e",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 17059.0705,
-   "first_seen": 1790002579
   }
  ],
  "confirmed": [
@@ -556,7 +556,7 @@
  "probation": {
   "waiting": 32,
   "confirmed": 30,
-  "dropped": 1394
+  "dropped": 1400
  },
  "recent_drains": [
   {
@@ -753,12 +753,12 @@
   }
  ],
  "alerts": {
-  "dump": 697,
+  "dump": 698,
   "pump": 263,
   "rug": 945
  },
  "watchlist_active": 15,
- "price_snapshots": 23113,
+ "price_snapshots": 23198,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
