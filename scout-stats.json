@@ -1,20 +1,20 @@
 {
- "generated_at": "2026-09-21T11:18:03Z",
- "generated_at_unix": 1789989482,
+ "generated_at": "2026-09-21T12:18:08Z",
+ "generated_at_unix": 1789993088,
  "period": {
   "start": "2026-07-15",
   "days": 68
  },
  "totals": {
-  "seen": 170463,
-  "base": 36348,
+  "seen": 170547,
+  "base": 36432,
   "robinhood": 134115,
-  "below_liquidity_threshold": 164520,
-  "spam_filtered": 2507,
-  "scored": 3436,
-  "green": 1976,
+  "below_liquidity_threshold": 164577,
+  "spam_filtered": 2523,
+  "scored": 3447,
+  "green": 1985,
   "yellow": 476,
-  "red": 984
+  "red": 986
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
@@ -125,11 +125,101 @@
   },
   {
    "date": "2026-09-21",
-   "base": 290,
+   "base": 374,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "MGUA",
+   "name": "MultipleGUAN",
+   "chain": "base",
+   "address": "0xc72ece87356ad52ff5cf5e1394e84d3fc4420e84",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 27274.3,
+   "first_seen": 1789992768
+  },
+  {
+   "symbol": "ZTH",
+   "name": "Zenith Protocol",
+   "chain": "base",
+   "address": "0x604f73f1e6198c774067ff5e91c73fc6ff6e2c57",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13866.2541,
+   "first_seen": 1789992722
+  },
+  {
+   "symbol": "CRV",
+   "name": "Corevia Systems",
+   "chain": "base",
+   "address": "0xb20000000000000000000024df7b69f42ffcd085",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 16104.7899,
+   "first_seen": 1789992676
+  },
+  {
+   "symbol": "RCD",
+   "name": "Arcadia",
+   "chain": "base",
+   "address": "0xb200000000000000000000150337dec265dabff3",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 14571.8763,
+   "first_seen": 1789992585
+  },
+  {
+   "symbol": "SCHI",
+   "name": "SkilledCHIMPANZEE",
+   "chain": "base",
+   "address": "0x2f645ab7314d60b2c85126a45e582fdb9349362f",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 27238.1,
+   "first_seen": 1789991893
+  },
+  {
+   "symbol": "JEV",
+   "name": "OpenJEV",
+   "chain": "base",
+   "address": "0xb2000000000000000000001081ae2d0bcedb2a3c",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 10976.5075433609,
+   "first_seen": 1789991518
+  },
+  {
+   "symbol": "PEPKING",
+   "name": "PepeKing",
+   "chain": "base",
+   "address": "0xe0b7520b6b69cd348cdbf56b2bb782e546014135",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 16636.1974,
+   "first_seen": 1789990726
+  },
+  {
+   "symbol": "Allocated",
+   "name": "Allocated",
+   "chain": "base",
+   "address": "0x84f65a704b8cc7dfb680280bca07a543d3571e9a",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 17982.1821,
+   "first_seen": 1789990405
+  },
+  {
+   "symbol": "DACT",
+   "name": "DAC | Quantum Chain",
+   "chain": "base",
+   "address": "0x4b46519e8c2e3a2c6feaaa2422d4dcc1d76e6550",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 28336.1263,
+   "first_seen": 1789990177
+  },
   {
    "symbol": "zertz",
    "name": "zertz",
@@ -239,96 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 20761.5867,
    "first_seen": 1789978757
-  },
-  {
-   "symbol": "Surplus",
-   "name": "Surplus Intelligence",
-   "chain": "base",
-   "address": "0x2b3b4bb74b4a1865e80c8c7ec103a767b1f3d5d2",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 2720491.3452,
-   "first_seen": 1789978754
-  },
-  {
-   "symbol": "RDDTB",
-   "name": "Reddit Tokenized bStocks",
-   "chain": "base",
-   "address": "0x909bfdc02502416b39d37d627c302df150cb1762",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13370.5332,
-   "first_seen": 1789942833
-  },
-  {
-   "symbol": "BASED",
-   "name": "That's Based",
-   "chain": "base",
-   "address": "0x488e3f6c2485b39cb85a83eef4193c8c1f5cd7e9",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 82349.9166,
-   "first_seen": 1789942138
-  },
-  {
-   "symbol": "ClawOS",
-   "name": "ClawOS",
-   "chain": "base",
-   "address": "0x3cf6b6e57d299a005d533c0bd706323bf0a69ba3",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 8714.8684,
-   "first_seen": 1789939567
-  },
-  {
-   "symbol": "(UP)",
-   "name": "up",
-   "chain": "base",
-   "address": "0xc59474e189397ef7030c290a7b21137ae8d29801",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 296125.9129,
-   "first_seen": 1789939520
-  },
-  {
-   "symbol": "Good Company",
-   "name": "Good Company",
-   "chain": "base",
-   "address": "0xabc763c06426320502d4db49bc90b0bbd586d2fa",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 79145.3390236682,
-   "first_seen": 1789939382
-  },
-  {
-   "symbol": "哈基米",
-   "name": "哈基米",
-   "chain": "base",
-   "address": "0xd2a70bb6c3adadaecfc6d6fc15dd5cbb509516d8",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 11546.806,
-   "first_seen": 1789938550
-  },
-  {
-   "symbol": "妖蝶",
-   "name": "妖蝶",
-   "chain": "base",
-   "address": "0x16a9053a5c02e1bfaf128af0c0d09ca65839e06a",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 13181.9773,
-   "first_seen": 1789937673
-  },
-  {
-   "symbol": "TRT",
-   "name": "ThinTROUT",
-   "chain": "base",
-   "address": "0xe89b5684114c7c9adc2e6e86b9d38a4ca2f32f65",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 26311.0,
-   "first_seen": 1789935881
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 21,
+  "waiting": 25,
   "confirmed": 28,
-  "dropped": 1361
+  "dropped": 1366
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 945
  },
  "watchlist_active": 13,
- "price_snapshots": 22382,
+ "price_snapshots": 22550,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
