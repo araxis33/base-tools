@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-21T17:18:36Z",
- "generated_at_unix": 1790011115,
+ "generated_at": "2026-09-21T18:18:40Z",
+ "generated_at_unix": 1790014719,
  "period": {
   "start": "2026-07-15",
   "days": 68
  },
  "totals": {
-  "seen": 170913,
-  "base": 36798,
+  "seen": 170988,
+  "base": 36873,
   "robinhood": 134115,
-  "below_liquidity_threshold": 164822,
-  "spam_filtered": 2598,
-  "scored": 3493,
-  "green": 2028,
+  "below_liquidity_threshold": 164875,
+  "spam_filtered": 2614,
+  "scored": 3499,
+  "green": 2034,
   "yellow": 476,
   "red": 989
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-31",
-   "base": 200,
-   "robinhood": 2170
+   "base": 146,
+   "robinhood": 1661
   },
   {
    "date": "2026-09-01",
@@ -125,11 +125,71 @@
   },
   {
    "date": "2026-09-21",
-   "base": 740,
+   "base": 815,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "Tokens",
+   "name": "Tokens",
+   "chain": "base",
+   "address": "0xff5dcbdada6650684eb767cd50689fa32b051975",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 18107.3193,
+   "first_seen": 1790014301
+  },
+  {
+   "symbol": "JEANSEM",
+   "name": "The Black Jean",
+   "chain": "base",
+   "address": "0xb8fea88d7d25b9927cc942bbbbe4fa5bcebc78a3",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 14803.0430564026,
+   "first_seen": 1790013711
+  },
+  {
+   "symbol": "PEPE",
+   "name": "Pepe",
+   "chain": "base",
+   "address": "0x67a4db6c80288672eb767631c8bb630f034c8157",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 99339797.0042,
+   "first_seen": 1790013151
+  },
+  {
+   "symbol": "ETHIC",
+   "name": "Ethic Inc.",
+   "chain": "base",
+   "address": "0x3f55b80fdd692619764905b247f2a1681b3c3aa7",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 2499.343,
+   "first_seen": 1790012486
+  },
+  {
+   "symbol": "SE2",
+   "name": "fun Secondtrust",
+   "chain": "base",
+   "address": "0x35d09ed47fd9a5747c8001770a92481e49530f36",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 4214.5,
+   "first_seen": 1790011916
+  },
+  {
+   "symbol": "BUNNY",
+   "name": "bunny.fun",
+   "chain": "base",
+   "address": "0x2eb0423329f8a0b1cdd8a937b479417d7184622a",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3292.5856,
+   "first_seen": 1790011822
+  },
   {
    "symbol": "TERMINATOR",
    "name": "TERMINATOR",
@@ -269,66 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 4218.0121,
    "first_seen": 1790006767
-  },
-  {
-   "symbol": "FLIP",
-   "name": "FLip",
-   "chain": "base",
-   "address": "0xb200000000000000000000a8c86ef1c14cc7bd01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 5089.2864,
-   "first_seen": 1790006399
-  },
-  {
-   "symbol": "INTERN",
-   "name": "Intern",
-   "chain": "base",
-   "address": "0xb200000000000000000000b6fa14b7c082a35532",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13884.8535,
-   "first_seen": 1790005978
-  },
-  {
-   "symbol": "DICKBUTT",
-   "name": "Dickbutt",
-   "chain": "base",
-   "address": "0x2d57c47bc5d2432feeedf2c9150162a9862d3ccf",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 26591.6947,
-   "first_seen": 1790005518
-  },
-  {
-   "symbol": "ARCADE",
-   "name": "Arcade",
-   "chain": "base",
-   "address": "0x4021c5d0386335d6a3f8eae41693ff17679d989d",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 18029.8784,
-   "first_seen": 1790005380
-  },
-  {
-   "symbol": "JEANJAK",
-   "name": "Jean Wojak",
-   "chain": "base",
-   "address": "0x5addfb31feb6e26dd92e161c0c6e9a68caa42a94",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 18621.6565,
-   "first_seen": 1790005287
-  },
-  {
-   "symbol": "INTERN",
-   "name": "INTERN",
-   "chain": "base",
-   "address": "0xade48b1b3253aaa3868674b49e10bb61f5d4b6f0",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 62640.824,
-   "first_seen": 1790004176
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 32,
+  "waiting": 29,
   "confirmed": 30,
-  "dropped": 1400
+  "dropped": 1409
  },
  "recent_drains": [
   {
@@ -757,8 +757,8 @@
   "pump": 263,
   "rug": 945
  },
- "watchlist_active": 15,
- "price_snapshots": 23198,
+ "watchlist_active": 14,
+ "price_snapshots": 23286,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
