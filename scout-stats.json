@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-21T18:18:40Z",
- "generated_at_unix": 1790014719,
+ "generated_at": "2026-09-21T19:18:46Z",
+ "generated_at_unix": 1790018325,
  "period": {
   "start": "2026-07-15",
   "days": 68
  },
  "totals": {
-  "seen": 170988,
-  "base": 36873,
+  "seen": 171079,
+  "base": 36964,
   "robinhood": 134115,
-  "below_liquidity_threshold": 164875,
-  "spam_filtered": 2614,
-  "scored": 3499,
-  "green": 2034,
+  "below_liquidity_threshold": 164939,
+  "spam_filtered": 2632,
+  "scored": 3508,
+  "green": 2043,
   "yellow": 476,
   "red": 989
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-08-31",
-   "base": 146,
-   "robinhood": 1661
+   "base": 91,
+   "robinhood": 991
   },
   {
    "date": "2026-09-01",
@@ -125,11 +125,101 @@
   },
   {
    "date": "2026-09-21",
-   "base": 815,
+   "base": 906,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "BINU",
+   "name": "baseinu",
+   "chain": "base",
+   "address": "0xce032bb804a28aa37947d6f00c158e7a2cfaeef3",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 15424.1047,
+   "first_seen": 1790016972
+  },
+  {
+   "symbol": "TOSHISTONK",
+   "name": "TOSHI Stonk",
+   "chain": "base",
+   "address": "0x831f465a9ad5181ba8a40389b043e8d854665222",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3037.3135,
+   "first_seen": 1790016414
+  },
+  {
+   "symbol": "#1",
+   "name": "THEDOCTOR",
+   "chain": "base",
+   "address": "0xb200000000000000000000ce5912cd6f188fb701",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 6223.5572,
+   "first_seen": 1790016412
+  },
+  {
+   "symbol": "AXON",
+   "name": "Axon",
+   "chain": "base",
+   "address": "0x9eef4eab3b3f3a315ba811f6259c1ae1db06ce25",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 19797.2915,
+   "first_seen": 1790016041
+  },
+  {
+   "symbol": "ETHCAT",
+   "name": "ETH CAT (ethcat.site)",
+   "chain": "base",
+   "address": "0x20c1b38835284405c5bb16f57a980381e5da089d",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 14686.9987,
+   "first_seen": 1790015859
+  },
+  {
+   "symbol": "Nautilo",
+   "name": "Nautilo",
+   "chain": "base",
+   "address": "0xb20000000000000000000031526b67b7b0725b34",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 19758.2,
+   "first_seen": 1790015585
+  },
+  {
+   "symbol": "BNQ",
+   "name": "BNQ GLOBAL",
+   "chain": "base",
+   "address": "0x413710396cdb1ad2fb0b1fe3ebb37db27703c027",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 15322.5916,
+   "first_seen": 1790015584
+  },
+  {
+   "symbol": "GNC",
+   "name": "LavenderGUANACO",
+   "chain": "base",
+   "address": "0x17071f19a736b2675bb4786534ad8aad495b2206",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 27512.9,
+   "first_seen": 1790015126
+  },
+  {
+   "symbol": "RSI",
+   "name": "Recursive Self Inu",
+   "chain": "base",
+   "address": "0xd29da0f636b37d5e776f804abb3c9349aaf561d1",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 19628.469,
+   "first_seen": 1790015034
+  },
   {
    "symbol": "Tokens",
    "name": "Tokens",
@@ -239,96 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 84454.0835,
    "first_seen": 1790008400
-  },
-  {
-   "symbol": "LOADING",
-   "name": "More stocks loading",
-   "chain": "base",
-   "address": "0x2baa380805fa5ca05d029db41ccd1c16d78a9e7e",
-   "score": 75,
-   "verdict": "green",
-   "liquidity_usd": 4236.2592,
-   "first_seen": 1790008030
-  },
-  {
-   "symbol": "INU",
-   "name": "I Nuke U",
-   "chain": "base",
-   "address": "0x5a422cbab4801d0d44292b189cfc66628f564884",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 14988.5272,
-   "first_seen": 1790007192
-  },
-  {
-   "symbol": "GSTOCK",
-   "name": "Gstock",
-   "chain": "base",
-   "address": "0x4b551d940b482a0243818760ca17156aac60f410",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 12614553.6711,
-   "first_seen": 1790007191
-  },
-  {
-   "symbol": "NTDA",
-   "name": "NTDA",
-   "chain": "base",
-   "address": "0x39351b2eaf88edd3cd7a16b16abc32627250c273",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 67234.0585,
-   "first_seen": 1790007097
-  },
-  {
-   "symbol": "STAMPCAT",
-   "name": "Stamp Cat",
-   "chain": "base",
-   "address": "0x35c968004b34f355fbbd21848ad5f3b8e3c9bf8d",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 19668.6071,
-   "first_seen": 1790007095
-  },
-  {
-   "symbol": "SMMT",
-   "name": "Summit",
-   "chain": "base",
-   "address": "0x58f54a908b67fac40f703d26647e1303dbb27bc0",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4751.9661,
-   "first_seen": 1790007093
-  },
-  {
-   "symbol": "IPO",
-   "name": "Infinite Profit Opportunity",
-   "chain": "base",
-   "address": "0xb200000000000000000000af6a5409b060c29901",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 5011.62911185875,
-   "first_seen": 1790007090
-  },
-  {
-   "symbol": "MAXI",
-   "name": "Maxi",
-   "chain": "base",
-   "address": "0x4b474d5b12ab1153c0410464a6ad70eb622b3bfe",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 14388.516,
-   "first_seen": 1790007088
-  },
-  {
-   "symbol": "FLIPCOIN",
-   "name": "Flipcoin",
-   "chain": "base",
-   "address": "0xb20000000000000000000048f24e63e664ee2b01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4218.0121,
-   "first_seen": 1790006767
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 29,
+  "waiting": 32,
   "confirmed": 30,
-  "dropped": 1409
+  "dropped": 1415
  },
  "recent_drains": [
   {
@@ -753,12 +753,12 @@
   }
  ],
  "alerts": {
-  "dump": 698,
+  "dump": 699,
   "pump": 263,
   "rug": 945
  },
- "watchlist_active": 14,
- "price_snapshots": 23286,
+ "watchlist_active": 13,
+ "price_snapshots": 23378,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
