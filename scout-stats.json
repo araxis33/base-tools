@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-21T09:17:53Z",
- "generated_at_unix": 1789982272,
+ "generated_at": "2026-09-21T10:17:58Z",
+ "generated_at_unix": 1789985878,
  "period": {
   "start": "2026-07-15",
   "days": 68
  },
  "totals": {
-  "seen": 170329,
-  "base": 36214,
+  "seen": 170395,
+  "base": 36280,
   "robinhood": 134115,
-  "below_liquidity_threshold": 164429,
-  "spam_filtered": 2471,
-  "scored": 3429,
-  "green": 1970,
+  "below_liquidity_threshold": 164475,
+  "spam_filtered": 2489,
+  "scored": 3431,
+  "green": 1972,
   "yellow": 476,
   "red": 983
  },
@@ -125,11 +125,31 @@
   },
   {
    "date": "2026-09-21",
-   "base": 156,
+   "base": 222,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "FLAP",
+   "name": "[Fake] FLAP",
+   "chain": "base",
+   "address": "0x08bada7267e1022b65b106645022bde37d91deb1",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13659.05,
+   "first_seen": 1789984413
+  },
+  {
+   "symbol": "ZUZALU",
+   "name": "Zuzalu",
+   "chain": "base",
+   "address": "0x92f9c320d1d3efc115323b35cb83e48338528fff",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 10803.92,
+   "first_seen": 1789982905
+  },
   {
    "symbol": "TRYASIMOV",
    "name": "TryAsimov",
@@ -309,29 +329,19 @@
    "verdict": "green",
    "liquidity_usd": 4212.7406,
    "first_seen": 1789930764
-  },
-  {
-   "symbol": "jeanphil",
-   "name": "jeanphil",
-   "chain": "base",
-   "address": "0xbdad5a2daf7ef82e363f73b25b18f7ae85265ffb",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3829.7144,
-   "first_seen": 1789928241
-  },
-  {
-   "symbol": "MOO",
-   "name": "Memory cow Moo",
-   "chain": "base",
-   "address": "0x17cb7be8bff9dfd8bc1255d34f86fc69e2e19187",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 14450.5327,
-   "first_seen": 1789928230
   }
  ],
  "confirmed": [
+  {
+   "symbol": "COBIE",
+   "chain": "base",
+   "address": "0xe494dda4a2f69fc8328fd1461b8c428194d65c8c",
+   "buyers_h1": 452,
+   "volume_h1": 595774.032043822,
+   "liquidity_usd": 208058.0256,
+   "confirmed_at": 1789981533,
+   "hours_waited": 0.8
+  },
   {
    "symbol": "ETAS",
    "chain": "base",
@@ -521,16 +531,6 @@
    "liquidity_usd": 115922.1503,
    "confirmed_at": 1788611222,
    "hours_waited": 0.8
-  },
-  {
-   "symbol": "CapitalB",
-   "chain": "base",
-   "address": "0x45e39ffe6ff4f7423d95686c2bbf6fb4cb4ca462",
-   "buyers_h1": 92,
-   "volume_h1": 5167.5253745759,
-   "liquidity_usd": 70088.5339,
-   "confirmed_at": 1788364112,
-   "hours_waited": 0.8
   }
  ],
  "verdict_outcomes": [
@@ -554,11 +554,17 @@
   }
  ],
  "probation": {
-  "waiting": 26,
-  "confirmed": 27,
-  "dropped": 1351
+  "waiting": 18,
+  "confirmed": 28,
+  "dropped": 1360
  },
  "recent_drains": [
+  {
+   "symbol": "COBIE",
+   "chain": "base",
+   "address": "0xe494dda4a2f69fc8328fd1461b8c428194d65c8c",
+   "ts": 1789985180
+  },
   {
    "symbol": "ETAS",
    "chain": "base",
@@ -642,12 +648,6 @@
    "chain": "base",
    "address": "0x31dce74641b7fcc3e777080f6cff5b364c49a2f8",
    "ts": 1787903635
-  },
-  {
-   "symbol": "WBTC",
-   "chain": "base",
-   "address": "0x0555e30da8f98308edb960aa94c0db47230d2b9c",
-   "ts": 1787903634
   }
  ],
  "survivors": [
@@ -755,10 +755,10 @@
  "alerts": {
   "dump": 697,
   "pump": 263,
-  "rug": 944
+  "rug": 945
  },
  "watchlist_active": 13,
- "price_snapshots": 21675,
+ "price_snapshots": 22031,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
