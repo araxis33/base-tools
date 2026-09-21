@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-21T12:18:08Z",
- "generated_at_unix": 1789993088,
+ "generated_at": "2026-09-21T13:18:15Z",
+ "generated_at_unix": 1789996694,
  "period": {
   "start": "2026-07-15",
   "days": 68
  },
  "totals": {
-  "seen": 170547,
-  "base": 36432,
+  "seen": 170618,
+  "base": 36503,
   "robinhood": 134115,
-  "below_liquidity_threshold": 164577,
-  "spam_filtered": 2523,
-  "scored": 3447,
-  "green": 1985,
+  "below_liquidity_threshold": 164627,
+  "spam_filtered": 2538,
+  "scored": 3453,
+  "green": 1990,
   "yellow": 476,
-  "red": 986
+  "red": 987
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-08-31",
-   "base": 427,
-   "robinhood": 4324
+   "base": 376,
+   "robinhood": 3841
   },
   {
    "date": "2026-09-01",
@@ -125,11 +125,61 @@
   },
   {
    "date": "2026-09-21",
-   "base": 374,
+   "base": 445,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "WIF",
+   "name": "World is Flat",
+   "chain": "base",
+   "address": "0xfb66bf38f80f93a2fde12ebddf8c32329ccf032b",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13667.2663847585,
+   "first_seen": 1789996037
+  },
+  {
+   "symbol": "AWIN",
+   "name": "AlphaWin",
+   "chain": "base",
+   "address": "0x62c16c25b58cf2addef64cc28913689d4ac1fa7a",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13627.15,
+   "first_seen": 1789995028
+  },
+  {
+   "symbol": "WSSO",
+   "name": "Wold Strategic Oil Supplay (WSOS)",
+   "chain": "base",
+   "address": "0x625f019cf97c1fb7bfbd93b10e08ac649dc7bf43",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 59101.4962,
+   "first_seen": 1789994884
+  },
+  {
+   "symbol": "MEOW",
+   "name": "MeowCoin",
+   "chain": "base",
+   "address": "0x393b33ab0505b8d2c917b10bf369d7b7f5c314a0",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 17450.0298,
+   "first_seen": 1789994424
+  },
+  {
+   "symbol": "SAIZ",
+   "name": "SAIZ",
+   "chain": "base",
+   "address": "0xb3c847c475db6eb3ba842a9cc0f5cbb3a7b30b2c",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13623.35,
+   "first_seen": 1789993321
+  },
   {
    "symbol": "MGUA",
    "name": "MultipleGUAN",
@@ -279,56 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 10803.92,
    "first_seen": 1789982905
-  },
-  {
-   "symbol": "TRYASIMOV",
-   "name": "TryAsimov",
-   "chain": "base",
-   "address": "0xb20000000000000000000049b5ca6251086d6848",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 22783.6277,
-   "first_seen": 1789981534
-  },
-  {
-   "symbol": "COBIE",
-   "name": "PLACEHOLDER",
-   "chain": "base",
-   "address": "0xe494dda4a2f69fc8328fd1461b8c428194d65c8c",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 134899.7323,
-   "first_seen": 1789981533
-  },
-  {
-   "symbol": "FROGE",
-   "name": "Froge",
-   "chain": "base",
-   "address": "0x1323235fa6375908e50c13993b2223b649ad53b9",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 18503.5273,
-   "first_seen": 1789981531
-  },
-  {
-   "symbol": "JOLTZU",
-   "name": "Joltzu",
-   "chain": "base",
-   "address": "0xb2000000000000000000008184b9d2e18e726808",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 22933.043,
-   "first_seen": 1789981530
-  },
-  {
-   "symbol": "TIGRINO",
-   "name": "Leopardus Tilcayo",
-   "chain": "base",
-   "address": "0x1b1c5d28680b67e785ed3c484fbfe4d732e0d6ab",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 20761.5867,
-   "first_seen": 1789978757
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 25,
+  "waiting": 22,
   "confirmed": 28,
-  "dropped": 1366
+  "dropped": 1374
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 945
  },
  "watchlist_active": 13,
- "price_snapshots": 22550,
+ "price_snapshots": 22629,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
