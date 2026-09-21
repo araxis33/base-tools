@@ -1,32 +1,27 @@
 {
- "generated_at": "2026-09-21T20:18:55Z",
- "generated_at_unix": 1790021933,
+ "generated_at": "2026-09-21T21:19:01Z",
+ "generated_at_unix": 1790025539,
  "period": {
   "start": "2026-07-15",
   "days": 68
  },
  "totals": {
-  "seen": 171163,
-  "base": 37048,
+  "seen": 171240,
+  "base": 37125,
   "robinhood": 134115,
-  "below_liquidity_threshold": 165002,
-  "spam_filtered": 2648,
-  "scored": 3513,
-  "green": 2048,
+  "below_liquidity_threshold": 165046,
+  "spam_filtered": 2670,
+  "scored": 3524,
+  "green": 2059,
   "yellow": 476,
   "red": 989
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
-   "date": "2026-08-31",
-   "base": 37,
-   "robinhood": 455
-  },
-  {
    "date": "2026-09-01",
-   "base": 714,
-   "robinhood": 5150
+   "base": 698,
+   "robinhood": 4924
   },
   {
    "date": "2026-09-02",
@@ -125,11 +120,126 @@
   },
   {
    "date": "2026-09-21",
-   "base": 990,
+   "base": 1045,
+   "robinhood": 0
+  },
+  {
+   "date": "2026-09-22",
+   "base": 22,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "REHE",
+   "name": "Rehearsal Equity",
+   "chain": "base",
+   "address": "0x7a7f679fbc64721056f9ac921197407ab1024696",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4152.6075,
+   "first_seen": 1790023681
+  },
+  {
+   "symbol": "LAPTOPCASH",
+   "name": "LaptopCash",
+   "chain": "base",
+   "address": "0xa25c00f937bb95746d41a4f333e0a7107325fee1",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 10055.9979,
+   "first_seen": 1790023679
+  },
+  {
+   "symbol": "BCH2",
+   "name": "Bitcoin Cash II",
+   "chain": "base",
+   "address": "0x7bc28721f1c556a821686a56df1a4e500eeedd5e",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 15283.287,
+   "first_seen": 1790023585
+  },
+  {
+   "symbol": "REHZ",
+   "name": "Rehearsal Zap",
+   "chain": "base",
+   "address": "0x7fdcea19228dc9096a5ed0714ee824c17ddc6e64",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3829.8418,
+   "first_seen": 1790023448
+  },
+  {
+   "symbol": "CoolFace",
+   "name": "CoolFace",
+   "chain": "base",
+   "address": "0xb2000000000000000000005850f52ae302eb22cc",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 18543.4289,
+   "first_seen": 1790023309
+  },
+  {
+   "symbol": "WRENAI",
+   "name": "WRENAI",
+   "chain": "base",
+   "address": "0xb20000000000000000000007187555e2100713a6",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 18650.9866,
+   "first_seen": 1790023160
+  },
+  {
+   "symbol": "fomopay",
+   "name": "fomo pay",
+   "chain": "base",
+   "address": "0xcb69bb140e23a3844ad5f2cc9a801197e2e16690",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 16237.0091362866,
+   "first_seen": 1790022523
+  },
+  {
+   "symbol": "CDP",
+   "name": "Coinbase Developer Platform",
+   "chain": "base",
+   "address": "0xb2000000000000000000009f4e3e474016f18d01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4593.2539,
+   "first_seen": 1790022151
+  },
+  {
+   "symbol": "TIPS",
+   "name": "Opentip",
+   "chain": "base",
+   "address": "0xa13b8a0101b35266e1fe5576693cf5c057f1ba8f",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 88982.6278,
+   "first_seen": 1790022149
+  },
+  {
+   "symbol": "REH2",
+   "name": "Rehearsal Two",
+   "chain": "base",
+   "address": "0x17dfd5dd3f3cb544d2f9cfe7e6139f5f2b8e7e79",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4052.0548,
+   "first_seen": 1790022145
+  },
+  {
+   "symbol": "OCEAN",
+   "name": "OCEAN (oceanbnb.vip)",
+   "chain": "base",
+   "address": "0xb40ca2ded3f2234cff00e0a774538fa81bf160a6",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 14283.0928,
+   "first_seen": 1790021961
+  },
   {
    "symbol": "VLTC",
    "name": "VAULTCOIN",
@@ -219,116 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 19797.2915,
    "first_seen": 1790016041
-  },
-  {
-   "symbol": "ETHCAT",
-   "name": "ETH CAT (ethcat.site)",
-   "chain": "base",
-   "address": "0x20c1b38835284405c5bb16f57a980381e5da089d",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 14686.9987,
-   "first_seen": 1790015859
-  },
-  {
-   "symbol": "Nautilo",
-   "name": "Nautilo",
-   "chain": "base",
-   "address": "0xb20000000000000000000031526b67b7b0725b34",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 19758.2,
-   "first_seen": 1790015585
-  },
-  {
-   "symbol": "BNQ",
-   "name": "BNQ GLOBAL",
-   "chain": "base",
-   "address": "0x413710396cdb1ad2fb0b1fe3ebb37db27703c027",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 15322.5916,
-   "first_seen": 1790015584
-  },
-  {
-   "symbol": "GNC",
-   "name": "LavenderGUANACO",
-   "chain": "base",
-   "address": "0x17071f19a736b2675bb4786534ad8aad495b2206",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 27512.9,
-   "first_seen": 1790015126
-  },
-  {
-   "symbol": "RSI",
-   "name": "Recursive Self Inu",
-   "chain": "base",
-   "address": "0xd29da0f636b37d5e776f804abb3c9349aaf561d1",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 19628.469,
-   "first_seen": 1790015034
-  },
-  {
-   "symbol": "Tokens",
-   "name": "Tokens",
-   "chain": "base",
-   "address": "0xff5dcbdada6650684eb767cd50689fa32b051975",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 18107.3193,
-   "first_seen": 1790014301
-  },
-  {
-   "symbol": "JEANSEM",
-   "name": "The Black Jean",
-   "chain": "base",
-   "address": "0xb8fea88d7d25b9927cc942bbbbe4fa5bcebc78a3",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 14803.0430564026,
-   "first_seen": 1790013711
-  },
-  {
-   "symbol": "PEPE",
-   "name": "Pepe",
-   "chain": "base",
-   "address": "0x67a4db6c80288672eb767631c8bb630f034c8157",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 99339797.0042,
-   "first_seen": 1790013151
-  },
-  {
-   "symbol": "ETHIC",
-   "name": "Ethic Inc.",
-   "chain": "base",
-   "address": "0x3f55b80fdd692619764905b247f2a1681b3c3aa7",
-   "score": 93,
-   "verdict": "green",
-   "liquidity_usd": 2499.343,
-   "first_seen": 1790012486
-  },
-  {
-   "symbol": "SE2",
-   "name": "fun Secondtrust",
-   "chain": "base",
-   "address": "0x35d09ed47fd9a5747c8001770a92481e49530f36",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 4214.5,
-   "first_seen": 1790011916
-  },
-  {
-   "symbol": "BUNNY",
-   "name": "bunny.fun",
-   "chain": "base",
-   "address": "0x2eb0423329f8a0b1cdd8a937b479417d7184622a",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3292.5856,
-   "first_seen": 1790011822
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 35,
+  "waiting": 39,
   "confirmed": 30,
-  "dropped": 1417
+  "dropped": 1424
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 945
  },
  "watchlist_active": 13,
- "price_snapshots": 23450,
+ "price_snapshots": 23516,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
