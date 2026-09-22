@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-22T19:17:11Z",
- "generated_at_unix": 1790104630,
+ "generated_at": "2026-09-22T20:17:19Z",
+ "generated_at_unix": 1790108238,
  "period": {
   "start": "2026-07-15",
   "days": 69
  },
  "totals": {
-  "seen": 171965,
-  "base": 37850,
+  "seen": 172030,
+  "base": 37915,
   "robinhood": 134115,
-  "below_liquidity_threshold": 165511,
-  "spam_filtered": 2838,
-  "scored": 3616,
-  "green": 2142,
+  "below_liquidity_threshold": 165554,
+  "spam_filtered": 2855,
+  "scored": 3621,
+  "green": 2147,
   "yellow": 479,
   "red": 995
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-09-01",
-   "base": 109,
-   "robinhood": 1072
+   "base": 57,
+   "robinhood": 434
   },
   {
    "date": "2026-09-02",
@@ -125,11 +125,61 @@
   },
   {
    "date": "2026-09-22",
-   "base": 747,
+   "base": 812,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "WOOF",
+   "name": "Shibinhood",
+   "chain": "base",
+   "address": "0xfe3c6d6e88c8d70b6f88e0f4c1459af4a3fed384",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 14869.8801,
+   "first_seen": 1790107508
+  },
+  {
+   "symbol": "Bots",
+   "name": "Free Bots",
+   "chain": "base",
+   "address": "0x1a1494a0e02bc3f79b0fea83fa63542a817b96c7",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 86180.5004,
+   "first_seen": 1790107316
+  },
+  {
+   "symbol": "MOSS",
+   "name": "MOSS",
+   "chain": "base",
+   "address": "0x000ee9406ad4d6693e3be2a66674734988c53f9e",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 21408.5364,
+   "first_seen": 1790107315
+  },
+  {
+   "symbol": "Revert",
+   "name": "Revert Agent",
+   "chain": "base",
+   "address": "0x85375880b9bd1ea13ba35451205e438aaa5d4663",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 27310.7821,
+   "first_seen": 1790107313
+  },
+  {
+   "symbol": "WHEN",
+   "name": "When",
+   "chain": "base",
+   "address": "0xd134cb1bc2b2fd1ee9e4354a95814c63498c475f",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 16916.7712,
+   "first_seen": 1790106190
+  },
   {
    "symbol": "SI",
    "name": "Super In",
@@ -279,56 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 5585.0223,
    "first_seen": 1790091265
-  },
-  {
-   "symbol": "EVILTOKEN",
-   "name": "EVILTOKEN",
-   "chain": "base",
-   "address": "0xb2000000000000000000003729f57da496686101",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 7462.8741,
-   "first_seen": 1790091127
-  },
-  {
-   "symbol": "YAO",
-   "name": "Stop Sniping",
-   "chain": "base",
-   "address": "0x5dc3d1f2ac1acd7eb549c8b94a9ae3f95d002ba3",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 17838.5783,
-   "first_seen": 1790090987
-  },
-  {
-   "symbol": "Chung",
-   "name": "Chungus",
-   "chain": "base",
-   "address": "0x5f7fff6f346fd62cc2a8b6fb127d7c0042e31ba3",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13566.6934,
-   "first_seen": 1790090985
-  },
-  {
-   "symbol": "SI",
-   "name": "SUPER INTELLIGENCE",
-   "chain": "base",
-   "address": "0xb20000000000000000000007601dae8e778f5a01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4607.8191,
-   "first_seen": 1790090978
-  },
-  {
-   "symbol": "BOTANICA",
-   "name": "BOTANICA",
-   "chain": "base",
-   "address": "0xb200000000000000000000979deabe4a9770dce8",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 19652.8457,
-   "first_seen": 1790090884
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 58,
+  "waiting": 62,
   "confirmed": 32,
-  "dropped": 1489
+  "dropped": 1490
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 946
  },
  "watchlist_active": 14,
- "price_snapshots": 23995,
+ "price_snapshots": 23971,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
