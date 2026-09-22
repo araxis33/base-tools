@@ -1,32 +1,27 @@
 {
- "generated_at": "2026-09-22T20:17:19Z",
- "generated_at_unix": 1790108238,
+ "generated_at": "2026-09-22T21:17:25Z",
+ "generated_at_unix": 1790111844,
  "period": {
   "start": "2026-07-15",
   "days": 69
  },
  "totals": {
-  "seen": 172030,
-  "base": 37915,
+  "seen": 172143,
+  "base": 38028,
   "robinhood": 134115,
-  "below_liquidity_threshold": 165554,
-  "spam_filtered": 2855,
-  "scored": 3621,
-  "green": 2147,
+  "below_liquidity_threshold": 165645,
+  "spam_filtered": 2868,
+  "scored": 3630,
+  "green": 2156,
   "yellow": 479,
   "red": 995
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
-   "date": "2026-09-01",
-   "base": 57,
-   "robinhood": 434
-  },
-  {
    "date": "2026-09-02",
-   "base": 695,
-   "robinhood": 7492
+   "base": 665,
+   "robinhood": 7300
   },
   {
    "date": "2026-09-03",
@@ -125,11 +120,106 @@
   },
   {
    "date": "2026-09-22",
-   "base": 812,
+   "base": 903,
+   "robinhood": 0
+  },
+  {
+   "date": "2026-09-23",
+   "base": 22,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "TRUE",
+   "name": "True",
+   "chain": "base",
+   "address": "0x206e6216b6d08d22df71eefd282a2857f422cf9d",
+   "score": 75,
+   "verdict": "green",
+   "liquidity_usd": 44117.3245,
+   "first_seen": 1790111807
+  },
+  {
+   "symbol": "DIH",
+   "name": "Dragon in Hat",
+   "chain": "base",
+   "address": "0x45cf4c6ccfb6d849dc987cf7332dfeec8e8d6e58",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 86087.0075,
+   "first_seen": 1790111806
+  },
+  {
+   "symbol": "WIF",
+   "name": "Bearded Dragon wif hat",
+   "chain": "base",
+   "address": "0xb200000000000000000000d5f97f6b64eb27cd9f",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 14840.2055,
+   "first_seen": 1790111668
+  },
+  {
+   "symbol": "Revert",
+   "name": "Revert Finance",
+   "chain": "base",
+   "address": "0xb2000000000000000000001d460bfa97541d96fd",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 15593.7582,
+   "first_seen": 1790111429
+  },
+  {
+   "symbol": "BTL",
+   "name": "IntellectualBEETLE",
+   "chain": "base",
+   "address": "0x79eec494b27595ef63fccd06e2735150b72ae133",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 27522.6504,
+   "first_seen": 1790111382
+  },
+  {
+   "symbol": "isoap",
+   "name": "isoap",
+   "chain": "base",
+   "address": "0x62de7d538951cd25e48ca478642349326500a1d5",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3838.69759940592,
+   "first_seen": 1790110642
+  },
+  {
+   "symbol": "SFA",
+   "name": "Scotland Football Association Fan Token",
+   "chain": "base",
+   "address": "0x0569881033b6c78f8f75554ca9171aee157e97cb",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13760.4665047791,
+   "first_seen": 1790110322
+  },
+  {
+   "symbol": "STRIDER",
+   "name": "StriderEVM",
+   "chain": "base",
+   "address": "0x83f165e311a8ef485a03944375a97ee94e821222",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3008.16090920519,
+   "first_seen": 1790109946
+  },
+  {
+   "symbol": "TEST",
+   "name": "test",
+   "chain": "base",
+   "address": "0x985f7cb52507089f47a8e5abe2d9310a93921c23",
+   "score": 75,
+   "verdict": "green",
+   "liquidity_usd": 4106.4367,
+   "first_seen": 1790108887
+  },
   {
    "symbol": "WOOF",
    "name": "Shibinhood",
@@ -239,96 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 4037.5937,
    "first_seen": 1790102633
-  },
-  {
-   "symbol": "COMMS",
-   "name": "Comms lately",
-   "chain": "base",
-   "address": "0xb2000000000000000000001f14b5b1e2d73c3e01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 5092.74323742255,
-   "first_seen": 1790102315
-  },
-  {
-   "symbol": "COMMS",
-   "name": "enjoyingyourcomms",
-   "chain": "base",
-   "address": "0x4335b4a894ffcbeb59953c4f7dd9fd7b2bbb27a2",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 5982.6382,
-   "first_seen": 1790101778
-  },
-  {
-   "symbol": "RITZ",
-   "name": "Ritzcoin",
-   "chain": "base",
-   "address": "0xdc6f921f2ee0d4539a985aaae7aa4c776e42f872",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 13507053.7338,
-   "first_seen": 1790100628
-  },
-  {
-   "symbol": "MARS",
-   "name": "MARS",
-   "chain": "base",
-   "address": "0xd62b021aac0eb667c58a45cd0209a5460a79fee1",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 10430.4705,
-   "first_seen": 1790097510
-  },
-  {
-   "symbol": "FLOORED",
-   "name": "Floored",
-   "chain": "base",
-   "address": "0x4191cf033bf07c4af8d999f4089c400a4ff2da48",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 19634.3384,
-   "first_seen": 1790097508
-  },
-  {
-   "symbol": "BNDCT",
-   "name": "MammothBANDICOOT",
-   "chain": "base",
-   "address": "0x88eb1db0e89cfad3c5756be58d7bb09b3c966e7d",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 27457.5,
-   "first_seen": 1790093274
-  },
-  {
-   "symbol": "NEFE",
-   "name": "NEFE Coin",
-   "chain": "base",
-   "address": "0x0f9fe24bee61c8fc638758a617fcab45070c382d",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13730.2,
-   "first_seen": 1790092728
-  },
-  {
-   "symbol": "TIKTOK",
-   "name": "Tiktok Coin",
-   "chain": "base",
-   "address": "0x1df18c259e0067f1f637fb281a26dd38cda528b1",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 110073.8861,
-   "first_seen": 1790092454
-  },
-  {
-   "symbol": "EVILTOKENS",
-   "name": "EvilTokens",
-   "chain": "base",
-   "address": "0xb2000000000000000000008c0782227ae179cb01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 5585.0223,
-   "first_seen": 1790091265
   }
  ],
  "confirmed": [
@@ -556,7 +556,7 @@
  "probation": {
   "waiting": 62,
   "confirmed": 32,
-  "dropped": 1490
+  "dropped": 1499
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 946
  },
  "watchlist_active": 14,
- "price_snapshots": 23971,
+ "price_snapshots": 23999,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
