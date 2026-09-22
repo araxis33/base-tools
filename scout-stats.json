@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-22T18:16:56Z",
- "generated_at_unix": 1790101015,
+ "generated_at": "2026-09-22T19:17:11Z",
+ "generated_at_unix": 1790104630,
  "period": {
   "start": "2026-07-15",
   "days": 69
  },
  "totals": {
-  "seen": 171871,
-  "base": 37756,
+  "seen": 171965,
+  "base": 37850,
   "robinhood": 134115,
-  "below_liquidity_threshold": 165447,
-  "spam_filtered": 2817,
-  "scored": 3607,
-  "green": 2134,
+  "below_liquidity_threshold": 165511,
+  "spam_filtered": 2838,
+  "scored": 3616,
+  "green": 2142,
   "yellow": 479,
-  "red": 994
+  "red": 995
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-09-01",
-   "base": 218,
-   "robinhood": 1759
+   "base": 109,
+   "robinhood": 1072
   },
   {
    "date": "2026-09-02",
@@ -125,11 +125,91 @@
   },
   {
    "date": "2026-09-22",
-   "base": 653,
+   "base": 747,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "SI",
+   "name": "Super In",
+   "chain": "base",
+   "address": "0xaf9a7d26701214807b0dc9fd59121f6ed9095c7c",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 28933.7592,
+   "first_seen": 1790104573
+  },
+  {
+   "symbol": "VART",
+   "name": "fun Visio Ars Twins",
+   "chain": "base",
+   "address": "0x961fc8ebe92bdbe549c2389b86158521a1429659",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 4362.9724,
+   "first_seen": 1790104525
+  },
+  {
+   "symbol": "NRWHL",
+   "name": "VariedNARWHAL",
+   "chain": "base",
+   "address": "0x4e0f528fa400bba9c525d1dce367a214bc83847f",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 27565.512,
+   "first_seen": 1790104433
+  },
+  {
+   "symbol": "NOVA",
+   "name": "fun Nova Stratus",
+   "chain": "base",
+   "address": "0x2cefb86ad033448f596d336e9cf9bc9476832922",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 4435.6484,
+   "first_seen": 1790104341
+  },
+  {
+   "symbol": "AMC",
+   "name": "A Meme Coin",
+   "chain": "base",
+   "address": "0xd8e6aad319617256de47bc5be6638f2cc30ee1eb",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13752.216496501,
+   "first_seen": 1790103507
+  },
+  {
+   "symbol": "CCP",
+   "name": "Bxieus",
+   "chain": "base",
+   "address": "0x092255ee79ca29ecec7f22aba3e0dc698dec4c4d",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4037.5937,
+   "first_seen": 1790102633
+  },
+  {
+   "symbol": "COMMS",
+   "name": "Comms lately",
+   "chain": "base",
+   "address": "0xb2000000000000000000001f14b5b1e2d73c3e01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 5092.74323742255,
+   "first_seen": 1790102315
+  },
+  {
+   "symbol": "COMMS",
+   "name": "enjoyingyourcomms",
+   "chain": "base",
+   "address": "0x4335b4a894ffcbeb59953c4f7dd9fd7b2bbb27a2",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 5982.6382,
+   "first_seen": 1790101778
+  },
   {
    "symbol": "RITZ",
    "name": "Ritzcoin",
@@ -249,86 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 19652.8457,
    "first_seen": 1790090884
-  },
-  {
-   "symbol": "GETVISH",
-   "name": "Vishal",
-   "chain": "base",
-   "address": "0x644e7f9fefa4b930f22dbfea348b847991cfc196",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 25036.4758,
-   "first_seen": 1790090700
-  },
-  {
-   "symbol": "Botanica",
-   "name": "Botanica",
-   "chain": "base",
-   "address": "0xe8ffba43711f1018aebb6d77cfd1ba52610a5ba3",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 32452.0027,
-   "first_seen": 1790090334
-  },
-  {
-   "symbol": "CRISON",
-   "name": "CRIMSON CAT",
-   "chain": "base",
-   "address": "0x4edcbe16c3f0f18904c914aad67150d4571eeb07",
-   "score": 60,
-   "verdict": "yellow",
-   "liquidity_usd": 27082.0227,
-   "first_seen": 1790090195
-  },
-  {
-   "symbol": "BOT",
-   "name": "Botanica",
-   "chain": "base",
-   "address": "0x803ed817cfaa5df3d78cefe36d3f9c94580f2ba3",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 16310.2436,
-   "first_seen": 1790090057
-  },
-  {
-   "symbol": "Groyper",
-   "name": "Groyper",
-   "chain": "base",
-   "address": "0x60449c8aab0f997c44a965554d50237efcbd5f7c",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 20520.1066,
-   "first_seen": 1790089627
-  },
-  {
-   "symbol": "BASE",
-   "name": "ArmstrongPepeLamboETHJesseCobieInu",
-   "chain": "base",
-   "address": "0xb20000000000000000000036d75f491af10f2d92",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 16303.1402,
-   "first_seen": 1790089080
-  },
-  {
-   "symbol": "JUMP",
-   "name": "JUMP",
-   "chain": "base",
-   "address": "0xb200000000000000000000dc15452d8e19d40001",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4047.7896,
-   "first_seen": 1790089078
-  },
-  {
-   "symbol": "Berth",
-   "name": "Berth",
-   "chain": "base",
-   "address": "0x40af137414666fba659d70063a544c429226c61c",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 15699.4967,
-   "first_seen": 1790088805
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 55,
+  "waiting": 58,
   "confirmed": 32,
-  "dropped": 1484
+  "dropped": 1489
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 946
  },
  "watchlist_active": 14,
- "price_snapshots": 23931,
+ "price_snapshots": 23995,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
