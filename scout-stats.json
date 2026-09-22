@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-22T14:51:37Z",
- "generated_at_unix": 1790088696,
+ "generated_at": "2026-09-22T15:51:43Z",
+ "generated_at_unix": 1790092302,
  "period": {
   "start": "2026-07-15",
   "days": 69
  },
  "totals": {
-  "seen": 171622,
-  "base": 37507,
+  "seen": 171732,
+  "base": 37617,
   "robinhood": 134115,
-  "below_liquidity_threshold": 165279,
-  "spam_filtered": 2760,
-  "scored": 3583,
-  "green": 2115,
-  "yellow": 478,
-  "red": 990
+  "below_liquidity_threshold": 165346,
+  "spam_filtered": 2787,
+  "scored": 3599,
+  "green": 2128,
+  "yellow": 479,
+  "red": 992
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-09-01",
-   "base": 532,
-   "robinhood": 3255
+   "base": 428,
+   "robinhood": 2651
   },
   {
    "date": "2026-09-02",
@@ -125,11 +125,151 @@
   },
   {
    "date": "2026-09-22",
-   "base": 404,
+   "base": 514,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "EVILTOKENS",
+   "name": "EvilTokens",
+   "chain": "base",
+   "address": "0xb2000000000000000000008c0782227ae179cb01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 5585.0223,
+   "first_seen": 1790091265
+  },
+  {
+   "symbol": "EVILTOKEN",
+   "name": "EVILTOKEN",
+   "chain": "base",
+   "address": "0xb2000000000000000000003729f57da496686101",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 7462.8741,
+   "first_seen": 1790091127
+  },
+  {
+   "symbol": "YAO",
+   "name": "Stop Sniping",
+   "chain": "base",
+   "address": "0x5dc3d1f2ac1acd7eb549c8b94a9ae3f95d002ba3",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 17838.5783,
+   "first_seen": 1790090987
+  },
+  {
+   "symbol": "Chung",
+   "name": "Chungus",
+   "chain": "base",
+   "address": "0x5f7fff6f346fd62cc2a8b6fb127d7c0042e31ba3",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13566.6934,
+   "first_seen": 1790090985
+  },
+  {
+   "symbol": "SI",
+   "name": "SUPER INTELLIGENCE",
+   "chain": "base",
+   "address": "0xb20000000000000000000007601dae8e778f5a01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4607.8191,
+   "first_seen": 1790090978
+  },
+  {
+   "symbol": "BOTANICA",
+   "name": "BOTANICA",
+   "chain": "base",
+   "address": "0xb200000000000000000000979deabe4a9770dce8",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 19652.8457,
+   "first_seen": 1790090884
+  },
+  {
+   "symbol": "GETVISH",
+   "name": "Vishal",
+   "chain": "base",
+   "address": "0x644e7f9fefa4b930f22dbfea348b847991cfc196",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 25036.4758,
+   "first_seen": 1790090700
+  },
+  {
+   "symbol": "Botanica",
+   "name": "Botanica",
+   "chain": "base",
+   "address": "0xe8ffba43711f1018aebb6d77cfd1ba52610a5ba3",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 32452.0027,
+   "first_seen": 1790090334
+  },
+  {
+   "symbol": "CRISON",
+   "name": "CRIMSON CAT",
+   "chain": "base",
+   "address": "0x4edcbe16c3f0f18904c914aad67150d4571eeb07",
+   "score": 60,
+   "verdict": "yellow",
+   "liquidity_usd": 27082.0227,
+   "first_seen": 1790090195
+  },
+  {
+   "symbol": "BOT",
+   "name": "Botanica",
+   "chain": "base",
+   "address": "0x803ed817cfaa5df3d78cefe36d3f9c94580f2ba3",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 16310.2436,
+   "first_seen": 1790090057
+  },
+  {
+   "symbol": "Groyper",
+   "name": "Groyper",
+   "chain": "base",
+   "address": "0x60449c8aab0f997c44a965554d50237efcbd5f7c",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 20520.1066,
+   "first_seen": 1790089627
+  },
+  {
+   "symbol": "BASE",
+   "name": "ArmstrongPepeLamboETHJesseCobieInu",
+   "chain": "base",
+   "address": "0xb20000000000000000000036d75f491af10f2d92",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 16303.1402,
+   "first_seen": 1790089080
+  },
+  {
+   "symbol": "JUMP",
+   "name": "JUMP",
+   "chain": "base",
+   "address": "0xb200000000000000000000dc15452d8e19d40001",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4047.7896,
+   "first_seen": 1790089078
+  },
+  {
+   "symbol": "Berth",
+   "name": "Berth",
+   "chain": "base",
+   "address": "0x40af137414666fba659d70063a544c429226c61c",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 15699.4967,
+   "first_seen": 1790088805
+  },
   {
    "symbol": "SMOLTING",
    "name": "smolting",
@@ -189,146 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 4022.0931,
    "first_seen": 1790084666
-  },
-  {
-   "symbol": "AI DOOMERS",
-   "name": "AI DOOMERS",
-   "chain": "base",
-   "address": "0xb20000000000000000000039058b202c9eb33f01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4162.4195,
-   "first_seen": 1790084247
-  },
-  {
-   "symbol": "DUMBCOIN",
-   "name": "Dumb meme coin",
-   "chain": "base",
-   "address": "0xe3f46df261ed1cad3aa2eb65f7e04abf2a9f4e71",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 18587.439,
-   "first_seen": 1790083817
-  },
-  {
-   "symbol": "AGPUB",
-   "name": "Axe Compute Tokenized bStocks",
-   "chain": "base",
-   "address": "0xdb4e8c76b82ef1a238c42d8adf5ecf354ab0fd77",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 29107.1209,
-   "first_seen": 1790083677
-  },
-  {
-   "symbol": "doomer",
-   "name": "AI Doomers",
-   "chain": "base",
-   "address": "0xb200000000000000000000250f000a188eeeac01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4692.1756,
-   "first_seen": 1790083676
-  },
-  {
-   "symbol": "AI doomers",
-   "name": "AI doomers",
-   "chain": "base",
-   "address": "0xb2000000000000000000003f17eb7e35a9f90601",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 11547.6,
-   "first_seen": 1790083582
-  },
-  {
-   "symbol": "TION",
-   "name": "TION",
-   "chain": "base",
-   "address": "0x99e498c5568dabf648103d90a10339a9acc9bba3",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 10089.1383,
-   "first_seen": 1790083262
-  },
-  {
-   "symbol": "PENDLECAT",
-   "name": "Pendlecat",
-   "chain": "base",
-   "address": "0xc0d76cb7b6e4cdc15be629567a2abb3a33165899",
-   "score": 75,
-   "verdict": "green",
-   "liquidity_usd": 4251.3498,
-   "first_seen": 1790083168
-  },
-  {
-   "symbol": "VENT",
-   "name": "Vent",
-   "chain": "base",
-   "address": "0xb2000000000000000000000fba25ef93b20ced1c",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13882.2957,
-   "first_seen": 1790082881
-  },
-  {
-   "symbol": "TRIPLET",
-   "name": "Timeline Ticker Trade",
-   "chain": "base",
-   "address": "0xb20000000000000000000024741b2c923b5d8477",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 15528.7402,
-   "first_seen": 1790082878
-  },
-  {
-   "symbol": "rSOXL",
-   "name": "Direxion Semiconductor Bull 3X Tokenized Stock (Reality)",
-   "chain": "base",
-   "address": "0x66ca193d32a5ab63b05168aca90062475480f2cc",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 14048.8544,
-   "first_seen": 1790082603
-  },
-  {
-   "symbol": "SOX",
-   "name": "SafeOX",
-   "chain": "base",
-   "address": "0xe3394ab0c336f577072fee87ea7d7f138f5979f5",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 27516.8,
-   "first_seen": 1790081818
-  },
-  {
-   "symbol": "AI",
-   "name": "Artificial Indian",
-   "chain": "base",
-   "address": "0x94e3f41fc759792284d77c6c99d58fdb3bd4a32b",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 21732.4958,
-   "first_seen": 1790081679
-  },
-  {
-   "symbol": "SUICAT",
-   "name": "SuiCat",
-   "chain": "base",
-   "address": "0x2db04c4a4bf883fb472ce15b0efe800f6ee4f818",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4694.5603,
-   "first_seen": 1790081677
-  },
-  {
-   "symbol": "KNOT",
-   "name": "Karmaverse",
-   "chain": "base",
-   "address": "0x73ae2d78cc01c0ddf697c19279c17435dcd671da",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 33277.5807,
-   "first_seen": 1790081673
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 51,
+  "waiting": 62,
   "confirmed": 32,
-  "dropped": 1468
+  "dropped": 1471
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 945
  },
  "watchlist_active": 15,
- "price_snapshots": 23824,
+ "price_snapshots": 24029,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
