@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-22T13:51:29Z",
- "generated_at_unix": 1790085087,
+ "generated_at": "2026-09-22T14:51:37Z",
+ "generated_at_unix": 1790088696,
  "period": {
   "start": "2026-07-15",
   "days": 69
  },
  "totals": {
-  "seen": 171538,
-  "base": 37423,
+  "seen": 171622,
+  "base": 37507,
   "robinhood": 134115,
-  "below_liquidity_threshold": 165212,
-  "spam_filtered": 2746,
-  "scored": 3580,
-  "green": 2112,
+  "below_liquidity_threshold": 165279,
+  "spam_filtered": 2760,
+  "scored": 3583,
+  "green": 2115,
   "yellow": 478,
   "red": 990
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-09-01",
-   "base": 577,
-   "robinhood": 4002
+   "base": 532,
+   "robinhood": 3255
   },
   {
    "date": "2026-09-02",
@@ -125,11 +125,41 @@
   },
   {
    "date": "2026-09-22",
-   "base": 320,
+   "base": 404,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "SMOLTING",
+   "name": "smolting",
+   "chain": "base",
+   "address": "0x60c95cc16042e368651f9f8b3cf05cec19b94777",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 82963.0471,
+   "first_seen": 1790087513
+  },
+  {
+   "symbol": "IWC",
+   "name": "iWorld Cruise",
+   "chain": "base",
+   "address": "0x6d8409e79cb406c35be39933bfa4f5f2a516eef2",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13752.6664869409,
+   "first_seen": 1790086145
+  },
+  {
+   "symbol": "AI",
+   "name": "AI Doomers",
+   "chain": "base",
+   "address": "0xb2000000000000000000003a69b88e15138054be",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 30463.7481,
+   "first_seen": 1790085490
+  },
   {
    "symbol": "rupert",
    "name": "rupert",
@@ -299,36 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 33277.5807,
    "first_seen": 1790081673
-  },
-  {
-   "symbol": "VENT",
-   "name": "Vent Finance",
-   "chain": "base",
-   "address": "0xc82d083dc42b302d90239a30ce6b32c87255205d",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 33300.2004,
-   "first_seen": 1790081671
-  },
-  {
-   "symbol": "BILLY",
-   "name": "BILLY",
-   "chain": "base",
-   "address": "0x39c87b378dc609cba1ede1b851b35a3a81deced6",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 26087.5533,
-   "first_seen": 1790077314
-  },
-  {
-   "symbol": "GFNDME🤣",
-   "name": "Lol",
-   "chain": "base",
-   "address": "0x6f10505ca2bf5c6461d98c758802d868cb9ed96c",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 100594.855147286,
-   "first_seen": 1790077085
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 61,
+  "waiting": 51,
   "confirmed": 32,
-  "dropped": 1455
+  "dropped": 1468
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 945
  },
  "watchlist_active": 15,
- "price_snapshots": 23754,
+ "price_snapshots": 23824,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
