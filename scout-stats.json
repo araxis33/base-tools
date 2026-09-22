@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-22T15:51:43Z",
- "generated_at_unix": 1790092302,
+ "generated_at": "2026-09-22T18:16:56Z",
+ "generated_at_unix": 1790101015,
  "period": {
   "start": "2026-07-15",
   "days": 69
  },
  "totals": {
-  "seen": 171732,
-  "base": 37617,
+  "seen": 171871,
+  "base": 37756,
   "robinhood": 134115,
-  "below_liquidity_threshold": 165346,
-  "spam_filtered": 2787,
-  "scored": 3599,
-  "green": 2128,
+  "below_liquidity_threshold": 165447,
+  "spam_filtered": 2817,
+  "scored": 3607,
+  "green": 2134,
   "yellow": 479,
-  "red": 992
+  "red": 994
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-09-01",
-   "base": 428,
-   "robinhood": 2651
+   "base": 218,
+   "robinhood": 1759
   },
   {
    "date": "2026-09-02",
@@ -125,11 +125,71 @@
   },
   {
    "date": "2026-09-22",
-   "base": 514,
+   "base": 653,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "RITZ",
+   "name": "Ritzcoin",
+   "chain": "base",
+   "address": "0xdc6f921f2ee0d4539a985aaae7aa4c776e42f872",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 13507053.7338,
+   "first_seen": 1790100628
+  },
+  {
+   "symbol": "MARS",
+   "name": "MARS",
+   "chain": "base",
+   "address": "0xd62b021aac0eb667c58a45cd0209a5460a79fee1",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 10430.4705,
+   "first_seen": 1790097510
+  },
+  {
+   "symbol": "FLOORED",
+   "name": "Floored",
+   "chain": "base",
+   "address": "0x4191cf033bf07c4af8d999f4089c400a4ff2da48",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 19634.3384,
+   "first_seen": 1790097508
+  },
+  {
+   "symbol": "BNDCT",
+   "name": "MammothBANDICOOT",
+   "chain": "base",
+   "address": "0x88eb1db0e89cfad3c5756be58d7bb09b3c966e7d",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 27457.5,
+   "first_seen": 1790093274
+  },
+  {
+   "symbol": "NEFE",
+   "name": "NEFE Coin",
+   "chain": "base",
+   "address": "0x0f9fe24bee61c8fc638758a617fcab45070c382d",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13730.2,
+   "first_seen": 1790092728
+  },
+  {
+   "symbol": "TIKTOK",
+   "name": "Tiktok Coin",
+   "chain": "base",
+   "address": "0x1df18c259e0067f1f637fb281a26dd38cda528b1",
+   "score": 79,
+   "verdict": "green",
+   "liquidity_usd": 110073.8861,
+   "first_seen": 1790092454
+  },
   {
    "symbol": "EVILTOKENS",
    "name": "EvilTokens",
@@ -269,66 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 15699.4967,
    "first_seen": 1790088805
-  },
-  {
-   "symbol": "SMOLTING",
-   "name": "smolting",
-   "chain": "base",
-   "address": "0x60c95cc16042e368651f9f8b3cf05cec19b94777",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 82963.0471,
-   "first_seen": 1790087513
-  },
-  {
-   "symbol": "IWC",
-   "name": "iWorld Cruise",
-   "chain": "base",
-   "address": "0x6d8409e79cb406c35be39933bfa4f5f2a516eef2",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13752.6664869409,
-   "first_seen": 1790086145
-  },
-  {
-   "symbol": "AI",
-   "name": "AI Doomers",
-   "chain": "base",
-   "address": "0xb2000000000000000000003a69b88e15138054be",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 30463.7481,
-   "first_seen": 1790085490
-  },
-  {
-   "symbol": "rupert",
-   "name": "rupert",
-   "chain": "base",
-   "address": "0xbc2219dbceb02a00d59fe821f48aa771929cf40a",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 20872.6672,
-   "first_seen": 1790085085
-  },
-  {
-   "symbol": "BaseLens",
-   "name": "BaseLens",
-   "chain": "base",
-   "address": "0xb200000000000000000000fe0fe6ff9151ec2229",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 15632.8387,
-   "first_seen": 1790085083
-  },
-  {
-   "symbol": "cobiefly",
-   "name": "cobiefly",
-   "chain": "base",
-   "address": "0xb200000000000000000000a96e545a2aef94bd01",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4022.0931,
-   "first_seen": 1790084666
   }
  ],
  "confirmed": [
@@ -554,11 +554,17 @@
   }
  ],
  "probation": {
-  "waiting": 62,
+  "waiting": 55,
   "confirmed": 32,
-  "dropped": 1471
+  "dropped": 1484
  },
  "recent_drains": [
+  {
+   "symbol": "KNNEX",
+   "chain": "base",
+   "address": "0x34f04c3b3bdf1b6850220ed52f4931ea8856f530",
+   "ts": 1790093273
+  },
   {
    "symbol": "COBIE",
    "chain": "base",
@@ -642,12 +648,6 @@
    "chain": "base",
    "address": "0x3f261044acefe347b36f7a126f393cbf84ce0b07",
    "ts": 1788075549
-  },
-  {
-   "symbol": "XXT",
-   "chain": "base",
-   "address": "0x31dce74641b7fcc3e777080f6cff5b364c49a2f8",
-   "ts": 1787903635
   }
  ],
  "survivors": [
@@ -755,10 +755,10 @@
  "alerts": {
   "dump": 699,
   "pump": 264,
-  "rug": 945
+  "rug": 946
  },
- "watchlist_active": 15,
- "price_snapshots": 24029,
+ "watchlist_active": 14,
+ "price_snapshots": 23931,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
