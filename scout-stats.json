@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-22T11:14:09Z",
- "generated_at_unix": 1790075646,
+ "generated_at": "2026-09-22T13:51:29Z",
+ "generated_at_unix": 1790085087,
  "period": {
   "start": "2026-07-15",
   "days": 69
  },
  "totals": {
-  "seen": 171385,
-  "base": 37270,
+  "seen": 171538,
+  "base": 37423,
   "robinhood": 134115,
-  "below_liquidity_threshold": 165143,
-  "spam_filtered": 2696,
-  "scored": 3546,
-  "green": 2079,
+  "below_liquidity_threshold": 165212,
+  "spam_filtered": 2746,
+  "scored": 3580,
+  "green": 2112,
   "yellow": 478,
-  "red": 989
+  "red": 990
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-09-01",
-   "base": 616,
-   "robinhood": 4208
+   "base": 577,
+   "robinhood": 4002
   },
   {
    "date": "2026-09-02",
@@ -125,213 +125,233 @@
   },
   {
    "date": "2026-09-22",
-   "base": 167,
+   "base": 320,
    "robinhood": 0
   }
  ],
  "recent_finds": [
   {
-   "symbol": "KNNEX",
-   "name": "KNNEX",
+   "symbol": "rupert",
+   "name": "rupert",
    "chain": "base",
-   "address": "0x34f04c3b3bdf1b6850220ed52f4931ea8856f530",
+   "address": "0xbc2219dbceb02a00d59fe821f48aa771929cf40a",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 20872.6672,
+   "first_seen": 1790085085
+  },
+  {
+   "symbol": "BaseLens",
+   "name": "BaseLens",
+   "chain": "base",
+   "address": "0xb200000000000000000000fe0fe6ff9151ec2229",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 15632.8387,
+   "first_seen": 1790085083
+  },
+  {
+   "symbol": "cobiefly",
+   "name": "cobiefly",
+   "chain": "base",
+   "address": "0xb200000000000000000000a96e545a2aef94bd01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4022.0931,
+   "first_seen": 1790084666
+  },
+  {
+   "symbol": "AI DOOMERS",
+   "name": "AI DOOMERS",
+   "chain": "base",
+   "address": "0xb20000000000000000000039058b202c9eb33f01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4162.4195,
+   "first_seen": 1790084247
+  },
+  {
+   "symbol": "DUMBCOIN",
+   "name": "Dumb meme coin",
+   "chain": "base",
+   "address": "0xe3f46df261ed1cad3aa2eb65f7e04abf2a9f4e71",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 18587.439,
+   "first_seen": 1790083817
+  },
+  {
+   "symbol": "AGPUB",
+   "name": "Axe Compute Tokenized bStocks",
+   "chain": "base",
+   "address": "0xdb4e8c76b82ef1a238c42d8adf5ecf354ab0fd77",
    "score": 73,
    "verdict": "green",
-   "liquidity_usd": 60099.1308,
-   "first_seen": 1790071217
+   "liquidity_usd": 29107.1209,
+   "first_seen": 1790083677
   },
   {
-   "symbol": "PNNPD",
-   "name": "ComingPINNIPED",
+   "symbol": "doomer",
+   "name": "AI Doomers",
    "chain": "base",
-   "address": "0xcecbd3300a48546633915586729a855a59e81e01",
+   "address": "0xb200000000000000000000250f000a188eeeac01",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4692.1756,
+   "first_seen": 1790083676
+  },
+  {
+   "symbol": "AI doomers",
+   "name": "AI doomers",
+   "chain": "base",
+   "address": "0xb2000000000000000000003f17eb7e35a9f90601",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 11547.6,
+   "first_seen": 1790083582
+  },
+  {
+   "symbol": "TION",
+   "name": "TION",
+   "chain": "base",
+   "address": "0x99e498c5568dabf648103d90a10339a9acc9bba3",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 10089.1383,
+   "first_seen": 1790083262
+  },
+  {
+   "symbol": "PENDLECAT",
+   "name": "Pendlecat",
+   "chain": "base",
+   "address": "0xc0d76cb7b6e4cdc15be629567a2abb3a33165899",
+   "score": 75,
+   "verdict": "green",
+   "liquidity_usd": 4251.3498,
+   "first_seen": 1790083168
+  },
+  {
+   "symbol": "VENT",
+   "name": "Vent",
+   "chain": "base",
+   "address": "0xb2000000000000000000000fba25ef93b20ced1c",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13882.2957,
+   "first_seen": 1790082881
+  },
+  {
+   "symbol": "TRIPLET",
+   "name": "Timeline Ticker Trade",
+   "chain": "base",
+   "address": "0xb20000000000000000000024741b2c923b5d8477",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 15528.7402,
+   "first_seen": 1790082878
+  },
+  {
+   "symbol": "rSOXL",
+   "name": "Direxion Semiconductor Bull 3X Tokenized Stock (Reality)",
+   "chain": "base",
+   "address": "0x66ca193d32a5ab63b05168aca90062475480f2cc",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 14048.8544,
+   "first_seen": 1790082603
+  },
+  {
+   "symbol": "SOX",
+   "name": "SafeOX",
+   "chain": "base",
+   "address": "0xe3394ab0c336f577072fee87ea7d7f138f5979f5",
    "score": 73,
    "verdict": "green",
-   "liquidity_usd": 27434.8,
-   "first_seen": 1790070845
+   "liquidity_usd": 27516.8,
+   "first_seen": 1790081818
   },
   {
-   "symbol": "PRRT",
-   "name": "SocialPARROT",
+   "symbol": "AI",
+   "name": "Artificial Indian",
    "chain": "base",
-   "address": "0x68d09a9e634b1e2b2d2c09e72c13d8d467204058",
+   "address": "0x94e3f41fc759792284d77c6c99d58fdb3bd4a32b",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 27433.2,
-   "first_seen": 1790070436
+   "liquidity_usd": 21732.4958,
+   "first_seen": 1790081679
   },
   {
-   "symbol": "MRNA",
-   "name": "Moderna Inc (Derivatives)",
+   "symbol": "SUICAT",
+   "name": "SuiCat",
    "chain": "base",
-   "address": "0x2e0af1d25b93337d7ab07534058002b0513a7269",
+   "address": "0x2db04c4a4bf883fb472ce15b0efe800f6ee4f818",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 14092.6462,
-   "first_seen": 1790070154
+   "liquidity_usd": 4694.5603,
+   "first_seen": 1790081677
   },
   {
-   "symbol": "USDT",
-   "name": "Tether (USDT)",
+   "symbol": "KNOT",
+   "name": "Karmaverse",
    "chain": "base",
-   "address": "0xbfc8d20252d449d3e4881c631ec4f98c6a5b07d2",
+   "address": "0x73ae2d78cc01c0ddf697c19279c17435dcd671da",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 100748.249222339,
-   "first_seen": 1790069282
+   "liquidity_usd": 33277.5807,
+   "first_seen": 1790081673
   },
   {
-   "symbol": "SPACEXCOIN",
-   "name": "SpaceXcoin",
+   "symbol": "VENT",
+   "name": "Vent Finance",
    "chain": "base",
-   "address": "0x8de114a3ad1583901da49f92a89f27910d8ca9db",
+   "address": "0xc82d083dc42b302d90239a30ce6b32c87255205d",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 13803.1488,
-   "first_seen": 1790069281
+   "liquidity_usd": 33300.2004,
+   "first_seen": 1790081671
   },
   {
-   "symbol": "FLX",
-   "name": "Fairlaunch",
+   "symbol": "BILLY",
+   "name": "BILLY",
    "chain": "base",
-   "address": "0x2f603193582f8ec19a73ac33a21b674ca56715ef",
+   "address": "0x39c87b378dc609cba1ede1b851b35a3a81deced6",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 13757.85,
-   "first_seen": 1790067306
+   "liquidity_usd": 26087.5533,
+   "first_seen": 1790077314
   },
   {
-   "symbol": "SPY",
-   "name": "SPDR S&amp;P 500 Trust Tokenized ETF (Robinhood)",
+   "symbol": "GFNDME🤣",
+   "name": "Lol",
    "chain": "base",
-   "address": "0xc54461155c835e05e7658cc2046df9c6967f0e93",
+   "address": "0x6f10505ca2bf5c6461d98c758802d868cb9ed96c",
    "score": 100,
    "verdict": "green",
-   "liquidity_usd": 13649.9163685451,
-   "first_seen": 1790066338
-  },
-  {
-   "symbol": "GROK47",
-   "name": "GROK47",
-   "chain": "base",
-   "address": "0xd857cfd30455a210f9e2980493e5505c270ea23e",
-   "score": 55,
-   "verdict": "yellow",
-   "liquidity_usd": 29393.6308,
-   "first_seen": 1790064236
-  },
-  {
-   "symbol": "LAYA",
-   "name": "Laya Research",
-   "chain": "base",
-   "address": "0x62eddfabae221191768ef16959cc66b7f93f391a",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 29902.2901,
-   "first_seen": 1790064235
-  },
-  {
-   "symbol": "MUSEAPP",
-   "name": "MuseApp",
-   "chain": "base",
-   "address": "0x59b56981502db9d2ffa1454d23a17fbcd6736549",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 25526.2616,
-   "first_seen": 1790064234
-  },
-  {
-   "symbol": "JEAN",
-   "name": "Jeancoin",
-   "chain": "base",
-   "address": "0xf517577050421028b0352697e7b27209983fccca",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 20961.2171,
-   "first_seen": 1790064233
-  },
-  {
-   "symbol": "DogWifTipped",
-   "name": "DogWifTipped",
-   "chain": "base",
-   "address": "0x14c286aa655f431a0f263b34832c0bb87004582e",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 18971.1573,
-   "first_seen": 1790064231
-  },
-  {
-   "symbol": "ORCHARD",
-   "name": "Orchard",
-   "chain": "base",
-   "address": "0x149fdfa52882042bcf8c7dc869a292ea27a64800",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 14710.7682,
-   "first_seen": 1790028714
-  },
-  {
-   "symbol": "BABYPHIL",
-   "name": "Baby Jean Phil",
-   "chain": "base",
-   "address": "0x8d007043f25241d0e1100f57d261cc6a98be1b50",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 18236.7485,
-   "first_seen": 1790028666
-  },
-  {
-   "symbol": "TESTGV2",
-   "name": "testgv2",
-   "chain": "base",
-   "address": "0xbdb993147a547c55e81f118001f801213818c61c",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4152.5433,
-   "first_seen": 1790028664
-  },
-  {
-   "symbol": "tradecat",
-   "name": "tradecat",
-   "chain": "base",
-   "address": "0xc36229b9f9f14d2a18b5d76ce50d9a8e79a1264a",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 85584.9461,
-   "first_seen": 1790028663
-  },
-  {
-   "symbol": "XCAT",
-   "name": "xcat",
-   "chain": "base",
-   "address": "0xb200000000000000000000ba9c8bfca1e7b17fbd",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 16310.0549,
-   "first_seen": 1790028571
-  },
-  {
-   "symbol": "MUSEBOOK",
-   "name": "musebook",
-   "chain": "base",
-   "address": "0x72964896d70e2dcd4d7153e9d08c1842b2b74af4",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 7050800.1622,
-   "first_seen": 1790026460
-  },
-  {
-   "symbol": "PCOI",
-   "name": "PureCOIN",
-   "chain": "base",
-   "address": "0x6466265ec3917796e5a6fe573cc9431e3649c2a0",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 27677.6,
-   "first_seen": 1790026040
+   "liquidity_usd": 100594.855147286,
+   "first_seen": 1790077085
   }
  ],
  "confirmed": [
+  {
+   "symbol": "KNNEX",
+   "chain": "base",
+   "address": "0x34f04c3b3bdf1b6850220ed52f4931ea8856f530",
+   "buyers_h1": 67,
+   "volume_h1": 19258.6706016828,
+   "liquidity_usd": 97087.2651,
+   "confirmed_at": 1790071217,
+   "hours_waited": 1.2
+  },
+  {
+   "symbol": "SYBT",
+   "chain": "base",
+   "address": "0xd7c1d5b2bdf5d673c7757b2c61b427de3d2843c2",
+   "buyers_h1": 57,
+   "volume_h1": 8230.7124832166,
+   "liquidity_usd": 94995.0027,
+   "confirmed_at": 1790002529,
+   "hours_waited": 22.0
+  },
   {
    "symbol": "GIFTED",
    "chain": "base",
@@ -511,26 +531,6 @@
    "liquidity_usd": 7961.7668,
    "confirmed_at": 1789045396,
    "hours_waited": 1.0
-  },
-  {
-   "symbol": "PC",
-   "chain": "base",
-   "address": "0xb200000000000000000000d4fa1977a43ffffb01",
-   "buyers_h1": 124,
-   "volume_h1": 28652.7957729816,
-   "liquidity_usd": 9332.7936,
-   "confirmed_at": 1788808610,
-   "hours_waited": 0.8
-  },
-  {
-   "symbol": "BLUE",
-   "chain": "base",
-   "address": "0x1d0c1be75f32c1238da27dbb59d21c7df8d311b2",
-   "buyers_h1": 211,
-   "volume_h1": 110323.082859831,
-   "liquidity_usd": 34990.9014,
-   "confirmed_at": 1788727107,
-   "hours_waited": 0.8
   }
  ],
  "verdict_outcomes": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 42,
-  "confirmed": 30,
-  "dropped": 1443
+  "waiting": 61,
+  "confirmed": 32,
+  "dropped": 1455
  },
  "recent_drains": [
   {
@@ -754,11 +754,11 @@
  ],
  "alerts": {
   "dump": 699,
-  "pump": 263,
+  "pump": 264,
   "rug": 945
  },
- "watchlist_active": 13,
- "price_snapshots": 24129,
+ "watchlist_active": 15,
+ "price_snapshots": 23754,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
