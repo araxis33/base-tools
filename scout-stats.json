@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-22T09:02:20Z",
- "generated_at_unix": 1790067739,
+ "generated_at": "2026-09-22T11:14:09Z",
+ "generated_at_unix": 1790075646,
  "period": {
   "start": "2026-07-15",
   "days": 69
  },
  "totals": {
-  "seen": 171355,
-  "base": 37240,
+  "seen": 171385,
+  "base": 37270,
   "robinhood": 134115,
-  "below_liquidity_threshold": 165124,
-  "spam_filtered": 2691,
-  "scored": 3540,
-  "green": 2073,
+  "below_liquidity_threshold": 165143,
+  "spam_filtered": 2696,
+  "scored": 3546,
+  "green": 2079,
   "yellow": 478,
   "red": 989
  },
@@ -125,11 +125,71 @@
   },
   {
    "date": "2026-09-22",
-   "base": 137,
+   "base": 167,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "KNNEX",
+   "name": "KNNEX",
+   "chain": "base",
+   "address": "0x34f04c3b3bdf1b6850220ed52f4931ea8856f530",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 60099.1308,
+   "first_seen": 1790071217
+  },
+  {
+   "symbol": "PNNPD",
+   "name": "ComingPINNIPED",
+   "chain": "base",
+   "address": "0xcecbd3300a48546633915586729a855a59e81e01",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 27434.8,
+   "first_seen": 1790070845
+  },
+  {
+   "symbol": "PRRT",
+   "name": "SocialPARROT",
+   "chain": "base",
+   "address": "0x68d09a9e634b1e2b2d2c09e72c13d8d467204058",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 27433.2,
+   "first_seen": 1790070436
+  },
+  {
+   "symbol": "MRNA",
+   "name": "Moderna Inc (Derivatives)",
+   "chain": "base",
+   "address": "0x2e0af1d25b93337d7ab07534058002b0513a7269",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 14092.6462,
+   "first_seen": 1790070154
+  },
+  {
+   "symbol": "USDT",
+   "name": "Tether (USDT)",
+   "chain": "base",
+   "address": "0xbfc8d20252d449d3e4881c631ec4f98c6a5b07d2",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 100748.249222339,
+   "first_seen": 1790069282
+  },
+  {
+   "symbol": "SPACEXCOIN",
+   "name": "SpaceXcoin",
+   "chain": "base",
+   "address": "0x8de114a3ad1583901da49f92a89f27910d8ca9db",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13803.1488,
+   "first_seen": 1790069281
+  },
   {
    "symbol": "FLX",
    "name": "Fairlaunch",
@@ -269,66 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 27677.6,
    "first_seen": 1790026040
-  },
-  {
-   "symbol": "TRUECAT",
-   "name": "True Cat",
-   "chain": "base",
-   "address": "0xb20000000000000000000073fded784a95985cc0",
-   "score": 57,
-   "verdict": "yellow",
-   "liquidity_usd": 3471.2066,
-   "first_seen": 1790025948
-  },
-  {
-   "symbol": "CLT",
-   "name": "ViolentOCELOT",
-   "chain": "base",
-   "address": "0xb905e7da04f411e2a4768d289a0db25d2e50661d",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 27682.0,
-   "first_seen": 1790025672
-  },
-  {
-   "symbol": "REHE",
-   "name": "Rehearsal Equity",
-   "chain": "base",
-   "address": "0x7a7f679fbc64721056f9ac921197407ab1024696",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4152.6075,
-   "first_seen": 1790023681
-  },
-  {
-   "symbol": "LAPTOPCASH",
-   "name": "LaptopCash",
-   "chain": "base",
-   "address": "0xa25c00f937bb95746d41a4f333e0a7107325fee1",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 10055.9979,
-   "first_seen": 1790023679
-  },
-  {
-   "symbol": "BCH2",
-   "name": "Bitcoin Cash II",
-   "chain": "base",
-   "address": "0x7bc28721f1c556a821686a56df1a4e500eeedd5e",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 15283.287,
-   "first_seen": 1790023585
-  },
-  {
-   "symbol": "REHZ",
-   "name": "Rehearsal Zap",
-   "chain": "base",
-   "address": "0x7fdcea19228dc9096a5ed0714ee824c17ddc6e64",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3829.8418,
-   "first_seen": 1790023448
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 49,
+  "waiting": 42,
   "confirmed": 30,
-  "dropped": 1430
+  "dropped": 1443
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 945
  },
  "watchlist_active": 13,
- "price_snapshots": 24140,
+ "price_snapshots": 24129,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
