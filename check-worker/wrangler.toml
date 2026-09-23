@@ -1,0 +1,10 @@
+name = "deftools-check"
+main = "worker.js"
+compatibility_date = "2026-09-01"
+
+# Daily check counter and one-time tickets. Create with:
+#   npx wrangler kv namespace create QUOTA
+# and put the printed id here.
+[[kv_namespaces]]
+binding = "QUOTA"
+id = "ccbecb5c11c64392828de3692e40f705"
