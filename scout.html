@@ -282,15 +282,19 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
       document.getElementById('error').hidden = false;
     });
 
+  var STOPPED = '2026-09-23';
+
   function render(d) {
     var t = d.totals, age = Date.now() / 1000 - d.generated_at_unix;
 
+    // The scanner was switched off on 23.09.2026; the snapshot is still re-published,
+    // so "updated N min ago" with a green dot would read as a live scan.
     document.getElementById('stamp').innerHTML =
-      '<span class="dot' + (age > 21600 ? ' stale' : '') + '"></span>Updated ' + ago(d.generated_at_unix) +
-      ' &middot; scanning since ' + esc(d.period.start) + ' (' + d.period.days + ' days)';
+      '<span class="dot stale"></span>Scanner ran from ' + esc(d.period.start) + ' to ' + STOPPED +
+      ' &middot; outcomes still followed, last refresh ' + ago(d.generated_at_unix);
 
     document.getElementById('period').textContent =
-      'Everything the scanner saw between ' + d.period.start + ' and today.';
+      'Everything the scanner saw between ' + d.period.start + ' and ' + STOPPED + '.';
 
     document.getElementById('funnel').innerHTML = [
       { c: 'a', n: t.seen, l: 'new tokens appeared', p: '' },
