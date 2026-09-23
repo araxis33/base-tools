@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Scout — new tokens on Base and Robinhood Chain</title>
-<meta name="description" content="Live stats from an automated scanner watching every new token pool on Base and Robinhood Chain: how many appear, how few have real liquidity, and which ones drained.">
+<title>Scout — record of a new-token scanner on Base</title>
+<meta name="description" content="The record of an automated scanner that watched every new token pool on Base and Robinhood Chain until 23.09.2026: how many appeared, how few had real liquidity, which ones drained, and why it was switched off.">
 <meta property="og:title" content="Scout — new tokens on Base and Robinhood Chain">
 <meta property="og:description" content="Every new pool on two chains, checked automatically. Under 1% turn out to be worth a second look.">
 <meta property="og:type" content="website">
@@ -138,6 +138,11 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
       usual traps &mdash; honeypot, mintable supply, unlocked liquidity, holder concentration &mdash;
       and then follows what actually happens to it. The follow-up is the point: it turns out
       a clean contract predicted almost nothing. These are the raw numbers, including that.</p>
+    <p class="disclaim" style="margin-top:16px; max-width:62ch"><b>Switched off on 23.09.2026.</b> Over its last 18 days, 13 of the 23 coins it
+      flagged as proven demand ended with no liquidity at all, and of the coins that did survive it
+      had discarded about four in five. It judged each coin once, the second its pool appeared &mdash;
+      before anyone had put money in. The numbers below are kept as the record. Meme Scout now
+      checks one token at a time, by address, instead.</p>
     <div class="stamp" id="stamp">Loading&hellip;</div>
   </div>
 
