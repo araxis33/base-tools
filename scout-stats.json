@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-09-23T11:00:14Z",
- "generated_at_unix": 1790161213,
+ "generated_at": "2026-09-23T13:26:09Z",
+ "generated_at_unix": 1790169968,
  "period": {
   "start": "2026-07-15",
   "days": 70
  },
  "totals": {
-  "seen": 172382,
-  "base": 38267,
+  "seen": 172469,
+  "base": 38354,
   "robinhood": 134115,
-  "below_liquidity_threshold": 165797,
-  "spam_filtered": 2939,
-  "scored": 3646,
-  "green": 2172,
+  "below_liquidity_threshold": 165839,
+  "spam_filtered": 2974,
+  "scored": 3656,
+  "green": 2181,
   "yellow": 479,
-  "red": 995
+  "red": 996
  },
  "liquidity_threshold_usd": 1500.0,
  "daily": [
   {
    "date": "2026-09-02",
-   "base": 493,
-   "robinhood": 5545
+   "base": 420,
+   "robinhood": 4568
   },
   {
    "date": "2026-09-03",
@@ -125,11 +125,101 @@
   },
   {
    "date": "2026-09-23",
-   "base": 261,
+   "base": 348,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "HOLD",
+   "name": "HOLD",
+   "chain": "base",
+   "address": "0xbb58bf672ea0aea31404439a29d56a2446765f3a",
+   "score": 93,
+   "verdict": "green",
+   "liquidity_usd": 2628.4319,
+   "first_seen": 1790169208
+  },
+  {
+   "symbol": "slug",
+   "name": "slug",
+   "chain": "base",
+   "address": "0xb200000000000000000000b3b08e20a4f2361101",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 4710.7772,
+   "first_seen": 1790169206
+  },
+  {
+   "symbol": "SPIKE",
+   "name": "SPIKE",
+   "chain": "base",
+   "address": "0xcbbeaa2a67293821b20fccea2a030bbea38967ab",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 41130.6596,
+   "first_seen": 1790168475
+  },
+  {
+   "symbol": "VVVX",
+   "name": "VvvxFun",
+   "chain": "base",
+   "address": "0xf1c857e40eb4ca33d5f6390068dd9776d266921f",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 39119.8745,
+   "first_seen": 1790168468
+  },
+  {
+   "symbol": "OFLG",
+   "name": "Owner Flag",
+   "chain": "base",
+   "address": "0x499a02b380507ee48851d3d0076f5d5bc06b14ad",
+   "score": 80,
+   "verdict": "green",
+   "liquidity_usd": 4056.9283,
+   "first_seen": 1790168466
+  },
+  {
+   "symbol": "FBL051",
+   "name": "FeeBot Load 051",
+   "chain": "base",
+   "address": "0x927561e0253c7cb27120107ef2ff8768716acb3a",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3948.4342,
+   "first_seen": 1790168464
+  },
+  {
+   "symbol": "FBL077",
+   "name": "FeeBot Load 077",
+   "chain": "base",
+   "address": "0xe905ef62df968225b6d326f7ba20f0950a49b9a8",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3956.6327,
+   "first_seen": 1790168462
+  },
+  {
+   "symbol": "IBM",
+   "name": "IBM Tokenized Stock (Robinhood)",
+   "chain": "base",
+   "address": "0x895dd7a1b0e5e107286e8f7da5216fb6041e7fbd",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 13913.0087,
+   "first_seen": 1790161506
+  },
+  {
+   "symbol": "bullcoin",
+   "name": "bullcoin",
+   "chain": "base",
+   "address": "0x4a5b37946b775ae16e0682f263df79d9255ff360",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 17602.1103,
+   "first_seen": 1790161414
+  },
   {
    "symbol": "CYS",
    "name": "Cysic",
@@ -239,96 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 19951.1816,
    "first_seen": 1790153995
-  },
-  {
-   "symbol": "ZKCHECK",
-   "name": "ZKCheck",
-   "chain": "base",
-   "address": "0xc164fe6995d2f853da34c0dd4649c05ca8e3f29f",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 33017.3936,
-   "first_seen": 1790153992
-  },
-  {
-   "symbol": "EQH",
-   "name": "Equihash",
-   "chain": "base",
-   "address": "0x6626ae3e60500d9391ab7cb277e0b713774c299d",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 33031.1832,
-   "first_seen": 1790153991
-  },
-  {
-   "symbol": "Agrippa",
-   "name": "Agrippa Muse",
-   "chain": "base",
-   "address": "0xb200000000000000000000b9df98e3ee591a7001",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3957.3596,
-   "first_seen": 1790113103
-  },
-  {
-   "symbol": "HYDBon",
-   "name": "iShares High Yield Systematic Bond Tokenized ETF (Ondo)",
-   "chain": "base",
-   "address": "0x1d476840bd1002bf02589edf216fcd1b9faab805",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 13749.8,
-   "first_seen": 1790112965
-  },
-  {
-   "symbol": "GNOT",
-   "name": "Gno.land",
-   "chain": "base",
-   "address": "0xc0aaf23fa093cf5f9792ce3defaacbd26fbf264e",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13747.0164923914,
-   "first_seen": 1790112827
-  },
-  {
-   "symbol": "TRUE",
-   "name": "True",
-   "chain": "base",
-   "address": "0x206e6216b6d08d22df71eefd282a2857f422cf9d",
-   "score": 75,
-   "verdict": "green",
-   "liquidity_usd": 44117.3245,
-   "first_seen": 1790111807
-  },
-  {
-   "symbol": "DIH",
-   "name": "Dragon in Hat",
-   "chain": "base",
-   "address": "0x45cf4c6ccfb6d849dc987cf7332dfeec8e8d6e58",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 86087.0075,
-   "first_seen": 1790111806
-  },
-  {
-   "symbol": "WIF",
-   "name": "Bearded Dragon wif hat",
-   "chain": "base",
-   "address": "0xb200000000000000000000d5f97f6b64eb27cd9f",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 14840.2055,
-   "first_seen": 1790111668
-  },
-  {
-   "symbol": "Revert",
-   "name": "Revert Finance",
-   "chain": "base",
-   "address": "0xb2000000000000000000001d460bfa97541d96fd",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 15593.7582,
-   "first_seen": 1790111429
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 50,
+  "waiting": 46,
   "confirmed": 32,
-  "dropped": 1527
+  "dropped": 1540
  },
  "recent_drains": [
   {
@@ -652,6 +652,26 @@
  ],
  "survivors": [
   {
+   "symbol": "SYBT",
+   "chain": "base",
+   "address": "0xd7c1d5b2bdf5d673c7757b2c61b427de3d2843c2",
+   "score": 57,
+   "alerted_at": 1790081871,
+   "liq_0": 94995.0027,
+   "liq_24h": 100947.87,
+   "volume_24h": 42624.76
+  },
+  {
+   "symbol": "KNNEX",
+   "chain": "base",
+   "address": "0x34f04c3b3bdf1b6850220ed52f4931ea8856f530",
+   "score": 64,
+   "alerted_at": 1790075658,
+   "liq_0": 97087.2651,
+   "liq_24h": 97169.27,
+   "volume_24h": 45279.52
+  },
+  {
    "symbol": "BCDB",
    "chain": "base",
    "address": "0x7bfd745d322ad6c386f45679d73e9c30a16cd2ee",
@@ -730,26 +750,6 @@
    "liq_0": 59788.1466,
    "liq_24h": 84094.95,
    "volume_24h": 10732.95
-  },
-  {
-   "symbol": "ALLIUM",
-   "chain": "base",
-   "address": "0xe024146ebae59f54a1cbd27007f2eb40cce3cf6e",
-   "score": 71,
-   "alerted_at": 1786704176,
-   "liq_0": 59900.4082,
-   "liq_24h": 81290.56,
-   "volume_24h": 90430.74
-  },
-  {
-   "symbol": "SPX30K",
-   "chain": "base",
-   "address": "0x8baef50e259174df675a264eff3b329ae8d1c667",
-   "score": 71,
-   "alerted_at": 1786559639,
-   "liq_0": 67889.0514,
-   "liq_24h": 79028.98,
-   "volume_24h": 213441.22
   }
  ],
  "alerts": {
@@ -758,7 +758,7 @@
   "rug": 946
  },
  "watchlist_active": 14,
- "price_snapshots": 23524,
+ "price_snapshots": 23522,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
