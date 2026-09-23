@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-23T10:00:07Z",
- "generated_at_unix": 1790157605,
+ "generated_at": "2026-09-23T11:00:14Z",
+ "generated_at_unix": 1790161213,
  "period": {
   "start": "2026-07-15",
   "days": 70
  },
  "totals": {
-  "seen": 172322,
-  "base": 38207,
+  "seen": 172382,
+  "base": 38267,
   "robinhood": 134115,
-  "below_liquidity_threshold": 165759,
-  "spam_filtered": 2923,
-  "scored": 3640,
-  "green": 2166,
+  "below_liquidity_threshold": 165797,
+  "spam_filtered": 2939,
+  "scored": 3646,
+  "green": 2172,
   "yellow": 479,
   "red": 995
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-09-02",
-   "base": 530,
-   "robinhood": 6110
+   "base": 493,
+   "robinhood": 5545
   },
   {
    "date": "2026-09-03",
@@ -125,11 +125,71 @@
   },
   {
    "date": "2026-09-23",
-   "base": 201,
+   "base": 261,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "CYS",
+   "name": "Cysic",
+   "chain": "base",
+   "address": "0x1f48372593d28922ba9216cccb50049f63fe450d",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 24270.7367,
+   "first_seen": 1790161005
+  },
+  {
+   "symbol": "JPL",
+   "name": "Jesse Pollak",
+   "chain": "base",
+   "address": "0x1d93a9292500ecb537810e6308f2c2905abf60fc",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 26949.485,
+   "first_seen": 1790159433
+  },
+  {
+   "symbol": "USDT.c",
+   "name": "Tether USD Bridged TC20 (TetheCat)",
+   "chain": "base",
+   "address": "0x5d380f53527ab9b8a19865d2cc48c902ca045c8b",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13665.7163860981,
+   "first_seen": 1790158299
+  },
+  {
+   "symbol": "WPAY",
+   "name": "WPAY",
+   "chain": "base",
+   "address": "0x51b934d3aa2b72c1d02a9737bd5cb563f7a89168",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 33076.0597,
+   "first_seen": 1790158252
+  },
+  {
+   "symbol": "GDEX",
+   "name": "DexFi Governance",
+   "chain": "base",
+   "address": "0x82b15da5026d92c2c196c5999073d6e9db78d0ec",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 33066.0199,
+   "first_seen": 1790158251
+  },
+  {
+   "symbol": "VVVDINO",
+   "name": "Venice Dino",
+   "chain": "base",
+   "address": "0x6ff448829f3f53346b6c9ecf3a2520b4f598d134",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 84539.0761,
+   "first_seen": 1790158114
+  },
   {
    "symbol": "WSTI",
    "name": "WesternSTINGRAY",
@@ -269,66 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 15593.7582,
    "first_seen": 1790111429
-  },
-  {
-   "symbol": "BTL",
-   "name": "IntellectualBEETLE",
-   "chain": "base",
-   "address": "0x79eec494b27595ef63fccd06e2735150b72ae133",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 27522.6504,
-   "first_seen": 1790111382
-  },
-  {
-   "symbol": "isoap",
-   "name": "isoap",
-   "chain": "base",
-   "address": "0x62de7d538951cd25e48ca478642349326500a1d5",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3838.69759940592,
-   "first_seen": 1790110642
-  },
-  {
-   "symbol": "SFA",
-   "name": "Scotland Football Association Fan Token",
-   "chain": "base",
-   "address": "0x0569881033b6c78f8f75554ca9171aee157e97cb",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13760.4665047791,
-   "first_seen": 1790110322
-  },
-  {
-   "symbol": "STRIDER",
-   "name": "StriderEVM",
-   "chain": "base",
-   "address": "0x83f165e311a8ef485a03944375a97ee94e821222",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 3008.16090920519,
-   "first_seen": 1790109946
-  },
-  {
-   "symbol": "TEST",
-   "name": "test",
-   "chain": "base",
-   "address": "0x985f7cb52507089f47a8e5abe2d9310a93921c23",
-   "score": 75,
-   "verdict": "green",
-   "liquidity_usd": 4106.4367,
-   "first_seen": 1790108887
-  },
-  {
-   "symbol": "WOOF",
-   "name": "Shibinhood",
-   "chain": "base",
-   "address": "0xfe3c6d6e88c8d70b6f88e0f4c1459af4a3fed384",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 14869.8801,
-   "first_seen": 1790107508
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 52,
+  "waiting": 50,
   "confirmed": 32,
-  "dropped": 1519
+  "dropped": 1527
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 946
  },
  "watchlist_active": 14,
- "price_snapshots": 23563,
+ "price_snapshots": 23524,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
