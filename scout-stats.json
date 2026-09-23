@@ -1,18 +1,18 @@
 {
- "generated_at": "2026-09-22T21:17:25Z",
- "generated_at_unix": 1790111844,
+ "generated_at": "2026-09-23T10:00:07Z",
+ "generated_at_unix": 1790157605,
  "period": {
   "start": "2026-07-15",
-  "days": 69
+  "days": 70
  },
  "totals": {
-  "seen": 172143,
-  "base": 38028,
+  "seen": 172322,
+  "base": 38207,
   "robinhood": 134115,
-  "below_liquidity_threshold": 165645,
-  "spam_filtered": 2868,
-  "scored": 3630,
-  "green": 2156,
+  "below_liquidity_threshold": 165759,
+  "spam_filtered": 2923,
+  "scored": 3640,
+  "green": 2166,
   "yellow": 479,
   "red": 995
  },
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-09-02",
-   "base": 665,
-   "robinhood": 7300
+   "base": 530,
+   "robinhood": 6110
   },
   {
    "date": "2026-09-03",
@@ -125,11 +125,111 @@
   },
   {
    "date": "2026-09-23",
-   "base": 22,
+   "base": 201,
    "robinhood": 0
   }
  ],
  "recent_finds": [
+  {
+   "symbol": "WSTI",
+   "name": "WesternSTINGRAY",
+   "chain": "base",
+   "address": "0x8a215d705a17ea0d880226b707e77302b9a5ea2d",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 27359.5,
+   "first_seen": 1790157037
+  },
+  {
+   "symbol": "TIKTOK",
+   "name": "Tik Tok",
+   "chain": "base",
+   "address": "0xbe7a1c87a4b87c6a20081bb7ad7318a61ecdfee1",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 16132.4205,
+   "first_seen": 1790156845
+  },
+  {
+   "symbol": "VDINO",
+   "name": "Venice Dinosaur",
+   "chain": "base",
+   "address": "0xf66c9ead59d8e09ea4fcb92b0415e2c56cdede97",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 82446.048,
+   "first_seen": 1790155697
+  },
+  {
+   "symbol": "DASDHDD",
+   "name": "dasdhdasddh",
+   "chain": "base",
+   "address": "0x1f50fff23fda915ad562ea9e04837e0d87c20a7d",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 500343.747582658,
+   "first_seen": 1790155561
+  },
+  {
+   "symbol": "W",
+   "name": "wager.fun",
+   "chain": "base",
+   "address": "0x916dc5ab733b9e3b487a7872192ebac78a8847b6",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 19951.1816,
+   "first_seen": 1790153995
+  },
+  {
+   "symbol": "ZKCHECK",
+   "name": "ZKCheck",
+   "chain": "base",
+   "address": "0xc164fe6995d2f853da34c0dd4649c05ca8e3f29f",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 33017.3936,
+   "first_seen": 1790153992
+  },
+  {
+   "symbol": "EQH",
+   "name": "Equihash",
+   "chain": "base",
+   "address": "0x6626ae3e60500d9391ab7cb277e0b713774c299d",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 33031.1832,
+   "first_seen": 1790153991
+  },
+  {
+   "symbol": "Agrippa",
+   "name": "Agrippa Muse",
+   "chain": "base",
+   "address": "0xb200000000000000000000b9df98e3ee591a7001",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 3957.3596,
+   "first_seen": 1790113103
+  },
+  {
+   "symbol": "HYDBon",
+   "name": "iShares High Yield Systematic Bond Tokenized ETF (Ondo)",
+   "chain": "base",
+   "address": "0x1d476840bd1002bf02589edf216fcd1b9faab805",
+   "score": 73,
+   "verdict": "green",
+   "liquidity_usd": 13749.8,
+   "first_seen": 1790112965
+  },
+  {
+   "symbol": "GNOT",
+   "name": "Gno.land",
+   "chain": "base",
+   "address": "0xc0aaf23fa093cf5f9792ce3defaacbd26fbf264e",
+   "score": 100,
+   "verdict": "green",
+   "liquidity_usd": 13747.0164923914,
+   "first_seen": 1790112827
+  },
   {
    "symbol": "TRUE",
    "name": "True",
@@ -229,106 +329,6 @@
    "verdict": "green",
    "liquidity_usd": 14869.8801,
    "first_seen": 1790107508
-  },
-  {
-   "symbol": "Bots",
-   "name": "Free Bots",
-   "chain": "base",
-   "address": "0x1a1494a0e02bc3f79b0fea83fa63542a817b96c7",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 86180.5004,
-   "first_seen": 1790107316
-  },
-  {
-   "symbol": "MOSS",
-   "name": "MOSS",
-   "chain": "base",
-   "address": "0x000ee9406ad4d6693e3be2a66674734988c53f9e",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 21408.5364,
-   "first_seen": 1790107315
-  },
-  {
-   "symbol": "Revert",
-   "name": "Revert Agent",
-   "chain": "base",
-   "address": "0x85375880b9bd1ea13ba35451205e438aaa5d4663",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 27310.7821,
-   "first_seen": 1790107313
-  },
-  {
-   "symbol": "WHEN",
-   "name": "When",
-   "chain": "base",
-   "address": "0xd134cb1bc2b2fd1ee9e4354a95814c63498c475f",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 16916.7712,
-   "first_seen": 1790106190
-  },
-  {
-   "symbol": "SI",
-   "name": "Super In",
-   "chain": "base",
-   "address": "0xaf9a7d26701214807b0dc9fd59121f6ed9095c7c",
-   "score": 79,
-   "verdict": "green",
-   "liquidity_usd": 28933.7592,
-   "first_seen": 1790104573
-  },
-  {
-   "symbol": "VART",
-   "name": "fun Visio Ars Twins",
-   "chain": "base",
-   "address": "0x961fc8ebe92bdbe549c2389b86158521a1429659",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 4362.9724,
-   "first_seen": 1790104525
-  },
-  {
-   "symbol": "NRWHL",
-   "name": "VariedNARWHAL",
-   "chain": "base",
-   "address": "0x4e0f528fa400bba9c525d1dce367a214bc83847f",
-   "score": 73,
-   "verdict": "green",
-   "liquidity_usd": 27565.512,
-   "first_seen": 1790104433
-  },
-  {
-   "symbol": "NOVA",
-   "name": "fun Nova Stratus",
-   "chain": "base",
-   "address": "0x2cefb86ad033448f596d336e9cf9bc9476832922",
-   "score": 80,
-   "verdict": "green",
-   "liquidity_usd": 4435.6484,
-   "first_seen": 1790104341
-  },
-  {
-   "symbol": "AMC",
-   "name": "A Meme Coin",
-   "chain": "base",
-   "address": "0xd8e6aad319617256de47bc5be6638f2cc30ee1eb",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 13752.216496501,
-   "first_seen": 1790103507
-  },
-  {
-   "symbol": "CCP",
-   "name": "Bxieus",
-   "chain": "base",
-   "address": "0x092255ee79ca29ecec7f22aba3e0dc698dec4c4d",
-   "score": 100,
-   "verdict": "green",
-   "liquidity_usd": 4037.5937,
-   "first_seen": 1790102633
   }
  ],
  "confirmed": [
@@ -554,9 +554,9 @@
   }
  ],
  "probation": {
-  "waiting": 62,
+  "waiting": 52,
   "confirmed": 32,
-  "dropped": 1499
+  "dropped": 1519
  },
  "recent_drains": [
   {
@@ -758,7 +758,7 @@
   "rug": 946
  },
  "watchlist_active": 14,
- "price_snapshots": 23999,
+ "price_snapshots": 23563,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
