@@ -410,20 +410,29 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
       return p.request({ method: 'eth_sendTransaction', params: [{ from: from, to: USDC, data: data, value: '0x0' }] });
     }).then(function (tx) {
       payStatus(t.sent);
-      var tries = 0;
-      function poll() {
-        tries++;
-        return fetch(WORKER + '/pay', { method: 'POST', headers: hdr({ 'content-type': 'application/json' }), body: JSON.stringify({ tx: tx }) })
-          .then(function (r) { return r.json(); }).then(function (x) {
-            if (x.pending && tries < 45) return sleep(4000).then(poll);
-            if (!x.ok) throw new Error(x.error || 'not confirmed');
-            q.credits = x.credits; paintStatic(); payStatus(t.done(x.added, x.credits), 'ok');
-          });
-      }
-      return poll();
+      store('ck-pending-tx', tx); // kept until credited: a paid check must never be lost
+      return confirmPayment(tx);
     }).catch(function (e) {
       payStatus(t.payFail((e && (e.message || e.reason)) || String(e)), 'bad');
     }).then(function () { lockPacks(false); });
+  }
+
+  // Ask the Worker to credit a sent payment, retrying while it is not mined yet
+  // or a node hiccups. On 23.09.2026 a real payment went through on chain but the
+  // Worker's node refused, and the check was only credited by hand.
+  function confirmPayment(tx) {
+    var t = T[lang], tries = 0;
+    function poll() {
+      tries++;
+      return fetch(WORKER + '/pay', { method: 'POST', headers: hdr({ 'content-type': 'application/json' }), body: JSON.stringify({ tx: tx }) })
+        .then(function (r) { return r.json(); }, function () { return { pending: true }; }).then(function (x) {
+          if (x.ok || x.error === 'used') { store('ck-pending-tx', ''); q.credits = x.credits || q.credits; paintStatic(); if (x.ok) payStatus(t.done(x.added, x.credits), 'ok'); return; }
+          if ((x.pending || /blockscout|node|rpc|fetch|429|5\d\d/i.test(x.error || '')) && tries < 45) return sleep(4000).then(poll);
+          if (/no payment|too old|failed tx|bad tx/.test(x.error || '')) store('ck-pending-tx', '');
+          throw new Error(x.error || 'not confirmed');
+        });
+    }
+    return poll();
   }
 
   // ---- steps
@@ -631,7 +640,11 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
 
   if (params.get('a')) $('addr').value = params.get('a');
   paintStatic();
-  refreshQuota().then(function () { if (params.get('a') && params.get('go') === '1') run(); });
+  refreshQuota().then(function () {
+    var pend = store('ck-pending-tx');
+    if (pend) confirmPayment(pend).catch(function () {});
+    if (params.get('a') && params.get('go') === '1') run();
+  });
 })();
 </script>
 </body>

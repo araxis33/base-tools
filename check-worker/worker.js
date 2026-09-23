@@ -45,7 +45,13 @@ const PAY_TO = '0x335a503b743b569ef1a9e6acc95f70307af146b0';
 const USDC = '0x833589fcd6edb6e08f4c7c32d4f71b54bda02913';
 const TRANSFER = '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef';
 const PRICE_UNITS = 100000n; // 0.1 USDC, 6 decimals
-const RPC = 'https://mainnet.base.org';
+// Several public Base nodes, tried in turn: mainnet.base.org refused under load
+// on 23.09.2026 and a refusal read as "not confirmed yet", so a paid check was
+// never credited. A node error is now a reason to ask the next node.
+// Probed from inside the Worker on 23.09.2026: these five answer Cloudflare;
+// publicnode wants a token, ankr a key, drpc and 1rpc hit limits, llamarpc 525.
+const RPCS = ['https://mainnet.base.org', 'https://developer-access-mainnet.base.org', 'https://base.gateway.tenderly.co',
+  'https://base.meowrpc.com', 'https://base-mainnet.public.blastapi.io'];
 
 const clientOf = (req) => { const c = req.headers.get('x-client') || ''; return /^[a-f0-9-]{16,64}$/i.test(c) ? c.toLowerCase() : null; };
 const isOwner = (req, env) => !!env.OWNER_KEY && req.headers.get('x-owner') === env.OWNER_KEY;
@@ -53,9 +59,41 @@ async function credits(env, client) { return client ? parseInt((await env.QUOTA.
 async function setCredits(env, client, n) { await env.QUOTA.put(`c:${client}`, String(n), { expirationTtl: 400 * 86400 }); }
 
 async function rpc(method, params) {
-  const r = await fetch(RPC, { method: 'POST', headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ jsonrpc: '2.0', id: 1, method, params }) });
-  return (await r.json()).result;
+  let last = 'no node answered';
+  for (const url of RPCS) {
+    try {
+      const r = await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ jsonrpc: '2.0', id: 1, method, params }) });
+      if (!r.ok) { last = `${url} ${r.status}`; continue; }
+      const j = await r.json();
+      if (j.error) { last = `${url} ${j.error.message || j.error.code}`; continue; }
+      if (j.result === null && method === 'eth_getTransactionReceipt') { last = 'pending'; continue; }
+      return j.result;
+    } catch (e) { last = `${url} ${e}`; }
+  }
+  if (last === 'pending') return null; // every node agrees the tx is not mined yet
+  throw new Error(last);
+}
+
+// Public Base RPCs mostly refuse Cloudflare's addresses (publicnode wants a
+// token, llamarpc answers 525, mainnet.base.org said nothing - 23.09.2026), so a
+// real payment stayed "pending". Blockscout answers Workers; it reads the same
+// chain and lists the token transfers of a transaction.
+async function viaBlockscout(tx) {
+  const r = await fetch(`https://base.blockscout.com/api/v2/transactions/${tx}`, { headers: BROWSER });
+  if (r.status === 404) return { pending: true };
+  if (!r.ok) throw new Error('blockscout ' + r.status);
+  const t = await r.json();
+  if (!t.status || t.status === 'pending' || !t.block_number) return { pending: true };
+  if (t.status !== 'ok') return { failed: true };
+  const tt = await fetch(`https://base.blockscout.com/api/v2/transactions/${tx}/token-transfers`, { headers: BROWSER });
+  const items = tt.ok ? ((await tt.json()).items || []) : [];
+  let paid = 0n;
+  for (const i of items) {
+    if (((i.token || {}).address_hash || (i.token || {}).address || '').toLowerCase() === USDC
+      && ((i.to || {}).hash || '').toLowerCase() === PAY_TO) paid += BigInt((i.total || {}).value || '0');
+  }
+  return { paid, ts: Date.parse(t.timestamp) / 1000 };
 }
 
 async function pay(req, env) {
@@ -65,18 +103,26 @@ async function pay(req, env) {
   const tx = String(body.tx || '').toLowerCase();
   if (!/^0x[0-9a-f]{64}$/.test(tx)) return { error: 'bad tx' };
   if (await env.QUOTA.get(`p:${tx}`)) return { error: 'used', credits: await credits(env, client) };
-  const rc = await rpc('eth_getTransactionReceipt', [tx]);
-  if (!rc) return { pending: true };
-  if (rc.status !== '0x1') return { error: 'failed tx' };
-  let paid = 0n;
-  for (const lg of rc.logs || []) {
-    if ((lg.address || '').toLowerCase() === USDC && lg.topics && lg.topics[0] === TRANSFER
-      && ('0x' + lg.topics[2].slice(-40)).toLowerCase() === PAY_TO) paid += BigInt(lg.data);
+  let paid = 0n, ts = 0;
+  try {
+    const rc = await rpc('eth_getTransactionReceipt', [tx]);
+    if (!rc) return { pending: true };
+    if (rc.status !== '0x1') return { error: 'failed tx' };
+    for (const lg of rc.logs || []) {
+      if ((lg.address || '').toLowerCase() === USDC && lg.topics && lg.topics[0] === TRANSFER
+        && ('0x' + lg.topics[2].slice(-40)).toLowerCase() === PAY_TO) paid += BigInt(lg.data);
+    }
+    const blk = await rpc('eth_getBlockByNumber', [rc.blockNumber, false]);
+    ts = blk ? parseInt(blk.timestamp, 16) : 0;
+  } catch (e) {
+    const b = await viaBlockscout(tx);
+    if (b.pending) return { pending: true };
+    if (b.failed) return { error: 'failed tx' };
+    paid = b.paid; ts = b.ts;
   }
   const bought = Number(paid / PRICE_UNITS);
   if (bought < 1) return { error: 'no payment in tx' };
-  const blk = await rpc('eth_getBlockByNumber', [rc.blockNumber, false]);
-  if (!blk || Date.now() / 1000 - parseInt(blk.timestamp, 16) > 86400) return { error: 'too old' };
+  if (!ts || Date.now() / 1000 - ts > 86400) return { error: 'too old' };
   await env.QUOTA.put(`p:${tx}`, client, { expirationTtl: 400 * 86400 });
   const now = (await credits(env, client)) + bought;
   await setCredits(env, client, now);
