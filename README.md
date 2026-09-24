@@ -10,14 +10,14 @@ https://deftools.xyz/
 
 ## What's inside
 
-23 tools across 8 categories:
+20 tools across 8 categories:
 
 - **Wallets & Apps** — Coinbase Wallet, Rabby, Rainbow
-- **AI Agents** — Virtuals Protocol, Bankr, Clanker
+- **AI Agents** — Virtuals Protocol, Bankr
 - **Trading Bots** — Banana Gun, Fomo, GMGN.ai, Maestro
 - **Terminals** — DexScreener, DEXTools, GeckoTerminal, Basescan
 - **Tracking & Alerts** — Cielo Finance, RayBot
-- **Bridges** — Relay, Superbridge, Brid.gg
+- **Bridges** — Relay
 - **DEX & Swap** — Aerodrome Finance, Uniswap, Matcha
 - **Lending** — Morpho
 
