@@ -287,11 +287,11 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
   function render(d) {
     var t = d.totals, age = Date.now() / 1000 - d.generated_at_unix;
 
-    // The scanner was switched off on 23.09.2026; the snapshot is still re-published,
-    // so "updated N min ago" with a green dot would read as a live scan.
+    // The scanner was switched off on 23.09.2026 and the snapshot stopped refreshing on 24.09,
+    // so this is an archive, not a live scan.
     document.getElementById('stamp').innerHTML =
-      '<span class="dot stale"></span>Scanner ran from ' + esc(d.period.start) + ' to ' + STOPPED +
-      ' &middot; outcomes still followed, last refresh ' + ago(d.generated_at_unix);
+      '<span class="dot stale"></span>Archive &middot; scanner ran from ' + esc(d.period.start) + ' to ' + STOPPED +
+      ', last snapshot ' + new Date(d.generated_at_unix * 1000).toISOString().slice(0, 10);
 
     document.getElementById('period').textContent =
       'Everything the scanner saw between ' + d.period.start + ' and ' + STOPPED + '.';
