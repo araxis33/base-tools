@@ -10,6 +10,7 @@
 //   POST /read {ticket, lang, facts} -> { text, sources, note }   the project read
 //   POST /pay {tx}            -> { ok, added, credits }  credits paid checks (0.1 USDC each)
 //   GET  /cg?p=<path>         -> CoinGecko answer for the homepage boards, cached
+//   GET  /shares?t=NVDA,AAPL  -> real share prices for stocks.html, cached 60 s
 //
 // Secrets: GEMINI_API_KEY, GROQ_API_KEY, TAVILY_API_KEY (optional). KV: QUOTA.
 
@@ -168,11 +169,35 @@ async function coingecko(req, ctx, p) {
   return json(req, { error: 'coingecko ' + (res ? res.status : 'unreachable') }, 502);
 }
 
+// Real share prices for stocks.html: Yahoo sends no CORS headers, so the page
+// can't ask it directly. Last trade, previous close and today's regular session.
+async function shares(req, ctx, t) {
+  const list = t.split(',').filter((x) => /^[A-Z]{1,5}$/.test(x)).slice(0, 12);
+  if (!list.length) return json(req, { error: 'no tickers' }, 400);
+  const key = new Request('https://shares.cache/' + list.join(','));
+  const hit = await caches.default.match(key);
+  if (hit) return withCors(req, hit, 'hit');
+  const out = {};
+  await Promise.all(list.map(async (s) => {
+    try {
+      const r = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${s}?interval=1m&range=1d`, { headers: BROWSER });
+      const m = (await r.json()).chart.result[0].meta;
+      const reg = (m.currentTradingPeriod || {}).regular || {};
+      out[s] = { price: m.regularMarketPrice, time: m.regularMarketTime, prevClose: m.chartPreviousClose,
+        open: reg.start, close: reg.end };
+    } catch (e) { out[s] = null; }
+  }));
+  const res = new Response(JSON.stringify(out), { headers: { 'content-type': 'application/json', 'cache-control': 'public, max-age=60' } });
+  ctx.waitUntil(caches.default.put(key, res.clone()));
+  return withCors(req, res, 'miss');
+}
+
 export default {
   async fetch(req, env, ctx) {
     const url = new URL(req.url);
     if (req.method === 'OPTIONS') return new Response(null, { headers: cors(req) });
     if (url.pathname === '/cg') return coingecko(req, ctx, url.searchParams.get('p') || '');
+    if (url.pathname === '/shares') return shares(req, ctx, url.searchParams.get('t') || '');
     const ip = ipOf(req);
     const client = clientOf(req);
     const owner = isOwner(req, env);

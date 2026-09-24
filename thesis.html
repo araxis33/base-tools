@@ -521,6 +521,11 @@ function renderResult(){
       '<div class="s">vs. the priciest live pool per stock</div></div>' +
     '</div>';
 
+  if(!usMarketOpen()){
+    html += '<p class="note" style="margin-top:14px"><b style="color:var(--yellow)">Trading 24/7 on Base</b> &middot; the US market is shut right now. ' +
+      'Prices come only from trades in the pools until it reopens. <a href="/stocks.html">How far they are from the real share &rarr;</a></p>';
+  }
+
   html += '<div class="tbl-wrap" style="margin-top:14px"><table><thead><tr>' +
     '<th>Stock</th><th class="r">Amount</th><th class="r">Shares</th>' +
     '<th class="r">Price</th><th>Pool</th><th class="r">Impact</th><th class="r">Worst pool</th><th></th>' +
@@ -533,7 +538,9 @@ function renderResult(){
       : '<span class="pill green">' + r.d.gap.toFixed(2) + '%</span>';
     html += '<tr>' +
       '<td><span class="sym">' + r.t.s + '</span><div class="co">' + esc(r.t.co) + '</div>' +
-        '<div class="addr">' + r.t.a.slice(0,10) + "…" + r.t.a.slice(-6) + '</div></td>' +
+        '<div class="addr">' + r.t.a.slice(0,10) + "…" + r.t.a.slice(-6) + '</div>' +
+        '<div class="co"><span style="color:var(--green-text)">&#10003; official</span> · ' +
+        '<a href="/stocks.html#' + r.t.s + '">Full check &rarr;</a></div></td>' +
       '<td class="n r">' + money(r.usd, 2) + '</td>' +
       '<td class="n r">' + shares(r.qty) + '</td>' +
       '<td class="n r">' + money(r.d.deep.price, 2) + '</td>' +
@@ -990,6 +997,16 @@ function renderStamp(){
 }
 
 var renderTimer = null;
+/* US regular session, 9:30-16:00 New York time on weekdays. Holidays are not
+   known here: on those days the note simply stays off. */
+function usMarketOpen(){
+  var p = {};
+  new Intl.DateTimeFormat("en-US", {timeZone:"America/New_York", weekday:"short", hour:"numeric", minute:"numeric", hour12:false})
+    .formatToParts(new Date()).forEach(function(x){ p[x.type] = x.value; });
+  var m = (parseInt(p.hour, 10) % 24) * 60 + parseInt(p.minute, 10);
+  return p.weekday !== "Sat" && p.weekday !== "Sun" && m >= 570 && m < 960;
+}
+
 function render(debounced){
   renderStamp();
   renderWeights();

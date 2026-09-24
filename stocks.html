@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stocks on Base · what you really get, checked live</title>
+<meta name="description" content="The ten Coinbase stocks on Base, checked live: is it the official token, the price on Base against the real share, what a round trip costs, where you can borrow against it, and what happens when the US market is shut.">
+<link rel="canonical" href="https://deftools.xyz/stocks.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Base.tools">
+<meta property="og:url" content="https://deftools.xyz/stocks.html">
+<meta property="og:title" content="Stocks on Base · what you really get, checked live">
+<meta property="og:description" content="Trade US stocks 24/7 on Base. Here is what you really get right now: official token, price against the real share, round-trip cost, borrowing.">
+<meta property="og:image" content="https://deftools.xyz/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Def7771">
+<meta name="twitter:creator" content="@Def7771">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233b6eff'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#0a0e1c">
+<style>
+:root{
+  --bg:#0a0e1c; --bg2:#0d1226; --card:#111730; --card-hover:#151c3a;
+  --border:#232c4d; --border-hover:#33406b;
+  --blue:#3b6eff; --blue-soft:#182252; --blue-text:#7ea0ff; --blue-bright:#9db8ff;
+  --yellow:#ffcf40; --green:#3fbf87; --green-text:#6fd7ab; --red:#ff6b6b;
+  --text:#eef1fb; --muted:#8791b3; --muted2:#7a84a8;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0; background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased}
+a{color:var(--blue-text); text-decoration:none}
+a:hover{color:var(--blue-bright)}
+.wrap{max-width:1080px; margin:0 auto; padding:0 20px}
+.num{font-variant-numeric:tabular-nums}
+header{border-bottom:1px solid var(--border); background:var(--bg2)}
+.head-in{display:flex; align-items:center; justify-content:space-between; gap:16px; padding-block:16px; flex-wrap:wrap}
+.back{display:inline-flex; align-items:center; min-height:32px; font-size:14px; color:var(--muted)}
+.back:hover{color:var(--text)}
+.head-links{display:flex; gap:14px}
+.head-links a{font-size:14px; min-height:32px; display:inline-flex; align-items:center}
+.hero{padding:38px 0 18px}
+h1{margin:0 0 10px; font-size:33px; line-height:1.18; letter-spacing:-.025em; max-width:22ch}
+.sub{margin:0; color:var(--muted); font-size:16.5px; max-width:62ch}
+
+.session{margin:18px 0 22px; padding:14px 16px; border:1px solid var(--border); border-radius:12px; background:var(--card); display:flex; gap:12px; align-items:flex-start}
+.session .dot{flex:0 0 auto; width:9px; height:9px; border-radius:50%; margin-top:7px; background:var(--green)}
+.session.off .dot{background:var(--yellow)}
+.session b{display:block; font-size:15.5px}
+.session span{color:var(--muted); font-size:14px}
+
+.tbl{width:100%; border-collapse:collapse; font-size:14.5px}
+.tbl th{text-align:right; font-weight:600; color:var(--muted2); font-size:12.5px; text-transform:uppercase; letter-spacing:.04em; padding:8px 10px; border-bottom:1px solid var(--border)}
+.tbl th:first-child,.tbl td:first-child{text-align:left}
+.tbl td{text-align:right; padding:12px 10px; border-bottom:1px solid var(--border)}
+.tbl tr.row{cursor:pointer}
+.tbl tr.row:hover td{background:var(--card-hover)}
+.tbl tr.row.open td{background:var(--card)}
+.sym{font-weight:700}
+.co{color:var(--muted); font-size:12.5px; display:block}
+.ok{color:var(--green-text)} .warn{color:var(--yellow)} .bad{color:var(--red)} .mut{color:var(--muted)}
+.chev{color:var(--muted); display:inline-block; transition:transform .15s}
+tr.open .chev{transform:rotate(90deg)}
+.tag{display:inline-block; font-size:11.5px; font-weight:600; padding:2px 8px; border-radius:999px; background:var(--blue-soft); color:var(--blue-text); margin:2px 4px 2px 0; white-space:nowrap}
+.tag.g{background:rgba(63,191,135,.14); color:var(--green-text)}
+.tag.y{background:rgba(255,207,64,.13); color:var(--yellow)}
+.tag.r{background:rgba(255,107,107,.13); color:var(--red)}
+
+.detail td{padding:0 0 18px; background:var(--card); text-align:left}
+.grid{display:grid; grid-template-columns:repeat(2,1fr); gap:12px; padding:6px 12px 0}
+.box{border:1px solid var(--border); border-radius:10px; padding:12px 14px; background:var(--bg2)}
+.box h3{margin:0 0 6px; font-size:13px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted2)}
+.box p{margin:4px 0; font-size:14px}
+.kv{display:flex; justify-content:space-between; gap:10px; font-size:14px; padding:2px 0}
+.kv span:first-child{color:var(--muted)}
+.box.wide{grid-column:1/-1}
+input.amt,input.addr{background:var(--bg); color:var(--text); border:1px solid var(--border); border-radius:8px; padding:8px 10px; font-size:14px; min-height:36px}
+input.amt{width:110px} input.addr{width:100%; margin-top:6px}
+button.btn{background:var(--blue-soft); color:var(--blue-text); border:1px solid var(--border); border-radius:8px; padding:8px 12px; font-size:14px; min-height:36px; cursor:pointer}
+button.btn:hover{color:var(--blue-bright); border-color:var(--border-hover)}
+details.dev{grid-column:1/-1; font-size:13px; color:var(--muted)}
+details.dev summary{cursor:pointer; padding:6px 0; color:var(--blue-text)}
+details.dev code{font-size:12px; word-break:break-all; color:var(--text)}
+.note{color:var(--muted); font-size:13px; margin-top:26px; max-width:75ch}
+.note p{margin:6px 0}
+footer{margin:40px 0 30px; color:var(--muted2); font-size:13px}
+@media (max-width:760px){
+  h1{font-size:26px}
+  .tbl th.hm,.tbl td.hm{display:none}
+  .tbl td,.tbl th{padding:10px 6px}
+  .grid{grid-template-columns:1fr; padding:6px 4px 0}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap head-in">
+    <a class="back" href="/">&larr;&nbsp; Base.tools</a>
+    <nav class="head-links">
+      <a href="/thesis.html">Thesis</a>
+      <a href="/check.html">Token check</a>
+      <a href="https://www.base.org/stocks" target="_blank" rel="noopener">Official list</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <h1>US stocks on Base, 24/7. Here is what you really get.</h1>
+    <p class="sub">The ten Coinbase stocks on Base, checked live: is it the official token, how the price on Base
+      compares with the real share, what buying and selling actually costs, and where you can borrow against it.
+      Tap a stock for the full check.</p>
+  </div>
+
+  <div class="session" id="session"><i class="dot"></i><div><b>Checking the market&hellip;</b><span></span></div></div>
+
+  <table class="tbl" id="tbl">
+    <thead><tr>
+      <th>Stock</th><th>On Base</th><th class="hm">Real share</th><th>Gap</th><th>$1,000 round trip</th><th class="hm">Borrow USDC</th><th></th>
+    </tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+
+  <div class="note">
+    <p><b>How to read it.</b> <i>On Base</i> is what a $50 buy pays per share right now, across every pool (KyberSwap routing).
+      <i>Real share</i> is the last trade on the US market. <i>Round trip</i> is what you lose if you buy $1,000 and sell it straight back.
+      The Chainlink feed is shown inside each stock but not used for the gap: it only moves when the price shifts 0.5%, so it can sit hours behind.</p>
+    <p>Read-only: nothing here asks for a wallet. To buy a basket, use <a href="/thesis.html">Thesis</a>. Not financial advice.</p>
+  </div>
+  <footer>Built by <a href="https://x.com/Def7771" target="_blank" rel="noopener">@Def7771</a> · <a href="https://github.com/araxis33/base-tools" target="_blank" rel="noopener">code</a></footer>
+</div>
+
+<script src="/thesis-core.js"></script>
+<script>
+(function(){
+"use strict";
+var TOKENS = ThesisCore.TOKENS;
+var USDC = "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913";
+var KYBER = "https://aggregator-api.kyberswap.com/base/api/v1/routes";
+var WORKER = "https://deftools-check.araxis67.workers.dev";
+var RPCS = ["https://base-rpc.publicnode.com", "https://mainnet.base.org"];
+var POLICY_REGISTRY = "0x8453000000000000000000000000000000000002";
+var SENDER_SCOPE = "b81736c875ab819dd97f59f2a6542cfb731ad52b4ae15a6f24df2fb02b0327f5";
+var PAUSABLE = ["transfers", "minting", "burning", "seizing"];
+/* Chainlink "Coinbase <ticker>" feeds on Base: 24/5, 0.5% deviation, 24h heartbeat. */
+var FEEDS = {
+  NVDAc:"0x04689a41629776563E6822F76f2e57D148d28513", METAc:"0x6526aE6797A76123638b863AeE4dD27Ba4E4b27D",
+  AAPLc:"0x787f13dEa48Db0897CbCDD985de77809D837F988", GOOGLc:"0x5bF49E0ffA937CE2FfF033c739aD7C634c4D34F2",
+  AMZNc:"0x06A8E4b3aBB3B7543d8396FB2B763d22820cB295", MSFTc:"0xeB10A6c9aa7E537aEd766C08c35Dae35B321b18c",
+  MSTRc:"0xB3cE282CD188b35DA0E38D8Bc7d58e33173D202a", SNDKc:"0x388b0dC46C0Fb05A74BeE0994fa5b02c6Fcca2eA",
+  SPCXc:"0x6A634B235903C4ad6376892180d6fF8612e3Fa68", TSLAc:"0xFaf869185383a24F8cb00e27BdA6b63B9905DCb4"
+};
+var S = {};           // per ticker: chain, dex, share, rt, morpho, look
+var shares = null, open = null;
+
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
+function usd(v, d){ return v == null || !isFinite(v) ? "—" : "$" + Number(v).toLocaleString("en-US", {minimumFractionDigits:d == null ? 2 : d, maximumFractionDigits:d == null ? 2 : d}); }
+function pct(v, d){
+  if (v == null || !isFinite(v)) return "—";
+  var t = Math.abs(v).toFixed(d == null ? 2 : d);
+  return (Number(t) === 0 ? "" : v > 0 ? "+" : "−") + t + "%";
+}
+function ago(sec){
+  var m = Math.round((Date.now()/1000 - sec) / 60);
+  if (m < 1) return "just now"; if (m < 90) return m + " min ago";
+  var h = Math.round(m / 60); return h < 48 ? h + " h ago" : Math.round(h / 24) + " days ago";
+}
+function pad(a){ return a.toLowerCase().replace("0x","").padStart(64, "0"); }
+function sleep(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
+
+/* ---------- chain reads: one JSON-RPC batch ---------- */
+function rpcBatch(calls){
+  var body = JSON.stringify(calls.map(function(c, i){ return {jsonrpc:"2.0", id:i, method:"eth_call", params:[{to:c[0], data:c[1]}, "latest"]}; }));
+  var tryOne = function(k){
+    return fetch(RPCS[k], {method:"POST", headers:{"content-type":"application/json"}, body:body})
+      .then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(j){ var out = []; j.forEach(function(x){ out[x.id] = x.result || null; }); return out; })
+      .catch(function(e){ if (k + 1 < RPCS.length) return tryOne(k + 1); throw e; });
+  };
+  return tryOne(0);
+}
+function word(hex, i){ return BigInt("0x" + hex.slice(2 + 64*i, 66 + 64*i)); }
+
+function loadChain(){
+  var calls = [];
+  TOKENS.forEach(function(t){
+    calls.push([FEEDS[t.s], "0xfeaf968c"]);                 // latestRoundData
+    calls.push([FEEDS[t.s], "0x313ce567"]);                 // feed decimals
+    calls.push([t.a, "0x1b3ed722"]);                        // multiplier
+    calls.push([t.a, "0xde9997e3"]);                        // pausedFeatures
+    calls.push([t.a, "0xdb3de624" + SENDER_SCOPE]);         // policyId(TRANSFER_SENDER_POLICY)
+    calls.push([t.a, "0x313ce567"]);                        // token decimals
+  });
+  return rpcBatch(calls).then(function(r){
+    TOKENS.forEach(function(t, i){
+      var b = i * 6, c = {};
+      try { var dec = Number(word(r[b+1], 0)); c.oracle = Number(word(r[b], 1)) / Math.pow(10, dec); c.oracleAt = Number(word(r[b], 3)); } catch(e){}
+      try { c.multiplier = Number(word(r[b+2], 0)) / 1e18; } catch(e){}
+      try { var n = Number(word(r[b+3], 1)); c.paused = []; for (var k = 0; k < n; k++) c.paused.push(PAUSABLE[Number(word(r[b+3], 2 + k))] || "?"); } catch(e){}
+      try { c.policy = Number(word(r[b+4], 0)); } catch(e){}
+      try { c.decimals = Number(word(r[b+5], 0)); } catch(e){ c.decimals = 18; }
+      S[t.s].chain = c;
+    });
+  }).catch(function(){});
+}
+
+/* ---------- real shares (through our Worker: Yahoo has no CORS) ---------- */
+function loadShares(){
+  var list = TOKENS.map(function(t){ return t.s.replace(/c$/, ""); }).join(",");
+  return fetch(WORKER + "/shares?t=" + list).then(function(r){ return r.json(); }).then(function(j){ shares = j; }).catch(function(){ shares = {}; });
+}
+
+/* ---------- DEX quotes ---------- */
+/* A plain GET with no custom headers: anything else triggers a CORS preflight,
+   and KyberSwap drops those under load. A throttled answer also comes without
+   CORS headers, so every failure gets two more tries after a pause. */
+function quote(tin, tout, amount, tries){
+  tries = tries == null ? 2 : tries;
+  return fetch(KYBER + "?tokenIn=" + tin + "&tokenOut=" + tout + "&amountIn=" + amount)
+    .then(function(r){ return r.json(); })
+    .then(function(j){ if (!j.data || !j.data.routeSummary) throw new Error("no route"); return j.data.routeSummary; })
+    .catch(function(e){ if (!tries) throw e; return sleep(1500).then(function(){ return quote(tin, tout, amount, tries - 1); }); });
+}
+function venues(rs){
+  var seen = {};
+  (rs.route || []).forEach(function(hop){ (hop || []).forEach(function(sw){
+    String(sw.exchange || "").split("/").forEach(function(x){ if (x) seen[x.replace(/-cl(-\d+)?$|-v\d+$/, "")] = 1; });
+  }); });
+  return Object.keys(seen);
+}
+/* Buy `dollars` of the stock, sell everything straight back: the percent lost. */
+function roundTrip(t, dollars){
+  return quote(USDC, t.a, BigInt(Math.round(dollars * 1e6)).toString()).then(function(buy){
+    return quote(t.a, USDC, buy.amountOut).then(function(sell){
+      return {loss: 100 * (1 - Number(sell.amountOut) / 1e6 / dollars), shares: Number(buy.amountOut), venues: venues(buy)};
+    });
+  });
+}
+function loadDex(t){
+  var dec = (S[t.s].chain && S[t.s].chain.decimals) || 18;
+  return quote(USDC, t.a, "50000000").then(function(q){ S[t.s].dex = 50 / (Number(q.amountOut) / Math.pow(10, dec)); })
+    .catch(function(){ S[t.s].dex = null; })
+    .then(function(){ return roundTrip(t, 1000).then(function(x){ S[t.s].rt = x; }).catch(function(){ S[t.s].rt = null; }); });
+}
+
+/* ---------- borrowing: Morpho markets that take the stock as collateral ---------- */
+function loadMorpho(){
+  var q = "{ markets(first: 100, where: {chainId_in:[8453], collateralAssetAddress_in:" + JSON.stringify(TOKENS.map(function(t){ return t.a; })) +
+    "}) { items { marketId lltv collateralAsset { address } loanAsset { symbol } state { supplyAssetsUsd borrowAssetsUsd collateralAssetsUsd borrowApy } } } }";
+  return fetch("https://blue-api.morpho.org/graphql", {method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify({query:q})})
+    .then(function(r){ return r.json(); })
+    .then(function(j){
+      TOKENS.forEach(function(t){ S[t.s].morpho = []; });
+      ((j.data && j.data.markets && j.data.markets.items) || []).forEach(function(m){
+        var t = TOKENS.filter(function(x){ return x.a.toLowerCase() === m.collateralAsset.address.toLowerCase(); })[0];
+        var st = m.state || {};
+        var free = (st.supplyAssetsUsd || 0) - (st.borrowAssetsUsd || 0);
+        if (!t || (st.collateralAssetsUsd || 0) < 100 && free < 100) return;   // empty shells
+        S[t.s].morpho.push({id:m.marketId, ltv:Number(m.lltv)/1e16, loan:m.loanAsset.symbol, apy:100*(st.borrowApy || 0), free:free, collat:st.collateralAssetsUsd || 0});
+      });
+      TOKENS.forEach(function(t){ S[t.s].morpho.sort(function(a, b){ return b.collat - a.collat; }); });
+    }).catch(function(){});
+}
+
+/* ---------- impostors and other issuers (DexScreener search) ---------- */
+function loadLook(t){
+  var root = t.s.replace(/c$/, "");
+  return fetch("https://api.dexscreener.com/latest/dex/search?q=" + encodeURIComponent(root))
+    .then(function(r){ return r.json(); })
+    .then(function(j){
+      var pairs = (j && j.pairs) || [];
+      var fakes = ThesisCore.findLookalikes(pairs, [t]).filter(function(f){ return f.reasons.some(function(r){ return r.mimics; }); });
+      var others = {};
+      pairs.forEach(function(p){
+        if (p.chainId !== "base" || !p.baseToken) return;
+        var b = p.baseToken, sym = String(b.symbol || ""), a = b.address.toLowerCase();
+        if (a === t.a.toLowerCase()) return;
+        /* Other issuers name their own shapes: TSLAx (xStocks), wtNVDA (ST0x), bNVDA and so on. */
+        if (sym.toUpperCase() === root || sym === t.s) return;
+        if (sym.toUpperCase().indexOf(root) < 0 || !/stock|x$|^wt|tokeni[sz]ed|backed|ondo/i.test(sym + " " + (b.name || ""))) return;
+        var o = others[a] || (others[a] = {symbol:sym, name:b.name, address:b.address, liq:0, vol:0, price:parseFloat(p.priceUsd)});
+        o.liq += (p.liquidity && p.liquidity.usd) || 0; o.vol += (p.volume && p.volume.h24) || 0;
+      });
+      S[t.s].look = {fakes:fakes, others:Object.keys(others).map(function(k){ return others[k]; }).filter(function(o){ return o.liq >= 5000; }).sort(function(a, b){ return b.liq - a.liq; })};
+    }).catch(function(){ S[t.s].look = null; });
+}
+
+/* ---------- market session ---------- */
+function session(){
+  var any = shares && Object.keys(shares).map(function(k){ return shares[k]; }).filter(Boolean)[0];
+  var now = Date.now() / 1000;
+  open = !!(any && now >= any.open && now < any.close);
+  var el = $("session"), title, line;
+  if (open) {
+    var left = Math.round((any.close - now) / 60);
+    title = "US market open · the price on Base is checked against the real share";
+    line = "Closes in " + (left >= 60 ? Math.floor(left/60) + " h " + (left % 60) + " min" : left + " min") + ". After that, trading carries on 24/7 on Base.";
+  } else {
+    var d = new Date(), day = d.getUTCDay();
+    var weekend = day === 6 || day === 0 || (day === 5 && d.getUTCHours() >= 20) || (day === 1 && any && now < any.open);
+    title = weekend ? "Trading 24/7 on Base · the US market opens Monday 13:30 UTC" : "Trading 24/7 on Base · the US market opens at 13:30 UTC";
+    line = "Right now the price is set only by trades in the pools on Base. The Chainlink feed holds the last close, and tokens are redeemed for shares on business days only, so nothing ties the price to the share until the open.";
+  }
+  el.className = "session" + (open ? "" : " off");
+  el.innerHTML = '<i class="dot"></i><div><b>' + esc(title) + '</b><span>' + esc(line) + '</span></div>';
+}
+
+/* ---------- table ---------- */
+function shareOf(t){ return shares && shares[t.s.replace(/c$/, "")]; }
+function gapOf(t){
+  var s = shareOf(t), d = S[t.s].dex, m = (S[t.s].chain && S[t.s].chain.multiplier) || 1;
+  return s && s.price && d ? 100 * (d / (s.price * m) - 1) : null;
+}
+function flags(t){
+  var c = S[t.s].chain || {}, out = ['<span class="tag g">&#10003; official</span>'];
+  var g = gapOf(t), rt = S[t.s].rt;
+  if (c.paused && c.paused.length) out.push('<span class="tag r">paused: ' + esc(c.paused.join(", ")) + '</span>');
+  if (c.multiplier && Math.abs(c.multiplier - 1) > 1e-9) out.push('<span class="tag y">1 token = ' + c.multiplier.toFixed(4) + ' shares</span>');
+  if (g != null && Math.abs(g) >= 1) out.push('<span class="tag y">' + pct(g, 1) + ' from the share</span>');
+  if (rt && rt.loss >= 1) out.push('<span class="tag y">costly round trip</span>');
+  if (open && c.oracleAt && Date.now()/1000 - c.oracleAt > 3 * 3600) out.push('<span class="tag">feed ' + ago(c.oracleAt) + '</span>');
+  var lk = S[t.s].look;
+  if (lk && lk.fakes.length) out.push('<span class="tag r">' + lk.fakes.length + ' fake' + (lk.fakes.length > 1 ? 's' : '') + ' around</span>');
+  return out.join("");
+}
+function render(){
+  var html = TOKENS.map(function(t){
+    var st = S[t.s], s = shareOf(t), g = gapOf(t), rt = st.rt, best = (st.morpho || [])[0];
+    var gcls = g == null ? "mut" : Math.abs(g) < 0.5 ? "ok" : Math.abs(g) < 1 ? "warn" : "bad";
+    var rcls = !rt ? "mut" : rt.loss < 0.3 ? "ok" : rt.loss < 1 ? "warn" : "bad";
+    return '<tr class="row' + (st.open ? ' open' : '') + '" data-s="' + t.s + '">' +
+      '<td><span class="sym">' + t.s + '</span><span class="co">' + esc(t.co) + '</span></td>' +
+      '<td class="num">' + usd(st.dex) + '</td>' +
+      '<td class="num hm">' + (s && s.price ? usd(s.price) + (open ? '' : ' <span class="mut">close</span>') : '—') + '</td>' +
+      '<td class="num ' + gcls + '">' + pct(g) + '</td>' +
+      '<td class="num ' + rcls + '">' + (rt ? rt.loss.toFixed(2) + '%' : st.dex === undefined ? '…' : '—') + '</td>' +
+      '<td class="num hm">' + (best ? 'up to ' + best.ltv.toFixed(0) + '% · ' + best.apy.toFixed(1) + '%' : st.morpho ? '<span class="mut">no market</span>' : '…') + '</td>' +
+      '<td><span class="chev">&#8250;</span></td></tr>' +
+      (st.open ? '<tr class="detail"><td colspan="7">' + detail(t) + '</td></tr>' : '');
+  }).join("");
+  $("rows").innerHTML = html;
+}
+
+function kv(k, v){ return '<div class="kv"><span>' + k + '</span><span class="num">' + v + '</span></div>'; }
+function detail(t){
+  var st = S[t.s], c = st.chain || {}, s = shareOf(t), lk = st.look, g = gapOf(t);
+  var h = '<div class="grid">';
+  h += '<div class="box wide"><div>' + flags(t) + '</div></div>';
+
+  h += '<div class="box"><h3>Is it the real one?</h3>' +
+    '<p class="ok">&#10003; Official ' + t.s + ', issued by Coinbase.</p>' +
+    '<p class="mut">Address <a href="https://basescan.org/token/' + t.a + '" target="_blank" rel="noopener">' + t.a.slice(0, 10) + '…' + t.a.slice(-6) + '</a>, the same as on <a href="https://www.base.org/stocks" target="_blank" rel="noopener">base.org/stocks</a> (we re-check that list every day). ' +
+    'Go by the address only: fakes use the same ticker, and the 0xb2000… start proves nothing.</p>';
+  if (lk && lk.fakes.length) h += '<p class="bad">' + lk.fakes.length + ' token' + (lk.fakes.length > 1 ? 's' : '') + ' on Base copy this name or ticker: ' +
+    lk.fakes.slice(0, 3).map(function(f){ return '<a href="https://dexscreener.com/base/' + f.address + '" target="_blank" rel="noopener">' + esc(f.symbol) + ' ' + f.address.slice(0, 8) + '…</a>'; }).join(", ") + '.</p>';
+  h += '</div>';
+
+  h += '<div class="box"><h3>Price</h3>' +
+    kv("On Base now", usd(st.dex)) +
+    kv(open ? "Real share, live" : "Real share, last close", s && s.price ? usd(s.price) : "—") +
+    kv("Gap", pct(g)) +
+    kv("Chainlink feed", c.oracle ? usd(c.oracle) + ' <span class="mut">· ' + ago(c.oracleAt) + '</span>' : "—") +
+    '<p class="mut">The feed updates when the price moves 0.5% or once a day, 24/5, so hours without an update are normal.</p></div>';
+
+  h += '<div class="box"><h3>What a trade costs</h3>' +
+    '<div id="rt-' + t.s + '">' + kv("$1,000 round trip", st.rt ? st.rt.loss.toFixed(2) + "%" : "—") + '</div>' +
+    '<p style="margin-top:8px">Your amount: <input class="amt" id="amt-' + t.s + '" type="number" min="10" step="10" value="5000"> <button class="btn" data-rt="' + t.s + '">Check</button></p>' +
+    (st.rt && st.rt.venues.length ? '<p class="mut">Best route now: ' + esc(st.rt.venues.join(", ")) + '.</p>' : '') +
+    '<p class="mut">Buy, then sell everything straight back, at live quotes across every pool on Base.</p></div>';
+
+  h += '<div class="box"><h3>Borrow against it</h3>';
+  if (st.morpho && st.morpho.length) {
+    st.morpho.slice(0, 3).forEach(function(m){ h += kv('Morpho · ' + m.loan + ' up to ' + m.ltv.toFixed(0) + '%', m.apy.toFixed(2) + '% · ' + usd(m.free, 0) + ' free'); });
+    h += '<p class="mut">Pledge ' + t.s + ', borrow ' + esc(st.morpho[0].loan) + ' without selling. <a href="https://app.morpho.org/base/market/' + st.morpho[0].id + '" target="_blank" rel="noopener">Open on Morpho</a>. Markets are run by independent curators and closed to US persons.</p>';
+  } else h += '<p class="mut">No live Morpho market takes ' + t.s + ' as collateral yet.</p>';
+  h += '</div>';
+
+  h += '<div class="box"><h3>What you own</h3>' +
+    '<p>A claim on one real ' + esc(t.co) + ' share held 1:1 by Alpaca Securities, under Abu Dhabi Global Market rules. Dividends and splits change the token-to-share ratio instead of paying out: today 1 token = ' + (c.multiplier ? c.multiplier.toFixed(4) : '—') + ' share.</p>' +
+    '<p class="mut">No shareholder vote. Sold only to eligible people outside the US; Coinbase does not publish the country list. ' +
+    '<a href="https://docs.base.org/base-chain/asset-issuance/tokenized-stocks-on-base" target="_blank" rel="noopener">Base docs</a></p></div>';
+
+  h += '<div class="box"><h3>Can I hold and send it?</h3>' +
+    (c.paused && c.paused.length ? '<p class="bad">Paused right now: ' + esc(c.paused.join(", ")) + '.</p>' : '<p class="ok">Nothing is paused.</p>') +
+    '<p class="mut">Transfers follow the issuer\'s policy ' + (c.policy != null ? '#' + c.policy : '') + ', a blocklist: any wallet can hold and send unless it is on it.</p>' +
+    '<input class="addr" id="addr-' + t.s + '" placeholder="Paste a wallet address to check it"> <p><button class="btn" data-auth="' + t.s + '">Check wallet</button> <span id="auth-' + t.s + '"></span></p></div>';
+
+  h += '<div class="box"><h3>Other issuers on Base</h3>';
+  if (lk && lk.others.length) {
+    lk.others.slice(0, 4).forEach(function(o){ h += kv('<a href="https://dexscreener.com/base/' + o.address + '" target="_blank" rel="noopener">' + esc(o.symbol) + '</a>', usd(o.price) + ' · ' + usd(o.liq, 0) + ' in pools'); });
+    h += '<p class="mut">Same company, a different issuer and custodian. Not checked by us: verify the address with the issuer.</p>';
+  } else h += '<p class="mut">' + (lk ? 'No other issuer\'s ' + esc(t.co) + ' token with real pools on Base.' : 'Looking…') + '</p>';
+  h += '</div>';
+
+  h += '<div class="box"><h3>Weekend record</h3><p class="mut">From 25.09 we log the price on Base every hour of the weekend and compare it with where the share opens on Monday. Numbers here after the first weekends.</p></div>';
+
+  h += '<details class="dev"><summary>Developer details</summary>' +
+    '<p>Token <code>' + t.a + '</code> · decimals ' + (c.decimals != null ? c.decimals : '—') + ' · multiplier ' + (c.multiplier != null ? c.multiplier : '—') + ' (WAD)</p>' +
+    '<p>Chainlink feed <code>' + FEEDS[t.s] + '</code> · updatedAt ' + (c.oracleAt || '—') + '</p>' +
+    '<p>TRANSFER_SENDER_POLICY id ' + (c.policy != null ? c.policy : '—') + ' in PolicyRegistry <code>' + POLICY_REGISTRY + '</code> · pausedFeatures [' + esc((c.paused || []).join(", ")) + ']</p>' +
+    '</details>';
+  return h + '</div>';
+}
+
+/* ---------- interactions ---------- */
+document.addEventListener("click", function(e){
+  var rtb = e.target.closest("[data-rt]"), ab = e.target.closest("[data-auth]"), row = e.target.closest("tr.row");
+  if (rtb) {
+    var t = TOKENS.filter(function(x){ return x.s === rtb.dataset.rt; })[0], v = parseFloat($("amt-" + t.s).value);
+    if (!(v >= 10)) return;
+    $("rt-" + t.s).innerHTML = kv("$" + v.toLocaleString("en-US") + " round trip", "…");
+    roundTrip(t, v).then(function(x){ $("rt-" + t.s).innerHTML = kv("$" + v.toLocaleString("en-US") + " round trip", x.loss.toFixed(2) + "% · " + usd(v * x.loss / 100)); })
+      .catch(function(){ $("rt-" + t.s).innerHTML = kv("$" + v.toLocaleString("en-US") + " round trip", "no route for that size"); });
+    return;
+  }
+  if (ab) {
+    var s = ab.dataset.auth, a = $("addr-" + s).value.trim(), c = S[s].chain || {};
+    if (!/^0x[0-9a-fA-F]{40}$/.test(a) || c.policy == null) { $("auth-" + s).innerHTML = '<span class="warn">Enter a 0x address</span>'; return; }
+    rpcBatch([[POLICY_REGISTRY, "0x55a1179e" + BigInt(c.policy).toString(16).padStart(64, "0") + pad(a)]]).then(function(r){
+      var okk = r[0] && BigInt(r[0]) === 1n;
+      $("auth-" + s).innerHTML = okk ? '<span class="ok">&#10003; Allowed to send ' + s + '</span>' : '<span class="bad">Blocked by the issuer\'s policy</span>';
+    }).catch(function(){ $("auth-" + s).innerHTML = '<span class="warn">Could not reach Base</span>'; });
+    return;
+  }
+  if (row && !e.target.closest("input,a,button")) {
+    var k = row.dataset.s; S[k].open = !S[k].open;
+    if (S[k].open && S[k].look === undefined) loadLook(TOKENS.filter(function(x){ return x.s === k; })[0]).then(render);
+    render();
+  }
+});
+
+TOKENS.forEach(function(t){ S[t.s] = {}; });
+/* stocks.html#NVDAc (the Full check link in Thesis) opens that stock. */
+var wanted = decodeURIComponent(location.hash.slice(1));
+if (S[wanted]) { S[wanted].open = true; loadLook(TOKENS.filter(function(x){ return x.s === wanted; })[0]).then(render); }
+render();
+if (S[wanted]) setTimeout(function(){ var r = document.querySelector('tr.row[data-s="' + wanted + '"]'); if (r) r.scrollIntoView({block:"start"}); }, 50);
+Promise.all([loadShares().then(session), loadChain(), loadMorpho()]).then(function(){
+  render();
+  /* Quotes one stock at a time: ten parallel pairs of KyberSwap calls trip its rate limit. */
+  return TOKENS.reduce(function(p, t){ return p.then(function(){ return loadDex(t).then(render).then(function(){ return sleep(250); }); }); }, Promise.resolve());
+}).then(function(){
+  return TOKENS.reduce(function(p, t){ return p.then(function(){ return loadLook(t).then(function(){ return sleep(200); }); }); }, Promise.resolve()).then(render);
+});
+})();
+</script>
+</body>
+</html>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Base.tools · tools for Base, live boards, trades you sign yourself</title>
-<meta name="description" content="Tools for Base, live token boards, and trades you sign yourself. 24 apps worth using, four live boards, and four of my own — Aero Vote Radar, Thesis, Token Check and Arc Contract Check.">
+<meta name="description" content="Tools for Base, live token boards, and trades you sign yourself. 24 apps worth using, four live boards, and five of my own — Aero Vote Radar, Thesis, Stocks on Base, Token Check and Arc Contract Check.">
 <link rel="canonical" href="https://deftools.xyz/">
 <!-- Share card. Everything on this page is drawn by JavaScript, and the
      crawlers behind link previews on X, Telegram and Discord do not run it —
@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Base.tools">
 <meta property="og:url" content="https://deftools.xyz/">
 <meta property="og:title" content="Base.tools · tools for Base, live boards, trades you sign yourself">
-<meta property="og:description" content="24 apps worth using — wallets, AI agents, launchpads, bots, terminals, bridges, DEXs and lending — four live token boards, and four tools of my own: Aero Vote Radar, Thesis, Token Check and Arc Contract Check. Buy and sell from the page, signed in your own wallet.">
+<meta property="og:description" content="24 apps worth using — wallets, AI agents, launchpads, bots, terminals, bridges, DEXs and lending — four live token boards, and five tools of my own: Aero Vote Radar, Thesis, Stocks on Base, Token Check and Arc Contract Check. Buy and sell from the page, signed in your own wallet.">
 <meta property="og:image" content="https://deftools.xyz/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -24,7 +24,7 @@
 <meta name="twitter:site" content="@Def7771">
 <meta name="twitter:creator" content="@Def7771">
 <meta name="twitter:title" content="Base.tools · tools for Base, live boards, trades you sign yourself">
-<meta name="twitter:description" content="24 apps worth using, four live token boards, and four tools of my own: Aero Vote Radar, Thesis, Token Check and Arc Contract Check. Buy and sell from the page, signed in your own wallet.">
+<meta name="twitter:description" content="24 apps worth using, four live token boards, and five tools of my own: Aero Vote Radar, Thesis, Stocks on Base, Token Check and Arc Contract Check. Buy and sell from the page, signed in your own wallet.">
 <meta name="twitter:image" content="https://deftools.xyz/og.png">
 <!-- Base Dashboard domain verification: proves this domain belongs to the
      registered Base app. Must stay in <head> on the homepage. -->
@@ -689,7 +689,7 @@
 <div class="wrap hero">
   <div class="pill"><span class="dot"></span> <span id="tool-count">14</span> TOOLS · <span id="cat-count">5</span> CATEGORIES · BASE ONLY</div>
   <h1>Tools for <span class="accent">Base</span>. Live boards. <br class="h1-break">Trades you <span class="accent">sign yourself</span>.</h1>
-  <p class="sub">24 apps worth using, four live boards, and four of my own — Aero Vote Radar, Thesis, Token Check and Arc Contract Check — open source.</p>
+  <p class="sub">24 apps worth using, four live boards, and five of my own — Aero Vote Radar, Thesis, Stocks on Base, Token Check and Arc Contract Check — open source.</p>
   <form class="hero-check" action="/check.html" method="get">
     <label for="hc-a">How far can you trust this token? <span class="beta">BETA</span></label>
     <p class="hc-sub">Paste a Base or Robinhood Chain address — a trust score from 1 to 10 in about a minute: can you sell it, who launched it, insider wallets, real exit. 3 free checks a day.</p>
@@ -811,6 +811,24 @@
 
         <div class="proj-card">
           <div class="proj-head">
+            <div class="proj-icon"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0e1c'/%3E%3Cpath d='M6 21l6-6 5 4 9-9' fill='none' stroke='%233fbf87' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='26' cy='10' r='2.4' fill='%237ea0ff'/%3E%3C/svg%3E" alt="Stocks on Base logo" width="28" height="28"></div>
+            <div>
+              <div class="proj-name">Stocks on Base</div>
+              <div class="proj-kind">Web app</div>
+            </div>
+          </div>
+          <p class="proj-desc">Trade US stocks 24/7 on Base, and see what you really get. For each Coinbase stock: is it the official token, the price on Base against the real share, what a buy-and-sell round trip costs at your size, where you can borrow USDC against it, and what changes when the US market is shut.</p>
+          <div class="proj-tags">
+            <span class="tag live">Live</span>
+            <span class="tag">Base</span>
+          </div>
+          <div class="proj-links">
+            <a class="visit" href="/stocks.html">Open <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-head">
             <div class="proj-icon"><img src="data:image/jpeg;base64,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" alt="Meme Scout logo" width="28" height="28"></div>
             <div>
               <div class="proj-name">Token Check <span class="beta">BETA</span></div>
@@ -829,7 +847,7 @@
           </div>
         </div>
 
-        <div class="proj-card">
+        <div class="proj-card" style="grid-column:1/-1">
           <div class="proj-head">
             <div class="proj-icon"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0e17'/%3E%3Cpath d='M8 23a8 8 0 0 1 16 0' fill='none' stroke='%233b82f6' stroke-width='3.5' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='10' r='2.6' fill='%233b82f6'/%3E%3C/svg%3E" alt="Arc tools logo" width="28" height="28"></div>
             <div>
