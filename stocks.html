@@ -58,8 +58,15 @@ h1{margin:0 0 10px; font-size:33px; line-height:1.18; letter-spacing:-.025em; ma
 .sym{font-weight:700}
 .co{color:var(--muted); font-size:12.5px; display:block}
 .ok{color:var(--green-text)} .warn{color:var(--yellow)} .bad{color:var(--red)} .mut{color:var(--muted)}
-.chev{color:var(--muted); display:inline-block; transition:transform .15s}
-tr.open .chev{transform:rotate(90deg)}
+.go{display:inline-flex; align-items:center; gap:4px; white-space:nowrap; font-size:13px; font-weight:600; color:var(--blue-text); background:var(--blue-soft); border:1px solid var(--border-hover); border-radius:8px; padding:6px 10px}
+tr.row:hover .go{color:var(--blue-bright); border-color:var(--blue)}
+.go .chev{display:inline-block; transition:transform .15s}
+.go .lbl-s{display:none}
+tr.open .go .chev{transform:rotate(90deg)}
+.sym{color:var(--blue-bright); text-decoration:underline; text-decoration-color:var(--border-hover); text-underline-offset:3px}
+.hint{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:0 0 10px; font-size:14px; color:var(--text)}
+.hint .live{display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:700; color:var(--green-text); background:rgba(63,191,135,.14); border-radius:999px; padding:3px 10px}
+.hint .live i{width:7px; height:7px; border-radius:50%; background:var(--green)}
 .tag{display:inline-block; font-size:11.5px; font-weight:600; padding:2px 8px; border-radius:999px; background:var(--blue-soft); color:var(--blue-text); margin:2px 4px 2px 0; white-space:nowrap}
 .tag.g{background:rgba(63,191,135,.14); color:var(--green-text)}
 .tag.y{background:rgba(255,207,64,.13); color:var(--yellow)}
@@ -87,6 +94,8 @@ footer{margin:40px 0 30px; color:var(--muted2); font-size:13px}
   h1{font-size:26px}
   .tbl th.hm,.tbl td.hm{display:none}
   .tbl td,.tbl th{padding:10px 6px}
+  .go .lbl{display:none}
+  .go .lbl-s{display:inline}
   .grid{grid-template-columns:1fr; padding:6px 4px 0}
 }
 </style>
@@ -108,10 +117,13 @@ footer{margin:40px 0 30px; color:var(--muted2); font-size:13px}
     <h1>US stocks on Base, 24/7. Here is what you really get.</h1>
     <p class="sub">The ten Coinbase stocks on Base, checked live: is it the official token, how the price on Base
       compares with the real share, what buying and selling actually costs, and where you can borrow against it.
-      Tap a stock for the full check.</p>
+      Tap any stock for the full check.</p>
   </div>
 
   <div class="session" id="session"><i class="dot"></i><div><b>Checking the market&hellip;</b><span></span></div></div>
+
+  <div class="hint"><span class="live"><i></i>LIVE</span>
+    <span>Every number is fetched fresh when you open the page. <b>Tap any stock</b> for its full check: fakes, trade cost at your size, borrowing, transfers.</span></div>
 
   <table class="tbl" id="tbl">
     <thead><tr>
@@ -232,7 +244,7 @@ function venues(rs){
 function roundTrip(t, dollars){
   return quote(USDC, t.a, BigInt(Math.round(dollars * 1e6)).toString()).then(function(buy){
     return quote(t.a, USDC, buy.amountOut).then(function(sell){
-      return {loss: 100 * (1 - Number(sell.amountOut) / 1e6 / dollars), shares: Number(buy.amountOut), venues: venues(buy)};
+      return {loss: Math.max(0, 100 * (1 - Number(sell.amountOut) / 1e6 / dollars)), shares: Number(buy.amountOut), venues: venues(buy)};
     });
   });
 }
@@ -335,7 +347,7 @@ function render(){
       '<td class="num ' + gcls + '">' + pct(g) + '</td>' +
       '<td class="num ' + rcls + '">' + (rt ? rt.loss.toFixed(2) + '%' : st.dex === undefined ? '…' : '—') + '</td>' +
       '<td class="num hm">' + (best ? 'up to ' + best.ltv.toFixed(0) + '% · ' + best.apy.toFixed(1) + '%' : st.morpho ? '<span class="mut">no market</span>' : '…') + '</td>' +
-      '<td><span class="chev">&#8250;</span></td></tr>' +
+      '<td><span class="go"><span class="lbl">' + (st.open ? 'Close' : 'Full check') + '</span><span class="lbl-s">' + (st.open ? 'Close' : 'Check') + '</span><span class="chev">&#8250;</span></span></td></tr>' +
       (st.open ? '<tr class="detail"><td colspan="7">' + detail(t) + '</td></tr>' : '');
   }).join("");
   $("rows").innerHTML = html;
