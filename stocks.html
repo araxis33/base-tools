@@ -80,6 +80,9 @@ tr.open .go .chev{transform:rotate(90deg)}
 .kv{display:flex; justify-content:space-between; gap:10px; font-size:14px; padding:2px 0}
 .kv span:first-child{color:var(--muted)}
 .box.wide{grid-column:1/-1}
+.flagbar{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap}
+a.buy{display:inline-flex; align-items:center; min-height:38px; padding:8px 16px; border-radius:9px; background:var(--blue); color:#fff; font-weight:700; font-size:14px; white-space:nowrap}
+a.buy:hover{color:#fff; filter:brightness(1.1)}
 input.amt,input.addr{background:var(--bg); color:var(--text); border:1px solid var(--border); border-radius:8px; padding:8px 10px; font-size:14px; min-height:36px}
 input.amt{width:110px} input.addr{width:100%; margin-top:6px}
 button.btn{background:var(--blue-soft); color:var(--blue-text); border:1px solid var(--border); border-radius:8px; padding:8px 12px; font-size:14px; min-height:36px; cursor:pointer}
@@ -357,7 +360,8 @@ function kv(k, v){ return '<div class="kv"><span>' + k + '</span><span class="nu
 function detail(t){
   var st = S[t.s], c = st.chain || {}, s = shareOf(t), lk = st.look, g = gapOf(t);
   var h = '<div class="grid">';
-  h += '<div class="box wide"><div>' + flags(t) + '</div></div>';
+  h += '<div class="box wide flagbar"><div>' + flags(t) + '</div>' +
+    '<a class="buy" href="/thesis.html?b=' + t.s + '-100&a=1000">Buy in Thesis &rarr;</a></div>';
 
   h += '<div class="box"><h3>Is it the real one?</h3>' +
     '<p class="ok">&#10003; Official ' + t.s + ', issued by Coinbase.</p>' +
@@ -378,7 +382,7 @@ function detail(t){
     '<div id="rt-' + t.s + '">' + kv("$1,000 round trip", st.rt ? st.rt.loss.toFixed(2) + "%" : "—") + '</div>' +
     '<p style="margin-top:8px">Your amount: <input class="amt" id="amt-' + t.s + '" type="number" min="10" step="10" value="5000"> <button class="btn" data-rt="' + t.s + '">Check</button></p>' +
     (st.rt && st.rt.venues.length ? '<p class="mut">Best route now: ' + esc(st.rt.venues.join(", ")) + '.</p>' : '') +
-    '<p class="mut">Buy, then sell everything straight back, at live quotes across every pool on Base.</p></div>';
+    '<p class="mut">Buy, then sell everything straight back, at live quotes across every pool on Base. To buy for real, <a href="/thesis.html?b=' + t.s + '-100&a=1000">open it in Thesis</a>: it routes through the deepest pool and you sign in your own wallet.</p></div>';
 
   h += '<div class="box"><h3>Borrow against it</h3>';
   if (st.morpho && st.morpho.length) {
