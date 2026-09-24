@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stocks on Base · what you really get, checked live</title>
+<title>Stocks on Base · trade US stocks 24/7, checked live</title>
 <meta name="description" content="The ten Coinbase stocks on Base, checked live: is it the official token, the price on Base against the real share, what a round trip costs, where you can borrow against it, and what happens when the US market is shut.">
 <link rel="canonical" href="https://deftools.xyz/stocks.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Base.tools">
 <meta property="og:url" content="https://deftools.xyz/stocks.html">
-<meta property="og:title" content="Stocks on Base · what you really get, checked live">
-<meta property="og:description" content="Trade US stocks 24/7 on Base. Here is what you really get right now: official token, price against the real share, round-trip cost, borrowing.">
+<meta property="og:title" content="Stocks on Base · trade US stocks 24/7, checked live">
+<meta property="og:description" content="Trade US stocks 24/7 on Base. See what you get right now: official token, price against the real share, round-trip cost, borrowing.">
 <meta property="og:image" content="https://deftools.xyz/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@Def7771">
@@ -44,7 +44,7 @@ h1{margin:0 0 10px; font-size:33px; line-height:1.18; letter-spacing:-.025em; ma
 
 .session{margin:18px 0 22px; padding:14px 16px; border:1px solid var(--border); border-radius:12px; background:var(--card); display:flex; gap:12px; align-items:flex-start}
 .session .dot{flex:0 0 auto; width:9px; height:9px; border-radius:50%; margin-top:7px; background:var(--green)}
-.session.off .dot{background:var(--yellow)}
+.session.off .dot{background:var(--blue)}
 .session b{display:block; font-size:15.5px}
 .session span{color:var(--muted); font-size:14px}
 
@@ -117,7 +117,7 @@ footer{margin:40px 0 30px; color:var(--muted2); font-size:13px}
 
 <div class="wrap">
   <div class="hero">
-    <h1>US stocks on Base, 24/7. Here is what you really get.</h1>
+    <h1>US stocks on Base, 24/7. See what you get right now.</h1>
     <p class="sub">The ten Coinbase stocks on Base, checked live: is it the official token, how the price on Base
       compares with the real share, what buying and selling actually costs, and where you can borrow against it.
       Tap any stock for the full check.</p>
@@ -314,7 +314,7 @@ function session(){
     var d = new Date(), day = d.getUTCDay();
     var weekend = day === 6 || day === 0 || (day === 5 && d.getUTCHours() >= 20) || (day === 1 && any && now < any.open);
     title = weekend ? "Trading 24/7 on Base · the US market opens Monday 13:30 UTC" : "Trading 24/7 on Base · the US market opens at 13:30 UTC";
-    line = "Right now the price is set only by trades in the pools on Base. The Chainlink feed holds the last close, and tokens are redeemed for shares on business days only, so nothing ties the price to the share until the open.";
+    line = "Wall Street is closed, Base keeps trading. Prices come from live trades in the pools on Base; the table shows how close each stock sits to its last close.";
   }
   el.className = "session" + (open ? "" : " off");
   el.innerHTML = '<i class="dot"></i><div><b>' + esc(title) + '</b><span>' + esc(line) + '</span></div>';
