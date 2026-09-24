@@ -1251,7 +1251,7 @@ function ageLabel(ts){
 }
 
 function fmtPrice(n){
-  if (!isFinite(n)) return "—";
+  if (!Number.isFinite(n)) return "—";
   if (n >= 1000) return "$" + n.toLocaleString(undefined,{maximumFractionDigits:0});
   if (n >= 1) return "$" + n.toFixed(2);
   if (n >= 0.01) return "$" + n.toFixed(4);
@@ -1261,7 +1261,9 @@ function shortAddr(a){
   return a.slice(0,6) + "…" + a.slice(-4);
 }
 function chgHtml(n){
-  if (!isFinite(n)) return `<span class="trend-chg">—</span>`;
+  // isFinite(null) is true, and CoinGecko sends null for a coin with no 24h change,
+  // so one such coin used to throw here and blank all four boards at once.
+  if (typeof n !== "number" || !isFinite(n)) return `<span class="trend-chg">—</span>`;
   const cls = n >= 0 ? "pos" : "neg";
   const sign = n >= 0 ? "+" : "";
   return `<span class="trend-chg ${cls}">${sign}${n.toFixed(1)}%</span>`;
@@ -1546,10 +1548,10 @@ function renderBoards(data, label){
   // already draws the error-with-retry state for a null, so a board that did
   // load is shown and a board that didn't says so on its own.
   const byLosers = tokens && [...tokens]
-    .filter(t=>isFinite(t.change24h) && t.change24h < 0 && t.volume24h >= LOSER_MIN_VOLUME_USD)
+    .filter(t=>Number.isFinite(t.change24h) && t.change24h < 0 && t.volume24h >= LOSER_MIN_VOLUME_USD)
     .sort((a,b)=>a.change24h - b.change24h)
     .slice(0,10);
-  const byGainers = tokens && [...tokens].filter(t=>isFinite(t.change24h)).sort((a,b)=>b.change24h - a.change24h).slice(0,10);
+  const byGainers = tokens && [...tokens].filter(t=>Number.isFinite(t.change24h)).sort((a,b)=>b.change24h - a.change24h).slice(0,10);
 
   renderColumn("col-losers", byLosers, "Nothing down over the last 24h.");
   renderColumn("col-gainers", byGainers);
