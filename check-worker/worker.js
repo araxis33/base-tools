@@ -9,6 +9,7 @@
 //   POST /start               -> { ok, ticket, left }   uses one check
 //   POST /read {ticket, lang, facts} -> { text, sources, note }   the project read
 //   POST /pay {tx}            -> { ok, added, credits }  credits paid checks (0.1 USDC each)
+//   GET  /cg?p=<path>         -> CoinGecko answer for the homepage boards, cached
 //
 // Secrets: GEMINI_API_KEY, GROQ_API_KEY, TAVILY_API_KEY (optional). KV: QUOTA.
 
@@ -130,10 +131,48 @@ async function pay(req, env) {
   return { ok: true, added: bought, credits: now };
 }
 
+// ---- CoinGecko for the homepage boards ---------------------------------------
+// The boards used to call CoinGecko from every visitor's browser. The free API
+// answers a busy address with 429 and no CORS header, so the board fell back to
+// its cache and read "18 h ago · offline". Here one copy serves everyone: fresh
+// for a few minutes, and a week-old spare when CoinGecko refuses.
+const CG = 'https://api.coingecko.com/api/v3/';
+const CG_ALLOWED = [/^coins\/list\?include_platform=true$/, /^coins\/markets\?[\w=&%,.-]+$/];
+
+function withCors(req, res, state) {
+  const h = new Headers(res.headers);
+  for (const [k, v] of Object.entries(cors(req))) h.set(k, v);
+  h.set('x-cg', state);
+  h.set('cache-control', 'public, max-age=60');
+  return new Response(res.body, { status: 200, headers: h });
+}
+
+async function coingecko(req, ctx, p) {
+  if (!CG_ALLOWED.some((r) => r.test(p))) return json(req, { error: 'not allowed' }, 400);
+  const cache = caches.default;
+  const ttl = p.startsWith('coins/list') ? 43200 : 180;
+  const fresh = new Request('https://cg.cache/fresh/' + p);
+  const stale = new Request('https://cg.cache/stale/' + p);
+  const hit = await cache.match(fresh);
+  if (hit) return withCors(req, hit, 'hit');
+  let res = null;
+  try { res = await fetch(CG + p, { headers: { accept: 'application/json', ...BROWSER } }); } catch (e) { /* use the spare */ }
+  if (res && res.ok) {
+    const body = await res.arrayBuffer();
+    const make = (age) => new Response(body, { headers: { 'content-type': 'application/json', 'cache-control': `public, max-age=${age}` } });
+    ctx.waitUntil(Promise.all([cache.put(fresh, make(ttl)), cache.put(stale, make(7 * 86400))]));
+    return withCors(req, make(ttl), 'miss');
+  }
+  const old = await cache.match(stale);
+  if (old) return withCors(req, old, 'stale');
+  return json(req, { error: 'coingecko ' + (res ? res.status : 'unreachable') }, 502);
+}
+
 export default {
-  async fetch(req, env) {
+  async fetch(req, env, ctx) {
     const url = new URL(req.url);
     if (req.method === 'OPTIONS') return new Response(null, { headers: cors(req) });
+    if (url.pathname === '/cg') return coingecko(req, ctx, url.searchParams.get('p') || '');
     const ip = ipOf(req);
     const client = clientOf(req);
     const owner = isOwner(req, env);

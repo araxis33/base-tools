@@ -1319,6 +1319,18 @@ async function fetchWithTimeout(url, ms){
   }
 }
 
+// CoinGecko through the Worker first: it keeps one shared copy for every visitor,
+// so the free API's per-address limit stops freezing the boards. If the Worker has
+// no copy yet, ask CoinGecko straight from this browser, as before.
+const CG_PROXY = "https://deftools-check.araxis67.workers.dev/cg?p=";
+async function fetchCoinGecko(path, ms){
+  try {
+    const res = await fetchWithTimeout(CG_PROXY + encodeURIComponent(path), ms);
+    if (res.ok) return res;
+  } catch(e){}
+  return fetchWithTimeout("https://api.coingecko.com/api/v3/" + path, ms);
+}
+
 // id -> base contract address, for every coin whose only platform is Base.
 async function fetchNativeBaseMap(){
   const cachedRaw = storageGet(PLATFORMS_CACHE_KEY);
@@ -1328,7 +1340,7 @@ async function fetchNativeBaseMap(){
       if ((Date.now() - cached.ts) < PLATFORMS_CACHE_TTL_MS) return cached.data;
     } catch(e){}
   }
-  const res = await fetchWithTimeout("https://api.coingecko.com/api/v3/coins/list?include_platform=true", 12000);
+  const res = await fetchCoinGecko("coins/list?include_platform=true", 12000);
   if (!res.ok) throw new Error("http " + res.status);
   const list = await res.json();
   const map = {};
@@ -1340,8 +1352,8 @@ async function fetchNativeBaseMap(){
 }
 
 async function fetchMarketsOnce(nativeMap){
-  const res = await fetchWithTimeout(
-    "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&category=base-ecosystem&order=volume_desc&per_page=250&page=1&price_change_percentage=24h",
+  const res = await fetchCoinGecko(
+    "coins/markets?vs_currency=usd&category=base-ecosystem&order=volume_desc&per_page=250&page=1&price_change_percentage=24h",
     9000
   );
   if (!res.ok) throw new Error("http " + res.status);
@@ -1419,8 +1431,8 @@ async function fetchStocks(){
 
 async function fetchBlueChips(){
   const ids = BLUE_CHIP_TOKENS.map(t=>t.id).join(",");
-  const res = await fetchWithTimeout(
-    `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${ids}&price_change_percentage=24h`,
+  const res = await fetchCoinGecko(
+    `coins/markets?vs_currency=usd&ids=${ids}&price_change_percentage=24h`,
     9000
   );
   if (!res.ok) throw new Error("http " + res.status);
