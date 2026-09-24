@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token check — how far can you trust it? · base.tools</title>
+<meta name="description" content="Paste a Base or Robinhood Chain token address and get a trust score from 1 to 10 in about a minute: can you sell it, who launched it and what became of their earlier coins, which holders got coins straight from the deployer, what a $500 exit really returns, and a project read built from sources it can cite.">
+<meta property="og:title" content="Token check — trust score 1 to 10">
+<meta property="og:description" content="Paste a token address. Sell simulation, who deployed it and their past coins, insider holders, real exit liquidity, and a sourced project read.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="base.tools">
+<meta property="og:url" content="https://deftools.xyz/check.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@Def7771">
+<link rel="canonical" href="https://deftools.xyz/check.html">
+<meta name="theme-color" content="#0a0e1c">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233b6eff'/%3E%3Cpath d='M10.5 6.5v19' stroke='%23fff' stroke-width='4' stroke-linecap='round'/%3E%3Ccircle cx='18' cy='19.5' r='5.5' fill='none' stroke='%23fff' stroke-width='4'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#0a0e1c; --bg2:#0d1226; --card:#111730; --border:#232c4d; --border-hover:#33406b;
+  --blue:#3b6eff; --blue-text:#7ea0ff; --blue-bright:#9db8ff;
+  --yellow:#ffcf40; --green:#3fbf87; --red:#ff6b6b; --orange:#ff9f43;
+  --text:#eef1fb; --muted:#8791b3; --muted2:#7a84a8;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0; background:var(--bg); color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased}
+a{color:var(--blue-text); text-decoration:none}
+a:hover{color:var(--blue-bright)}
+.wrap{max-width:860px; margin:0 auto; padding:0 16px}
+header{border-bottom:1px solid var(--border); background:var(--bg2)}
+.head-in{display:flex; align-items:center; justify-content:space-between; gap:16px; padding-block:14px; flex-wrap:wrap}
+.back{display:inline-flex; align-items:center; min-height:32px; font-size:14px; color:var(--muted)}
+.lang{display:flex; gap:4px}
+.lang button{background:none; border:1px solid var(--border); color:var(--muted); border-radius:8px; padding:4px 10px; font-size:13px; cursor:pointer; min-height:32px}
+.lang button.on{border-color:var(--blue); color:var(--text)}
+
+.quota{margin:22px 0 0; background:var(--card); border:1px solid var(--border); border-left:3px solid var(--yellow);
+  border-radius:12px; padding:12px 16px; font-size:14.5px; color:var(--muted)}
+.quota b{color:var(--text)}
+.hero{padding:22px 0 8px}
+h1{margin:0 0 8px; font-size:30px; line-height:1.2; letter-spacing:-.02em}
+.sub{margin:0; color:var(--muted); font-size:16px; max-width:64ch}
+form{display:flex; gap:10px; margin:20px 0 6px; flex-wrap:wrap}
+input{flex:1 1 320px; min-width:0; background:var(--card); border:1px solid var(--border); color:var(--text);
+  border-radius:12px; padding:14px 16px; font-size:15px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+input:focus{outline:none; border-color:var(--blue)}
+button.go{background:var(--blue); color:#fff; border:0; border-radius:12px; padding:0 26px; font-size:16px; font-weight:600;
+  cursor:pointer; min-height:50px}
+button.go:disabled{opacity:.5; cursor:default}
+.hint{color:var(--muted2); font-size:13px; margin:0}
+
+.pay{margin:18px 0 0; background:var(--card); border:1px solid var(--border); border-left:3px solid var(--blue); border-radius:12px; padding:16px 18px}
+.pay h2{font-size:16px; margin:0 0 6px}
+.pay p{margin:4px 0; font-size:14.5px; color:var(--muted)}
+.packs{display:flex; gap:10px; flex-wrap:wrap; margin:12px 0 6px}
+.packs button{flex:1 1 150px; background:var(--bg2); border:1px solid var(--border-hover); color:var(--text); border-radius:12px;
+  padding:12px 14px; font-size:15px; cursor:pointer; min-height:48px}
+.packs button:hover{border-color:var(--blue)}
+.packs button:disabled{opacity:.5; cursor:default}
+.packs b{display:block; font-size:17px}
+.paystat{font-size:14px; margin-top:8px}
+.paystat.bad{color:var(--red)} .paystat.ok{color:var(--green)}
+
+.steps{margin:22px 0 0; display:grid; gap:6px}
+.step{font-size:14.5px; color:var(--muted)}
+.step.done{color:var(--text)}
+.step.now::after{content:' …'; animation:blink 1s infinite}
+@keyframes blink{50%{opacity:.2}}
+
+.report{margin:24px 0 10px}
+.head{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap}
+.head .sym{font-size:24px; font-weight:700}
+.head .nm{color:var(--muted)}
+.addr{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12.5px; color:var(--muted2); word-break:break-all}
+.score{margin:16px 0 4px; padding:14px 18px; border-radius:12px; font-size:20px; font-weight:700; border:1px solid var(--border)}
+.score.t1{background:rgba(255,107,107,.12); border-color:rgba(255,107,107,.45)}
+.score.t2{background:rgba(255,159,67,.12); border-color:rgba(255,159,67,.45)}
+.score.t3{background:rgba(255,207,64,.1); border-color:rgba(255,207,64,.4)}
+.score.t4{background:rgba(63,191,135,.1); border-color:rgba(63,191,135,.4)}
+.bar{display:flex; gap:3px; margin-top:10px}
+.bar i{flex:1; height:6px; border-radius:3px; background:var(--border)}
+.bar i.on{background:currentColor}
+.scale{color:var(--muted2); font-size:13px; margin:6px 0 4px}
+h3{font-size:15px; margin:16px 0 6px}
+ul.find{list-style:none; padding:0; margin:0 0 6px; display:grid; gap:5px}
+ul.find li{font-size:15px}
+section.card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin-top:14px}
+section.card h2{font-size:16px; margin:0 0 10px; letter-spacing:-.01em}
+section.card p{margin:4px 0; font-size:14.5px}
+.note{color:var(--muted2); font-size:13px}
+.rights{border-left:3px solid var(--border-hover)}
+.proj p{white-space:pre-wrap}
+.share{margin-top:14px; background:none; border:1px solid var(--border-hover); color:var(--text); border-radius:10px; padding:8px 14px; font-size:14px; cursor:pointer; min-height:40px}
+.err{background:var(--card); border:1px solid var(--border); border-left:3px solid var(--red); border-radius:12px; padding:14px 16px; margin-top:18px}
+footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px; color:var(--muted2); font-size:13.5px}
+@media (max-width:640px){ h1{font-size:24px} .score{font-size:18px} button.go{flex:1 1 100%} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap head-in">
+    <a class="back" href="/">&larr;&nbsp; base.tools</a>
+    <div class="lang"><button id="l-en" type="button">EN</button><button id="l-ru" type="button">RU</button></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="quota" id="quota"></div>
+  <div class="hero">
+    <h1 id="t-title"></h1>
+    <p class="sub" id="t-sub"></p>
+  </div>
+  <form id="f">
+    <input id="addr" autocomplete="off" spellcheck="false" placeholder="0x…">
+    <button class="go" id="go" type="submit"></button>
+  </form>
+  <p class="hint" id="t-hint"></p>
+  <div class="pay" id="pay" hidden></div>
+  <div class="steps" id="steps"></div>
+  <div id="out"></div>
+</div>
+
+<footer>
+  <div class="wrap" id="t-foot"></div>
+</footer>
+
+<script src="check.js"></script>
+<script>
+(function () {
+  // The Worker holds the AI keys, counts the free checks and credits the paid
+  // ones. Until it answers, the page still works: the on-chain check runs here
+  // and the free limit is kept locally.
+  var WORKER = 'https://deftools-check.araxis67.workers.dev';
+  var LIMIT = 3;
+  // Paid checks: USDC goes straight to his wallet; the calldata carries his Base
+  // builder code (ERC-8021 suffix for bc_mrkwu2m0) so Base counts every payment.
+  var PAY_TO = '0x335A503B743B569Ef1a9E6Acc95F70307Af146B0';
+  var USDC = '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913';
+  var BUILDER_SUFFIX = '62635f6d726b7775326d300b0080218021802180218021802180218021';
+  var PACKS = [1, 5, 10];
+
+  var T = {
+    en: {
+      title: 'How far can you trust this token?', go: 'Check',
+      sub: 'Paste a Base or Robinhood Chain token address. In about a minute you get a trust score from 1 to 10 and what it is made of: can you actually sell it, who launched it and what became of their earlier coins, which big holders got coins straight from the deployer, what a $500 exit really returns — and a project read built only from sources it can cite.',
+      hint: 'The score is a risk check, not advice. The decision is yours.',
+      quota: function (q) {
+        if (q.owner) return '<b>Unlimited checks</b> — owner access.';
+        var s = q.left > 0 ? '<b>' + LIMIT + ' free checks a day.</b> Left today: <b>' + q.left + '</b>.' : '<b>Free checks for today are used up.</b> They come back at midnight UTC.';
+        if (q.credits > 0) s += ' Paid checks: <b>' + q.credits + '</b>.';
+        else s += ' More: 0.1 USDC per check.';
+        return s;
+      },
+      badAddr: 'That does not look like a token address (0x followed by 40 characters).',
+      steps: { market: 'Finding the token and its pools', contract: 'Reading the contract and simulating a sale', people: 'Tracing the deployer, holders and first buyers', project: 'Reading about the project' },
+      notfound: 'No such token on exchanges or in the Base and Robinhood Chain block explorers. Check the address.',
+      dead: function (d) { return '🔴 TRUST 1/10 — ' + d.symbol + ' (' + d.name + ') exists on ' + (d.chain === 'base' ? 'Base' : 'Robinhood Chain') + ', but there is nowhere to trade it: not a single live pool. The liquidity has been pulled — the coin is dead.'; },
+      chain: function (c) { return 'This token trades on ' + c + '. For now only Base and Robinhood Chain are checked.'; },
+      trust: 'TRUST', labels: ['very low — almost certainly a trap', 'low', 'medium', 'high', 'very high'],
+      scale: '10 — the most trust, 1 — almost certainly a trap. The decision is yours.',
+      lowers: 'Lowers trust', raises: 'Raises trust',
+      market: 'Market', contract: 'Contract and liquidity', who: 'Who launched it', holders: 'Holders', project: 'Project',
+      rightsTitle: 'Team rights — a note, not an alarm',
+      rightsNote: 'Large projects usually keep control with the team, and pools, staking and treasury sit among the top holders. That is a question of trust in the team, not a sign of a trap:',
+      base: 'About 1 in 50 new Base coins still trades two weeks later (our count, 23.09.2026). This is a risk check, not advice to buy.',
+      share: 'Copy link to this report', copied: 'Link copied',
+      foot: 'Checks run in your browser against public data: DexScreener, GoPlus, honeypot.is, GeckoTerminal, Blockscout, KyberSwap, CoinGecko. The project read is written by an AI from sources it lists. Code: <a href="https://github.com/araxis33/meme-scout" target="_blank" rel="noopener">github.com/araxis33/meme-scout</a>. Part of <a href="/">base.tools</a>.',
+      projWait: 'Reading the project…', projOff: 'The project read is not available right now — the on-chain check above is complete.',
+      payTitle: 'More checks — 0.1 USDC each',
+      payText: 'Pay from your wallet on Base. The USDC goes straight to the author of this tool; checks you buy do not expire.',
+      pack: function (n) { return '<b>' + n + (n === 1 ? ' check' : ' checks') + '</b>' + (n * 0.1).toFixed(1) + ' USDC'; },
+      noWallet: 'No wallet in this browser. Open the page in Coinbase Wallet or MetaMask, or install one.',
+      wait: 'Confirm the payment in your wallet…', sent: 'Payment sent — waiting for Base to confirm it…',
+      done: function (n, c) { return 'Paid. Added ' + n + (n === 1 ? ' check' : ' checks') + ' — you now have ' + c + '.'; },
+      lowUsdc: 'Not enough USDC on Base in this wallet.', payFail: function (m) { return 'Payment did not go through: ' + m; },
+    },
+    ru: {
+      title: 'Насколько можно доверять этой монете?', go: 'Проверить',
+      sub: 'Вставь адрес токена в сети Base или Robinhood Chain. Примерно за минуту — оценка надёжности от 1 до 10 и из чего она сложилась: можно ли её продать, кто её запустил и что стало с его прошлыми монетами, кто из крупных держателей получил монеты прямо от автора, сколько реально вернёшь при продаже на $500 — и разбор проекта только по источникам, на которые можно сослаться.',
+      hint: 'Оценка — это проверка рисков, а не совет. Решение за тобой.',
+      quota: function (q) {
+        if (q.owner) return '<b>Проверки без лимита</b> — доступ владельца.';
+        var s = q.left > 0 ? '<b>Лимит — ' + LIMIT + ' бесплатные проверки в день.</b> Сегодня осталось: <b>' + q.left + '</b>.' : '<b>Бесплатные проверки на сегодня закончились.</b> Обновятся в полночь по UTC.';
+        if (q.credits > 0) s += ' Купленных проверок: <b>' + q.credits + '</b>.';
+        else s += ' Дальше — 0,1 USDC за проверку.';
+        return s;
+      },
+      badAddr: 'Это не похоже на адрес токена (0x и ещё 40 символов).',
+      steps: { market: 'Ищу монету и её пулы', contract: 'Читаю контракт и пробую продать в симуляции', people: 'Смотрю автора, держателей и первых покупателей', project: 'Читаю про проект' },
+      notfound: 'Такой монеты нет ни на биржах, ни в обозревателе блоков Base и Robinhood Chain. Проверь адрес.',
+      dead: function (d) { return '🔴 НАДЁЖНОСТЬ 1/10 — ' + d.symbol + ' (' + d.name + ') существует в сети ' + (d.chain === 'base' ? 'Base' : 'Robinhood Chain') + ', но торговать ею негде: ни одного живого пула. Ликвидность выведена — монета мертва.'; },
+      chain: function (c) { return 'Монета торгуется в сети ' + c + '. Пока проверяю только Base и Robinhood Chain.'; },
+      trust: 'НАДЁЖНОСТЬ', labels: ['очень низкая — почти наверняка ловушка', 'низкая', 'средняя', 'высокая', 'очень высокая'],
+      scale: '10 — максимальное доверие, 1 — почти наверняка ловушка. Решение за тобой.',
+      lowers: 'Снижают надёжность', raises: 'Повышают надёжность',
+      market: 'Рынок', contract: 'Контракт и ликвидность', who: 'Кто запустил', holders: 'Держатели', project: 'Проект',
+      rightsTitle: 'Права команды — справка, не тревога',
+      rightsNote: 'У крупных проектов команда обычно оставляет себе управление, а среди крупнейших держателей — пулы, стейкинг и казна. Это вопрос доверия к команде, а не признак ловушки:',
+      base: 'Из новых монет на Base через две недели живёт примерно 1 из 50 (наш замер 23.09.2026). Это проверка рисков, а не совет покупать.',
+      share: 'Скопировать ссылку на отчёт', copied: 'Ссылка скопирована',
+      foot: 'Проверка идёт в твоём браузере по открытым данным: DexScreener, GoPlus, honeypot.is, GeckoTerminal, Blockscout, KyberSwap, CoinGecko. Разбор проекта пишет ИИ по источникам, которые он указывает. Код: <a href="https://github.com/araxis33/meme-scout" target="_blank" rel="noopener">github.com/araxis33/meme-scout</a>. Часть <a href="/">base.tools</a>.',
+      projWait: 'Читаю про проект…', projOff: 'Разбор проекта сейчас недоступен — проверка по блокчейну выше полная.',
+      payTitle: 'Ещё проверки — 0,1 USDC за штуку',
+      payText: 'Оплата из твоего кошелька в сети Base. USDC уходят напрямую автору инструмента; купленные проверки не сгорают.',
+      pack: function (n) { return '<b>' + n + (n === 1 ? ' проверка' : n < 5 ? ' проверки' : ' проверок') + '</b>' + (n * 0.1).toFixed(1).replace('.', ',') + ' USDC'; },
+      noWallet: 'В этом браузере нет кошелька. Открой страницу в Coinbase Wallet или MetaMask или установи кошелёк.',
+      wait: 'Подтверди оплату в кошельке…', sent: 'Оплата отправлена — жду подтверждения сети Base…',
+      done: function (n, c) { return 'Оплачено. Добавлено проверок: ' + n + ', всего теперь: ' + c + '.'; },
+      lowUsdc: 'На этом кошельке недостаточно USDC в сети Base.', payFail: function (m) { return 'Оплата не прошла: ' + m; },
+    }
+  };
+
+  function pct(x) { return (Math.round(x * 10) / 10).toString() + '%'; }
+  function p0(x) { return Math.round(x) + '%'; }
+  function usd(x) { if (x === null || x === undefined) return '?'; if (x >= 1e9) return '$' + (x / 1e9).toFixed(1) + (lang === 'ru' ? ' млрд' : 'B'); if (x >= 1e6) return '$' + (x / 1e6).toFixed(1) + (lang === 'ru' ? ' млн' : 'M'); if (x >= 1e3) return '$' + Math.round(x / 1e3) + (lang === 'ru' ? ' тыс.' : 'K'); return '$' + Math.round(x); }
+  function tierLine(t) {
+    var ru = lang === 'ru', parts = [];
+    if (t.ageD >= 2) parts.push(Math.round(t.ageD) + (ru ? ' дн. торгов' : ' days of trading'));
+    if (t.holders) parts.push((ru ? 'держателей ' : 'holders ') + t.holders.toLocaleString(ru ? 'ru-RU' : 'en-US'));
+    if (t.cex) parts.push((ru ? 'на ' + t.cex + ' биржах' : 'on ' + t.cex + ' exchanges') + (t.majors.length ? (ru ? ', в т.ч. ' : ', incl. ') + t.majors.slice(0, 4).join(', ') : ''));
+    if (t.rank) parts.push((ru ? 'место #' : 'rank #') + t.rank + ' CoinGecko');
+    return parts.join(', ');
+  }
+
+  // Findings: [key, ...args] -> words.
+  var F = {
+    en: {
+      honeypot: function () { return 'cannot sell: it is a trap (honeypot)'; },
+      sellTaxHigh: function (t) { return 'sell tax ' + p0(t); }, sellTax: function (t) { return 'sell tax ' + p0(t); },
+      mint: function () { return 'the owner can mint more coins'; }, takeBack: function () { return 'the owner can take control back'; },
+      hiddenRoles: function () { return 'the contract has hidden admin rights (roles outside the owner)'; },
+      rolesBalance: function () { return 'someone with rights can change balances'; }, rolesMint: function () { return 'someone with rights can mint'; },
+      blacklist: function () { return 'the owner can block a wallet'; }, taxChange: function () { return 'the owner can change the tax'; },
+      cannotSellAll: function () { return 'you cannot sell everything at once'; }, proxy: function () { return 'the code can be swapped (proxy)'; },
+      unverified: function () { return 'contract source is not published'; }, pause: function () { return 'the owner can stop trading'; },
+      personalTax: function () { return 'a tax can be set per wallet — a way to lock sellers in'; },
+      cooldown: function () { return 'there is a cooldown between trades'; }, antiWhale: function () { return 'the owner can change the trade size limit'; },
+      externalCall: function () { return 'the contract calls another contract — its behaviour can change'; },
+      creatorHoneypots: function () { return 'the same deployer has launched honeypots before'; },
+      lpPartUnlocked: function (s) { return 'LP of a v2 pool is not locked — ' + p0(s) + ' of all liquidity'; },
+      lpAtDev: function (p) { return 'the deployer holds the liquidity (' + p0(p) + ') — can pull it any time'; },
+      lpInContract: function (p) { return 'liquidity (' + p0(p) + ') sits in a contract — cannot tell if it is locked'; },
+      lpUnlocked: function (p) { return 'liquidity is not locked: ' + p0(p) + ' in a plain wallet — it can be pulled'; },
+      lpLocked: function (p) { return 'liquidity locked or burned (' + p0(p) + ')'; },
+      snipersHold: function (p) { return 'wallets that bought in the first seconds still hold ' + p0(p); },
+      creatorHolds: function (p) { return 'the deployer holds ' + p0(p) + ' of supply'; },
+      lowLiq: function (l) { return 'liquidity is only ' + usd(l); },
+      exitLoss: function (l) { return 'selling $500 loses ' + p0(l); },
+      exitOk: function (l) { return '$500 sells almost at no loss (' + pct(l) + ')'; },
+      top10: function (p) { return 'the 10 largest wallets (not exchanges or contracts) hold ' + p0(p); },
+      devToExchanges: function (p) { return 'the deployer sent ' + p0(p) + ' of supply to exchange wallets himself — done to make holders look solid'; },
+      fromDev: function (n, p) { return 'wallets that got coins straight from the deployer: ' + n + ', together ' + p0(p); },
+      cluster: function (n, p) { return 'wallets funded by one address: ' + n + ', together ' + p0(p); },
+      handed: function (n, p) { return 'wallets that got coins from one address: ' + n + ', together ' + p0(p); },
+      devFunded: function (n) { return 'the deployer funded ' + n + ' of the big holders himself'; },
+      serialDead: function (n, d) { return 'the deployer launched ' + n + ' coins, ' + d + ' are dead'; },
+      someDead: function (n, d) { return 'the deployer launched ' + n + ' coins, ' + d + ' are dead'; },
+      burner: function (m) { return 'the deployer wallet got its money ' + Math.round(m) + ' min before launch — a burner'; },
+      buyersMany: function (n) { return n + ' different buyers in 24h'; }, buyersFew: function (n) { return 'only ' + n + ' different buyers in 24h'; },
+      buysMany: function (n) { return n + ' buys in 24h'; }, buysFew: function (n) { return 'only ' + n + ' buys in 24h'; },
+      wash: function () { return 'volume is 20x+ the liquidity — looks like wash trading'; },
+      bots: function (x) { return Math.round(x) + ' buys per wallet on average — looks like bots'; },
+      young: function (h) { return 'the coin is ' + Math.round(h) + ' h old'; },
+      youngDays: function (dd) { return 'the coin is ' + Math.round(dd) + ' days old'; },
+      holdersUnknown: function () { return 'could not check how the coins are spread across holders'; },
+      noTrading: function (b, v, l) { return 'no trading: ' + b + ' buys and ' + usd(v) + ' volume in 24h against ' + usd(l) + ' liquidity — liquidity for show'; },
+      copy: function (s, a, l) { return 'looks like a copy: the real ' + s + ' is another address (' + CK.short(a) + ', liquidity ' + usd(l) + ') — check the address'; },
+      twin: function (s, a) { return 'there is a bigger ' + s + ' (' + CK.short(a) + ') — check the address'; },
+      mature: function (t) { return 'mature project: ' + tierLine(t); }, grown: function (t) { return 'no longer a newcomer: ' + tierLine(t); },
+      majors: function (m) { return 'trades on major exchanges: ' + m.slice(0, 4).join(', '); },
+    },
+    ru: {
+      honeypot: function () { return 'продать нельзя: это ловушка (honeypot)'; },
+      sellTaxHigh: function (t) { return 'налог на продажу ' + p0(t); }, sellTax: function (t) { return 'налог на продажу ' + p0(t); },
+      mint: function () { return 'владелец может допечатать монеты'; }, takeBack: function () { return 'владелец может вернуть себе контроль'; },
+      hiddenRoles: function () { return 'у контракта есть скрытые права управления (роли вне владельца)'; },
+      rolesBalance: function () { return 'кто-то с правами может менять балансы'; }, rolesMint: function () { return 'кто-то с правами может допечатать монеты'; },
+      blacklist: function () { return 'владелец может заблокировать кошелёк'; }, taxChange: function () { return 'владелец может поменять налог'; },
+      cannotSellAll: function () { return 'нельзя продать всё сразу'; }, proxy: function () { return 'код контракта можно подменить (прокси)'; },
+      unverified: function () { return 'код контракта не опубликован'; }, pause: function () { return 'владелец может остановить торговлю'; },
+      personalTax: function () { return 'налог можно задать отдельному кошельку — так запирают продавцов'; },
+      cooldown: function () { return 'есть пауза между сделками'; }, antiWhale: function () { return 'владелец может менять лимит на размер сделки'; },
+      externalCall: function () { return 'контракт обращается к чужому контракту — его поведение может поменяться'; },
+      creatorHoneypots: function () { return 'этот же автор уже выпускал монеты-ловушки'; },
+      lpPartUnlocked: function (s) { return 'доли пула v2 не заблокированы — это ' + p0(s) + ' всей ликвидности'; },
+      lpAtDev: function (p) { return 'ликвидность у автора (' + p0(p) + ') — может забрать в любой момент'; },
+      lpInContract: function (p) { return 'ликвидность (' + p0(p) + ') лежит в контракте — заблокирована ли, не видно'; },
+      lpUnlocked: function (p) { return 'ликвидность не заблокирована: ' + p0(p) + ' у обычного кошелька — может вывести'; },
+      lpLocked: function (p) { return 'ликвидность заблокирована или сожжена (' + p0(p) + ')'; },
+      snipersHold: function (p) { return 'кошельки, купившие в первые секунды, до сих пор держат ' + p0(p); },
+      creatorHolds: function (p) { return 'у автора ' + p0(p) + ' монет'; },
+      lowLiq: function (l) { return 'ликвидность всего ' + usd(l); },
+      exitLoss: function (l) { return 'при продаже на $500 теряешь ' + p0(l); },
+      exitOk: function (l) { return '$500 продаются почти без потерь (' + pct(l) + ')'; },
+      top10: function (p) { return '10 крупнейших кошельков (без бирж и контрактов) держат ' + p0(p); },
+      devToExchanges: function (p) { return 'автор сам отправил ' + p0(p) + ' монет на кошельки бирж — так делают, чтобы держатели выглядели солиднее'; },
+      fromDev: function (n, p) { return 'кошельков, получивших монеты прямо от автора: ' + n + ', вместе ' + p0(p); },
+      cluster: function (n, p) { return 'кошельков, получивших деньги с одного адреса: ' + n + ', вместе ' + p0(p); },
+      handed: function (n, p) { return 'кошельков, получивших монеты с одного адреса: ' + n + ', вместе ' + p0(p); },
+      devFunded: function (n) { return 'автор сам профинансировал крупных держателей: ' + n; },
+      serialDead: function (n, d) { return 'автор запускал монет: ' + n + ', мертвы ' + d; },
+      someDead: function (n, d) { return 'автор запускал монет: ' + n + ', мертвы ' + d; },
+      burner: function (m) { return 'кошелёк автора получил деньги за ' + Math.round(m) + ' мин до запуска — одноразовый'; },
+      buyersMany: function (n) { return n + ' разных покупателей за сутки'; }, buyersFew: function (n) { return 'всего ' + n + ' разных покупателей за сутки'; },
+      buysMany: function (n) { return n + ' покупок за сутки'; }, buysFew: function (n) { return 'всего ' + n + ' покупок за сутки'; },
+      wash: function () { return 'объём в 20+ раз больше ликвидности — похоже на накрутку'; },
+      bots: function (x) { return 'в среднем ' + Math.round(x) + ' покупок на кошелёк — похоже на ботов'; },
+      young: function (h) { return 'монете ' + Math.round(h) + ' ч'; },
+      youngDays: function (dd) { return 'монете ' + Math.round(dd) + ' дн.'; },
+      holdersUnknown: function () { return 'распределение монет между держателями проверить не удалось'; },
+      noTrading: function (b, v, l) { return 'торговли нет: за сутки покупок ' + b + ', объём ' + usd(v) + ' при ликвидности ' + usd(l) + ' — ликвидность для вида'; },
+      copy: function (s, a, l) { return 'похоже на копию: у настоящего ' + s + ' другой адрес (' + CK.short(a) + ', ликвидность ' + usd(l) + ') — сверь адрес'; },
+      twin: function (s, a) { return 'есть другая монета ' + s + ' крупнее (' + CK.short(a) + ') — сверь адрес'; },
+      mature: function (t) { return 'зрелый проект: ' + tierLine(t); }, grown: function (t) { return 'уже не новичок: ' + tierLine(t); },
+      majors: function (m) { return 'торгуется на крупных биржах: ' + m.slice(0, 4).join(', '); },
+    }
+  };
+  function say(f) { return F[lang][f[0]].apply(null, f.slice(1)); }
+  function sayEn(f) { var keep = lang; lang = 'en'; var s = say(f); lang = keep; return s; }
+
+  var lang = 'en';
+  try { lang = localStorage.getItem('ck-lang') || ((navigator.language || '').toLowerCase().indexOf('ru') === 0 ? 'ru' : 'en'); } catch (e) {}
+  function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) {} return null; }
+
+  // A browser id: paid checks belong to it, so they survive a change of network.
+  var client = store('ck-client');
+  if (!client) { client = (crypto.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2) + Date.now().toString(16)).replace(/[^a-f0-9-]/gi, ''); store('ck-client', client); }
+  // Owner access: opened once as check.html?owner=KEY, remembered in this browser.
+  var params = new URLSearchParams(location.search);
+  if (params.get('owner')) { store('ck-owner', params.get('owner')); history.replaceState(null, '', location.pathname + (params.get('a') ? '?a=' + params.get('a') : '')); }
+  var ownerKey = store('ck-owner');
+  function hdr(extra) { var h = { 'x-client': client }; if (ownerKey) h['x-owner'] = ownerKey; for (var k in extra || {}) h[k] = extra[k]; return h; }
+
+  var q = { left: LIMIT, credits: 0, owner: false }, workerUp = false, last = null;
+
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; }
+  function $(id) { return document.getElementById(id); }
+
+  function paintStatic() {
+    var t = T[lang];
+    document.documentElement.lang = lang;
+    $('t-title').textContent = t.title; $('t-sub').textContent = t.sub; $('t-hint').textContent = t.hint;
+    $('go').textContent = t.go; $('t-foot').innerHTML = t.foot;
+    $('l-en').className = lang === 'en' ? 'on' : ''; $('l-ru').className = lang === 'ru' ? 'on' : '';
+    $('quota').innerHTML = t.quota(q);
+    if (!$('pay').hidden) paintPay();
+    if (last) render(last.d, last.a, last.project);
+  }
+  function setLang(l) { lang = l; store('ck-lang', l); paintStatic(); }
+  $('l-en').onclick = function () { setLang('en'); };
+  $('l-ru').onclick = function () { setLang('ru'); };
+
+  // ---- the limit: the Worker counts; a local counter is the fallback
+  function today() { return new Date().toISOString().slice(0, 10); }
+  function localLeft() { try { var s = JSON.parse(store('ck-quota') || '{}'); return s.day === today() ? Math.max(0, LIMIT - s.used) : LIMIT; } catch (e) { return LIMIT; } }
+  function localUse() { try { var s = JSON.parse(store('ck-quota') || '{}'); if (s.day !== today()) s = { day: today(), used: 0 }; s.used++; store('ck-quota', JSON.stringify(s)); } catch (e) {} }
+  function refreshQuota() {
+    q = { left: localLeft(), credits: 0, owner: false };
+    return fetch(WORKER + '/quota', { headers: hdr() }).then(function (r) { return r.json(); })
+      .then(function (x) { workerUp = true; q = x; paintStatic(); })
+      .catch(function () { workerUp = false; paintStatic(); });
+  }
+  function takeTicket() {
+    if (!workerUp) { if (localLeft() <= 0) return Promise.resolve(null); localUse(); q.left = localLeft(); return Promise.resolve('local'); }
+    return fetch(WORKER + '/start', { method: 'POST', headers: hdr() }).then(function (r) { return r.json(); })
+      .then(function (x) { q.left = x.left; q.credits = x.credits || 0; q.owner = !!x.owner; return x.ok ? x.ticket : null; })
+      .catch(function () { workerUp = false; return takeTicket(); });
+  }
+
+  // ---- paying for more checks
+  var payState = { text: '', cls: '' };
+  function paintPay() {
+    var t = T[lang], box = $('pay');
+    box.innerHTML = '';
+    box.appendChild(el('h2', null, t.payTitle));
+    box.appendChild(el('p', null, t.payText));
+    var packs = el('div', 'packs');
+    PACKS.forEach(function (n) { var b = el('button'); b.type = 'button'; b.innerHTML = t.pack(n); b.onclick = function () { buy(n); }; packs.appendChild(b); });
+    box.appendChild(packs);
+    box.appendChild(el('div', 'paystat ' + payState.cls, payState.text));
+  }
+  function showPay() { $('pay').hidden = false; paintPay(); $('pay').scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+  function payStatus(text, cls) { payState = { text: text, cls: cls || '' }; paintPay(); }
+  function pad(hex) { return hex.replace(/^0x/, '').toLowerCase().padStart(64, '0'); }
+  function wallet() { return window.ethereum || window.coinbaseWalletExtension || null; }
+  function sleep(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+  function lockPacks(on) { Array.prototype.forEach.call(document.querySelectorAll('.packs button'), function (b) { b.disabled = on; }); }
+
+  function buy(n) {
+    var t = T[lang], p = wallet();
+    if (!p) { payStatus(t.noWallet, 'bad'); return; }
+    var from, amount = BigInt(n) * 100000n;
+    lockPacks(true);
+    p.request({ method: 'eth_requestAccounts' }).then(function (acc) {
+      from = acc[0];
+      return p.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: '0x2105' }] }).catch(function (e) {
+        if (e && e.code === 4902) return p.request({ method: 'wallet_addEthereumChain', params: [{ chainId: '0x2105', chainName: 'Base', nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 }, rpcUrls: ['https://mainnet.base.org'], blockExplorerUrls: ['https://basescan.org'] }] });
+        throw e;
+      });
+    }).then(function () {
+      return p.request({ method: 'eth_call', params: [{ to: USDC, data: '0x70a08231' + pad(from) }, 'latest'] });
+    }).then(function (bal) {
+      if (BigInt(bal || '0x0') < amount) throw new Error(t.lowUsdc);
+      payStatus(t.wait);
+      // transfer(PAY_TO, amount) + builder code: contracts ignore the tail, Base's indexer reads it.
+      var data = '0xa9059cbb' + pad(PAY_TO) + pad(amount.toString(16)) + BUILDER_SUFFIX;
+      return p.request({ method: 'eth_sendTransaction', params: [{ from: from, to: USDC, data: data, value: '0x0' }] });
+    }).then(function (tx) {
+      payStatus(t.sent);
+      store('ck-pending-tx', tx); // kept until credited: a paid check must never be lost
+      return confirmPayment(tx);
+    }).catch(function (e) {
+      payStatus(t.payFail((e && (e.message || e.reason)) || String(e)), 'bad');
+    }).then(function () { lockPacks(false); });
+  }
+
+  // Ask the Worker to credit a sent payment, retrying while it is not mined yet
+  // or a node hiccups. On 23.09.2026 a real payment went through on chain but the
+  // Worker's node refused, and the check was only credited by hand.
+  function confirmPayment(tx) {
+    var t = T[lang], tries = 0;
+    function poll() {
+      tries++;
+      return fetch(WORKER + '/pay', { method: 'POST', headers: hdr({ 'content-type': 'application/json' }), body: JSON.stringify({ tx: tx }) })
+        .then(function (r) { return r.json(); }, function () { return { pending: true }; }).then(function (x) {
+          if (x.ok || x.error === 'used') { store('ck-pending-tx', ''); q.credits = x.credits || q.credits; paintStatic(); if (x.ok) payStatus(t.done(x.added, x.credits), 'ok'); return; }
+          if ((x.pending || /blockscout|node|rpc|fetch|429|5\d\d/i.test(x.error || '')) && tries < 45) return sleep(4000).then(poll);
+          if (/no payment|too old|failed tx|bad tx/.test(x.error || '')) store('ck-pending-tx', '');
+          throw new Error(x.error || 'not confirmed');
+        });
+    }
+    return poll();
+  }
+
+  // ---- steps
+  var STEP_ORDER = ['market', 'contract', 'people', 'project'];
+  function showStep(k) {
+    var box = $('steps'); box.innerHTML = '';
+    var reached = true;
+    STEP_ORDER.forEach(function (s) {
+      var cls = s === k ? 'step now' : reached ? 'step done' : 'step';
+      if (s === k) reached = false;
+      box.appendChild(el('div', cls, (cls === 'step done' ? '✓ ' : '• ') + T[lang].steps[s]));
+    });
+  }
+
+  // ---- the standard scanner table
+  function checklist(d, a) {
+    var ru = lang === 'ru', gp = d.gp, hp = d.hp, rows = [];
+    var yes = function (k) { return String(gp[k]) === '1'; }, known = function (k) { return gp[k] !== undefined && gp[k] !== null && gp[k] !== ''; };
+    var owner = (gp.owner_address || '').toLowerCase(), renounced = !owner || CK.BURN.has(owner);
+    var hr = hp.honeypotResult || {}, sim = hp.simulationResult || {};
+    if (hp.honeypotResult || known('is_honeypot')) {
+      var trap = hr.isHoneypot || yes('is_honeypot');
+      rows.push((trap ? '❌ ' : '✅ ') + (ru ? (trap ? 'Продать нельзя (ловушка)' : 'Продать можно — продажа проходит в симуляции') : (trap ? 'Cannot sell (trap)' : 'Sellable — a sale passes in simulation')));
+    } else rows.push('➖ ' + (ru ? 'Проверка продажи для этой сети недоступна' : 'Sell check is not available for this chain'));
+    var bt = sim.buyTax, st = sim.sellTax;
+    if (bt === undefined && known('buy_tax')) bt = parseFloat(gp.buy_tax) * 100;
+    if (st === undefined && known('sell_tax')) st = parseFloat(gp.sell_tax) * 100;
+    if (bt !== undefined || st !== undefined) {
+      var hi = (bt || 0) > 5 || (st || 0) > 5;
+      rows.push((hi ? '❌ ' : '✅ ') + (ru ? 'Налог: покупка ' : 'Tax: buy ') + Math.round(bt || 0) + (ru ? '%, продажа ' : '%, sell ') + Math.round(st || 0) + '%');
+    }
+    if (Object.keys(gp).length) {
+      rows.push((renounced ? '✅ ' : '⚠️ ') + (ru ? (renounced ? 'Владелец отказался от контракта' : 'Владелец на месте: ' + CK.short(owner)) : (renounced ? 'Owner renounced' : 'Owner present: ' + CK.short(owner))));
+      var pairs = [['is_mintable', 'допечатка монет', 'minting'], ['is_blacklisted', 'блокировка кошельков', 'wallet blacklist'],
+        ['transfer_pausable', 'остановка торговли', 'trading pause'], ['slippage_modifiable', 'смена налога', 'tax change'],
+        ['personal_slippage_modifiable', 'налог отдельному кошельку', 'per-wallet tax'], ['can_take_back_ownership', 'возврат владения', 'ownership take-back'],
+        ['hidden_owner', 'скрытый владелец', 'hidden owner'], ['is_proxy', 'подмена кода (прокси)', 'code swap (proxy)'],
+        ['selfdestruct', 'самоуничтожение контракта', 'self-destruct'], ['is_anti_whale', 'лимит на размер сделки', 'trade size limit'],
+        ['trading_cooldown', 'пауза между сделками', 'trade cooldown']];
+      var present = pairs.filter(function (p) { return yes(p[0]); }).map(function (p) { return ru ? p[1] : p[2]; });
+      var absent = pairs.filter(function (p) { return known(p[0]) && !yes(p[0]); }).map(function (p) { return ru ? p[1] : p[2]; });
+      if (present.length) rows.push('⚠️ ' + (ru ? 'Есть в коде: ' : 'In the code: ') + present.join(', ') + (renounced && !yes('hidden_owner') ? (ru ? ' (но владелец отказался)' : ' (but the owner renounced)') : ''));
+      if (absent.length) rows.push('✅ ' + (ru ? 'Нет в коде: ' : 'Not in the code: ') + absent.join(', '));
+      var open = gp.is_open_source === '1';
+      rows.push((open ? '✅ ' : '❌ ') + (ru ? (open ? 'Код контракта опубликован' : 'Код контракта скрыт') : (open ? 'Source published' : 'Source hidden')));
+      if (yes('honeypot_with_same_creator')) rows.push('❌ ' + (ru ? 'Автор уже выпускал монеты-ловушки' : 'The deployer has launched honeypots before'));
+    } else rows.push('➖ ' + (ru ? 'Разбор кода контракта для этой сети недоступен' : 'Contract code check is not available for this chain'));
+    var lp = a.lp;
+    if (lp.v2 && lp.lockedPct !== null && lp.share < 10) rows.push('➖ ' + (ru ? 'Блокировка ликвидности: сканеры видят только малый пул v2 (' + p0(lp.share) + ' ликвидности), по основным пулам не проверить' : 'Liquidity lock: scanners only see a small v2 pool (' + p0(lp.share) + ' of liquidity); the main pools cannot be checked'));
+    else if (lp.v2 && lp.lockedPct !== null) {
+      if (lp.lockedPct >= 90) rows.push('✅ ' + (ru ? 'Ликвидность заблокирована или сожжена: ' : 'Liquidity locked or burned: ') + p0(lp.lockedPct));
+      else {
+        var who = lp.top ? (lp.top.addr === (d.dev.dev || '') ? (ru ? ' — у автора' : ' — held by the deployer') : lp.top.contract ? (ru ? ' — в контракте ' : ' — in contract ') + CK.short(lp.top.addr) : (ru ? ' — у кошелька ' : ' — in wallet ') + CK.short(lp.top.addr)) : '';
+        var part = lp.share >= 90 ? '' : (ru ? ' (пул v2 — ' + p0(lp.share) + ' всей ликвидности)' : ' (a v2 pool — ' + p0(lp.share) + ' of liquidity)');
+        rows.push((lp.share >= 50 ? '❌ ' : '⚠️ ') + (ru ? 'Ликвидность заблокирована на ' : 'Liquidity locked: ') + p0(lp.lockedPct) + (ru ? ', свободно ' : ', free ') + p0(lp.top ? lp.top.pct : 0) + who + part);
+      }
+    } else if (lp.onlyV3V4) rows.push('➖ ' + (ru ? 'Ликвидность в пулах Uniswap v3/v4 — блокировку там не проверить; следи за её падением' : 'Liquidity is in Uniswap v3/v4 pools — locks cannot be checked there; watch for it dropping'));
+    if (known('creator_percent')) { var cp = parseFloat(gp.creator_percent) * 100; rows.push((cp <= 5 ? '✅ ' : '❌ ') + (ru ? 'У автора сейчас ' : 'Deployer holds now: ') + pct(cp)); }
+    var sn = d.snipe;
+    if (sn && sn.found) rows.push((sn.stillPct > 15 ? '❌ ' : sn.early >= 10 ? '⚠️ ' : '✅ ') + (ru ? 'Снайперы — кошельки, скупившие монету в первые ~6 с после запуска (боты или свои): ' : 'Snipers — wallets that bought in the first ~6 s after launch (bots or insiders): ') + sn.early + (sn.sameBlock > 1 ? (ru ? ', из них ' + sn.sameBlock + ' в самом первом блоке' : ', ' + sn.sameBlock + ' in the very first block') : '') + (ru ? '. Сейчас у них ' : '. They hold now ') + pct(sn.stillPct) + ' — ' + (sn.stillPct > 15 ? (ru ? 'могут разом продать и обвалить цену' : 'they can dump at once and crash the price') : sn.stillPct < 3 ? (ru ? 'угрозы сброса почти нет' : 'little risk of a dump') : (ru ? 'следи, не начнут ли продавать' : 'watch whether they start selling')));
+    else if (sn && !sn.found) rows.push('✅ ' + (ru ? 'Снайперов на старте не видно' : 'No snipers seen at launch'));
+    return rows;
+  }
+
+  function card(title, cls) { var s = el('section', 'card' + (cls ? ' ' + cls : '')); s.appendChild(el('h2', null, title)); return s; }
+  function line(parent, text, cls) { parent.appendChild(el('p', cls, text)); }
+  function band(tr) { return tr <= 2 ? 0 : tr <= 4 ? 1 : tr <= 6 ? 2 : tr <= 8 ? 3 : 4; }
+
+  function render(d, a, project) {
+    var t = T[lang], ru = lang === 'ru', out = $('out');
+    out.innerHTML = '';
+    if (d.error) { out.appendChild(el('div', 'err', d.error === 'chain' ? t.chain(d.chain) : d.error === 'dead' ? t.dead(d) : t.notfound)); return; }
+    var r = el('div', 'report');
+    var head = el('div', 'head');
+    head.appendChild(el('span', 'sym', d.symbol)); head.appendChild(el('span', 'nm', d.name + ' · ' + (d.chain === 'base' ? 'Base' : 'Robinhood Chain')));
+    r.appendChild(head); r.appendChild(el('div', 'addr', d.address));
+
+    var b = band(a.trust);
+    var sc = el('div', 'score t' + Math.min(4, b + 1), ['🔴', '🟠', '🟡', '🟢', '🟢'][b] + ' ' + t.trust + ' ' + a.trust + '/10 — ' + t.labels[b]);
+    var bar = el('div', 'bar'); bar.style.color = ['var(--red)', 'var(--orange)', 'var(--yellow)', 'var(--green)', 'var(--green)'][b];
+    for (var i = 1; i <= 10; i++) bar.appendChild(el('i', i <= a.trust ? 'on' : ''));
+    sc.appendChild(bar); r.appendChild(sc);
+    r.appendChild(el('p', 'scale', t.scale));
+
+    if (a.hard.length || a.up.length) {
+      r.appendChild(el('h3', null, t.lowers));
+      var u1 = el('ul', 'find');
+      a.hard.forEach(function (f) { u1.appendChild(el('li', null, '⛔ ' + say(f))); });
+      a.up.forEach(function (f) { u1.appendChild(el('li', null, '⚠️ ' + say(f))); });
+      r.appendChild(u1);
+    }
+    if (a.down.length) {
+      r.appendChild(el('h3', null, t.raises));
+      var u2 = el('ul', 'find');
+      a.down.forEach(function (f) { u2.appendChild(el('li', null, '✅ ' + say(f))); });
+      r.appendChild(u2);
+    }
+    if (a.rights.length) {
+      var rc = card(t.rightsTitle, 'rights'); line(rc, t.rightsNote, 'note');
+      a.rights.forEach(function (f) { line(rc, '• ' + say(f)); }); r.appendChild(rc);
+    }
+
+    var ageTxt = d.ageH >= 48 ? Math.round(d.ageH / 24) + (ru ? ' дн.' : ' days') : Math.round(d.ageH || 0) + (ru ? ' ч' : ' h');
+    var m = card(t.market);
+    line(m, (ru ? 'Капа ' : 'Market cap ') + usd(d.mcap) + (ru ? ' · ликвидность ' : ' · liquidity ') + usd(d.liq) + (ru ? ' · объём за сутки ' : ' · 24h volume ') + usd(d.vol));
+    line(m, (ru ? 'Возраст ' : 'Age ') + ageTxt + (ru ? ' · пулов ' : ' · pools ') + d.pools + (ru ? ' · держателей ' : ' · holders ') + (d.holderCount ? d.holderCount.toLocaleString(ru ? 'ru-RU' : 'en-US') : '?'));
+    if (d.buyers !== null) line(m, (ru ? 'За сутки: ' : '24h: ') + d.buyers + (ru ? ' покупателей, ' : ' buyers, ') + d.sellers + (ru ? ' продавцов' : ' sellers'));
+    else line(m, (ru ? 'За сутки: ' : '24h: ') + d.dsBuys + (ru ? ' покупок, ' : ' buys, ') + d.dsSells + (ru ? ' продаж' : ' sells'));
+    var trapSale = a.hard.some(function (f) { return f[0] === 'honeypot'; });
+    if (Object.keys(d.exits).length) {
+      if (trapSale) line(m, ru ? 'Маршрут обмена обещает выкуп, но симуляция продажи падает — этим цифрам не верь' : 'The swap route quotes a price, but the sell simulation fails — do not trust these numbers');
+      else line(m, (ru ? 'Продать сейчас: ' : 'Sell now: ') + Object.keys(d.exits).map(function (k) { return '$' + Number(k).toLocaleString('en-US') + ' → $' + Math.round(d.exits[k][1]).toLocaleString('en-US'); }).join(' · '));
+    }
+    r.appendChild(m);
+
+    var c = card(t.contract); checklist(d, a).forEach(function (s) { line(c, s); }); r.appendChild(c);
+
+    var w = card(t.who), dv = d.dev || {};
+    if (dv.dev) {
+      line(w, (ru ? 'Автор ' : 'Deployer ') + CK.short(dv.dev));
+      if (dv.funder) {
+        var mins = dv.fundedBeforeMin, when = '';
+        if (mins !== null && mins !== undefined) when = mins < 120 ? (ru ? ', за ' + Math.round(mins) + ' мин до запуска' : ', ' + Math.round(mins) + ' min before launch') : mins < 2880 ? (ru ? ', за ' + Math.round(mins / 60) + ' ч до запуска' : ', ' + Math.round(mins / 60) + ' h before launch') : (ru ? ', за ' + Math.round(mins / 1440) + ' дн. до запуска' : ', ' + Math.round(mins / 1440) + ' days before launch');
+        line(w, (ru ? 'Первые деньги: ' : 'First money from: ') + CK.short(dv.funder) + (dv.funderLabel ? ' (' + (dv.funderLabel === 'exchange' ? (ru ? 'биржа или мост' : 'exchange or bridge') : dv.funderLabel) + ')' : '') + (dv.funderAmount ? ' ' + dv.funderAmount.toFixed(4) + ' ETH' : '') + when);
+      }
+      if (dv.devHistoryComplete === false && !dv.funder) line(w, ru ? 'Кошелёк давний и активный: больше ' + (dv.devTxCount || 150) + ' операций — не одноразовый' : 'An old, active wallet: more than ' + (dv.devTxCount || 150) + ' transactions — not a burner');
+      var L = dv.launches || [];
+      if (L.length) { var alive = L.filter(function (l) { return l.liq >= 1000; }); line(w, (ru ? 'Другие его монеты: ' : 'His other coins: ') + L.length + (ru ? ', живы ' : ', alive ') + alive.length + (alive.length ? ' (' + alive.sort(function (x, y) { return y.liq - x.liq; }).slice(0, 4).map(function (l) { return l.symbol + ' ' + usd(l.liq); }).join(', ') + ')' : '')); }
+      else line(w, ru ? 'Других запусков с этого кошелька не видно' : 'No other launches from this wallet');
+    } else line(w, ru ? 'Автора определить не удалось' : 'Could not identify the deployer');
+    r.appendChild(w);
+
+    var h = card(t.holders);
+    d.holders.rows.slice(0, 6).forEach(function (row) {
+      var tag = { pool: ru ? 'пул' : 'pool', burn: ru ? 'сожжено' : 'burned', contract: ru ? 'контракт' : 'contract' }[row.kind] || '';
+      if (row.kind === 'contract' && row.name) tag += ' ' + row.name;
+      if (row.isDev) tag = ru ? 'автор' : 'deployer';
+      else if (row.gotFrom && row.gotFrom === dv.dev) tag = row.exchange ? (ru ? 'биржа, получила от автора' : 'exchange, got it from the deployer') : (ru ? 'получил от автора' : 'got it from the deployer');
+      else if (row.exchange) tag = ru ? 'биржа' : 'exchange';
+      else if (row.gotFrom === 'pool') tag = ru ? 'купил' : 'bought';
+      line(h, pct(row.pct) + '  ' + CK.short(row.address) + '  ' + tag);
+    });
+    d.holders.clusters.slice(0, 2).forEach(function (cl) { line(h, '🔗 ' + (ru ? 'кошельков с деньгами от ' : 'wallets funded by ') + CK.short(cl[0]) + ': ' + cl[1].length + (ru ? ', вместе ' : ', together ') + p0(cl[1].reduce(function (s, x) { return s + x.pct; }, 0))); });
+    r.appendChild(h);
+
+    var p = card(t.project, 'proj');
+    if (project === undefined) line(p, t.projWait, 'note');
+    else if (!project) line(p, t.projOff, 'note');
+    else {
+      line(p, project.text);
+      if (project.sources && project.sources.length) {
+        var src = el('p', 'note'); src.appendChild(document.createTextNode(ru ? 'Источники: ' : 'Sources: '));
+        project.sources.forEach(function (s, i) { var aEl = el('a', null, '[' + s.n + ']'); aEl.href = s.url; aEl.target = '_blank'; aEl.rel = 'noopener nofollow'; if (i) src.appendChild(document.createTextNode(' · ')); src.appendChild(aEl); });
+        p.appendChild(src);
+      }
+      if (project.note) line(p, project.note, 'note');
+    }
+    r.appendChild(p);
+
+    var sh = el('button', 'share', t.share); sh.type = 'button';
+    sh.onclick = function () {
+      var link = location.origin + location.pathname + '?a=' + d.address;
+      (navigator.clipboard ? navigator.clipboard.writeText(link) : Promise.reject()).then(function () { sh.textContent = t.copied; }, function () { window.prompt('', link); });
+    };
+    r.appendChild(sh);
+    r.appendChild(el('p', 'note', t.base));
+    if (d.url) { var links = el('p', 'note'); var g = el('a', null, ru ? 'График' : 'Chart'); g.href = d.url; g.target = '_blank'; g.rel = 'noopener'; links.appendChild(g); r.appendChild(links); }
+    out.appendChild(r);
+  }
+
+  function facts(d, a) {
+    return { symbol: d.symbol, name: d.name, chain: d.chain, address: d.address, websites: d.websites, socials: d.socials,
+      trust: a.trust, verdict: 'TRUST ' + a.trust + '/10', stop: a.hard.map(sayEn), warn: a.up.map(sayEn), good: a.down.map(sayEn), rights: a.rights.map(sayEn),
+      mcap: d.mcap, liq: d.liq, vol: d.vol, ageH: d.ageH, buyers: d.buyers, sellers: d.sellers, dsBuys: d.dsBuys, dsSells: d.dsSells,
+      cg: { name: d.cg.name, id: d.cg.id, updated: d.cg.updated, categories: d.cg.categories, genesis: d.cg.genesis,
+        description: d.cg.description, homepage: d.cg.homepage, repos: d.cg.repos, cex: (d.cg.cex || []).length } };
+  }
+
+  function run() {
+    var m = CK.ADDR_RE.exec($('addr').value || '');
+    $('out').innerHTML = '';
+    if (!m) { $('out').appendChild(el('div', 'err', T[lang].badAddr)); return; }
+    $('go').disabled = true;
+    takeTicket().then(function (ticket) {
+      paintStatic();
+      if (!ticket) { $('go').disabled = false; showPay(); return; }
+      CK.collect(m[0], showStep).then(function (d) {
+        if (d.error) { $('steps').innerHTML = ''; last = null; render(d); $('go').disabled = false; return; }
+        var a = CK.assess(d);
+        last = { d: d, a: a, project: undefined };
+        showStep('project'); render(d, a, undefined);
+        var proj = ticket === 'local' ? Promise.resolve(null) :
+          fetch(WORKER + '/read', { method: 'POST', headers: hdr({ 'content-type': 'application/json' }), body: JSON.stringify({ ticket: ticket, lang: lang, facts: facts(d, a) }) })
+            .then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
+        proj.then(function (pr) {
+          last.project = pr && pr.text ? pr : null;
+          $('steps').innerHTML = ''; render(d, a, last.project); $('go').disabled = false;
+        });
+      }).catch(function (e) {
+        $('steps').innerHTML = ''; $('out').appendChild(el('div', 'err', String(e && e.message || e))); $('go').disabled = false;
+      });
+    });
+  }
+  $('f').onsubmit = function (ev) { ev.preventDefault(); run(); };
+
+  if (params.get('a')) $('addr').value = params.get('a');
+  paintStatic();
+  refreshQuota().then(function () {
+    var pend = store('ck-pending-tx');
+    if (pend) confirmPayment(pend).catch(function () {});
+    if (params.get('a') && params.get('go') === '1') run();
+  });
+})();
+</script>
+</body>
+</html>
