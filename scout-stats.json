@@ -1,9 +1,9 @@
 {
- "generated_at": "2026-09-23T21:55:17Z",
- "generated_at_unix": 1790200516,
+ "generated_at": "2026-09-24T10:42:50Z",
+ "generated_at_unix": 1790246568,
  "period": {
   "start": "2026-07-15",
-  "days": 70
+  "days": 71
  },
  "totals": {
   "seen": 172469,
@@ -20,8 +20,8 @@
  "daily": [
   {
    "date": "2026-09-03",
-   "base": 437,
-   "robinhood": 3600
+   "base": 346,
+   "robinhood": 3033
   },
   {
    "date": "2026-09-04",
@@ -753,7 +753,7 @@
   "rug": 946
  },
  "watchlist_active": 13,
- "price_snapshots": 23845,
+ "price_snapshots": 23416,
  "caveat": "Daily counts reflect what the scanner saw, so they dip when it was rate-limited or offline.",
  "disclaimer": "Automated checks against public APIs. Not advice, not an endorsement - names can be copied and checks can be wrong. Contract checks find traps in the code; they cannot tell you whether a token is worth holding. Verify anything yourself before touching it."
 }
