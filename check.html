@@ -40,6 +40,8 @@ header{border-bottom:1px solid var(--border); background:var(--bg2)}
   border-radius:12px; padding:12px 16px; font-size:14.5px; color:var(--muted)}
 .quota b{color:var(--text)}
 .hero{padding:22px 0 8px}
+.beta{display:inline-block; font-size:12px; font-weight:800; letter-spacing:.06em; color:var(--yellow); border:1px solid var(--yellow); border-radius:6px; padding:2px 8px; margin-bottom:10px}
+.beta span{font-weight:600; letter-spacing:0; color:var(--muted); margin-left:6px}
 h1{margin:0 0 8px; font-size:30px; line-height:1.2; letter-spacing:-.02em}
 .sub{margin:0; color:var(--muted); font-size:16px; max-width:64ch}
 form{display:flex; gap:10px; margin:20px 0 6px; flex-wrap:wrap}
@@ -110,6 +112,7 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
 <div class="wrap">
   <div class="quota" id="quota"></div>
   <div class="hero">
+    <div class="beta" id="t-beta"></div>
     <h1 id="t-title"></h1>
     <p class="sub" id="t-sub"></p>
   </div>
@@ -147,6 +150,7 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
       title: 'How far can you trust this token?', go: 'Check',
       sub: 'Paste a Base or Robinhood Chain token address. In about a minute you get a trust score from 1 to 10 and what it is made of: can you actually sell it, who launched it and what became of their earlier coins, which big holders got coins straight from the deployer, what a $500 exit really returns — and a project read built only from sources it can cite.',
       hint: 'The score is a risk check, not advice. The decision is yours.',
+      beta: 'BETA<span>the score is still being checked against what really happened to the coins</span>',
       quota: function (q) {
         if (q.owner) return '<b>Unlimited checks</b> — owner access.';
         var s = q.left > 0 ? '<b>' + LIMIT + ' free checks a day.</b> Left today: <b>' + q.left + '</b>.' : '<b>Free checks for today are used up.</b> They come back at midnight UTC.';
@@ -181,6 +185,7 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
       title: 'Насколько можно доверять этой монете?', go: 'Проверить',
       sub: 'Вставь адрес токена в сети Base или Robinhood Chain. Примерно за минуту — оценка надёжности от 1 до 10 и из чего она сложилась: можно ли её продать, кто её запустил и что стало с его прошлыми монетами, кто из крупных держателей получил монеты прямо от автора, сколько реально вернёшь при продаже на $500 — и разбор проекта только по источникам, на которые можно сослаться.',
       hint: 'Оценка — это проверка рисков, а не совет. Решение за тобой.',
+      beta: 'БЕТА<span>шкалу ещё сверяем с тем, что реально стало с монетами</span>',
       quota: function (q) {
         if (q.owner) return '<b>Проверки без лимита</b> — доступ владельца.';
         var s = q.left > 0 ? '<b>Лимит — ' + LIMIT + ' бесплатные проверки в день.</b> Сегодня осталось: <b>' + q.left + '</b>.' : '<b>Бесплатные проверки на сегодня закончились.</b> Обновятся в полночь по UTC.';
@@ -342,7 +347,7 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
   function paintStatic() {
     var t = T[lang];
     document.documentElement.lang = lang;
-    $('t-title').textContent = t.title; $('t-sub').textContent = t.sub; $('t-hint').textContent = t.hint;
+    $('t-beta').innerHTML = t.beta; $('t-title').textContent = t.title; $('t-sub').textContent = t.sub; $('t-hint').textContent = t.hint;
     $('go').textContent = t.go; $('t-foot').innerHTML = t.foot;
     $('l-en').className = lang === 'en' ? 'on' : ''; $('l-ru').className = lang === 'ru' ? 'on' : '';
     $('quota').innerHTML = t.quota(q);
