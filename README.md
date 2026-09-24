@@ -10,13 +10,14 @@ https://deftools.xyz/
 
 ## What's inside
 
-20 tools across 8 categories:
+24 tools across 9 categories:
 
-- **Wallets & Apps** — Coinbase Wallet, Rabby, Rainbow
+- **Wallets & Apps** — Coinbase Wallet, Rabby, Rainbow, Glider
 - **AI Agents** — Virtuals Protocol, Bankr
+- **Launchpads** — The Stonks Exchange, Feel.cash
 - **Trading Bots** — Banana Gun, Fomo, GMGN.ai, Maestro
 - **Terminals** — DexScreener, DEXTools, GeckoTerminal, Basescan
-- **Tracking & Alerts** — Cielo Finance, RayBot
+- **Tracking & Alerts** — Cielo Finance, RayBot, Blocktronics
 - **Bridges** — Relay
 - **DEX & Swap** — Aerodrome Finance, Uniswap, Matcha
 - **Lending** — Morpho
