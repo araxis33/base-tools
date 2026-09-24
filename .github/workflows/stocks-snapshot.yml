@@ -1,0 +1,41 @@
+name: stocks snapshot
+
+# Every hour from Friday to Monday's open, record the ten Coinbase stocks on
+# Base: real share, Chainlink feed, DEX price and a $1,000 round trip. The
+# rows go to the stocks-data branch so the site's history stays clean.
+on:
+  schedule:
+    - cron: "7 * * * 5,6,0"
+    - cron: "7 0-15 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency: stocks-snapshot
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/stocks-snapshot.js > row.json
+      - name: Append to the stocks-data branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git fetch origin stocks-data; then
+            git worktree add data origin/stocks-data
+            git -C data checkout -B stocks-data
+          else
+            git worktree add --detach data
+            git -C data checkout --orphan stocks-data
+            git -C data rm -rfq .
+          fi
+          cat row.json >> data/snapshots.jsonl
+          git -C data add snapshots.jsonl
+          git -C data commit -qm "Stocks snapshot $(date -u +%Y-%m-%dT%H:%M)"
+          git -C data push origin stocks-data
