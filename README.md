@@ -10,17 +10,14 @@ https://deftools.xyz/
 
 ## What's inside
 
-24 tools across 9 categories:
+24 tools across 6 categories:
 
-- **Wallets & Apps** — Coinbase Wallet, Rabby, Rainbow, Glider
-- **AI Agents** — Virtuals Protocol, Bankr
-- **Launchpads** — The Stonks Exchange, Feel.cash
-- **Trading Bots** — Banana Gun, Fomo, GMGN.ai, Maestro
+- **Wallets & Apps** — Coinbase Wallet, Rabby, Rainbow, Fomo
+- **Stocks & Launchpads** — Glider, The Stonks Exchange, Feel.cash, Virtuals Protocol
+- **Trading Bots** — Banana Gun, GMGN.ai, Maestro, Bankr
 - **Terminals** — DexScreener, DEXTools, GeckoTerminal, Basescan
 - **Tracking & Alerts** — Cielo Finance, RayBot, Blocktronics
-- **Bridges** — Relay
-- **DEX & Swap** — Aerodrome Finance, Uniswap, Matcha
-- **Lending** — Morpho
+- **DeFi: swap, bridge, lend** — Aerodrome Finance, Uniswap, Matcha, Relay, Morpho
 
 Four live boards: biggest 24h losers (with a volume floor, so the list is real sell-offs rather than untraded dust), best 24h gainers, a hand-picked blue-chip list, and the ten tokenized equities on Base. The first three are built from CoinGecko's `base-ecosystem` category, filtered down to tokens whose only chain is Base; the equities are priced straight from their pools, because CoinGecko does not carry them.
 

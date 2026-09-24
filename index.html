@@ -753,7 +753,7 @@
     <div class="section-head">
       <div>
         <div class="section-title">Directory</div>
-        <div class="section-sub">Apps, launchpads, bots, terminals, trackers, bridges, DEXs and lending. A <svg class="ic ic-solid" style="color:var(--yellow)" aria-hidden="true"><use href="#i-star"/></svg> marks what I use myself, or hit <b style="color:var(--yellow)">My stack</b> to see only those.</div>
+        <div class="section-sub">Apps, stocks and launchpads, bots, terminals, trackers and DeFi. A <svg class="ic ic-solid" style="color:var(--yellow)" aria-hidden="true"><use href="#i-star"/></svg> marks what I use myself, or hit <b style="color:var(--yellow)">My stack</b> to see only those.</div>
       </div>
     </div>
     <div class="filters" id="filters" role="group" aria-label="Filter tools by category"></div>
@@ -973,66 +973,51 @@
 // Muted category colors — visible but not loud
 const CAT_STYLE = {
   "Wallets & Apps":     { color:"#4d8dff", bg:"rgba(77,141,255,0.12)" },
-  // Magenta is the one hue the other seven leave open - the nearest neighbour
-  // is DEX & Swap's purple, 56 degrees away, so the blocks stay tellable apart.
-  "AI Agents":          { color:"#d67ab0", bg:"rgba(214,122,176,0.12)" },
-  // Lime sits between Trading Bots' amber and Lending's green, far enough from both.
-  "Launchpads":         { color:"#a3c24a", bg:"rgba(163,194,74,0.12)" },
+  "Stocks & Launchpads": { color:"#a3c24a", bg:"rgba(163,194,74,0.12)" },
   "Trading Bots":       { color:"#e0a336", bg:"rgba(224,163,54,0.12)" },
   "Terminals":          { color:"#5b8fd6", bg:"rgba(91,143,214,0.12)" },
   "Tracking & Alerts":  { color:"#4fb3a9", bg:"rgba(79,179,169,0.12)" },
-  "Bridges":            { color:"#c97a4a", bg:"rgba(201,122,74,0.12)" },
-  "DEX & Swap":         { color:"#9b7bd6", bg:"rgba(155,123,214,0.12)" },
-  "Lending":            { color:"#5fbf7e", bg:"rgba(95,191,126,0.12)" },
+  "DeFi: swap, bridge, lend": { color:"#9b7bd6", bg:"rgba(155,123,214,0.12)" },
 };
 
 // `fav: true` marks what I actually reach for, surfaced by the "My stack"
 // filter. `ref: true` means the link carries my referral code and the card
 // says so — the footer's honesty claim depends on that being visible.
 const TOOLS = [
+  // Fomo sits with the apps: a one-tap trading app with a feed, not a Telegram bot.
   {name:"Coinbase Wallet", cat:"Wallets & Apps", fav:true, ref:true, desc:"The self-custodial Coinbase app, called Base App until September 2026. Trade, earn and use onchain apps from one place. Where I'd start someone new to Base.", url:"https://base.app/invite/araxis/BS04CF6M"},
   {name:"Rabby", cat:"Wallets & Apps", fav:true, desc:"EVM wallet built for people who actually sign things. Simulates a transaction before you approve it, so you see what it does to your balances, and warns on contracts known to be malicious. The wallet I sign everything with.", url:"https://rabby.io"},
   {name:"Rainbow", cat:"Wallets & Apps", desc:"Mobile-first wallet with proper Base support and a genuinely readable interface. The one to hand someone who bounced off everything else.", url:"https://rainbow.me"},
-  {name:"Glider", cat:"Wallets & Apps", desc:"Automated portfolios of crypto, tokenized US stocks and gold that rebalance on their own schedule without ever holding your money. Coinbase and Bitwise build their tokenized-stock portfolios on it. 0.3% on the trades it makes, no annual fee.", url:"https://glider.fi"},
+  {name:"Fomo", cat:"Wallets & Apps", fav:true, ref:true, desc:"Social trading app for Base, Solana, BNB and Robinhood Chain: one-tap buys with no bridging, plus feeds of what other traders are doing. A trade costs 0.5%; this link takes 10% off that.", url:"https://fomo.family/r/Def7771"},
 
-  // Base's signature sector, and the one the directory was missing entirely.
-  // Bankr moves here out of Trading Bots: it is an agent you talk to, not a
-  // Telegram sniper like the three that remain there.
-  {name:"Virtuals Protocol", cat:"AI Agents", desc:"Launchpad and marketplace for tokenized AI agents. Launch your own, or buy into someone else's through its token. 17,000+ agents so far, and the sector Base is best known for.", url:"https://www.virtuals.io"},
-  {name:"Bankr", cat:"AI Agents", fav:true, desc:"AI agent that buys, sells, swaps and places limit orders from a plain chat command, without opening a DEX interface.", url:"https://bankr.bot"},
+  // Tokenized stocks and the launchpads built on them, with Virtuals as the agent launchpad.
+  {name:"Glider", cat:"Stocks & Launchpads", desc:"Automated portfolios of crypto, tokenized US stocks and gold that rebalance on their own schedule without ever holding your money. Coinbase and Bitwise build their tokenized-stock portfolios on it. 0.3% on the trades it makes, no annual fee.", url:"https://glider.fi"},
+  {name:"The Stonks Exchange", cat:"Stocks & Launchpads", desc:"Launchpad where a new coin is paired with a Coinbase tokenized stock instead of ETH, so it trades against NVDA, AAPL or TSLA from the first block. 1% per trade, 0.7% of it to the coin's creator.", url:"https://www.thestonks.exchange"},
+  {name:"Feel.cash", cat:"Stocks & Launchpads", desc:"Launchpad for coins paired with tokenized stocks, launched from the site or straight from a post on X. Coins can pay their holders in stock, and traders compete for prizes.", url:"https://feel.cash"},
+  {name:"Virtuals Protocol", cat:"Stocks & Launchpads", desc:"Launchpad and marketplace for tokenized AI agents. Launch your own, or buy into someone else's through its token. 17,000+ agents so far, and the sector Base is best known for.", url:"https://www.virtuals.io"},
 
-  {name:"The Stonks Exchange", cat:"Launchpads", desc:"Launchpad where a new coin is paired with a Coinbase tokenized stock instead of ETH, so it trades against NVDA, AAPL or TSLA from the first block. 1% per trade, 0.7% of it to the coin's creator.", url:"https://www.thestonks.exchange"},
-  {name:"Feel.cash", cat:"Launchpads", desc:"Launchpad for coins paired with tokenized stocks, launched from the site or straight from a post on X. Coins can pay their holders in stock, and traders compete for prizes.", url:"https://feel.cash"},
-
+  // Bankr trades from a chat command, so it lives with the bots.
   {name:"Banana Gun", cat:"Trading Bots", desc:"Telegram bot for fast trade execution and sniping new tokens. Works on Base alongside ETH/SOL/BNB.", url:"https://bananagun.io"},
-  {name:"Fomo", cat:"Trading Bots", fav:true, ref:true, desc:"Social trading app for Base, Solana, BNB and Robinhood Chain: one-tap buys with no bridging, plus feeds of what other traders are doing. A trade costs 0.5%; this link takes 10% off that.", url:"https://fomo.family/r/Def7771"},
   {name:"GMGN.ai", cat:"Trading Bots", desc:"Multichain terminal + bot for meme trading: new-token scanner, security checks, smart-money copy trading.", url:"https://gmgn.ai/?chain=base"},
   {name:"Maestro", cat:"Trading Bots", desc:"Telegram bot for sniping, copy trading and whale alerts, supporting Base since 2024.", url:"https://www.maestrobots.com"},
+  {name:"Bankr", cat:"Trading Bots", fav:true, desc:"AI agent that buys, sells, swaps and places limit orders from a plain chat command, without opening a DEX interface.", url:"https://bankr.bot"},
 
   {name:"DexScreener", cat:"Terminals", desc:"Real-time pair scanner and charts across all Base pools. New pairs, liquidity, volume.", url:"https://dexscreener.com/base"},
   {name:"DEXTools", cat:"Terminals", desc:"Charts, liquidity and pair rankings for the Base network, one of the oldest onchain terminals.", url:"https://www.dextools.io/app/base/pairs"},
   {name:"GeckoTerminal", cat:"Terminals", fav:true, desc:"CoinGecko's onchain terminal: pools, volumes and trends on Base in real time. Where I go to see whether a pool's liquidity is real before touching it.", url:"https://www.geckoterminal.com/base/pools"},
-  // The directory had three chart terminals and no block explorer, which is the
-  // one link every other entry here eventually sends you to.
   {name:"Basescan", cat:"Terminals", desc:"The block explorer for Base. Every transaction, contract and holder list, and where you go to read a contract before trusting it.", url:"https://basescan.org"},
 
   {name:"Cielo Finance", cat:"Tracking & Alerts", desc:"Wallet and smart-money tracker across 25+ chains including Base, with Telegram/Discord alerts.", url:"https://cielo.finance"},
   {name:"RayBot", cat:"Tracking & Alerts", desc:"Telegram wallet tracker with instant alerts, supporting Base alongside Solana/ETH.", url:"https://raybot.app"},
   {name:"Blocktronics", cat:"Tracking & Alerts", desc:"On-chain forensics for Base tokens: a bundle and sniper detector that shows how much of the launch supply coordinated wallets still hold, an Aerodrome LP scanner and holder-flow charts.", url:"https://blocktronics.xyz"},
 
-  // Base Bridge was here. bridge.base.org now answers 302 and lands on
-  // docs.base.org/chain/bridges-mainnet, a documentation page listing other
-  // people's bridges — so the card promised "the official Superchain bridge"
-  // and delivered a reading list. The two entries below are the working bridges
-  // that page would have sent you to anyway. Superbridge and Brid.gg were dropped
-  // on 24.09.2026 by his call: Relay covers every route they did.
-  {name:"Relay", cat:"Bridges", fav:true, desc:"Bridge and swap into Base from dozens of chains, including non-EVM ones like Solana, Bitcoin and TON. The link opens with Base already set as the destination. What I reach for when the money starts on the wrong chain.", url:"https://relay.link/bridge/base"},
-
-  {name:"Aerodrome Finance", cat:"DEX & Swap", fav:true, desc:"Base's main DEX and liquidity hub, ve(3,3) model, the largest TVL in the ecosystem.", url:"https://aerodrome.finance"},
-  {name:"Uniswap", cat:"DEX & Swap", desc:"The largest DEX protocol, fully deployed on Base including v4.", url:"https://app.uniswap.org"},
-  {name:"Matcha", cat:"DEX & Swap", desc:"Liquidity aggregator by 0x. Finds the best rate across dozens of sources on Base.", url:"https://matcha.xyz"},
-
-  {name:"Morpho", cat:"Lending", fav:true, desc:"Open credit network for lending and borrowing, and one of the deepest lending markets on Base.", url:"https://morpho.org"},
+  // One section instead of three: Relay alone in Bridges and Morpho alone in Lending
+  // read as leftovers. Base Bridge, Superbridge and Brid.gg are gone - Relay covers them.
+  {name:"Aerodrome Finance", cat:"DeFi: swap, bridge, lend", fav:true, desc:"Base's main DEX and liquidity hub, ve(3,3) model, the largest TVL in the ecosystem.", url:"https://aerodrome.finance"},
+  {name:"Uniswap", cat:"DeFi: swap, bridge, lend", desc:"The largest DEX protocol, fully deployed on Base including v4.", url:"https://app.uniswap.org"},
+  {name:"Matcha", cat:"DeFi: swap, bridge, lend", desc:"Liquidity aggregator by 0x. Finds the best rate across dozens of sources on Base.", url:"https://matcha.xyz"},
+  {name:"Relay", cat:"DeFi: swap, bridge, lend", fav:true, desc:"Bridge and swap into Base from dozens of chains, including non-EVM ones like Solana, Bitcoin and TON. The link opens with Base already set as the destination. What I reach for when the money starts on the wrong chain.", url:"https://relay.link/bridge/base"},
+  {name:"Morpho", cat:"DeFi: swap, bridge, lend", fav:true, desc:"Open credit network for lending and borrowing, and one of the deepest lending markets on Base.", url:"https://morpho.org"},
 ];
 
 const CATS = ["All", ...Array.from(new Set(TOOLS.map(t=>t.cat)))];
