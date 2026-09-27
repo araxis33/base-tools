@@ -628,7 +628,8 @@ function hex32(n){
   return h;
 }
 function encodeApprove(spender, amount){
-  return "0x095ea7b3" + hex32(BigInt("0x" + spender.toLowerCase().replace("0x",""))) + hex32(amount);
+  // Attributed like the swaps it enables; ERC-20s ignore the trailing bytes.
+  return "0x095ea7b3" + hex32(BigInt("0x" + spender.toLowerCase().replace("0x",""))) + hex32(amount) + BUILDER_SUFFIX;
 }
 function provider(){
   if(typeof window.ethereum === "undefined") return null;

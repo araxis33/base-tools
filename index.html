@@ -2212,7 +2212,9 @@ async function approveExactly(p, token, spender, amount){
   if (current >= amount) return;
   const approval = function(value){
     return { from: trade.account, to: token, value: "0x0",
-             data: SEL_APPROVE + addrArg(spender) + uintArg(value) };
+             // The approval is a transaction this page asks for too, so it is
+             // attributed like the swap; ERC-20s ignore the trailing bytes.
+             data: SEL_APPROVE + addrArg(spender) + uintArg(value) + BUILDER_SUFFIX };
   };
   // A handful of tokens still refuse to move an allowance from one non-zero
   // number to another, so an old one is cleared before the new one is set.
