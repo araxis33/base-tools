@@ -139,6 +139,8 @@ footer{margin:40px 0 30px; color:var(--muted2); font-size:13px}
     <tbody id="rows"></tbody>
   </table>
 
+  <div id="weekend"></div>
+
   <div class="note">
     <p><b>How to read it.</b> <i>On Base</i> is what a $50 buy pays per share right now, across every pool (KyberSwap routing).
       <i>Real share</i> is the last trade on the US market. <i>Round trip</i> is what you lose if you buy $1,000 and sell it straight back.
@@ -170,6 +172,10 @@ var FEEDS = {
 };
 var S = {};           // per ticker: chain, dex, share, rt, morpho, look
 var shares = null, open = null;
+var SNAPS = "https://raw.githubusercontent.com/araxis33/base-tools/stocks-data/snapshots.jsonl";
+var WK = null;        // last complete weekend, built from the hourly snapshots
+/* Trading venues KyberSwap can be limited to, in the order we list them. */
+var VENUES = [["aerodrome-cl-3", "Aerodrome"], ["uniswapv3", "Uniswap v3"], ["uniswap-v4", "Uniswap v4"], ["elfomofi", "Elfomofi (market maker)"], ["tessera", "Tessera (market maker)"]];
 
 function $(id){ return document.getElementById(id); }
 function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
@@ -260,6 +266,82 @@ function loadDex(t){
   return quote(USDC, t.a, "50000000").then(function(q){ S[t.s].dex = 50 / (Number(q.amountOut) / Math.pow(10, dec)); })
     .catch(function(){ S[t.s].dex = null; })
     .then(function(){ return roundTrip(t, 1000).then(function(x){ S[t.s].rt = x; }).catch(function(){ S[t.s].rt = null; }); });
+}
+
+/* ---------- weekend record: hourly snapshots from the stocks-data branch ---------- */
+/* A snapshot is "open" when most Yahoo prices in it are fresh; the runs of closed
+   snapshots that include a Saturday or Sunday are the weekends. Friday close is the
+   share price the run starts with, the Monday price comes from the first open snapshot after it. */
+function loadWeekend(){
+  return fetch(SNAPS).then(function(r){ if (!r.ok) throw new Error(r.status); return r.text(); }).then(function(txt){
+    var snaps = txt.split("\n").filter(Boolean).map(function(l){ try { return JSON.parse(l); } catch(e){ return null; } }).filter(Boolean);
+    snaps.sort(function(a, b){ return a.t - b.t; });
+    snaps.forEach(function(s){ s.open = s.rows.filter(function(x){ return s.t - x.share_time < 900; }).length >= 5; });
+    var runs = [], cur = null;
+    snaps.forEach(function(s, i){
+      if (s.open) { if (cur) { cur.after = s; runs.push(cur); cur = null; } return; }
+      if (!cur) cur = {snaps:[]};
+      cur.snaps.push(s);
+    });
+    var wk = runs.filter(function(r){ return r.snaps.some(function(s){ var d = new Date(s.t * 1000).getUTCDay(); return d === 6 || d === 0; }); }).pop();
+    if (!wk || wk.snaps.length < 6) { WK = null; return; }
+    var first = wk.snaps[0], last = wk.snaps[wk.snaps.length - 1], out = {closeAt:first.t, openAt:wk.after.t, n:wk.snaps.length, rows:{}};
+    wk.after.rows.forEach(function(m){
+      var f = first.rows.filter(function(x){ return x.s === m.s; })[0], l = last.rows.filter(function(x){ return x.s === m.s; })[0];
+      if (!f || !l) return;
+      var worst = 0;
+      wk.snaps.forEach(function(s){ s.rows.forEach(function(x){ if (x.s === m.s && x.roundtrip_1000 != null && x.roundtrip_1000 > worst) worst = x.roundtrip_1000; }); });
+      out.rows[m.s] = {close:f.share, base:l.dex, monday:m.share, vs:100 * (l.dex / m.share - 1), rt:worst};
+    });
+    WK = out;
+  }).catch(function(){ WK = null; });
+}
+function weekendTable(){
+  var el = $("weekend");
+  if (!WK) { el.innerHTML = ""; return; }
+  var keys = TOKENS.map(function(t){ return t.s; }).filter(function(k){ return WK.rows[k]; });
+  if (!keys.length) { el.innerHTML = ""; return; }
+  var day = function(ts){ return new Date(ts * 1000).toLocaleDateString("en-GB", {day:"numeric", month:"short", timeZone:"UTC"}); };
+  var maxGap = 0, maxRt = 0;
+  var rows = keys.map(function(k){
+    var r = WK.rows[k]; maxGap = Math.max(maxGap, Math.abs(r.vs)); maxRt = Math.max(maxRt, r.rt);
+    var cls = Math.abs(r.vs) < 1 ? "ok" : Math.abs(r.vs) < 2 ? "warn" : "bad";
+    return '<tr><td><span class="sym">' + k + '</span></td><td class="num hm">' + usd(r.close) + '</td><td class="num">' + usd(r.base) + '</td>' +
+      '<td class="num">' + usd(r.monday) + '</td><td class="num ' + cls + '">' + pct(r.vs) + '</td><td class="num hm">' + r.rt.toFixed(2) + '%</td></tr>';
+  }).join("");
+  el.innerHTML = '<h2 style="font-size:16px;margin:26px 0 6px">Last weekend: Base against the US open</h2>' +
+    '<p class="mut" style="margin:0 0 10px">Base kept trading from Friday ' + day(WK.closeAt) + ' to Monday ' + day(WK.openAt) + ' while the US market was shut. A $1,000 round trip never cost more than ' + maxRt.toFixed(2) + '%. ' +
+    'When Wall Street opened, its price differed from where Base stood by up to ' + maxGap.toFixed(1) + '%, because the news of the weekend arrives at the open.</p>' +
+    '<table class="tbl"><thead><tr><th>Stock</th><th class="hm">Friday close</th><th>Base, before the open</th><th>US, after the open</th><th>Difference</th><th class="hm">Worst $1,000 round trip</th></tr></thead><tbody>' + rows + '</tbody></table>' +
+    '<p class="mut" style="margin:8px 0 0;font-size:12px">Prices are logged about every 4 hours over the weekend and hourly around the open; the US price is taken about 10 minutes after the bell. One weekend so far: every new one is added here automatically.</p>';
+}
+
+/* ---------- where it is cheapest: the same buy, forced through one venue at a time ---------- */
+function quoteVia(tin, tout, amount, src){
+  return fetch(KYBER + "?tokenIn=" + tin + "&tokenOut=" + tout + "&amountIn=" + amount + "&includedSources=" + src)
+    .then(function(r){ return r.json(); })
+    .then(function(j){ return j.data && j.data.routeSummary ? Number(j.data.routeSummary.amountOut) : null; })
+    .catch(function(){ return null; });
+}
+function loadVenues(t, dollars){
+  var amt = BigInt(Math.round(dollars * 1e6)).toString(), res = [];
+  S[t.s].ven = null; S[t.s].venBusy = true; render();
+  return quote(USDC, t.a, amt).then(function(best){
+    res.push(["Best route (Thesis uses it)", Number(best.amountOut)]);
+    return VENUES.reduce(function(p, v){ return p.then(function(){ return quoteVia(USDC, t.a, amt, v[0]).then(function(o){ if (o) res.push([v[1], o]); return sleep(250); }); }); }, Promise.resolve());
+  }).then(function(){ S[t.s].ven = {dollars:dollars, res:res}; })
+    .catch(function(){ S[t.s].ven = {dollars:dollars, res:null}; })
+    .then(function(){ S[t.s].venBusy = false; render(); });
+}
+function venuesHtml(t){
+  var v = S[t.s].ven;
+  if (!v) return '<p class="mut">' + (S[t.s].venBusy ? 'Comparing venues…' : 'Opening the comparison…') + '</p>';
+  if (!v.res) return '<p class="mut">Venue comparison is unavailable right now.</p>';
+  var top = Math.max.apply(null, v.res.map(function(r){ return r[1]; }));
+  return v.res.map(function(r){
+    var d = 100 * (r[1] / top - 1), cls = d > -0.05 ? "ok" : d > -1 ? "warn" : "bad";
+    return kv(esc(r[0]), '<span class="' + cls + '">' + (d > -0.05 ? "cheapest (within 0.05%)" : pct(d) + " · pay " + usd(-d / 100 * v.dollars) + " more") + '</span>');
+  }).join("") + '<p class="mut">The same $' + v.dollars.toLocaleString("en-US") + ' buy, forced through one venue at a time. A venue that is not listed has no pool for this stock.</p>';
 }
 
 /* ---------- borrowing: Morpho markets that take the stock as collateral ---------- */
@@ -388,6 +470,8 @@ function detail(t){
     (st.rt && st.rt.venues.length ? '<p class="mut">Best route now: ' + esc(st.rt.venues.join(", ")) + '.</p>' : '') +
     '<p class="mut">Buy, then sell everything straight back, at live quotes across every pool on Base. To buy for real, <a href="/thesis.html?b=' + t.s + '-100&a=1000">open it in Thesis</a>: it routes through the deepest pool and you sign in your own wallet.</p></div>';
 
+  h += '<div class="box"><h3>Where it is cheapest</h3><div>' + venuesHtml(t) + '</div></div>';
+
   h += '<div class="box"><h3>Borrow against it</h3>';
   if (st.morpho && st.morpho.length) {
     st.morpho.slice(0, 3).forEach(function(m){ h += kv('Morpho · ' + m.loan + ' up to ' + m.ltv.toFixed(0) + '%', m.apy.toFixed(2) + '% · ' + usd(m.free, 0) + ' free'); });
@@ -412,7 +496,11 @@ function detail(t){
   } else h += '<p class="mut">' + (lk ? 'No other issuer\'s ' + esc(t.co) + ' token with real pools on Base.' : 'Looking…') + '</p>';
   h += '</div>';
 
-  h += '<div class="box"><h3>Weekend record</h3><p class="mut">From 25.09 we log the price on Base every hour of the weekend and compare it with where the share opens on Monday. Numbers here after the first weekends.</p></div>';
+  var wr = WK && WK.rows[t.s];
+  h += '<div class="box"><h3>Last weekend</h3>' + (wr ?
+    kv("Friday close", usd(wr.close)) + kv("Base, before the US open", usd(wr.base)) + kv("US price after the open", usd(wr.monday)) + kv("Difference", '<span class="' + (Math.abs(wr.vs) < 1 ? "ok" : Math.abs(wr.vs) < 2 ? "warn" : "bad") + '">' + pct(wr.vs) + '</span>') +
+    kv("Worst $1,000 round trip", wr.rt.toFixed(2) + "%") + '<p class="mut">Base traded all weekend; the table under the list has all ten.</p>'
+    : '<p class="mut">Loading the weekend record…</p>') + '</div>';
 
   h += '<details class="dev"><summary>Developer details</summary>' +
     '<p>Token <code>' + t.a + '</code> · decimals ' + (c.decimals != null ? c.decimals : '—') + ' · multiplier ' + (c.multiplier != null ? c.multiplier : '—') + ' (WAD)</p>' +
@@ -429,6 +517,7 @@ document.addEventListener("click", function(e){
     var t = TOKENS.filter(function(x){ return x.s === rtb.dataset.rt; })[0], v = parseFloat($("amt-" + t.s).value);
     if (!(v >= 10)) return;
     $("rt-" + t.s).innerHTML = kv("$" + v.toLocaleString("en-US") + " round trip", "…");
+    loadVenues(t, v);
     roundTrip(t, v).then(function(x){ $("rt-" + t.s).innerHTML = kv("$" + v.toLocaleString("en-US") + " round trip", x.loss.toFixed(2) + "% · " + usd(v * x.loss / 100)); })
       .catch(function(){ $("rt-" + t.s).innerHTML = kv("$" + v.toLocaleString("en-US") + " round trip", "no route for that size"); });
     return;
@@ -444,17 +533,20 @@ document.addEventListener("click", function(e){
   }
   if (row && !e.target.closest("input,a,button")) {
     var k = row.dataset.s; S[k].open = !S[k].open;
-    if (S[k].open && S[k].look === undefined) loadLook(TOKENS.filter(function(x){ return x.s === k; })[0]).then(render);
+    var tk = TOKENS.filter(function(x){ return x.s === k; })[0];
+    if (S[k].open && S[k].look === undefined) loadLook(tk).then(render);
     render();
+    if (S[k].open && !S[k].ven && !S[k].venBusy) loadVenues(tk, 1000);
   }
 });
 
 TOKENS.forEach(function(t){ S[t.s] = {}; });
 /* stocks.html#NVDAc (the Full check link in Thesis) opens that stock. */
 var wanted = decodeURIComponent(location.hash.slice(1));
-if (S[wanted]) { S[wanted].open = true; loadLook(TOKENS.filter(function(x){ return x.s === wanted; })[0]).then(render); }
+if (S[wanted]) { S[wanted].open = true; loadLook(TOKENS.filter(function(x){ return x.s === wanted; })[0]).then(render); setTimeout(function(){ loadVenues(TOKENS.filter(function(x){ return x.s === wanted; })[0], 1000); }, 1500); }
 render();
 if (S[wanted]) setTimeout(function(){ var r = document.querySelector('tr.row[data-s="' + wanted + '"]'); if (r) r.scrollIntoView({block:"start"}); }, 50);
+loadWeekend().then(function(){ weekendTable(); render(); });
 Promise.all([loadShares().then(session), loadChain(), loadMorpho()]).then(function(){
   render();
   /* Quotes one stock at a time: ten parallel pairs of KyberSwap calls trip its rate limit. */
