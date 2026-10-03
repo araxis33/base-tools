@@ -66,13 +66,14 @@ h2{font-size:19px; margin:0 0 4px; letter-spacing:-.01em}
 /* ---- thesis input ---- */
 .panel{background:var(--card); border:1px solid var(--border); border-radius:14px; padding:18px}
 .thesis-row{display:flex; gap:10px; flex-wrap:wrap}
-#thesis{
+#thesis, #hold-addr{
   flex:1 1 320px; min-width:0; background:var(--bg2); color:var(--text);
   border:1px solid var(--border-hover); border-radius:10px; padding:13px 15px;
   font-size:16px; font-family:inherit;
 }
-#thesis:focus{outline:none; border-color:var(--blue); box-shadow:0 0 0 3px rgba(59,110,255,.16)}
-#thesis::placeholder{color:var(--muted2)}
+#hold-addr{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:14.5px}
+#thesis:focus, #hold-addr:focus{outline:none; border-color:var(--blue); box-shadow:0 0 0 3px rgba(59,110,255,.16)}
+#thesis::placeholder, #hold-addr::placeholder{color:var(--muted2)}
 .btn{
   display:inline-flex; align-items:center; justify-content:center; gap:8px;
   background:var(--blue); color:#fff; border:1px solid var(--blue); border-radius:10px;
@@ -190,6 +191,13 @@ th.r{text-align:right}
 .actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; align-items:center}
 .copied{font-size:13.5px; color:var(--green-text)}
 
+/* ---- your stocks ---- */
+.btn.sell{background:var(--red); border-color:var(--red)}
+.btn.sell:hover{background:#e65a5a}
+.chip.sell.on{background:rgba(255,107,107,.14); border-color:var(--red); color:var(--red)}
+.sell-row{display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin:16px 0 14px; font-size:14px; color:var(--muted)}
+.sell-row .chips{margin-top:0}
+
 .how{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px}
 .how div{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px}
 .how h3{margin:0 0 6px; font-size:15px}
@@ -264,6 +272,19 @@ footer{border-top:1px solid var(--border); margin-top:30px; padding:22px 0 40px;
 
   <section id="execute"></section>
 
+  <section id="holdings">
+    <h2>Your stocks</h2>
+    <p class="note">Paste a Base address to see which of the ten it holds, what they are worth right now and what was paid for them. Nothing to sign &mdash; the wallet is asked only if you sell.</p>
+    <div class="panel">
+      <div class="thesis-row">
+        <input id="hold-addr" type="text" autocomplete="off" spellcheck="false" placeholder="0x&hellip; any Base address">
+        <button class="btn ghost" id="hold-show">Show</button>
+        <button class="btn ghost" id="hold-mine" hidden>Use my wallet</button>
+      </div>
+      <div id="hold-out"></div>
+    </div>
+  </section>
+
   <section id="chaincheck"></section>
 
   <section>
@@ -279,7 +300,7 @@ footer{border-top:1px solid var(--border); margin-top:30px; padding:22px 0 40px;
       </div>
       <div>
         <h3>Read first, wallet last</h3>
-        <p>Everything above works with no wallet at all. Connect only if you want the whole basket bought in one confirmation &mdash; and even then the allowance asked for is exactly the size of that basket, nothing standing.</p>
+        <p>Everything above works with no wallet at all, your own holdings included. Connect only to buy a basket or sell what you hold in one confirmation &mdash; and even then the allowance asked for is exactly the size of that trade, nothing standing.</p>
       </div>
       <div>
         <h3>Only the real tokens</h3>
@@ -290,7 +311,7 @@ footer{border-top:1px solid var(--border); margin-top:30px; padding:22px 0 40px;
 
   <section>
     <div class="disclaim">
-      <b>Not investment advice.</b> Built for the Base Builder Quest. The page reads public data and, only if you ask it to, hands your wallet a batch of swaps to confirm; it never holds funds or keys. Coinbase Tokenized Stocks are issued by Coinbase and are only available to eligible users outside the United States &mdash; check the <a href="https://www.base.org/stocks" target="_blank" rel="noopener">official token list and prospectus</a> before you buy anything. Prices, liquidity and price-impact figures are estimates read from public DEX data and can be wrong or stale. Verify the contract address in your own wallet before every trade.
+      <b>Not investment advice.</b> The page reads public data and, only if you ask it to, hands your wallet a batch of swaps to confirm; it never holds funds or keys. Coinbase Tokenized Stocks are issued by Coinbase and are only available to eligible users outside the United States &mdash; check the <a href="https://www.base.org/stocks" target="_blank" rel="noopener">official token list and prospectus</a> before you buy anything. Prices, liquidity and price-impact figures are estimates read from public DEX data and can be wrong or stale. Verify the contract address in your own wallet before every trade.
     </div>
   </section>
 
@@ -298,9 +319,10 @@ footer{border-top:1px solid var(--border); margin-top:30px; padding:22px 0 40px;
 
 <footer>
   <div class="wrap">
-    Built by <a href="https://x.com/Def7771" target="_blank" rel="noopener">@Def7771</a> for the Base Builder Quest &middot;
+    Built by <a href="https://x.com/Def7771" target="_blank" rel="noopener">@Def7771</a> &middot;
     part of <a href="/">Base.tools</a> &middot;
-    live prices from <a href="https://dexscreener.com" target="_blank" rel="noopener">DexScreener</a>, token list from <a href="https://www.base.org/stocks" target="_blank" rel="noopener">base.org</a>
+    live prices from <a href="https://dexscreener.com" target="_blank" rel="noopener">DexScreener</a>, token list from <a href="https://www.base.org/stocks" target="_blank" rel="noopener">base.org</a>,
+    wallet history from <a href="https://base.blockscout.com" target="_blank" rel="noopener">Blockscout</a>
   </div>
 </footer>
 
@@ -781,97 +803,557 @@ function doBuy(){
   var from = ex.account;
   var total = ex.quotes.reduce(function(a,q){ return a + q.row.wei; }, BigInt(0));
   var router = ex.quotes[0].router;
+  var ui = {
+    msg: function(t){ ex.msg = t; renderExecute(); },
+    link: function(url, t){ ex.state = "done"; ex.txt = url; ex.msg = t; renderExecute(); }
+  };
 
   /* Ask for an allowance only if the standing one is too small. */
-  allowanceOf(p, from, router).then(function(have){
+  Promise.all([allowanceOf(USDC, from, router), readBalances(from)]).then(function(r){
+    var have = r[0], before = r[1];
     var calls = [];
-    if(have < total) calls.push({ to: USDC, data: encodeApprove(router, total), value: "0x0" });
+    if(have < total) calls.push({ to: USDC, data: encodeApprove(router, total), what:"approval",
+      landed: function(){ return allowanceOf(USDC, from, router).then(function(a){ return a >= total; }); } });
     ex.quotes.forEach(function(q){
-      calls.push({ to: q.router, data: q.data + BUILDER_SUFFIX, value: "0x0" });
+      var a = q.row.t.a, was = before[q.row.t.s] || BigInt(0);
+      calls.push({ to: q.router, data: q.data + BUILDER_SUFFIX, what:"swap",
+        landed: function(){ return balanceOf(a, from).then(function(b){ return b > was; }); } });
     });
-    return sendCalls(p, from, calls);
+    return sendCalls(p, from, calls, ui);
+  }).catch(function(e){
+    ex.error = (e && e.message) ? e.message : "The wallet rejected the transaction.";
+    ex.state = "ready";
   }).then(function(){
     ex.busy = false; renderExecute();
+    if(ex.state === "done") refreshHoldingsOf(from);
   });
 }
 
-function allowanceOf(p, owner, spender){
-  var data = "0xdd62ed3e" + hex32(BigInt("0x" + owner.toLowerCase().replace("0x",""))) +
-             hex32(BigInt("0x" + spender.toLowerCase().replace("0x","")));
-  return p.request({method:"eth_call", params:[{to:USDC, data:data}, "latest"]})
-    .then(function(r){ return (r && r !== "0x") ? BigInt(r) : BigInt(0); })
-    .catch(function(){ return BigInt(0); });
+/* ---------- reading the chain ---------- */
+/* Everything this page needs to know about a wallet it reads from a public
+   Base node. A wallet is for signing: asking one for a receipt or an
+   allowance is how the trade dialog on the homepage used to hang, because
+   smart accounts and in-app browsers often never answer those calls. */
+var RPC = "https://mainnet.base.org";
+var MULTICALL3 = "0xcA11bde05977b3631167028862bE2a173976CA11";
+var REJECTED_RE = /user rejected|denied/i;
+
+function sleep(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
+
+function rpc(method, params){
+  return fetch(RPC, {
+    method:"POST", headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({ jsonrpc:"2.0", id:1, method:method, params:params })
+  }).then(function(r){
+    /* a throttled node answers 429 with a body that is not JSON */
+    if(!r.ok) throw new Error(r.status === 429 ? "The public Base node is busy. Try again in a moment." : "The Base node answered " + r.status + ".");
+    return r.json();
+  }).then(function(j){
+    if(j && j.error) throw new Error(j.error.message || "The node refused that read.");
+    return j ? j.result : null;
+  });
+}
+function rpcRetry(method, params){
+  var attempt = 0;
+  return (function go(){
+    return rpc(method, params).catch(function(e){
+      if(++attempt >= 3) throw e;
+      return sleep(500 * attempt).then(go);
+    });
+  })();
 }
 
-function waitForReceipt(p, hash){
+function allowanceOf(token, owner, spender){
+  return rpcRetry("eth_call", [{ to:token, data:"0xdd62ed3e" + hex32(BigInt(owner)) + hex32(BigInt(spender)) }, "latest"])
+    .then(function(r){ return (r && r !== "0x") ? BigInt(r) : BigInt(0); });
+}
+function balanceOf(token, owner){
+  return rpcRetry("eth_call", [{ to:token, data:"0x70a08231" + hex32(BigInt(owner)) }, "latest"])
+    .then(function(r){ return (r && r !== "0x") ? BigInt(r) : BigInt(0); });
+}
+
+/* All ten balances in one eth_call through Multicall3: each Call3 is six
+   words — target, allowFailure, the offset of its bytes, their length, and
+   the 36-byte balanceOf call padded to two words. Same encoding as the
+   wallet window on the homepage. */
+function readBalances(owner){
+  var inner = "70a08231" + hex32(BigInt(owner));
+  var padded = inner + "0".repeat(128 - inner.length);
+  var offsets = "", body = "";
+  TOKENS.forEach(function(t, i){
+    offsets += hex32(TOKENS.length * 32 + i * 192);
+    body += hex32(BigInt(t.a)) + hex32(1) + hex32(0x60) + hex32(inner.length / 2) + padded;
+  });
+  var data = "0x82ad56cb" + hex32(0x20) + hex32(TOKENS.length) + offsets + body;
+  return rpcRetry("eth_call", [{ to:MULTICALL3, data:data }, "latest"]).then(function(hex){
+    if(typeof hex !== "string" || hex.length < 130) throw new Error("The node would not read this wallet.");
+    var w = hex.slice(2);
+    var word = function(i){ return w.slice(i * 64, (i + 1) * 64); };
+    var out = {};
+    TOKENS.forEach(function(t, i){
+      var at = parseInt(word(2 + i), 16) / 32 + 2;
+      var ok = parseInt(word(at), 16) === 1;
+      var bytesAt = at + parseInt(word(at + 1), 16) / 32;
+      var len = parseInt(word(bytesAt), 16);
+      out[t.s] = ok && len ? BigInt("0x" + word(bytesAt + 1)) : BigInt(0);
+    });
+    return out;
+  });
+}
+
+/* The node first, because it always answers; the wallet second, because a
+   smart account sometimes knows its own transaction before a public node has
+   indexed it. */
+function waitForReceipt(p, hash, what){
   var tries = 0;
-  return new Promise(function(resolve, reject){
-    (function poll(){
-      p.request({method:"eth_getTransactionReceipt", params:[hash]}).then(function(r){
-        if(r && r.blockNumber){
-          if(r.status === "0x0") return reject(new Error("A transaction reverted onchain."));
-          return resolve(r);
-        }
-        if(++tries > 60) return reject(new Error("Timed out waiting for confirmation."));
-        setTimeout(poll, 2000);
-      }).catch(function(){ setTimeout(poll, 2500); });
+  return (function poll(){
+    return rpc("eth_getTransactionReceipt", [hash]).catch(function(){ return null; }).then(function(r){
+      if(r || !p) return r;
+      return p.request({method:"eth_getTransactionReceipt", params:[hash]}).catch(function(){ return null; });
+    }).then(function(r){
+      if(r && r.blockNumber){
+        if(r.status === "0x0") throw new Error("The " + (what || "transaction") + " reverted onchain. Nothing left your wallet but gas.");
+        return r;
+      }
+      if(++tries > 90) throw new Error("Timed out waiting for the confirmation.");
+      return sleep(2000).then(poll);
+    });
+  })();
+}
+
+/* The wallet's reply to eth_sendTransaction cannot be relied on either: an
+   in-app browser regularly loses it while handing control back to the page.
+   So every signature is confirmed by the chain in parallel — `landed` asks
+   whether the thing this signature was for has happened — and whichever
+   answers first wins. Resolves to the hash, or null when only the chain
+   answered. */
+function signAndConfirm(p, tx, what, landed){
+  var stop = false;
+  var sent = p.request({ method:"eth_sendTransaction", params:[tx] });
+  sent.catch(function(){});
+  function watch(seconds){
+    var until = Date.now() + seconds * 1000;
+    return (function loop(){
+      if(stop || Date.now() >= until || !landed) return Promise.resolve(false);
+      return sleep(3000).then(function(){
+        if(stop) return false;
+        return Promise.resolve().then(landed).catch(function(){ return false; })
+          .then(function(ok){ return ok ? true : loop(); });
+      });
     })();
+  }
+  return Promise.race([sent, watch(240)]).catch(function(err){
+    /* Saying no in the wallet is final. Any other failure may still have put
+       a transaction on the chain, so the chain gets the last word. */
+    if((err && err.code === 4001) || REJECTED_RE.test((err && err.message) || "")) throw new Error("Cancelled in the wallet.");
+    return watch(45);
+  }).then(function(answer){
+    stop = true;
+    if(typeof answer === "string" && answer) return waitForReceipt(p, answer, what).then(function(){ return answer; });
+    if(answer === true) return null;
+    throw new Error("The wallet never came back on the " + what + ". Nothing is stuck on this page — check the wallet, then try again.");
   });
 }
 
-function sendCalls(p, from, calls){
+/* One confirmation for the whole list when the wallet can batch (EIP-5792),
+   otherwise the same calls one at a time, each mined before the next because
+   the swaps depend on the allowances in front of them. `ui.msg` reports
+   progress, `ui.link` the finished state. Rejects with a readable error. */
+function sendCalls(p, from, calls, ui){
+  var plain = calls.map(function(c){ return { to:c.to, data:c.data, value:"0x0" }; });
   return p.request({
     method: "wallet_sendCalls",
-    params: [{ version:"2.0.0", chainId:CHAIN_HEX, from:from, atomicRequired:true, calls:calls }]
+    params: [{ version:"2.0.0", chainId:CHAIN_HEX, from:from, atomicRequired:true, calls:plain }]
   }).then(function(res){
     var id = (res && res.id) ? res.id : res;
-    ex.state = "done";
-    ex.txt = "https://basescan.org/address/" + from;
-    ex.msg = "Sent as one batch of " + calls.length + " calls. Waiting for the receipt…";
-    renderExecute();
+    ui.link("https://basescan.org/address/" + from, "Sent as one batch of " + calls.length + " calls. Waiting for the receipt…");
     /* Swap the link for the real transaction as soon as the wallet reports it. */
     var tries = 0;
     (function poll(){
       p.request({method:"wallet_getCallsStatus", params:[id]}).then(function(st){
         var rc = st && st.receipts && st.receipts[0];
         if(rc && rc.transactionHash){
-          ex.txt = "https://basescan.org/tx/" + rc.transactionHash;
-          ex.msg = "Confirmed onchain, one transaction, builder code attached.";
-          renderExecute();
+          ui.link("https://basescan.org/tx/" + rc.transactionHash, "Confirmed onchain, one transaction, builder code attached.");
           return;
         }
         if(++tries < 40) setTimeout(poll, 2000);
       }).catch(function(){ /* wallet does not report status; the address link stands */ });
     })();
-  }).catch(function(e){
-    if(e && e.code === 4001){
-      ex.error = "Cancelled in the wallet.";
-      ex.state = "ready"; return;
-    }
-    /* Wallets without EIP-5792 get the honest fallback: the same calls, one
-       confirmation each, in the same order. */
-    ex.msg = "This wallet cannot batch — sending the calls one at a time.";
-    renderExecute();
-    /* Each one has to be mined before the next is sent: the swaps depend on
-       the allowance the first call sets. */
+  }, function(e){
+    if((e && e.code === 4001) || REJECTED_RE.test((e && e.message) || "")) throw new Error("Cancelled in the wallet.");
+    ui.msg("This wallet cannot batch — sending the calls one at a time.");
     var seq = Promise.resolve(), last = null, n = 0;
     calls.forEach(function(c){
       seq = seq.then(function(){
-        ex.msg = "Confirm " + (++n) + " of " + calls.length + " in your wallet…";
-        renderExecute();
-        return p.request({method:"eth_sendTransaction", params:[{from:from, to:c.to, data:c.data, value:"0x0"}]})
-                .then(function(h){ last = h; return waitForReceipt(p, h); });
+        ui.msg("Confirm " + (++n) + " of " + calls.length + " in your wallet…");
+        return signAndConfirm(p, { from:from, to:c.to, data:c.data, value:"0x0" }, c.what || "transaction", c.landed)
+          .then(function(h){ if(h) last = h; });
       });
     });
     return seq.then(function(){
-      ex.state = "done";
-      ex.txt = "https://basescan.org/tx/" + last;
-      ex.msg = "Done — " + calls.length + " transactions.";
-    }).catch(function(err){
-      ex.error = (err && err.message) ? err.message : "The wallet rejected the transaction.";
-      ex.state = "ready";
+      ui.link(last ? "https://basescan.org/tx/" + last : "https://basescan.org/address/" + from,
+              "Done — " + calls.length + " transactions.");
     });
   });
+}
+
+/* ---------- your stocks ---------- */
+/* Read-only by address, like everything above it: balances from the node,
+   what was paid from the explorer's transfer history (see costBasis in
+   thesis-core.js). Selling is the one step that wants a wallet, and it can
+   only sell what the connected wallet itself holds. */
+var BLOCKSCOUT = "https://base.blockscout.com/api/v2/addresses/";
+var SELL_SHARES = [25, 50, 100];
+
+var hold = { addr:null, seq:0, loading:false, error:null, rows:null, note:"",
+             pct:100, state:"idle", quotes:null, msg:"", txt:"", busy:false };
+
+function isAddr(s){ return /^0x[0-9a-fA-F]{40}$/.test(s); }
+
+/* The explorer throttles bursts, so pages are read one after another, with a
+   pause and up to four tries each. Newest first; reading stops once a page
+   reaches back past `stopTs`. */
+function transferPages(owner, token, stopTs, maxPages){
+  var base = BLOCKSCOUT + owner + "/token-transfers?type=ERC-20&token=" + token;
+  var items = [], pages = 0, complete = false;
+  function page(url){
+    var attempt = 0;
+    return (function go(){
+      return fetch(url).then(function(r){
+        if(!r.ok) throw new Error("explorer " + r.status);
+        return r.json();
+      }).catch(function(e){
+        if(++attempt >= 4) throw e;
+        return sleep(1000 * attempt).then(go);
+      });
+    })();
+  }
+  return (function next(url){
+    return page(url).then(function(j){
+      pages++;
+      var got = (j && j.items) || [];
+      items = items.concat(got);
+      var np = j && j.next_page_params;
+      if(!np){ complete = true; return; }
+      if(stopTs && got.length && got[got.length - 1].timestamp < stopTs){ complete = true; return; }
+      if(pages >= maxPages) return;
+      var q = Object.keys(np).filter(function(k){ return np[k] !== null; })
+        .map(function(k){ return encodeURIComponent(k) + "=" + encodeURIComponent(np[k]); }).join("&");
+      return sleep(350).then(function(){ return next(base + "&" + q); });
+    });
+  })(base).then(function(){ return { items:items, complete:complete }; });
+}
+
+function loadHoldings(addr){
+  var my = ++hold.seq;
+  hold.addr = addr; hold.loading = true; hold.error = null; hold.rows = null; hold.note = "";
+  hold.state = "idle"; hold.quotes = null; hold.msg = ""; hold.txt = ""; hold.error2 = null;
+  renderHoldings();
+  readBalances(addr).then(function(bal){
+    if(my !== hold.seq) return;
+    var held = TOKENS.filter(function(t){ return bal[t.s] > BigInt(0); });
+    var rows = held.map(function(t){ return { t:t, bal:bal[t.s], qty:Number(bal[t.s]) / 1e8, basis:null }; });
+    hold.rows = rows;
+    if(!rows.length){ hold.loading = false; renderHoldings(); return; }
+    renderHoldings();   // balances first; what was paid follows
+
+    var stock = {};
+    var seq = Promise.resolve();
+    rows.forEach(function(r){
+      seq = seq.then(function(){ return transferPages(addr, r.t.a, null, 10).then(function(x){ stock[r.t.s] = x; }); });
+    });
+    return seq.then(function(){
+      var earliest = null;
+      rows.forEach(function(r){
+        stock[r.t.s].items.forEach(function(it){ if(!earliest || it.timestamp < earliest) earliest = it.timestamp; });
+      });
+      return transferPages(addr, USDC, earliest, 20);
+    }).then(function(usdc){
+      if(my !== hold.seq) return;
+      var partial = !usdc.complete || rows.some(function(r){ return !stock[r.t.s].complete; });
+      rows.forEach(function(r){
+        r.basis = ThesisCore.reconcileBasis(ThesisCore.costBasis(stock[r.t.s].items, usdc.items, addr), r.qty);
+      });
+      if(partial) hold.note = "This wallet has a long history; only its most recent transfers were read, so older purchases count as cost unknown.";
+    }).catch(function(){
+      if(my !== hold.seq) return;
+      hold.note = "The purchase history could not be read just now, so only today’s value is shown. Try again in a minute.";
+    });
+  }).catch(function(e){
+    if(my !== hold.seq) return;
+    hold.error = (e && e.message) ? e.message : "Could not read this wallet.";
+  }).then(function(){
+    if(my !== hold.seq) return;
+    hold.loading = false; renderHoldings();
+  });
+}
+
+/* After a purchase or a sale made here, the list for that same wallet is
+   redrawn. The explorer trails the chain by a few seconds. */
+function refreshHoldingsOf(account){
+  if(!account) return;
+  setTimeout(function(){
+    if(hold.busy) return;
+    $("hold-addr").value = account;
+    loadHoldings(account.toLowerCase());
+  }, 6000);
+}
+
+function sellAmount(r){
+  if(hold.pct >= 100) return r.bal;
+  return r.bal * BigInt(hold.pct) / BigInt(100);
+}
+function sellRows(){
+  if(!hold.rows || !state.data) return [];
+  return hold.rows.filter(function(r){
+    var d = state.data[r.t.s];
+    return d && r.qty * d.deep.price * hold.pct / 100 >= 0.5;   // dust is not worth a swap
+  });
+}
+
+function renderHoldings(){
+  var el = $("hold-out");
+  if(hold.error){ el.innerHTML = '<div class="traps" style="margin-top:14px"><b>' + esc(hold.error) + '</b></div>'; return; }
+  if(!hold.addr){ el.innerHTML = ""; return; }
+  if(!hold.rows){ el.innerHTML = '<p class="skel" style="margin-top:12px">Reading balances on Base…</p>'; return; }
+  if(!hold.rows.length){
+    el.innerHTML = '<p class="note" style="margin:14px 0 0">None of the ten Coinbase stocks at <span class="addr">' +
+      esc(hold.addr.slice(0, 6) + "…" + hold.addr.slice(-4)) + '</span>. Lookalike tokens with the same tickers are not counted.</p>';
+    return;
+  }
+
+  var worth = 0, paid = 0, worthKnown = 0, unknownWorth = 0, priced = true;
+  var body = hold.rows.map(function(r){
+    var d = state.data ? state.data[r.t.s] : null;
+    var price = d ? d.deep.price : NaN;
+    if(!d) priced = false;
+    var value = r.qty * price;
+    if(isFinite(value)) worth += value;
+    var paidCell = '<span class="co">' + (hold.loading ? "reading…" : "—") + '</span>', pnlCell = "";
+    var b = r.basis;
+    if(b && b.knownQty > 0){
+      var vk = b.knownQty * price, pnl = vk - b.cost, pp = b.cost > 0 ? pnl / b.cost * 100 : 0;
+      paid += b.cost; worthKnown += vk;
+      paidCell = money(b.cost, 2) + '<div class="co">avg ' + money(b.cost / b.knownQty, 2) + '</div>';
+      pnlCell = '<span class="' + (pnl >= 0 ? "up" : "down") + '">' + (pnl >= 0 ? "+" : "−") + money(Math.abs(pnl), 2) +
+        '</span><div class="co">' + (pp >= 0 ? "+" : "−") + Math.abs(pp).toFixed(2) + '%</div>';
+    }
+    if(b && b.unknownQty > 1e-9){
+      unknownWorth += b.unknownQty * price;
+      paidCell += '<div class="co">' + shares(b.unknownQty) + ' sh. cost unknown</div>';
+    }
+    return '<tr><td><span class="sym">' + r.t.s + '</span><div class="co">' + esc(r.t.co) + '</div></td>' +
+      '<td class="n r">' + shares(r.qty) + '</td>' +
+      '<td class="n r">' + money(price, 2) + '</td>' +
+      '<td class="n r">' + money(value, 2) + '</td>' +
+      '<td class="n r">' + paidCell + '</td>' +
+      '<td class="n r">' + pnlCell + '</td></tr>';
+  }).join("");
+
+  var pnlAll = worthKnown - paid;
+  var html = '<div class="cards" style="margin-top:16px">' +
+    '<div class="card"><div class="k">Worth now</div><div class="v">' + money(worth, 2) + '</div>' +
+      '<div class="s">' + hold.rows.length + ' stock' + (hold.rows.length > 1 ? 's' : '') + ' at the deepest pool’s price</div></div>' +
+    '<div class="card"><div class="k">Paid</div><div class="v">' + (paid > 0 ? money(paid, 2) : "—") + '</div>' +
+      '<div class="s">' + (hold.loading ? "reading the history…" :
+        unknownWorth > 0.005 && paid > 0 ? "for " + money(worthKnown, 2) + " of it today; the rest has no proven price" :
+        "USDC that left in the same transaction") + '</div></div>' +
+    '<div class="card' + (paid > 0 && pnlAll >= 0 ? ' hi' : '') + '"><div class="k">Gain / loss</div><div class="v ' +
+      (paid > 0 ? (pnlAll >= 0 ? "up" : "down") : "") + '">' +
+      (paid > 0 ? (pnlAll >= 0 ? "+" : "−") + money(Math.abs(pnlAll), 2) : "—") + '</div>' +
+      '<div class="s">' + (paid > 0 ? (pnlAll >= 0 ? "+" : "−") + Math.abs(pnlAll / paid * 100).toFixed(2) + "% on what was paid" : "nothing priced yet") + '</div></div>' +
+    '</div>';
+
+  html += '<div class="tbl-wrap" style="margin-top:14px"><table><thead><tr>' +
+    '<th>Stock</th><th class="r">Shares</th><th class="r">Price</th><th class="r">Value</th><th class="r">Paid</th><th class="r">Gain / loss</th>' +
+    '</tr></thead><tbody>' + body + '</tbody></table></div>';
+
+  if(unknownWorth > 0.005){
+    html += '<p class="note" style="margin:12px 0 0">' + money(unknownWorth, 2) + ' of this came in without USDC leaving in the same ' +
+      'transaction — bought with ETH, sent from another wallet or taken out of a pool — so its cost is unknown and it is left out of the gain.</p>';
+  }
+  if(hold.note) html += '<p class="note" style="margin:12px 0 0">' + esc(hold.note) + '</p>';
+  if(!priced) html += '<p class="note" style="margin:12px 0 0">Prices are still loading.</p>';
+
+  html += renderSell();
+  el.innerHTML = html;
+  bindSell();
+}
+
+function renderSell(){
+  var rows = sellRows();
+  var html = '<div class="sell-row"><span>Sell</span><div class="chips">' +
+    SELL_SHARES.map(function(s){
+      return '<button class="chip sell' + (hold.pct === s ? ' on' : '') + '" data-pct="' + s + '"' +
+        (hold.busy || hold.state === "sending" ? ' disabled' : '') + '>' + (s === 100 ? "All" : s + "%") + '</button>';
+    }).join("") + '</div><span>of each for USDC, in one transaction.</span></div>';
+
+  if(hold.quotes && hold.quotes.length){
+    html += '<div class="tbl-wrap" style="margin-bottom:14px"><table><thead><tr>' +
+      '<th>Stock</th><th class="r">Sells</th><th class="r">You receive</th><th class="r">Effective price</th><th class="r">vs. pool quote</th>' +
+      '</tr></thead><tbody>';
+    hold.quotes.forEach(function(q){
+      var qty = Number(q.amount) / 1e8, got = Number(q.out) / 1e6;
+      var eff = qty > 0 ? got / qty : 0;
+      var diff = (q.row.price - eff) / q.row.price * 100;   // positive = you get less than the pool price
+      html += '<tr><td class="sym">' + q.row.t.s + '</td>' +
+        '<td class="n r">' + shares(qty) + '</td>' +
+        '<td class="n r">' + money(got, 2) + '</td>' +
+        '<td class="n r">' + money(eff, 2) + '</td>' +
+        '<td class="n r"><span class="pill ' + (diff <= 0.35 ? "green" : diff <= 1.5 ? "yellow" : "red") + '">' +
+          (diff > 0 ? "−" : "+") + Math.abs(diff).toFixed(2) + '%</span></td></tr>';
+    });
+    var total = hold.quotes.reduce(function(a, q){ return a + Number(q.out) / 1e6; }, 0);
+    html += '</tbody></table></div><p class="note" style="margin:0 0 14px">About ' + money(total, 2) +
+      ' back in total, slippage limit 1%. The last column is how far each live route sits below the pool price above.</p>';
+  }
+
+  if(hold.error2) html += '<div class="traps" style="margin:0 0 14px"><b>' + esc(hold.error2) + '</b></div>';
+
+  html += '<div class="actions" style="margin-top:0">';
+  if(!rows.length){
+    html += '<span class="co">' + (hold.rows && hold.rows.length ? "Too small to sell at this share." : "") + '</span>';
+  } else if(hold.state === "idle"){
+    html += '<button class="btn ghost" id="sell-quote">Get sell quotes</button>';
+  } else if(hold.state === "quoting"){
+    html += '<button class="btn" disabled>Quoting ' + rows.length + ' sales…</button>';
+  } else if(hold.state === "ready"){
+    html += '<button class="btn sell" id="sell-go">Sell ' + hold.quotes.length + ' stock' + (hold.quotes.length > 1 ? 's' : '') + ' in one transaction</button>' +
+            '<button class="btn ghost" id="sell-requote">Requote</button>';
+  } else if(hold.state === "sending"){
+    html += '<button class="btn" disabled>Confirm in your wallet…</button>';
+  } else if(hold.state === "done"){
+    html += '<a class="btn" href="' + hold.txt + '" target="_blank" rel="noopener">See it onchain</a>';
+  }
+  html += '<span class="copied">' + esc(hold.msg || "") + '</span></div>';
+  html += '<p class="note" style="margin:14px 0 0">The allowance asked for is exactly what is being sold, one per stock, and ' +
+    'each sale is tagged with builder code <span class="addr">bc_mrkwu2m0</span>. A wallet can only sell what it holds itself.</p>';
+  return html;
+}
+
+function bindSell(){
+  Array.prototype.forEach.call($("hold-out").querySelectorAll("[data-pct]"), function(b){
+    b.addEventListener("click", function(){
+      if(hold.busy || hold.state === "sending") return;
+      hold.pct = parseInt(b.dataset.pct, 10);
+      hold.quotes = null; hold.state = "idle"; hold.msg = ""; hold.error2 = null;
+      renderHoldings();
+    });
+  });
+  if($("sell-quote")) $("sell-quote").addEventListener("click", doSellQuote);
+  if($("sell-requote")) $("sell-requote").addEventListener("click", doSellQuote);
+  if($("sell-go")) $("sell-go").addEventListener("click", doSell);
+}
+
+function kyberSell(row, amount, from){
+  var url = KYBER + "/routes?tokenIn=" + row.t.a + "&tokenOut=" + USDC + "&amountIn=" + amount.toString() + "&gasInclude=true";
+  return fetch(url).then(function(r){ return r.json(); }).then(function(j){
+    if(!j || j.code !== 0 || !j.data) throw new Error(row.t.s + ": no route found");
+    return fetch(KYBER + "/route/build", {
+      method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({ routeSummary:j.data.routeSummary, sender:from, recipient:from,
+                             slippageTolerance:SLIPPAGE_BPS, source:"thesis.deftools.xyz" })
+    }).then(function(r){ return r.json(); }).then(function(b){
+      if(!b || b.code !== 0 || !b.data) throw new Error(row.t.s + ": could not build the sale");
+      return { row:row, amount:amount, router:b.data.routerAddress, data:b.data.data, out:BigInt(b.data.amountOut) };
+    });
+  });
+}
+
+function doSellQuote(){
+  if(hold.busy) return;
+  hold.busy = true; hold.error2 = null; hold.msg = "";
+  connect().then(function(from){
+    /* Only the wallet that holds the shares can sell them. If another one is
+       connected, show that one instead of failing at the signature. */
+    if(from.toLowerCase() !== hold.addr){
+      hold.busy = false;
+      $("hold-addr").value = from;
+      loadHoldings(from.toLowerCase());
+      hold.msg = "Now showing the connected wallet. Check it, then quote again.";
+      return;
+    }
+    hold.state = "quoting"; renderHoldings();
+    var rows = sellRows().map(function(r){ return { t:r.t, price:state.data[r.t.s].deep.price, amount:sellAmount(r) }; });
+    return Promise.all(rows.map(function(r){ return kyberSell(r, r.amount, from); })).then(function(qs){
+      hold.quotes = qs; hold.state = "ready"; hold.msg = "Quotes are good for a couple of minutes.";
+    });
+  }).catch(function(e){
+    hold.error2 = (e && e.message) ? e.message : String(e);
+    hold.state = hold.quotes ? "ready" : "idle";
+  }).then(function(){
+    hold.busy = false; renderHoldings();
+  });
+}
+
+function doSell(){
+  if(hold.busy || !hold.quotes || !hold.quotes.length) return;
+  hold.busy = true; hold.error2 = null; hold.msg = ""; hold.state = "sending"; renderHoldings();
+  var p = provider();
+  var from = ex.account;
+  var ui = {
+    msg: function(t){ hold.msg = t; renderHoldings(); },
+    link: function(url, t){ hold.state = "done"; hold.txt = url; hold.msg = t; renderHoldings(); }
+  };
+  readBalances(from).then(function(before){
+    return Promise.all(hold.quotes.map(function(q){ return allowanceOf(q.row.t.a, from, q.router); })).then(function(have){
+      var calls = [];
+      hold.quotes.forEach(function(q, i){
+        var token = q.row.t.a, need = q.amount, router = q.router;
+        if(have[i] >= need) return;
+        /* Some tokens refuse to move an allowance from one non-zero number to
+           another, so an old one is cleared first. */
+        if(have[i] > BigInt(0)) calls.push({ to:token, data:encodeApprove(router, BigInt(0)), what:"approval",
+          landed: function(){ return allowanceOf(token, from, router).then(function(a){ return a === BigInt(0); }); } });
+        calls.push({ to:token, data:encodeApprove(router, need), what:"approval",
+          landed: function(){ return allowanceOf(token, from, router).then(function(a){ return a >= need; }); } });
+      });
+      hold.quotes.forEach(function(q){
+        var token = q.row.t.a, was = before[q.row.t.s] || BigInt(0);
+        calls.push({ to:q.router, data:q.data + BUILDER_SUFFIX, what:"sale",
+          landed: function(){ return balanceOf(token, from).then(function(b){ return b < was; }); } });
+      });
+      return sendCalls(p, from, calls, ui);
+    });
+  }).catch(function(e){
+    hold.error2 = (e && e.message) ? e.message : "The wallet rejected the transaction.";
+    hold.state = "ready";
+  }).then(function(){
+    hold.busy = false; renderHoldings();
+    if(hold.state === "done") refreshHoldingsOf(from);
+  });
+}
+
+function showHoldings(){
+  var v = $("hold-addr").value.trim();
+  if(!isAddr(v)){
+    hold.seq++; hold.addr = null; hold.rows = null;
+    hold.error = "That is not a Base address — it should start with 0x and have 40 characters after it.";
+    renderHoldings(); return;
+  }
+  loadHoldings(v.toLowerCase());
+}
+
+/* A shared basket has no business reading the visitor's wallet, but a wallet
+   that has already let this site see its address is asked quietly — no
+   window opens — and shown. */
+function wireHoldings(){
+  $("hold-show").addEventListener("click", showHoldings);
+  $("hold-addr").addEventListener("keydown", function(e){ if(e.key === "Enter") showHoldings(); });
+  var p = provider();
+  if(!p) return;
+  $("hold-mine").hidden = false;
+  $("hold-mine").addEventListener("click", function(){
+    connect().then(function(a){ $("hold-addr").value = a; loadHoldings(a.toLowerCase()); })
+      .catch(function(e){ hold.seq++; hold.addr = null; hold.rows = null; hold.error = e.message || "The wallet refused the connection."; renderHoldings(); });
+  });
+  p.request({ method:"eth_accounts" }).then(function(accs){
+    if(accs && accs.length && !hold.addr){
+      ex.account = accs[0];
+      $("hold-addr").value = accs[0];
+      loadHoldings(accs[0].toLowerCase());
+    }
+  }).catch(function(){});
 }
 
 /* A standing scan of all ten stocks, whatever is in your basket. A pool
@@ -1018,6 +1500,7 @@ function render(debounced){
     renderResult();
     renderChainCheck();
     renderExecute();
+    renderHoldings();
   }
   if(totalWeight() > 0){
     history.replaceState(null, "", shareUrl());
@@ -1040,6 +1523,8 @@ if(fromUrl){
   applyTheme(THEMES[0]);
 }
 renderWeights();
+
+wireHoldings();
 
 $("go").addEventListener("click", buildFromThesis);
 $("thesis").addEventListener("keydown", function(e){ if(e.key === "Enter") buildFromThesis(); });
@@ -1067,6 +1552,7 @@ loadPools().then(function(){
 setInterval(function(){
   /* never redraw underneath a wallet flow */
   if(ex.busy || ex.state === "sending" || ex.state === "ready") return;
+  if(hold.busy || hold.state === "sending" || hold.state === "ready" || hold.state === "quoting") return;
   loadPools().then(function(){ render(); }).catch(function(){});
 }, 60000);
 </script>
