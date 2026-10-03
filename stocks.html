@@ -362,7 +362,10 @@ function venuesHtml(t){
 
 /* ---------- borrowing: Morpho markets that take the stock as collateral ---------- */
 function loadMorpho(){
-  var q = "{ markets(first: 100, where: {chainId_in:[8453], collateralAssetAddress_in:" + JSON.stringify(TOKENS.map(function(t){ return t.a; })) +
+  /* Lower case on purpose: Morpho validates EIP-55 checksums, a few of the
+     addresses base.org publishes are not correctly checksummed, and one bad
+     address fails the whole query, which showed "no market" for all 36. */
+  var q = "{ markets(first: 100, where: {chainId_in:[8453], collateralAssetAddress_in:" + JSON.stringify(TOKENS.map(function(t){ return t.a.toLowerCase(); })) +
     "}) { items { marketId lltv collateralAsset { address } loanAsset { symbol } state { supplyAssetsUsd borrowAssetsUsd collateralAssetsUsd borrowApy } } } }";
   return fetch("https://blue-api.morpho.org/graphql", {method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify({query:q})})
     .then(function(r){ return r.json(); })
