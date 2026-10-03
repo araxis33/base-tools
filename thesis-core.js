@@ -199,12 +199,80 @@
       .sort(function (a, b) { return b.backing - a.backing; });
   }
 
+  /* ---------- what was paid ---------- */
+  /* Average cost of one stock in one wallet, from the explorer's ERC-20
+     transfer lists: the stock's own, and USDC's. A transaction that brought
+     the stock in and sent USDC out is a purchase at that price; one that sent
+     the stock out shrinks the position at its average cost, whatever the
+     reason (a sale, an LP deposit, a gift). Shares that arrived without USDC
+     leaving in the same transaction — paid in ETH, moved from another wallet,
+     taken out of a pool — have no price anyone can prove, so they are counted
+     apart as unknownQty and never guessed at. Transfers are netted per
+     transaction first: one swap can move the same token more than once.
+     Items are Blockscout v2 token-transfer objects. */
+  function costBasis(stockTransfers, usdcTransfers, owner) {
+    var me = String(owner).toLowerCase();
+    var signed = function (it) {
+      var dec = parseInt(it.total && it.total.decimals, 10);
+      var v = Number(it.total && it.total.value) / Math.pow(10, isNaN(dec) ? 0 : dec);
+      var from = String(it.from && it.from.hash).toLowerCase();
+      var to = String(it.to && it.to.hash).toLowerCase();
+      if (from === me && to === me) return 0;
+      return from === me ? -v : to === me ? v : 0;
+    };
+
+    var usdc = {};
+    (usdcTransfers || []).forEach(function (it) {
+      usdc[it.transaction_hash] = (usdc[it.transaction_hash] || 0) + signed(it);
+    });
+
+    var byTx = {}, order = [];
+    (stockTransfers || []).forEach(function (it) {
+      var h = it.transaction_hash;
+      if (!byTx[h]) { byTx[h] = {ts: it.timestamp, qty: 0}; order.push(h); }
+      byTx[h].qty += signed(it);
+    });
+    order.sort(function (a, b) { return byTx[a].ts < byTx[b].ts ? -1 : byTx[a].ts > byTx[b].ts ? 1 : 0; });
+
+    var known = 0, cost = 0, unknown = 0, buys = 0;
+    order.forEach(function (h) {
+      var q = byTx[h].qty;
+      if (q > 0) {
+        var u = usdc[h];
+        if (u !== undefined && u < 0) { known += q; cost += -u; buys++; }
+        else unknown += q;
+      } else if (q < 0) {
+        var held = known + unknown;
+        if (held <= 0) return;
+        var keep = Math.max(0, 1 - (-q) / held);
+        known *= keep; cost *= keep; unknown *= keep;
+      }
+    });
+    return {knownQty: known, cost: cost, unknownQty: unknown, buys: buys};
+  }
+
+  /* The explorer indexes behind the chain, so its history can disagree with
+     the balance the node reports right now. The node wins: a shortfall is an
+     outflow the history has not caught up with yet, and a surplus is shares
+     whose purchase the history does not show. */
+  function reconcileBasis(basis, chainQty) {
+    var held = basis.knownQty + basis.unknownQty;
+    if (!(chainQty > 0)) return {knownQty: 0, cost: 0, unknownQty: 0, buys: basis.buys};
+    if (held > chainQty) {
+      var keep = chainQty / held;
+      return {knownQty: basis.knownQty * keep, cost: basis.cost * keep, unknownQty: basis.unknownQty * keep, buys: basis.buys};
+    }
+    return {knownQty: basis.knownQty, cost: basis.cost, unknownQty: basis.unknownQty + (chainQty - held), buys: basis.buys};
+  }
+
   var api = {
     TOKENS: TOKENS,
     MIN_POOL_LIQUIDITY: MIN_POOL_LIQUIDITY,
     parseThesis: parseThesis,
     summarisePools: summarisePools,
-    findLookalikes: findLookalikes
+    findLookalikes: findLookalikes,
+    costBasis: costBasis,
+    reconcileBasis: reconcileBasis
   };
 
   if (typeof module !== "undefined" && module.exports) module.exports = api;

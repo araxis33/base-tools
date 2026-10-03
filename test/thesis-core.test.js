@@ -228,6 +228,111 @@ test("findLookalikes merges one impostor seen in several pairs and sorts by real
   assert.deepEqual(found.map((f) => [f.symbol, f.backing]), [["AAPLc", 50000], ["TSLA", 3000]]);
 });
 
+// Blockscout v2 token-transfer items, as the page receives them.
+const ME = "0x2ab08a231389fD6c1cb368769aE5Ba3f999209e4";
+const POOL = "0x853F5f0000000000000000000000000000000001";
+const ROUTER = "0x8F10B40000000000000000000000000000000002";
+function xfer(hash, ts, from, to, value, decimals) {
+  return { transaction_hash: hash, timestamp: ts, from: { hash: from }, to: { hash: to }, total: { value: String(value), decimals: String(decimals) } };
+}
+const stockIn = (h, ts, v) => xfer(h, ts, ROUTER, ME, v, 8);
+const stockOut = (h, ts, v, to) => xfer(h, ts, ME, to || ROUTER, v, 8);
+const usdcOut = (h, ts, v, to) => xfer(h, ts, ME, to || ROUTER, v, 6);
+const usdcIn = (h, ts, v) => xfer(h, ts, ROUTER, ME, v, 6);
+const close = (a, b, msg) => assert.ok(Math.abs(a - b) < 1e-9, `${msg}: ${a} vs ${b}`);
+
+// The real NVDAc history of the wallet above, 24.08–12.09: buys, an LP
+// deposit (stock and USDC both leaving), dust back from the pool, a sale, the
+// two Thesis purchases of 08.09, and the sale of 12.09.
+const nvdaHistory = {
+  stock: [
+    stockIn("0xa1", "2026-08-24T20:01:31Z", 2372830),
+    stockOut("0xa2", "2026-08-25T17:30:07Z", 2372830, POOL),
+    stockIn("0xa3", "2026-08-25T17:32:09Z", 80),
+    stockIn("0xa4", "2026-08-27T12:48:31Z", 2221833),
+    stockOut("0xa5", "2026-08-27T12:49:37Z", 1438645, POOL),
+    stockOut("0xa6", "2026-08-28T13:10:57Z", 783268),
+    stockIn("0xa7", "2026-09-08T19:29:15Z", 1063655),
+    stockIn("0xa8", "2026-09-08T20:08:13Z", 1062643),
+    stockOut("0xa9", "2026-09-12T20:39:49Z", 2126298),
+  ],
+  usdc: [
+    usdcOut("0xa1", "2026-08-24T20:01:31Z", 5000000),
+    usdcOut("0xa2", "2026-08-25T17:30:07Z", 6120100, POOL),
+    usdcIn("0xa3", "2026-08-25T17:32:09Z", 1400),
+    usdcOut("0xa4", "2026-08-27T12:48:31Z", 5000000),
+    usdcOut("0xa5", "2026-08-27T12:49:37Z", 5924900, POOL),
+    usdcIn("0xa6", "2026-08-28T13:10:57Z", 1771600),
+    usdcOut("0xa7", "2026-09-08T19:29:15Z", 2400000),
+    usdcOut("0xa8", "2026-09-08T20:08:13Z", 2400000),
+    usdcIn("0xa9", "2026-09-12T20:39:49Z", 4646800),
+  ],
+};
+
+test("costBasis prices a position from the USDC that left in the same transaction", () => {
+  // Up to 08.09 the wallet holds only the two Thesis buys: 4.80 USDC for
+  // 0.02126298 NVDAc. Everything before was sold or moved out to the cent.
+  const upTo = (list) => list.filter((x) => x.timestamp < "2026-09-09");
+  const b = core.costBasis(upTo(nvdaHistory.stock), upTo(nvdaHistory.usdc), ME);
+  close(b.knownQty, 0.02126298, "known shares");
+  close(b.cost, 4.8, "paid");
+  assert.ok(b.unknownQty < 1e-9, "the 80-unit dust left with the 27.08/28.08 outflows");
+  assert.equal(b.buys, 4);
+});
+
+test("costBasis empties after the sale of 12.09", () => {
+  const b = core.costBasis(nvdaHistory.stock, nvdaHistory.usdc, ME);
+  assert.ok(b.knownQty < 1e-9 && b.unknownQty < 1e-9 && b.cost < 1e-9);
+});
+
+test("costBasis keeps shares without a USDC payment apart instead of guessing", () => {
+  // In from another wallet, then a real USDC purchase.
+  const b = core.costBasis(
+    [stockIn("0xb1", "2026-09-01T00:00:00Z", 1000000), stockIn("0xb2", "2026-09-02T00:00:00Z", 1000000)],
+    [usdcOut("0xb2", "2026-09-02T00:00:00Z", 2000000)],
+    ME
+  );
+  close(b.knownQty, 0.01, "known");
+  close(b.cost, 2, "paid");
+  close(b.unknownQty, 0.01, "unknown");
+});
+
+test("costBasis shrinks known and unknown shares together on a partial sale", () => {
+  const b = core.costBasis(
+    [
+      stockIn("0xc1", "2026-09-01T00:00:00Z", 3000000),
+      stockIn("0xc2", "2026-09-02T00:00:00Z", 1000000),
+      stockOut("0xc3", "2026-09-03T00:00:00Z", 2000000),
+    ],
+    [usdcOut("0xc1", "2026-09-01T00:00:00Z", 9000000), usdcIn("0xc3", "2026-09-03T00:00:00Z", 7000000)],
+    ME
+  );
+  close(b.knownQty, 0.015, "known");
+  close(b.cost, 4.5, "average cost survives the sale");
+  close(b.unknownQty, 0.005, "unknown");
+});
+
+test("costBasis nets one swap that touches the stock twice", () => {
+  const b = core.costBasis(
+    [stockIn("0xd1", "2026-09-01T00:00:00Z", 1500000), stockOut("0xd1", "2026-09-01T00:00:00Z", 500000)],
+    [usdcOut("0xd1", "2026-09-01T00:00:00Z", 3000000)],
+    ME
+  );
+  close(b.knownQty, 0.01, "net shares");
+  close(b.cost, 3, "paid once, not twice");
+});
+
+test("reconcileBasis lets the chain's balance win over a lagging explorer", () => {
+  const b = { knownQty: 0.02, cost: 4, unknownQty: 0, buys: 1 };
+  const less = core.reconcileBasis(b, 0.01);
+  close(less.knownQty, 0.01, "shortfall is an outflow");
+  close(less.cost, 2, "at average cost");
+  const more = core.reconcileBasis(b, 0.03);
+  close(more.knownQty, 0.02, "known unchanged");
+  close(more.unknownQty, 0.01, "surplus has no proven price");
+  assert.deepEqual(core.reconcileBasis(b, 0), { knownQty: 0, cost: 0, unknownQty: 0, buys: 1 });
+});
+
 test("thesis.html's inline script parses", () => {
   // A shell edit once stripped the backslash out of \' and broke the page
   // silently; compiling the script catches that before it ships.
