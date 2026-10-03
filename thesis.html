@@ -274,7 +274,7 @@ footer{border-top:1px solid var(--border); margin-top:30px; padding:22px 0 40px;
 
   <section id="holdings">
     <h2>Your stocks</h2>
-    <p class="note">Paste a Base address to see which of the ten it holds, what they are worth right now and what was paid for them. Nothing to sign &mdash; the wallet is asked only if you sell.</p>
+    <p class="note">Paste a Base address to see which of Coinbase&rsquo;s stocks it holds, what they are worth right now and what was paid for them. Nothing to sign &mdash; the wallet is asked only if you sell.</p>
     <div class="panel">
       <div class="thesis-row">
         <input id="hold-addr" type="text" autocomplete="off" spellcheck="false" placeholder="0x&hellip; any Base address">
@@ -304,7 +304,7 @@ footer{border-top:1px solid var(--border); margin-top:30px; padding:22px 0 40px;
       </div>
       <div>
         <h3>Only the real tokens</h3>
-        <p>The ten contract addresses here are the ones Coinbase publishes on base.org. Anything else using these tickers on Base was not issued by Coinbase; the page flags pools quoting impossible prices.</p>
+        <p>Every contract address here is one Coinbase publishes on base.org, checked against that list daily. Anything else using these tickers on Base was not issued by Coinbase. A stock whose price on Base strays from the real share is not bought at all.</p>
       </div>
     </div>
   </section>
@@ -342,7 +342,7 @@ var THEMES = [
   {id:"big",    label:"Big tech, no Tesla", w:{AAPLc:20, MSFTc:20, GOOGLc:20, AMZNc:20, METAc:20}},
   {id:"space",  label:"Space & frontier",   w:{SPCXc:50, TSLAc:30, NVDAc:20}},
   {id:"btc",    label:"Bitcoin exposure",   w:{MSTRc:70, NVDAc:30}},
-  {id:"even",   label:"All ten, even",      w:null}
+  {id:"even",   label:"Every buyable stock, even", w:null}
 ];
 
 var state = {
@@ -352,7 +352,12 @@ var state = {
   loadedAt:0,
   error:null,
   lookalikes:null,   // impostor tokens found by ticker or address prefix
-  title:""           // the sentence or theme the basket came from, for the share card
+  title:"",          // the sentence or theme the basket came from, for the share card
+  real:{},           // symbol -> the real share's last price (Yahoo, through our Worker)
+  realTried:false,   // the real prices have been asked for at least once
+  mult:{},           // symbol -> shares per token (dividends and splits move it off 1)
+  showAll:false,     // the weights list shows every stock, not just the basket
+  touched:{}         // stocks dragged since the basket was set, kept in view at 0
 };
 
 /* ---------- helpers ---------- */
@@ -399,6 +404,74 @@ function loadPools(){
   });
 }
 
+/* ---------- is the price on Base real? ---------- */
+/* Comparing pools with each other catches one lying pool among honest ones.
+   It cannot catch a stock whose every pool is empty and lies the same way:
+   on 03.10, a week after Coinbase listed 26 more stocks, PFEc traded at $374
+   on Base against a $27.80 Pfizer share and a $1,000 round trip lost 99.8%.
+   So each stock's price on Base is also checked against the real share
+   (Yahoo, through our Worker), adjusted by the token's own share multiplier,
+   and a basket simply does not buy what fails. */
+var WORKER = "https://deftools-check.araxis67.workers.dev";
+var GAP_OPEN = 3, GAP_CLOSED = 10;   // % from the real share; wider while Wall Street is shut
+var IMPACT_LIMIT = 2;                // % estimated price impact for one stock's slice
+var DEEP_MARKET = 100000;            // $ in sane pools: deep enough to trust without the share price
+var QUOTE_LIMIT = 3;                 // % the live route may cost beyond the pool price, buying or selling
+
+/* Null when the price on Base can be trusted, otherwise why not. */
+function priceCheck(sym){
+  var d = state.data && state.data[sym];
+  if(!d) return "no live pool on Base";
+  var real = state.real[sym], m = state.mult[sym] || 1;
+  if(real > 0){
+    var gap = (d.deep.price / (real * m) - 1) * 100;
+    /* Over a weekend Base keeps trading on news the share has not seen yet,
+       so the limit widens; a broken pool is off by multiples, not percent. */
+    var limit = usMarketOpen() ? GAP_OPEN : GAP_CLOSED;
+    if(Math.abs(gap) > limit){
+      return "price on Base is " + (gap > 0 ? "+" : "−") + Math.abs(gap).toFixed(Math.abs(gap) >= 100 ? 0 : 1) + "% " +
+        (gap > 0 ? "above" : "below") + " the real share (" + money(d.deep.price, 2) + " vs " + money(real * m, 2) + ")";
+    }
+    return null;
+  }
+  if(d.tvl < DEEP_MARKET){
+    return state.realTried ? "its price cannot be checked against the real share right now" : "checking its price against the real share…";
+  }
+  return null;
+}
+
+/* Null when this slice of the basket can be bought, otherwise why not. */
+function blockReason(t, usd){
+  var p = priceCheck(t.s);
+  if(p) return p;
+  var d = state.data[t.s];
+  var impact = d.deep.liq > 0 ? (usd / (d.deep.liq / 2)) * 100 : Infinity;
+  if(impact >= IMPACT_LIMIT) return "its pools hold " + money(d.deep.liq, 0) + ", too thin for " + money(usd, 0) + " (about " + pct(impact, 1) + " price impact)";
+  return null;
+}
+
+/* The Worker answers up to twelve tickers at a time. */
+function loadReal(){
+  var roots = TOKENS.map(function(t){ return t.s.replace(/c$/, ""); });
+  var chunks = [];
+  for(var i = 0; i < roots.length; i += 12) chunks.push(roots.slice(i, i + 12));
+  return Promise.all(chunks.map(function(c){
+    return fetch(WORKER + "/shares?t=" + c.join(",")).then(function(r){ return r.json(); }).catch(function(){ return {}; });
+  })).then(function(parts){
+    TOKENS.forEach(function(t){
+      var root = t.s.replace(/c$/, "");
+      parts.forEach(function(j){ if(j && j[root] && j[root].price > 0) state.real[t.s] = j[root].price; });
+    });
+  }).then(function(){ state.realTried = true; });
+}
+
+/* multiplier() is WAD: how many real shares one token stands for. */
+function loadMultipliers(){
+  return multicallUints(TOKENS.map(function(t){ return { to:t.a, data:"0x1b3ed722" }; })).then(function(vals){
+    TOKENS.forEach(function(t, i){ if(vals[i]) state.mult[t.s] = Number(vals[i]) / 1e18; });
+  }).catch(function(){});
+}
+
 /* ---------- look-alikes ---------- */
 /* One search per ticker. Impostors change slowly, so this runs on load and
    then every ten minutes rather than with the price refresh. */
@@ -432,8 +505,14 @@ function renderChips(){
 function applyTheme(th){
   var w = {};
   if(th.w){ for(var k in th.w){ w[k] = th.w[k]; } }
-  else { TOKENS.forEach(function(t){ w[t.s] = 10; }); }
+  else {
+    /* Every stock whose price on Base can be trusted right now; before the
+       pools have loaded that is not known yet, so all of them, and the
+       basket below leaves out whatever fails the check. */
+    TOKENS.forEach(function(t){ if(!state.data || !priceCheck(t.s)) w[t.s] = 10; });
+  }
   state.weights = w;
+  state.touched = {}; state.showAll = false;
   state.title = th.label;
   $("thesis").value = "";
   $("parsed").innerHTML = 'Theme: <b>' + esc(th.label) + '</b> — drag any weight to make it yours.';
@@ -453,6 +532,7 @@ function buildFromThesis(){
     return;
   }
   state.weights = r.weights;
+  state.touched = {}; state.showAll = false;
   state.title = "“" + text + "”";
   var msg = 'Matched <b>' + Object.keys(r.weights).length + '</b> stocks on: <b>' +
             esc(r.why.filter(function(v,i,a){ return a.indexOf(v)===i; }).join(", ")) + '</b>';
@@ -465,7 +545,12 @@ function renderWeights(){
   var el = $("weights");
   var tot = totalWeight();
   var amt = state.amount;
-  el.innerHTML = TOKENS.map(function(t){
+  /* 36 sliders in a row bury the basket, so the list shows what is in it and
+     opens to every stock on request. */
+  var keep = function(t){ return (state.weights[t.s] || 0) > 0 || state.touched[t.s]; };
+  var inBasket = TOKENS.filter(keep).length;
+  var list = state.showAll || !inBasket ? TOKENS : TOKENS.filter(keep);
+  el.innerHTML = list.map(function(t){
     var raw = state.weights[t.s] || 0;
     var share = tot > 0 ? raw / tot : 0;
     var d = state.data ? state.data[t.s] : null;
@@ -473,6 +558,8 @@ function renderWeights(){
     var chg = d ? d.deep.chg : 0;
     var chgCls = chg >= 0 ? "up" : "down";
     var chgTxt = d ? (chg >= 0 ? "+" : "") + chg.toFixed(2) + "%" : "";
+    var bad = state.data ? priceCheck(t.s) : null;
+    if(bad){ chgCls = "down"; chgTxt = "not buyable"; }
     return '' +
       '<div class="w-row' + (raw > 0 ? '' : ' off') + '">' +
         '<div class="w-tick"><div class="s">' + t.s + '</div><div class="n">' + esc(t.co) + '</div></div>' +
@@ -480,13 +567,16 @@ function renderWeights(){
         '<div class="w-pct"><b>' + Math.round(share * 100) + '%</b>' +
           '<div class="w-usd">' + (share > 0 ? money(share * amt, 2) : "&nbsp;") + '</div></div>' +
         '<div class="w-px"><div class="p">' + px + '</div>' +
-          '<div class="c ' + chgCls + '">' + chgTxt + '</div></div>' +
+          '<div class="c ' + chgCls + '"' + (bad ? ' title="' + esc(bad) + '"' : '') + '>' + chgTxt + '</div></div>' +
       '</div>';
-  }).join("");
+  }).join("") + (inBasket ? '<button class="btn ghost small" id="show-all">' +
+    (state.showAll ? 'Show only the basket' : 'Add a stock · all ' + TOKENS.length) + '</button>' : '');
+  if($("show-all")) $("show-all").addEventListener("click", function(){ state.showAll = !state.showAll; renderWeights(); });
 
   Array.prototype.forEach.call(el.querySelectorAll("input[type=range]"), function(r){
     r.addEventListener("input", function(){
       state.weights[r.dataset.sym] = parseInt(r.value, 10);
+      state.touched[r.dataset.sym] = true;   // stays in the list even at 0
       Array.prototype.forEach.call($("chips").querySelectorAll(".chip"), function(b){ b.classList.remove("on"); });
       render(true);
     });
@@ -495,7 +585,7 @@ function renderWeights(){
   var n = Object.keys(state.weights).filter(function(k){ return state.weights[k] > 0; }).length;
   $("tot-left").innerHTML = n ? (n + ' stock' + (n>1?'s':'') + ' · ' + money(amt, 2) + ' total') : 'Nothing selected yet.';
   $("tot-right").innerHTML = n ? '<button class="btn ghost small" id="clear">Clear</button>' : '';
-  if($("clear")) $("clear").addEventListener("click", function(){ state.weights = {}; render(); });
+  if($("clear")) $("clear").addEventListener("click", function(){ state.weights = {}; state.touched = {}; render(); });
 }
 
 function renderResult(){
@@ -507,12 +597,15 @@ function renderResult(){
   var rows = [], overpay = 0, spent = 0, worstImpact = 0, missing = [];
   var allTraps = [];
 
+  var blocked = [];
   TOKENS.forEach(function(t){
     var raw = state.weights[t.s] || 0;
     if(raw <= 0) return;
     var d = state.data[t.s];
     if(!d){ missing.push(t.s); return; }
     var usd = amt * raw / tot;
+    var why = blockReason(t, usd);
+    if(why){ blocked.push({t:t, usd:usd, why:why}); return; }
     var qty = usd / d.deep.price;
     /* v2-style pools hold roughly half their reported liquidity on each side,
        so this is the standard first-order price-impact estimate. Flagged as an
@@ -526,7 +619,17 @@ function renderResult(){
     rows.push({t:t, d:d, usd:usd, qty:qty, impact:impact});
   });
 
-  if(!rows.length){ el.innerHTML = ""; return; }
+  var leftOut = blocked.reduce(function(s, b){ return s + b.usd; }, 0);
+  var blockedHtml = blocked.length ? '<div class="traps"><b>Not bought: ' + blocked.length + ' stock' + (blocked.length > 1 ? 's' : '') +
+    ' whose market on Base is broken or too thin for this amount.</b> Their ' + money(leftOut, 2) +
+    ' stays in your USDC. Coinbase lists them, but buying here would cost far more than the share is worth:<ul>' +
+    blocked.map(function(b){ return '<li><b>' + b.t.s + '</b> (' + money(b.usd, 2) + ') — ' + esc(b.why) +
+      ' · <a href="/stocks.html#' + b.t.s + '">full check &rarr;</a></li>'; }).join("") + '</ul></div>' : '';
+
+  if(!rows.length){
+    el.innerHTML = blocked.length ? '<h2>What you get</h2>' + blockedHtml : "";
+    return;
+  }
 
   var impactPill = worstImpact < 0.5 ? "green" : worstImpact < 2 ? "yellow" : "red";
   var overpayPct = spent > 0 ? overpay / spent * 100 : 0;
@@ -536,8 +639,9 @@ function renderResult(){
     'Price impact is an estimate from pool depth &mdash; the bigger your order, the more it matters.</p>';
 
   html += '<div class="cards">' +
-    '<div class="card"><div class="k">Basket size</div><div class="v">' + money(amt, 2) + '</div>' +
-      '<div class="s">' + rows.length + ' stocks, ' + rows.length + ' swaps</div></div>' +
+    '<div class="card"><div class="k">Basket size</div><div class="v">' + money(spent, 2) + '</div>' +
+      '<div class="s">' + rows.length + ' stocks, ' + rows.length + ' swaps' +
+      (leftOut > 0 ? ' · ' + money(leftOut, 2) + ' left out' : '') + '</div></div>' +
     '<div class="card"><div class="k">Worst price impact</div><div class="v">' + pct(worstImpact, 2) + '</div>' +
       '<div class="s"><span class="pill ' + impactPill + '">' +
         (worstImpact < 0.5 ? "size is fine" : worstImpact < 2 ? "getting heavy" : "too big for these pools") +
@@ -580,7 +684,7 @@ function renderResult(){
 
   if(overpay > 0.005){
     html += '<div class="savings">' +
-      '<div class="big">' + money(overpay, 2) + ' saved on a ' + money(amt, 0) + ' basket</div>' +
+      '<div class="big">' + money(overpay, 2) + ' saved on a ' + money(spent, 0) + ' basket</div>' +
       '<div class="txt">Same shares, same chain, same minute. That is what this basket would have cost ' +
       'if each stock were bought in the priciest pool currently quoting it on Base instead of the deepest one &mdash; ' +
       pct(overpayPct, 2) + ' of your money, gone to nothing.</div></div>';
@@ -599,6 +703,8 @@ function renderResult(){
     html += '</ul></div>';
   }
 
+  html += blockedHtml;
+
   if(missing.length){
     html += '<div class="traps"><b>No live pool found</b> for ' + esc(missing.join(", ")) +
             '. Left out of the basket.</div>';
@@ -614,7 +720,7 @@ function renderResult(){
 
   var cardRows = rows.map(function(r){ return { s:r.t.s, co:r.t.co, share:r.usd / spent }; });
   $("card").addEventListener("click", function(){
-    downloadCard({ rows:cardRows, amt:amt, overpay:overpay, overpayPct:overpayPct });
+    downloadCard({ rows:cardRows, amt:spent, overpay:overpay, overpayPct:overpayPct });
   });
 
   $("share").addEventListener("click", function(){
@@ -808,6 +914,7 @@ function basketRows(){
     if(!d) return;
     var usd = state.amount * raw / tot;
     if(usd < 0.5) return;               // dust is not worth a swap
+    if(blockReason(t, usd)) return;     // the same check the basket above shows
     out.push({t:t, d:d, usd:usd, wei:BigInt(Math.round(usd * 1e6))});
   });
   return out;
@@ -920,8 +1027,21 @@ function doQuote(){
     ex.state = "quoting"; renderExecute();
     return Promise.all(rows.map(function(r){ return kyberRoute(r, from); }));
   }).then(function(qs){
-    ex.quotes = qs; ex.state = "ready";
-    ex.msg = "Quotes are good for a couple of minutes.";
+    /* The last word on a thin market is the executable quote, not the depth
+       estimate: a stock whose live route costs more than QUOTE_LIMIT above
+       the pool price is dropped here, before anything is signed. */
+    var dropped = [];
+    qs = qs.filter(function(q){
+      var got = Number(q.out) / 1e8, eff = got > 0 ? q.row.usd / got : Infinity;
+      var diff = (eff - q.row.d.deep.price) / q.row.d.deep.price * 100;
+      if(diff > QUOTE_LIMIT){ dropped.push(q.row.t.s + " (" + (isFinite(diff) ? "+" + diff.toFixed(1) + "%" : "no shares") + ")"); return false; }
+      return true;
+    });
+    if(dropped.length) ex.error = "Left out after quoting: " + dropped.join(", ") +
+      " — the live route costs more than " + QUOTE_LIMIT + "% above the pool price. That money stays in your USDC.";
+    ex.quotes = qs.length ? qs : null;
+    ex.state = qs.length ? "ready" : "idle";
+    ex.msg = qs.length ? "Quotes are good for a couple of minutes." : "";
   }).catch(function(e){
     ex.error = e.message || String(e);
     ex.state = ex.quotes ? "ready" : "idle";
@@ -1039,7 +1159,7 @@ function multicallUints(calls){
   });
 }
 
-/* All ten balances in one read. */
+/* Every stock's balance in one read. */
 function readBalances(owner){
   return multicallUints(TOKENS.map(function(t){
     return { to:t.a, data:"0x70a08231" + hex32(BigInt(owner)) };
@@ -1274,7 +1394,7 @@ function renderHoldings(){
   if(!hold.addr){ el.innerHTML = ""; return; }
   if(!hold.rows){ el.innerHTML = '<p class="skel" style="margin-top:12px">Reading balances on Base…</p>'; return; }
   if(!hold.rows.length){
-    el.innerHTML = '<p class="note" style="margin:14px 0 0">None of the ten Coinbase stocks at <span class="addr">' +
+    el.innerHTML = '<p class="note" style="margin:14px 0 0">None of Coinbase&rsquo;s stocks at <span class="addr">' +
       esc(hold.addr.slice(0, 6) + "…" + hold.addr.slice(-4)) + '</span>. Lookalike tokens with the same tickers are not counted.</p>';
     return;
   }
@@ -1433,7 +1553,20 @@ function doSellQuote(){
     hold.state = "quoting"; renderHoldings();
     var rows = sellRows().map(function(r){ return { t:r.t, price:state.data[r.t.s].deep.price, amount:sellAmount(r) }; });
     return Promise.all(rows.map(function(r){ return kyberSell(r, r.amount, from); })).then(function(qs){
-      hold.quotes = qs; hold.state = "ready"; hold.msg = "Quotes are good for a couple of minutes.";
+      /* Selling into an empty pool gives the shares away. Such a sale is not
+         put in the batch; a smaller share may still go through. */
+      var dropped = [];
+      qs = qs.filter(function(q){
+        var qty = Number(q.amount) / 1e8, eff = qty > 0 ? Number(q.out) / 1e6 / qty : 0;
+        var diff = (q.row.price - eff) / q.row.price * 100;
+        if(diff > QUOTE_LIMIT){ dropped.push(q.row.t.s + " (−" + diff.toFixed(1) + "%)"); return false; }
+        return true;
+      });
+      if(dropped.length) hold.error2 = "Not sold: " + dropped.join(", ") + " — the live route pays more than " + QUOTE_LIMIT +
+        "% below the pool price, the pools are too thin for this much. Try a smaller share.";
+      hold.quotes = qs.length ? qs : null;
+      hold.state = qs.length ? "ready" : "idle";
+      hold.msg = qs.length ? "Quotes are good for a couple of minutes." : "";
     });
   }).catch(function(e){
     hold.error2 = (e && e.message) ? e.message : String(e);
@@ -1519,7 +1652,7 @@ function wireHoldings(){
   }).catch(function(){});
 }
 
-/* A standing scan of all ten stocks, whatever is in your basket. A pool
+/* A standing scan of every stock, whatever is in your basket. A pool
    quoting Tesla at $15,000 harms nobody until something routes an order into
    it, and the people most likely to hit one are the ones who never look. */
 function renderChainCheck(){
@@ -1535,7 +1668,7 @@ function renderChainCheck(){
   spreads.sort(function(a,b){ return b.gap - a.gap; });
 
   var html = '<h2>Chain check</h2>' +
-    '<p class="note">Refreshed every minute across all ten stocks, whether or not they are in your basket.</p>';
+    '<p class="note">Refreshed every minute across all ' + TOKENS.length + ' stocks, whether or not they are in your basket.</p>';
 
   if(spreads.length){
     html += '<div class="traps" style="border-left-color:var(--yellow)"><b>Same share, different price</b> — ' +
@@ -1562,7 +1695,7 @@ function renderChainCheck(){
     html += '<div class="traps"><b>' + twins.length + ' token' + (twins.length > 1 ? 's' : '') +
       ' on Base use a Coinbase stock’s ticker at another address.</b> Together their pools hold about ' +
       money(twinReal, 0) + ' of real money, even though trackers list ' + money(twinShown, 0) +
-      ' of “liquidity”: they price themselves. Baskets here buy only the ten addresses on ' +
+      ' of “liquidity”: they price themselves. Baskets here buy only the addresses listed on ' +
       '<a href="https://www.base.org/stocks" target="_blank" rel="noopener">base.org/stocks</a>; ' +
       'if a search shows you one of these, it is not the stock:<ul>';
     twins.slice(0, 6).forEach(function(f){
@@ -1709,6 +1842,15 @@ loadPools().then(function(){
   state.error = "Could not read pool data. Reload the page.";
   renderStamp();
 });
+
+/* The check against the real share: until it answers, thin stocks wait. */
+Promise.all([loadReal(), loadMultipliers()]).then(function(){
+  if(state.data && !ex.busy && !hold.busy) render();
+});
+setInterval(function(){
+  if(ex.busy || ex.state === "sending" || ex.state === "ready") return;
+  loadReal().then(function(){ if(state.data && !hold.busy) render(); });
+}, 300000);
 
 /* Prices move; a quiet refresh every 60s keeps the page honest without
    fighting the user's sliders. */
