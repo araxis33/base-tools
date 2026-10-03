@@ -740,7 +740,7 @@
       <div class="trend-col">
         <div class="trend-col-head">
           <div class="trend-col-icon stock"><svg class="ic" aria-hidden="true"><use href="#i-chart"/></svg></div>
-          <div><div class="trend-col-title">Stocks on Base</div><div class="trend-col-desc">Tokenized equities, by 24h move</div></div>
+          <div><div class="trend-col-title">Stocks on Base</div><div class="trend-col-desc">The 10 most traded of 36, by 24h move · <a href="/stocks.html">all 36</a></div></div>
         </div>
         <div id="col-stocks"><div class="trend-empty">Loading…</div></div>
       </div>
@@ -966,6 +966,7 @@
   </div>
 </div>
 
+<script src="thesis-core.js"></script>
 <script>
 // ---------- Directory data ----------
 // Muted category colors — visible but not loud
@@ -1189,20 +1190,14 @@ const PLATFORMS_CACHE_TTL_MS = 24 * 60 * 60 * 1000; // platform mapping barely c
 
 const CACHE_KEY = "basetools_boards_v6";
 
-// The ten tokenized equities live on Base. CoinGecko does not carry them, so
-// unlike the other three boards their prices come straight from the pools.
-const STOCK_TOKENS = [
-  { symbol:"NVDAc",  contract:"0xb20000000000000000000078ee7ce2fE4908108C" },
-  { symbol:"METAc",  contract:"0xb2000000000000000000008bC8786B856E61707C" },
-  { symbol:"AAPLc",  contract:"0xb200000000000000000000C2e324d24d7eEcd1fb" },
-  { symbol:"GOOGLc", contract:"0xb2000000000000000000002D0BA3164cc74f58B7" },
-  { symbol:"AMZNc",  contract:"0xb200000000000000000000d9192b6B456483C2E8" },
-  { symbol:"MSFTc",  contract:"0xB200000000000000000000Ab99cFa739E253872B" },
-  { symbol:"MSTRc",  contract:"0xb2000000000000000000004884b426556b92883d" },
-  { symbol:"SNDKc",  contract:"0xb200000000000000000000397293Cb8cda9a10c5" },
-  { symbol:"SPCXc",  contract:"0xb2000000000000000000007b9fcbd005511aCBd5" },
-  { symbol:"TSLAc",  contract:"0xb2000000000000000000001e800a7f5189430cD0" },
-];
+// The tokenized equities on Base, from the one list the whole site shares
+// (thesis-core.js, checked against base.org every day). CoinGecko does not
+// carry them, so unlike the other three boards their prices come straight
+// from the pools.
+const STOCK_TOKENS = ThesisCore.TOKENS.map(t => ({ symbol: t.s, contract: t.a }));
+// Coinbase lists 36 of them, most with almost empty pools. The board shows the
+// ten that actually trade; the rest are one click away on Stocks on Base.
+const STOCK_BOARD_ROWS = 10;
 const CACHE_TTL_MS = 5 * 60 * 1000;
 
 // Every board read and wrote localStorage directly. In a private window, or
@@ -1396,8 +1391,8 @@ function pickPoolPrice(pairs, contract, chainId){
 
 async function fetchStocks(){
   // One request per token: the batched endpoint caps its reply at 30 pairs, and
-  // ten of these tokens have far more pools than that between them, so asking
-  // for all ten at once silently drops whichever tokens fall off the end.
+  // these tokens have far more pools than that between them, so asking for all
+  // of them at once silently drops whichever tokens fall off the end.
   const results = await Promise.all(STOCK_TOKENS.map(t =>
     fetchWithTimeout("https://api.dexscreener.com/latest/dex/tokens/" + t.contract, 9000)
       .then(r => r.ok ? r.json() : null)
@@ -1417,7 +1412,10 @@ async function fetchStocks(){
       marketCap: 0,
     };
   }).filter(Boolean);
-  return out.sort((a,b)=>(b.change24h||0) - (a.change24h||0));
+  return out
+    .sort((a,b)=>(b.volume24h||0) - (a.volume24h||0))
+    .slice(0, STOCK_BOARD_ROWS)
+    .sort((a,b)=>(b.change24h||0) - (a.change24h||0));
 }
 
 async function fetchBlueChips(){

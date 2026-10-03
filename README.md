@@ -19,7 +19,7 @@ https://deftools.xyz/
 - **Tracking & Alerts** — Cielo Finance, RayBot, Blocktronics
 - **DeFi: swap, bridge, lend** — Aerodrome Finance, Uniswap, Matcha, Relay, Morpho
 
-Four live boards: biggest 24h losers (with a volume floor, so the list is real sell-offs rather than untraded dust), best 24h gainers, a hand-picked blue-chip list, and the ten tokenized equities on Base. The first three are built from CoinGecko's `base-ecosystem` category, filtered down to tokens whose only chain is Base; the equities are priced straight from their pools, because CoinGecko does not carry them.
+Four live boards: biggest 24h losers (with a volume floor, so the list is real sell-offs rather than untraded dust), best 24h gainers, a hand-picked blue-chip list, and the ten most traded of the 36 tokenized equities on Base. The first three are built from CoinGecko's `base-ecosystem` category, filtered down to tokens whose only chain is Base; the equities are priced straight from their pools, because CoinGecko does not carry them.
 
 Boards are cached locally for five minutes, and the stamp says how old a cached board actually is. A board that cannot load says so and offers a retry rather than going blank, and one failing request no longer takes the others down with it.
 

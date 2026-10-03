@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Stocks on Base · trade US stocks 24/7, checked live</title>
-<meta name="description" content="The ten Coinbase stocks on Base, checked live: is it the official token, the price on Base against the real share, what a round trip costs, where you can borrow against it, and what happens when the US market is shut.">
+<meta name="description" content="All 36 Coinbase stocks on Base, checked live: is it the official token, the price on Base against the real share, what a round trip costs, where you can borrow against it, and what happens when the US market is shut.">
 <link rel="canonical" href="https://deftools.xyz/stocks.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Base.tools">
@@ -122,7 +122,7 @@ footer{margin:40px 0 30px; color:var(--muted2); font-size:13px}
 <div class="wrap">
   <div class="hero">
     <h1>US stocks on Base, 24/7. See what you get right now.</h1>
-    <p class="sub">The ten Coinbase stocks on Base, checked live: is it the official token, how the price on Base
+    <p class="sub">All 36 Coinbase stocks on Base, checked live: is it the official token, how the price on Base
       compares with the real share, what buying and selling actually costs, and where you can borrow against it.
       Tap any stock for the full check.</p>
   </div>
@@ -207,32 +207,46 @@ function rpcBatch(calls){
 function word(hex, i){ return BigInt("0x" + hex.slice(2 + 64*i, 66 + 64*i)); }
 
 function loadChain(){
-  var calls = [];
-  TOKENS.forEach(function(t){
-    calls.push([FEEDS[t.s], "0xfeaf968c"]);                 // latestRoundData
-    calls.push([FEEDS[t.s], "0x313ce567"]);                 // feed decimals
-    calls.push([t.a, "0x1b3ed722"]);                        // multiplier
-    calls.push([t.a, "0xde9997e3"]);                        // pausedFeatures
-    calls.push([t.a, "0xdb3de624" + SENDER_SCOPE]);         // policyId(TRANSFER_SENDER_POLICY)
-    calls.push([t.a, "0x313ce567"]);                        // token decimals
-  });
-  return rpcBatch(calls).then(function(r){
-    TOKENS.forEach(function(t, i){
-      var b = i * 6, c = {};
-      try { var dec = Number(word(r[b+1], 0)); c.oracle = Number(word(r[b], 1)) / Math.pow(10, dec); c.oracleAt = Number(word(r[b], 3)); } catch(e){}
-      try { c.multiplier = Number(word(r[b+2], 0)) / 1e18; } catch(e){}
-      try { var n = Number(word(r[b+3], 1)); c.paused = []; for (var k = 0; k < n; k++) c.paused.push(PAUSABLE[Number(word(r[b+3], 2 + k))] || "?"); } catch(e){}
-      try { c.policy = Number(word(r[b+4], 0)); } catch(e){}
-      try { c.decimals = Number(word(r[b+5], 0)); } catch(e){ c.decimals = 18; }
-      S[t.s].chain = c;
+  /* Six reads per stock, eight stocks per batch: one batch of all 36 is more
+     than a public node takes. The 26 stocks listed in late September have no
+     Chainlink feed yet, so their two feed reads go to the token instead and
+     are ignored. */
+  var CHUNK = 8, jobs = [];
+  for (var at = 0; at < TOKENS.length; at += CHUNK) (function(slice){
+    var calls = [];
+    slice.forEach(function(t){
+      var feed = FEEDS[t.s] || t.a;
+      calls.push([feed, "0xfeaf968c"]);                       // latestRoundData
+      calls.push([feed, "0x313ce567"]);                       // feed decimals
+      calls.push([t.a, "0x1b3ed722"]);                        // multiplier
+      calls.push([t.a, "0xde9997e3"]);                        // pausedFeatures
+      calls.push([t.a, "0xdb3de624" + SENDER_SCOPE]);         // policyId(TRANSFER_SENDER_POLICY)
+      calls.push([t.a, "0x313ce567"]);                        // token decimals
     });
-  }).catch(function(){});
+    jobs.push(function(){ return rpcBatch(calls).then(function(r){ readChain(slice, r); }).catch(function(){}); });
+  })(TOKENS.slice(at, at + CHUNK));
+  return jobs.reduce(function(p, job){ return p.then(job); }, Promise.resolve());
+}
+function readChain(slice, r){
+  slice.forEach(function(t, i){
+    var b = i * 6, c = {};
+    if (FEEDS[t.s]) try { var dec = Number(word(r[b+1], 0)); c.oracle = Number(word(r[b], 1)) / Math.pow(10, dec); c.oracleAt = Number(word(r[b], 3)); } catch(e){}
+    try { c.multiplier = Number(word(r[b+2], 0)) / 1e18; } catch(e){}
+    try { var n = Number(word(r[b+3], 1)); c.paused = []; for (var k = 0; k < n; k++) c.paused.push(PAUSABLE[Number(word(r[b+3], 2 + k))] || "?"); } catch(e){}
+    try { c.policy = Number(word(r[b+4], 0)); } catch(e){}
+    try { c.decimals = Number(word(r[b+5], 0)); } catch(e){ c.decimals = 18; }
+    S[t.s].chain = c;
+  });
 }
 
 /* ---------- real shares (through our Worker: Yahoo has no CORS) ---------- */
 function loadShares(){
-  var list = TOKENS.map(function(t){ return t.s.replace(/c$/, ""); }).join(",");
-  return fetch(WORKER + "/shares?t=" + list).then(function(r){ return r.json(); }).then(function(j){ shares = j; }).catch(function(){ shares = {}; });
+  /* The Worker answers up to twelve tickers per request. */
+  var roots = TOKENS.map(function(t){ return t.s.replace(/c$/, ""); }), chunks = [];
+  for (var i = 0; i < roots.length; i += 12) chunks.push(roots.slice(i, i + 12));
+  return Promise.all(chunks.map(function(c){
+    return fetch(WORKER + "/shares?t=" + c.join(",")).then(function(r){ return r.json(); }).catch(function(){ return {}; });
+  })).then(function(parts){ shares = {}; parts.forEach(function(j){ for (var k in j) shares[k] = j[k]; }); });
 }
 
 /* ---------- DEX quotes ---------- */
@@ -412,13 +426,17 @@ function gapOf(t){
   var s = shareOf(t), d = S[t.s].dex, m = (S[t.s].chain && S[t.s].chain.multiplier) || 1;
   return s && s.price && d ? 100 * (d / (s.price * m) - 1) : null;
 }
+function st0(t){ return S[t.s] || {}; }
 function flags(t){
   var c = S[t.s].chain || {}, out = ['<span class="tag g">&#10003; official</span>'];
   var g = gapOf(t), rt = S[t.s].rt;
   if (c.paused && c.paused.length) out.push('<span class="tag r">paused: ' + esc(c.paused.join(", ")) + '</span>');
   if (c.multiplier && Math.abs(c.multiplier - 1) > 1e-9) out.push('<span class="tag y">1 token = ' + c.multiplier.toFixed(4) + ' shares</span>');
-  if (g != null && Math.abs(g) >= 1) out.push('<span class="tag y">' + pct(g, 1) + ' from the share</span>');
-  if (rt && rt.loss >= 1) out.push('<span class="tag y">costly round trip</span>');
+  if (g != null && Math.abs(g) >= 3) out.push('<span class="tag r">' + pct(g, 1) + ' from the share: do not buy</span>');
+  else if (g != null && Math.abs(g) >= 1) out.push('<span class="tag y">' + pct(g, 1) + ' from the share</span>');
+  if (rt && rt.loss >= 5) out.push('<span class="tag r">empty market: $1,000 in and out loses ' + rt.loss.toFixed(0) + '%</span>');
+  else if (rt && rt.loss >= 1) out.push('<span class="tag y">costly round trip</span>');
+  if (st0(t).rt === null && st0(t).dex === null) out.push('<span class="tag r">no route to buy it</span>');
   if (open && c.oracleAt && Date.now()/1000 - c.oracleAt > 3 * 3600) out.push('<span class="tag">feed ' + ago(c.oracleAt) + '</span>');
   var lk = S[t.s].look;
   if (lk && lk.fakes.length) out.push('<span class="tag r">' + lk.fakes.length + ' fake' + (lk.fakes.length > 1 ? 's' : '') + ' around</span>');
@@ -461,7 +479,7 @@ function detail(t){
     kv("On Base now", usd(st.dex)) +
     kv(open ? "Real share, live" : "Real share, last close", s && s.price ? usd(s.price) : "—") +
     kv("Gap", pct(g)) +
-    kv("Chainlink feed", c.oracle ? usd(c.oracle) + ' <span class="mut">· ' + ago(c.oracleAt) + '</span>' : "—") +
+    kv("Chainlink feed", c.oracle ? usd(c.oracle) + ' <span class="mut">· ' + ago(c.oracleAt) + '</span>' : FEEDS[t.s] ? "—" : '<span class="mut">none yet for this stock</span>') +
     '<p class="mut">The feed updates when the price moves 0.5% or once a day, 24/5, so hours without an update are normal.</p></div>';
 
   h += '<div class="box"><h3>What a trade costs</h3>' +
@@ -499,12 +517,12 @@ function detail(t){
   var wr = WK && WK.rows[t.s];
   h += '<div class="box"><h3>Last weekend</h3>' + (wr ?
     kv("Friday close", usd(wr.close)) + kv("Base, before the US open", usd(wr.base)) + kv("US price after the open", usd(wr.monday)) + kv("Difference", '<span class="' + (Math.abs(wr.vs) < 1 ? "ok" : Math.abs(wr.vs) < 2 ? "warn" : "bad") + '">' + pct(wr.vs) + '</span>') +
-    kv("Worst $1,000 round trip", wr.rt.toFixed(2) + "%") + '<p class="mut">Base traded all weekend; the table under the list has all ten.</p>'
+    kv("Worst $1,000 round trip", wr.rt.toFixed(2) + "%") + '<p class="mut">Base traded all weekend; the table under the list has every stock with a record.</p>'
     : '<p class="mut">Loading the weekend record…</p>') + '</div>';
 
   h += '<details class="dev"><summary>Developer details</summary>' +
     '<p>Token <code>' + t.a + '</code> · decimals ' + (c.decimals != null ? c.decimals : '—') + ' · multiplier ' + (c.multiplier != null ? c.multiplier : '—') + ' (WAD)</p>' +
-    '<p>Chainlink feed <code>' + FEEDS[t.s] + '</code> · updatedAt ' + (c.oracleAt || '—') + '</p>' +
+    '<p>Chainlink feed ' + (FEEDS[t.s] ? '<code>' + FEEDS[t.s] + '</code> · updatedAt ' + (c.oracleAt || '—') : 'none published yet') + '</p>' +
     '<p>TRANSFER_SENDER_POLICY id ' + (c.policy != null ? c.policy : '—') + ' in PolicyRegistry <code>' + POLICY_REGISTRY + '</code> · pausedFeatures [' + esc((c.paused || []).join(", ")) + ']</p>' +
     '</details>';
   return h + '</div>';
@@ -549,7 +567,7 @@ if (S[wanted]) setTimeout(function(){ var r = document.querySelector('tr.row[dat
 loadWeekend().then(function(){ weekendTable(); render(); });
 Promise.all([loadShares().then(session), loadChain(), loadMorpho()]).then(function(){
   render();
-  /* Quotes one stock at a time: ten parallel pairs of KyberSwap calls trip its rate limit. */
+  /* Quotes one stock at a time: parallel pairs of KyberSwap calls trip its rate limit. */
   return TOKENS.reduce(function(p, t){ return p.then(function(){ return loadDex(t).then(render).then(function(){ return sleep(250); }); }); }, Promise.resolve());
 }).then(function(){
   return TOKENS.reduce(function(p, t){ return p.then(function(){ return loadLook(t).then(function(){ return sleep(200); }); }); }, Promise.resolve()).then(render);
