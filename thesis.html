@@ -351,7 +351,8 @@ var state = {
   data:null,         // symbol -> pool summary
   loadedAt:0,
   error:null,
-  lookalikes:null    // impostor tokens found by ticker or address prefix
+  lookalikes:null,   // impostor tokens found by ticker or address prefix
+  title:""           // the sentence or theme the basket came from, for the share card
 };
 
 /* ---------- helpers ---------- */
@@ -433,6 +434,7 @@ function applyTheme(th){
   if(th.w){ for(var k in th.w){ w[k] = th.w[k]; } }
   else { TOKENS.forEach(function(t){ w[t.s] = 10; }); }
   state.weights = w;
+  state.title = th.label;
   $("thesis").value = "";
   $("parsed").innerHTML = 'Theme: <b>' + esc(th.label) + '</b> — drag any weight to make it yours.';
   Array.prototype.forEach.call($("chips").querySelectorAll(".chip"), function(b){
@@ -451,6 +453,7 @@ function buildFromThesis(){
     return;
   }
   state.weights = r.weights;
+  state.title = "“" + text + "”";
   var msg = 'Matched <b>' + Object.keys(r.weights).length + '</b> stocks on: <b>' +
             esc(r.why.filter(function(v,i,a){ return a.indexOf(v)===i; }).join(", ")) + '</b>';
   if(r.dropped.length) msg += ' — removed <b>' + esc(r.dropped.join(", ")) + '</b>';
@@ -604,9 +607,15 @@ function renderResult(){
   html += '<div class="actions">' +
     '<a class="btn" id="buyall" href="#">Open every swap</a>' +
     '<button class="btn ghost" id="share">Copy share link</button>' +
+    '<button class="btn ghost" id="card">Download card</button>' +
     '<span class="copied" id="copied"></span></div>';
 
   el.innerHTML = html;
+
+  var cardRows = rows.map(function(r){ return { s:r.t.s, co:r.t.co, share:r.usd / spent }; });
+  $("card").addEventListener("click", function(){
+    downloadCard({ rows:cardRows, amt:amt, overpay:overpay, overpayPct:overpayPct });
+  });
 
   $("share").addEventListener("click", function(){
     var url = shareUrl();
@@ -628,6 +637,132 @@ function renderResult(){
       }, i * 250);
     });
   });
+}
+
+/* ---------- share card ---------- */
+/* A picture of the basket to attach to a post, drawn in the page from the
+   numbers already on screen. Nothing leaves the browser: the PNG is handed
+   straight to the download. 1200x675 is the shape X shows uncropped. */
+var CARD_COLORS = ["#3b6eff", "#3fbf87", "#ffcf40", "#ff8a65", "#b39ddb", "#4fc3f7", "#f06292", "#aed581", "#90a4ae", "#ffb74d"];
+var CARD_FONT = "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif";
+
+function roundRect(ctx, x, y, w, h, r){
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + w, y, x + w, y + h, r);
+  ctx.arcTo(x + w, y + h, x, y + h, r);
+  ctx.arcTo(x, y + h, x, y, r);
+  ctx.arcTo(x, y, x + w, y, r);
+  ctx.closePath();
+}
+
+/* Words onto at most `max` lines of `width`; the last line ends in an
+   ellipsis if the text did not fit. */
+function wrapLines(ctx, text, width, max){
+  var lines = [], line = "";
+  String(text).split(/\s+/).forEach(function(w){
+    var test = line ? line + " " + w : w;
+    if(!line || ctx.measureText(test).width <= width) line = test;
+    else { lines.push(line); line = w; }
+  });
+  if(line) lines.push(line);
+  if(lines.length <= max) return lines;
+  var out = lines.slice(0, max), last = out[max - 1];
+  while(last && ctx.measureText(last + "…").width > width) last = last.slice(0, -1);
+  out[max - 1] = last.replace(/\s+$/, "") + "…";
+  return out;
+}
+
+function drawCard(info){
+  var W = 1200, H = 675, P = 64;
+  var c = document.createElement("canvas");
+  c.width = W; c.height = H;
+  var ctx = c.getContext("2d");
+
+  var bg = ctx.createRadialGradient(160, 40, 0, 160, 40, 900);
+  bg.addColorStop(0, "#1a2350"); bg.addColorStop(1, "#0a0e1c");
+  ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+
+  /* brand row */
+  ctx.fillStyle = "#3b6eff"; roundRect(ctx, P, 52, 46, 46, 11); ctx.fill();
+  ctx.fillStyle = "#eef1fb"; ctx.font = "700 30px " + CARD_FONT; ctx.textBaseline = "middle";
+  ctx.fillText("Base.tools", P + 62, 76);
+  var when = new Date();
+  var stamp = "THESIS · " + when.toLocaleDateString("en-US", { month:"short", day:"numeric", year:"numeric", timeZone:"UTC" }).toUpperCase();
+  ctx.font = "600 18px " + CARD_FONT; ctx.fillStyle = "#8791b3"; ctx.textAlign = "right";
+  ctx.fillText(stamp, W - P, 76); ctx.textAlign = "left";
+
+  /* the idea */
+  ctx.font = "800 52px " + CARD_FONT; ctx.fillStyle = "#eef1fb"; ctx.textBaseline = "alphabetic";
+  var title = info.title || "My basket of stocks on Base";
+  var lines = wrapLines(ctx, title, W - 2 * P, 2);
+  var y = 172;
+  lines.forEach(function(l){ ctx.fillText(l, P, y); y += 62; });
+
+  /* the numbers under it */
+  ctx.font = "500 22px " + CARD_FONT;
+  var parts = [money(info.amt, 0) + " basket of Coinbase stocks on Base"];
+  ctx.fillStyle = "#8791b3"; ctx.fillText(parts[0], P, y - 12);
+  if(info.overpay > 0.005){
+    var x0 = P + ctx.measureText(parts[0] + "  ·  ").width;
+    ctx.fillText("  ·  ", P + ctx.measureText(parts[0]).width, y - 12);
+    ctx.fillStyle = "#6fd7ab";
+    ctx.fillText(money(info.overpay, 2) + " saved by routing (" + pct(info.overpayPct, 2) + ")", x0, y - 12);
+  }
+
+  /* the split, as one bar */
+  var barY = y + 26, barW = W - 2 * P, bx = P;
+  ctx.save(); roundRect(ctx, P, barY, barW, 20, 10); ctx.clip();
+  info.rows.forEach(function(r, i){
+    var w = barW * r.share;
+    ctx.fillStyle = CARD_COLORS[i % CARD_COLORS.length];
+    ctx.fillRect(bx, barY, w + 1, 20);
+    bx += w;
+  });
+  ctx.restore();
+
+  /* and line by line, two columns of five */
+  var listY = barY + 62, colW = (W - 2 * P - 48) / 2, rowH = 44;
+  info.rows.slice(0, 10).forEach(function(r, i){
+    var col = i < 5 ? 0 : 1, row = i % 5;
+    var x = P + col * (colW + 48), ry = listY + row * rowH;
+    ctx.fillStyle = CARD_COLORS[i % CARD_COLORS.length];
+    ctx.beginPath(); ctx.arc(x + 8, ry - 8, 8, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = "#eef1fb"; ctx.font = "700 24px " + CARD_FONT;
+    ctx.fillText(r.s, x + 28, ry);
+    var tw = ctx.measureText(r.s).width;
+    ctx.fillStyle = "#7a84a8"; ctx.font = "500 19px " + CARD_FONT;
+    ctx.fillText(r.co, x + 40 + tw, ry);
+    ctx.fillStyle = "#eef1fb"; ctx.font = "700 24px " + CARD_FONT; ctx.textAlign = "right";
+    ctx.fillText(Math.round(r.share * 100) + "%", x + colW, ry);
+    ctx.textAlign = "left";
+  });
+
+  /* footer */
+  ctx.strokeStyle = "#232c4d"; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(P, H - 82); ctx.lineTo(W - P, H - 82); ctx.stroke();
+  ctx.fillStyle = "#eef1fb"; ctx.font = "700 22px " + CARD_FONT;
+  ctx.fillText("deftools.xyz/thesis", P, H - 40);
+  ctx.fillStyle = "#8791b3"; ctx.font = "500 20px " + CARD_FONT; ctx.textAlign = "right";
+  ctx.fillText("built by @Def7771 · not investment advice", W - P, H - 40);
+  ctx.textAlign = "left";
+  return c;
+}
+
+function downloadCard(info){
+  info.title = state.title;
+  var c = drawCard(info);
+  var name = "thesis-basket-" + new Date().toISOString().slice(0, 10) + ".png";
+  c.toBlob(function(blob){
+    if(!blob) return;
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 4000);
+    $("copied").textContent = "Card saved — attach it to your post, with the share link.";
+    setTimeout(function(){ $("copied").textContent = ""; }, 4000);
+  }, "image/png");
 }
 
 /* ---------- one-transaction basket ---------- */
