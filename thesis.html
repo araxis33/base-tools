@@ -857,8 +857,8 @@ function rpcRetry(method, params){
   var attempt = 0;
   return (function go(){
     return rpc(method, params).catch(function(e){
-      if(++attempt >= 3) throw e;
-      return sleep(500 * attempt).then(go);
+      if(++attempt >= 5) throw e;
+      return sleep(700 * attempt).then(go);
     });
   })();
 }
@@ -872,31 +872,45 @@ function balanceOf(token, owner){
     .then(function(r){ return (r && r !== "0x") ? BigInt(r) : BigInt(0); });
 }
 
-/* All ten balances in one eth_call through Multicall3: each Call3 is six
-   words — target, allowFailure, the offset of its bytes, their length, and
-   the 36-byte balanceOf call padded to two words. Same encoding as the
-   wallet window on the homepage. */
-function readBalances(owner){
-  var inner = "70a08231" + hex32(BigInt(owner));
-  var padded = inner + "0".repeat(128 - inner.length);
-  var offsets = "", body = "";
-  TOKENS.forEach(function(t, i){
-    offsets += hex32(TOKENS.length * 32 + i * 192);
-    body += hex32(BigInt(t.a)) + hex32(1) + hex32(0x60) + hex32(inner.length / 2) + padded;
+/* Many uint256 reads in one eth_call through Multicall3, because the public
+   node answers a burst of separate calls with 429 — seven allowance checks
+   in parallel were enough to make a sale fail. Each Call3 is: target,
+   allowFailure, the offset of its bytes (0x60), their length, then the call
+   padded to whole words. Same encoding as the wallet window on the homepage,
+   generalised to calls of any length. Answers come back in order, as BigInt,
+   or null for a call that failed. */
+function multicallUints(calls){
+  var heads = "", bodies = [], at = calls.length * 32;
+  calls.forEach(function(c){
+    var hex = c.data.replace(/^0x/, "");
+    var padded = hex + "0".repeat((64 - hex.length % 64) % 64);
+    var el = hex32(BigInt(c.to)) + hex32(1) + hex32(0x60) + hex32(hex.length / 2) + padded;
+    heads += hex32(at);
+    at += el.length / 2;
+    bodies.push(el);
   });
-  var data = "0x82ad56cb" + hex32(0x20) + hex32(TOKENS.length) + offsets + body;
+  var data = "0x82ad56cb" + hex32(0x20) + hex32(calls.length) + heads + bodies.join("");
   return rpcRetry("eth_call", [{ to:MULTICALL3, data:data }, "latest"]).then(function(hex){
     if(typeof hex !== "string" || hex.length < 130) throw new Error("The node would not read this wallet.");
     var w = hex.slice(2);
     var word = function(i){ return w.slice(i * 64, (i + 1) * 64); };
-    var out = {};
-    TOKENS.forEach(function(t, i){
-      var at = parseInt(word(2 + i), 16) / 32 + 2;
-      var ok = parseInt(word(at), 16) === 1;
-      var bytesAt = at + parseInt(word(at + 1), 16) / 32;
+    return calls.map(function(c, i){
+      var p = parseInt(word(2 + i), 16) / 32 + 2;
+      var ok = parseInt(word(p), 16) === 1;
+      var bytesAt = p + parseInt(word(p + 1), 16) / 32;
       var len = parseInt(word(bytesAt), 16);
-      out[t.s] = ok && len ? BigInt("0x" + word(bytesAt + 1)) : BigInt(0);
+      return ok && len ? BigInt("0x" + word(bytesAt + 1)) : null;
     });
+  });
+}
+
+/* All ten balances in one read. */
+function readBalances(owner){
+  return multicallUints(TOKENS.map(function(t){
+    return { to:t.a, data:"0x70a08231" + hex32(BigInt(owner)) };
+  })).then(function(vals){
+    var out = {};
+    TOKENS.forEach(function(t, i){ out[t.s] = vals[i] === null ? BigInt(0) : vals[i]; });
     return out;
   });
 }
@@ -1060,21 +1074,29 @@ function loadHoldings(addr){
     var stock = {};
     var seq = Promise.resolve();
     rows.forEach(function(r){
-      seq = seq.then(function(){ return transferPages(addr, r.t.a, null, 10).then(function(x){ stock[r.t.s] = x; }); });
+      seq = seq.then(function(){ return transferPages(addr, r.t.a, null, 40).then(function(x){ stock[r.t.s] = x; }); });
     });
     return seq.then(function(){
       var earliest = null;
       rows.forEach(function(r){
         stock[r.t.s].items.forEach(function(it){ if(!earliest || it.timestamp < earliest) earliest = it.timestamp; });
       });
-      return transferPages(addr, USDC, earliest, 20);
+      return transferPages(addr, USDC, earliest, 60);
     }).then(function(usdc){
       if(my !== hold.seq) return;
-      var partial = !usdc.complete || rows.some(function(r){ return !stock[r.t.s].complete; });
+      /* A history cut short gives a wrong number, not an approximate one: the
+         window starts mid-position and moves with every new trade. So a stock
+         whose history could not be read to the start gets no price at all. */
+      var partial = false;
       rows.forEach(function(r){
+        if(!usdc.complete || !stock[r.t.s].complete){
+          partial = true;
+          r.basis = { knownQty:0, cost:0, unknownQty:r.qty, buys:0 };
+          return;
+        }
         r.basis = ThesisCore.reconcileBasis(ThesisCore.costBasis(stock[r.t.s].items, usdc.items, addr), r.qty);
       });
-      if(partial) hold.note = "This wallet has a long history; only its most recent transfers were read, so older purchases count as cost unknown.";
+      if(partial) hold.note = "This wallet has more transfers than this page reads (thousands), so what was paid is not shown for it — a partial history would give a wrong number, not a rough one.";
     }).catch(function(){
       if(my !== hold.seq) return;
       hold.note = "The purchase history could not be read just now, so only today’s value is shown. Try again in a minute.";
@@ -1296,7 +1318,13 @@ function doSell(){
     link: function(url, t){ hold.state = "done"; hold.txt = url; hold.msg = t; renderHoldings(); }
   };
   readBalances(from).then(function(before){
-    return Promise.all(hold.quotes.map(function(q){ return allowanceOf(q.row.t.a, from, q.router); })).then(function(have){
+    return multicallUints(hold.quotes.map(function(q){
+      return { to:q.row.t.a, data:"0xdd62ed3e" + hex32(BigInt(from)) + hex32(BigInt(q.router)) };
+    })).then(function(vals){
+      /* guessing an unread allowance could skip the reset an old one needs
+         and revert the whole batch, so a failed read stops here instead */
+      if(vals.some(function(v){ return v === null; })) throw new Error("Could not read the current allowances. Press the button again.");
+      var have = vals;
       var calls = [];
       hold.quotes.forEach(function(q, i){
         var token = q.row.t.a, need = q.amount, router = q.router;
