@@ -4,11 +4,12 @@
 (function (root) {
   "use strict";
 
-  /* The ten Coinbase Tokenized Stocks published on base.org/stocks. These
-     addresses are the whole point of the list: any other contract using these
-     tickers on Base was not issued by Coinbase. All ten carry 8 decimals,
-     checked onchain. scripts/check-stock-list.js compares this list with
-     base.org every day. */
+  /* The Coinbase Tokenized Stocks published on base.org/stocks: the first ten
+     since launch, the other 26 listed on 25-30.09.2026. These addresses are
+     the whole point of the list: any other contract using these tickers on
+     Base was not issued by Coinbase. All 36 carry 8 decimals, checked
+     onchain. scripts/check-stock-list.js compares this list with base.org's
+     own /api/stocks every day. */
   var TOKENS = [
     {s:"NVDAc",  co:"NVIDIA",        a:"0xb20000000000000000000078ee7ce2fE4908108C", tags:["ai","chips","semis","nvidia","gpu","hardware","tech"]},
     {s:"METAc",  co:"Meta",          a:"0xb2000000000000000000008bC8786B856E61707C", tags:["ai","social","meta","facebook","ads","tech"]},
@@ -19,7 +20,33 @@
     {s:"MSTRc",  co:"Strategy",      a:"0xb2000000000000000000004884b426556b92883d", tags:["bitcoin","btc","crypto","strategy","microstrategy","treasury"]},
     {s:"SNDKc",  co:"SanDisk",       a:"0xb200000000000000000000397293Cb8cda9a10c5", tags:["memory","storage","chips","semis","sandisk","hardware"]},
     {s:"SPCXc",  co:"SpaceX",        a:"0xb2000000000000000000007b9fcbd005511aCBd5", tags:["space","spacex","rockets","satellites","defense","frontier"]},
-    {s:"TSLAc",  co:"Tesla",         a:"0xb2000000000000000000001e800a7f5189430cD0", tags:["tesla","ev","cars","robots","energy","musk","frontier"]}
+    {s:"TSLAc",  co:"Tesla",         a:"0xb2000000000000000000001e800a7f5189430cD0", tags:["tesla","ev","cars","robots","energy","musk","frontier"]},
+    {s:"AMDc",   co:"AMD",           a:"0xB2000000000000000000000d8ce462E99ee7A47B", tags:["ai","chips","semis","amd","gpu","hardware","tech"]},
+    {s:"ASTSc",  co:"AST SpaceMobile", a:"0xB200000000000000000000B1a29cF17A1819288a", tags:["space","satellites","telecom","ast","spacemobile","frontier"]},
+    {s:"AVGOc",  co:"Broadcom",      a:"0xB200000000000000000000Fc737aeA6196aB5a4c", tags:["ai","chips","semis","broadcom","networking","tech"]},
+    {s:"BEc",    co:"Bloom Energy",  a:"0xb20000000000000000000016f9dfe862feBA122b", tags:["energy","power","bloom","fuel cells","hydrogen","clean"]},
+    {s:"CAKEc",  co:"Cheesecake Factory", a:"0xb200000000000000000000f215e4c890cfb7176b", tags:["restaurants","food","cheesecake","dining","consumer"]},
+    {s:"DJTc",   co:"Trump Media",   a:"0xb200000000000000000000428E3a3eebBb20692B", tags:["trump","media","truth","social","meme"]},
+    {s:"DUOLc",  co:"Duolingo",      a:"0xb200000000000000000000a613d12deafbbb1db7", tags:["duolingo","education","apps","software","consumer"]},
+    {s:"GMEc",   co:"GameStop",      a:"0xb2000000000000000000007790ed6E48e06eD935", tags:["gamestop","games","gaming","retail","meme"]},
+    {s:"HIMSc",  co:"Hims & Hers",   a:"0xB20000000000000000000043a599976181Bcf336", tags:["hims","health","healthcare","telehealth","consumer"]},
+    {s:"HTZc",   co:"Hertz",         a:"0xb2000000000000000000002601C5C94F435da168", tags:["hertz","cars","rental","travel","meme"]},
+    {s:"LLYc",   co:"Eli Lilly",     a:"0xB200000000000000000000f1a0F91e34892E4718", tags:["lilly","pharma","drugs","health","healthcare","biotech","weight loss","glp-1"]},
+    {s:"MRNAc",  co:"Moderna",       a:"0xB200000000000000000000e215e9B76ecBA02468", tags:["moderna","pharma","biotech","vaccines","health","healthcare"]},
+    {s:"MRVLc",  co:"Marvell",       a:"0xB200000000000000000000eC3c4c7395Cc609813", tags:["ai","chips","semis","marvell","networking","tech"]},
+    {s:"NFLXc",  co:"Netflix",       a:"0xb20000000000000000000058B8c947e44011dFE6", tags:["netflix","streaming","media","entertainment","tech"]},
+    {s:"NVAXc",  co:"Novavax",       a:"0xb200000000000000000000c597c476fcf9aed3a8", tags:["novavax","pharma","biotech","vaccines","health","healthcare"]},
+    {s:"ORCLc",  co:"Oracle",        a:"0xb200000000000000000000347AFbA223D7B6b63C", tags:["ai","cloud","oracle","software","database","tech"]},
+    {s:"PFEc",   co:"Pfizer",        a:"0xb20000000000000000000018fe7ec7d6dfeeb528", tags:["pfizer","pharma","drugs","vaccines","health","healthcare","dividends"]},
+    {s:"PMc",    co:"Philip Morris", a:"0xb2000000000000000000008fc2a8c23cf5937b66", tags:["philip morris","tobacco","consumer","dividends"]},
+    {s:"PTONc",  co:"Peloton",       a:"0xb2000000000000000000009272a491812842aa84", tags:["peloton","fitness","consumer","health"]},
+    {s:"PYPLc",  co:"PayPal",        a:"0xb200000000000000000000450ad3abe5d4846c6e", tags:["paypal","payments","fintech","finance"]},
+    {s:"QUBTc",  co:"Quantum Computing", a:"0xb200000000000000000000CA425ab42e07C35bC3", tags:["quantum","computing","frontier","tech"]},
+    {s:"RBLXc",  co:"Roblox",        a:"0xB2000000000000000000005bd7AE89b9E6189Bb5", tags:["roblox","games","gaming","metaverse","tech"]},
+    {s:"RDDTc",  co:"Reddit",        a:"0xb20000000000000000000066242d4067724cB7A1", tags:["reddit","social","ads","media","tech"]},
+    {s:"SOUNc",  co:"SoundHound",    a:"0xb2000000000000000000002137743d4a01fe4e88", tags:["ai","voice","soundhound","software","tech"]},
+    {s:"TTWOc",  co:"Take-Two",      a:"0xB200000000000000000000f720C26062Bc3067Da", tags:["take-two","games","gaming","gta","entertainment"]},
+    {s:"WENc",   co:"Wendy's",       a:"0xb20000000000000000000044e3cd7a0e1028e57a", tags:["wendys","restaurants","food","fast food","consumer","dividends"]}
   ];
 
   var MIN_POOL_LIQUIDITY = 500;
@@ -37,7 +64,11 @@
     /* "ai chips and cloud" counts twice for NVIDIA (ai, chips) and once for
        Amazon (cloud). Crude, but you can read it off your own sentence. */
     tokens.forEach(function (tk) {
-      var words = [tk.s.toLowerCase(), tk.s.toLowerCase().replace(/c$/, ""), tk.co.toLowerCase()].concat(tk.tags);
+      /* A ticker root of two letters is an ordinary word: "be" (Bloom Energy)
+         and "pm" (Philip Morris) would fire on "want to be in AI" or "5 pm".
+         Those stocks still answer to their full ticker, name and tags. */
+      var root = tk.s.toLowerCase().replace(/c$/, "");
+      var words = [tk.s.toLowerCase(), root.length >= 3 ? root : "", tk.co.toLowerCase()].concat(tk.tags);
       var hits = [];
       words.forEach(function (w) {
         /* two letters is fine because matching is whole-word only: "ai" is a

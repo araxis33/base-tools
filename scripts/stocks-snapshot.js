@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* One snapshot of the ten Coinbase stocks on Base: the real share price, the
+/* One snapshot of the Coinbase stocks on Base: the real share price, the
    Chainlink feed, the price you get on a DEX and what a $1,000 round trip costs.
 
    Run hourly over the weekend (see .github/workflows/stocks-snapshot.yml), the
@@ -81,7 +81,9 @@ async function one(t) {
   const dec = await ethCall(t.a, '0x313ce567');
   const units = dec ? 10 ** Number(BigInt(dec)) : null;
 
-  const o = await oracle(FEEDS[t.s]);
+  // The 26 stocks listed in late September have no Chainlink feed yet; asking
+  // an undefined address would only burn four retries per stock.
+  const o = FEEDS[t.s] ? await oracle(FEEDS[t.s]) : { price: null, updated: null };
   row.oracle = o.price; row.oracle_updated = o.updated;
 
   const share = await realShare(t.s.slice(0, -1));

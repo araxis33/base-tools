@@ -13,10 +13,11 @@ function sum(weights) {
   return Object.values(weights).reduce((a, b) => a + b, 0);
 }
 
-test("the token list is ten distinct Coinbase addresses", () => {
-  assert.equal(TOKENS.length, 10);
+test("the token list is 36 distinct Coinbase addresses", () => {
+  assert.equal(TOKENS.length, 36);
   const addrs = new Set(TOKENS.map((t) => t.a.toLowerCase()));
-  assert.equal(addrs.size, 10);
+  assert.equal(addrs.size, 36);
+  assert.equal(new Set(TOKENS.map((t) => t.s)).size, 36, "tickers are unique too");
   for (const t of TOKENS) {
     assert.match(t.a, /^0xb2000000000000000000[0-9a-f]{20}$/i, t.s);
     assert.match(t.s, /c$/, t.s);
@@ -57,6 +58,20 @@ test("parseThesis matches whole words and simple plurals only", () => {
   assert.equal(parseThesis("rain and paint").weights, null, "ai must not fire inside rain or paint");
   assert.ok(parseThesis("robots").weights.TSLAc > 0, "robot tag with an s");
   assert.ok(parseThesis("$NVDA!").weights.NVDAc > 0, "ticker without the c, punctuation stripped");
+});
+
+test("parseThesis does not fire on two-letter ticker roots that are plain words", () => {
+  const r = parseThesis("I want to be in ai by 5 pm");
+  assert.ok(!r.weights.BEc, "be is not Bloom Energy");
+  assert.ok(!r.weights.PMc, "pm is not Philip Morris");
+  assert.ok(parseThesis("BEc and PMc").weights.BEc > 0, "the full ticker still works");
+  assert.ok(parseThesis("philip morris").weights.PMc > 0, "and so does the name");
+});
+
+test("parseThesis reaches the stocks listed in late September", () => {
+  const r = parseThesis("pharma and vaccines");
+  for (const s of ["LLYc", "MRNAc", "NVAXc", "PFEc"]) assert.ok(r.weights[s] > 0, s);
+  assert.ok(parseThesis("netflix and roblox").weights.RBLXc > 0);
 });
 
 test("parseThesis returns null weights when nothing matches", () => {
@@ -337,14 +352,16 @@ test("thesis.html's inline script parses", () => {
   // A shell edit once stripped the backslash out of \' and broke the page
   // silently; compiling the script catches that before it ships.
   const vm = require("node:vm");
-  const html = fs.readFileSync(path.join(__dirname, "..", "thesis.html"), "utf8");
+  // A Windows checkout writes CRLF; the page is the same either way.
+  const html = fs.readFileSync(path.join(__dirname, "..", "thesis.html"), "utf8").replace(/\r\n/g, "\n");
   const inline = html.match(/<script>\n([\s\S]*?)<\/script>/);
   assert.ok(inline, "inline script found");
   assert.doesNotThrow(() => new vm.Script(inline[1], { filename: "thesis.html" }));
 });
 
 test("thesis.html uses the core instead of carrying its own copy", () => {
-  const html = fs.readFileSync(path.join(__dirname, "..", "thesis.html"), "utf8");
+  // A Windows checkout writes CRLF; the page is the same either way.
+  const html = fs.readFileSync(path.join(__dirname, "..", "thesis.html"), "utf8").replace(/\r\n/g, "\n");
   const coreTag = html.indexOf('<script src="thesis-core.js"></script>');
   const inline = html.indexOf('<script>\n"use strict";');
   assert.ok(coreTag > -1, "thesis-core.js is loaded");
