@@ -148,16 +148,22 @@ function withCors(req, res, state) {
   return new Response(res.body, { status: 200, headers: h });
 }
 
-async function coingecko(req, ctx, p) {
+// Without a key CoinGecko answers Cloudflare's shared egress addresses with
+// 429 on every board request (03.10.2026: three in a row), so the proxy never
+// filled its cache and the boards fell back to each visitor's browser. A free
+// Demo key (secret CG_KEY) gives the Worker its own quota: 10,000 calls a
+// month, which a 10-minute cache per board keeps it well inside.
+async function coingecko(req, ctx, p, env) {
   if (!CG_ALLOWED.some((r) => r.test(p))) return json(req, { error: 'not allowed' }, 400);
   const cache = caches.default;
-  const ttl = p.startsWith('coins/list') ? 43200 : 180;
+  const ttl = p.startsWith('coins/list') ? 43200 : 600;
   const fresh = new Request('https://cg.cache/fresh/' + p);
   const stale = new Request('https://cg.cache/stale/' + p);
   const hit = await cache.match(fresh);
   if (hit) return withCors(req, hit, 'hit');
   let res = null;
-  try { res = await fetch(CG + p, { headers: { accept: 'application/json', ...BROWSER } }); } catch (e) { /* use the spare */ }
+  const key = env && env.CG_KEY ? { 'x-cg-demo-api-key': env.CG_KEY } : {};
+  try { res = await fetch(CG + p, { headers: { accept: 'application/json', ...BROWSER, ...key } }); } catch (e) { /* use the spare */ }
   if (res && res.ok) {
     const body = await res.arrayBuffer();
     const make = (age) => new Response(body, { headers: { 'content-type': 'application/json', 'cache-control': `public, max-age=${age}` } });
@@ -196,7 +202,7 @@ export default {
   async fetch(req, env, ctx) {
     const url = new URL(req.url);
     if (req.method === 'OPTIONS') return new Response(null, { headers: cors(req) });
-    if (url.pathname === '/cg') return coingecko(req, ctx, url.searchParams.get('p') || '');
+    if (url.pathname === '/cg') return coingecko(req, ctx, url.searchParams.get('p') || '', env);
     if (url.pathname === '/shares') return shares(req, ctx, url.searchParams.get('t') || '');
     const ip = ipOf(req);
     const client = clientOf(req);
