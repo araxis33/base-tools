@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Token check — how far can you trust it? · Base.tools</title>
-<meta name="description" content="Paste a Base or Robinhood Chain token address and get a trust score from 1 to 10 in about a minute: can you sell it, who launched it and what became of their earlier coins, which holders got coins straight from the deployer, what a $500 exit really returns, and a project read built from sources it can cite.">
-<meta property="og:title" content="Token check — trust score 1 to 10">
-<meta property="og:description" content="Paste a token address. Sell simulation, who deployed it and their past coins, insider holders, real exit liquidity, and a sourced project read.">
+<title>Token & project check — how far can you trust it? · Base.tools</title>
+<meta name="description" content="Paste a Base or Robinhood Chain token address and get a trust score from 1 to 10 for the token and for the project behind it: can you sell it, who launched it, which holders got coins straight from the deployer, what a $500 exit returns — and audit, team, investors, docs, GitHub activity, socials and a working product, each with its source.">
+<meta property="og:title" content="Token & project check — trust score 1 to 10">
+<meta property="og:description" content="Paste a token address. The token: sell simulation, deployer, insider holders, real exit. The project: audit, team, investors, docs, GitHub, socials, product — each linked.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Base.tools">
 <meta property="og:url" content="https://deftools.xyz/check.html">
@@ -92,7 +92,10 @@ section.card p{margin:4px 0; font-size:14.5px}
 .note{color:var(--muted2); font-size:13px}
 .rights{border-left:3px solid var(--border-hover)}
 .proj p{white-space:pre-wrap}
-.share{margin-top:14px; background:none; border:1px solid var(--border-hover); color:var(--text); border-radius:10px; padding:8px 14px; font-size:14px; cursor:pointer; min-height:40px}
+.parts{font-size:15px; font-weight:600; margin:8px 0 0}
+.proj .pscore{font-weight:600; font-size:15px; margin-bottom:6px}
+.proj h3.pgroup{font-size:13px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted2); margin:12px 0 4px}
+.proj .ptext{margin-top:14px; padding-top:12px; border-top:1px solid var(--border)}.share{margin-top:14px; background:none; border:1px solid var(--border-hover); color:var(--text); border-radius:10px; padding:8px 14px; font-size:14px; cursor:pointer; min-height:40px}
 .err{background:var(--card); border:1px solid var(--border); border-left:3px solid var(--red); border-radius:12px; padding:14px 16px; margin-top:18px}
 footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px; color:var(--muted2); font-size:13.5px}
 @media (max-width:640px){ h1{font-size:24px} .score{font-size:18px} button.go{flex:1 1 100%} }
@@ -144,8 +147,8 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
 
   var T = {
     en: {
-      title: 'How far can you trust this token?', go: 'Check',
-      sub: 'Paste a Base or Robinhood Chain token address. In about a minute you get a trust score from 1 to 10 and what it is made of: can you actually sell it, who launched it and what became of their earlier coins, which big holders got coins straight from the deployer, what a $500 exit really returns — and a project read built only from sources it can cite.',
+      title: 'Token & project check: how far can you trust this token and the team behind it', go: 'Check',
+      sub: 'Paste a Base or Robinhood Chain token address. In about a minute you get a trust score from 1 to 10 for the token and for the project, and one overall. The token: can you actually sell it, who launched it and what became of their earlier coins, which big holders got coins straight from the deployer, what a $500 exit really returns. The project: audit, team, investors, docs, GitHub activity, socials, a working product — every point with its source.',
       hint: 'The score is a risk check, not advice. The decision is yours.',
       quota: function (q) {
         if (q.owner) return '<b>Unlimited checks</b> — owner access.';
@@ -169,6 +172,26 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
       share: 'Copy link to this report', copied: 'Link copied',
       foot: 'Checks run in your browser against public data: DexScreener, GoPlus, honeypot.is, GeckoTerminal, Blockscout, KyberSwap, CoinGecko. The project read is written by an AI from sources it lists. Code: <a href="https://github.com/araxis33/meme-scout" target="_blank" rel="noopener">github.com/araxis33/meme-scout</a>. Part of <a href="/">Base.tools</a>.',
       projWait: 'Reading the project…', projOff: 'The project read is not available right now — the on-chain check above is complete.',
+      parts: function (tk, pj) { return 'Token ' + tk + '/10 · ' + (pj === undefined ? 'project: checking…' : pj === null ? 'project: not checked, the score is the token only' : 'Project ' + pj + '/10'); },
+      pj: {
+        score: function (s, n) { return 'Project ' + s + '/10 — ' + n + ' of 9 criteria found'; },
+        code: 'Code', team: 'Team', dev: 'Development', community: 'Community', product: 'Product', market: 'Market', spread: 'Distribution',
+        auditYes: function (by) { return 'Audit' + (by ? ': ' + by : ' found'); }, auditNo: 'No audit found in open sources',
+        srcOpen: 'Contract source published', srcHidden: 'Contract source hidden',
+        teamPublic: 'Team is public — names are known', teamAnon: 'The team says it is anonymous', teamNo: 'Team names not found',
+        invYes: 'Has investors', invNo: 'No investors found',
+        docsYes: 'Documentation', docsNo: 'No documentation found',
+        domain: function (date, d) { return 'Site domain registered ' + date + ' (' + (d >= 365 ? Math.floor(d / 365) + (d >= 730 ? ' years' : ' year') : Math.round(d / 30) + ' months') + ' ago)'; },
+        domainNo: 'Site domain age unknown', noSite: 'No project site found',
+        ghActive: function (n, repo) { return 'GitHub: ' + n + (n >= 100 ? '+' : '') + ' commits in 30 days (' + repo + ')'; },
+        ghQuiet: function (date, repo) { return 'GitHub: last commit ' + date + ' (' + repo + ')'; },
+        ghNo: 'No GitHub found',
+        xYes: 'X account', xNo: 'No X account found', chatYes: 'Telegram or Discord', chatNo: 'No Telegram or Discord found',
+        prodLive: 'Working product people can use', prodNone: 'No product — only a coin', prodNo: 'A working product is not confirmed',
+        marketLine: function (t) { return tierLine(t) || '—'; },
+        vest: function (p) { return 'in vesting or lock contracts: ' + p0(p); }, safe: function (p) { return 'in team multisigs: ' + p0(p); },
+        top10: function (p) { return '10 largest wallets (not exchanges or contracts): ' + p0(p); },
+      },
       payTitle: 'More checks — 0.1 USDC each',
       payText: 'Pay from your wallet on Base. The USDC goes straight to the author of this tool; checks you buy do not expire.',
       pack: function (n) { return '<b>' + n + (n === 1 ? ' check' : ' checks') + '</b>' + (n * 0.1).toFixed(1) + ' USDC'; },
@@ -178,8 +201,8 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
       lowUsdc: 'Not enough USDC on Base in this wallet.', payFail: function (m) { return 'Payment did not go through: ' + m; },
     },
     ru: {
-      title: 'Насколько можно доверять этой монете?', go: 'Проверить',
-      sub: 'Вставь адрес токена в сети Base или Robinhood Chain. Примерно за минуту — оценка надёжности от 1 до 10 и из чего она сложилась: можно ли её продать, кто её запустил и что стало с его прошлыми монетами, кто из крупных держателей получил монеты прямо от автора, сколько реально вернёшь при продаже на $500 — и разбор проекта только по источникам, на которые можно сослаться.',
+      title: 'Проверка токена и проекта: насколько можно доверять токену и команде за ним', go: 'Проверить',
+      sub: 'Вставь адрес токена в сети Base или Robinhood Chain. Примерно за минуту — оценка от 1 до 10 отдельно для токена и для проекта и общая. Токен: можно ли его продать, кто запустил и что стало с прошлыми монетами автора, кто из крупных держателей получил монеты прямо от автора, сколько реально вернёшь при продаже на $500. Проект: аудит, команда, инвесторы, документация, разработка на GitHub, соцсети, работающий продукт — каждый пункт со ссылкой на источник.',
       hint: 'Оценка — это проверка рисков, а не совет. Решение за тобой.',
       quota: function (q) {
         if (q.owner) return '<b>Проверки без лимита</b> — доступ владельца.';
@@ -203,6 +226,26 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
       share: 'Скопировать ссылку на отчёт', copied: 'Ссылка скопирована',
       foot: 'Проверка идёт в твоём браузере по открытым данным: DexScreener, GoPlus, honeypot.is, GeckoTerminal, Blockscout, KyberSwap, CoinGecko. Разбор проекта пишет ИИ по источникам, которые он указывает. Код: <a href="https://github.com/araxis33/meme-scout" target="_blank" rel="noopener">github.com/araxis33/meme-scout</a>. Часть <a href="/">Base.tools</a>.',
       projWait: 'Читаю про проект…', projOff: 'Разбор проекта сейчас недоступен — проверка по блокчейну выше полная.',
+      parts: function (tk, pj) { return 'Токен ' + tk + '/10 · ' + (pj === undefined ? 'проект: проверяю…' : pj === null ? 'проект не проверен — оценка только по токену' : 'Проект ' + pj + '/10'); },
+      pj: {
+        score: function (s, n) { return 'Проект ' + s + '/10 — найдено ' + n + ' из 9 критериев'; },
+        code: 'Код', team: 'Команда', dev: 'Разработка', community: 'Сообщество', product: 'Продукт', market: 'Рынок', spread: 'Распределение',
+        auditYes: function (by) { return 'Аудит' + (by ? ': ' + by : ' найден'); }, auditNo: 'Аудит в открытых источниках не найден',
+        srcOpen: 'Код контракта опубликован', srcHidden: 'Код контракта скрыт',
+        teamPublic: 'Команда публичная — имена известны', teamAnon: 'Команда сама называет себя анонимной', teamNo: 'Имена команды не найдены',
+        invYes: 'Есть инвесторы', invNo: 'Инвесторы не найдены',
+        docsYes: 'Документация', docsNo: 'Документация не найдена',
+        domain: function (date, d) { return 'Домен сайта зарегистрирован ' + date.split('-').reverse().join('.') + ' (' + (d >= 365 ? Math.floor(d / 365) + (Math.floor(d / 365) === 1 ? ' год' : Math.floor(d / 365) < 5 ? ' года' : ' лет') : Math.round(d / 30) + ' мес.') + ' назад)'; },
+        domainNo: 'Возраст домена сайта не определить', noSite: 'Сайт проекта не найден',
+        ghActive: function (n, repo) { return 'GitHub: ' + n + (n >= 100 ? '+' : '') + ' коммитов за 30 дней (' + repo + ')'; },
+        ghQuiet: function (date, repo) { return 'GitHub: последний коммит ' + date.split('-').reverse().join('.') + ' (' + repo + ')'; },
+        ghNo: 'GitHub не найден',
+        xYes: 'Аккаунт в X', xNo: 'Аккаунт в X не найден', chatYes: 'Telegram или Discord', chatNo: 'Telegram и Discord не найдены',
+        prodLive: 'Работающий продукт, которым можно пользоваться', prodNone: 'Продукта нет — только монета', prodNo: 'Работающий продукт не подтверждён',
+        marketLine: function (t) { return tierLine(t) || '—'; },
+        vest: function (p) { return 'в контрактах вестинга или блокировки: ' + p0(p); }, safe: function (p) { return 'в мультисигах команды: ' + p0(p); },
+        top10: function (p) { return '10 крупнейших кошельков (без бирж и контрактов): ' + p0(p); },
+      },
       payTitle: 'Ещё проверки — 0,1 USDC за штуку',
       payText: 'Оплата из твоего кошелька в сети Base. USDC уходят напрямую автору инструмента; купленные проверки не сгорают.',
       pack: function (n) { return '<b>' + n + (n === 1 ? ' проверка' : n < 5 ? ' проверки' : ' проверок') + '</b>' + (n * 0.1).toFixed(1).replace('.', ',') + ' USDC'; },
@@ -271,6 +314,9 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
       twin: function (s, a) { return 'there is a bigger ' + s + ' (' + CK.short(a) + ') — check the address'; },
       mature: function (t) { return 'mature project: ' + tierLine(t); }, grown: function (t) { return 'no longer a newcomer: ' + tierLine(t); },
       majors: function (m) { return 'trades on major exchanges: ' + m.slice(0, 4).join(', '); },
+      renounced: function () { return 'nobody controls the contract: the owner renounced it'; },
+      holdersMany: function (n) { return n.toLocaleString('en-US') + ' holders'; },
+      survived: function (dd) { return 'has traded for ' + Math.round(dd) + ' days'; },
     },
     ru: {
       honeypot: function () { return 'продать нельзя: это ловушка (honeypot)'; },
@@ -316,6 +362,9 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
       twin: function (s, a) { return 'есть другая монета ' + s + ' крупнее (' + CK.short(a) + ') — сверь адрес'; },
       mature: function (t) { return 'зрелый проект: ' + tierLine(t); }, grown: function (t) { return 'уже не новичок: ' + tierLine(t); },
       majors: function (m) { return 'торгуется на крупных биржах: ' + m.slice(0, 4).join(', '); },
+      renounced: function () { return 'контрактом никто не управляет: владелец от него отказался'; },
+      holdersMany: function (n) { return 'держателей ' + n.toLocaleString('ru-RU'); },
+      survived: function (dd) { return 'торгуется уже ' + Math.round(dd) + ' дн.'; },
     }
   };
   function say(f) { return F[lang][f[0]].apply(null, f.slice(1)); }
@@ -510,11 +559,15 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
     head.appendChild(el('span', 'sym', d.symbol)); head.appendChild(el('span', 'nm', d.name + ' · ' + (d.chain === 'base' ? 'Base' : 'Robinhood Chain')));
     r.appendChild(head); r.appendChild(el('div', 'addr', d.address));
 
-    var b = band(a.trust);
-    var sc = el('div', 'score t' + Math.min(4, b + 1), ['🔴', '🟠', '🟡', '🟢', '🟢'][b] + ' ' + t.trust + ' ' + a.trust + '/10 — ' + t.labels[b]);
+    // The headline is the overall score once the project is read; until then, the token's.
+    var ps = project && project.checks ? CK.projectScore(project.checks) : null;
+    var total = CK.overall(a, ps);
+    var b = band(total);
+    var sc = el('div', 'score t' + Math.min(4, b + 1), ['🔴', '🟠', '🟡', '🟢', '🟢'][b] + ' ' + t.trust + ' ' + total + '/10 — ' + t.labels[b]);
     var bar = el('div', 'bar'); bar.style.color = ['var(--red)', 'var(--orange)', 'var(--yellow)', 'var(--green)', 'var(--green)'][b];
-    for (var i = 1; i <= 10; i++) bar.appendChild(el('i', i <= a.trust ? 'on' : ''));
+    for (var i = 1; i <= 10; i++) bar.appendChild(el('i', i <= total ? 'on' : ''));
     sc.appendChild(bar); r.appendChild(sc);
+    r.appendChild(el('p', 'parts', t.parts(a.trust, project === undefined ? undefined : ps ? ps.score : null)));
     r.appendChild(el('p', 'scale', t.scale));
 
     if (a.hard.length || a.up.length) {
@@ -524,10 +577,12 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
       a.up.forEach(function (f) { u1.appendChild(el('li', null, '⚠️ ' + say(f))); });
       r.appendChild(u1);
     }
-    if (a.down.length) {
+    // Age and holders are already in the "no longer a newcomer" line: no need to repeat them.
+    var downs = a.tier.level === 'new' ? a.down : a.down.filter(function (f) { return f[0] !== 'holdersMany' && f[0] !== 'survived'; });
+    if (downs.length) {
       r.appendChild(el('h3', null, t.raises));
       var u2 = el('ul', 'find');
-      a.down.forEach(function (f) { u2.appendChild(el('li', null, '✅ ' + say(f))); });
+      downs.forEach(function (f) { u2.appendChild(el('li', null, '✅ ' + say(f))); });
       r.appendChild(u2);
     }
     if (a.rights.length) {
@@ -582,7 +637,18 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
     if (project === undefined) line(p, t.projWait, 'note');
     else if (!project) line(p, t.projOff, 'note');
     else {
-      line(p, project.text);
+      if (ps) {
+        line(p, t.pj.score(ps.score, Object.keys(ps.items).filter(function (k) { return ps.items[k] > 0; }).length), 'pscore');
+        projectRows(d, project.checks, a).forEach(function (g) {
+          p.appendChild(el('h3', 'pgroup', g[0]));
+          g[1].forEach(function (row) {
+            var e = el('p', null, row[0] + ' ' + row[1]);
+            if (row[2]) { var lk = el('a', null, ' ↗'); lk.href = row[2]; lk.target = '_blank'; lk.rel = 'noopener nofollow'; e.appendChild(lk); }
+            p.appendChild(e);
+          });
+        });
+      }
+      if (project.text) line(p, project.text, 'ptext');
       if (project.sources && project.sources.length) {
         var src = el('p', 'note'); src.appendChild(document.createTextNode(ru ? 'Источники: ' : 'Sources: '));
         project.sources.forEach(function (s, i) { var aEl = el('a', null, '[' + s.n + ']'); aEl.href = s.url; aEl.target = '_blank'; aEl.rel = 'noopener nofollow'; if (i) src.appendChild(document.createTextNode(' · ')); src.appendChild(aEl); });
@@ -603,12 +669,45 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
     out.appendChild(r);
   }
 
+  // The project's criteria, grouped as in CertiK Skynet's pillars: [title, [[icon, text, link]]].
+  function projectRows(d, pc, a) {
+    var pj = T[lang].pj, gp = d.gp, gh = pc.github, rows = [];
+    var days = function (iso) { return iso ? (Date.now() - Date.parse(iso)) / 86400000 : null; };
+    var code = [pc.audit === 'yes' ? ['✅', pj.auditYes(pc.auditBy), pc.auditUrl] : ['➖', pj.auditNo]];
+    if (gp.is_open_source !== undefined) code.push(gp.is_open_source === '1' ? ['✅', pj.srcOpen] : ['❌', pj.srcHidden]);
+    rows.push([pj.code, code]);
+    var dom = days(pc.domainSince);
+    rows.push([pj.team, [
+      pc.team === 'public' ? ['✅', pj.teamPublic, pc.teamUrl] : pc.team === 'anon' ? ['⚠️', pj.teamAnon] : ['➖', pj.teamNo],
+      pc.investors === 'yes' ? ['✅', pj.invYes, pc.investorsUrl] : ['➖', pj.invNo],
+      pc.docs ? ['✅', pj.docsYes, pc.docs] : ['➖', pj.docsNo],
+      !pc.site ? ['➖', pj.noSite] : dom === null ? ['➖', pj.domainNo, pc.site] : [dom >= 365 ? '✅' : dom >= 90 ? '➖' : '⚠️', pj.domain(pc.domainSince, dom), pc.site],
+    ]]);
+    var push = gh ? days(gh.pushed) : null, repo = gh ? gh.url.replace('https://github.com/', '') : '';
+    rows.push([pj.dev, [!gh ? ['➖', pj.ghNo] : gh.commits30 > 0 ? ['✅', pj.ghActive(gh.commits30, repo), gh.url]
+      : [push !== null && push <= 180 ? '➖' : '⚠️', pj.ghQuiet(gh.pushed, repo), gh.url]]]);
+    rows.push([pj.community, [pc.x ? ['✅', pj.xYes, pc.x] : ['➖', pj.xNo], pc.chat ? ['✅', pj.chatYes, pc.chat] : ['➖', pj.chatNo]]]);
+    rows.push([pj.product, [pc.product === 'live' ? ['✅', pj.prodLive, pc.productUrl] : pc.product === 'none' ? ['⚠️', pj.prodNone] : ['➖', pj.prodNo]]]);
+    // On-chain facts the token score already weighs: shown here so the picture is whole.
+    rows.push([pj.market, [['•', pj.marketLine(a.tier)]]]);
+    var hr = d.holders.rows, sum = function (re) { return hr.filter(function (x) { return x.kind === 'contract' && re.test(x.name || ''); }).reduce(function (s, x) { return s + x.pct; }, 0); };
+    var vest = sum(/vest|lock|timelock/i), safe = sum(/safe|multisig/i);
+    var top10 = hr.filter(function (x) { return x.kind === 'wallet' && !x.exchange; }).slice(0, 10).reduce(function (s, x) { return s + x.pct; }, 0);
+    var spread = [];
+    if (vest >= 1) spread.push(['•', pj.vest(vest)]);
+    if (safe >= 1) spread.push(['•', pj.safe(safe)]);
+    if (hr.length) spread.push(['•', pj.top10(top10)]);
+    if (spread.length) rows.push([pj.spread, spread]);
+    return rows;
+  }
+
   function facts(d, a) {
     return { symbol: d.symbol, name: d.name, chain: d.chain, address: d.address, websites: d.websites, socials: d.socials,
       trust: a.trust, verdict: 'TRUST ' + a.trust + '/10', stop: a.hard.map(sayEn), warn: a.up.map(sayEn), good: a.down.map(sayEn), rights: a.rights.map(sayEn),
       mcap: d.mcap, liq: d.liq, vol: d.vol, ageH: d.ageH, buyers: d.buyers, sellers: d.sellers, dsBuys: d.dsBuys, dsSells: d.dsSells,
       cg: { name: d.cg.name, id: d.cg.id, updated: d.cg.updated, categories: d.cg.categories, genesis: d.cg.genesis,
-        description: d.cg.description, homepage: d.cg.homepage, repos: d.cg.repos, cex: (d.cg.cex || []).length } };
+        description: d.cg.description, homepage: d.cg.homepage, repos: d.cg.repos, cex: (d.cg.cex || []).length,
+        twitter: d.cg.twitter, telegram: d.cg.telegram, chats: d.cg.chats, whitepaper: d.cg.whitepaper } };
   }
 
   function run() {
@@ -628,7 +727,7 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
           fetch(WORKER + '/read', { method: 'POST', headers: hdr({ 'content-type': 'application/json' }), body: JSON.stringify({ ticket: ticket, lang: lang, facts: facts(d, a) }) })
             .then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; });
         proj.then(function (pr) {
-          last.project = pr && pr.text ? pr : null;
+          last.project = pr && (pr.text || pr.checks) ? pr : null;
           $('steps').innerHTML = ''; render(d, a, last.project); $('go').disabled = false;
         });
       }).catch(function (e) {

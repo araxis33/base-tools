@@ -98,6 +98,8 @@ const CK = (() => {
       categories: (d.categories || []).slice(0, 6), genesis: d.genesis_date,
       description: ((d.description && d.description.en) || '').replace(/<[^>]+>/g, ' ').slice(0, 900),
       homepage: (links.homepage || []).filter(Boolean), repos: ((links.repos_url || {}).github || []).filter(Boolean),
+      twitter: links.twitter_screen_name || '', telegram: links.telegram_channel_identifier || '',
+      chats: (links.chat_url || []).filter(Boolean), whitepaper: links.whitepaper || '',
     };
   }
   async function kyberSell(chain, address, amountRaw) {
@@ -380,6 +382,9 @@ const CK = (() => {
     const facts = { ageD, holders: d.holderCount, cex: cex.length, majors, rank: d.cg.rank };
     if (ageD >= 180 && d.liq >= 1e6 && (majors.length || d.holderCount >= 100000)) return { level: 'mature', ...facts };
     if (ageD >= 30 && d.liq >= 250000 && cex.length >= 3) return { level: 'grown', ...facts };
+    // A coin that has traded for half a year with thousands of holders is no newcomer, even
+    // without centralised exchanges (ALTT, 670 days, 19 789 holders, was scored "new" on 05.10.2026).
+    if (ageD >= 180 && d.liq >= 100000 && d.holderCount >= 5000) return { level: 'grown', ...facts };
     return { level: 'new', ...facts };
   }
 
@@ -478,8 +483,10 @@ const CK = (() => {
       if (launches.length >= 3 && dead / launches.length >= 0.8) add(['serialDead', launches.length, dead], 3);
       else if (dead) add(['someDead', launches.length, dead], 1);
     }
+    // A burner deployer matters at launch; a coin that has lived for months since says more than how it was launched.
+    const ageD = (d.ageH || 0) / 24;
     if (d.dev.fundedBeforeMin !== null && d.dev.fundedBeforeMin !== undefined && d.dev.fundedBeforeMin < 60
-      && !d.dev.funderLabel && (d.dev.funderAmount || 0) < 0.05) add(['burner', d.dev.fundedBeforeMin], 1.5);
+      && !d.dev.funderLabel && (d.dev.funderAmount || 0) < 0.05) add(['burner', d.dev.fundedBeforeMin], ageD >= 90 ? 0.5 : ageD >= 30 ? 1 : 1.5);
     if (d.buyers === null) {
       if (d.dsBuys >= 300) minus(['buysMany', d.dsBuys], 0.5);
       else if (d.dsBuys < 20) add(['buysFew', d.dsBuys], 1.5);
@@ -487,6 +494,10 @@ const CK = (() => {
     else if (d.buyers < 50) add(['buyersFew', d.buyers], 1.5);
     if (d.liq && d.vol / d.liq > 20) add(['wash'], 1.5);
     if (d.buyers && d.buys && d.buys / d.buyers > 8) add(['bots', d.buys / d.buyers], 1);
+    // What is clean has to count too, not only what is wrong (his note 05.10.2026).
+    if (Object.keys(gp).length && !ownerLive && !flag('is_proxy') && !flag('hidden_owner')) minus(['renounced'], 0.5);
+    if (d.holderCount >= 5000) minus(['holdersMany', d.holderCount], 0.5);
+    if (ageD >= 365 && d.liq >= 50000) minus(['survived', ageD], 0.5);
     if (d.ageH !== null && d.ageH < 24) add(['young', d.ageH], 1.5);
     else if (d.ageH !== null && d.ageH < 24 * 7) add(['youngDays', d.ageH / 24], 0.5);
     if (d.liq >= 10000 && d.dsBuys < 5 && d.vol < 1000) hard.push([['noTrading', d.dsBuys, d.vol, d.liq], 9]);
@@ -519,5 +530,40 @@ const CK = (() => {
     };
   }
 
-  return { collect, assess, lpStatus, ADDR_RE, short, BURN };
+  // ------------------------------------------------------------ the project
+
+  // Project trust from what the Worker found (his request 05.10.2026: "a token almost always has
+  // a project behind it — check it from every side, by concrete criteria"). The groups follow
+  // CertiK Skynet's pillars, kept to what can be checked automatically and linked. Each found
+  // criterion adds points; what is not found adds nothing (missing is not proof of bad).
+  const PROJECT_MAX = 11;
+  function projectScore(pc) {
+    if (!pc) return null;
+    const days = (iso) => (iso ? (Date.now() - Date.parse(iso)) / 86400000 : null);
+    const gh = pc.github, dom = days(pc.domainSince), push = gh ? days(gh.pushed) : null;
+    const items = [
+      ['audit', pc.audit === 'yes' ? 2 : 0],
+      ['team', pc.team === 'public' ? 2 : 0],
+      ['investors', pc.investors === 'yes' ? 1 : 0],
+      ['docs', pc.docs ? 1 : 0],
+      ['domain', dom === null ? 0 : dom >= 365 ? 1 : dom >= 90 ? 0.5 : 0],
+      ['github', !gh ? 0 : gh.commits30 > 0 ? 2 : push !== null && push <= 180 ? 1 : 0.5],
+      ['x', pc.x ? 0.5 : 0],
+      ['chat', pc.chat ? 0.5 : 0],
+      ['product', pc.product === 'live' ? 1 : 0],
+    ];
+    const pts = items.reduce((s, x) => s + x[1], 0);
+    return { score: Math.max(1, Math.round((pts / PROJECT_MAX) * 10)), pts, items: Object.fromEntries(items) };
+  }
+
+  // One number for "how far can you trust the token and the project": a trap on chain is a
+  // trap whatever the project says (a site and an X account cost nothing to set up - a 0-hour coin
+  // with 100% at the deployer got 2 instead of 1 in testing); otherwise the token weighs 60%, the project 40%.
+  function overall(a, ps) {
+    if (!ps) return a.trust;
+    if (a.hard.length || a.trust <= 2) return a.trust;
+    return Math.max(1, Math.min(10, Math.round(0.6 * a.trust + 0.4 * ps.score)));
+  }
+
+  return { collect, assess, lpStatus, projectScore, overall, ADDR_RE, short, BURN };
 })();

@@ -257,32 +257,50 @@ async function get(url, opts = {}) {
 
 async function website(url) {
   const r = await get(url, { redirect: 'follow' });
-  if (!r || !(r.headers.get('content-type') || '').includes('text/html')) return [null, []];
+  if (!r || !(r.headers.get('content-type') || '').includes('text/html')) return [null, [], []];
   const html = (await r.text()).slice(0, 200000);
   const repos = [...new Set(html.match(/https?:\/\/github\.com\/[\w.-]+(?:\/[\w.-]+)?/g) || [])].slice(0, 3);
+  // Documentation links on the site: docs.*, /docs, GitBook, a whitepaper.
+  const docs = [...new Set((html.match(/href="([^"#]+)"/g) || []).map((x) => x.slice(6, -1))
+    .filter((u) => /(^https?:\/\/docs\.|\/docs\b|gitbook|whitepaper|litepaper)/i.test(u)))]
+    .map((u) => { try { return new URL(u, url).href; } catch (e) { return null; } }).filter(Boolean).slice(0, 2);
   const title = (html.match(/<title>([\s\S]*?)<\/title>/i) || [])[1];
-  return [{ title: 'Project site: ' + (title ? clean(title, 80) : url) + ' (opened today)', url, text: clean(html, 1500) }, repos];
+  return [{ title: 'Project site: ' + (title ? clean(title, 80) : url) + ' (opened today)', url, text: clean(html, 1500) }, repos, docs];
 }
 
+// The project's GitHub owner and its most recently pushed repository: a project's
+// first linked repo is often a side one (ALTT links "hall-of-fame", 05.10.2026).
 async function github(repoUrl) {
   const m = repoUrl.match(/https?:\/\/github\.com\/([\w.-]+)(?:\/([\w.-]+))?/);
   if (!m) return null;
   let [, owner, repo] = m;
   const api = 'https://api.github.com', h = { headers: { ...BROWSER, accept: 'application/vnd.github+json' } };
-  if (!repo) {
-    const r = (await get(`${api}/orgs/${owner}/repos?sort=pushed&per_page=1`, h)) || (await get(`${api}/users/${owner}/repos?sort=pushed&per_page=1`, h));
-    const list = r ? await r.json() : [];
-    if (!list.length) return null;
-    repo = list[0].name;
-  }
+  const r = (await get(`${api}/orgs/${owner}/repos?sort=pushed&per_page=1`, h)) || (await get(`${api}/users/${owner}/repos?sort=pushed&per_page=1`, h));
+  const list = r ? await r.json() : [];
+  if (Array.isArray(list) && list.length) repo = list[0].name;
+  if (!repo) return null;
   const info = await get(`${api}/repos/${owner}/${repo}`, h);
   if (!info) return null;
   const j = await info.json();
   const since = new Date(Date.now() - 30 * 86400000).toISOString();
   const c = await get(`${api}/repos/${owner}/${repo}/commits?since=${since}&per_page=100`, h);
-  const n = c ? (await c.json()).length : '?';
+  const n = c ? (await c.json()).length : null;
+  const pushed = (j.pushed_at || '').slice(0, 10);
   return { title: `GitHub ${owner}/${repo} (checked today)`, url: `https://github.com/${owner}/${repo}`,
-    text: `Stars ${j.stargazers_count}, last push ${(j.pushed_at || '').slice(0, 10)}, commits in 30 days: ${n}${n === 100 ? '+' : ''}. ${j.description || ''}` };
+    text: `Stars ${j.stargazers_count}, last push ${pushed}, commits in 30 days: ${n === null ? '?' : n}${n === 100 ? '+' : ''}. ${j.description || ''}`,
+    facts: { url: `https://github.com/${owner}/${repo}`, commits30: n, pushed, stars: j.stargazers_count } };
+}
+
+// When the site's domain was registered (RDAP, the public successor of whois).
+async function domainSince(host) {
+  const parts = host.split('.');
+  const apex = parts.slice(-2).join('.');
+  const r = await get(`https://rdap.org/domain/${apex}`, { headers: { ...BROWSER, accept: 'application/rdap+json' }, redirect: 'follow' });
+  if (!r) return null;
+  try {
+    const ev = ((await r.json()).events || []).find((e) => e.eventAction === 'registration');
+    return ev ? ev.eventDate.slice(0, 10) : null;
+  } catch (e) { return null; }
 }
 
 async function search(env, q) {
@@ -319,10 +337,19 @@ async function gather(env, f) {
   const host = siteUrl ? new URL(siteUrl).host.replace(/^www\./, '') : null;
   const name = f.name, alt = cg.name;
   const queries = [`"${alt || name}" ${f.symbol} crypto`, `"${alt || name}" founders team co-founder`,
-    `"${alt || name}" raised funding round investors`, `"${alt || name}" partnership integration`];
-  const [[site, siteRepos], ...found] = await Promise.all([siteUrl ? website(siteUrl) : Promise.resolve([null, []]), ...queries.map((q) => search(env, q))]);
+    `"${alt || name}" raised funding round investors`, `"${alt || name}" partnership integration`,
+    `"${alt || name}" smart contract audit`];
+  const [[site, siteRepos, siteDocs], since, ...found] = await Promise.all([siteUrl ? website(siteUrl) : Promise.resolve([null, [], []]),
+    host ? domainSince(host) : Promise.resolve(null), ...queries.map((q) => search(env, q))]);
   const repos = (cg.repos || []).concat(siteRepos, (f.socials || []).filter((s) => /github/.test(s[0] || '')).map((s) => s[1]));
   const gh = repos.length ? await github(repos[0]) : null;
+  // Facts the page scores itself; the model only adds what needs reading (team, investors, audit, product).
+  const socials = f.socials || [];
+  const xUrl = (socials.find((s) => /twitter|^x$/i.test(s[0] || '')) || [])[1] || (cg.twitter ? `https://x.com/${cg.twitter}` : null);
+  const chatUrl = (socials.find((s) => /telegram|discord/i.test(s[0] || '')) || [])[1]
+    || (cg.telegram ? `https://t.me/${cg.telegram}` : null) || (cg.chats || []).find((u) => /t\.me|discord/i.test(u)) || null;
+  const docs = siteDocs[0] || (f.websites || []).find((u) => /docs\.|gitbook|whitepaper/i.test(u)) || cg.whitepaper || null;
+  const checks = { site: site ? siteUrl : null, domainSince: since, docs, github: gh ? gh.facts : null, x: xUrl, chat: chatUrl };
   const cgMat = cg.id ? { title: `CoinGecko: ${cg.name} (card updated ${cg.updated || '?'})`, url: `https://www.coingecko.com/en/coins/${cg.id}`,
     text: `Categories: ${(cg.categories || []).join(', ')}. Launched: ${cg.genesis || '?'}. Listed on ${cg.cex || 0} exchanges. ${cg.description || ''}`.slice(0, 900) } : null;
   const materials = [site, cgMat, gh].filter(Boolean);
@@ -334,7 +361,7 @@ async function gather(env, f) {
     if (!aboutThis(m, f, host, alt)) { dropped++; continue; }
     materials.push(USER_POSTS.some((b) => m.url.includes(b)) ? { ...m, title: 'USER POST, not an official announcement: ' + m.title } : m);
   }
-  return { materials: materials.slice(0, 16), dropped, searchDown: !found.some((g) => g.length) };
+  return { materials: materials.slice(0, 16), dropped, searchDown: !found.some((g) => g.length), checks };
 }
 
 // ------------------------------------------------------------ the model
@@ -374,7 +401,15 @@ Hard rules:
 - A material may be about another project with the same ticker. If site, address or description do not match, do not use it.
 - Who is speaking: the project's own site is a claim — write "${L.claim}". Posts on Binance Square, X, Reddit, Medium, forums are not official news — write "${L.post}". A listing is confirmed only by the exchange itself or CoinGecko.
 - Crunchbase, Tracxn, CB Insights, CryptoRank, RootData, Messari are reference sites, not investors or partners. An investor is only a fund or company named as having put money in.
-- No intro, no markdown, no asterisks. At most 1300 characters.`;
+- No intro, no markdown, no asterisks. At most 1300 characters.
+
+After the five points add ONE last line, in English, exactly in this form (it is read by a program, not shown):
+CHECKS {"team":"public|anon|unknown","team_src":0,"investors":"yes|unknown","investors_src":0,"audit":"yes|unknown","audit_by":"","audit_src":0,"product":"live|none|unknown","product_src":0}
+- team "public" only if a material names the founders or team members; "anon" only if a material says the team is anonymous; otherwise "unknown".
+- investors "yes" only if a material names a fund or company that put money in; otherwise "unknown".
+- audit "yes" only if a material says this project's contracts were audited and names the auditor (audit_by); otherwise "unknown".
+- product "live" if a material shows a working product people can use now; "none" if it is only a coin with nothing to use; otherwise "unknown".
+- each *_src is the number of the material that proves it, 0 when unknown.`;
 }
 
 async function askGemini(env, p) {
@@ -415,16 +450,38 @@ async function askGroq(env, p) {
   return [null, last];
 }
 
+// The model's CHECKS line -> { team, investors, audit, product } with the source URL of each "yes".
+function readChecks(text, materials) {
+  const m = text.match(/CHECKS\s*(\{[^\n]*\})/);
+  let j = {};
+  try { j = m ? JSON.parse(m[1]) : {}; } catch (e) { j = {}; }
+  const src = (n) => (n > 0 && n <= materials.length ? materials[n - 1].url : null);
+  const pick = (v, ok) => (ok.includes(v) ? v : 'unknown');
+  const out = {
+    team: pick(j.team, ['public', 'anon']), investors: pick(j.investors, ['yes']), audit: pick(j.audit, ['yes']),
+    product: pick(j.product, ['live', 'none']),
+  };
+  // A "yes" without a source it can point to is not a yes.
+  out.teamUrl = out.team === 'public' ? src(j.team_src) : null; if (out.team === 'public' && !out.teamUrl) out.team = 'unknown';
+  out.investorsUrl = out.investors === 'yes' ? src(j.investors_src) : null; if (out.investors === 'yes' && !out.investorsUrl) out.investors = 'unknown';
+  out.auditUrl = out.audit === 'yes' ? src(j.audit_src) : null; if (out.audit === 'yes' && !out.auditUrl) out.audit = 'unknown';
+  out.auditBy = out.audit === 'yes' ? String(j.audit_by || '').slice(0, 60) : '';
+  out.productUrl = out.product === 'live' ? src(j.product_src) : null; if (out.product === 'live' && !out.productUrl) out.product = 'unknown';
+  return out;
+}
+
 async function projectRead(env, f, lang) {
-  const { materials, dropped, searchDown } = await gather(env, f);
-  if (!materials.length) return { text: lang === 'ru' ? 'Про проект в открытых источниках ничего не нашлось — ни сайта, ни упоминаний.' : 'Nothing about the project in open sources — no site, no mentions.', sources: [] };
+  const { materials, dropped, searchDown, checks } = await gather(env, f);
+  if (!materials.length) return { text: lang === 'ru' ? 'Про проект в открытых источниках ничего не нашлось — ни сайта, ни упоминаний.' : 'Nothing about the project in open sources — no site, no mentions.', sources: [], checks };
   const p = prompt(f, materials, lang);
   let [text, model] = await askGemini(env, p);
   if (!text) [text, model] = await askGroq(env, p);
-  if (!text) return { error: 'models busy' };
-  text = text.replace(/\*\*/g, '').replace(/\*/g, '');
+  if (!text) return { error: 'models busy', checks };
+  const ai = readChecks(text, materials);
+  text = text.replace(/\n?CHECKS\s*\{[^\n]*\}\s*/g, '').trim().replace(/\*\*/g, '').replace(/\*/g, '');
   const cited = [...new Set((text.match(/\[(\d+)\]/g) || []).map((x) => parseInt(x.slice(1), 10)))].filter((n) => n > 0 && n <= materials.length).sort((a, b) => a - b);
   // The reader sees only "AI"; the model and what failed go to the Worker log.
   console.log(JSON.stringify({ read: f.symbol, model, sources: materials.length, dropped, searchDown }));
-  return { text, sources: cited.map((n) => ({ n, url: materials[n - 1].url })), note: lang === 'ru' ? 'Разбор: ИИ' : 'Analysis: AI' };
+  return { text, sources: cited.map((n) => ({ n, url: materials[n - 1].url })), note: lang === 'ru' ? 'Разбор: ИИ' : 'Analysis: AI',
+    checks: { ...checks, ...ai } };
 }
