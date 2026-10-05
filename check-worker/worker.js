@@ -470,7 +470,18 @@ function readChecks(text, materials) {
   return out;
 }
 
+// One read per token and language a day: the search finds slightly different pages each time and the
+// project score jumped 7 -> 5 for ALTT between two runs (05.10.2026). A day-long answer keeps it steady.
 async function projectRead(env, f, lang) {
+  const key = `r:${String(f.address || '').toLowerCase()}:${lang}`;
+  const cached = f.address ? await env.QUOTA.get(key) : null;
+  if (cached) { try { return JSON.parse(cached); } catch (e) { /* read again */ } }
+  const out = await projectReadFresh(env, f, lang);
+  if (f.address && out && out.text && !out.error) await env.QUOTA.put(key, JSON.stringify(out), { expirationTtl: 86400 });
+  return out;
+}
+
+async function projectReadFresh(env, f, lang) {
   const { materials, dropped, searchDown, checks } = await gather(env, f);
   if (!materials.length) return { text: lang === 'ru' ? 'Про проект в открытых источниках ничего не нашлось — ни сайта, ни упоминаний.' : 'Nothing about the project in open sources — no site, no mentions.', sources: [], checks };
   const p = prompt(f, materials, lang);

@@ -111,6 +111,43 @@ const CK = (() => {
     return rs ? [num(rs.amountInUsd) || 0, num(rs.amountOutUsd) || 0] : null;
   }
 
+  // How big a sale moves the price by 1%: real KyberSwap quotes at growing sizes, the pool fees taken
+  // out by a $100 quote first (a 1% fee pool would otherwise read as "no depth"), then log-interpolated.
+  // The "move price 1%" depth is Blocktronics V2's liquidity pillar (05.10.2026); ours is the exit side.
+  async function depth1pct(chain, address, price, decimals) {
+    if (!USDC[chain] || !(price > 0)) return null;
+    const small = await kyberSell(chain, address, (100 / price) * 10 ** decimals);
+    if (!small || !(small[0] > 0)) return null;
+    const fee = Math.max(0, (1 - small[1] / small[0]) * 100);
+    let prev = { usd: 100, loss: 0 };
+    for (const usd of [1000, 3000, 10000, 30000, 100000, 300000, 1000000]) {
+      const q = await kyberSell(chain, address, (usd / price) * 10 ** decimals);
+      if (!q || !(q[0] > 0)) return prev.usd > 100 ? { usd: prev.usd, atLeast: true } : null;
+      const loss = (1 - q[1] / q[0]) * 100 - fee;
+      if (loss > 1) {
+        if (prev.usd === 100 && loss > 3) return { usd: 0, below: 1000 };
+        const t = (1 - prev.loss) / (loss - prev.loss);
+        return { usd: Math.round(Math.exp(Math.log(prev.usd) + t * (Math.log(usd) - Math.log(prev.usd)))) };
+      }
+      prev = { usd, loss };
+      await sleep(150);
+    }
+    return { usd: 1000000, atLeast: true };
+  }
+
+  // The last 30 full days of the main pool: up days, price change, average volume (GeckoTerminal daily candles).
+  async function month(chain, pool) {
+    if (!pool) return null;
+    const d = await getJSON(`https://api.geckoterminal.com/api/v2/networks/${chain}/pools/${pool}/ohlcv/day?limit=31&currency=usd&token=base`);
+    const list = (((d || {}).data || {}).attributes || {}).ohlcv_list || [];
+    const days = list.slice(1, 31); // newest first; [0] is today, not finished
+    if (days.length < 7) return null;
+    const up = days.filter((c) => c[4] > c[1]).length;
+    const first = days[days.length - 1][1], last = days[0][4];
+    return { days: days.length, up, change: first > 0 ? (last / first - 1) * 100 : null,
+      vol: days.reduce((s, c) => s + (c[5] || 0), 0) / days.length };
+  }
+
   // Other tokens with the same ticker on this chain, biggest first (see checker.py).
   async function sameTicker(chain, address, symbol) {
     const d = await getJSON(`https://api.dexscreener.com/latest/dex/search?q=${encodeURIComponent(symbol)}`);
@@ -308,6 +345,17 @@ const CK = (() => {
       goplus(chain, address), honeypot(chain, address), geckoPools(chain, address),
       bs(chain, `/api/v2/addresses/${address}`), bs(chain, `/api/v2/tokens/${address}`), cgListing(chain, address)]);
 
+    // Doppler tokens (every Bankr launch) are "mintable" only as capped inflation: the verified DERC20
+    // code allows at most 2% a year to the owner, and none before the pool is unlocked. GoPlus just says
+    // "mintable" (BLOCKTRONICS lost 2.5 points for it, 05.10.2026). Trust it only for the verified DERC20.
+    let mintCap = null;
+    if (gp && String(gp.is_mintable) === '1' && info && info.is_verified && info.name === 'DERC20') {
+      const r = await rpc(chain, [['eth_call', [{ to: address, data: '0x20720df7' }, 'latest']], ['eth_call', [{ to: address, data: '0x13cff13d' }, 'latest']]]);
+      const rate = r && r[0] && r[0].result && r[0].result.length === 66 ? BigInt(r[0].result) : null;
+      const start = r && r[1] && r[1].result && r[1].result.length === 66 ? BigInt(r[1].result) : null;
+      if (rate !== null && start !== null && rate <= 20000000000000000n) mintCap = { pct: Number(rate) / 1e16, started: start > 0n };
+    }
+
     const decimals = parseInt((tokenInfo && tokenInfo.decimals) || '18', 10);
     const totalRaw = tokenInfo && tokenInfo.total_supply ? BigInt(tokenInfo.total_supply) : 0n;
     const lpAddrs = new Set(pairs.map((p) => lower(p.pairAddress)));
@@ -322,13 +370,15 @@ const CK = (() => {
 
     onStep('people');
     const sell = async (usd) => (price > 0 ? kyberSell(chain, address, (usd / price) * 10 ** decimals) : null);
-    const [devInfo, holders, q500, q5000, snipe, twins] = await Promise.all([
+    const [devInfo, holders, q500, q5000, snipe, twins, depth, mon] = await Promise.all([
       (async () => { const part = {}; await withTimeout(deployerRecord(chain, address, tx, part), DEPLOYER_BUDGET_MS);
         if (!part.dev) part.dev = dev; if (!part.launches) part.launches = []; return part; })(),
       holderMap(chain, address, totalRaw, dev, lpAddrs),
       sell(500), sell(5000),
       snipers(chain, address, tx && tx.block_number ? Number(tx.block_number) : null, createdMs, lpAddrs, totalRaw, dev),
-      sameTicker(chain, address, (best.baseToken || {}).symbol || '')]);
+      sameTicker(chain, address, (best.baseToken || {}).symbol || ''),
+      withTimeout(depth1pct(chain, address, price, decimals), 25000, null),
+      month(chain, best.pairAddress)]);
 
     const sum = (f) => pools.reduce((s, p) => s + ((((p.attributes.transactions || {}).h24) || {})[f] || 0), 0);
     const infoBlock = best.info || {};
@@ -346,7 +396,7 @@ const CK = (() => {
       websites: (infoBlock.websites || []).map((w) => w.url), socials: (infoBlock.socials || []).map((s) => [s.type, s.url]),
       verified: info ? info.is_verified : null,
       holderCount: parseInt((tokenInfo && tokenInfo.holders_count) || (gp && gp.holder_count) || '0', 10),
-      cg: cg || {}, gp: gp || {}, hp: hp || {}, dev: devInfo, holders, snipe, twins,
+      cg: cg || {}, gp: gp || {}, hp: hp || {}, dev: devInfo, holders, snipe, twins, mintCap, depth, month: mon,
       dsBuys: pairs.reduce((s, p) => s + (((p.txns || {}).h24 || {}).buys || 0), 0),
       exits: Object.fromEntries([[500, q500], [5000, q5000]].filter(([, q]) => q && q[0] > 0)),
       pairLiq: Object.fromEntries(pairs.map((p) => [lower(p.pairAddress), (p.liquidity || {}).usd || 0])),
@@ -409,7 +459,10 @@ const CK = (() => {
     else if (sellTax !== null && sellTax > 3) add(['sellTax', sellTax], 1.5);
     const owner = lower(gp.owner_address);
     const ownerLive = owner && !BURN.has(owner);
-    if (flag('is_mintable') && ownerLive) add(['mint'], 2.5);
+    if (flag('is_mintable') && ownerLive) {
+      if (d.mintCap) add(['mintCapped', d.mintCap.pct, d.mintCap.started], d.mintCap.started ? 0.5 : 0.2);
+      else add(['mint'], 2.5);
+    }
     if (flag('can_take_back_ownership')) add(['takeBack'], 3);
     if (flag('hidden_owner')) {
       add(['hiddenRoles'], 1);
@@ -497,6 +550,8 @@ const CK = (() => {
     // What is clean has to count too, not only what is wrong (his note 05.10.2026).
     if (Object.keys(gp).length && !ownerLive && !flag('is_proxy') && !flag('hidden_owner')) minus(['renounced'], 0.5);
     if (d.holderCount >= 5000) minus(['holdersMany', d.holderCount], 0.5);
+    const trapped = hard.some((x) => x[0][0] === 'honeypot');
+    if (d.depth && !trapped && d.depth.usd >= 50000) minus(['deep', d.depth.usd, !!d.depth.atLeast], 0.5);
     if (ageD >= 365 && d.liq >= 50000) minus(['survived', ageD], 0.5);
     if (d.ageH !== null && d.ageH < 24) add(['young', d.ageH], 1.5);
     else if (d.ageH !== null && d.ageH < 24 * 7) add(['youngDays', d.ageH / 24], 0.5);

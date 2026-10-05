@@ -274,6 +274,7 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
       honeypot: function () { return 'cannot sell: it is a trap (honeypot)'; },
       sellTaxHigh: function (t) { return 'sell tax ' + p0(t); }, sellTax: function (t) { return 'sell tax ' + p0(t); },
       mint: function () { return 'the owner can mint more coins'; }, takeBack: function () { return 'the owner can take control back'; },
+      mintCapped: function (p, on) { return 'minting is capped by the code: at most ' + p + '% a year to the owner' + (on ? '' : ', not switched on yet'); },
       hiddenRoles: function () { return 'the contract has hidden admin rights (roles outside the owner)'; },
       rolesBalance: function () { return 'someone with rights can change balances'; }, rolesMint: function () { return 'someone with rights can mint'; },
       blacklist: function () { return 'the owner can block a wallet'; }, taxChange: function () { return 'the owner can change the tax'; },
@@ -314,6 +315,7 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
       twin: function (s, a) { return 'there is a bigger ' + s + ' (' + CK.short(a) + ') — check the address'; },
       mature: function (t) { return 'mature project: ' + tierLine(t); }, grown: function (t) { return 'no longer a newcomer: ' + tierLine(t); },
       majors: function (m) { return 'trades on major exchanges: ' + m.slice(0, 4).join(', '); },
+      deep: function (u, more) { return 'a deep market: only a sale of ' + (more ? 'more than ' : '') + usd(u) + ' moves the price by 1%'; },
       renounced: function () { return 'nobody controls the contract: the owner renounced it'; },
       holdersMany: function (n) { return n.toLocaleString('en-US') + ' holders'; },
       survived: function (dd) { return 'has traded for ' + Math.round(dd) + ' days'; },
@@ -322,6 +324,7 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
       honeypot: function () { return 'продать нельзя: это ловушка (honeypot)'; },
       sellTaxHigh: function (t) { return 'налог на продажу ' + p0(t); }, sellTax: function (t) { return 'налог на продажу ' + p0(t); },
       mint: function () { return 'владелец может допечатать монеты'; }, takeBack: function () { return 'владелец может вернуть себе контроль'; },
+      mintCapped: function (p, on) { return 'допечатка ограничена кодом: не больше ' + String(p).replace('.', ',') + '% в год владельцу' + (on ? '' : ', пока не включена'); },
       hiddenRoles: function () { return 'у контракта есть скрытые права управления (роли вне владельца)'; },
       rolesBalance: function () { return 'кто-то с правами может менять балансы'; }, rolesMint: function () { return 'кто-то с правами может допечатать монеты'; },
       blacklist: function () { return 'владелец может заблокировать кошелёк'; }, taxChange: function () { return 'владелец может поменять налог'; },
@@ -362,6 +365,7 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
       twin: function (s, a) { return 'есть другая монета ' + s + ' крупнее (' + CK.short(a) + ') — сверь адрес'; },
       mature: function (t) { return 'зрелый проект: ' + tierLine(t); }, grown: function (t) { return 'уже не новичок: ' + tierLine(t); },
       majors: function (m) { return 'торгуется на крупных биржах: ' + m.slice(0, 4).join(', '); },
+      deep: function (u, more) { return 'рынок глубокий: цену на 1% сдвигает только продажа на ' + (more ? 'больше чем ' : '') + usd(u); },
       renounced: function () { return 'контрактом никто не управляет: владелец от него отказался'; },
       holdersMany: function (n) { return 'держателей ' + n.toLocaleString('ru-RU'); },
       survived: function (dd) { return 'торгуется уже ' + Math.round(dd) + ' дн.'; },
@@ -521,7 +525,8 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
         ['hidden_owner', 'скрытый владелец', 'hidden owner'], ['is_proxy', 'подмена кода (прокси)', 'code swap (proxy)'],
         ['selfdestruct', 'самоуничтожение контракта', 'self-destruct'], ['is_anti_whale', 'лимит на размер сделки', 'trade size limit'],
         ['trading_cooldown', 'пауза между сделками', 'trade cooldown']];
-      var present = pairs.filter(function (p) { return yes(p[0]); }).map(function (p) { return ru ? p[1] : p[2]; });
+      var present = pairs.filter(function (p) { return yes(p[0]) && !(p[0] === 'is_mintable' && d.mintCap); }).map(function (p) { return ru ? p[1] : p[2]; });
+      if (d.mintCap) rows.push('➖ ' + (ru ? 'Допечатка ограничена кодом Doppler: не больше ' + String(d.mintCap.pct).replace('.', ',') + '% в год' + (d.mintCap.started ? '' : ', пока не включена') : 'Minting capped by the Doppler code: at most ' + d.mintCap.pct + '% a year' + (d.mintCap.started ? '' : ', not switched on yet')));
       var absent = pairs.filter(function (p) { return known(p[0]) && !yes(p[0]); }).map(function (p) { return ru ? p[1] : p[2]; });
       if (present.length) rows.push('⚠️ ' + (ru ? 'Есть в коде: ' : 'In the code: ') + present.join(', ') + (renounced && !yes('hidden_owner') ? (ru ? ' (но владелец отказался)' : ' (but the owner renounced)') : ''));
       if (absent.length) rows.push('✅ ' + (ru ? 'Нет в коде: ' : 'Not in the code: ') + absent.join(', '));
@@ -600,6 +605,15 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
     if (Object.keys(d.exits).length) {
       if (trapSale) line(m, ru ? 'Маршрут обмена обещает выкуп, но симуляция продажи падает — этим цифрам не верь' : 'The swap route quotes a price, but the sell simulation fails — do not trust these numbers');
       else line(m, (ru ? 'Продать сейчас: ' : 'Sell now: ') + Object.keys(d.exits).map(function (k) { return '$' + Number(k).toLocaleString('en-US') + ' → $' + Math.round(d.exits[k][1]).toLocaleString('en-US'); }).join(' · '));
+    }
+    // Two market facts borrowed from Blocktronics V2's pillars: liquidity depth and the last 30 days.
+    if (d.depth && !trapSale) line(m, d.depth.below
+      ? (ru ? 'Глубина: уже продажа на $1 000 сдвигает цену больше чем на 1%' : 'Depth: even a $1,000 sale moves the price by more than 1%')
+      : (ru ? 'Глубина: цену на 1% сдвигает продажа на ' : 'Depth: a sale that moves the price by 1%: ') + (d.depth.atLeast ? (ru ? 'больше чем ' : 'more than ') : '') + usd(d.depth.usd) + (ru ? ' (без учёта комиссии пула)' : ' (pool fees aside)'));
+    if (d.month) {
+      var mo = d.month, ch = mo.change === null ? '' : (mo.change >= 0 ? '+' : '') + Math.round(mo.change) + '%';
+      line(m, ru ? '30 дней: дней роста ' + mo.up + ' из ' + mo.days + (ch ? ', цена ' + ch : '') + ', средний объём ' + usd(mo.vol) + ' в день'
+        : '30 days: ' + mo.up + ' up days of ' + mo.days + (ch ? ', price ' + ch : '') + ', average volume ' + usd(mo.vol) + ' a day');
     }
     r.appendChild(m);
 
