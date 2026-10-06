@@ -1187,7 +1187,11 @@ const BLUE_CHIP_TOKENS = [
 const PLATFORMS_CACHE_KEY = "basetools_platforms_v1";
 const PLATFORMS_CACHE_TTL_MS = 24 * 60 * 60 * 1000; // platform mapping barely changes, cache a day
 
-const CACHE_KEY = "basetools_boards_v6";
+const CACHE_KEY = "basetools_boards_v7";
+
+// Without a floor the worst drop of the day is usually a token nobody traded:
+// a few hundred dollars of volume moves its price further than any real sell-off.
+const LOSER_MIN_VOLUME_USD = 25000;
 
 // The tokenized equities on Base, from the one list the whole site shares
 // (thesis-core.js, checked against base.org every day). CoinGecko does not
@@ -1343,7 +1347,7 @@ async function fetchMarketsOnce(nativeMap){
   );
   if (!res.ok) throw new Error("http " + res.status);
   const json = await res.json();
-  return json
+  const tokens = json
     .filter(m => nativeMap[m.id] && m.total_volume > 0 && !NON_NATIVE_SYMBOLS.has((m.symbol||"").toUpperCase()))
     .map(m => ({
       symbol: (m.symbol || "").toUpperCase(),
@@ -1354,6 +1358,36 @@ async function fetchMarketsOnce(nativeMap){
       volume24h: m.total_volume,
       marketCap: m.market_cap,
     }));
+  return dropUntradableOnBase(tokens);
+}
+
+// CoinGecko's volume counts centralized exchanges. A token can show millions
+// traded on BingX or LBank and have no pool on Base at all (Bullbit, 06.10:
+// $11.9M "volume", zero pools, #4 on Gainers with a Buy button that cannot
+// work). Only the tokens that can reach a board are checked: each one must have
+// a Base pool at least this deep, or it is dropped. A token whose check could
+// not be made (DexScreener down) is kept — an outage should not empty the board.
+const BOARD_MIN_POOL_LIQUIDITY_USD = 50000;
+const BOARD_CANDIDATES = 20;
+async function dropUntradableOnBase(tokens){
+  const moving = tokens.filter(t=>Number.isFinite(t.change24h));
+  const gainers = [...moving].sort((a,b)=>b.change24h - a.change24h).slice(0, BOARD_CANDIDATES);
+  const losers = moving
+    .filter(t=>t.change24h < 0 && t.volume24h >= LOSER_MIN_VOLUME_USD)
+    .sort((a,b)=>a.change24h - b.change24h).slice(0, BOARD_CANDIDATES);
+  const candidates = [...new Set([...gainers, ...losers])];
+  const dead = new Set();
+  await Promise.all(candidates.map(t =>
+    fetchWithTimeout("https://api.dexscreener.com/latest/dex/tokens/" + t.contract, 9000)
+      .then(r => r.ok ? r.json() : null)
+      .then(j => {
+        if (!j) return;
+        const pool = pickPoolPrice(j.pairs, t.contract);
+        if (!pool || pool.liquidity < BOARD_MIN_POOL_LIQUIDITY_USD) dead.add(t);
+      })
+      .catch(()=>{})
+  ));
+  return tokens.filter(t=>!dead.has(t));
 }
 
 // The honest price for a token given every pool DexScreener knows about it.
@@ -1526,9 +1560,6 @@ function renderColumn(elId, items, emptyMsg){
 
 function renderBoards(data, label){
   const tokens = data.dynamicTokens;
-  // Without a floor the worst drop of the day is usually a token nobody traded:
-  // a few hundred dollars of volume moves its price further than any real sell-off.
-  const LOSER_MIN_VOLUME_USD = 25000;
 
   // Any half may be absent when only some of the calls came back. renderColumn
   // already draws the error-with-retry state for a null, so a board that did
