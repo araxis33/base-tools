@@ -1381,16 +1381,21 @@ async function dropUntradableOnBase(tokens){
     .sort((a,b)=>a.change24h - b.change24h).slice(0, BOARD_CANDIDATES);
   const candidates = [...new Set([...gainers, ...losers])];
   const dead = new Set();
+  let answered = 0;
   await Promise.all(candidates.map(t =>
     fetchWithTimeout("https://api.dexscreener.com/latest/dex/tokens/" + t.contract, 9000)
       .then(r => r.ok ? r.json() : null)
       .then(j => {
         if (!j) return;
+        if (j.pairs && j.pairs.length) answered++;
         const pool = pickPoolPrice(j.pairs, t.contract);
         if (!pool || pool.liquidity < BOARD_MIN_POOL_LIQUIDITY_USD) dead.add(t);
       })
       .catch(()=>{})
   ));
+  // 07.10: DexScreener answered every token with "pairs": null for hours. "No pools for anything,
+  // AERO included" is an outage, not twenty dead tokens: keep them all rather than empty the boards.
+  if (!answered) return tokens;
   return tokens.filter(t=>!dead.has(t));
 }
 
