@@ -41,7 +41,10 @@ async function rpc(method, params) {
       const j = JSON.parse(text);
       if (j.error) throw new Error(j.error.message);
       return j.result;
-    } catch (e) { last = e.message; console.error(`${method} try ${i + 1}: ${last}`); await sleep(2000 + 3000 * i); }
+    } catch (e) {
+      // some RPC nodes cap a reply at 2 000 logs: the caller splits the range instead of retrying it
+      if (/max results/i.test(e.message)) throw Object.assign(e, { tooMany: true });
+      last = e.message; console.error(`${method} try ${i + 1}: ${last}`); await sleep(2000 + 3000 * i); }
   }
   throw new Error(`${method} kept failing: ${last}`);
 }
@@ -67,14 +70,25 @@ function realUsd(p) {
   return null;
 }
 
+/** Swap logs over [a, b]; a range with too many results is split in half until each part fits. */
+async function swapLogs(a, b) {
+  try {
+    return await rpc('eth_getLogs', [{ address: POOL_MANAGER, topics: [SWAP_TOPIC],
+      fromBlock: '0x' + a.toString(16), toBlock: '0x' + b.toString(16) }]);
+  } catch (e) {
+    if (!e.tooMany || b <= a) throw e;
+    const m = Math.floor((a + b) / 2);
+    return [...(await swapLogs(a, m)), ...(await swapLogs(m + 1, b))];
+  }
+}
+
 async function main() {
   const latest = parseInt(await rpc('eth_blockNumber', []), 16);
   const from = latest - DAY_BLOCKS;
   const pools = new Map();
   let swaps = 0;
   for (let a = from; a <= latest; a += WINDOW) {
-    const logs = await rpc('eth_getLogs', [{ address: POOL_MANAGER, topics: [SWAP_TOPIC],
-      fromBlock: '0x' + a.toString(16), toBlock: '0x' + Math.min(latest, a + WINDOW - 1).toString(16) }]);
+    const logs = await swapLogs(a, Math.min(latest, a + WINDOW - 1));
     for (const lg of logs) {
       const fee = parseInt(lg.data.slice(2 + 5 * 64, 2 + 6 * 64), 16);
       const p = pools.get(lg.topics[1]) || { swaps: 0, maxFee: 0 };
