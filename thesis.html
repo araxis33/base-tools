@@ -246,6 +246,7 @@ tr.memes-panel td{background:var(--bg2)}
   <div class="wrap head-in">
     <a class="back" href="/">&larr;&nbsp; Base.tools</a>
     <nav class="head-links">
+      <a href="/stocks.html">Stock Check: check a stock</a>
       <a href="https://www.base.org/stocks" target="_blank" rel="noopener">Official token list</a>
     </nav>
   </div>
@@ -1728,7 +1729,7 @@ function wireHoldings(){
 /* A standing scan of every stock, whatever is in your basket. A pool
    quoting Tesla at $15,000 harms nobody until something routes an order into
    it, and the people most likely to hit one are the ones who never look. */
-/* The chain check moved to Stocks on Base on 07.10 (that page checks, this one buys). Here it is one
+/* The chain check moved to Stock Check (stocks.html) on 07.10 (that page checks, this one buys). Here it is one
    line: how many traps there are right now, with the way to the full list. */
 function renderChainCheck(){
   var el = $("chaincheck");
@@ -1748,7 +1749,7 @@ function renderChainCheck(){
   el.innerHTML = '<div class="traps" style="margin-top:0;border-left-color:' + (parts.length ? 'var(--yellow)' : 'var(--green)') + '">' +
     (parts.length ? '<b>Right now on Base:</b> ' + parts.join(", ") + '. Baskets here never buy them.'
                   : 'Every live pool is quoting a sane price right now.') +
-    ' <a href="/stocks.html#chain">Full chain check on Stocks on Base &rarr;</a></div>';
+    ' <a href="/stocks.html#chain">Full chain check on Stock Check &rarr;</a></div>';
 }
 
 function shareUrl(){
