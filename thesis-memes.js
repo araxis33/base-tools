@@ -72,7 +72,7 @@
       return fetch(url).then(function (x) { return x.ok ? x.json() : null; }).catch(function () { return null; })
         .then(function (j) {
           var list = j && j.data && j.data.attributes && j.data.attributes.ohlcv_list;
-          if (list && list.length) { m.charts[r.addr] = list.slice().reverse(); if (!(m.open && m.open.busy)) render(); }   // oldest first
+          if (list && list.length) { m.charts[r.addr] = list.slice().reverse(); if (!m.open) render(); }   // oldest first; never under an open form
           /* a refused call (429 when the limit is hit) goes once more to the end of the queue, after a longer pause */
           else if (!j && !r._retried) { r._retried = true; want.push(r); return sleep(8000); }
           return sleep(2100);
@@ -192,7 +192,7 @@
     var h = '<div class="panel" style="margin:4px 0">';
     if (o.mode === "buy") {
       h += '<div class="amount-row" style="margin-top:0"><label>Buy ' + esc(r.sym) + ' for</label>' +
-        '<span class="money"><span>$</span><input id="mm-amt" type="text" inputmode="decimal" value="' + o.amount + '"></span>' +
+        '<span class="money"><span>$</span><input id="mm-amt" type="text" inputmode="decimal" placeholder="amount" value="' + esc(o.amount) + '"></span>' +
         '<select id="mm-pay"><option value="USDC"' + (o.pay === "USDC" ? " selected" : "") + '>USDC</option>' +
         '<option value="ETH"' + (o.pay === "ETH" ? " selected" : "") + '>ETH</option></select></div>';
     } else {
@@ -369,7 +369,7 @@
       b.addEventListener("click", function () {
         var buy = b.hasAttribute("data-buy"), addr = b.getAttribute(buy ? "data-buy" : "data-sell");
         if (m.open && m.open.busy) return;
-        m.open = { addr: addr, mode: buy ? "buy" : "sell", amount: 50, pay: state.pay || "USDC", pct: 100,
+        m.open = { addr: addr, mode: buy ? "buy" : "sell", amount: "", pay: state.pay || "USDC", pct: 100,
                    state: "idle", quote: null, msg: "", error: null, busy: false };
         render();
       });
@@ -380,7 +380,15 @@
     if ($("mm-quote")) $("mm-quote").addEventListener("click", quote);
     if ($("mm-go")) $("mm-go").addEventListener("click", go);
     if ($("mm-close")) $("mm-close").addEventListener("click", function () { if (!m.open.busy) { m.open = null; render(); } });
-    if ($("mm-amt")) $("mm-amt").addEventListener("input", function () { if (m.open.state === "ready") { m.open.state = "idle"; m.open.quote = null; } });
+    if ($("mm-amt")) $("mm-amt").addEventListener("input", function () {
+      m.open.amount = this.value;
+      if (m.open.state === "ready") { m.open.state = "idle"; m.open.quote = null; render(); $("mm-amt").focus(); }
+    });
+    if ($("mm-pay")) $("mm-pay").addEventListener("change", function () {
+      m.open.pay = this.value;
+      if (m.open.state === "ready") { m.open.state = "idle"; m.open.quote = null; render(); }
+    });
+    if ($("mm-amt") && m.open && m.open.state === "idle" && !m.open.amount) $("mm-amt").focus();
   }
 
   /* Start once the stock prices are in (they price the real money), then refresh every three minutes,
