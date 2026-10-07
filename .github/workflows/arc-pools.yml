@@ -1,0 +1,39 @@
+name: arc pools
+
+# Once a day: every Uniswap v4 swap on Arc in the last 24 hours (what each pool really charged) and the copies of
+# Circle's USDC, EURC and cirBTC. The file goes to the arc-data branch; arc.html reads it from there.
+on:
+  schedule:
+    - cron: "23 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency: arc-pools
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/arc-pools.js > arc-pools.json
+      - name: Replace the file on the arc-data branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git fetch origin arc-data; then
+            git worktree add data origin/arc-data
+            git -C data checkout -B arc-data
+          else
+            git worktree add --detach data
+            git -C data checkout --orphan arc-data
+            git -C data rm -rfq .
+          fi
+          cp arc-pools.json data/arc-pools.json
+          git -C data add arc-pools.json
+          git -C data commit -qm "Arc pools $(date -u +%Y-%m-%dT%H:%M)" || exit 0
+          git -C data push origin arc-data
