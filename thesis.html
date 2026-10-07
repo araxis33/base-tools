@@ -214,6 +214,8 @@ footer{border-top:1px solid var(--border); margin-top:30px; padding:22px 0 40px;
 .split{display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); gap:26px; align-items:start}
 @media (max-width:900px){ .split{grid-template-columns:minmax(0,1fr); gap:0} }
 .split > section{min-width:0}
+/* nothing to buy yet (no basket, or no prices): the memes take the whole width instead of a blank left half */
+.split:has(#execute:empty){grid-template-columns:minmax(0,1fr)}
 /* the quotes table beside the memes: fits its column instead of scrolling */
 .split #execute table{min-width:0}
 .split #execute th, .split #execute td{padding:10px 8px; font-size:13.5px}
@@ -427,11 +429,63 @@ function loadPools(){
       .catch(function(){ return {t:t, pairs:[]}; });
   });
   return Promise.all(jobs).then(function(res){
+    /* On 07.10 DexScreener answered every token with "pairs": null for hours, and the page went
+       quietly to "0 stocks" and "not buyable". An empty answer for every stock is an outage, not a
+       market: the pools are then read from GeckoTerminal instead. */
+    if(res.every(function(r){ return !r.pairs.length; })) return loadPoolsGecko();
     var out = {};
     res.forEach(function(r){ out[r.t.s] = ThesisCore.summarisePools(r.pairs, r.t); });
     state.data = out;
     state.loadedAt = Date.now();
+    state.error = null;
+    state.source = "DexScreener";
     return out;
+  });
+}
+
+/* The fallback: every stock's top pools from GeckoTerminal, 30 tokens a request, reshaped into the
+   pairs summarisePools already understands. Fewer pools than DexScreener lists, the same prices. */
+function loadPoolsGecko(){
+  var chunks = [];
+  for(var i = 0; i < TOKENS.length; i += 30) chunks.push(TOKENS.slice(i, i + 30));
+  return Promise.all(chunks.map(function(c){
+    return fetch("https://api.geckoterminal.com/api/v2/networks/base/tokens/multi/" +
+      c.map(function(t){ return t.a; }).join(",") + "?include=top_pools")
+      .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); });
+  })).then(function(parts){
+    var byToken = {};
+    parts.forEach(function(j){
+      (j.included || []).forEach(function(p){
+        if(p.type !== "pool") return;
+        var a = p.attributes, rel = p.relationships || {};
+        var base = ((rel.base_token && rel.base_token.data && rel.base_token.data.id) || "").replace(/^base_/, "").toLowerCase();
+        var quote = String(a.name || "").split("/")[1];
+        quote = quote ? quote.trim().split(" ")[0] : "";
+        (byToken[base] = byToken[base] || []).push({
+          chainId:"base", baseToken:{address:base}, quoteToken:{symbol:quote},
+          priceUsd: a.base_token_price_usd, liquidity:{usd:Number(a.reserve_in_usd) || 0},
+          volume:{h24:Number(a.volume_usd && a.volume_usd.h24) || 0},
+          priceChange:{h24:Number(a.price_change_percentage && a.price_change_percentage.h24) || 0},
+          dexId:(rel.dex && rel.dex.data && rel.dex.data.id) || "",
+          url:"https://www.geckoterminal.com/base/pools/" + a.address
+        });
+      });
+    });
+    var out = {}, any = false;
+    TOKENS.forEach(function(t){
+      out[t.s] = ThesisCore.summarisePools(byToken[t.a.toLowerCase()] || [], t);
+      if(out[t.s]) any = true;
+    });
+    if(!any) throw new Error("no pools");
+    state.data = out;
+    state.loadedAt = Date.now();
+    state.error = null;
+    state.source = "GeckoTerminal";
+    return out;
+  }).catch(function(){
+    state.data = null;
+    state.error = "Prices are not available right now: DexScreener and GeckoTerminal are not answering. The page retries every minute; nothing can be bought until they do.";
+    throw new Error("no price source");
   });
 }
 
@@ -1815,7 +1869,8 @@ function renderStamp(){
   });
   el.innerHTML = '<span class="dot"></span>' + live + ' stocks · ' + pools + ' live pools · ' +
     money(tvl, 0) + ' liquidity · ' + money(vol, 0) + ' traded in 24h · ' +
-    'read ' + new Date(state.loadedAt).toUTCString().slice(17, 22) + ' UTC';
+    'read ' + new Date(state.loadedAt).toUTCString().slice(17, 22) + ' UTC' +
+    (state.source === "GeckoTerminal" ? ' · from GeckoTerminal while DexScreener is down' : '');
 }
 
 var renderTimer = null;
@@ -1886,7 +1941,7 @@ setInterval(function(){
 loadPools().then(function(){
   render();
 }).catch(function(e){
-  state.error = "Could not read pool data. Reload the page.";
+  if(!state.error) state.error = "Could not read pool data. Reload the page.";
   renderStamp();
 });
 
@@ -1905,7 +1960,7 @@ setInterval(function(){
   /* never redraw underneath a wallet flow */
   if(ex.busy || ex.state === "sending" || ex.state === "ready") return;
   if(hold.busy || hold.state === "sending" || hold.state === "ready" || hold.state === "quoting") return;
-  loadPools().then(function(){ render(); }).catch(function(){});
+  loadPools().then(function(){ render(); }).catch(function(){ renderStamp(); });
 }, 60000);
 </script>
 <script src="thesis-memes.js"></script>

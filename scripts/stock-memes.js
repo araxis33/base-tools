@@ -76,6 +76,9 @@ async function main() {
     await sleep(400);
   }
 
+  // DexScreener down (07.10 it answered every pool with nothing): stop here, and the last good list stays up.
+  if (live.length && !sides.size) throw new Error('DexScreener returned no pool sides; keeping the previous list');
+
   const memes = new Map();
   for (const p of live) {
     const d = sides.get(p.id.toLowerCase());
