@@ -102,6 +102,8 @@ h2{font-size:19px; margin:0 0 4px; letter-spacing:-.01em}
 .amount-row label{font-size:14px; color:var(--muted)}
 .money{position:relative; display:inline-flex; align-items:center}
 .money span{position:absolute; left:14px; color:var(--muted); font-size:16px}
+#paywith{background:var(--bg); border:1px solid var(--border); color:var(--text); border-radius:10px; padding:9px 12px; font-size:15px; font-family:inherit; min-height:42px; cursor:pointer}
+#paywith:focus{outline:none; border-color:var(--blue)}
 #amount{
   background:var(--bg2); color:var(--text); border:1px solid var(--border-hover);
   border-radius:10px; padding:11px 14px 11px 30px; font-size:16px; width:150px;
@@ -209,6 +211,10 @@ footer{border-top:1px solid var(--border); margin-top:30px; padding:22px 0 40px;
 .err{background:var(--card); border:1px solid var(--border); border-left:3px solid var(--red);
      border-radius:12px; padding:20px; color:var(--muted)}
 .skel{color:var(--muted2); font-size:14px; padding:8px 0}
+.memes-bar{display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin:0 0 12px}
+.memes-bar select, #mm-pay{background:var(--bg); border:1px solid var(--border); color:var(--text); border-radius:8px; padding:6px 8px; font-family:inherit; font-size:13.5px}
+table.memes td{vertical-align:middle}
+tr.memes-panel td{background:var(--bg2)}
 
 @media (max-width:720px){
   h1{font-size:26px}
@@ -237,7 +243,7 @@ footer{border-top:1px solid var(--border); margin-top:30px; padding:22px 0 40px;
 
   <div class="hero">
     <h1>Own the idea, not the index.</h1>
-    <p class="sub">Write one line about what you believe. Get a basket of Coinbase Tokenized Stocks on Base &mdash; priced live across every pool on the chain, and routed to the one that isn&rsquo;t quietly charging you 6% more for the same share.</p>
+    <p class="sub">Write one line about what you believe. Get a basket of Coinbase Tokenized Stocks on Base &mdash; priced live across every pool on the chain, and routed to the one that isn&rsquo;t quietly charging you <b id="hero-gap">more</b> for the same share.</p>
     <p class="stamp" id="stamp"><span class="dot stale"></span>Loading pools&hellip;</p>
   </div>
 
@@ -253,7 +259,12 @@ footer{border-top:1px solid var(--border); margin-top:30px; padding:22px 0 40px;
       <div class="amount-row">
         <label for="amount">I want to put in</label>
         <span class="money"><span>$</span><input id="amount" type="text" inputmode="decimal" value="1,000"></span>
-        <span style="font-size:13.5px;color:var(--muted2)">USDC on Base</span>
+        <span style="font-size:13.5px;color:var(--muted2)">paid in</span>
+        <select id="paywith" aria-label="Pay with">
+          <option value="USDC">USDC</option>
+          <option value="ETH">ETH</option>
+        </select>
+        <span style="font-size:13.5px;color:var(--muted2)">on Base</span>
       </div>
     </div>
   </section>
@@ -271,6 +282,8 @@ footer{border-top:1px solid var(--border); margin-top:30px; padding:22px 0 40px;
   <section id="result"></section>
 
   <section id="execute"></section>
+
+  <section id="memes"></section>
 
   <section id="holdings">
     <h2>Your stocks</h2>
@@ -357,7 +370,8 @@ var state = {
   realTried:false,   // the real prices have been asked for at least once
   mult:{},           // symbol -> shares per token (dividends and splits move it off 1)
   showAll:false,     // the weights list shows every stock, not just the basket
-  touched:{}         // stocks dragged since the basket was set, kept in view at 0
+  touched:{},        // stocks dragged since the basket was set, kept in view at 0
+  pay:"USDC"         // what the basket is paid with: USDC, or ETH straight from the wallet
 };
 
 /* ---------- helpers ---------- */
@@ -711,7 +725,7 @@ function renderResult(){
   }
 
   html += '<div class="actions">' +
-    '<a class="btn" id="buyall" href="#">Open every swap</a>' +
+    '<a class="btn" id="buyall" href="#execute">Buy it in one transaction &darr;</a>' +
     '<button class="btn ghost" id="share">Copy share link</button>' +
     '<button class="btn ghost" id="card">Download card</button>' +
     '<span class="copied" id="copied"></span></div>';
@@ -735,13 +749,11 @@ function renderResult(){
     }
   });
 
+  /* It used to open one Aerodrome tab per stock; the batch below does the
+     same in one confirmation, so the button now takes you there. */
   $("buyall").addEventListener("click", function(e){
     e.preventDefault();
-    rows.forEach(function(r, i){
-      setTimeout(function(){
-        window.open("https://aerodrome.finance/swap?from=" + USDC + "&to=" + r.t.a, "_blank", "noopener");
-      }, i * 250);
-    });
+    $("execute").scrollIntoView({ behavior:"smooth", block:"start" });
   });
 }
 
@@ -882,6 +894,17 @@ var CHAIN_HEX = "0x2105";           // Base, 8453
 var KYBER = "https://aggregator-api.kyberswap.com/base/api/v1";
 var BUILDER_SUFFIX = "62635f6d726b7775326d300b0080218021802180218021802180218021";
 var SLIPPAGE_BPS = 100;             // 1%
+var NATIVE = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"; // KyberSwap's name for ETH itself
+
+/* What one ETH buys in USDC right now, through the same aggregator that will
+   route the basket, so the ETH sent matches the dollar amount on screen. */
+function ethPriceUsd(){
+  return fetch(KYBER + "/routes?tokenIn=" + NATIVE + "&tokenOut=" + USDC + "&amountIn=1000000000000000000")
+    .then(function(r){ return r.json(); }).then(function(j){
+      if(!j || j.code !== 0 || !j.data) throw new Error("Could not price ETH right now. Try again, or pay in USDC.");
+      return Number(j.data.routeSummary.amountOut) / 1e6;
+    });
+}
 
 var ex = { state:"idle", account:null, quotes:null, msg:"", txt:"", error:null, busy:false };
 
@@ -921,8 +944,9 @@ function basketRows(){
 }
 
 function kyberRoute(row, from){
-  var url = KYBER + "/routes?tokenIn=" + USDC + "&tokenOut=" + row.t.a +
-            "&amountIn=" + row.wei.toString() + "&gasInclude=true";
+  var eth = row.ethWei !== undefined;
+  var url = KYBER + "/routes?tokenIn=" + (eth ? NATIVE : USDC) + "&tokenOut=" + row.t.a +
+            "&amountIn=" + (eth ? row.ethWei : row.wei).toString() + "&gasInclude=true";
   return fetch(url).then(function(r){ return r.json(); }).then(function(j){
     if(!j || j.code !== 0 || !j.data) throw new Error(row.t.s + ": no route found");
     return fetch(KYBER + "/route/build", {
@@ -936,7 +960,8 @@ function kyberRoute(row, from){
       })
     }).then(function(r){ return r.json(); }).then(function(b){
       if(!b || b.code !== 0 || !b.data) throw new Error(row.t.s + ": could not build the swap");
-      return { row: row, router: b.data.routerAddress, data: b.data.data, out: BigInt(b.data.amountOut) };
+      return { row: row, router: b.data.routerAddress, data: b.data.data, out: BigInt(b.data.amountOut),
+               value: eth ? BigInt(b.data.transactionValue || row.ethWei) : BigInt(0) };
     });
   });
 }
@@ -972,6 +997,9 @@ function renderExecute(){
           (diff >= 0 ? "+" : "") + diff.toFixed(2) + '%</span></td></tr>';
     });
     html += '</tbody></table></div>' +
+      (ex.quotes[0].value > BigInt(0) ? '<p class="note" style="margin:0 0 8px">Paid in ETH: ' +
+        (Number(ex.quotes.reduce(function(a,q){ return a + q.value; }, BigInt(0))) / 1e18).toFixed(5) + ' ETH at ' +
+        money(ex.ethPrice || 0, 2) + ' per ETH, no allowance needed.</p>' : '') +
       '<p class="note" style="margin:0 0 14px">Executable quotes, slippage limit 1%. The last column is ' +
       'how far the live route sits from the pool price quoted above — that gap is what moving the money costs.</p>';
   }
@@ -993,7 +1021,8 @@ function renderExecute(){
   html += '<span class="copied">' + esc(ex.msg || "") + '</span></div>';
 
   html += '<p class="note" style="margin:14px 0 0">No wallet is contacted until you press a button here, ' +
-    'and the allowance asked for is exactly the size of this basket — nothing standing, nothing custodied.</p></div>';
+    (state.pay === "ETH" ? 'and paying in ETH needs no allowance at all — nothing standing, nothing custodied.</p></div>'
+      : 'and the allowance asked for is exactly the size of this basket — nothing standing, nothing custodied.</p></div>');
   el.innerHTML = html;
 
   if($("ex-quote")) $("ex-quote").addEventListener("click", doQuote);
@@ -1023,9 +1052,14 @@ function doQuote(){
   if(ex.busy) return;
   ex.busy = true; ex.error = null; ex.msg = "";
   var rows = basketRows();
+  var pay = state.pay;
   connect().then(function(from){
     ex.state = "quoting"; renderExecute();
-    return Promise.all(rows.map(function(r){ return kyberRoute(r, from); }));
+    var priced = pay === "ETH" ? ethPriceUsd().then(function(px){
+      ex.ethPrice = px;
+      rows.forEach(function(r){ r.ethWei = BigInt(Math.round(r.usd / px * 1e6)) * BigInt(1e12); });
+    }) : Promise.resolve();
+    return priced.then(function(){ return Promise.all(rows.map(function(r){ return kyberRoute(r, from); })); });
   }).then(function(qs){
     /* The last word on a thin market is the executable quote, not the depth
        estimate: a stock whose live route costs more than QUOTE_LIMIT above
@@ -1038,7 +1072,7 @@ function doQuote(){
       return true;
     });
     if(dropped.length) ex.error = "Left out after quoting: " + dropped.join(", ") +
-      " — the live route costs more than " + QUOTE_LIMIT + "% above the pool price. That money stays in your USDC.";
+      " — the live route costs more than " + QUOTE_LIMIT + "% above the pool price. That money stays in your " + pay + ".";
     ex.quotes = qs.length ? qs : null;
     ex.state = qs.length ? "ready" : "idle";
     ex.msg = qs.length ? "Quotes are good for a couple of minutes." : "";
@@ -1062,6 +1096,29 @@ function doBuy(){
     msg: function(t){ ex.msg = t; renderExecute(); },
     link: function(url, t){ ex.state = "done"; ex.txt = url; ex.msg = t; renderExecute(); }
   };
+
+  /* Paid in ETH: no allowance at all, the swaps carry the ETH themselves. */
+  if(ex.quotes[0].value > BigInt(0)){
+    var need = ex.quotes.reduce(function(a,q){ return a + q.value; }, BigInt(0));
+    Promise.all([rpcRetry("eth_getBalance", [from, "latest"]), readBalances(from)]).then(function(r){
+      var eth = BigInt(r[0]), before = r[1];
+      if(eth < need) throw new Error("This wallet holds " + (Number(eth) / 1e18).toFixed(5) + " ETH; the basket needs " +
+        (Number(need) / 1e18).toFixed(5) + " ETH plus gas.");
+      var calls = ex.quotes.map(function(q){
+        var a = q.row.t.a, was = before[q.row.t.s] || BigInt(0);
+        return { to: q.router, data: q.data + BUILDER_SUFFIX, value: "0x" + q.value.toString(16), what:"swap",
+          landed: function(){ return balanceOf(a, from).then(function(b){ return b > was; }); } };
+      });
+      return sendCalls(p, from, calls, ui);
+    }).catch(function(e){
+      ex.error = (e && e.message) ? e.message : "The wallet rejected the transaction.";
+      ex.state = "ready";
+    }).then(function(){
+      ex.busy = false; renderExecute();
+      if(ex.state === "done") refreshHoldingsOf(from);
+    });
+    return;
+  }
 
   /* Ask for an allowance only if the standing one is too small. */
   Promise.all([allowanceOf(USDC, from, router), readBalances(from)]).then(function(r){
@@ -1229,7 +1286,7 @@ function signAndConfirm(p, tx, what, landed){
    the swaps depend on the allowances in front of them. `ui.msg` reports
    progress, `ui.link` the finished state. Rejects with a readable error. */
 function sendCalls(p, from, calls, ui){
-  var plain = calls.map(function(c){ return { to:c.to, data:c.data, value:"0x0" }; });
+  var plain = calls.map(function(c){ return { to:c.to, data:c.data, value:c.value || "0x0" }; });
   return p.request({
     method: "wallet_sendCalls",
     params: [{ version:"2.0.0", chainId:CHAIN_HEX, from:from, atomicRequired:true, calls:plain }]
@@ -1255,7 +1312,7 @@ function sendCalls(p, from, calls, ui){
     calls.forEach(function(c){
       seq = seq.then(function(){
         ui.msg("Confirm " + (++n) + " of " + calls.length + " in your wallet…");
-        return signAndConfirm(p, { from:from, to:c.to, data:c.data, value:"0x0" }, c.what || "transaction", c.landed)
+        return signAndConfirm(p, { from:from, to:c.to, data:c.data, value:c.value || "0x0" }, c.what || "transaction", c.landed)
           .then(function(h){ if(h) last = h; });
       });
     });
@@ -1757,7 +1814,27 @@ function readUrl(){
   return ok;
 }
 
+/* The hero quotes the widest gap on Base right now: the same stock, its
+   deepest pool against the priciest USDC or ETH pool holding at least $1,000. It used to
+   say a fixed 6%, the number measured in September; markets move. */
+function renderHeroGap(){
+  var best = null;
+  TOKENS.forEach(function(t){
+    var d = state.data && state.data[t.s];
+    /* deep markets only: a thin new listing's spread says nothing about what a basket pays */
+    if(!d || !d.sane || !d.deep || !(d.deep.price > 0) || d.tvl < DEEP_MARKET) return;
+    d.sane.forEach(function(p){
+      /* only pools priced in money: a meme paired with the stock prices it through itself */
+      if(!(p.liq >= 1000) || !/^(USDC|WETH|ETH)$/.test(p.quote)) return;
+      var g = (p.price - d.deep.price) / d.deep.price * 100;
+      if(!best || g > best.g) best = { g:g, s:t.s };
+    });
+  });
+  $("hero-gap").textContent = best && best.g >= 0.1 ? best.g.toFixed(best.g >= 10 ? 0 : 1) + "% more (" + best.s + ", live)" : "more";
+}
+
 function renderStamp(){
+  renderHeroGap();
   var el = $("stamp");
   if(state.error){
     el.innerHTML = '<span class="dot dead"></span>' + esc(state.error);
@@ -1822,6 +1899,10 @@ renderWeights();
 
 wireHoldings();
 
+$("paywith").addEventListener("change", function(){
+  state.pay = $("paywith").value;
+  if(!ex.busy){ ex.quotes = null; ex.state = "idle"; ex.error = null; ex.msg = ""; renderExecute(); }
+});
 $("go").addEventListener("click", buildFromThesis);
 $("thesis").addEventListener("keydown", function(e){ if(e.key === "Enter") buildFromThesis(); });
 $("amount").addEventListener("input", function(){ readAmount(); render(true); });
@@ -1861,6 +1942,7 @@ setInterval(function(){
   loadPools().then(function(){ render(); }).catch(function(){});
 }, 60000);
 </script>
+<script src="thesis-memes.js"></script>
 <!-- Cloudflare Web Analytics: page views only, no cookies --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d66a3ce27f4e4b47bb1eb31a0e5fa912"}'></script>
 </body>
 </html>

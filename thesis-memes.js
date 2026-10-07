@@ -1,0 +1,423 @@
+/* Stock memes on Base: the tokens launched in a pool against one of Coinbase's tokenized stocks (BLUECHIP against
+   NVDAc, DGUY against AMZNc, IPOD against AAPLc…). On 07.10.2026 there were 135 of them in 154 pools, and 107 had
+   under $1,000 in their pool or under ten trades a day. So the list is filtered before it is shown:
+
+   - Proven (the default): the pool is two weeks old or more, holds $20K+ of real money, traded $5K+ in the last
+     24 hours across 50+ trades, and its 14-day chart has not lost more than 70% from its high of the last week;
+   - New: under two weeks old, $5K+ of real money and 30+ trades, shown with a warning and a link to Token Check;
+   - everything else is not listed at all.
+
+   "Real money" is only the stock side of the pool, priced at the stock's own deepest USDC price (state.data in
+   thesis.html). A meme priced against itself cannot inflate it. Buying and selling go through the same KyberSwap
+   route, batching and builder code as the basket above; this file uses thesis.html's helpers. */
+(function () {
+  "use strict";
+
+  var DAY = 864e5;
+  var PROVEN = { age: 14, real: 20000, vol: 5000, tx: 50, keep: 0.3 };  // keep: last close ≥ 30% of the 7-day high
+  var FRESH = { real: 5000, tx: 30 };
+  var JUNK = { real: 1000, tx: 10 };
+  var MEME_SLIPPAGE = 300;   // 3%: thin meme pools move more than stocks
+  var MAX_LOSS = 10;         // % a route may lose between dollars in and dollars out before we refuse it
+  var MONEY = /^(USDC|USDbC|WETH|ETH|cbBTC|USDT|EURC|DAI|cbETH)$/;
+
+  var m = { list: null, loading: false, error: null, view: "proven", sort: "vol", charts: {}, cut: 0,
+            account: null, bal: {}, dec: {}, open: null };
+
+  var $ = function (id) { return document.getElementById(id); };
+  var stockAddr = {};
+  TOKENS.forEach(function (t) { stockAddr[t.a.toLowerCase()] = t; });
+
+  function fmtPrice(p) {
+    if (!(p > 0)) return "—";
+    if (p >= 1) return "$" + p.toFixed(2);
+    var d = Math.min(12, Math.max(2, -Math.floor(Math.log10(p)) + 2));
+    return "$" + p.toFixed(d);
+  }
+  function ageTxt(d) { return d === null ? "?" : d < 1 ? Math.max(1, Math.round(d * 24)) + "h" : Math.round(d) + "d"; }
+
+  /* Every pool of every stock, folded into one row per meme token. */
+  function load() {
+    if (m.loading || !state.data) return Promise.resolve();
+    m.loading = true; m.error = null; render();
+    var memes = {};
+    var jobs = TOKENS.map(function (t) { return t; });
+    function take() {
+      var batch = jobs.splice(0, 6);
+      if (!batch.length) return Promise.resolve();
+      return Promise.all(batch.map(function (t) {
+        return fetch("https://api.dexscreener.com/token-pairs/v1/base/" + t.a)
+          .then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; })
+          .then(function (pairs) { (pairs || []).forEach(function (p) { fold(memes, t, p); }); });
+      })).then(take);
+    }
+    return take().then(function () {
+      m.list = Object.keys(memes).map(function (k) { return memes[k]; });
+      return charts();
+    }).catch(function (e) { m.error = "Could not read the pools: " + (e.message || e); })
+      .then(function () { m.loading = false; render(); });
+  }
+
+  function fold(memes, t, p) {
+    if (!p || p.chainId !== "base" || !p.baseToken || !p.quoteToken) return;
+    var stockIsBase = p.baseToken.address.toLowerCase() === t.a.toLowerCase();
+    var other = stockIsBase ? p.quoteToken : p.baseToken;
+    if (MONEY.test(other.symbol) || stockAddr[other.address.toLowerCase()]) return;
+    var d = state.data[t.s];
+    if (!d || !d.deep || !(d.deep.price > 0)) return;
+    var L = p.liquidity || {};
+    var real = (stockIsBase ? L.base : L.quote) * d.deep.price;
+    if (!(real > 0)) real = 0;
+    /* the meme's price in dollars, through the stock's real price */
+    var pn = Number(p.priceNative || 0);
+    var price = stockIsBase ? (pn > 0 ? d.deep.price / pn : 0) : pn * d.deep.price;
+    var c = p.priceChange && typeof p.priceChange.h24 === "number" ? p.priceChange.h24 : null;
+    var chg = c === null ? null : stockIsBase ? (1 / (1 + c / 100) - 1) * 100 : c;
+    var tx = p.txns && p.txns.h24 ? (p.txns.h24.buys || 0) + (p.txns.h24.sells || 0) : 0;
+    var key = other.address.toLowerCase();
+    var row = memes[key] || (memes[key] = { addr: other.address, sym: other.symbol, name: other.name || other.symbol,
+      stock: t.s, real: 0, vol: 0, tx: 0, created: null, best: null, pools: 0 });
+    row.pools++;
+    row.vol += (p.volume && p.volume.h24) || 0;
+    row.tx += tx;
+    if (p.pairCreatedAt && (!row.created || p.pairCreatedAt < row.created)) row.created = p.pairCreatedAt;
+    if (!row.best || real > row.real) {
+      row.real = real; row.best = p; row.stock = t.s; row.price = price; row.chg = chg;
+    }
+  }
+
+  function age(r) { return r.created ? (Date.now() - r.created) / DAY : null; }
+  function isJunk(r) { return r.real < JUNK.real || r.tx < JUNK.tx; }
+  function provenBase(r) { var a = age(r); return a !== null && a >= PROVEN.age && r.real >= PROVEN.real && r.vol >= PROVEN.vol && r.tx >= PROVEN.tx; }
+  function isNew(r) { var a = age(r); return a !== null && a < PROVEN.age && r.real >= FRESH.real && r.tx >= FRESH.tx; }
+
+  /* 14 daily candles from GeckoTerminal for the proven candidates (and the new ones, to draw them). */
+  function charts() {
+    var want = m.list.filter(function (r) { return !isJunk(r) && (provenBase(r) || isNew(r)) && !m.charts[r.addr]; });
+    var i = 0;
+    function next() {
+      if (i >= want.length) return Promise.resolve();
+      var r = want[i++];
+      var url = "https://api.geckoterminal.com/api/v2/networks/base/pools/" + r.best.pairAddress +
+                "/ohlcv/day?limit=14&currency=usd&token=" + r.addr;
+      return fetch(url).then(function (x) { return x.ok ? x.json() : null; }).catch(function () { return null; })
+        .then(function (j) {
+          var list = j && j.data && j.data.attributes && j.data.attributes.ohlcv_list;
+          if (list && list.length) m.charts[r.addr] = list.slice().reverse();   // oldest first
+          return sleep(450);
+        }).then(next);
+    }
+    return next();
+  }
+
+  /* Proven also needs a chart that has not collapsed: last close against the highest high of the last 7 days. */
+  function chartOk(r) {
+    var c = m.charts[r.addr];
+    if (!c || !c.length) return null;
+    var last = c[c.length - 1][4], hi = 0;
+    c.slice(-7).forEach(function (k) { if (k[2] > hi) hi = k[2]; });
+    return hi > 0 ? last / hi >= PROVEN.keep : null;
+  }
+
+  function spark(r) {
+    var c = m.charts[r.addr];
+    if (!c || c.length < 2) return '<span class="co">no chart</span>';
+    var v = c.map(function (k) { return k[4]; });
+    var lo = Math.min.apply(null, v), hi = Math.max.apply(null, v), w = 84, h = 26;
+    var pts = v.map(function (x, i) { return (i / (v.length - 1) * w).toFixed(1) + "," + (hi > lo ? h - (x - lo) / (hi - lo) * h : h / 2).toFixed(1); });
+    var up = v[v.length - 1] >= v[0];
+    return '<svg width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + ' ' + h + '" aria-label="' + v.length + '-day chart">' +
+      '<polyline fill="none" stroke="' + (up ? "var(--green)" : "var(--red)") + '" stroke-width="1.6" points="' + pts.join(" ") + '"/></svg>';
+  }
+
+  function shown() {
+    if (!m.list) return [];
+    var rows;
+    m.cut = 0;
+    if (m.view === "new") rows = m.list.filter(function (r) { return !isJunk(r) && isNew(r); });
+    else rows = m.list.filter(function (r) {
+      if (isJunk(r) || !provenBase(r)) return false;
+      var ok = chartOk(r);
+      if (ok === false) { m.cut++; return false; }
+      return true;
+    });
+    var key = m.sort;
+    rows.sort(function (a, b) {
+      if (key === "chg") return (b.chg || -1e9) - (a.chg || -1e9);
+      if (key === "real") return b.real - a.real;
+      if (key === "age") return (b.created || 0) - (a.created || 0);
+      return b.vol - a.vol;
+    });
+    return rows;
+  }
+
+  function render() {
+    var el = $("memes");
+    if (!el) return;
+    var html = '<h2>Stock memes on Base</h2>' +
+      '<p class="note">Tokens launched in a pool against one of the stocks above. Most of them are empty or dead within a day, ' +
+      'so the list only shows what passes the filter. <b>Proven</b>: two weeks old or more, $20K+ of real money in the pool, ' +
+      '$5K+ traded in 24 hours across 50+ trades, and a chart that has not lost 70% from its weekly high. ' +
+      '<b>New</b>: under two weeks, $5K+ and 30+ trades — high risk. Real money counts only the stock side of the pool.</p>';
+    html += '<div class="memes-bar">' +
+      '<button class="chip' + (m.view === "proven" ? " on" : "") + '" data-view="proven">Proven</button>' +
+      '<button class="chip' + (m.view === "new" ? " on" : "") + '" data-view="new">New, under 2 weeks</button>' +
+      '<label class="co" style="margin-left:auto">Sort <select id="memes-sort">' +
+      [["vol", "volume 24h"], ["chg", "24h change"], ["real", "real money"], ["age", "newest"]].map(function (o) {
+        return '<option value="' + o[0] + '"' + (m.sort === o[0] ? " selected" : "") + '>' + o[1] + '</option>';
+      }).join("") + '</select></label>' +
+      (m.account ? '<span class="co">wallet ' + m.account.slice(0, 6) + '…' + m.account.slice(-4) + '</span>'
+                 : '<button class="btn ghost small" id="memes-wallet">Connect to sell</button>') +
+      '</div>';
+
+    if (m.error) html += '<div class="traps"><b>' + esc(m.error) + '</b></div>';
+    if (!m.list) {
+      html += '<p class="skel">' + (m.loading ? 'Reading every stock\'s pools on Base…' : 'Waiting for stock prices…') + '</p>';
+      el.innerHTML = html; bind(); return;
+    }
+    var rows = shown();
+    var total = m.list.length, junk = m.list.filter(isJunk).length;
+    if (m.view === "new") html += '<div class="traps" style="border-left-color:var(--yellow)"><b>New tokens are the riskiest thing on this page.</b> ' +
+      'Run Token Check on any of them before you buy: who launched it, who holds it, whether you can sell.</div>';
+    if (!rows.length) html += '<p class="note">Nothing passes this filter right now.</p>';
+    else {
+      html += '<div class="tbl-wrap"><table class="memes"><thead><tr><th>Token</th><th>Paired with</th><th class="r">Price</th>' +
+        '<th class="r">24h</th><th class="r">Volume 24h</th><th class="r">Real money</th><th class="r">Trades</th><th class="r">Age</th>' +
+        '<th>14 days</th><th></th></tr></thead><tbody>';
+      rows.forEach(function (r) {
+        var held = m.bal[r.addr.toLowerCase()];
+        html += '<tr><td><a class="sym" href="' + esc(r.best.url) + '" target="_blank" rel="noopener">' + esc(r.sym) + '</a>' +
+          '<div class="co">' + esc(r.name.slice(0, 28)) + ' · <a href="/check.html?a=' + r.addr + '&go=1" target="_blank" rel="noopener">Token Check</a></div></td>' +
+          '<td>' + esc(r.stock.replace(/c$/, "")) + '</td>' +
+          '<td class="n r">' + fmtPrice(r.price) + '</td>' +
+          '<td class="n r">' + (r.chg === null ? "—" : '<span style="color:' + (r.chg >= 0 ? "var(--green-text)" : "var(--red)") + '">' +
+            (r.chg >= 0 ? "+" : "") + r.chg.toFixed(1) + '%</span>') + '</td>' +
+          '<td class="n r">' + money(r.vol, 0) + '</td>' +
+          '<td class="n r">' + money(r.real, 0) + '</td>' +
+          '<td class="n r">' + r.tx.toLocaleString("en-US") + '</td>' +
+          '<td class="n r">' + ageTxt(age(r)) + '</td>' +
+          '<td>' + spark(r) + '</td>' +
+          '<td class="r" style="white-space:nowrap"><button class="btn small" data-buy="' + r.addr + '">Buy</button>' +
+          (held && held > BigInt(0) ? ' <button class="btn ghost small" data-sell="' + r.addr + '">Sell</button>' : '') + '</td></tr>';
+        if (m.open && m.open.addr === r.addr) html += '<tr class="memes-panel"><td colspan="10">' + panel(r) + '</td></tr>';
+      });
+      html += '</tbody></table></div>';
+    }
+    html += '<p class="co" style="margin-top:8px">' + total + ' meme tokens found against these stocks; ' + junk +
+      ' hidden as empty or untraded' + (m.cut ? ', ' + m.cut + ' left out of Proven because the chart collapsed' : '') +
+      '. Pools from DexScreener, charts from GeckoTerminal, swaps routed by KyberSwap with builder code bc_mrkwu2m0.</p>';
+    el.innerHTML = html;
+    bind();
+  }
+
+  /* ---------- buy / sell ---------- */
+  function panel(r) {
+    var o = m.open;
+    var h = '<div class="panel" style="margin:4px 0">';
+    if (o.mode === "buy") {
+      h += '<div class="amount-row" style="margin-top:0"><label>Buy ' + esc(r.sym) + ' for</label>' +
+        '<span class="money"><span>$</span><input id="mm-amt" type="text" inputmode="decimal" value="' + o.amount + '"></span>' +
+        '<select id="mm-pay"><option value="USDC"' + (o.pay === "USDC" ? " selected" : "") + '>USDC</option>' +
+        '<option value="ETH"' + (o.pay === "ETH" ? " selected" : "") + '>ETH</option></select></div>';
+    } else {
+      h += '<div class="amount-row" style="margin-top:0"><label>Sell ' + esc(r.sym) + '</label>' +
+        [25, 50, 100].map(function (p) { return '<button class="chip' + (o.pct === p ? " on" : "") + '" data-pct="' + p + '">' + p + '%</button>'; }).join("") +
+        '<span class="co">for USDC</span></div>';
+    }
+    if (o.error) h += '<div class="traps" style="margin:12px 0 0"><b>' + esc(o.error) + '</b></div>';
+    if (o.quote) {
+      var q = o.quote;
+      h += '<p class="note" style="margin:12px 0 0">' + (o.mode === "buy"
+        ? 'You get about <b>' + q.outTxt + ' ' + esc(r.sym) + '</b> for ' + money(q.inUsd, 2)
+        : 'You get about <b>' + money(q.outUsd, 2) + ' USDC</b> for ' + q.inTxt + ' ' + esc(r.sym)) +
+        ' · route cost <b style="color:' + (q.loss > 3 ? "var(--yellow)" : "var(--green-text)") + '">' + q.loss.toFixed(2) + '%</b>' +
+        ' · slippage limit ' + (MEME_SLIPPAGE / 100) + '%</p>';
+    }
+    h += '<div class="actions" style="margin-top:12px">';
+    if (o.state === "idle") h += '<button class="btn" id="mm-quote">Get live quote</button>';
+    else if (o.state === "quoting") h += '<button class="btn" disabled>Quoting…</button>';
+    else if (o.state === "ready") h += '<button class="btn' + (o.mode === "sell" ? " sell" : "") + '" id="mm-go">' + (o.mode === "buy" ? "Buy" : "Sell") + ' in one transaction</button>' +
+      '<button class="btn ghost" id="mm-quote">Requote</button>';
+    else if (o.state === "sending") h += '<button class="btn" disabled>Confirm in your wallet…</button>';
+    else if (o.state === "done") h += '<a class="btn" href="' + o.txt + '" target="_blank" rel="noopener">See it onchain</a>';
+    h += '<button class="btn ghost" id="mm-close">Close</button><span class="copied">' + esc(o.msg || "") + '</span></div>';
+    if (o.mode === "buy") h += '<p class="co" style="margin:10px 0 0">A route that loses more than ' + MAX_LOSS +
+      '% between what you pay and what you get (a tax token, an empty pool) is refused before anything is signed.</p>';
+    return h + '</div>';
+  }
+
+  function decimals(addr) {
+    var k = addr.toLowerCase();
+    if (m.dec[k] !== undefined) return Promise.resolve(m.dec[k]);
+    return rpcRetry("eth_call", [{ to: addr, data: "0x313ce567" }, "latest"]).then(function (r) {
+      m.dec[k] = r && r !== "0x" ? parseInt(r, 16) : 18;
+      return m.dec[k];
+    });
+  }
+  function units(v, dec) {
+    var n = Number(v) / Math.pow(10, dec);
+    return n >= 1000 ? Math.round(n).toLocaleString("en-US") : n >= 1 ? n.toFixed(2) : n.toPrecision(4);
+  }
+
+  function route(tokenIn, tokenOut, amountIn, from) {
+    return fetch(KYBER + "/routes?tokenIn=" + tokenIn + "&tokenOut=" + tokenOut + "&amountIn=" + amountIn.toString() + "&gasInclude=true")
+      .then(function (r) { return r.json(); }).then(function (j) {
+        if (!j || j.code !== 0 || !j.data) throw new Error("No route found for this token right now.");
+        var s = j.data.routeSummary;
+        return fetch(KYBER + "/route/build", {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ routeSummary: s, sender: from, recipient: from, slippageTolerance: MEME_SLIPPAGE, source: "thesis.deftools.xyz" })
+        }).then(function (r) { return r.json(); }).then(function (b) {
+          if (!b || b.code !== 0 || !b.data) throw new Error("Could not build the swap.");
+          var inUsd = Number(s.amountInUsd || 0), outUsd = Number(s.amountOutUsd || 0);
+          return { router: b.data.routerAddress, data: b.data.data, out: BigInt(b.data.amountOut), amountIn: amountIn,
+                   value: BigInt(b.data.transactionValue || 0), inUsd: inUsd, outUsd: outUsd,
+                   loss: inUsd > 0 ? (1 - outUsd / inUsd) * 100 : 100 };
+        });
+      });
+  }
+
+  function quote() {
+    var o = m.open, r = find(o.addr);
+    if (!o || !r || o.busy) return;
+    o.busy = true; o.error = null; o.msg = ""; o.quote = null;
+    if (o.mode === "buy") {
+      var a = parseFloat(($("mm-amt").value || "").replace(/[^0-9.]/g, ""));
+      if (!(a > 0)) { o.error = "Type an amount in dollars."; o.busy = false; render(); return; }
+      o.amount = a; o.pay = $("mm-pay").value;
+    }
+    o.state = "quoting"; render();
+    connect().then(function (from) {
+      setAccount(from);
+      if (o.mode === "buy") {
+        var amtIn = o.pay === "ETH"
+          ? ethPriceUsd().then(function (px) { return BigInt(Math.round(o.amount / px * 1e6)) * BigInt(1e12); })
+          : Promise.resolve(BigInt(Math.round(o.amount * 1e6)));
+        return Promise.all([amtIn, decimals(r.addr)]).then(function (x) {
+          return route(o.pay === "ETH" ? NATIVE : USDC, r.addr, x[0], from).then(function (q) {
+            q.outTxt = units(q.out, x[1]);
+            return q;
+          });
+        });
+      }
+      return Promise.all([balanceOf(r.addr, from), decimals(r.addr)]).then(function (x) {
+        var amount = x[0] * BigInt(o.pct) / BigInt(100);
+        if (amount <= BigInt(0)) throw new Error("This wallet holds no " + r.sym + ".");
+        return route(r.addr, USDC, amount, from).then(function (q) { q.inTxt = units(amount, x[1]); return q; });
+      });
+    }).then(function (q) {
+      if (q.loss > MAX_LOSS) {
+        o.error = "The route loses " + q.loss.toFixed(1) + "% between " + (o.mode === "buy" ? "what you pay and what you get" : "the tokens and the USDC") +
+          ". Likely a tax on transfers or a pool too thin for this size. Not offered.";
+        o.state = "idle";
+      } else { o.quote = q; o.state = "ready"; o.msg = "Quotes are good for a couple of minutes."; }
+    }).catch(function (e) { o.error = (e && e.message) || String(e); o.state = "idle"; })
+      .then(function () { o.busy = false; render(); });
+  }
+
+  function go() {
+    var o = m.open, r = find(o.addr);
+    if (!o || !o.quote || o.busy) return;
+    o.busy = true; o.error = null; o.state = "sending"; render();
+    var p = provider(), from = ex.account || m.account, q = o.quote, token = r.addr;
+    var ui = {
+      msg: function (t) { o.msg = t; render(); },
+      link: function (url, t) { o.state = "done"; o.txt = url; o.msg = t; render(); }
+    };
+    var calls = [];
+    balanceOf(token, from).then(function (was) {
+      if (o.mode === "buy") {
+        var after = function () { return balanceOf(token, from).then(function (b) { return b > was; }); };
+        if (q.value > BigInt(0)) {
+          calls.push({ to: q.router, data: q.data + BUILDER_SUFFIX, value: "0x" + q.value.toString(16), what: "swap", landed: after });
+          return calls;
+        }
+        return allowanceOf(USDC, from, q.router).then(function (have) {
+          var need = q.amountIn;
+          if (have < need) calls.push({ to: USDC, data: encodeApprove(q.router, need), what: "approval",
+            landed: function () { return allowanceOf(USDC, from, q.router).then(function (a) { return a >= need; }); } });
+          calls.push({ to: q.router, data: q.data + BUILDER_SUFFIX, what: "swap", landed: after });
+          return calls;
+        });
+      }
+      return allowanceOf(token, from, q.router).then(function (have) {
+        var need = q.amountIn;
+        if (have < need) {
+          /* some tokens refuse to move an allowance from one non-zero number to another */
+          if (have > BigInt(0)) calls.push({ to: token, data: encodeApprove(q.router, BigInt(0)), what: "approval",
+            landed: function () { return allowanceOf(token, from, q.router).then(function (a) { return a === BigInt(0); }); } });
+          calls.push({ to: token, data: encodeApprove(q.router, need), what: "approval",
+            landed: function () { return allowanceOf(token, from, q.router).then(function (a) { return a >= need; }); } });
+        }
+        calls.push({ to: q.router, data: q.data + BUILDER_SUFFIX, what: "sale",
+          landed: function () { return balanceOf(token, from).then(function (b) { return b < was; }); } });
+        return calls;
+      });
+    }).then(function (calls) { return sendCalls(p, from, calls, ui); })
+      .catch(function (e) { o.error = (e && e.message) || "The wallet rejected the transaction."; o.state = "ready"; })
+      .then(function () { o.busy = false; render(); if (o.state === "done") balances(); });
+  }
+
+  /* Whichever button connected the wallet, read what it holds so Sell can appear. */
+  function setAccount(a) {
+    a = a.toLowerCase();
+    if (m.account === a) return;
+    m.account = a;
+    balances();
+  }
+
+  function find(addr) {
+    return (m.list || []).filter(function (r) { return r.addr === addr; })[0];
+  }
+
+  /* What the connected wallet holds of the listed memes, in one Multicall read. */
+  function balances() {
+    if (!m.account || !m.list) return Promise.resolve();
+    var rows = m.list.filter(function (r) { return !isJunk(r); });
+    return multicallUints(rows.map(function (r) { return { to: r.addr, data: "0x70a08231" + hex32(BigInt(m.account)) }; }))
+      .then(function (vals) { rows.forEach(function (r, i) { m.bal[r.addr.toLowerCase()] = vals[i] || BigInt(0); }); render(); })
+      .catch(function () {});
+  }
+
+  function bind() {
+    var el = $("memes");
+    Array.prototype.forEach.call(el.querySelectorAll("[data-view]"), function (b) {
+      b.addEventListener("click", function () { m.view = b.getAttribute("data-view"); m.open = null; render(); });
+    });
+    if ($("memes-sort")) $("memes-sort").addEventListener("change", function () { m.sort = this.value; render(); });
+    if ($("memes-wallet")) $("memes-wallet").addEventListener("click", function () {
+      connect().then(function (from) { setAccount(from); })
+        .catch(function (e) { m.error = (e && e.message) || String(e); render(); });
+    });
+    Array.prototype.forEach.call(el.querySelectorAll("[data-buy],[data-sell]"), function (b) {
+      b.addEventListener("click", function () {
+        var buy = b.hasAttribute("data-buy"), addr = b.getAttribute(buy ? "data-buy" : "data-sell");
+        if (m.open && m.open.busy) return;
+        m.open = { addr: addr, mode: buy ? "buy" : "sell", amount: 50, pay: state.pay || "USDC", pct: 100,
+                   state: "idle", quote: null, msg: "", error: null, busy: false };
+        render();
+      });
+    });
+    Array.prototype.forEach.call(el.querySelectorAll("[data-pct]"), function (b) {
+      b.addEventListener("click", function () { m.open.pct = +b.getAttribute("data-pct"); m.open.quote = null; m.open.state = "idle"; render(); });
+    });
+    if ($("mm-quote")) $("mm-quote").addEventListener("click", quote);
+    if ($("mm-go")) $("mm-go").addEventListener("click", go);
+    if ($("mm-close")) $("mm-close").addEventListener("click", function () { if (!m.open.busy) { m.open = null; render(); } });
+    if ($("mm-amt")) $("mm-amt").addEventListener("input", function () { if (m.open.state === "ready") { m.open.state = "idle"; m.open.quote = null; } });
+  }
+
+  /* Start once the stock prices are in (they price the real money), then refresh every three minutes,
+     never underneath an open trade. */
+  var started = false;
+  var wait = setInterval(function () {
+    if (!state.data || started) return;
+    started = true; clearInterval(wait);
+    load().then(balances);
+    setInterval(function () {
+      if (m.open && m.open.state !== "idle" && m.open.state !== "done") return;
+      load().then(balances);
+    }, 180000);
+  }, 500);
+  render();
+})();
