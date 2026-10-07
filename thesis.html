@@ -212,7 +212,12 @@ footer{border-top:1px solid var(--border); margin-top:30px; padding:22px 0 40px;
      border-radius:12px; padding:20px; color:var(--muted)}
 .skel{color:var(--muted2); font-size:14px; padding:8px 0}
 .split{display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); gap:26px; align-items:start}
-@media (max-width:900px){ .split{grid-template-columns:1fr; gap:0} }
+@media (max-width:900px){ .split{grid-template-columns:minmax(0,1fr); gap:0} }
+.split > section{min-width:0}
+/* the quotes table beside the memes: fits its column instead of scrolling */
+.split #execute table{min-width:0}
+.split #execute th, .split #execute td{padding:10px 8px; font-size:13.5px}
+.split #execute th{font-size:11px}
 .side-list{background:var(--card); border:1px solid var(--border); border-radius:12px; overflow:hidden}
 .side-row{display:grid; grid-template-columns:minmax(0,1fr) auto auto auto; gap:10px; align-items:center; padding:10px 14px; border-bottom:1px solid var(--border); font-size:14px}
 .side-row:last-child{border-bottom:none}
@@ -276,7 +281,6 @@ tr.memes-panel td{background:var(--bg2)}
     </div>
   </section>
 
-  <div class="split">
   <section>
     <h2>Your basket</h2>
     <p class="note">Drag any weight to change it. Prices are read live from every Base pool holding these tokens; the price shown is from the deepest pool, which is the one you should actually trade in.</p>
@@ -287,12 +291,13 @@ tr.memes-panel td{background:var(--bg2)}
     </div>
   </section>
 
-  <section id="memes-side"></section>
-  </div>
-
   <section id="result"></section>
 
+  <div class="split">
   <section id="execute"></section>
+
+  <section id="memes-side"></section>
+  </div>
 
   <section id="memes"></section>
 
