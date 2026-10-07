@@ -189,8 +189,11 @@
       html += '<p class="note" style="margin-top:14px">No pools for this token on Arc yet, so there is nowhere to swap it.</p>';
     } else {
       var best = null, fake = null, trap = null;
+      var dayFee = {}; // pool id → the highest fee in the last 24 h, from the daily scan
+      if (dailyData) dailyData.traps.forEach(function (t) { dayFee[t.pool] = t.feePct; });
       var rows = top.map(function (p, i) {
         var f = fees[i];
+        var df = dayFee[p.pairAddress.toLowerCase()];
         var shown = (p.liquidity || {}).usd || 0;
         var tx = (p.txns && p.txns.h24) ? (p.txns.h24.buys || 0) + (p.txns.h24.sells || 0) : 0;
         var dexName = p.labels && p.labels[0] ? p.dexId + ' ' + p.labels[0] : p.dexId;
@@ -198,6 +201,7 @@
         var flags = [];
         var feeTxt = f && f.pips !== null ? pct(f.pips) : !f ? '—' : f.source === 'v4' ? 'no swaps in 2h' : 'not read, retry';
         if (f && f.pips !== null && f.pips >= 50000) { flags.push('bad'); if (!trap || f.pips > trap.f) trap = { p: p, f: f.pips }; }
+        else if (df) { flags.push('bad'); feeTxt = 'up to ' + (df >= 10 ? df.toFixed(0) : df.toFixed(1)) + '% in 24h'; }
         if (p._real !== null && shown >= 10000 && p._real < shown * 0.05) { flags.push('fake'); if (!fake) fake = { p: p, shown: shown }; }
         if (f && f.pips !== null && f.pips <= 10000 && (p._real || 0) > 100 && (!best || p._real > best.real)) best = { p: p, real: p._real, f: f.pips };
         var cls = flags.indexOf('bad') >= 0 ? ' class="row-bad"' : flags.indexOf('fake') >= 0 ? ' class="row-warn"' : '';
