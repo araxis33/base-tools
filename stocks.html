@@ -97,6 +97,13 @@ details.dev{grid-column:1/-1; font-size:13px; color:var(--muted)}
 details.dev summary{cursor:pointer; padding:6px 0; color:var(--blue-text)}
 details.dev code{font-size:12px; word-break:break-all; color:var(--text)}
 .note{color:var(--muted); font-size:13px; margin-top:26px; max-width:75ch}
+.cc{margin-top:26px}
+.cc h2{font-size:16px; margin:0 0 4px}
+.cc .sub2{color:var(--muted); font-size:13px; margin:0 0 10px}
+.ccbox{background:var(--card, #111730); border:1px solid var(--border); border-left:3px solid var(--red); border-radius:10px; padding:12px 16px; margin-top:10px; font-size:14px}
+.ccbox.y{border-left-color:var(--yellow)} .ccbox.g{border-left-color:var(--green, #3fbf87)}
+.ccbox ul{margin:8px 0 0; padding-left:18px} .ccbox li{margin:3px 0}
+.ccbox code{font-size:12.5px}
 .note p{margin:6px 0}
 footer{margin:40px 0 30px; color:var(--muted2); font-size:13px}
 @media (max-width:760px){
@@ -141,6 +148,8 @@ footer{margin:40px 0 30px; color:var(--muted2); font-size:13px}
     <tbody id="rows"></tbody>
   </table>
 
+  <div id="chaincheck" class="cc"></div>
+
   <div id="weekend"></div>
 
   <div class="note">
@@ -176,6 +185,7 @@ var S = {};           // per ticker: chain, dex, share, rt, morpho, look
 var shares = null, open = null;
 var SNAPS = "https://raw.githubusercontent.com/araxis33/base-tools/stocks-data/snapshots.jsonl";
 var WK = null;        // last complete weekend, built from the hourly snapshots
+var P = null;         // per ticker: every pool on Base summarised (ThesisCore.summarisePools), for the chain check
 /* Trading venues KyberSwap can be limited to, in the order we list them. */
 var VENUES = [["aerodrome-cl-3", "Aerodrome"], ["uniswapv3", "Uniswap v3"], ["uniswap-v4", "Uniswap v4"], ["elfomofi", "Elfomofi (market maker)"], ["tessera", "Tessera (market maker)"]];
 
@@ -405,6 +415,60 @@ function loadLook(t){
     }).catch(function(){ S[t.s].look = null; });
 }
 
+/* ---------- chain check (moved here from Thesis on 07.10: this page checks, Thesis buys) ---------- */
+/* Every pool of every stock, one stock at a time (DexScreener answers bursts with 429). */
+function loadPools(){
+  var out = {};
+  return TOKENS.reduce(function(p, t){
+    return p.then(function(){
+      return fetch("https://api.dexscreener.com/latest/dex/tokens/" + t.a).then(function(r){ return r.json(); })
+        .then(function(j){ out[t.s] = ThesisCore.summarisePools((j && j.pairs) || [], t); })
+        .catch(function(){}).then(function(){ return sleep(120); });
+    });
+  }, Promise.resolve()).then(function(){ P = out; });
+}
+
+function renderChain(){
+  var el = $("chaincheck");
+  if (!P) { el.innerHTML = '<h2 id="chain">Chain check</h2><p class="sub2">Reading every pool of all ' + TOKENS.length + ' stocks…</p>'; return; }
+  var bad = [], spreads = [], fakes = [];
+  TOKENS.forEach(function(t){
+    var d = P[t.s];
+    if (d) {
+      d.traps.forEach(function(p){ bad.push({s:t.s, p:p, fair:d.deep.price}); });
+      if (d.gap >= 1) spreads.push({s:t.s, gap:d.gap, fair:d.deep.price, worst:d.worst.price});
+    }
+    var lk = S[t.s].look;
+    if (lk && lk.fakes) lk.fakes.forEach(function(f){ fakes.push({s:t.s, f:f}); });
+  });
+  spreads.sort(function(a, b){ return b.gap - a.gap; });
+  var h = '<h2 id="chain">Chain check</h2><p class="sub2">All ' + TOKENS.length + ' stocks, every pool on Base, refreshed every two minutes. ' +
+    'What a careless swap or a search result can land you in.</p>';
+  if (spreads.length) {
+    h += '<div class="ccbox y"><b>Same share, different price</b> — the deepest pool against the priciest one quoting it right now:<ul>' +
+      spreads.slice(0, 6).map(function(x){ return '<li>' + x.s + ': ' + usd(x.fair) + ' vs ' + usd(x.worst) + ' — <b>' + x.gap.toFixed(2) + '%</b></li>'; }).join("") + '</ul></div>';
+  }
+  if (fakes.length) {
+    var real = fakes.reduce(function(s, x){ return s + (x.f.backing || 0); }, 0);
+    var shown = fakes.reduce(function(s, x){ return s + (x.f.reportedLiquidity || 0); }, 0);
+    h += '<div class="ccbox"><b>' + fakes.length + ' token' + (fakes.length > 1 ? 's' : '') + ' on Base use a Coinbase stock’s ticker or name at another address.</b> ' +
+      'Their pools hold about ' + usd(real, 0) + ' of real money, while trackers list ' + usd(shown, 0) + ' of “liquidity”: they price themselves. ' +
+      'Go by the address on <a href="https://www.base.org/stocks" target="_blank" rel="noopener">base.org/stocks</a>:<ul>' +
+      fakes.slice(0, 8).map(function(x){ return '<li><b>' + esc(x.f.symbol) + '</b> “' + esc((x.f.name || "").trim()) + '” at <code>' + esc(x.f.address.slice(0, 8)) + '…' +
+        esc(x.f.address.slice(-6)) + '</code> — not ' + x.s + ', ' + usd(x.f.backing || 0, 0) + ' real in its pools</li>'; }).join("") + '</ul></div>';
+  }
+  if (bad.length) {
+    h += '<div class="ccbox"><b>' + bad.length + ' pool' + (bad.length > 1 ? 's' : '') + ' quoting a price that cannot be real.</b> ' +
+      'A careless aggregator or a hand-typed swap can still land in one:<ul>' +
+      bad.slice(0, 8).map(function(x){ return '<li>' + x.s + ' at ' + usd(x.p.price) + ' on ' + esc(x.p.dex) + ' — the real price is ' + usd(x.fair) + '</li>'; }).join("") + '</ul></div>';
+  }
+  h += '<div class="ccbox y"><b>The address prefix proves nothing.</b> Unrelated tokens on Base also start with <code>0xb2</code> and twenty zeros, like Coinbase’s. Compare the whole address.</div>';
+  if (!bad.length && !spreads.length && !fakes.length) h += '<div class="ccbox g">Every live pool is quoting a sane price right now. That is not the usual state of this market.</div>';
+  el.innerHTML = h;
+  /* the link from Thesis lands here before the section exists, so scroll once it is drawn */
+  if (location.hash === "#chain" && !renderChain.shown) { renderChain.shown = true; el.scrollIntoView({block:"start"}); }
+}
+
 /* ---------- market session ---------- */
 function session(){
   var any = shares && Object.keys(shares).map(function(k){ return shares[k]; }).filter(Boolean)[0];
@@ -568,10 +632,13 @@ document.addEventListener("click", function(e){
 });
 
 TOKENS.forEach(function(t){ S[t.s] = {}; });
-/* stocks.html#NVDAc (the Full check link in Thesis) opens that stock. */
+/* stocks.html#NVDAc (the Full check link in Thesis) opens that stock; #chain goes to the chain check. */
 var wanted = decodeURIComponent(location.hash.slice(1));
 if (S[wanted]) { S[wanted].open = true; loadLook(TOKENS.filter(function(x){ return x.s === wanted; })[0]).then(render); setTimeout(function(){ loadVenues(TOKENS.filter(function(x){ return x.s === wanted; })[0], 1000); }, 1500); }
 render();
+renderChain();
+loadPools().then(renderChain);
+setInterval(function(){ loadPools().then(renderChain); }, 120000);
 if (S[wanted]) setTimeout(function(){ var r = document.querySelector('tr.row[data-s="' + wanted + '"]'); if (r) r.scrollIntoView({block:"start"}); }, 50);
 loadWeekend().then(function(){ weekendTable(); render(); });
 Promise.all([loadShares().then(session), loadChain(), loadMorpho()]).then(function(){
@@ -579,7 +646,7 @@ Promise.all([loadShares().then(session), loadChain(), loadMorpho()]).then(functi
   /* Quotes one stock at a time: parallel pairs of KyberSwap calls trip its rate limit. */
   return TOKENS.reduce(function(p, t){ return p.then(function(){ return loadDex(t).then(render).then(function(){ return sleep(250); }); }); }, Promise.resolve());
 }).then(function(){
-  return TOKENS.reduce(function(p, t){ return p.then(function(){ return loadLook(t).then(function(){ return sleep(200); }); }); }, Promise.resolve()).then(render);
+  return TOKENS.reduce(function(p, t){ return p.then(function(){ return loadLook(t).then(function(){ return sleep(200); }); }); }, Promise.resolve()).then(function(){ render(); renderChain(); });
 });
 })();
 </script>
