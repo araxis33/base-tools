@@ -1,0 +1,40 @@
+name: stock memes
+
+# Every 30 minutes: every token launched in a pool against one of Coinbase's tokenized stocks on Base, found through
+# GeckoTerminal (all pages) and split by side through DexScreener. The file goes to the memes-data branch; the
+# Stock memes section of thesis.html reads it from there.
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency: stock-memes
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/stock-memes.js > stock-memes.json
+      - name: Replace the file on the memes-data branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git fetch origin memes-data; then
+            git worktree add data origin/memes-data
+            git -C data checkout -B memes-data
+          else
+            git worktree add --detach data
+            git -C data checkout --orphan memes-data
+            git -C data rm -rfq .
+          fi
+          cp stock-memes.json data/stock-memes.json
+          git -C data add stock-memes.json
+          git -C data commit -qm "Stock memes $(date -u +%Y-%m-%dT%H:%M)" || exit 0
+          git -C data push origin memes-data

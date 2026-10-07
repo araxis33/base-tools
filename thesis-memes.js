@@ -1,32 +1,31 @@
-/* Stock memes on Base: the tokens launched in a pool against one of Coinbase's tokenized stocks (BLUECHIP against
-   NVDAc, DGUY against AMZNc, IPOD against AAPLc…). On 07.10.2026 there were 135 of them in 154 pools, and 107 had
-   under $1,000 in their pool or under ten trades a day. So the list is filtered before it is shown:
+/* Stock memes on Base: tokens launched in a pool against one of Coinbase's tokenized stocks (BLUECHIP against
+   NVDAc, DGUY against AMZNc, IPOD against AAPLc…). On 07.10.2026 there were 1,534 such pools; 60 of the tokens traded
+   in the last 24 hours and 32 had at least $500 of real money and five trades. The full list is built every 30
+   minutes by scripts/stock-memes.js (GeckoTerminal finds every pool, DexScreener splits each pool by side) and
+   read here from the memes-data branch. Three views:
 
-   - Proven (the default): the pool is two weeks old or more, holds $20K+ of real money, traded $5K+ in the last
-     24 hours across 50+ trades, and its 14-day chart has not lost more than 70% from its high of the last week;
-   - New: under two weeks old, $5K+ of real money and 30+ trades, shown with a warning and a link to Token Check;
-   - everything else is not listed at all.
+   - Proven (the default): a week old or more, $2K+ of real money, $500+ traded in 24 hours, 10+ trades from 5+
+     different buyers, and a 14-day chart whose last close is at least 30% of its high of the last week;
+   - New: under a week, $1K+ of real money, 10+ trades from 5+ buyers, shown with a warning and Token Check;
+   - All active: everything that traded, nothing dead.
 
-   "Real money" is only the stock side of the pool, priced at the stock's own deepest USDC price (state.data in
-   thesis.html). A meme priced against itself cannot inflate it. Buying and selling go through the same KyberSwap
-   route, batching and builder code as the basket above; this file uses thesis.html's helpers. */
+   "Real money" is only the stock side of the pool, priced at the stock's own price: a meme priced against itself
+   cannot inflate it. Buying and selling go through the same KyberSwap route, batching and builder code as the basket
+   above; this file uses thesis.html's helpers. */
 (function () {
   "use strict";
 
   var DAY = 864e5;
-  var PROVEN = { age: 14, real: 20000, vol: 5000, tx: 50, keep: 0.3 };  // keep: last close ≥ 30% of the 7-day high
-  var FRESH = { real: 5000, tx: 30 };
-  var JUNK = { real: 1000, tx: 10 };
+  var DATA = "https://raw.githubusercontent.com/araxis33/base-tools/memes-data/stock-memes.json";
+  var PROVEN = { age: 7, real: 2000, vol: 500, tx: 10, buyers: 5, keep: 0.3 };  // keep: last close ≥ 30% of the 7-day high
+  var FRESH = { real: 1000, tx: 10, buyers: 5 };
   var MEME_SLIPPAGE = 300;   // 3%: thin meme pools move more than stocks
   var MAX_LOSS = 10;         // % a route may lose between dollars in and dollars out before we refuse it
-  var MONEY = /^(USDC|USDbC|WETH|ETH|cbBTC|USDT|EURC|DAI|cbETH)$/;
 
-  var m = { list: null, loading: false, error: null, view: "proven", sort: "vol", charts: {}, cut: 0,
+  var m = { list: null, at: null, pools: 0, traded: 0, loading: false, error: null, view: "proven", sort: "vol", charts: {}, cut: 0,
             account: null, bal: {}, dec: {}, open: null };
 
   var $ = function (id) { return document.getElementById(id); };
-  var stockAddr = {};
-  TOKENS.forEach(function (t) { stockAddr[t.a.toLowerCase()] = t; });
 
   function fmtPrice(p) {
     if (!(p > 0)) return "—";
@@ -36,64 +35,34 @@
   }
   function ageTxt(d) { return d === null ? "?" : d < 1 ? Math.max(1, Math.round(d * 24)) + "h" : Math.round(d) + "d"; }
 
-  /* Every pool of every stock, folded into one row per meme token. */
+  /* The list built by scripts/stock-memes.js; charts are then read for what is on screen. */
   function load() {
-    if (m.loading || !state.data) return Promise.resolve();
+    if (m.loading) return Promise.resolve();
     m.loading = true; m.error = null; render();
-    var memes = {};
-    var jobs = TOKENS.map(function (t) { return t; });
-    function take() {
-      var batch = jobs.splice(0, 6);
-      if (!batch.length) return Promise.resolve();
-      return Promise.all(batch.map(function (t) {
-        return fetch("https://api.dexscreener.com/token-pairs/v1/base/" + t.a)
-          .then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; })
-          .then(function (pairs) { (pairs || []).forEach(function (p) { fold(memes, t, p); }); });
-      })).then(take);
-    }
-    return take().then(function () {
-      m.list = Object.keys(memes).map(function (k) { return memes[k]; });
+    return fetch(DATA + "?t=" + Math.floor(Date.now() / 6e5)).then(function (r) {
+      if (!r.ok) throw new Error("the list is not built yet");
+      return r.json();
+    }).then(function (d) {
+      m.at = d.at; m.pools = d.pools; m.traded = d.memes;
+      m.list = d.list.map(function (x) {
+        x.best = { pairAddress: x.pool, url: x.url };
+        return x;
+      });
       return charts();
-    }).catch(function (e) { m.error = "Could not read the pools: " + (e.message || e); })
+    }).catch(function (e) { m.error = "Could not read the list of stock memes: " + (e.message || e); })
       .then(function () { m.loading = false; render(); });
   }
 
-  function fold(memes, t, p) {
-    if (!p || p.chainId !== "base" || !p.baseToken || !p.quoteToken) return;
-    var stockIsBase = p.baseToken.address.toLowerCase() === t.a.toLowerCase();
-    var other = stockIsBase ? p.quoteToken : p.baseToken;
-    if (MONEY.test(other.symbol) || stockAddr[other.address.toLowerCase()]) return;
-    var d = state.data[t.s];
-    if (!d || !d.deep || !(d.deep.price > 0)) return;
-    var L = p.liquidity || {};
-    var real = (stockIsBase ? L.base : L.quote) * d.deep.price;
-    if (!(real > 0)) real = 0;
-    /* the meme's price in dollars, through the stock's real price */
-    var pn = Number(p.priceNative || 0);
-    var price = stockIsBase ? (pn > 0 ? d.deep.price / pn : 0) : pn * d.deep.price;
-    var c = p.priceChange && typeof p.priceChange.h24 === "number" ? p.priceChange.h24 : null;
-    var chg = c === null ? null : stockIsBase ? (1 / (1 + c / 100) - 1) * 100 : c;
-    var tx = p.txns && p.txns.h24 ? (p.txns.h24.buys || 0) + (p.txns.h24.sells || 0) : 0;
-    var key = other.address.toLowerCase();
-    var row = memes[key] || (memes[key] = { addr: other.address, sym: other.symbol, name: other.name || other.symbol,
-      stock: t.s, real: 0, vol: 0, tx: 0, created: null, best: null, pools: 0 });
-    row.pools++;
-    row.vol += (p.volume && p.volume.h24) || 0;
-    row.tx += tx;
-    if (p.pairCreatedAt && (!row.created || p.pairCreatedAt < row.created)) row.created = p.pairCreatedAt;
-    if (!row.best || real > row.real) {
-      row.real = real; row.best = p; row.stock = t.s; row.price = price; row.chg = chg;
-    }
-  }
-
   function age(r) { return r.created ? (Date.now() - r.created) / DAY : null; }
-  function isJunk(r) { return r.real < JUNK.real || r.tx < JUNK.tx; }
-  function provenBase(r) { var a = age(r); return a !== null && a >= PROVEN.age && r.real >= PROVEN.real && r.vol >= PROVEN.vol && r.tx >= PROVEN.tx; }
-  function isNew(r) { var a = age(r); return a !== null && a < PROVEN.age && r.real >= FRESH.real && r.tx >= FRESH.tx; }
+  function provenBase(r) { var a = age(r); return a !== null && a >= PROVEN.age && r.real >= PROVEN.real && r.vol >= PROVEN.vol && r.tx >= PROVEN.tx && r.buyers >= PROVEN.buyers; }
+  function isNew(r) { var a = age(r); return a !== null && a < PROVEN.age && r.real >= FRESH.real && r.tx >= FRESH.tx && r.buyers >= FRESH.buyers; }
 
-  /* 14 daily candles from GeckoTerminal for the proven candidates (and the new ones, to draw them). */
+  /* 14 daily candles from GeckoTerminal: the Proven and New candidates first, then the rest. It answers about
+     30 calls a minute, so they are read one by one and the table redraws as they arrive. */
   function charts() {
-    var want = m.list.filter(function (r) { return !isJunk(r) && (provenBase(r) || isNew(r)) && !m.charts[r.addr]; });
+    var first = m.list.filter(function (r) { return provenBase(r) || isNew(r); });
+    var want = first.concat(m.list.filter(function (r) { return first.indexOf(r) < 0; }))
+      .filter(function (r) { return !m.charts[r.addr]; });
     var i = 0;
     function next() {
       if (i >= want.length) return Promise.resolve();
@@ -103,11 +72,14 @@
       return fetch(url).then(function (x) { return x.ok ? x.json() : null; }).catch(function () { return null; })
         .then(function (j) {
           var list = j && j.data && j.data.attributes && j.data.attributes.ohlcv_list;
-          if (list && list.length) m.charts[r.addr] = list.slice().reverse();   // oldest first
-          return sleep(450);
+          if (list && list.length) { m.charts[r.addr] = list.slice().reverse(); if (!(m.open && m.open.busy)) render(); }   // oldest first
+          /* a refused call (429 when the limit is hit) goes once more to the end of the queue, after a longer pause */
+          else if (!j && !r._retried) { r._retried = true; want.push(r); return sleep(8000); }
+          return sleep(2100);
         }).then(next);
     }
-    return next();
+    next();                 // in the background: the table is shown without waiting for every chart
+    return Promise.resolve();
   }
 
   /* Proven also needs a chart that has not collapsed: last close against the highest high of the last 7 days. */
@@ -134,9 +106,10 @@
     if (!m.list) return [];
     var rows;
     m.cut = 0;
-    if (m.view === "new") rows = m.list.filter(function (r) { return !isJunk(r) && isNew(r); });
+    if (m.view === "new") rows = m.list.filter(isNew);
+    else if (m.view === "all") rows = m.list.slice();
     else rows = m.list.filter(function (r) {
-      if (isJunk(r) || !provenBase(r)) return false;
+      if (!provenBase(r)) return false;
       var ok = chartOk(r);
       if (ok === false) { m.cut++; return false; }
       return true;
@@ -155,13 +128,14 @@
     var el = $("memes");
     if (!el) return;
     var html = '<h2>Stock memes on Base</h2>' +
-      '<p class="note">Tokens launched in a pool against one of the stocks above. Most of them are empty or dead within a day, ' +
-      'so the list only shows what passes the filter. <b>Proven</b>: two weeks old or more, $20K+ of real money in the pool, ' +
-      '$5K+ traded in 24 hours across 50+ trades, and a chart that has not lost 70% from its weekly high. ' +
-      '<b>New</b>: under two weeks, $5K+ and 30+ trades — high risk. Real money counts only the stock side of the pool.</p>';
+      '<p class="note">Tokens launched in a pool against one of the stocks above. Most such pools are dead, so none of them are listed. ' +
+      '<b>Proven</b>: a week old or more, $2K+ of real money in the pool, $500+ traded in 24 hours, 10+ trades from 5+ different buyers, ' +
+      'and a chart that has not lost 70% from its weekly high. <b>New</b>: under a week, $1K+ and 10+ trades from 5+ buyers — high risk. ' +
+      '<b>All active</b>: everything that traded today. Real money counts only the stock side of the pool.</p>';
     html += '<div class="memes-bar">' +
       '<button class="chip' + (m.view === "proven" ? " on" : "") + '" data-view="proven">Proven</button>' +
-      '<button class="chip' + (m.view === "new" ? " on" : "") + '" data-view="new">New, under 2 weeks</button>' +
+      '<button class="chip' + (m.view === "new" ? " on" : "") + '" data-view="new">New, under a week</button>' +
+      '<button class="chip' + (m.view === "all" ? " on" : "") + '" data-view="all">All active</button>' +
       '<label class="co" style="margin-left:auto">Sort <select id="memes-sort">' +
       [["vol", "volume 24h"], ["chg", "24h change"], ["real", "real money"], ["age", "newest"]].map(function (o) {
         return '<option value="' + o[0] + '"' + (m.sort === o[0] ? " selected" : "") + '>' + o[1] + '</option>';
@@ -172,29 +146,28 @@
 
     if (m.error) html += '<div class="traps"><b>' + esc(m.error) + '</b></div>';
     if (!m.list) {
-      html += '<p class="skel">' + (m.loading ? 'Reading every stock\'s pools on Base…' : 'Waiting for stock prices…') + '</p>';
+      html += '<p class="skel">' + (m.loading ? 'Reading the list of stock memes…' : 'Loading…') + '</p>';
       el.innerHTML = html; bind(); return;
     }
     var rows = shown();
-    var total = m.list.length, junk = m.list.filter(isJunk).length;
-    if (m.view === "new") html += '<div class="traps" style="border-left-color:var(--yellow)"><b>New tokens are the riskiest thing on this page.</b> ' +
+    if (m.view !== "proven") html += '<div class="traps" style="border-left-color:var(--yellow)"><b>' + (m.view === "new" ? 'New tokens are' : 'Unfiltered tokens are') + ' the riskiest thing on this page.</b> ' +
       'Run Token Check on any of them before you buy: who launched it, who holds it, whether you can sell.</div>';
     if (!rows.length) html += '<p class="note">Nothing passes this filter right now.</p>';
     else {
       html += '<div class="tbl-wrap"><table class="memes"><thead><tr><th>Token</th><th>Paired with</th><th class="r">Price</th>' +
-        '<th class="r">24h</th><th class="r">Volume 24h</th><th class="r">Real money</th><th class="r">Trades</th><th class="r">Age</th>' +
+        '<th class="r">24h</th><th class="r">Volume 24h</th><th class="r">Real money</th><th class="r">Trades · buyers</th><th class="r">Age</th>' +
         '<th>14 days</th><th></th></tr></thead><tbody>';
       rows.forEach(function (r) {
         var held = m.bal[r.addr.toLowerCase()];
         html += '<tr><td><a class="sym" href="' + esc(r.best.url) + '" target="_blank" rel="noopener">' + esc(r.sym) + '</a>' +
-          '<div class="co">' + esc(r.name.slice(0, 28)) + ' · <a href="/check.html?a=' + r.addr + '&go=1" target="_blank" rel="noopener">Token Check</a></div></td>' +
+          '<div class="co">' + esc((r.name || r.sym).slice(0, 28)) + ' · <a href="/check.html?a=' + r.addr + '&go=1" target="_blank" rel="noopener">Token Check</a></div></td>' +
           '<td>' + esc(r.stock.replace(/c$/, "")) + '</td>' +
           '<td class="n r">' + fmtPrice(r.price) + '</td>' +
           '<td class="n r">' + (r.chg === null ? "—" : '<span style="color:' + (r.chg >= 0 ? "var(--green-text)" : "var(--red)") + '">' +
             (r.chg >= 0 ? "+" : "") + r.chg.toFixed(1) + '%</span>') + '</td>' +
           '<td class="n r">' + money(r.vol, 0) + '</td>' +
           '<td class="n r">' + money(r.real, 0) + '</td>' +
-          '<td class="n r">' + r.tx.toLocaleString("en-US") + '</td>' +
+          '<td class="n r">' + r.tx.toLocaleString("en-US") + ' · ' + r.buyers.toLocaleString("en-US") + '</td>' +
           '<td class="n r">' + ageTxt(age(r)) + '</td>' +
           '<td>' + spark(r) + '</td>' +
           '<td class="r" style="white-space:nowrap"><button class="btn small" data-buy="' + r.addr + '">Buy</button>' +
@@ -203,9 +176,12 @@
       });
       html += '</tbody></table></div>';
     }
-    html += '<p class="co" style="margin-top:8px">' + total + ' meme tokens found against these stocks; ' + junk +
-      ' hidden as empty or untraded' + (m.cut ? ', ' + m.cut + ' left out of Proven because the chart collapsed' : '') +
-      '. Pools from DexScreener, charts from GeckoTerminal, swaps routed by KyberSwap with builder code bc_mrkwu2m0.</p>';
+    var mins = m.at ? Math.max(1, Math.round((Date.now() - Date.parse(m.at)) / 6e4)) : null;
+    html += '<p class="co" style="margin-top:8px">' + m.pools.toLocaleString("en-US") + ' pools pair a token with these stocks; ' +
+      m.traded + ' of the tokens traded in the last 24 hours, ' + m.list.length + ' with real money in them' +
+      (m.cut ? '; ' + m.cut + ' left out of Proven because the chart collapsed' : '') +
+      (mins !== null ? '. List built ' + mins + ' min ago' : '') +
+      '. Pools from GeckoTerminal and DexScreener, swaps routed by KyberSwap with builder code bc_mrkwu2m0.</p>';
     el.innerHTML = html;
     bind();
   }
@@ -373,7 +349,7 @@
   /* What the connected wallet holds of the listed memes, in one Multicall read. */
   function balances() {
     if (!m.account || !m.list) return Promise.resolve();
-    var rows = m.list.filter(function (r) { return !isJunk(r); });
+    var rows = m.list;
     return multicallUints(rows.map(function (r) { return { to: r.addr, data: "0x70a08231" + hex32(BigInt(m.account)) }; }))
       .then(function (vals) { rows.forEach(function (r, i) { m.bal[r.addr.toLowerCase()] = vals[i] || BigInt(0); }); render(); })
       .catch(function () {});
@@ -411,13 +387,13 @@
      never underneath an open trade. */
   var started = false;
   var wait = setInterval(function () {
-    if (!state.data || started) return;
+    if (started) return;
     started = true; clearInterval(wait);
     load().then(balances);
     setInterval(function () {
       if (m.open && m.open.state !== "idle" && m.open.state !== "done") return;
       load().then(balances);
-    }, 180000);
+    }, 600000);
   }, 500);
   render();
 })();
