@@ -31,16 +31,19 @@ const REAL_SIDE = new Set([...Object.values(OFFICIAL), '0x0000000000000000000000
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 async function rpc(method, params) {
+  let last = '';
   for (let i = 0; i < 8; i++) {
     try {
       const r = await fetch(RPC, { method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ jsonrpc: '2.0', id: 1, method, params }) });
-      const j = await r.json();
+      const text = await r.text();
+      if (!r.ok) throw new Error(`HTTP ${r.status} ${text.slice(0, 120)}`);
+      const j = JSON.parse(text);
       if (j.error) throw new Error(j.error.message);
       return j.result;
-    } catch (e) { await sleep(2000 + 3000 * i); }
+    } catch (e) { last = e.message; console.error(`${method} try ${i + 1}: ${last}`); await sleep(2000 + 3000 * i); }
   }
-  throw new Error(`${method} kept failing`);
+  throw new Error(`${method} kept failing: ${last}`);
 }
 
 async function dex(path) {
