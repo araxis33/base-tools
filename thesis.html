@@ -211,6 +211,13 @@ footer{border-top:1px solid var(--border); margin-top:30px; padding:22px 0 40px;
 .err{background:var(--card); border:1px solid var(--border); border-left:3px solid var(--red);
      border-radius:12px; padding:20px; color:var(--muted)}
 .skel{color:var(--muted2); font-size:14px; padding:8px 0}
+.split{display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); gap:26px; align-items:start}
+@media (max-width:900px){ .split{grid-template-columns:1fr; gap:0} }
+.side-list{background:var(--card); border:1px solid var(--border); border-radius:12px; overflow:hidden}
+.side-row{display:grid; grid-template-columns:minmax(0,1fr) auto auto auto; gap:10px; align-items:center; padding:10px 14px; border-bottom:1px solid var(--border); font-size:14px}
+.side-row:last-child{border-bottom:none}
+.side-row .n{font-variant-numeric:tabular-nums; white-space:nowrap; text-align:right}
+.side-more{display:block; padding:11px 14px; font-size:13.5px}
 .memes-bar{display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin:0 0 12px}
 .memes-bar select, #mm-pay{background:var(--bg); border:1px solid var(--border); color:var(--text); border-radius:8px; padding:6px 8px; font-family:inherit; font-size:13.5px}
 table.memes td{vertical-align:middle}
@@ -269,6 +276,7 @@ tr.memes-panel td{background:var(--bg2)}
     </div>
   </section>
 
+  <div class="split">
   <section>
     <h2>Your basket</h2>
     <p class="note">Drag any weight to change it. Prices are read live from every Base pool holding these tokens; the price shown is from the deepest pool, which is the one you should actually trade in.</p>
@@ -278,6 +286,9 @@ tr.memes-panel td{background:var(--bg2)}
       <span id="tot-right"></span>
     </div>
   </section>
+
+  <section id="memes-side"></section>
+  </div>
 
   <section id="result"></section>
 

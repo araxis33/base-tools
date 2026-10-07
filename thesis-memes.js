@@ -124,7 +124,74 @@
     return rows;
   }
 
+  /* The short list beside the basket (his request 07.10: no scrolling to find the memes). Same view and rows as
+     the full table below; Buy opens the trade form there. */
+  var SIDE_ROWS = 6;
+  function renderSide() {
+    var el = $("memes-side");
+    if (!el) return;
+    var html = '<h2>Stock memes on Base</h2>' +
+      '<div class="memes-bar">' + ["proven", "new", "all"].map(function (v) {
+        return '<button class="chip' + (m.view === v ? " on" : "") + '" data-side-view="' + v + '">' +
+          { proven: "Proven", "new": "New", all: "All active" }[v] + '</button>';
+      }).join("") + '</div>';
+    if (!m.list) {
+      el.innerHTML = html + '<p class="skel">' + (m.error ? esc(m.error) : 'Reading the list of stock memes…') + '</p>';
+      bindSide(); return;
+    }
+    var rows = shown();
+    if (!rows.length) html += '<p class="note">Nothing passes this filter right now.</p>';
+    else {
+      html += '<div class="side-list">' + rows.slice(0, SIDE_ROWS).map(function (r) {
+        return '<div class="side-row"><div><a class="sym" href="#memes" data-side-open="' + r.addr + '">' + esc(r.sym) + '</a>' +
+          ' <span class="co">' + esc(r.stock.replace(/c$/, "")) + '</span></div>' +
+          '<span class="n">' + (r.chg === null || r.chg === undefined ? "—" : '<span style="color:' + (r.chg >= 0 ? "var(--green-text)" : "var(--red)") + '">' +
+            (r.chg >= 0 ? "+" : "") + Number(r.chg).toFixed(1) + '%</span>') + '</span>' +
+          '<span class="n co" title="real money in the pool">' + money(r.real, 0) + '</span>' +
+          '<button class="btn small" data-side-buy="' + r.addr + '">Buy</button></div>';
+      }).join("") +
+      '<a class="side-more" href="#memes" id="side-more">' + (rows.length > SIDE_ROWS ? '+' + (rows.length - SIDE_ROWS) + ' more · ' : '') +
+        'Full table with charts and buyers &darr;</a></div>';
+    }
+    html += '<p class="co" style="margin-top:8px">Middle number: real money in the pool (the stock side only).</p>';
+    el.innerHTML = html;
+    bindSide();
+  }
+
+  function goToRow(addr) {
+    render();
+    var b = document.querySelector('#memes [data-buy="' + addr + '"]');
+    var target = b ? b.closest("tr") : $("memes");
+    target.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  function bindSide() {
+    var el = $("memes-side");
+    Array.prototype.forEach.call(el.querySelectorAll("[data-side-view]"), function (b) {
+      b.addEventListener("click", function () {
+        if (m.open && m.open.busy) return;
+        m.view = b.getAttribute("data-side-view"); m.open = null; render();
+      });
+    });
+    Array.prototype.forEach.call(el.querySelectorAll("[data-side-buy]"), function (b) {
+      b.addEventListener("click", function () {
+        if (m.open && m.open.busy) return;
+        var addr = b.getAttribute("data-side-buy");
+        m.open = { addr: addr, mode: "buy", amount: "", pay: state.pay || "USDC", pct: 100,
+                   state: "idle", quote: null, msg: "", error: null, busy: false };
+        goToRow(addr);
+      });
+    });
+    Array.prototype.forEach.call(el.querySelectorAll("[data-side-open]"), function (a) {
+      a.addEventListener("click", function (e) { e.preventDefault(); goToRow(a.getAttribute("data-side-open")); });
+    });
+    if ($("side-more")) $("side-more").addEventListener("click", function (e) {
+      e.preventDefault(); $("memes").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+
   function render() {
+    renderSide();
     var el = $("memes");
     if (!el) return;
     var html = '<h2>Stock memes on Base</h2>' +
