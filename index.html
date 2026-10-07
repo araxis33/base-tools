@@ -1347,8 +1347,12 @@ async function fetchMarketsOnce(nativeMap){
   );
   if (!res.ok) throw new Error("http " + res.status);
   const json = await res.json();
+  // Tokenized stocks have their own board below; on 07.10 MUc and SNDKc showed up among the
+  // Gainers because CoinGecko files them under base-ecosystem too. Dropped by address and by name.
+  const stockAddr = new Set(STOCK_TOKENS.map(t => t.contract.toLowerCase()));
   const tokens = json
     .filter(m => nativeMap[m.id] && m.total_volume > 0 && !NON_NATIVE_SYMBOLS.has((m.symbol||"").toUpperCase()))
+    .filter(m => !stockAddr.has(String(nativeMap[m.id]).toLowerCase()) && !/tokeni[sz]ed stock/i.test(m.name || ""))
     .map(m => ({
       symbol: (m.symbol || "").toUpperCase(),
       logo: m.image,
