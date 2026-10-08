@@ -15,6 +15,9 @@ const { TOKENS } = require('../thesis-core.js');
 const GT = 'https://api.geckoterminal.com/api/v2/networks/base';
 const MONEY = /^(USDC|USDbC|WETH|ETH|cbBTC|USDT|EURC|DAI|cbETH)$/;
 const JUNK = { real: 500, tx: 5 }; // not worth keeping in the file at all
+const HIST = 'https://api.github.com/repos/araxis33/base-tools/commits?sha=memes-data&per_page=6';
+const RAW = 'https://raw.githubusercontent.com/araxis33/base-tools/';
+const CARRY_MS = 48 * 3600e3;       // how long a pool's last known real money may stand in for a missing one
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -79,6 +82,19 @@ async function main() {
   // DexScreener down (07.10 it answered every pool with nothing): stop here, and the last good list stays up.
   if (live.length && !sides.size) throw new Error('DexScreener returned no pool sides; keeping the previous list');
 
+  /* DexScreener sometimes answers a live pool without its liquidity (08.10: IPOD/AAPLc, $56K traded in 24 hours,
+     "liquidity" missing), which would read as $0 and drop the token. Such a pool keeps the real money it last had
+     in one of the recent lists (the last six builds, newest first), for up to 48 hours. */
+  const before = new Map();
+  const shas = await get(HIST, 2).catch(() => null);
+  for (const c of Array.isArray(shas) ? shas : []) {
+    const old = await get(RAW + c.sha + '/stock-memes.json', 2).catch(() => null);
+    for (const m of (old && old.list) || []) {
+      const k = m.pool && m.pool.toLowerCase();
+      if (k && !before.has(k)) before.set(k, { real: m.real, at: m.realAt || Date.parse(old.at) });
+    }
+  }
+
   const memes = new Map();
   for (const p of live) {
     const d = sides.get(p.id.toLowerCase());
@@ -86,17 +102,20 @@ async function main() {
     if (!d || !(px > 0)) continue;
     const dsStockIsBase = d.baseToken.address.toLowerCase() === TOKENS.find((t) => t.s === p.stock).a.toLowerCase();
     const L = d.liquidity || {};
-    const real = ((dsStockIsBase ? L.base : L.quote) || 0) * px;
+    const side = dsStockIsBase ? L.base : L.quote;
+    let real = (side || 0) * px, realAt = null;
+    const old = before.get(p.id.toLowerCase());
+    if (side === undefined && old && Date.now() - old.at < CARRY_MS) { real = old.real; realAt = old.at; }
     const key = p.other.address.toLowerCase();
     const m = memes.get(key) || { addr: p.other.address, sym: p.other.symbol, name: p.other.name, stock: p.stock,
-      real: 0, vol: 0, tx: 0, buyers: 0, sellers: 0, created: null, pools: 0, pool: null, url: null, price: 0, chg: null };
+      real: 0, realAt: null, vol: 0, tx: 0, buyers: 0, sellers: 0, created: null, pools: 0, pool: null, url: null, price: 0, chg: null };
     m.pools += 1; m.vol += p.vol; m.tx += p.tx; m.buyers += p.buyers; m.sellers += p.sellers;
     if (p.created && (!m.created || p.created < m.created)) m.created = p.created;
-    if (!m.pool || real > m.real) { m.real = real; m.pool = p.id; m.url = d.url; m.stock = p.stock; m.price = p.price; m.chg = p.chg; }
+    if (!m.pool || real > m.real) { m.real = real; m.realAt = realAt; m.pool = p.id; m.url = d.url; m.stock = p.stock; m.price = p.price; m.chg = p.chg; }
     memes.set(key, m);
   }
   const list = [...memes.values()].filter((m) => m.real >= JUNK.real && m.tx >= JUNK.tx)
-    .map((m) => ({ ...m, real: Math.round(m.real), vol: Math.round(m.vol) }))
+    .map((m) => { const x = { ...m, real: Math.round(m.real), vol: Math.round(m.vol) }; if (!x.realAt) delete x.realAt; return x; })
     .sort((a, b) => b.vol - a.vol);
 
   process.stdout.write(JSON.stringify({ at: new Date().toISOString(), pools: pools.length,
