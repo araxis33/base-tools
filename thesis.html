@@ -1061,8 +1061,7 @@ function renderExecute(){
 
   var html = '<h2>Buy it in one transaction</h2>' +
     '<p class="note">Optional, and the only part of this page that touches a wallet. ' +
-    'Every swap is quoted across all of Base, batched into a single confirmation, and tagged ' +
-    'with builder code <span class="addr">bc_mrkwu2m0</span>.</p>' +
+    'Every swap is quoted across all of Base and batched into a single confirmation.</p>' +
     '<div class="panel">';
 
   if(ex.error){
@@ -1387,7 +1386,7 @@ function sendCalls(p, from, calls, ui){
       p.request({method:"wallet_getCallsStatus", params:[id]}).then(function(st){
         var rc = st && st.receipts && st.receipts[0];
         if(rc && rc.transactionHash){
-          ui.link("https://basescan.org/tx/" + rc.transactionHash, "Confirmed onchain, one transaction, builder code attached.");
+          ui.link("https://basescan.org/tx/" + rc.transactionHash, "Confirmed onchain, one transaction.");
           return;
         }
         if(++tries < 40) setTimeout(poll, 2000);
@@ -1648,8 +1647,8 @@ function renderSell(){
     html += '<a class="btn" href="' + hold.txt + '" target="_blank" rel="noopener">See it onchain</a>';
   }
   html += '<span class="copied">' + esc(hold.msg || "") + '</span></div>';
-  html += '<p class="note" style="margin:14px 0 0">The allowance asked for is exactly what is being sold, one per stock, and ' +
-    'each sale is tagged with builder code <span class="addr">bc_mrkwu2m0</span>. A wallet can only sell what it holds itself.</p>';
+  html += '<p class="note" style="margin:14px 0 0">The allowance asked for is exactly what is being sold, one per stock. ' +
+    'A wallet can only sell what it holds itself.</p>';
   return html;
 }
 
