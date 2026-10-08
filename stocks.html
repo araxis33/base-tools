@@ -173,6 +173,7 @@ var USDC = "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913";
 var KYBER = "https://aggregator-api.kyberswap.com/base/api/v1/routes";
 var WORKER = "https://deftools-check.araxis67.workers.dev";
 var RPCS = ["https://base-rpc.publicnode.com", "https://mainnet.base.org"];
+var STOCK_DECIMALS = 8;   // every Coinbase stock token on Base
 var POLICY_REGISTRY = "0x8453000000000000000000000000000000000002";
 var SENDER_SCOPE = "b81736c875ab819dd97f59f2a6542cfb731ad52b4ae15a6f24df2fb02b0327f5";
 var PAUSABLE = ["transfers", "minting", "burning", "seizing"];
@@ -249,7 +250,7 @@ function readChain(slice, r){
     try { c.multiplier = Number(word(r[b+2], 0)) / 1e18; } catch(e){}
     try { var n = Number(word(r[b+3], 1)); c.paused = []; for (var k = 0; k < n; k++) c.paused.push(PAUSABLE[Number(word(r[b+3], 2 + k))] || "?"); } catch(e){}
     try { c.policy = Number(word(r[b+4], 0)); } catch(e){}
-    try { c.decimals = Number(word(r[b+5], 0)); } catch(e){ c.decimals = 18; }
+    try { c.decimals = Number(word(r[b+5], 0)); } catch(e){ c.decimals = null; }
     S[t.s].chain = c;
   });
 }
@@ -291,7 +292,9 @@ function roundTrip(t, dollars){
   });
 }
 function loadDex(t){
-  var dec = (S[t.s].chain && S[t.s].chain.decimals) || 18;
+  /* Every Coinbase stock token on Base has 8 decimals (all 36 read on 08.10.2026). It is not asked of a node:
+     on 08.10 a busy node answered nothing, the page took 18, and NVDAc showed as $2.35 trillion. */
+  var dec = STOCK_DECIMALS;
   return quote(USDC, t.a, "50000000").then(function(q){ S[t.s].dex = 50 / (Number(q.amountOut) / Math.pow(10, dec)); })
     .catch(function(){ S[t.s].dex = null; })
     .then(function(){ return roundTrip(t, 1000).then(function(x){ S[t.s].rt = x; }).catch(function(){ S[t.s].rt = null; }); });
