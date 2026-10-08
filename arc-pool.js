@@ -87,6 +87,8 @@
   function realUsd(p) {
     var L = p.liquidity || {};
     var pu = Number(p.priceUsd || 0), pn = Number(p.priceNative || 0);
+    // no split by side (GeckoTerminal standing in for DexScreener, ds-fallback.js): unknown, not zero
+    if (L.base === undefined && L.quote === undefined) return undefined;
     if (OFFICIAL[p.quoteToken.address.toLowerCase()]) return (L.quote || 0) * (pn ? pu / pn : 0);
     if (OFFICIAL[p.baseToken.address.toLowerCase()]) return (L.base || 0) * pu;
     return null;
@@ -208,7 +210,7 @@
         var hereMark = focus && p.pairAddress.toLowerCase() === focus ? ' <span class="tag">this pool</span>' : '';
         return '<tr' + cls + '><td><a href="' + esc(p.url) + '" target="_blank" rel="noopener">' + esc(p.baseToken.symbol + '/' + p.quoteToken.symbol) + '</a>' + hereMark +
           '<div class="gasnote">' + esc(dexName) + '</div></td>' +
-          '<td class="num">' + (p._real === null ? '<span class="gasnote">no Circle side</span>' : usd(p._real)) + '</td>' +
+          '<td class="num">' + (p._real === null ? '<span class="gasnote">no Circle side</span>' : p._real === undefined ? '<span class="gasnote">—</span>' : usd(p._real)) + '</td>' +
           '<td class="num">' + usd(shown) + '</td>' +
           '<td class="num">' + tx.toLocaleString('en-US') + '</td>' +
           '<td class="num' + (flags.indexOf('bad') >= 0 ? ' red' : '') + '">' + feeTxt + '</td></tr>';
@@ -235,6 +237,7 @@
         '<div class="tbl-wrap" style="margin-top:14px"><table><thead><tr><th>Pool</th><th>Real</th><th>Listed</th><th>Trades</th><th>Fee</th></tr></thead><tbody>' +
         rows.join('') + '</tbody></table></div>' +
         '<p class="gasnote" style="margin-top:8px">' + (total > top.length ? 'The ' + top.length + ' biggest of ' + total + ' pools. ' : '') +
+        (top.some(function (p) { return p._real === undefined; }) ? '<strong>Real money cannot be read while DexScreener is down</strong>: GeckoTerminal does not split a pool by side. ' : '') +
         'Real: only the side of the pool that is Circle\'s USDC, EURC or cirBTC. Trades: last 24 hours. Fee: v4 pools — the highest fee in their swaps over the last ~2 hours, other pools — their fee().</p>';
     }
     if (token.length === 42) html += '<p style="margin-top:12px;font-size:14px"><a href="' + CONTRACT_CHECK + token + '" target="_blank" rel="noopener">Who can change this token\'s contract? ↗</a></p>';
