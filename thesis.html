@@ -211,24 +211,41 @@ footer{border-top:1px solid var(--border); margin-top:30px; padding:22px 0 40px;
 .err{background:var(--card); border:1px solid var(--border); border-left:3px solid var(--red);
      border-radius:12px; padding:20px; color:var(--muted)}
 .skel{color:var(--muted2); font-size:14px; padding:8px 0}
-.split{display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,1fr); gap:26px; align-items:start}
-@media (max-width:900px){ .split{grid-template-columns:minmax(0,1fr); gap:0} }
-.split > section{min-width:0}
-/* nothing to buy yet (no basket, or no prices): the memes take the whole width instead of a blank left half */
-.split:has(#execute:empty){grid-template-columns:minmax(0,1fr)}
-/* the quotes table beside the memes: fits its column instead of scrolling */
-.split #execute table{min-width:0}
-.split #execute th, .split #execute td{padding:10px 8px; font-size:13.5px}
-.split #execute th{font-size:11px}
+/* the stocks table and the stock memes side by side, both starting on the same line (his request 08.10) */
+.pair{display:grid; grid-template-columns:minmax(0,1.45fr) minmax(0,1fr); gap:22px; align-items:start; margin-top:14px}
+@media (max-width:900px){ .pair{grid-template-columns:minmax(0,1fr); gap:26px} }
+.pair > div{min-width:0}
+#memes-slot > section{margin:0; padding:0}
+.pair-l table{min-width:0}
+.pair-l th, .pair-l td{padding:10px 6px; font-size:13px}
+.pair-l th{font-size:11px}
+.pair-l td:first-child .co{white-space:nowrap}
+.pair-l .addr{display:none}
+@media (max-width:900px){ .pair-l .addr{display:block} }
+#result .cards{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:640px){ #result .cards{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))} }
+.side-top{display:flex; flex-wrap:wrap; gap:8px 10px; align-items:center; padding:12px 14px; border-bottom:1px solid var(--border)}
+.side-top h3{margin:0; font-size:15px; flex:1 1 100%}
+.side-top .memes-bar{margin:0; flex:1 1 100%}
 .side-list{background:var(--card); border:1px solid var(--border); border-radius:12px; overflow:hidden}
-.side-row{display:grid; grid-template-columns:minmax(0,1fr) auto auto auto; gap:10px; align-items:center; padding:10px 14px; border-bottom:1px solid var(--border); font-size:14px}
-.side-row:last-child{border-bottom:none}
+.side-row{display:grid; grid-template-columns:minmax(0,1fr) 62px 84px auto; gap:10px; align-items:center; padding:9px 14px; font-size:14px}
 .side-row .n{font-variant-numeric:tabular-nums; white-space:nowrap; text-align:right}
-.side-more{display:block; padding:11px 14px; font-size:13.5px}
+.side-head{padding:8px 14px; font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted2); border-bottom:1px solid var(--border)}
+.side-item{border-bottom:1px solid var(--border)}
+.side-item.open{background:var(--bg2)}
+.side-sym{background:none; border:0; padding:0; color:inherit; font:inherit; cursor:pointer; text-align:left; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.side-sym .caret{color:var(--muted2); font-size:11px; margin-left:6px}
+.side-btns{display:flex; gap:6px; justify-content:flex-end}
+.side-detail{padding:2px 14px 12px; font-size:13px}
+.side-stats{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; margin-bottom:8px}
+.side-stats span{display:block; font-size:11px}
+.side-stats b{font-weight:600; font-size:13.5px}
+.side-chart{display:flex; align-items:center; gap:10px; margin-bottom:6px}
+.side-form{padding:0 10px 10px}
+.side-more{display:block; width:100%; background:none; border:0; color:var(--accent); cursor:pointer; text-align:left; padding:11px 14px; font:inherit; font-size:13.5px}
+@media (max-width:520px){ .side-row{grid-template-columns:minmax(0,1fr) 54px 70px auto; gap:8px; padding:9px 10px} .side-stats{grid-template-columns:repeat(2,minmax(0,1fr))} }
 .memes-bar{display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin:0 0 12px}
 .memes-bar select, #mm-pay{background:var(--bg); border:1px solid var(--border); color:var(--text); border-radius:8px; padding:6px 8px; font-family:inherit; font-size:13.5px}
-table.memes td{vertical-align:middle}
-tr.memes-panel td{background:var(--bg2)}
 
 @media (max-width:720px){
   h1{font-size:26px}
@@ -296,13 +313,9 @@ tr.memes-panel td{background:var(--bg2)}
 
   <section id="result"></section>
 
-  <div class="split">
-  <section id="execute"></section>
-
   <section id="memes-side"></section>
-  </div>
 
-  <section id="memes"></section>
+  <section id="execute"></section>
 
   <section id="holdings">
     <h2>Your stocks</h2>
@@ -676,7 +689,7 @@ function renderWeights(){
 function renderResult(){
   var el = $("result");
   var tot = totalWeight();
-  if(!tot || !state.data){ el.innerHTML = ""; return; }
+  if(!tot || !state.data){ el.after($("memes-side")); el.innerHTML = ""; return; }
 
   var amt = state.amount;
   var rows = [], overpay = 0, spent = 0, worstImpact = 0, missing = [];
@@ -740,7 +753,7 @@ function renderResult(){
       '<a href="/stocks.html">See how close each stock sits to its last close &rarr;</a></p>';
   }
 
-  html += '<div class="tbl-wrap" style="margin-top:14px"><table><thead><tr>' +
+  html += '<div class="pair"><div class="pair-l"><div class="tbl-wrap"><table><thead><tr>' +
     '<th>Stock</th><th class="r">Amount</th><th class="r">Shares</th>' +
     '<th class="r">Price</th><th>Pool</th><th class="r">Impact</th><th class="r">Worst pool</th><th></th>' +
     '</tr></thead><tbody>';
@@ -799,9 +812,12 @@ function renderResult(){
     '<a class="btn" id="buyall" href="#execute">Buy it in one transaction &darr;</a>' +
     '<button class="btn ghost" id="share">Copy share link</button>' +
     '<button class="btn ghost" id="card">Download card</button>' +
-    '<span class="copied" id="copied"></span></div>';
+    '<span class="copied" id="copied"></span></div>' +
+    '</div><div id="memes-slot"></div></div>';
 
+  var memes = $("memes-side");
   el.innerHTML = html;
+  $("memes-slot").appendChild(memes);
 
   var cardRows = rows.map(function(r){ return { s:r.t.s, co:r.t.co, share:r.usd / spent }; });
   $("card").addEventListener("click", function(){

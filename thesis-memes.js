@@ -11,7 +11,7 @@
 
    "Real money" is only the stock side of the pool, priced at the stock's own price: a meme priced against itself
    cannot inflate it. Buying and selling go through the same KyberSwap route, batching and builder code as the basket
-   above; this file uses thesis.html's helpers. */
+   above; this file uses thesis.html's helpers. Everything sits in #memes-side, beside the basket's buy button. */
 (function () {
   "use strict";
 
@@ -23,7 +23,7 @@
   var MAX_LOSS = 10;         // % a route may lose between dollars in and dollars out before we refuse it
 
   var m = { list: null, at: null, pools: 0, traded: 0, loading: false, error: null, view: "proven", sort: "vol", charts: {}, cut: 0,
-            account: null, bal: {}, dec: {}, open: null };
+            account: null, bal: {}, dec: {}, open: null, expand: null, showAll: false };
 
   var $ = function (id) { return document.getElementById(id); };
 
@@ -124,131 +124,86 @@
     return rows;
   }
 
-  /* The short list beside the basket (his request 07.10: no scrolling to find the memes). Same view and rows as
-     the full table below; Buy opens the trade form there. */
-  var SIDE_ROWS = 6;
-  function renderSide() {
-    var el = $("memes-side");
-    if (!el) return;
-    var html = '<h2>Stock memes on Base</h2>' +
-      '<div class="memes-bar">' + ["proven", "new", "all"].map(function (v) {
-        return '<button class="chip' + (m.view === v ? " on" : "") + '" data-side-view="' + v + '">' +
-          { proven: "Proven", "new": "New", all: "All active" }[v] + '</button>';
-      }).join("") + '</div>';
-    if (!m.list) {
-      el.innerHTML = html + '<p class="skel">' + (m.error ? esc(m.error) : 'Reading the list of stock memes…') + '</p>';
-      bindSide(); return;
-    }
-    var rows = shown();
-    if (!rows.length) html += '<p class="note">Nothing passes this filter right now.</p>';
-    else {
-      html += '<div class="side-list">' + rows.slice(0, SIDE_ROWS).map(function (r) {
-        return '<div class="side-row"><div><a class="sym" href="#memes" data-side-open="' + r.addr + '">' + esc(r.sym) + '</a>' +
-          ' <span class="co">' + esc(r.stock.replace(/c$/, "")) + '</span></div>' +
-          '<span class="n">' + (r.chg === null || r.chg === undefined ? "—" : '<span style="color:' + (r.chg >= 0 ? "var(--green-text)" : "var(--red)") + '">' +
-            (r.chg >= 0 ? "+" : "") + Number(r.chg).toFixed(1) + '%</span>') + '</span>' +
-          '<span class="n co" title="real money in the pool">' + money(r.real, 0) + '</span>' +
-          '<button class="btn small" data-side-buy="' + r.addr + '">Buy</button></div>';
-      }).join("") +
-      '<a class="side-more" href="#memes" id="side-more">' + (rows.length > SIDE_ROWS ? '+' + (rows.length - SIDE_ROWS) + ' more · ' : '') +
-        'Full table with charts and buyers &darr;</a></div>';
-    }
-    html += '<p class="co" style="margin-top:8px">Middle number: real money in the pool (the stock side only).</p>';
-    el.innerHTML = html;
-    bindSide();
+  /* One table, in the column beside the basket's "Buy it in one transaction" (his request 07.10: no second table
+     further down). Short rows: token · stock · 24h · real money · Buy. A click on the token opens the row (price,
+     volume, trades and buyers, age, the 14-day chart, Token Check); Buy and Sell open their form inside the row. */
+  var SIDE_ROWS = 8;
+  function chgTxt(r) {
+    if (r.chg === null || r.chg === undefined) return "—";
+    return '<span style="color:' + (r.chg >= 0 ? "var(--green-text)" : "var(--red)") + '">' + (r.chg >= 0 ? "+" : "") + Number(r.chg).toFixed(1) + '%</span>';
   }
-
-  function goToRow(addr) {
-    render();
-    var b = document.querySelector('#memes [data-buy="' + addr + '"]');
-    var target = b ? b.closest("tr") : $("memes");
-    target.scrollIntoView({ behavior: "smooth", block: "center" });
-  }
-
-  function bindSide() {
-    var el = $("memes-side");
-    Array.prototype.forEach.call(el.querySelectorAll("[data-side-view]"), function (b) {
-      b.addEventListener("click", function () {
-        if (m.open && m.open.busy) return;
-        m.view = b.getAttribute("data-side-view"); m.open = null; render();
-      });
-    });
-    Array.prototype.forEach.call(el.querySelectorAll("[data-side-buy]"), function (b) {
-      b.addEventListener("click", function () {
-        if (m.open && m.open.busy) return;
-        var addr = b.getAttribute("data-side-buy");
-        m.open = { addr: addr, mode: "buy", amount: "", pay: state.pay || "USDC", pct: 100,
-                   state: "idle", quote: null, msg: "", error: null, busy: false };
-        goToRow(addr);
-      });
-    });
-    Array.prototype.forEach.call(el.querySelectorAll("[data-side-open]"), function (a) {
-      a.addEventListener("click", function (e) { e.preventDefault(); goToRow(a.getAttribute("data-side-open")); });
-    });
-    if ($("side-more")) $("side-more").addEventListener("click", function (e) {
-      e.preventDefault(); $("memes").scrollIntoView({ behavior: "smooth", block: "start" });
-    });
+  function detail(r) {
+    return '<div class="side-detail">' +
+      '<div class="side-stats">' +
+        '<div><span class="co">Price</span><b class="n">' + fmtPrice(r.price) + '</b></div>' +
+        '<div><span class="co">Volume 24h</span><b class="n">' + money(r.vol, 0) + '</b></div>' +
+        '<div><span class="co">Trades · buyers</span><b class="n">' + r.tx.toLocaleString("en-US") + ' · ' + r.buyers.toLocaleString("en-US") + '</b></div>' +
+        '<div><span class="co">Age</span><b class="n">' + ageTxt(age(r)) + '</b></div>' +
+      '</div>' +
+      '<div class="side-chart"><span class="co">14 days</span>' + spark(r) + '</div>' +
+      '<div class="co">' + esc((r.name || r.sym).slice(0, 40)) + ' · paired with ' + esc(r.stock) +
+        ' · <a href="/check.html?a=' + r.addr + '&go=1" target="_blank" rel="noopener">Token Check</a>' +
+        ' · <a href="' + esc(r.best.url) + '" target="_blank" rel="noopener">Pool</a></div>' +
+      '</div>';
   }
 
   function render() {
-    renderSide();
-    var el = $("memes");
+    var el = $("memes-side");
     if (!el) return;
-    var html = '<h2>Stock memes on Base</h2>' +
-      '<p class="note">Tokens launched in a pool against one of the stocks above. Most such pools are dead, so none of them are listed. ' +
-      '<b>Proven</b>: a week old or more, $2K+ of real money in the pool, $500+ traded in 24 hours, 10+ trades from 5+ different buyers, ' +
-      'and a chart that has not lost 70% from its weekly high. <b>New</b>: under a week, $1K+ and 10+ trades from 5+ buyers — high risk. ' +
-      '<b>All active</b>: everything that traded today. Real money counts only the stock side of the pool.</p>';
-    html += '<div class="memes-bar">' +
-      '<button class="chip' + (m.view === "proven" ? " on" : "") + '" data-view="proven">Proven</button>' +
-      '<button class="chip' + (m.view === "new" ? " on" : "") + '" data-view="new">New, under a week</button>' +
-      '<button class="chip' + (m.view === "all" ? " on" : "") + '" data-view="all">All active</button>' +
-      '<label class="co" style="margin-left:auto">Sort <select id="memes-sort">' +
-      [["vol", "volume 24h"], ["chg", "24h change"], ["real", "real money"], ["age", "newest"]].map(function (o) {
+    /* the title and the filters are the card's own top row, so the card starts level with the stocks table */
+    var html = '<div class="side-list"><div class="side-top"><h3>Stock memes on Base</h3>' +
+      '<div class="memes-bar">' + ["proven", "new", "all"].map(function (v) {
+        return '<button class="chip' + (m.view === v ? " on" : "") + '" data-view="' + v + '">' +
+          { proven: "Proven", "new": "New", all: "All active" }[v] + '</button>';
+      }).join("") +
+      '<select id="memes-sort" aria-label="Sort" style="margin-left:auto">' +
+      [["vol", "Volume 24h"], ["chg", "24h change"], ["real", "Real money"], ["age", "Newest"]].map(function (o) {
         return '<option value="' + o[0] + '"' + (m.sort === o[0] ? " selected" : "") + '>' + o[1] + '</option>';
-      }).join("") + '</select></label>' +
-      (m.account ? '<span class="co">wallet ' + m.account.slice(0, 6) + '…' + m.account.slice(-4) + '</span>'
-                 : '<button class="btn ghost small" id="memes-wallet">Connect to sell</button>') +
-      '</div>';
+      }).join("") + '</select></div></div>';
 
     if (m.error) html += '<div class="traps"><b>' + esc(m.error) + '</b></div>';
     if (!m.list) {
-      html += '<p class="skel">' + (m.loading ? 'Reading the list of stock memes…' : 'Loading…') + '</p>';
-      el.innerHTML = html; bind(); return;
+      el.innerHTML = html + '<p class="skel" style="padding:12px 14px">' + (m.loading ? 'Reading the list of stock memes…' : 'Loading…') + '</p></div>';
+      bind(); return;
     }
     var rows = shown();
     if (m.view !== "proven") html += '<div class="traps" style="border-left-color:var(--yellow)"><b>' + (m.view === "new" ? 'New tokens are' : 'Unfiltered tokens are') + ' the riskiest thing on this page.</b> ' +
-      'Run Token Check on any of them before you buy: who launched it, who holds it, whether you can sell.</div>';
-    if (!rows.length) html += '<p class="note">Nothing passes this filter right now.</p>';
+      'Run Token Check before you buy: who launched it, who holds it, whether you can sell.</div>';
+    if (!rows.length) html += '<p class="note" style="padding:12px 14px; margin:0">Nothing passes this filter right now.</p></div>';
     else {
-      html += '<div class="tbl-wrap"><table class="memes"><thead><tr><th>Token</th><th>Paired with</th><th class="r">Price</th>' +
-        '<th class="r">24h</th><th class="r">Volume 24h</th><th class="r">Real money</th><th class="r">Trades · buyers</th><th class="r">Age</th>' +
-        '<th>14 days</th><th></th></tr></thead><tbody>';
-      rows.forEach(function (r) {
-        var held = m.bal[r.addr.toLowerCase()];
-        html += '<tr><td><a class="sym" href="' + esc(r.best.url) + '" target="_blank" rel="noopener">' + esc(r.sym) + '</a>' +
-          '<div class="co">' + esc((r.name || r.sym).slice(0, 28)) + ' · <a href="/check.html?a=' + r.addr + '&go=1" target="_blank" rel="noopener">Token Check</a></div></td>' +
-          '<td>' + esc(r.stock.replace(/c$/, "")) + '</td>' +
-          '<td class="n r">' + fmtPrice(r.price) + '</td>' +
-          '<td class="n r">' + (r.chg === null ? "—" : '<span style="color:' + (r.chg >= 0 ? "var(--green-text)" : "var(--red)") + '">' +
-            (r.chg >= 0 ? "+" : "") + r.chg.toFixed(1) + '%</span>') + '</td>' +
-          '<td class="n r">' + money(r.vol, 0) + '</td>' +
-          '<td class="n r">' + money(r.real, 0) + '</td>' +
-          '<td class="n r">' + r.tx.toLocaleString("en-US") + ' · ' + r.buyers.toLocaleString("en-US") + '</td>' +
-          '<td class="n r">' + ageTxt(age(r)) + '</td>' +
-          '<td>' + spark(r) + '</td>' +
-          '<td class="r" style="white-space:nowrap"><button class="btn small" data-buy="' + r.addr + '">Buy</button>' +
-          (held && held > BigInt(0) ? ' <button class="btn ghost small" data-sell="' + r.addr + '">Sell</button>' : '') + '</td></tr>';
-        if (m.open && m.open.addr === r.addr) html += '<tr class="memes-panel"><td colspan="10">' + panel(r) + '</td></tr>';
-      });
-      html += '</tbody></table></div>';
+      /* an open row or form stays on screen even when it sits below the cut */
+      var openAt = rows.findIndex(function (r) { return (m.open && m.open.addr === r.addr) || m.expand === r.addr; });
+      var count = m.showAll ? rows.length : Math.max(SIDE_ROWS, openAt + 1);
+      html += '<div class="side-row side-head"><span>Token</span><span class="n">24h</span><span class="n">Real money</span><span></span></div>' +
+        rows.slice(0, count).map(function (r) {
+          var held = m.bal[r.addr.toLowerCase()], open = m.expand === r.addr;
+          return '<div class="side-item' + (open ? " open" : "") + '"><div class="side-row">' +
+            '<button class="side-sym" data-expand="' + r.addr + '" aria-expanded="' + open + '">' +
+              '<span class="sym">' + esc(r.sym) + '</span> <span class="co">' + esc(r.stock.replace(/c$/, "")) + '</span>' +
+              '<span class="caret">' + (open ? "&#9662;" : "&#9656;") + '</span></button>' +
+            '<span class="n">' + chgTxt(r) + '</span>' +
+            '<span class="n co">' + money(r.real, 0) + '</span>' +
+            '<span class="side-btns"><button class="btn small" data-buy="' + r.addr + '">Buy</button>' +
+              (held && held > BigInt(0) ? '<button class="btn ghost small" data-sell="' + r.addr + '">Sell</button>' : '') + '</span>' +
+            '</div>' +
+            (open ? detail(r) : '') +
+            (m.open && m.open.addr === r.addr ? '<div class="side-form">' + panel(r) + '</div>' : '') +
+            '</div>';
+        }).join("") +
+        (rows.length > SIDE_ROWS ? '<button class="side-more" id="side-more">' +
+          (m.showAll ? 'Show fewer' : 'Show all ' + rows.length) + '</button>' : '') +
+        '</div>';
     }
     var mins = m.at ? Math.max(1, Math.round((Date.now() - Date.parse(m.at)) / 6e4)) : null;
-    html += '<p class="co" style="margin-top:8px">' + m.pools.toLocaleString("en-US") + ' pools pair a token with these stocks; ' +
-      m.traded + ' of the tokens traded in the last 24 hours, ' + m.list.length + ' with real money in them' +
+    html += '<p class="co" style="margin-top:8px">Tokens launched in a pool against one of the stocks; most such pools are dead and not listed. ' +
+      '<b>Proven</b>: a week old or more, $2K+ of real money, $500+ traded in 24 hours, 10+ trades from 5+ buyers, ' +
+      'a chart that has not lost 70% from its weekly high. <b>New</b>: under a week — high risk. ' +
+      'Real money: the stock side of the pool only. ' +
+      m.pools.toLocaleString("en-US") + ' pools pair a token with these stocks; ' + m.traded + ' traded in the last 24 hours' +
       (m.cut ? '; ' + m.cut + ' left out of Proven because the chart collapsed' : '') +
-      (mins !== null ? '. List built ' + mins + ' min ago' : '') +
-      '. Pools from GeckoTerminal and DexScreener, swaps routed by KyberSwap with builder code bc_mrkwu2m0.</p>';
+      (mins !== null ? '. List built ' + (mins < 120 ? mins + ' min' : Math.round(mins / 60) + ' h') + ' ago' : '') + '. ' +
+      (m.account ? 'Wallet ' + m.account.slice(0, 6) + '…' + m.account.slice(-4) + '.'
+                 : '<a href="#" id="memes-wallet">Connect a wallet</a> to see Sell for what you hold.') + '</p>';
     el.innerHTML = html;
     bind();
   }
@@ -423,12 +378,23 @@
   }
 
   function bind() {
-    var el = $("memes");
+    var el = $("memes-side");
     Array.prototype.forEach.call(el.querySelectorAll("[data-view]"), function (b) {
-      b.addEventListener("click", function () { m.view = b.getAttribute("data-view"); m.open = null; render(); });
+      b.addEventListener("click", function () {
+        if (m.open && m.open.busy) return;
+        m.view = b.getAttribute("data-view"); m.open = null; m.expand = null; m.showAll = false; render();
+      });
     });
     if ($("memes-sort")) $("memes-sort").addEventListener("change", function () { m.sort = this.value; render(); });
-    if ($("memes-wallet")) $("memes-wallet").addEventListener("click", function () {
+    Array.prototype.forEach.call(el.querySelectorAll("[data-expand]"), function (b) {
+      b.addEventListener("click", function () {
+        var addr = b.getAttribute("data-expand");
+        m.expand = m.expand === addr ? null : addr; render();
+      });
+    });
+    if ($("side-more")) $("side-more").addEventListener("click", function () { m.showAll = !m.showAll; render(); });
+    if ($("memes-wallet")) $("memes-wallet").addEventListener("click", function (e) {
+      e.preventDefault();
       connect().then(function (from) { setAccount(from); })
         .catch(function (e) { m.error = (e && e.message) || String(e); render(); });
     });
