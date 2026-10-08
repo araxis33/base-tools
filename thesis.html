@@ -243,6 +243,8 @@ footer{border-top:1px solid var(--border); margin-top:30px; padding:22px 0 40px;
 .side-stats b{font-weight:600; font-size:13.5px}
 .side-chart{display:flex; align-items:center; gap:10px; margin-bottom:6px}
 .side-form{padding:0 10px 10px}
+tr.other td{opacity:.85}
+.tbl-wrap .side-more{border-top:1px solid var(--border)}
 .side-more{display:block; width:100%; background:none; border:0; color:var(--accent); cursor:pointer; text-align:left; padding:11px 14px; font:inherit; font-size:13.5px}
 @media (max-width:520px){ .side-row{grid-template-columns:minmax(0,1fr) 54px 70px auto; gap:8px; padding:9px 10px} .side-stats{grid-template-columns:repeat(2,minmax(0,1fr))} }
 .memes-bar{display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin:0 0 12px}
@@ -403,6 +405,7 @@ var state = {
   realTried:false,   // the real prices have been asked for at least once
   mult:{},           // symbol -> shares per token (dividends and splits move it off 1)
   showAll:false,     // the weights list shows every stock, not just the basket
+  allStocks:false,   // the stocks table under What you get lists every stock, not just the basket
   touched:{},        // stocks dragged since the basket was set, kept in view at 0
   pay:"USDC"         // what the basket is paid with: USDC, or ETH straight from the wallet
 };
@@ -779,7 +782,33 @@ function renderResult(){
       '<td class="r"><a class="buy" href="' + buyUrl + '" target="_blank" rel="noopener">Buy</a></td>' +
       '</tr>';
   });
-  html += '</tbody></table></div>';
+
+  /* The rest of the 36, like the memes beside it (his request 08.10): price, pool and Buy for every stock,
+     deepest first; they join the basket only when he drags them in above. */
+  var inRows = {};
+  rows.forEach(function(r){ inRows[r.t.s] = true; });
+  var others = TOKENS.filter(function(t){ return !inRows[t.s] && state.data[t.s]; })
+    .sort(function(a, b){ return state.data[b.s].deep.liq - state.data[a.s].deep.liq; });
+  if(state.allStocks){
+    others.forEach(function(t){
+      var d = state.data[t.s], bad = priceCheck(t.s);
+      html += '<tr class="other">' +
+        '<td><span class="sym">' + t.s + '</span><div class="co">' + esc(t.co) + '</div>' +
+          '<div class="co"><a href="/stocks.html#' + t.s + '">Full check &rarr;</a></div></td>' +
+        '<td class="n r co">—</td><td class="n r co">—</td>' +
+        '<td class="n r">' + money(d.deep.price, 2) + '</td>' +
+        '<td><a href="' + d.deep.url + '" target="_blank" rel="noopener">' + esc(d.deep.dex) + '</a>' +
+          '<div class="co">' + money(d.deep.liq, 0) + ' deep · ' + d.pools + ' pools</div></td>' +
+        '<td class="n r co">—</td>' +
+        '<td class="n r">' + (bad ? '<span class="pill red" title="' + esc(bad) + '" style="white-space:normal;text-align:center;line-height:1.2">not<br>buyable</span>'
+          : '<span class="pill ' + (d.gap >= 3 ? "red" : d.gap >= 0.5 ? "yellow" : "green") + '">' + (d.gap >= 0.5 ? "+" : "") + d.gap.toFixed(2) + '%</span>') + '</td>' +
+        '<td class="r">' + (bad ? '' : '<a class="buy" href="https://aerodrome.finance/swap?from=' + USDC + '&to=' + t.a + '" target="_blank" rel="noopener">Buy</a>') + '</td>' +
+        '</tr>';
+    });
+  }
+  html += '</tbody></table>' +
+    (others.length ? '<button class="side-more" id="stocks-more">' + (state.allStocks ? 'Show only the basket' : 'Show all ' + (rows.length + others.length)) + '</button>' : '') +
+    '</div>';
 
   if(overpay > 0.005){
     html += '<div class="savings">' +
@@ -824,6 +853,8 @@ function renderResult(){
   $("card").addEventListener("click", function(){
     downloadCard({ rows:cardRows, amt:spent, overpay:overpay, overpayPct:overpayPct });
   });
+
+  if($("stocks-more")) $("stocks-more").addEventListener("click", function(){ state.allStocks = !state.allStocks; renderResult(); });
 
   $("share").addEventListener("click", function(){
     var url = shareUrl();
