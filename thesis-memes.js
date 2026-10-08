@@ -183,7 +183,7 @@
               '<span class="caret">' + (open ? "&#9662;" : "&#9656;") + '</span></button>' +
             '<span class="n">' + chgTxt(r) + '</span>' +
             '<span class="n co">' + money(r.real, 0) + '</span>' +
-            '<span class="side-btns"><button class="btn small" data-buy="' + r.addr + '">Buy</button>' +
+            '<span class="side-btns"><button class="buy" data-buy="' + r.addr + '">Buy</button>' +
               (held && held > BigInt(0) ? '<button class="btn ghost small" data-sell="' + r.addr + '">Sell</button>' : '') + '</span>' +
             '</div>' +
             (open ? detail(r) : '') +
