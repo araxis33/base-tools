@@ -451,7 +451,14 @@ const CK = (() => {
     const add = (f, pts) => up.push([f, pts]);
     const minus = (f, pts) => down.push([f, pts]);
     const hpRes = hp.honeypotResult || {}, sim = hp.simulationResult || {};
-    if (hpRes.isHoneypot || flag('is_honeypot')) hard.push([['honeypot'], 10]);
+    // 09.10.2026: honeypot.is said "HONEYPOT DETECTED" for SURPLUS while its own
+    // simulation sold at 0% tax, GoPlus found nothing, and the token had ~800 sells
+    // in 24 hours on a $1.1M pool. One source's label against what the chain shows
+    // is not a trap: it stays a trap only when the sells don't actually go through.
+    const simSells = hp.simulationSuccess === true && (num(sim.sellTax) ?? 100) <= 10;
+    const chainSells = String(gp.is_honeypot) === '0' && (d.dsSells || 0) >= 50;
+    if (flag('is_honeypot') || (hpRes.isHoneypot && !(simSells && chainSells))) hard.push([['honeypot'], 10]);
+    else if (hpRes.isHoneypot) add(['hpDisputed', d.dsSells], 1);
     let sellTax = num(sim.sellTax);
     if (sellTax === null && gp.sell_tax !== undefined && gp.sell_tax !== '') sellTax = (num(gp.sell_tax) || 0) * 100;
     if (sellTax !== null && sellTax > 30) hard.push([['sellTaxHigh', sellTax], 10]);
