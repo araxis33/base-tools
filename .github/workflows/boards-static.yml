@@ -1,0 +1,40 @@
+name: boards static
+
+# Once a day: which CoinGecko coins are native to Base, and the 36 stock tokens.
+# The Worker that builds the homepage boards every 15 minutes reads this file
+# from the boards-data branch (see scripts/boards-static.js for why it is split).
+on:
+  schedule:
+    - cron: "23 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency: boards-static
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/boards-static.js > boards-static.json
+      - name: Replace the file on the boards-data branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git fetch origin boards-data; then
+            git worktree add data origin/boards-data
+            git -C data checkout -B boards-data
+          else
+            git worktree add --detach data
+            git -C data checkout --orphan boards-data
+            git -C data rm -rfq .
+          fi
+          cp boards-static.json data/boards-static.json
+          git -C data add boards-static.json
+          git -C data commit -qm "Boards static $(date -u +%Y-%m-%d)" || exit 0
+          git -C data push origin boards-data

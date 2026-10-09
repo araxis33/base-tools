@@ -8,3 +8,8 @@ compatibility_date = "2026-09-01"
 [[kv_namespaces]]
 binding = "QUOTA"
 id = "ccbecb5c11c64392828de3692e40f705"
+
+# Homepage boards (boards.js): rebuilt every 15 minutes, stock pools every hour.
+# Keep these two strings equal to BOARDS_CRON and POOLS_CRON.
+[triggers]
+crons = ["*/15 * * * *", "7 * * * *"]

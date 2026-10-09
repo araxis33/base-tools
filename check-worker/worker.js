@@ -11,8 +11,11 @@
 //   POST /pay {tx}            -> { ok, added, credits }  credits paid checks (0.1 USDC each)
 //   GET  /cg?p=<path>         -> CoinGecko answer for the homepage boards, cached
 //   GET  /shares?t=NVDA,AAPL  -> real share prices for stocks.html, cached 60 s
+//   GET  /boards              -> the four homepage boards, rebuilt on a timer (boards.js)
 //
 // Secrets: GEMINI_API_KEY, GROQ_API_KEY, TAVILY_API_KEY (optional). KV: QUOTA.
+
+import { BOARDS_CRON, POOLS_CRON, refreshBoards, refreshPools, boardsResponse } from './boards.js';
 
 const LIMIT = 3;
 const ORIGINS = ['https://deftools.xyz', 'https://www.deftools.xyz', 'http://localhost:8765'];
@@ -204,6 +207,11 @@ export default {
     if (req.method === 'OPTIONS') return new Response(null, { headers: cors(req) });
     if (url.pathname === '/cg') return coingecko(req, ctx, url.searchParams.get('p') || '', env);
     if (url.pathname === '/shares') return shares(req, ctx, url.searchParams.get('t') || '');
+    if (url.pathname === '/boards') {
+      const body = await boardsResponse(env);
+      if (!body) return json(req, { error: 'not built yet' }, 503);
+      return new Response(body, { headers: { 'content-type': 'application/json', 'cache-control': 'public, max-age=60', ...cors(req) } });
+    }
     const ip = ipOf(req);
     const client = clientOf(req);
     const owner = isOwner(req, env);
@@ -243,6 +251,11 @@ export default {
       }
     }
     return json(req, { error: 'not found' }, 404);
+  },
+
+  async scheduled(event, env, ctx) {
+    if (event.cron === POOLS_CRON) ctx.waitUntil(refreshPools(env));
+    else if (event.cron === BOARDS_CRON) ctx.waitUntil(refreshBoards(env));
   },
 };
 
