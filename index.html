@@ -706,7 +706,7 @@
     <div class="section-head">
       <div>
         <div class="section-title">Live token boards</div>
-        <div class="section-sub">Losers &amp; Gainers scan every Base-native token live · Blue-chips are hand-picked · Stocks are priced from their deepest pool · Prices for the first three by <a href="https://www.coingecko.com/en/api" target="_blank" rel="noopener">CoinGecko</a></div>
+        <div class="section-sub">Updated every 15 minutes · Losers &amp; Gainers cover every Base-native token · Blue-chips are hand-picked · Stocks are priced from their deepest pool · Prices for the first three by <a href="https://www.coingecko.com/en/api" target="_blank" rel="noopener">CoinGecko</a></div>
       </div>
       <div class="head-side">
         <div class="updated" id="trend-updated">loading…</div>
@@ -966,7 +966,6 @@
   </div>
 </div>
 
-<script src="thesis-core.js"></script>
 <script>
 // ---------- Directory data ----------
 // Muted category colors — visible but not loud
@@ -1149,72 +1148,10 @@ renderFilters();
 renderGrid("All");
 
 // ---------- Live token boards ----------
-// No fixed token list. Every board is built live from CoinGecko's "base-ecosystem"
-// category, restricted to tokens that are actually native to Base (see isNativeToBase),
-// so any real Base token with real 24h volume/price data shows up automatically.
-
-// Tickers that collide with globally multi-chain assets (stablecoins, wrapped BTC/ETH,
-// blue-chip DeFi tokens available on many chains). These are excluded even when the
-// specific CoinGecko listing happens to be Base-only, because the underlying asset
-// is not a Base-native project.
-const NON_NATIVE_SYMBOLS = new Set([
-  "WETH","WBTC","CBBTC","USDC","USDBC","USDT","USDE","DAI","PYUSD","EURC",
-  "SOL","BTC","ETH","BNB","LINK","AAVE","UNI","WSTETH","CBETH",
-]);
-
-function isNativeToBase(coin){
-  if (!coin.platforms || !coin.platforms.base) return false;
-  const chains = Object.keys(coin.platforms).filter(k => k && coin.platforms[k]);
-  return chains.length === 1;
-}
-
-// Blue-chips is a hand-picked list of long-established Base projects, not a live
-// market-cap ranking — a fresh/volatile token can briefly out-cap a real blue chip,
-// which isn't what "most stable" means here. Revisit this list occasionally.
-const BLUE_CHIP_TOKENS = [
-  { id:"aerodrome-finance", contract:"0x940181a94a35a4569e4529a3cdfb74e38fd98631" },
-  { id:"virtual-protocol",  contract:"0x0b3e328455c4059eeb9e3f84b5543f74e24e7e1b" },
-  { id:"morpho",            contract:"0xbaa5cc21fd487b8fcc2f632f3f4e8d37262a0842" },
-  { id:"based-brett",       contract:"0x532f27101965dd16442e59d40670faf5ebb142e4" },
-  { id:"toshi",             contract:"0xac1bd2486aaf3b5c0fc3fd868558b082a531b2b4" },
-  { id:"degen-base",        contract:"0x4ed4e862860bed51a9570b96d89af5e1b0efefed" },
-  { id:"zora",              contract:"0x1111111111166b7fe7bd91427724b487980afc69" },
-  { id:"higher",            contract:"0x0578d8a44db98b23bf096a382e016e29a5ce0ffe" },
-  { id:"venice-token",      contract:"0xacfe6019ed1a7dc6f7b508c02d1b04ec88cc21bf" },
-  { id:"kaito",             contract:"0x98d0baa52b2d063e780de12f615f963fe8537553" },
-  { id:"bankercoin-2",      contract:"0x22af33fe49fd1fa80c7149773dde5890d3c76f3b" },
-];
-
-const PLATFORMS_CACHE_KEY = "basetools_platforms_v1";
-const PLATFORMS_CACHE_TTL_MS = 24 * 60 * 60 * 1000; // platform mapping barely changes, cache a day
-
-const CACHE_KEY = "basetools_boards_v7";
-
-// Without a floor the worst drop of the day is usually a token nobody traded:
-// a few hundred dollars of volume moves its price further than any real sell-off.
-const LOSER_MIN_VOLUME_USD = 25000;
-
-// The tokenized equities on Base, from the one list the whole site shares
-// (thesis-core.js, checked against base.org every day). CoinGecko does not
-// carry them, so unlike the other three boards their prices come straight
-// from the pools.
-const STOCK_TOKENS = ThesisCore.TOKENS.map(t => ({ symbol: t.s, contract: t.a }));
-// Coinbase lists 36 of them, most with almost empty pools. The board shows the
-// ten that actually trade; the rest are one click away on Stock Check.
-const STOCK_BOARD_ROWS = 10;
-const CACHE_TTL_MS = 5 * 60 * 1000;
-
-// Every board read and wrote localStorage directly. In a private window, or
-// with site data blocked, the *getter itself* throws — which happened before
-// the first fetch and left the boards stuck on "Loading…" with no error state
-// and no retry button. Storage is a cache here, never the source of truth, so
-// losing it has to be silent.
-function storageGet(key){
-  try { return localStorage.getItem(key); } catch(e){ return null; }
-}
-function storageSet(key, value){
-  try { localStorage.setItem(key, value); } catch(e){}
-}
+// Built by our Worker every 15 minutes (check-worker/boards.js) and served as one
+// ready file. The page used to ask CoinGecko and DexScreener itself, ~80 requests
+// per visit, and a slow or rate-limited answer left a board on "…" or empty.
+const BOARDS_URL = "https://deftools-check.araxis67.workers.dev/boards";
 
 // Symbols, logo URLs and contract addresses come from CoinGecko, not from this
 // file, and they land inside HTML attributes and text. Escaping them keeps a
@@ -1309,97 +1246,6 @@ async function fetchWithTimeout(url, ms){
   }
 }
 
-// CoinGecko through the Worker first: it keeps one shared copy for every visitor,
-// so the free API's per-address limit stops freezing the boards. If the Worker has
-// no copy yet, ask CoinGecko straight from this browser, as before.
-const CG_PROXY = "https://deftools-check.araxis67.workers.dev/cg?p=";
-async function fetchCoinGecko(path, ms){
-  try {
-    const res = await fetchWithTimeout(CG_PROXY + encodeURIComponent(path), ms);
-    if (res.ok) return res;
-  } catch(e){}
-  return fetchWithTimeout("https://api.coingecko.com/api/v3/" + path, ms);
-}
-
-// id -> base contract address, for every coin whose only platform is Base.
-async function fetchNativeBaseMap(){
-  const cachedRaw = storageGet(PLATFORMS_CACHE_KEY);
-  if (cachedRaw){
-    try {
-      const cached = JSON.parse(cachedRaw);
-      if ((Date.now() - cached.ts) < PLATFORMS_CACHE_TTL_MS) return cached.data;
-    } catch(e){}
-  }
-  const res = await fetchCoinGecko("coins/list?include_platform=true", 12000);
-  if (!res.ok) throw new Error("http " + res.status);
-  const list = await res.json();
-  const map = {};
-  for (const c of list){
-    if (isNativeToBase(c)) map[c.id] = c.platforms.base;
-  }
-  storageSet(PLATFORMS_CACHE_KEY, JSON.stringify({ ts: Date.now(), data: map }));
-  return map;
-}
-
-async function fetchMarketsOnce(nativeMap){
-  const res = await fetchCoinGecko(
-    "coins/markets?vs_currency=usd&category=base-ecosystem&order=volume_desc&per_page=250&page=1&price_change_percentage=24h",
-    9000
-  );
-  if (!res.ok) throw new Error("http " + res.status);
-  const json = await res.json();
-  // Tokenized stocks have their own board below; on 07.10 MUc and SNDKc showed up among the
-  // Gainers because CoinGecko files them under base-ecosystem too. Dropped by address and by name.
-  const stockAddr = new Set(STOCK_TOKENS.map(t => t.contract.toLowerCase()));
-  const tokens = json
-    .filter(m => nativeMap[m.id] && m.total_volume > 0 && !NON_NATIVE_SYMBOLS.has((m.symbol||"").toUpperCase()))
-    .filter(m => !stockAddr.has(String(nativeMap[m.id]).toLowerCase()) && !/tokeni[sz]ed stock/i.test(m.name || ""))
-    .map(m => ({
-      symbol: (m.symbol || "").toUpperCase(),
-      logo: m.image,
-      contract: nativeMap[m.id],
-      price: m.current_price,
-      change24h: m.price_change_percentage_24h,
-      volume24h: m.total_volume,
-      marketCap: m.market_cap,
-    }));
-  return dropUntradableOnBase(tokens);
-}
-
-// CoinGecko's volume counts centralized exchanges. A token can show millions
-// traded on BingX or LBank and have no pool on Base at all (Bullbit, 06.10:
-// $11.9M "volume", zero pools, #4 on Gainers with a Buy button that cannot
-// work). Only the tokens that can reach a board are checked: each one must have
-// a Base pool at least this deep, or it is dropped. A token whose check could
-// not be made (DexScreener down) is kept — an outage should not empty the board.
-const BOARD_MIN_POOL_LIQUIDITY_USD = 50000;
-const BOARD_CANDIDATES = 20;
-async function dropUntradableOnBase(tokens){
-  const moving = tokens.filter(t=>Number.isFinite(t.change24h));
-  const gainers = [...moving].sort((a,b)=>b.change24h - a.change24h).slice(0, BOARD_CANDIDATES);
-  const losers = moving
-    .filter(t=>t.change24h < 0 && t.volume24h >= LOSER_MIN_VOLUME_USD)
-    .sort((a,b)=>a.change24h - b.change24h).slice(0, BOARD_CANDIDATES);
-  const candidates = [...new Set([...gainers, ...losers])];
-  const dead = new Set();
-  let answered = 0;
-  await Promise.all(candidates.map(t =>
-    fetchWithTimeout("https://api.dexscreener.com/latest/dex/tokens/" + t.contract, 9000)
-      .then(r => r.ok ? r.json() : null)
-      .then(j => {
-        if (!j) return;
-        if (j.pairs && j.pairs.length) answered++;
-        const pool = pickPoolPrice(j.pairs, t.contract);
-        if (!pool || pool.liquidity < BOARD_MIN_POOL_LIQUIDITY_USD) dead.add(t);
-      })
-      .catch(()=>{})
-  ));
-  // 07.10: DexScreener answered every token with "pairs": null for hours. "No pools for anything,
-  // AERO included" is an outage, not twenty dead tokens: keep them all rather than empty the boards.
-  if (!answered) return tokens;
-  return tokens.filter(t=>!dead.has(t));
-}
-
 // The honest price for a token given every pool DexScreener knows about it.
 // These tokens have live pools quoting forty times the real price, and the
 // reported liquidity of such a pool is inflated by that same wrong price — so
@@ -1430,100 +1276,6 @@ function pickPoolPrice(pairs, contract, chainId){
     change24h: (deep.priceChange && deep.priceChange.h24),
     volume24h: (deep.volume && deep.volume.h24) || 0,
   };
-}
-
-async function fetchStocks(){
-  // One request per token: the batched endpoint caps its reply at 30 pairs, and
-  // these tokens have far more pools than that between them, so asking for all
-  // of them at once silently drops whichever tokens fall off the end.
-  const results = await Promise.all(STOCK_TOKENS.map(t =>
-    fetchWithTimeout("https://api.dexscreener.com/latest/dex/tokens/" + t.contract, 9000)
-      .then(r => r.ok ? r.json() : null)
-      .then(j => ({ t, pairs: (j && j.pairs) || [] }))
-      .catch(()=>({ t, pairs: [] }))
-  ));
-  const out = results.map(({t, pairs})=>{
-    const pool = pickPoolPrice(pairs, t.contract);
-    if (!pool) return null;
-    return {
-      symbol: t.symbol,
-      logo: pool.logo,
-      contract: t.contract,
-      price: pool.price,
-      change24h: pool.change24h,
-      volume24h: pool.volume24h,
-      marketCap: 0,
-    };
-  }).filter(Boolean);
-  return out
-    .sort((a,b)=>(b.volume24h||0) - (a.volume24h||0))
-    .slice(0, STOCK_BOARD_ROWS)
-    .sort((a,b)=>(b.change24h||0) - (a.change24h||0));
-}
-
-async function fetchBlueChips(){
-  const ids = BLUE_CHIP_TOKENS.map(t=>t.id).join(",");
-  const res = await fetchCoinGecko(
-    `coins/markets?vs_currency=usd&ids=${ids}&price_change_percentage=24h`,
-    9000
-  );
-  if (!res.ok) throw new Error("http " + res.status);
-  const json = await res.json();
-  return BLUE_CHIP_TOKENS.map(t=>{
-    const m = json.find(x=>x.id === t.id);
-    if (!m) return null;
-    return {
-      symbol: (m.symbol || "").toUpperCase(),
-      logo: m.image,
-      contract: t.contract,
-      price: m.current_price,
-      change24h: m.price_change_percentage_24h,
-      volume24h: m.total_volume,
-      marketCap: m.market_cap,
-    };
-  }).filter(Boolean).sort((a,b)=>(b.marketCap||0) - (a.marketCap||0));
-}
-
-// The market calls used to be a Promise.all, so a single rate-limited request
-// took down every board — including the ones the other calls had already paid
-// for. They are settled independently now: a complete result still returns
-// straight away, and a half-loaded one is only accepted once the retries are
-// spent, so a transient failure still gets its second chance.
-async function fetchBoardsDataWithRetry(){
-  let lastErr, partial = null;
-  for (const delay of [0, 800, 2000]){
-    if (delay) await new Promise(r=>setTimeout(r, delay));
-
-    let nativeMap;
-    try { nativeMap = await fetchNativeBaseMap(); }
-    catch(e){ lastErr = e; continue; }
-
-    // Stocks come from a different source than the other three, so they fail
-    // on their own schedule. One dead board beats four.
-    const [markets, chips, stocks] = await Promise.allSettled([
-      fetchMarketsOnce(nativeMap),
-      fetchBlueChips(),
-      fetchStocks(),
-    ]);
-    const taken = r => r.status === "fulfilled" ? r.value : null;
-    const data = {
-      dynamicTokens: taken(markets),
-      blueChips: taken(chips),
-      stocks: taken(stocks),
-    };
-
-    if (data.dynamicTokens && data.blueChips && data.stocks){
-      data.complete = true;
-      return data;
-    }
-    lastErr = markets.reason || chips.reason || stocks.reason || lastErr;
-    if (data.dynamicTokens || data.blueChips || data.stocks){
-      data.complete = false;
-      partial = data;
-    }
-  }
-  if (partial) return partial;
-  throw lastErr;
 }
 
 function renderColumn(elId, items, emptyMsg){
@@ -1568,52 +1320,29 @@ function renderColumn(elId, items, emptyMsg){
   bindCopyButtons(el);
 }
 
-function renderBoards(data, label){
-  const tokens = data.dynamicTokens;
-
-  // Any half may be absent when only some of the calls came back. renderColumn
-  // already draws the error-with-retry state for a null, so a board that did
-  // load is shown and a board that didn't says so on its own.
-  const byLosers = tokens && [...tokens]
-    .filter(t=>Number.isFinite(t.change24h) && t.change24h < 0 && t.volume24h >= LOSER_MIN_VOLUME_USD)
-    .sort((a,b)=>a.change24h - b.change24h)
-    .slice(0,10);
-  const byGainers = tokens && [...tokens].filter(t=>Number.isFinite(t.change24h)).sort((a,b)=>b.change24h - a.change24h).slice(0,10);
-
-  renderColumn("col-losers", byLosers, "Nothing down over the last 24h.");
-  renderColumn("col-gainers", byGainers);
-  renderColumn("col-bluechip", data.blueChips && data.blueChips.slice(0,10));
-  renderColumn("col-stocks", data.stocks);
-
-  document.getElementById("trend-updated").textContent = label;
+// Each board carries the time it was built: a board whose source failed on the
+// last run keeps its previous rows, so the stamp shows the oldest of the four.
+function renderBoards(data){
+  const items = b => b && b.items;
+  renderColumn("col-losers", items(data.losers), "Nothing down over the last 24h.");
+  renderColumn("col-gainers", items(data.gainers));
+  renderColumn("col-bluechip", items(data.bluechips));
+  renderColumn("col-stocks", items(data.stocks));
+  const times = [data.losers, data.gainers, data.bluechips, data.stocks].filter(Boolean).map(b => b.ts);
+  document.getElementById("trend-updated").textContent = times.length ? "updated " + ageLabel(Math.min(...times)) : "unavailable";
 }
 
 async function loadBoards(){
-  const cachedRaw = storageGet(CACHE_KEY);
-  let cached = null;
-  if (cachedRaw){
-    try { cached = JSON.parse(cachedRaw); } catch(e){}
-  }
-  if (cached && (Date.now() - cached.ts) < CACHE_TTL_MS){
-    renderBoards(cached.data, "cached · " + ageLabel(cached.ts));
-    return;
-  }
   try {
-    const data = await fetchBoardsDataWithRetry();
-    // A half-loaded result is worth showing but not worth pinning for the next
-    // five minutes: leaving it out of the cache lets the following visit retry.
-    if (data.complete) storageSet(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
-    renderBoards(data, data.complete ? "live · just now" : "live · partly unavailable");
+    const res = await fetchWithTimeout(BOARDS_URL, 9000);
+    if (!res.ok) throw new Error("http " + res.status);
+    renderBoards(await res.json());
   } catch(e){
-    if (cached){
-      renderBoards(cached.data, "cached · " + ageLabel(cached.ts) + " · offline");
-    } else {
-      renderColumn("col-losers", null);
-      renderColumn("col-gainers", null);
-      renderColumn("col-bluechip", null);
-      renderColumn("col-stocks", null);
-      document.getElementById("trend-updated").textContent = "unavailable";
-    }
+    renderColumn("col-losers", null);
+    renderColumn("col-gainers", null);
+    renderColumn("col-bluechip", null);
+    renderColumn("col-stocks", null);
+    document.getElementById("trend-updated").textContent = "unavailable";
   }
 }
 

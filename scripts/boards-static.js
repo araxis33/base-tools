@@ -5,11 +5,9 @@
 // barely changes from one day to the next, so it is worked out here instead and
 // handed to the Worker as a ~100 KB file on the boards-data branch.
 //
-// Writes JSON to stdout: { updated, native: {coingeckoId: baseAddress}, stocks: [{s, a}] }.
+// Writes JSON to stdout: { updated, native: {coingeckoId: baseAddress} }.
 // Run: node scripts/boards-static.js > boards-static.json
 "use strict";
-
-const { TOKENS } = require("../thesis-core.js");
 
 // A coin is native to Base when Base is its only chain. A bridged token lists
 // several platforms; this keeps the boards to projects that live here.
@@ -32,7 +30,7 @@ async function main() {
   // A list this short means CoinGecko answered with something else; better to
   // keep yesterday's file than to empty the boards.
   if (Object.keys(native).length < 500) throw new Error("only " + Object.keys(native).length + " Base-native coins; refusing to write");
-  const out = { updated: new Date().toISOString(), native, stocks: TOKENS.map((t) => ({ s: t.s, a: t.a.toLowerCase() })) };
+  const out = { updated: new Date().toISOString(), native };
   process.stdout.write(JSON.stringify(out));
 }
 

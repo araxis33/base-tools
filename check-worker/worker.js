@@ -15,7 +15,7 @@
 //
 // Secrets: GEMINI_API_KEY, GROQ_API_KEY, TAVILY_API_KEY (optional). KV: QUOTA.
 
-import { BOARDS_CRON, POOLS_CRON, refreshBoards, refreshPools, boardsResponse } from './boards.js';
+import { BOARDS_CRON, STOCKS_CRON, refreshBoards, refreshStocks, boardsResponse } from './boards.js';
 
 const LIMIT = 3;
 const ORIGINS = ['https://deftools.xyz', 'https://www.deftools.xyz', 'http://localhost:8765'];
@@ -254,8 +254,9 @@ export default {
   },
 
   async scheduled(event, env, ctx) {
-    if (event.cron === POOLS_CRON) ctx.waitUntil(refreshPools(env));
-    else if (event.cron === BOARDS_CRON) ctx.waitUntil(refreshBoards(env));
+    // The result goes to the log: `wrangler tail` shows why a board kept its old rows.
+    const run = event.cron === STOCKS_CRON ? refreshStocks(env) : event.cron === BOARDS_CRON ? refreshBoards(env) : null;
+    if (run) ctx.waitUntil(run.then((r) => console.log(event.cron, JSON.stringify(r)), (e) => console.log(event.cron, 'failed', e.message)));
   },
 };
 

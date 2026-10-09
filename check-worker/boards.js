@@ -4,24 +4,27 @@
 // rate-limited answer left a board on "…" or empty. Now the page reads one
 // ready file: GET /boards.
 //
-// The free Workers plan allows 10 ms of CPU per run, so the work is split by how
-// often it changes:
+// The free Workers plan allows 10 ms of CPU per run, so the work is split:
 //   - once a day (GitHub, scripts/boards-static.js): which coins are native to
-//     Base and the 36 stock tokens - the 4 MB CoinGecko list can't be parsed here;
-//   - once an hour (cron POOLS_CRON): the deepest honest pool of half the stocks;
-//   - every 15 minutes (cron BOARDS_CRON): prices from CoinGecko, the stocks'
-//     pools by address, and the liquidity check for tokens new to the boards
-//     (a verdict is kept 6 hours, so a run checks a handful, not forty).
+//     Base - the 4 MB CoinGecko list can't be parsed here;
+//   - every 15 minutes (cron BOARDS_CRON): Losers, Gainers and Blue-chips from
+//     CoinGecko, plus the liquidity check for tokens new to the boards (a verdict
+//     is kept 6 hours, so a run checks a handful, not forty);
+//   - every 15 minutes, five minutes later (cron STOCKS_CRON): the stocks board,
+//     one DexScreener request per stock, as the page used to do.
 // A part that fails keeps its last good board, with its own time.
 
+import core from '../thesis-core.js';
+
 export const BOARDS_CRON = '*/15 * * * *';
-export const POOLS_CRON = '7 * * * *';
+export const STOCKS_CRON = '5-59/15 * * * *';
+// The 36 Coinbase stock tokens, from the list the whole site shares.
+const STOCKS = core.TOKENS.map((t) => ({ s: t.s, a: t.a.toLowerCase() }));
 const STATIC_URL = 'https://raw.githubusercontent.com/araxis33/base-tools/boards-data/boards-static.json';
 const CG = 'https://api.coingecko.com/api/v3/';
 const DS = 'https://api.dexscreener.com/latest/dex/';
 const UA = { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130 Safari/537.36' };
 const KEY_BOARDS = 'boards:v1';
-const KEY_POOLS = 'boards:pools';
 const KEY_LIQ = 'boards:liq';
 
 // Tickers that collide with globally multi-chain assets (stablecoins, wrapped BTC/ETH,
@@ -61,7 +64,7 @@ export const BOARD_MIN_POOL_LIQUIDITY_USD = 50000;
 const BOARD_CANDIDATES = 20;
 const BOARD_ROWS = 10;
 const LIQ_TTL_MS = 6 * 3600 * 1000;
-const LIQ_CHECKS_PER_RUN = 12;
+const LIQ_CHECKS_PER_RUN = 8;
 // Coinbase lists 36 stocks, most with almost empty pools. The board shows the
 // ten that actually trade; the rest are one click away on Stock Check.
 const STOCK_BOARD_ROWS = 10;
@@ -141,11 +144,12 @@ export function boardsFrom(tokens, liq) {
   return { losers: losersOf(ok, BOARD_ROWS), gainers: gainersOf(ok, BOARD_ROWS) };
 }
 
-export function stockBoard(pairs, pools, stocks) {
-  const byPair = new Map((pairs || []).map((p) => [String(p.pairAddress).toLowerCase(), p]));
-  return stocks.map((t) => {
-    const p = pools[t.a] && byPair.get(pools[t.a]);
-    return p && parseFloat(p.priceUsd) > 0 ? rowFromPair(t.s, t.a, p) : null;
+// One DexScreener answer per stock -> the board: the ten most traded, by the
+// day's change. Each price comes from that stock's deepest honest pool.
+export function stockBoard(answers, stocks) {
+  return stocks.map((t, i) => {
+    const pick = pickPoolPrice(answers[i], t.a);
+    return pick ? rowFromPair(t.s, t.a, pick.pair) : null;
   }).filter(Boolean)
     .sort((a, b) => (b.volume24h || 0) - (a.volume24h || 0))
     .slice(0, STOCK_BOARD_ROWS)
@@ -160,42 +164,28 @@ async function getJson(url, headers) {
 const cgKey = (env) => (env.CG_KEY ? { 'x-cg-demo-api-key': env.CG_KEY } : {});
 const readKV = async (env, key) => { try { return JSON.parse((await env.QUOTA.get(key)) || 'null'); } catch (e) { return null; } };
 
-// Every hour, half of the stock tokens (even hours one half, odd hours the
-// other): the deepest honest pool of each. All 36 in one run parse ~270 KB of
-// DexScreener answers, ~8 ms, too close to the 10 ms limit; a pool that is the
-// deepest today is still the deepest two hours later. Even the very first run
-// does only its half: a run over the limit would fail every hour the same way.
-// When DexScreener answers nothing, keep the old map.
-export async function refreshPools(env, now = Date.now()) {
-  const st = await getJson(STATIC_URL);
-  const old = (await readKV(env, KEY_POOLS)) || {};
-  const pools = { ...old };
-  const half = new Date(now).getUTCHours() % 2;
-  const todo = st.stocks.filter((t, i) => i % 2 === half);
-  let answered = 0;
-  await Promise.all(todo.map(async (t) => {
-    try {
-      const j = await getJson(DS + 'tokens/' + t.a);
-      if (j.pairs && j.pairs.length) answered++;
-      const pick = pickPoolPrice(j.pairs, t.a);
-      if (pick) pools[t.a] = String(pick.pair.pairAddress).toLowerCase();
-    } catch (e) { /* keep the old pool for this one */ }
-  }));
-  if (answered) await env.QUOTA.put(KEY_POOLS, JSON.stringify(pools));
-  return { answered, pools: Object.keys(pools).length };
+// The pairs-by-address endpoint answers Cloudflare's shared addresses with 429
+// (09.10.2026), and the batched tokens endpoint picks a shallower pool for 14 of
+// the 36, so each stock gets its own tokens request: 36, under the plan's 50.
+export async function refreshStocks(env, now = Date.now()) {
+  const answers = await Promise.all(STOCKS.map((t) => getJson(DS + 'tokens/' + t.a).then((j) => j.pairs || [], () => [])));
+  const rows = stockBoard(answers, STOCKS);
+  if (!rows.length) return { errors: ['stocks: dexscreener returned no stock pools'] };
+  const out = (await readKV(env, KEY_BOARDS)) || {};
+  out.stocks = { ts: now, items: rows };
+  await env.QUOTA.put(KEY_BOARDS, JSON.stringify(out));
+  return { errors: [], rows: rows.length };
 }
 
 // Every 15 minutes: the boards themselves.
 export async function refreshBoards(env, now = Date.now()) {
-  const prev = (await readKV(env, KEY_BOARDS)) || {};
-  const out = { ...prev };
   const errors = [];
   const st = await getJson(STATIC_URL);
 
-  const [markets, chips, stocks] = await Promise.allSettled([
+  const [markets, chips] = await Promise.allSettled([
     (async () => {
       const m = await getJson(CG + 'coins/markets?vs_currency=usd&category=base-ecosystem&order=volume_desc&per_page=250&page=1&price_change_percentage=24h', cgKey(env));
-      const tokens = boardTokens(m, st.native, st.stocks);
+      const tokens = boardTokens(m, st.native, STOCKS);
       const liq = (await readKV(env, KEY_LIQ)) || {};
       const due = candidates(tokens).filter((t) => !liq[t.contract] || now - liq[t.contract][1] > LIQ_TTL_MS).slice(0, LIQ_CHECKS_PER_RUN);
       const fresh = {};
@@ -225,33 +215,17 @@ export async function refreshBoards(env, now = Date.now()) {
           change24h: x.price_change_percentage_24h, volume24h: x.total_volume, marketCap: x.market_cap };
       }).filter(Boolean).sort((a, b) => (b.marketCap || 0) - (a.marketCap || 0)).slice(0, BOARD_ROWS);
     })(),
-    (async () => {
-      const pools = (await readKV(env, KEY_POOLS)) || {};
-      const addrs = st.stocks.map((t) => pools[t.a]).filter(Boolean);
-      if (!addrs.length) throw new Error('no stock pools yet');
-      const pairs = [];
-      // The pairs endpoint takes up to 30 addresses at once.
-      for (let i = 0; i < addrs.length; i += 30) {
-        const j = await getJson(DS + 'pairs/base/' + addrs.slice(i, i + 30).join(','));
-        pairs.push(...(j.pairs || []));
-      }
-      const rows = stockBoard(pairs, pools, st.stocks);
-      if (!rows.length) throw new Error('dexscreener returned no stock pairs');
-      return rows;
-    })(),
   ]);
 
-  const take = (name, r) => {
-    if (r.status === 'fulfilled') out[name] = { ts: now, items: r.value };
-    else errors.push(name + ': ' + (r.reason && r.reason.message));
-  };
+  const fresh = {};
   if (markets.status === 'fulfilled') {
-    out.losers = { ts: now, items: markets.value.losers };
-    out.gainers = { ts: now, items: markets.value.gainers };
+    fresh.losers = { ts: now, items: markets.value.losers };
+    fresh.gainers = { ts: now, items: markets.value.gainers };
   } else errors.push('markets: ' + (markets.reason && markets.reason.message));
-  take('bluechips', chips);
-  take('stocks', stocks);
-  out.ts = now;
+  if (chips.status === 'fulfilled') fresh.bluechips = { ts: now, items: chips.value };
+  else errors.push('bluechips: ' + (chips.reason && chips.reason.message));
+  // Read just before writing: the stocks run may have saved its board meanwhile.
+  const out = { ...((await readKV(env, KEY_BOARDS)) || {}), ...fresh };
   await env.QUOTA.put(KEY_BOARDS, JSON.stringify(out));
   return { errors };
 }

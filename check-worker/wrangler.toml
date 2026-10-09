@@ -9,7 +9,7 @@ compatibility_date = "2026-09-01"
 binding = "QUOTA"
 id = "ccbecb5c11c64392828de3692e40f705"
 
-# Homepage boards (boards.js): rebuilt every 15 minutes, stock pools every hour.
-# Keep these two strings equal to BOARDS_CRON and POOLS_CRON.
+# Homepage boards (boards.js): every 15 minutes, the stocks board 5 minutes later.
+# Keep these two strings equal to BOARDS_CRON and STOCKS_CRON.
 [triggers]
-crons = ["*/15 * * * *", "7 * * * *"]
+crons = ["*/15 * * * *", "5-59/15 * * * *"]

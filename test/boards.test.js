@@ -64,17 +64,20 @@ test("candidates alternate gainers and losers, best placed first", async () => {
   assert.strictEqual(c.length, 4);
 });
 
-test("stock board: ten most traded, ordered by the day's change", async () => {
+test("stock board: ten most traded, ordered by the day's change, priced from the honest pool", async () => {
   const { stockBoard } = await load();
-  const stocks = [], pools = {}, pairs = [];
+  const stocks = [], answers = [];
   for (let i = 0; i < 12; i++) {
-    const a = "0xs" + i, p = "0xp" + i;
+    const a = "0xs" + i;
     stocks.push({ s: "S" + i, a });
-    pools[a] = p;
-    pairs.push(pair({ token: a, price: 10, liq: 1, pair: p, vol: i, ch: i % 3 }));
+    answers.push([pair({ token: a, price: 10, liq: 1000, pair: "0xp" + i, vol: i, ch: i % 3 }),
+      pair({ token: a, price: 10.2, liq: 10, pair: "0xq" + i }),
+      pair({ token: a, price: 400, liq: 9e9, pair: "0xtrap" + i, vol: 1e9, ch: 50 })]);
   }
-  const rows = stockBoard(pairs, pools, stocks);
+  answers[5] = [];
+  const rows = stockBoard(answers, stocks);
   assert.strictEqual(rows.length, 10);
-  assert.ok(!rows.some((r) => r.symbol === "S0" || r.symbol === "S1"));
+  assert.ok(!rows.some((r) => r.symbol === "S5" || r.symbol === "S0"));
+  assert.ok(rows.every((r) => r.price === 10));
   for (let i = 1; i < rows.length; i++) assert.ok(rows[i - 1].change24h >= rows[i].change24h);
 });

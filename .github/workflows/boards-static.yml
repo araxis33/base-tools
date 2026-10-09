@@ -1,6 +1,6 @@
 name: boards static
 
-# Once a day: which CoinGecko coins are native to Base, and the 36 stock tokens.
+# Once a day: which CoinGecko coins are native to Base.
 # The Worker that builds the homepage boards every 15 minutes reads this file
 # from the boards-data branch (see scripts/boards-static.js for why it is split).
 on:
