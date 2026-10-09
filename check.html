@@ -172,7 +172,7 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
       base: 'About 1 in 50 new Base coins still trades two weeks later (our count, 23.09.2026). This is a risk check, not advice to buy.',
       share: 'Copy link to this report', copied: 'Link copied',
       foot: 'Checks run in your browser against public data: DexScreener, GoPlus, honeypot.is, GeckoTerminal, Blockscout, KyberSwap, CoinGecko. The project read is written by an AI from sources it lists. Code: <a href="https://github.com/araxis33/meme-scout" target="_blank" rel="noopener">github.com/araxis33/meme-scout</a>. Part of <a href="/">Base.tools</a>.',
-      projWait: 'Reading the project…', projOff: 'The project read is not available right now — the on-chain check above is complete.',
+      pending: '⏳ Overall score: after the project check', projWait: 'Reading the project…', projOff: 'The project read is not available right now — the on-chain check above is complete.',
       parts: function (tk, pj) { return 'Token ' + tk + '/10 · ' + (pj === undefined ? 'project: checking…' : pj === null ? 'project: not checked, the score is the token only' : 'Project ' + pj + '/10'); },
       pj: {
         score: function (s, n) { return 'Project ' + s + '/10 — ' + n + ' of 9 criteria found'; },
@@ -226,7 +226,7 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
       base: 'Из новых монет на Base через две недели живёт примерно 1 из 50 (наш замер 23.09.2026). Это проверка рисков, а не совет покупать.',
       share: 'Скопировать ссылку на отчёт', copied: 'Ссылка скопирована',
       foot: 'Проверка идёт в твоём браузере по открытым данным: DexScreener, GoPlus, honeypot.is, GeckoTerminal, Blockscout, KyberSwap, CoinGecko. Разбор проекта пишет ИИ по источникам, которые он указывает. Код: <a href="https://github.com/araxis33/meme-scout" target="_blank" rel="noopener">github.com/araxis33/meme-scout</a>. Часть <a href="/">Base.tools</a>.',
-      projWait: 'Читаю про проект…', projOff: 'Разбор проекта сейчас недоступен — проверка по блокчейну выше полная.',
+      pending: '⏳ Общая оценка — после проверки проекта', projWait: 'Читаю про проект…', projOff: 'Разбор проекта сейчас недоступен — проверка по блокчейну выше полная.',
       parts: function (tk, pj) { return 'Токен ' + tk + '/10 · ' + (pj === undefined ? 'проект: проверяю…' : pj === null ? 'проект не проверен — оценка только по токену' : 'Проект ' + pj + '/10'); },
       pj: {
         score: function (s, n) { return 'Проект ' + s + '/10 — найдено ' + n + ' из 9 критериев'; },
@@ -565,14 +565,19 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
     head.appendChild(el('span', 'sym', d.symbol)); head.appendChild(el('span', 'nm', d.name + ' · ' + (d.chain === 'base' ? 'Base' : 'Robinhood Chain')));
     r.appendChild(head); r.appendChild(el('div', 'addr', d.address));
 
-    // The headline is the overall score once the project is read; until then, the token's.
+    // The headline is the overall score, and only once the project is read. Until
+    // 09.10.2026 the token's own score stood in for it, so AERO showed a green
+    // "10/10" while the project was still being checked: too sure, too early.
     var ps = project && project.checks ? CK.projectScore(project.checks) : null;
-    var total = CK.overall(a, ps);
-    var b = band(total);
-    var sc = el('div', 'score t' + Math.min(4, b + 1), ['🔴', '🟠', '🟡', '🟢', '🟢'][b] + ' ' + t.trust + ' ' + total + '/10 — ' + t.labels[b]);
-    var bar = el('div', 'bar'); bar.style.color = ['var(--red)', 'var(--orange)', 'var(--yellow)', 'var(--green)', 'var(--green)'][b];
-    for (var i = 1; i <= 10; i++) bar.appendChild(el('i', i <= total ? 'on' : ''));
-    sc.appendChild(bar); r.appendChild(sc);
+    if (project === undefined) r.appendChild(el('div', 'score', t.pending));
+    else {
+      var total = CK.overall(a, ps);
+      var b = band(total);
+      var sc = el('div', 'score t' + Math.min(4, b + 1), ['🔴', '🟠', '🟡', '🟢', '🟢'][b] + ' ' + t.trust + ' ' + total + '/10 — ' + t.labels[b]);
+      var bar = el('div', 'bar'); bar.style.color = ['var(--red)', 'var(--orange)', 'var(--yellow)', 'var(--green)', 'var(--green)'][b];
+      for (var i = 1; i <= 10; i++) bar.appendChild(el('i', i <= total ? 'on' : ''));
+      sc.appendChild(bar); r.appendChild(sc);
+    }
     r.appendChild(el('p', 'parts', t.parts(a.trust, project === undefined ? undefined : ps ? ps.score : null)));
     r.appendChild(el('p', 'scale', t.scale));
 
