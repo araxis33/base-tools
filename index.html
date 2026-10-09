@@ -197,6 +197,7 @@
   .hero-act{display:flex; flex-direction:column; gap:6px; background:var(--card); border:1px solid var(--border);
     border-radius:16px; padding:16px 18px; color:var(--text); text-decoration:none;
     transition:border-color var(--t), background-color var(--t);}
+  .hero-act.navigator-act{grid-column:1 / -1; border-color:var(--blue-text);}
   .hero-act:hover{border-color:var(--border-hover); background:var(--card-hover);}
   .ha-t{font-weight:800; font-size:var(--fs-md);}
   .ha-d{color:var(--muted); font-size:var(--fs-sm); flex:1;}
@@ -696,6 +697,7 @@
     <nav>
       <a href="#trending">Token boards</a>
       <a href="#directory">Directory</a>
+      <a href="https://build.deftools.xyz/">Build on Base</a>
       <a class="nav-cta" href="#projects"><span class="spark"></span><span class="cta-long">Built by </span>Def777</a>
       <a href="https://base.org" target="_blank" rel="noopener">Base.org</a>
     </nav>
@@ -705,7 +707,7 @@
 <div class="wrap hero">
   <div class="pill"><span class="dot"></span> <span id="tool-count">14</span> TOOLS · <span id="cat-count">5</span> CATEGORIES · BASE ONLY</div>
   <h1>Tools for <span class="accent">Base</span>. Live boards. <br class="h1-break">Trades you <span class="accent">sign yourself</span>.</h1>
-  <p class="sub">24 apps worth using, four live boards, and five of my own — Aero Vote Radar, Thesis, Stock Check, Token Check and Arc Contract Check — open source.</p>
+  <p class="sub">24 apps worth using, four live boards, five open-source tools — and Base Niche Navigator to help you choose what to build next.</p>
   <form class="hero-check" action="/check.html" method="get">
     <label for="hc-a"><span class="hc-n">1</span> Check a token</label>
     <p class="hc-sub">Paste a Base or Robinhood Chain address — a trust score from 1 to 10 in about a minute: can you sell it, who launched it, insider wallets, real exit. 3 free checks a day.</p>
@@ -726,6 +728,11 @@
       <span class="ha-d">Which Aerodrome pools pay the most per vote, and how to spread your power across them.</span>
       <span class="ha-go">Open Aero Vote Radar <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
     </a>
+    <a class="hero-act navigator-act" href="https://build.deftools.xyz/">
+      <span class="ha-t"><span class="hc-n">4</span> Find what to build on Base</span>
+      <span class="ha-d">Compare niches by demand signals, potential buyers, revenue models, entry difficulty and visibility. English / Russian.</span>
+      <span class="ha-go">Open Base Niche Navigator <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+    </a>
   </div>
 </div>
 
@@ -740,6 +747,25 @@
 
     <div class="mine">
       <div class="proj-grid">
+
+        <div class="proj-card" id="base-niche-navigator">
+          <div class="proj-head">
+            <div class="proj-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#0052ff"/><path d="M10 23V13m6 10V8m6 15v-7" stroke="white" stroke-width="3" stroke-linecap="round"/></svg></div>
+            <div>
+              <div class="proj-name">Base Niche Navigator</div>
+              <div class="proj-kind">Standalone tool · EN / RU</div>
+            </div>
+          </div>
+          <p class="proj-desc">Choose what to build on Base. Compare potential buyers, monetization, entry difficulty, competition and visibility. Filter by your skills and explore a short priority ranking backed by primary sources.</p>
+          <div class="proj-tags">
+            <span class="tag">Preview</span>
+            <span class="tag">Base</span>
+            <span class="tag">Daily source review</span>
+          </div>
+          <div class="proj-links">
+            <a class="visit" href="https://build.deftools.xyz/">Open Navigator <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+        </div>
 
         <div class="proj-card">
           <div class="proj-head">
