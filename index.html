@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Base.tools · tools for Base, live boards, trades you sign yourself</title>
+<title>deftools · tools for Base, live boards, trades you sign yourself</title>
 <meta name="description" content="Tools for Base, live token boards, and trades you sign yourself. 24 apps worth using, four live boards, and five of my own — Aero Vote Radar, Thesis, Stock Check, Token Check and Arc Contract Check.">
 <link rel="canonical" href="https://deftools.xyz/">
 <!-- Share card. Everything on this page is drawn by JavaScript, and the
@@ -12,18 +12,18 @@
      description and no image. og:image must be an absolute URL on this
      domain; a data URI is not fetched. Keep the image at og.png. -->
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Base.tools">
+<meta property="og:site_name" content="deftools">
 <meta property="og:url" content="https://deftools.xyz/">
-<meta property="og:title" content="Base.tools · tools for Base, live boards, trades you sign yourself">
+<meta property="og:title" content="deftools · tools for Base, live boards, trades you sign yourself">
 <meta property="og:description" content="24 apps worth using — wallets, AI agents, launchpads, bots, terminals, bridges, DEXs and lending — four live token boards, and five tools of my own: Aero Vote Radar, Thesis, Stock Check, Token Check and Arc Contract Check. Buy and sell from the page, signed in your own wallet.">
 <meta property="og:image" content="https://deftools.xyz/og-home.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Base.tools — tools for Base, live boards, trades you sign yourself. 24 tools, 6 categories, Base only.">
+<meta property="og:image:alt" content="deftools — tools for Base, live boards, trades you sign yourself. 24 tools, 6 categories, Base only.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@Def7771">
 <meta name="twitter:creator" content="@Def7771">
-<meta name="twitter:title" content="Base.tools · tools for Base, live boards, trades you sign yourself">
+<meta name="twitter:title" content="deftools · tools for Base, live boards, trades you sign yourself">
 <meta name="twitter:description" content="24 apps worth using, four live token boards, and five tools of my own: Aero Vote Radar, Thesis, Stock Check, Token Check and Arc Contract Check. Buy and sell from the page, signed in your own wallet.">
 <meta name="twitter:image" content="https://deftools.xyz/og-home.png">
 <!-- Base Dashboard domain verification: proves this domain belongs to the
@@ -57,7 +57,7 @@
     --blue-bright:#9db8ff;
     --yellow:#ffcf40;
     --text:#eef1fb;
-    --muted:#8791b3;
+    --muted:#a0a9c8;
     /* Was #5c6690, which scored 3.16:1 on --card and is used at 11-12.5px for
        addresses, footer text and column subtitles. This is the dimmest value
        that still clears AA (4.79:1) so the step down from --muted survives. */
@@ -154,7 +154,9 @@
   nav a.nav-cta .spark{width:8px; height:8px; border-radius:50%; background:var(--yellow); flex-shrink:0;}
 
   .hero{
-    padding:68px 0 44px;
+    /* Top and bottom only: a shorthand here zeroed .wrap's side padding, and on a
+       phone the headline and the token check touched the screen edge. */
+    padding-top:68px; padding-bottom:44px;
     background:
       radial-gradient(650px 320px at 90% -10%, rgba(59,110,255,0.16), transparent),
       radial-gradient(500px 260px at 0% 0%, rgba(255,207,64,0.07), transparent);
@@ -188,6 +190,20 @@
     font-family:inherit; font-size:var(--fs-md); font-weight:800; cursor:pointer;}
   .hc-row button:hover{background:#2f5de0;}
   @media (max-width:640px){ .hc-row button{flex:1 1 100%;} }
+
+
+  /* 09.10.2026: the first screen leads with the three things a visitor can do here. */
+  .hero-acts{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px; max-width:720px;}
+  .hero-act{display:flex; flex-direction:column; gap:6px; background:var(--card); border:1px solid var(--border);
+    border-radius:16px; padding:16px 18px; color:var(--text); text-decoration:none;
+    transition:border-color var(--t), background-color var(--t);}
+  .hero-act:hover{border-color:var(--border-hover); background:var(--card-hover);}
+  .ha-t{font-weight:800; font-size:var(--fs-md);}
+  .ha-d{color:var(--muted); font-size:var(--fs-sm); flex:1;}
+  .ha-go{color:var(--blue-text); font-weight:700; font-size:var(--fs-sm); display:inline-flex; align-items:center; gap:6px;}
+  .hc-n{display:inline-grid; place-items:center; width:22px; height:22px; border-radius:50%; background:var(--blue-soft);
+    color:var(--blue-text); font-size:13px; font-weight:800; margin-right:6px; vertical-align:2px;}
+  @media (max-width:640px){ .hero-acts{grid-template-columns:1fr;} }
 
   section{padding:32px 0;}
   .section-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:16px; flex-wrap:wrap; gap:8px;}
@@ -676,7 +692,7 @@
 
 <header>
   <div class="wrap">
-    <div class="logo"><span class="logo-mark" aria-hidden="true"></span> Base.tools</div>
+    <div class="logo"><span class="logo-mark" aria-hidden="true"></span> deftools</div>
     <nav>
       <a href="#trending">Token boards</a>
       <a href="#directory">Directory</a>
@@ -691,7 +707,7 @@
   <h1>Tools for <span class="accent">Base</span>. Live boards. <br class="h1-break">Trades you <span class="accent">sign yourself</span>.</h1>
   <p class="sub">24 apps worth using, four live boards, and five of my own — Aero Vote Radar, Thesis, Stock Check, Token Check and Arc Contract Check — open source.</p>
   <form class="hero-check" action="/check.html" method="get">
-    <label for="hc-a">How far can you trust this token?</label>
+    <label for="hc-a"><span class="hc-n">1</span> Check a token</label>
     <p class="hc-sub">Paste a Base or Robinhood Chain address — a trust score from 1 to 10 in about a minute: can you sell it, who launched it, insider wallets, real exit. 3 free checks a day.</p>
     <div class="hc-row">
       <input id="hc-a" name="a" placeholder="0x…" autocomplete="off" spellcheck="false" required pattern="\s*0x[a-fA-F0-9]{40}\s*" title="0x followed by 40 characters">
@@ -699,67 +715,21 @@
       <button type="submit">Check</button>
     </div>
   </form>
-</div>
-
-<div class="wrap wrap-boards">
-  <section id="trending">
-    <div class="section-head">
-      <div>
-        <div class="section-title">Live token boards</div>
-        <div class="section-sub">Updated every 15 minutes · Losers &amp; Gainers cover every Base-native token · Blue-chips are hand-picked · Stocks are priced from their deepest pool · Prices for the first three by <a href="https://www.coingecko.com/en/api" target="_blank" rel="noopener">CoinGecko</a></div>
-      </div>
-      <div class="head-side">
-        <div class="updated" id="trend-updated">loading…</div>
-        <button class="wal-open" id="wal-open" type="button">
-          <svg class="ic" aria-hidden="true"><use href="#i-wallet"/></svg> My wallet
-        </button>
-      </div>
-    </div>
-    <div class="trend-grid" id="trend-grid">
-      <div class="trend-col">
-        <div class="trend-col-head">
-          <div class="trend-col-icon loss"><svg class="ic" aria-hidden="true"><use href="#i-trend-down"/></svg></div>
-          <div><div class="trend-col-title">Top Losers</div><div class="trend-col-desc">Worst 24h price drops</div></div>
-        </div>
-        <div id="col-losers"><div class="trend-empty">Loading…</div></div>
-      </div>
-      <div class="trend-col">
-        <div class="trend-col-head">
-          <div class="trend-col-icon gain"><svg class="ic" aria-hidden="true"><use href="#i-trend"/></svg></div>
-          <div><div class="trend-col-title">Top Gainers</div><div class="trend-col-desc">Best 24h price gains</div></div>
-        </div>
-        <div id="col-gainers"><div class="trend-empty">Loading…</div></div>
-      </div>
-      <div class="trend-col">
-        <div class="trend-col-head">
-          <div class="trend-col-icon gem"><svg class="ic" aria-hidden="true"><use href="#i-gem"/></svg></div>
-          <div><div class="trend-col-title">Base Blue-chips</div><div class="trend-col-desc">Established Base projects, hand-picked</div></div>
-        </div>
-        <div id="col-bluechip"><div class="trend-empty">Loading…</div></div>
-      </div>
-      <div class="trend-col">
-        <div class="trend-col-head">
-          <div class="trend-col-icon stock"><svg class="ic" aria-hidden="true"><use href="#i-chart"/></svg></div>
-          <div><div class="trend-col-title">Stocks on Base</div><div class="trend-col-desc">The 10 most traded of 36, by 24h move · <a href="/stocks.html">all 36</a></div></div>
-        </div>
-        <div id="col-stocks"><div class="trend-empty">Loading…</div></div>
-      </div>
-    </div>
-  </section>
+  <div class="hero-acts">
+    <a class="hero-act" href="/stocks.html">
+      <span class="ha-t"><span class="hc-n">2</span> Check a stock</span>
+      <span class="ha-d">Any of the 36 US stocks on Base: real share price vs the token, pool depth, what a round trip costs.</span>
+      <span class="ha-go">Open Stock Check <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+    </a>
+    <a class="hero-act" href="https://aero.deftools.xyz" target="_blank" rel="noopener">
+      <span class="ha-t"><span class="hc-n">3</span> Split your veAERO votes</span>
+      <span class="ha-d">Which Aerodrome pools pay the most per vote, and how to spread your power across them.</span>
+      <span class="ha-go">Open Aero Vote Radar <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+    </a>
+  </div>
 </div>
 
 <div class="wrap">
-  <section id="directory">
-    <div class="section-head">
-      <div>
-        <div class="section-title">Directory</div>
-        <div class="section-sub">Apps, stocks and launchpads, bots, terminals, trackers and DeFi. A <svg class="ic ic-solid" style="color:var(--yellow)" aria-hidden="true"><use href="#i-star"/></svg> marks what I use myself, or hit <b style="color:var(--yellow)">My stack</b> to see only those.</div>
-      </div>
-    </div>
-    <div class="filters" id="filters" role="group" aria-label="Filter tools by category"></div>
-    <div id="grid"></div>
-  </section>
-
   <section id="projects">
     <div class="section-head">
       <div>
@@ -869,6 +839,67 @@
       </div>
     </div>
   </section>
+</div>
+
+<div class="wrap wrap-boards">
+  <section id="trending">
+    <div class="section-head">
+      <div>
+        <div class="section-title">Live token boards</div>
+        <div class="section-sub">Updated every 15 minutes · Losers &amp; Gainers cover every Base-native token · Blue-chips are hand-picked · Stocks are priced from their deepest pool · Prices for the first three by <a href="https://www.coingecko.com/en/api" target="_blank" rel="noopener">CoinGecko</a></div>
+      </div>
+      <div class="head-side">
+        <div class="updated" id="trend-updated">loading…</div>
+        <button class="wal-open" id="wal-open" type="button">
+          <svg class="ic" aria-hidden="true"><use href="#i-wallet"/></svg> My wallet
+        </button>
+      </div>
+    </div>
+    <div class="trend-grid" id="trend-grid">
+      <div class="trend-col">
+        <div class="trend-col-head">
+          <div class="trend-col-icon loss"><svg class="ic" aria-hidden="true"><use href="#i-trend-down"/></svg></div>
+          <div><div class="trend-col-title">Top Losers</div><div class="trend-col-desc">Worst 24h price drops</div></div>
+        </div>
+        <div id="col-losers"><div class="trend-empty">Loading…</div></div>
+      </div>
+      <div class="trend-col">
+        <div class="trend-col-head">
+          <div class="trend-col-icon gain"><svg class="ic" aria-hidden="true"><use href="#i-trend"/></svg></div>
+          <div><div class="trend-col-title">Top Gainers</div><div class="trend-col-desc">Best 24h price gains</div></div>
+        </div>
+        <div id="col-gainers"><div class="trend-empty">Loading…</div></div>
+      </div>
+      <div class="trend-col">
+        <div class="trend-col-head">
+          <div class="trend-col-icon gem"><svg class="ic" aria-hidden="true"><use href="#i-gem"/></svg></div>
+          <div><div class="trend-col-title">Base Blue-chips</div><div class="trend-col-desc">Established Base projects, hand-picked</div></div>
+        </div>
+        <div id="col-bluechip"><div class="trend-empty">Loading…</div></div>
+      </div>
+      <div class="trend-col">
+        <div class="trend-col-head">
+          <div class="trend-col-icon stock"><svg class="ic" aria-hidden="true"><use href="#i-chart"/></svg></div>
+          <div><div class="trend-col-title">Stocks on Base</div><div class="trend-col-desc">The 10 most traded of 36, by 24h move · <a href="/stocks.html">all 36</a></div></div>
+        </div>
+        <div id="col-stocks"><div class="trend-empty">Loading…</div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="wrap">
+  <section id="directory">
+    <div class="section-head">
+      <div>
+        <div class="section-title">Directory</div>
+        <div class="section-sub">Apps, stocks and launchpads, bots, terminals, trackers and DeFi. A <svg class="ic ic-solid" style="color:var(--yellow)" aria-hidden="true"><use href="#i-star"/></svg> marks what I use myself, or hit <b style="color:var(--yellow)">My stack</b> to see only those.</div>
+      </div>
+    </div>
+    <div class="filters" id="filters" role="group" aria-label="Filter tools by category"></div>
+    <div id="grid"></div>
+  </section>
+
 
   <section id="twitter">
     <div class="split">

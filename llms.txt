@@ -1,4 +1,4 @@
-# deftools.xyz (Base.tools)
+# deftools.xyz
 
 > Free tools for trading on Base, built by @Def7771: live token boards with a Buy/Sell signed in your own wallet, five tools of its own (Aero Vote Radar, Thesis, Stock Check, Token Check, Arc Contract Check) and a short hand-picked list of Base apps. Everything reads public onchain and market data in the browser; nothing is custodied, no key leaves the visitor's wallet, and every trade is something the visitor signs.
 
