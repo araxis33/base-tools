@@ -15,7 +15,7 @@
 //
 // Secrets: GEMINI_API_KEY, GROQ_API_KEY, TAVILY_API_KEY (optional). KV: QUOTA.
 
-import { BOARDS_CRON, STOCKS_CRON, refreshBoards, refreshStocks, boardsResponse } from './boards.js';
+import { BOARDS_CRON, STOCKS_CRON, refreshBoards, refreshStocks, boardsResponse, poolsResponse } from './boards.js';
 
 const LIMIT = 3;
 const ORIGINS = ['https://deftools.xyz', 'https://www.deftools.xyz', 'http://localhost:8765'];
@@ -209,6 +209,11 @@ export default {
     if (url.pathname === '/shares') return shares(req, ctx, url.searchParams.get('t') || '');
     if (url.pathname === '/boards') {
       const body = await boardsResponse(env);
+      if (!body) return json(req, { error: 'not built yet' }, 503);
+      return new Response(body, { headers: { 'content-type': 'application/json', 'cache-control': 'public, max-age=60', ...cors(req) } });
+    }
+    if (url.pathname === '/stock-pools') {
+      const body = await poolsResponse(env);
       if (!body) return json(req, { error: 'not built yet' }, 503);
       return new Response(body, { headers: { 'content-type': 'application/json', 'cache-control': 'public, max-age=60', ...cors(req) } });
     }

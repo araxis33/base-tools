@@ -422,16 +422,12 @@ function loadLook(t){
 }
 
 /* ---------- chain check (moved here from Thesis on 07.10: this page checks, Thesis buys) ---------- */
-/* Every pool of every stock, one stock at a time (DexScreener answers bursts with 429). */
+/* Every pool of every stock, summarised by our Worker every 15 minutes (10.10.2026):
+   the page used to ask DexScreener 36 times per visit. A failed read keeps the last one. */
+var PT = null;
 function loadPools(){
-  var out = {};
-  return TOKENS.reduce(function(p, t){
-    return p.then(function(){
-      return fetch("https://api.dexscreener.com/latest/dex/tokens/" + t.a).then(function(r){ return r.json(); })
-        .then(function(j){ out[t.s] = ThesisCore.summarisePools((j && j.pairs) || [], t); })
-        .catch(function(){}).then(function(){ return sleep(120); });
-    });
-  }, Promise.resolve()).then(function(){ P = out; });
+  return fetch(WORKER + "/stock-pools").then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function(j){ if (j && j.items) { P = j.items; PT = j.ts; } }).catch(function(){});
 }
 
 function renderChain(){
@@ -448,7 +444,7 @@ function renderChain(){
     if (lk && lk.fakes) lk.fakes.forEach(function(f){ fakes.push({s:t.s, f:f}); });
   });
   spreads.sort(function(a, b){ return b.gap - a.gap; });
-  var h = '<h2 id="chain">Chain check</h2><p class="sub2">All ' + TOKENS.length + ' stocks, every pool on Base, refreshed every two minutes. ' +
+  var h = '<h2 id="chain">Chain check</h2><p class="sub2">All ' + TOKENS.length + ' stocks, every pool on Base, updated ' + ago(PT / 1000) + '. ' +
     'What a careless swap or a search result can land you in.</p>';
   if (spreads.length) {
     h += '<div class="ccbox y"><b>Same share, different price</b> — the deepest pool against the priciest one quoting it right now:<ul>' +

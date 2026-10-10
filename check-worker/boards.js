@@ -26,6 +26,7 @@ const DS = 'https://api.dexscreener.com/latest/dex/';
 const UA = { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130 Safari/537.36' };
 const KEY_BOARDS = 'boards:v1';
 const KEY_LIQ = 'boards:liq';
+const KEY_POOLS = 'stocks:pools';
 
 // Tickers that collide with globally multi-chain assets (stablecoins, wrapped BTC/ETH,
 // blue-chip DeFi tokens available on many chains). These are excluded even when the
@@ -174,7 +175,17 @@ export async function refreshStocks(env, now = Date.now()) {
   const out = (await readKV(env, KEY_BOARDS)) || {};
   out.stocks = { ts: now, items: rows };
   await env.QUOTA.put(KEY_BOARDS, JSON.stringify(out));
-  return { errors: [], rows: rows.length };
+  // The same answers feed Stock Check's chain check, which used to ask DexScreener 36 times per visit.
+  // A stock DexScreener didn't answer for this run keeps its last summary (first live run: 25 of 30).
+  const last = ((await readKV(env, KEY_POOLS)) || {}).items || {};
+  const pools = {};
+  core.TOKENS.forEach((t, i) => { const d = answers[i].length ? core.summarisePools(answers[i], t) : last[t.s]; if (d) pools[t.s] = d; });
+  await env.QUOTA.put(KEY_POOLS, JSON.stringify({ ts: now, items: pools }));
+  return { errors: [], rows: rows.length, pools: Object.keys(pools).length };
+}
+
+export async function poolsResponse(env) {
+  return env.QUOTA.get(KEY_POOLS, { cacheTtl: 60 });
 }
 
 // Every 15 minutes: the boards themselves.
