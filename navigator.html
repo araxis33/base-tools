@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Base Niche Navigator · what to build on Base that people will use · deftools</title>
+<meta name="description" content="14 niches to build on Base, ranked by demand signal, monetization, entry difficulty, competition and visibility. Who might pay, what to build first, how to validate demand, with primary sources. English and Russian.">
+<link rel="canonical" href="https://deftools.xyz/navigator.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="deftools">
+<meta property="og:url" content="https://deftools.xyz/navigator.html">
+<meta property="og:title" content="Base Niche Navigator · what to build on Base that people will use">
+<meta property="og:description" content="14 niches ranked by demand, revenue, difficulty, competition and visibility. Who might pay, what to build first, how to check demand, with sources.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@Def7771">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233b6eff'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#0a0e1c">
+<style>
+:root{
+  --bg:#0a0e1c; --bg2:#0d1226; --card:#111730; --card-hover:#151c3a;
+  --border:#232c4d; --border-hover:#33406b;
+  --blue:#3b6eff; --blue-soft:#182252; --blue-text:#7ea0ff; --blue-bright:#9db8ff;
+  --yellow:#ffcf40; --green:#3fbf87; --green-text:#6fd7ab; --red:#ff6b6b;
+  --text:#eef1fb; --muted:#8791b3; --muted2:#7a84a8;
+}
+*{box-sizing:border-box}
+[hidden]{display:none !important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0; background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased}
+a{color:var(--blue-text); text-decoration:none}
+a:hover{color:var(--blue-bright)}
+button,select,input{font-family:inherit}
+.wrap{max-width:1080px; margin:0 auto; padding:0 20px}
+header{border-bottom:1px solid var(--border); background:var(--bg2)}
+.head-in{display:flex; align-items:center; justify-content:space-between; gap:16px; padding-block:16px; flex-wrap:wrap}
+.back{display:inline-flex; align-items:center; min-height:32px; font-size:14px; color:var(--muted)}
+.back:hover{color:var(--text)}
+.head-right{display:flex; align-items:center; gap:14px; flex-wrap:wrap}
+.head-links{display:flex; gap:14px}
+.head-links a{font-size:14px; min-height:32px; display:inline-flex; align-items:center}
+.lang{display:flex; gap:4px}
+.lang button{background:none; border:1px solid var(--border); color:var(--muted); border-radius:8px; padding:4px 10px; font-size:13px; cursor:pointer; min-height:32px}
+.lang button.on{border-color:var(--blue); color:var(--text)}
+
+.hero{padding:38px 0 18px}
+.kicker{font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--blue-text); margin-bottom:6px}
+h1{margin:0 0 10px; font-size:33px; line-height:1.18; letter-spacing:-.025em; max-width:24ch}
+.sub{margin:0; color:var(--muted); font-size:16.5px; max-width:62ch}
+.asof{margin-top:10px; color:var(--muted2); font-size:13px}
+
+.panel{background:var(--card); border:1px solid var(--border); border-radius:16px; padding:18px; margin:18px 0 6px}
+.row{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+.lbl{display:block; font-size:12.5px; font-weight:700; color:var(--muted2); text-transform:uppercase; letter-spacing:.04em; margin-bottom:6px}
+.seg{display:inline-flex; background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:3px; gap:3px; flex-wrap:wrap}
+.seg button{background:none; border:0; color:var(--muted); font-size:14px; font-weight:600; padding:7px 14px; border-radius:8px; cursor:pointer; min-height:36px}
+.seg button.on{background:var(--blue); color:#fff}
+select,input[type=search]{width:100%; background:var(--bg2); border:1px solid var(--border); color:var(--text); border-radius:10px; padding:10px 12px; font-size:14.5px; min-height:42px}
+select:focus,input:focus{outline:none; border-color:var(--blue)}
+.filters{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:16px; margin-top:16px}
+details.more{margin-top:14px}
+details.more summary{cursor:pointer; font-size:14px; color:var(--blue-text); font-weight:600; min-height:32px; display:flex; align-items:center; gap:8px}
+details.more summary span{color:var(--muted2); font-weight:400; font-size:13px}
+.more-grid{display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:16px; margin-top:10px; align-items:end}
+.chk{display:flex; align-items:center; gap:8px; font-size:14px; color:var(--text); min-height:42px; cursor:pointer}
+.chk input{width:18px; height:18px; accent-color:var(--blue)}
+.tune{display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; margin-top:14px; padding-top:14px; border-top:1px solid var(--border); font-size:13px; color:var(--muted2)}
+.tune div{display:flex; gap:8px}
+.btn{background:var(--blue-soft); border:1px solid var(--border-hover); color:var(--blue-text); border-radius:8px; padding:7px 14px; font-size:13.5px; font-weight:600; cursor:pointer; min-height:36px}
+.btn:hover{border-color:var(--blue); color:var(--blue-bright)}
+.btn:disabled{opacity:.45; cursor:default}
+.btn.ghost{background:none; border-color:var(--border); color:var(--muted)}
+.btn.ghost:hover{color:var(--text); border-color:var(--border-hover)}
+.btn.on{background:var(--blue); border-color:var(--blue); color:#fff}
+.weights{display:grid; grid-template-columns:repeat(5,1fr); gap:14px; margin-top:12px}
+.weights label{font-size:13px; color:var(--muted)}
+.weights b{color:var(--text); float:right}
+.weights input{width:100%; accent-color:var(--blue)}
+
+.bar{display:flex; justify-content:space-between; align-items:flex-end; gap:12px; flex-wrap:wrap; margin:30px 0 12px}
+h2{margin:0; font-size:22px; letter-spacing:-.01em}
+h2 small{color:var(--muted2); font-weight:400; font-size:14px; margin-left:8px}
+.bar-side{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+.bar-side select{width:auto}
+.legend{font-size:13px; color:var(--muted2); margin:0 0 14px}
+
+.grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+.card{background:var(--card); border:1px solid var(--border); border-radius:16px; padding:18px; display:flex; flex-direction:column; gap:12px; position:relative; overflow:hidden}
+.card::before{content:""; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--border-hover)}
+.card.top::before{background:linear-gradient(180deg,var(--yellow),var(--blue))}
+.card:hover{border-color:var(--border-hover); background:var(--card-hover)}
+.c-head{display:flex; justify-content:space-between; gap:10px; align-items:flex-start}
+.rank{font-size:12px; font-weight:800; color:var(--muted2); letter-spacing:.04em}
+.card.top .rank{color:var(--yellow)}
+.c-name{font-size:16.5px; font-weight:700; line-height:1.3; margin:2px 0 0}
+.score{text-align:right; white-space:nowrap}
+.score b{font-size:24px; color:var(--blue-bright); font-variant-numeric:tabular-nums}
+.score small{display:block; font-size:11px; color:var(--muted2); margin-top:-4px}
+.tag{display:inline-block; font-size:11px; font-weight:700; letter-spacing:.03em; padding:3px 8px; border-radius:999px; background:rgba(255,255,255,.04); border:1px solid var(--border); color:var(--muted)}
+.tag.req{color:var(--yellow); border-color:rgba(255,207,64,.35); background:rgba(255,207,64,.08)}
+.tag.live{color:var(--green-text); border-color:rgba(63,191,135,.35); background:rgba(63,191,135,.1)}
+.tags{display:flex; gap:6px; flex-wrap:wrap}
+.c-sum{color:var(--muted); font-size:14px; margin:0}
+.meters{display:grid; gap:6px; padding:10px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border)}
+.m{display:flex; justify-content:space-between; align-items:center; gap:10px; font-size:13px; color:var(--muted)}
+.m em{font-style:normal; color:var(--muted2); font-size:11.5px}
+.dots{display:flex; align-items:center; gap:3px}
+.dots i{width:14px; height:5px; border-radius:3px; background:var(--border)}
+.dots i.on{background:var(--blue-text)}
+.dots.inv i.on{background:var(--yellow)}
+.dots b{width:14px; text-align:right; color:var(--text); font-size:13px; font-variant-numeric:tabular-nums}
+.c-rev{font-size:13.5px; margin:0}
+.c-rev span{display:block; color:var(--muted2); font-size:11.5px; text-transform:uppercase; letter-spacing:.04em; font-weight:700}
+.c-act{display:flex; gap:8px; margin-top:auto}
+.c-act .btn{flex:1}
+.empty{background:var(--card); border:1px dashed var(--border-hover); border-radius:16px; padding:22px; color:var(--muted); text-align:center}
+
+.picks{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px}
+.picks button{background:var(--bg2); border:1px solid var(--border); color:var(--muted); border-radius:999px; padding:6px 12px; font-size:13px; cursor:pointer; min-height:34px}
+.picks button.on{border-color:var(--blue); color:var(--text); background:var(--blue-soft)}
+.picks button:disabled{opacity:.4; cursor:default}
+.tscroll{overflow-x:auto; border:1px solid var(--border); border-radius:16px; background:var(--card)}
+table.cmp{border-collapse:collapse; width:100%; min-width:640px; font-size:13.5px}
+table.cmp th,table.cmp td{padding:12px 14px; border-bottom:1px solid var(--border); vertical-align:top; text-align:left}
+table.cmp thead th{font-size:15px}
+table.cmp tbody th{color:var(--muted2); font-weight:600; width:160px; font-size:12.5px; text-transform:uppercase; letter-spacing:.03em}
+table.cmp td p{margin:4px 0 0; color:var(--muted)}
+table.cmp tr:last-child th,table.cmp tr:last-child td{border-bottom:0}
+.x{background:none; border:0; color:var(--muted2); cursor:pointer; font-size:12.5px; padding:4px 0}
+.x:hover{color:var(--red)}
+.links{display:flex; flex-wrap:wrap; gap:4px 12px; font-size:13px}
+
+.method{background:var(--card); border:1px solid var(--border); border-radius:16px; padding:18px}
+.method p{margin:0 0 10px; color:var(--muted); font-size:14.5px}
+.method p strong{color:var(--text)}
+.formula{background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:12px 14px; margin:0 0 12px; font-size:15px; font-weight:600}
+.formula small{display:block; color:var(--muted); font-weight:400; font-size:13px; margin-top:2px}
+.rubric{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:12px; margin:12px 0}
+.rubric div{border-left:3px solid var(--border-hover); padding-left:12px}
+.rubric h4{margin:0 0 4px; font-size:14px}
+.rubric p{font-size:13.5px; margin:0}
+.srcs{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:12px; margin-top:12px}
+.src{background:var(--card); border:1px solid var(--border); border-radius:14px; padding:14px 16px}
+.src span{font-size:11.5px; text-transform:uppercase; letter-spacing:.04em; font-weight:700; color:var(--muted2)}
+.src a{display:block; font-weight:700; margin:2px 0 6px}
+.src p{margin:0 0 6px; font-size:13.5px; color:var(--muted)}
+.src small{color:var(--muted2); font-size:12px}
+.foot-note{margin-top:14px; border-left:3px solid var(--yellow); padding:4px 0 4px 14px; font-size:13.5px; color:var(--muted)}
+.foot-note p{margin:0 0 6px}
+
+dialog{background:var(--card); color:var(--text); border:1px solid var(--border-hover); border-radius:18px; padding:0; width:min(860px,calc(100vw - 24px)); max-height:calc(100vh - 40px)}
+dialog::backdrop{background:rgba(5,8,18,.72)}
+.d-in{padding:22px 24px 24px}
+.d-top{display:flex; justify-content:space-between; gap:14px; align-items:flex-start}
+.d-top h3{margin:6px 0 0; font-size:22px; line-height:1.25}
+.close{background:none; border:1px solid var(--border); color:var(--muted); border-radius:8px; width:36px; height:36px; font-size:18px; cursor:pointer; flex:0 0 auto}
+.close:hover{color:var(--text); border-color:var(--border-hover)}
+.d-lead{color:var(--muted); font-size:15px; margin:10px 0 14px}
+.fact{border-left:3px solid var(--green); background:rgba(63,191,135,.06); border-radius:0 12px 12px 0; padding:12px 14px; margin-bottom:16px}
+.fact small{color:var(--green-text); font-weight:700; font-size:11.5px; text-transform:uppercase; letter-spacing:.04em}
+.fact p{margin:4px 0 6px; font-size:14.5px}
+.d-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px 22px}
+.d-grid h4,.d-next h4{margin:0 0 4px; font-size:12.5px; color:var(--muted2); text-transform:uppercase; letter-spacing:.04em}
+.d-grid p,.d-next p{margin:0; font-size:14.5px}
+.d-next{margin-top:16px; background:var(--bg2); border:1px solid var(--border); border-radius:12px; padding:12px 14px}
+.d-why{margin-top:14px; font-size:14px; color:var(--muted)}
+.d-why summary{cursor:pointer; color:var(--blue-text); font-weight:600}
+.d-act{margin-top:16px; display:flex; gap:10px; flex-wrap:wrap}
+.toast{position:fixed; left:50%; bottom:22px; transform:translateX(-50%); background:var(--blue-soft); border:1px solid var(--blue); color:var(--text); padding:10px 16px; border-radius:10px; font-size:14px; display:none; z-index:5}
+footer{margin:40px 0 30px; color:var(--muted2); font-size:13px}
+
+@media (max-width:900px){
+  .grid{grid-template-columns:1fr 1fr}
+  .filters{grid-template-columns:1fr 1fr}
+  .filters .q{grid-column:1/-1}
+  .more-grid{grid-template-columns:1fr 1fr}
+  .weights{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  h1{font-size:26px}
+  .row,.filters,.more-grid,.weights,.d-grid{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr}
+  .head-links{display:none}
+  .d-in{padding:18px 16px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap head-in">
+    <a class="back" href="/">&larr;&nbsp; deftools</a>
+    <div class="head-right">
+      <nav class="head-links">
+        <a href="#niches" id="t-nav1"></a>
+        <a href="#compare" id="t-nav2"></a>
+        <a href="#method" id="t-nav3"></a>
+      </nav>
+      <div class="lang"><button id="l-en" type="button">EN</button><button id="l-ru" type="button">RU</button></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="kicker" id="t-kicker"></div>
+    <h1 id="t-title"></h1>
+    <p class="sub" id="t-sub"></p>
+    <div class="asof" id="t-asof"></div>
+  </div>
+
+  <div class="panel">
+    <div class="row">
+      <div><span class="lbl" id="t-goal"></span><div class="seg" id="goal"></div></div>
+      <div><label class="lbl" for="f-skills" id="t-skills"></label><select id="f-skills"></select></div>
+    </div>
+    <div class="filters">
+      <div class="q"><label class="lbl" for="f-q" id="t-q"></label><input type="search" id="f-q" autocomplete="off"></div>
+      <div><label class="lbl" for="f-cat" id="t-cat"></label><select id="f-cat"></select></div>
+      <div><label class="lbl" for="f-diff" id="t-diff"></label><select id="f-diff"></select></div>
+    </div>
+    <details class="more" id="more">
+      <summary><b id="t-more"></b><span id="t-more-sub"></span></summary>
+      <div class="more-grid">
+        <div><label class="lbl" for="f-model" id="t-model"></label><select id="f-model"></select></div>
+        <div><label class="lbl" for="f-signal" id="t-signal"></label><select id="f-signal"></select></div>
+        <label class="chk"><input type="checkbox" id="f-nocon"><span id="t-nocon"></span></label>
+        <label class="chk"><input type="checkbox" id="f-nocap"><span id="t-nocap"></span></label>
+      </div>
+    </details>
+    <div class="tune">
+      <span id="t-ranked"></span>
+      <div><button class="btn ghost" id="b-weights" type="button"></button><button class="btn ghost" id="b-reset" type="button"></button></div>
+    </div>
+    <div class="weights" id="weights" hidden></div>
+  </div>
+
+  <div class="bar" id="niches">
+    <h2><span id="t-all"></span><small id="count"></small></h2>
+    <div class="bar-side">
+      <button class="btn" id="b-top" type="button"></button>
+      <select id="sort" aria-label="Sort"></select>
+    </div>
+  </div>
+  <p class="legend" id="t-legend"></p>
+  <div class="grid" id="grid"></div>
+
+  <div class="bar" id="compare">
+    <h2><span id="t-cmp"></span><small id="cmp-count"></small></h2>
+    <div class="bar-side"><button class="btn ghost" id="b-clear" type="button"></button></div>
+  </div>
+  <p class="legend" id="t-cmp-note"></p>
+  <div class="picks" id="picks"></div>
+  <div id="cmp"></div>
+
+  <div class="bar" id="method"><h2 id="t-method"></h2></div>
+  <div class="method" id="method-body"></div>
+  <div class="bar"><h2 id="t-sources"></h2></div>
+  <div class="srcs" id="srcs"></div>
+  <div class="foot-note" id="foot-note"></div>
+
+  <footer><span id="t-foot"></span> · Built by <a href="https://x.com/Def7771" target="_blank" rel="noopener">@Def7771</a> · <a href="https://github.com/araxis33/base-tools" target="_blank" rel="noopener">code</a></footer>
+</div>
+
+<dialog id="dlg"><div class="d-in" id="dlg-in"></div></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+"use strict";
+var $ = function(id){ return document.getElementById(id); };
+var esc = function(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); };
+function store(k, v){ try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+
+// Same scoring as the original navigator: each criterion 1–5, difficulty and
+// competition inverted (6 − x), weights normalised by their sum, ×20 → 0–100.
+var KEYS = ['demand', 'money', 'ease', 'calm', 'visibility'];
+var PRESETS = {
+  balance:    { demand:30, money:25, ease:20, calm:10, visibility:15 },
+  income:     { demand:30, money:35, ease:25, calm:5,  visibility:5  },
+  visibility: { demand:20, money:15, ease:10, calm:10, visibility:45 }
+};
+function score(n, w){
+  var v = { demand:n.demand, money:n.money, ease:6 - n.difficulty, calm:6 - n.competition, visibility:n.visibility };
+  var sum = 0, acc = 0;
+  KEYS.forEach(function(k){ sum += w[k]; acc += w[k] * v[k]; });
+  return sum ? 20 * acc / sum : 0;
+}
+
+var U = {
+  en: {
+    nav1:'Niches', nav2:'Compare', nav3:'Method',
+    kicker:'Base Niche Navigator', title:'What should you build on Base that people will use?',
+    sub:'14 niches, ranked by demand signal, monetization, entry difficulty, competition and visibility. Open any of them to see who might pay, what to build first and how to check demand before you write code.',
+    asof:'Sources checked', goal:'What matters most to you?', presets:{ balance:'Balanced', income:'First revenue', visibility:'Visibility', custom:'Custom' },
+    skills:'Your skills', allSkills:'Show all niches', q:'What problem do you want to solve?', qPh:'Payments, analytics, agents, Aero…',
+    cat:'Niche category', allCats:'All categories', diff:'Entry difficulty',
+    diffs:[['5','Any difficulty'],['2','Easy start · up to 2 of 5'],['3','Ready for integrations · up to 3'],['4','Ready for a complex MVP · up to 4']],
+    more:'More filters', moreSub:'Revenue, contracts, capital', moreOn:'Additional filters active',
+    model:'Revenue model', allModels:'All models', signal:'Verified signal', anySignal:'Any signal',
+    nocon:'No custom smart contracts', nocap:'No trading capital',
+    ranked:'Ranked by demand, monetization, entry difficulty, competition and visibility.',
+    weights:'Adjust weights', reset:'Reset filters', keepOne:'Keep at least one weight above zero.',
+    w:{ demand:'Demand signal', money:'Monetization', ease:'Ease of entry', calm:'Less competition', visibility:'Visibility' },
+    all:'All niches', of:'of', top:'Compare top 3',
+    sorts:[['priority','Priority'],['difficulty','Easiest to start'],['competition','Less competition'],['visibility','Visibility'],['demand','Demand signal']],
+    legend:'Score 0–100 from your weights: an index for choosing a project, not a revenue forecast. Blue bars: more is better. Yellow bars (difficulty, competition): fewer is easier. Top three are marked.',
+    points:'points', topPick:'Top pick', mDemand:'Demand signal', mMoney:'Monetization', mDiff:'Entry difficulty', mComp:'Competition', mVis:'Visibility',
+    lower:'lower = easier', revenue:'Possible revenue model', explore:'Explore idea', add:'+ Compare', added:'✓ Comparing',
+    none:'No niches match all your filters.', cmp:'Compare niches', cmpNote:'Pick up to four. Difficulty and competition: lower is easier; everything else: higher is stronger. Scores use your current weights.',
+    clear:'Clear', cmpEmpty:'Pick niches above, or press “Compare top 3”.', remove:'Remove ×', max4:'You can compare up to four niches.', topAdded:'Top 3 added to the comparison below.',
+    rows:{ score:'Priority index', demand:'Demand signal', money:'Monetization', diff:'Entry difficulty', comp:'Competition', vis:'Visibility', buyer:'Potential buyers', mvp:'What to build first', wedge:'How to stand out', validation:'Validate demand', risk:'Limitations', sources:'Sources' },
+    diffNames:['','Simple prototype','Analytics without trade execution','Backend and integrations','Complex execution','Team and partners'],
+    levels:['','Low','Moderate','Medium','High','Very high'],
+    verified:'Verified signal', buyer:'Potential buyers', how:'Possible revenue model', first:'What to build first', stand:'How to stand out', limits:'Requirements and limitations', existing:'Existing and adjacent solutions',
+    validate:'Validate demand before building', why:'Why these ratings', conf:'Confidence', mvpNote:'Ratings refer to the proposed MVP.',
+    method:'How the ranking works',
+    m1:'<strong>Facts and ratings are separate.</strong> Sources verify infrastructure or the team’s priorities. Buyers, revenue, MVPs and ratings are hypotheses; paying demand for a new product is not yet verified.',
+    f1:'Priority = 20 × weighted average', f2:'demand · monetization · (6 − difficulty) · (6 − competition) · visibility',
+    m2:'Each criterion is rated 1–5. Difficulty and competition are inverted. Weights are normalized by their sum. Scores are an index, not a probability of earning money.',
+    ex:'USDC payment operations with Balanced weights:',
+    m3:'Competitors were reviewed selectively. The ranking does not measure market size or returns. Difficulty refers to the proposed MVP, not the whole category.',
+    sources:'Primary sources', checked:'Checked',
+    fn1:'Transfer volumes and transaction counts do not prove paying demand for a specific service. Agent activity should be judged by independent buyers and repeat payments.',
+    fn2:'Base Batches 004: applications were closed when checked. Investments, grants and promotion are not part of the baseline revenue model.',
+    foot:'Snapshot', footN:'niches', footS:'sources', footTail:'ratings for choosing a project, not return forecasts'
+  },
+  ru: {
+    nav1:'Ниши', nav2:'Сравнить', nav3:'Методика',
+    kicker:'Base Niche Navigator', title:'Что создать на Base, чтобы этим пользовались?',
+    sub:'14 направлений с оценкой по спросу, заработку, сложности входа, конкуренции и заметности. Открой любое: кто может платить, что сделать первым и как проверить спрос до того, как писать код.',
+    asof:'Проверка источников', goal:'Что важнее для тебя?', presets:{ balance:'Баланс', income:'Первый доход', visibility:'Заметность', custom:'Свои веса' },
+    skills:'Твои навыки', allSkills:'Показать все направления', q:'Какую задачу хочется решать?', qPh:'Платежи, аналитика, агенты, Aero…',
+    cat:'Тип направления', allCats:'Все типы', diff:'Насколько сложно начать',
+    diffs:[['5','Любая сложность'],['2','Простой старт · до 2 из 5'],['3','Готов к интеграциям · до 3'],['4','Готов к сложному MVP · до 4']],
+    more:'Уточнить условия', moreSub:'Оплата, контракты, капитал', moreOn:'Есть выбранные условия',
+    model:'Как получать выручку', allModels:'Все модели', signal:'Подтверждённый сигнал', anySignal:'Любой',
+    nocon:'Без своих контрактов', nocap:'Без торгового капитала',
+    ranked:'Рейтинг учитывает спрос, выручку, вход, конкуренцию и заметность.',
+    weights:'Настроить веса', reset:'Сбросить фильтры', keepOne:'Оставь хотя бы один ненулевой вес.',
+    w:{ demand:'Сигнал спроса', money:'Монетизация', ease:'Лёгкость входа', calm:'Меньше конкуренции', visibility:'Заметность' },
+    all:'Все направления', of:'из', top:'Сравнить тройку лидеров',
+    sorts:[['priority','По приоритету'],['difficulty','Проще начать'],['competition','Меньше конкуренции'],['visibility','По заметности'],['demand','По сигналу спроса']],
+    legend:'Балл 0–100 по твоим весам: индекс для выбора проекта, не прогноз дохода. Синие полоски: больше — лучше. Жёлтые (сложность, конкуренция): меньше — проще. Тройка лидеров отмечена.',
+    points:'баллов', topPick:'В тройке', mDemand:'Сигнал спроса', mMoney:'Монетизация', mDiff:'Сложность входа', mComp:'Конкуренция', mVis:'Заметность',
+    lower:'меньше — проще', revenue:'Как можно зарабатывать', explore:'Разобрать идею', add:'+ Сравнить', added:'✓ В сравнении',
+    none:'Нет направлений под все фильтры.', cmp:'Сравнить направления', cmpNote:'Выбери до четырёх. Сложность и конкуренция: меньше — проще; остальное: больше — сильнее. Баллы по текущим весам.',
+    clear:'Очистить', cmpEmpty:'Выбери направления выше или нажми «Сравнить тройку лидеров».', remove:'Убрать ×', max4:'Можно сравнивать до четырёх направлений.', topAdded:'Тройка лидеров добавлена в сравнение ниже.',
+    rows:{ score:'Индекс приоритета', demand:'Сигнал спроса', money:'Монетизация', diff:'Сложность входа', comp:'Конкуренция', vis:'Заметность', buyer:'Кто может платить', mvp:'Что сделать первым', wedge:'Как выделиться', validation:'Проверка спроса', risk:'Ограничения', sources:'Источники' },
+    diffNames:['','Простой прототип','Аналитика без исполнения сделок','Сервер и интеграции','Сложное исполнение','Команда и партнёры'],
+    levels:['','Низкий','Умеренный','Средний','Высокий','Очень высокий'],
+    verified:'Подтверждённый сигнал', buyer:'Кто может платить', how:'Как можно зарабатывать', first:'Что сделать первым', stand:'Как выделиться', limits:'Порог и ограничения', existing:'Существующие и смежные решения',
+    validate:'Как проверить спрос до разработки', why:'Почему такие оценки', conf:'Уверенность', mvpNote:'Оценки относятся к указанному MVP.',
+    method:'Как считается рейтинг',
+    m1:'<strong>Факты и оценки разделены.</strong> Источники подтверждают инфраструктуру или интерес команды. Покупатель, выручка, MVP и баллы — гипотезы; платящий спрос на новый продукт пока не подтверждён.',
+    f1:'Приоритет = 20 × взвешенное среднее', f2:'спрос · монетизация · (6 − сложность) · (6 − конкуренция) · заметность',
+    m2:'Каждый критерий — шкала 1–5. Сложность и конкуренция инвертируются. Вес делится на сумму весов. Баллы — условный индекс, не вероятность заработка.',
+    ex:'Учёт USDC-платежей при весах «Баланс»:',
+    m3:'Конкуренты проверены выборочно. Рейтинг не измеряет рынок и доходность. Сложность относится к указанному MVP, а не ко всему направлению.',
+    sources:'Первичные источники', checked:'Проверено',
+    fn1:'Объёмы переводов и число транзакций не доказывают платящий спрос на конкретный сервис. Активность агентов стоит проверять по независимым покупателям и повторной оплате.',
+    fn2:'Base Batches 004: на момент проверки приём заявок закрыт. Инвестиции, гранты и продвижение не входят в базовую модель выручки.',
+    foot:'Срез', footN:'направлений', footS:'источников', footTail:'оценки для выбора проекта, не прогноз доходности'
+  }
+};
+
+var lang = store('ck-lang') === 'ru' ? 'ru' : 'en';
+if (/[?&]lang=ru\b/.test(location.search)) lang = 'ru';
+var DATA = null;
+var DEF = { q:'', cat:'all', skills:'all', diff:'5', model:'all', signal:'all', nocon:false, nocap:false };
+var f = Object.assign({}, DEF);
+var goal = 'balance';
+var w = Object.assign({}, PRESETS.balance);
+var sort = 'priority';
+var sel = [];
+try { var s0 = JSON.parse(store('bn-compare') || '[]'); if (Array.isArray(s0)) sel = s0.slice(0, 4); } catch (e) {}
+
+function t(){ return U[lang]; }
+function L(n){ return n[lang]; }
+function fmtDate(iso){
+  var d = new Date(iso + 'T12:00:00Z');
+  return new Intl.DateTimeFormat(lang === 'ru' ? 'ru-RU' : 'en-US', { day:'numeric', month:'long', year:'numeric', timeZone:'UTC' }).format(d);
+}
+function toast(msg){
+  var el = $('toast'); el.textContent = msg; el.style.display = 'block';
+  clearTimeout(toast.h); toast.h = setTimeout(function(){ el.style.display = 'none'; }, 2600);
+}
+function uniq(fn){
+  var seen = {}, out = [];
+  DATA.niches.forEach(function(n){ [].concat(fn(n)).forEach(function(v){ if (!seen[v[0]]) { seen[v[0]] = 1; out.push(v); } }); });
+  return out;
+}
+function options(el, list, value){
+  el.innerHTML = list.map(function(o){ return '<option value="' + esc(o[0]) + '"' + (o[0] === value ? ' selected' : '') + '>' + esc(o[1]) + '</option>'; }).join('');
+}
+
+function ranked(list){
+  var out = list.map(function(n){ return { n:n, p:score(n, w) }; });
+  out.sort(function(a, b){
+    var d = 0;
+    if (sort === 'difficulty') d = a.n.difficulty - b.n.difficulty;
+    else if (sort === 'competition') d = a.n.competition - b.n.competition;
+    else if (sort === 'visibility') d = b.n.visibility - a.n.visibility;
+    else if (sort === 'demand') d = b.n.demand - a.n.demand;
+    return d || (b.p - a.p) || a.n.id.localeCompare(b.n.id);
+  });
+  return out;
+}
+function filtered(){
+  var q = f.q.toLowerCase().trim();
+  return DATA.niches.filter(function(n){
+    var en = n.en, ru = n.ru;
+    if (f.cat !== 'all' && en.category !== f.cat) return false;
+    if (f.skills !== 'all' && n.skills !== f.skills) return false;
+    if (n.difficulty > Number(f.diff)) return false;
+    if (f.model !== 'all' && en.models.indexOf(f.model) < 0) return false;
+    if (f.signal !== 'all' && en.signal !== f.signal) return false;
+    if (f.nocon && n.contracts) return false;
+    if (f.nocap && n.capital) return false;
+    if (q) {
+      var hay = [en.name, en.summary, en.buyer, en.mvp, en.wedge, en.category, en.models.join(' '), ru.name, ru.summary, ru.buyer, ru.mvp, ru.wedge, ru.category, ru.models.join(' ')].join(' ').toLowerCase();
+      if (hay.indexOf(q) < 0) return false;
+    }
+    return true;
+  });
+}
+// The top three by score under the current weights and filters, whatever the sort.
+function topIds(){
+  return filtered().map(function(n){ return { id:n.id, p:score(n, w) }; })
+    .sort(function(a, b){ return (b.p - a.p) || a.id.localeCompare(b.id); }).slice(0, 3).map(function(x){ return x.id; });
+}
+
+function dots(v, inv){
+  var h = '<span class="dots' + (inv ? ' inv' : '') + '" aria-label="' + v + ' / 5">';
+  for (var i = 1; i <= 5; i++) h += '<i class="' + (i <= v ? 'on' : '') + '"></i>';
+  return h + '<b>' + v + '</b></span>';
+}
+function tagsFor(n){
+  var l = L(n);
+  return '<div class="tags"><span class="tag">' + esc(l.category) + '</span>' +
+    '<span class="tag ' + (n.official ? 'req' : 'live') + '">' + esc(l.signal) + '</span></div>';
+}
+function srcLinks(ids){
+  return '<div class="links">' + ids.map(function(id){
+    var s = DATA.sources.filter(function(x){ return x.id === id; })[0];
+    return s ? '<a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s[lang].title) + ' ↗</a>' : '';
+  }).join('') + '</div>';
+}
+
+function paintGrid(){
+  var T = t(), list = filtered(), tops = topIds(), r = ranked(list);
+  $('count').textContent = list.length + ' ' + T.of + ' ' + DATA.niches.length;
+  $('b-top').disabled = !tops.length;
+  if (!r.length) { $('grid').innerHTML = '<div class="empty" style="grid-column:1/-1">' + esc(T.none) + ' <button class="btn" type="button" data-reset>' + esc(T.reset) + '</button></div>'; return; }
+  $('grid').innerHTML = r.map(function(x){
+    var n = x.n, l = L(n), ti = tops.indexOf(n.id), on = sel.indexOf(n.id) >= 0;
+    return '<article class="card' + (ti >= 0 ? ' top' : '') + '">' +
+      '<div class="c-head"><div>' + (ti >= 0 ? '<div class="rank">#' + (ti + 1) + ' · ' + esc(T.topPick) + '</div>' : '') +
+        '<h3 class="c-name">' + esc(l.name) + '</h3></div>' +
+        '<div class="score"><b>' + Math.round(x.p) + '</b><small>' + esc(T.points) + '</small></div></div>' +
+      tagsFor(n) +
+      '<p class="c-sum">' + esc(l.summary) + '</p>' +
+      '<div class="meters">' +
+        '<div class="m">' + esc(T.mDemand) + dots(n.demand) + '</div>' +
+        '<div class="m">' + esc(T.mMoney) + dots(n.money) + '</div>' +
+        '<div class="m"><span>' + esc(T.mDiff) + ' <em>' + esc(T.lower) + '</em></span>' + dots(n.difficulty, true) + '</div>' +
+        '<div class="m"><span>' + esc(T.mComp) + ' <em>' + esc(T.lower) + '</em></span>' + dots(n.competition, true) + '</div>' +
+        '<div class="m">' + esc(T.mVis) + dots(n.visibility) + '</div>' +
+      '</div>' +
+      '<p class="c-rev"><span>' + esc(T.revenue) + '</span>' + esc(l.monetization) + '</p>' +
+      '<div class="c-act"><button class="btn" type="button" data-open="' + n.id + '">' + esc(T.explore) + '</button>' +
+        '<button class="btn ghost' + (on ? ' on' : '') + '" type="button" data-cmp="' + n.id + '"' + (!on && sel.length >= 4 ? ' disabled' : '') + '>' + esc(on ? T.added : T.add) + '</button></div>' +
+    '</article>';
+  }).join('');
+}
+
+function paintCompare(){
+  var T = t(), R = T.rows;
+  store('bn-compare', JSON.stringify(sel));
+  $('cmp-count').textContent = sel.length + ' ' + T.of + ' 4';
+  $('b-clear').disabled = !sel.length;
+  $('picks').innerHTML = DATA.niches.map(function(n){
+    var on = sel.indexOf(n.id) >= 0;
+    return '<button type="button" class="' + (on ? 'on' : '') + '" data-cmp="' + n.id + '"' + (!on && sel.length >= 4 ? ' disabled' : '') + '>' + (on ? '✓ ' : '+ ') + esc(L(n).name) + '</button>';
+  }).join('');
+  var cols = sel.map(function(id){ return DATA.niches.filter(function(n){ return n.id === id; })[0]; }).filter(Boolean);
+  if (!cols.length) { $('cmp').innerHTML = '<div class="empty">' + esc(T.cmpEmpty) + '</div>'; return; }
+  var rows = [
+    [R.score, function(n){ return '<b style="font-size:20px;color:var(--blue-bright)">' + Math.round(score(n, w)) + '</b> ' + esc(T.points); }],
+    [R.demand, function(n){ return dots(n.demand) + '<p>' + esc(L(n).signal) + '</p>'; }],
+    [R.money, function(n){ return dots(n.money) + '<p>' + esc(L(n).monetization) + '</p>'; }],
+    [R.diff, function(n){ return dots(n.difficulty, true) + '<p>' + esc(T.diffNames[n.difficulty]) + '</p>'; }],
+    [R.comp, function(n){ return dots(n.competition, true) + '<p>' + esc(T.levels[n.competition]) + '</p>'; }],
+    [R.vis, function(n){ return dots(n.visibility) + '<p>' + esc(T.levels[n.visibility]) + '</p>'; }],
+    [R.buyer, function(n){ return esc(L(n).buyer); }],
+    [R.mvp, function(n){ return esc(L(n).mvp); }],
+    [R.wedge, function(n){ return esc(L(n).wedge); }],
+    [R.validation, function(n){ return esc(L(n).validation); }],
+    [R.risk, function(n){ return esc(L(n).risk); }],
+    [R.sources, function(n){ return srcLinks(n.sources); }]
+  ];
+  $('cmp').innerHTML = '<div class="tscroll"><table class="cmp"><thead><tr><th></th>' +
+    cols.map(function(n){ return '<th>' + esc(L(n).name) + '<br><button class="x" type="button" data-cmp="' + n.id + '">' + esc(T.remove) + '</button></th>'; }).join('') +
+    '</tr></thead><tbody>' +
+    rows.map(function(r){ return '<tr><th scope="row">' + esc(r[0]) + '</th>' + cols.map(function(n){ return '<td>' + r[1](n) + '</td>'; }).join('') + '</tr>'; }).join('') +
+    '</tbody></table></div>';
+}
+
+function openIdea(id){
+  var T = t(), n = DATA.niches.filter(function(x){ return x.id === id; })[0]; if (!n) return;
+  var l = L(n), on = sel.indexOf(id) >= 0;
+  $('dlg-in').innerHTML =
+    '<div class="d-top"><div>' + tagsFor(n) + '<h3>' + esc(l.name) + '</h3></div>' +
+      '<div style="display:flex;gap:14px;align-items:flex-start"><div class="score"><b>' + Math.round(score(n, w)) + '</b><small>' + esc(T.points) + '</small></div>' +
+      '<button class="close" type="button" data-close aria-label="Close">×</button></div></div>' +
+    '<p class="d-lead">' + esc(l.summary) + '</p>' +
+    '<div class="fact"><small>' + esc(T.verified) + '</small><p>' + esc(l.fact) + '</p>' + srcLinks(n.sources) + '</div>' +
+    '<div class="d-grid">' +
+      [[T.buyer, l.buyer], [T.how, l.monetization], [T.first, l.mvp], [T.stand, l.wedge], [T.limits, l.risk], [T.existing, l.competitors]]
+        .map(function(p){ return '<div><h4>' + esc(p[0]) + '</h4><p>' + esc(p[1]) + '</p></div>'; }).join('') +
+    '</div>' +
+    '<div class="d-next"><h4>' + esc(T.validate) + '</h4><p>' + esc(l.validation) + '</p></div>' +
+    '<details class="d-why"><summary>' + esc(T.why) + '</summary><p>' + esc(l.reason) + '</p><p>' + esc(T.conf) + ': ' + esc(l.confidence.toLowerCase()) + '. ' + esc(l.paidDemand) + '. ' + esc(T.mvpNote) + '</p></details>' +
+    '<div class="d-act"><button class="btn' + (on ? ' on' : '') + '" type="button" data-cmp="' + id + '"' + (!on && sel.length >= 4 ? ' disabled' : '') + '>' + esc(on ? T.added : T.add) + '</button></div>';
+  var d = $('dlg');
+  if (!d.open) { if (d.showModal) d.showModal(); else d.setAttribute('open', ''); }
+  try { history.replaceState(null, '', '#' + id); } catch (e) {}
+}
+function closeIdea(){
+  var d = $('dlg'); if (d.open) d.close();
+  try { if (location.hash && location.hash.length > 1 && DATA.niches.some(function(n){ return '#' + n.id === location.hash; })) history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+}
+
+function paintWeights(){
+  var T = t(), sum = 0; KEYS.forEach(function(k){ sum += w[k]; });
+  $('weights').innerHTML = KEYS.map(function(k){
+    return '<label>' + esc(T.w[k]) + ' <b>' + Math.round(w[k] * 100 / sum) + '%</b><input type="range" min="0" max="100" step="5" value="' + w[k] + '" data-w="' + k + '"></label>';
+  }).join('');
+}
+function paintGoal(){
+  var T = t();
+  $('goal').innerHTML = ['balance', 'income', 'visibility'].map(function(g){
+    return '<button type="button" data-goal="' + g + '" class="' + (goal === g ? 'on' : '') + '">' + esc(T.presets[g]) + '</button>';
+  }).join('') + (goal === 'custom' ? '<button type="button" class="on" disabled>' + esc(T.presets.custom) + '</button>' : '');
+}
+function paintMoreLabel(){
+  var on = f.model !== 'all' || f.signal !== 'all' || f.nocon || f.nocap;
+  $('t-more-sub').textContent = on ? t().moreOn : t().moreSub;
+}
+
+function paintStatic(){
+  var T = t();
+  document.documentElement.lang = lang;
+  $('l-en').className = lang === 'en' ? 'on' : ''; $('l-ru').className = lang === 'ru' ? 'on' : '';
+  ['nav1','nav2','nav3','kicker','title','sub','goal','skills','q','cat','diff','more','model','signal','nocon','nocap','ranked','all','legend','cmp','method','sources']
+    .forEach(function(k){ var el = $('t-' + k); if (el) el.textContent = T[k]; });
+  $('t-cmp-note').textContent = T.cmpNote;
+  $('t-asof').textContent = T.asof + ': ' + fmtDate(DATA.snapshot);
+  $('f-q').placeholder = T.qPh; $('f-q').value = f.q;
+  $('b-weights').textContent = T.weights + ($('weights').hidden ? ' +' : ' −');
+  $('b-reset').textContent = T.reset; $('b-top').textContent = T.top; $('b-clear').textContent = T.clear;
+  options($('f-skills'), [['all', T.allSkills]].concat(uniq(function(n){ return [[n.skills, L(n).skill]]; })), f.skills);
+  options($('f-cat'), [['all', T.allCats]].concat(uniq(function(n){ return [[n.en.category, L(n).category]]; })), f.cat);
+  options($('f-diff'), T.diffs, f.diff);
+  options($('f-model'), [['all', T.allModels]].concat(uniq(function(n){ return n.en.models.map(function(m, i){ return [m, L(n).models[i]]; }); })), f.model);
+  options($('f-signal'), [['all', T.anySignal]].concat(uniq(function(n){ return [[n.en.signal, L(n).signal]]; })), f.signal);
+  $('f-nocon').checked = f.nocon; $('f-nocap').checked = f.nocap;
+  options($('sort'), T.sorts, sort);
+  paintGoal(); paintWeights(); paintMoreLabel();
+
+  var u = DATA.niches.filter(function(n){ return n.id === 'usdc-ops'; })[0];
+  $('method-body').innerHTML = '<p>' + T.m1 + '</p>' +
+    '<div class="formula">' + esc(T.f1) + '<small>' + esc(T.f2) + '</small></div>' +
+    '<p>' + esc(T.m2) + '</p>' +
+    '<div class="rubric">' + DATA.metrics.map(function(m){ return '<div><h4>' + esc(m[lang].label) + '</h4><p>' + esc(m[lang].definition) + '</p></div>'; }).join('') + '</div>' +
+    (u ? '<p>' + esc(T.ex) + '<br><strong>20 × (30×' + u.demand + ' + 25×' + u.money + ' + 20×' + (6 - u.difficulty) + ' + 10×' + (6 - u.competition) + ' + 15×' + u.visibility + ') / 100 = ' + Math.round(score(u, PRESETS.balance)) + ' ' + esc(T.points) + '</strong></p>' : '') +
+    '<p>' + esc(T.m3) + '</p>';
+  $('srcs').innerHTML = DATA.sources.map(function(s){
+    var host = ''; try { host = new URL(s.url).hostname.replace(/^www\./, ''); } catch (e) {}
+    return '<div class="src"><span>' + esc(s[lang].type) + '</span><a href="' + esc(s.url) + '" target="_blank" rel="noopener">' + esc(s[lang].title) + ' ↗</a><p>' + esc(s[lang].summary) + '</p><small>' + esc(T.checked) + ' ' + esc(fmtDate(s.checked)) + ' · ' + esc(host) + '</small></div>';
+  }).join('');
+  $('foot-note').innerHTML = '<p>' + esc(T.fn1) + '</p><p>' + esc(T.fn2) + '</p>' + srcLinks(['study', 'batches', 'codes']);
+  $('t-foot').textContent = T.foot + ' ' + fmtDate(DATA.snapshot) + ' · ' + DATA.niches.length + ' ' + T.footN + ' · ' + DATA.sources.length + ' ' + T.footS + ' · ' + T.footTail;
+  paintGrid(); paintCompare();
+  var d = $('dlg'); if (d.open && location.hash.length > 1) openIdea(location.hash.slice(1));
+}
+
+function toggle(id){
+  var i = sel.indexOf(id);
+  if (i >= 0) sel.splice(i, 1);
+  else if (sel.length >= 4) { toast(t().max4); return; }
+  else sel.push(id);
+  paintGrid(); paintCompare();
+  if ($('dlg').open) openIdea(id);
+}
+
+document.addEventListener('click', function(e){
+  var el = e.target.closest('[data-open],[data-cmp],[data-goal],[data-close],[data-reset]');
+  if (!el) return;
+  if (el.hasAttribute('data-open')) openIdea(el.getAttribute('data-open'));
+  else if (el.hasAttribute('data-cmp')) toggle(el.getAttribute('data-cmp'));
+  else if (el.hasAttribute('data-close')) closeIdea();
+  else if (el.hasAttribute('data-reset')) { f = Object.assign({}, DEF); paintStatic(); }
+  else if (el.hasAttribute('data-goal')) { goal = el.getAttribute('data-goal'); w = Object.assign({}, PRESETS[goal]); paintGoal(); paintWeights(); paintGrid(); paintCompare(); }
+});
+$('dlg').addEventListener('click', function(e){ if (e.target === this) closeIdea(); });
+$('dlg').addEventListener('close', function(){ closeIdea(); });
+$('weights').addEventListener('input', function(e){
+  var k = e.target.getAttribute('data-w'); if (!k) return;
+  var v = Number(e.target.value), others = KEYS.some(function(x){ return x !== k && w[x] > 0; });
+  if (!v && !others) { e.target.value = w[k]; toast(t().keepOne); return; }
+  w[k] = v; goal = 'custom';
+  var sum = 0; KEYS.forEach(function(x){ sum += w[x]; });
+  [].forEach.call(this.querySelectorAll('label'), function(lb){ var kk = lb.querySelector('input').getAttribute('data-w'); lb.querySelector('b').textContent = Math.round(w[kk] * 100 / sum) + '%'; });
+  paintGoal(); paintGrid(); paintCompare();
+});
+function bindSel(id, key){ $(id).addEventListener('change', function(){ f[key] = this.type === 'checkbox' ? this.checked : this.value; paintMoreLabel(); paintGrid(); }); }
+bindSel('f-skills', 'skills'); bindSel('f-cat', 'cat'); bindSel('f-diff', 'diff'); bindSel('f-model', 'model'); bindSel('f-signal', 'signal'); bindSel('f-nocon', 'nocon'); bindSel('f-nocap', 'nocap');
+$('f-q').addEventListener('input', function(){ f.q = this.value; paintGrid(); });
+$('sort').addEventListener('change', function(){ sort = this.value; paintGrid(); });
+$('b-weights').addEventListener('click', function(){ $('weights').hidden = !$('weights').hidden; this.textContent = t().weights + ($('weights').hidden ? ' +' : ' −'); });
+$('b-reset').addEventListener('click', function(){ f = Object.assign({}, DEF); paintStatic(); });
+$('b-top').addEventListener('click', function(){ sel = topIds(); paintGrid(); paintCompare(); toast(t().topAdded); });
+$('b-clear').addEventListener('click', function(){ sel = []; paintGrid(); paintCompare(); });
+function setLang(l){ lang = l; store('ck-lang', l); paintStatic(); }
+$('l-en').onclick = function(){ setLang('en'); };
+$('l-ru').onclick = function(){ setLang('ru'); };
+
+fetch('/navigator-data.json').then(function(r){ return r.json(); }).then(function(d){
+  DATA = d;
+  var ids = DATA.niches.map(function(n){ return n.id; });
+  sel = sel.filter(function(id){ return ids.indexOf(id) >= 0; });
+  paintStatic();
+  if (location.hash.length > 1 && ids.indexOf(location.hash.slice(1)) >= 0) openIdea(location.hash.slice(1));
+}).catch(function(){
+  $('grid').innerHTML = '<div class="empty" style="grid-column:1/-1">Could not load the niches. Reload the page.</div>';
+});
+})();
+</script>
+<!-- Cloudflare Web Analytics: page views only, no cookies --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d66a3ce27f4e4b47bb1eb31a0e5fa912"}'></script>
+</body>
+</html>
