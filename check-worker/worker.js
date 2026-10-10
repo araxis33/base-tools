@@ -16,6 +16,7 @@
 // Secrets: GEMINI_API_KEY, GROQ_API_KEY, TAVILY_API_KEY (optional). KV: QUOTA.
 
 import { BOARDS_CRON, STOCKS_CRON, refreshBoards, refreshStocks, boardsResponse, poolsResponse } from './boards.js';
+import { DATA_CRON, refreshStockData, stockDataResponse } from './stockdata.js';
 
 const LIMIT = 3;
 const ORIGINS = ['https://deftools.xyz', 'https://www.deftools.xyz', 'http://localhost:8765'];
@@ -212,8 +213,8 @@ export default {
       if (!body) return json(req, { error: 'not built yet' }, 503);
       return new Response(body, { headers: { 'content-type': 'application/json', 'cache-control': 'public, max-age=60', ...cors(req) } });
     }
-    if (url.pathname === '/stock-pools') {
-      const body = await poolsResponse(env);
+    if (url.pathname === '/stock-pools' || url.pathname === '/stock-data') {
+      const body = await (url.pathname === '/stock-pools' ? poolsResponse(env) : stockDataResponse(env));
       if (!body) return json(req, { error: 'not built yet' }, 503);
       return new Response(body, { headers: { 'content-type': 'application/json', 'cache-control': 'public, max-age=60', ...cors(req) } });
     }
@@ -260,7 +261,8 @@ export default {
 
   async scheduled(event, env, ctx) {
     // The result goes to the log: `wrangler tail` shows why a board kept its old rows.
-    const run = event.cron === STOCKS_CRON ? refreshStocks(env) : event.cron === BOARDS_CRON ? refreshBoards(env) : null;
+    const run = event.cron === STOCKS_CRON ? refreshStocks(env) : event.cron === BOARDS_CRON ? refreshBoards(env)
+      : event.cron === DATA_CRON ? refreshStockData(env, Math.floor(new Date(event.scheduledTime).getUTCMinutes() / 10) % 3) : null;
     if (run) ctx.waitUntil(run.then((r) => console.log(event.cron, JSON.stringify(r)), (e) => console.log(event.cron, 'failed', e.message)));
   },
 };

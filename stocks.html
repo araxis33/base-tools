@@ -142,7 +142,7 @@ footer{margin:40px 0 30px; color:var(--muted2); font-size:13px}
   <div class="session" id="session"><i class="dot"></i><div><b>Checking the market&hellip;</b><span></span></div></div>
 
   <div class="hint"><span class="live"><i></i>LIVE</span>
-    <span>Every number is fetched fresh when you open the page. <b>Tap any stock</b> for its full check: fakes, trade cost at your size, borrowing, transfers.</span></div>
+    <span>Prices on Base and round trips are re-checked every 30 minutes, the real share live. <b>Tap any stock</b> for its full check: fakes, trade cost at your size, borrowing, transfers.</span></div>
 
   <table class="tbl" id="tbl">
     <thead><tr>
@@ -173,10 +173,7 @@ var USDC = "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913";
 var KYBER = "https://aggregator-api.kyberswap.com/base/api/v1/routes";
 var WORKER = "https://deftools-check.araxis67.workers.dev";
 var RPCS = ["https://base-rpc.publicnode.com", "https://mainnet.base.org"];
-var STOCK_DECIMALS = 8;   // every Coinbase stock token on Base
 var POLICY_REGISTRY = "0x8453000000000000000000000000000000000002";
-var SENDER_SCOPE = "b81736c875ab819dd97f59f2a6542cfb731ad52b4ae15a6f24df2fb02b0327f5";
-var PAUSABLE = ["transfers", "minting", "burning", "seizing"];
 /* Chainlink "Coinbase <ticker>" feeds on Base: 24/5, 0.5% deviation, 24h heartbeat. */
 var FEEDS = {
   NVDAc:"0x04689a41629776563E6822F76f2e57D148d28513", METAc:"0x6526aE6797A76123638b863AeE4dD27Ba4E4b27D",
@@ -220,39 +217,22 @@ function rpcBatch(calls){
   };
   return tryOne(0);
 }
-function word(hex, i){ return BigInt("0x" + hex.slice(2 + 64*i, 66 + 64*i)); }
-
-function loadChain(){
-  /* Six reads per stock, eight stocks per batch: one batch of all 36 is more
-     than a public node takes. The 26 stocks listed in late September have no
-     Chainlink feed yet, so their two feed reads go to the token instead and
-     are ignored. */
-  var CHUNK = 8, jobs = [];
-  for (var at = 0; at < TOKENS.length; at += CHUNK) (function(slice){
-    var calls = [];
-    slice.forEach(function(t){
-      var feed = FEEDS[t.s] || t.a;
-      calls.push([feed, "0xfeaf968c"]);                       // latestRoundData
-      calls.push([feed, "0x313ce567"]);                       // feed decimals
-      calls.push([t.a, "0x1b3ed722"]);                        // multiplier
-      calls.push([t.a, "0xde9997e3"]);                        // pausedFeatures
-      calls.push([t.a, "0xdb3de624" + SENDER_SCOPE]);         // policyId(TRANSFER_SENDER_POLICY)
-      calls.push([t.a, "0x313ce567"]);                        // token decimals
+/* ---------- the table: price on Base, $1,000 round trip, chain reads, Morpho ---------- */
+/* Built by our Worker every 10 minutes, a third of the stocks per run (10.10.2026):
+   the page used to quote KyberSwap ~108 times one stock after another, and the
+   table took a minute or two to fill. A failed read keeps what the page has. */
+var DT = null;
+function loadData(){
+  return fetch(WORKER + "/stock-data").then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); }).then(function(j){
+    if (!j || !j.items) return;
+    DT = j.ts;
+    TOKENS.forEach(function(t){
+      var x = j.items[t.s]; if (!x) return;
+      if ("dex" in x) { S[t.s].dex = x.dex; S[t.s].rt = x.rt; S[t.s].at = x.ts; }
+      if (x.chain) S[t.s].chain = x.chain;
+      if (x.morpho) S[t.s].morpho = x.morpho;
     });
-    jobs.push(function(){ return rpcBatch(calls).then(function(r){ readChain(slice, r); }).catch(function(){}); });
-  })(TOKENS.slice(at, at + CHUNK));
-  return jobs.reduce(function(p, job){ return p.then(job); }, Promise.resolve());
-}
-function readChain(slice, r){
-  slice.forEach(function(t, i){
-    var b = i * 6, c = {};
-    if (FEEDS[t.s]) try { var dec = Number(word(r[b+1], 0)); c.oracle = Number(word(r[b], 1)) / Math.pow(10, dec); c.oracleAt = Number(word(r[b], 3)); } catch(e){}
-    try { c.multiplier = Number(word(r[b+2], 0)) / 1e18; } catch(e){}
-    try { var n = Number(word(r[b+3], 1)); c.paused = []; for (var k = 0; k < n; k++) c.paused.push(PAUSABLE[Number(word(r[b+3], 2 + k))] || "?"); } catch(e){}
-    try { c.policy = Number(word(r[b+4], 0)); } catch(e){}
-    try { c.decimals = Number(word(r[b+5], 0)); } catch(e){ c.decimals = null; }
-    S[t.s].chain = c;
-  });
+  }).catch(function(){});
 }
 
 /* ---------- real shares (through our Worker: Yahoo has no CORS) ---------- */
@@ -290,14 +270,6 @@ function roundTrip(t, dollars){
       return {loss: Math.max(0, 100 * (1 - Number(sell.amountOut) / 1e6 / dollars)), shares: Number(buy.amountOut), venues: venues(buy)};
     });
   });
-}
-function loadDex(t){
-  /* Every Coinbase stock token on Base has 8 decimals (all 36 read on 08.10.2026). It is not asked of a node:
-     on 08.10 a busy node answered nothing, the page took 18, and NVDAc showed as $2.35 trillion. */
-  var dec = STOCK_DECIMALS;
-  return quote(USDC, t.a, "50000000").then(function(q){ S[t.s].dex = 50 / (Number(q.amountOut) / Math.pow(10, dec)); })
-    .catch(function(){ S[t.s].dex = null; })
-    .then(function(){ return roundTrip(t, 1000).then(function(x){ S[t.s].rt = x; }).catch(function(){ S[t.s].rt = null; }); });
 }
 
 /* ---------- weekend record: hourly snapshots from the stocks-data branch ---------- */
@@ -374,28 +346,6 @@ function venuesHtml(t){
     var d = 100 * (r[1] / top - 1), cls = d > -0.05 ? "ok" : d > -1 ? "warn" : "bad";
     return kv(esc(r[0]), '<span class="' + cls + '">' + (d > -0.05 ? "cheapest (within 0.05%)" : pct(d) + " · pay " + usd(-d / 100 * v.dollars) + " more") + '</span>');
   }).join("") + '<p class="mut">The same $' + v.dollars.toLocaleString("en-US") + ' buy, forced through one venue at a time. A venue that is not listed has no pool for this stock.</p>';
-}
-
-/* ---------- borrowing: Morpho markets that take the stock as collateral ---------- */
-function loadMorpho(){
-  /* Lower case on purpose: Morpho validates EIP-55 checksums, a few of the
-     addresses base.org publishes are not correctly checksummed, and one bad
-     address fails the whole query, which showed "no market" for all 36. */
-  var q = "{ markets(first: 100, where: {chainId_in:[8453], collateralAssetAddress_in:" + JSON.stringify(TOKENS.map(function(t){ return t.a.toLowerCase(); })) +
-    "}) { items { marketId lltv collateralAsset { address } loanAsset { symbol } state { supplyAssetsUsd borrowAssetsUsd collateralAssetsUsd borrowApy } } } }";
-  return fetch("https://blue-api.morpho.org/graphql", {method:"POST", headers:{"content-type":"application/json"}, body:JSON.stringify({query:q})})
-    .then(function(r){ return r.json(); })
-    .then(function(j){
-      TOKENS.forEach(function(t){ S[t.s].morpho = []; });
-      ((j.data && j.data.markets && j.data.markets.items) || []).forEach(function(m){
-        var t = TOKENS.filter(function(x){ return x.a.toLowerCase() === m.collateralAsset.address.toLowerCase(); })[0];
-        var st = m.state || {};
-        var free = (st.supplyAssetsUsd || 0) - (st.borrowAssetsUsd || 0);
-        if (!t || (st.collateralAssetsUsd || 0) < 100 && free < 100) return;   // empty shells
-        S[t.s].morpho.push({id:m.marketId, ltv:Number(m.lltv)/1e16, loan:m.loanAsset.symbol, apy:100*(st.borrowApy || 0), free:free, collat:st.collateralAssetsUsd || 0});
-      });
-      TOKENS.forEach(function(t){ S[t.s].morpho.sort(function(a, b){ return b.collat - a.collat; }); });
-    }).catch(function(){});
 }
 
 /* ---------- impostors and other issuers (DexScreener search) ---------- */
@@ -551,7 +501,7 @@ function detail(t){
   h += '</div>';
 
   h += '<div class="box"><h3>Price</h3>' +
-    kv("On Base now", usd(st.dex)) +
+    kv("On Base", usd(st.dex) + (st.at ? ' <span class="mut">· ' + ago(st.at / 1000) + '</span>' : '')) +
     kv(open ? "Real share, live" : "Real share, last close", s && s.price ? usd(s.price) : "—") +
     kv("Gap", pct(g)) +
     kv("Chainlink feed", c.oracle ? usd(c.oracle) + ' <span class="mut">· ' + ago(c.oracleAt) + '</span>' : FEEDS[t.s] ? "—" : '<span class="mut">none yet for this stock</span>') +
@@ -643,10 +593,9 @@ loadPools().then(renderChain);
 setInterval(function(){ loadPools().then(renderChain); }, 120000);
 if (S[wanted]) setTimeout(function(){ var r = document.querySelector('tr.row[data-s="' + wanted + '"]'); if (r) r.scrollIntoView({block:"start"}); }, 50);
 loadWeekend().then(function(){ weekendTable(); render(); });
-Promise.all([loadShares().then(session), loadChain(), loadMorpho()]).then(function(){
+Promise.all([loadShares().then(session), loadData()]).then(function(){
   render();
-  /* Quotes one stock at a time: parallel pairs of KyberSwap calls trip its rate limit. */
-  return TOKENS.reduce(function(p, t){ return p.then(function(){ return loadDex(t).then(render).then(function(){ return sleep(250); }); }); }, Promise.resolve());
+  setInterval(function(){ loadData().then(render); }, 120000);
 }).then(function(){
   return TOKENS.reduce(function(p, t){ return p.then(function(){ return loadLook(t).then(function(){ return sleep(200); }); }); }, Promise.resolve()).then(function(){ render(); renderChain(); });
 });
