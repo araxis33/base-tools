@@ -198,6 +198,7 @@
     border-radius:16px; padding:16px 18px; color:var(--text); text-decoration:none;
     transition:border-color var(--t), background-color var(--t);}
   .hero-act.navigator-act{grid-column:1 / -1; border-color:var(--blue-text);}
+  @media(max-width:900px){nav .navigator-nav{display:none;}}
   .hero-act:hover{border-color:var(--border-hover); background:var(--card-hover);}
   .ha-t{font-weight:800; font-size:var(--fs-md);}
   .ha-d{color:var(--muted); font-size:var(--fs-sm); flex:1;}
@@ -697,7 +698,7 @@
     <nav>
       <a href="#trending">Token boards</a>
       <a href="#directory">Directory</a>
-      <a href="https://build.deftools.xyz/">Build on Base</a>
+      <a class="navigator-nav" href="https://build.deftools.xyz/">Build on Base</a>
       <a class="nav-cta" href="#projects"><span class="spark"></span><span class="cta-long">Built by </span>Def777</a>
       <a href="https://base.org" target="_blank" rel="noopener">Base.org</a>
     </nav>
@@ -758,9 +759,9 @@
           </div>
           <p class="proj-desc">Choose what to build on Base. Compare potential buyers, monetization, entry difficulty, competition and visibility. Filter by your skills and explore a short priority ranking backed by primary sources.</p>
           <div class="proj-tags">
-            <span class="tag">Preview</span>
+            <span class="tag">Beta</span>
             <span class="tag">Base</span>
-            <span class="tag">Daily source review</span>
+            <span class="tag">Primary sources</span>
           </div>
           <div class="proj-links">
             <a class="visit" href="https://build.deftools.xyz/">Open Navigator <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
