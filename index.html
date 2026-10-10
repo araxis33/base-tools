@@ -156,7 +156,7 @@
   .hero{
     /* Top and bottom only: a shorthand here zeroed .wrap's side padding, and on a
        phone the headline and the token check touched the screen edge. */
-    padding-top:68px; padding-bottom:44px;
+    padding-top:68px; padding-bottom:8px;
     background:
       radial-gradient(650px 320px at 90% -10%, rgba(59,110,255,0.16), transparent),
       radial-gradient(500px 260px at 0% 0%, rgba(255,207,64,0.07), transparent);
@@ -176,12 +176,8 @@
      as a second accent rather than as a meaning. */
   h1 .accent{color:var(--blue-text);}
   .sub{color:var(--muted); font-size:var(--fs-md); max-width:600px; margin-top:20px;}
-  /* The token check sits right under the headline: it is the one tool here a
-     visitor can use in ten seconds without knowing anything about the site. */
-  .hero-check{margin-top:28px; max-width:720px; background:var(--card); border:1px solid var(--border);
-    border-radius:16px; padding:18px 18px 16px;}
-  .hero-check label{display:block; font-weight:800; color:var(--text); font-size:var(--fs-md); margin-bottom:4px;}
-  .hero-check .hc-sub{color:var(--muted); font-size:var(--fs-sm); margin:0 0 12px;}
+  /* 10.10.2026: the tools follow the headline directly; the token check lives in
+     its own card, so it is still one paste away without a second copy up here. */
   .hc-row{display:flex; gap:10px; flex-wrap:wrap;}
   .hc-row input{flex:1 1 300px; min-width:0; background:var(--bg2); border:1px solid var(--border); color:var(--text);
     border-radius:12px; padding:13px 14px; font-size:15px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace;}
@@ -190,22 +186,8 @@
     font-family:inherit; font-size:var(--fs-md); font-weight:800; cursor:pointer;}
   .hc-row button:hover{background:#2f5de0;}
   @media (max-width:640px){ .hc-row button{flex:1 1 100%;} }
-
-
-  /* 09.10.2026: the first screen leads with the three things a visitor can do here. */
-  .hero-acts{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px; max-width:720px;}
-  .hero-act{display:flex; flex-direction:column; gap:6px; background:var(--card); border:1px solid var(--border);
-    border-radius:16px; padding:16px 18px; color:var(--text); text-decoration:none;
-    transition:border-color var(--t), background-color var(--t);}
-  .hero-act.navigator-act{grid-column:1 / -1; border-color:var(--blue-text);}
-  @media(max-width:900px){nav .navigator-nav{display:none;}}
-  .hero-act:hover{border-color:var(--border-hover); background:var(--card-hover);}
-  .ha-t{font-weight:800; font-size:var(--fs-md);}
-  .ha-d{color:var(--muted); font-size:var(--fs-sm); flex:1;}
-  .ha-go{color:var(--blue-text); font-weight:700; font-size:var(--fs-sm); display:inline-flex; align-items:center; gap:6px;}
-  .hc-n{display:inline-grid; place-items:center; width:22px; height:22px; border-radius:50%; background:var(--blue-soft);
-    color:var(--blue-text); font-size:13px; font-weight:800; margin-right:6px; vertical-align:2px;}
-  @media (max-width:640px){ .hero-acts{grid-template-columns:1fr;} }
+  .pc-check{margin:0;}
+  .pc-check .hc-row input{flex-basis:200px;}
 
   section{padding:32px 0;}
   .section-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:16px; flex-wrap:wrap; gap:8px;}
@@ -229,7 +211,8 @@
   /* trending: four boards across */
   .trend-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap:12px;}
   /* The boards are the one part of the page that wants more width than the
-     1180px column the rest of the site reads at. */
+     1180px column the rest of the site reads at: at 1180 the names get cut
+     (STON…, BLUEC…). Checked 10.10.2026. */
   .wrap-boards{max-width:1280px;}
   .trend-col{
     border:1px solid var(--border); border-radius:var(--r-lg); background:var(--card);
@@ -696,10 +679,9 @@
   <div class="wrap">
     <div class="logo"><span class="logo-mark" aria-hidden="true"></span> deftools</div>
     <nav>
-      <a href="#trending">Token boards</a>
+      <a href="#projects">Tools</a>
+      <a href="#trending">Boards</a>
       <a href="#directory">Directory</a>
-      <a class="navigator-nav" href="https://build.deftools.xyz/">Build on Base</a>
-      <a class="nav-cta" href="#projects"><span class="spark"></span><span class="cta-long">Built by </span>Def777</a>
       <a href="https://base.org" target="_blank" rel="noopener">Base.org</a>
     </nav>
   </div>
@@ -708,33 +690,7 @@
 <div class="wrap hero">
   <div class="pill"><span class="dot"></span> <span id="tool-count">14</span> TOOLS · <span id="cat-count">5</span> CATEGORIES · BASE ONLY</div>
   <h1>Tools for <span class="accent">Base</span>. Live boards. <br class="h1-break">Trades you <span class="accent">sign yourself</span>.</h1>
-  <p class="sub">24 apps worth using, four live boards, five open-source tools — and Base Niche Navigator to help you choose what to build next.</p>
-  <form class="hero-check" action="/check.html" method="get">
-    <label for="hc-a"><span class="hc-n">1</span> Check a token</label>
-    <p class="hc-sub">Paste a Base or Robinhood Chain address — a trust score from 1 to 10 in about a minute: can you sell it, who launched it, insider wallets, real exit. 3 free checks a day.</p>
-    <div class="hc-row">
-      <input id="hc-a" name="a" placeholder="0x…" autocomplete="off" spellcheck="false" required pattern="\s*0x[a-fA-F0-9]{40}\s*" title="0x followed by 40 characters">
-      <input type="hidden" name="go" value="1">
-      <button type="submit">Check</button>
-    </div>
-  </form>
-  <div class="hero-acts">
-    <a class="hero-act" href="/stocks.html">
-      <span class="ha-t"><span class="hc-n">2</span> Check a stock</span>
-      <span class="ha-d">Any of the 36 US stocks on Base: real share price vs the token, pool depth, what a round trip costs.</span>
-      <span class="ha-go">Open Stock Check <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
-    </a>
-    <a class="hero-act" href="https://aero.deftools.xyz" target="_blank" rel="noopener">
-      <span class="ha-t"><span class="hc-n">3</span> Split your veAERO votes</span>
-      <span class="ha-d">Which Aerodrome pools pay the most per vote, and how to spread your power across them.</span>
-      <span class="ha-go">Open Aero Vote Radar <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
-    </a>
-    <a class="hero-act navigator-act" href="https://build.deftools.xyz/">
-      <span class="ha-t"><span class="hc-n">4</span> Find what to build on Base</span>
-      <span class="ha-d">Compare niches by demand signals, potential buyers, revenue models, entry difficulty and visibility. English / Russian.</span>
-      <span class="ha-go">Open Base Niche Navigator <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></span>
-    </a>
-  </div>
+  <p class="sub">Six tools of my own, four live boards and 24 apps worth using.</p>
 </div>
 
 <div class="wrap">
@@ -748,25 +704,6 @@
 
     <div class="mine">
       <div class="proj-grid">
-
-        <div class="proj-card" id="base-niche-navigator">
-          <div class="proj-head">
-            <div class="proj-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#0052ff"/><path d="M10 23V13m6 10V8m6 15v-7" stroke="white" stroke-width="3" stroke-linecap="round"/></svg></div>
-            <div>
-              <div class="proj-name">Base Niche Navigator</div>
-              <div class="proj-kind">Standalone tool · EN / RU</div>
-            </div>
-          </div>
-          <p class="proj-desc">Choose what to build on Base. Compare potential buyers, monetization, entry difficulty, competition and visibility. Filter by your skills and explore a short priority ranking backed by primary sources.</p>
-          <div class="proj-tags">
-            <span class="tag">Beta</span>
-            <span class="tag">Base</span>
-            <span class="tag">Primary sources</span>
-          </div>
-          <div class="proj-links">
-            <a class="visit" href="https://build.deftools.xyz/">Open Navigator <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          </div>
-        </div>
 
         <div class="proj-card">
           <div class="proj-head">
@@ -808,6 +745,32 @@
 
         <div class="proj-card">
           <div class="proj-head">
+            <div class="proj-icon"><img src="data:image/jpeg;base64,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" alt="Meme Scout logo" width="28" height="28"></div>
+            <div>
+              <div class="proj-name">Token Check</div>
+              <div class="proj-kind">Web app</div>
+            </div>
+          </div>
+          <p class="proj-desc">How far can you trust a token? Paste a Base or Robinhood Chain address and get a trust score from 1 to 10 with what it is made of: can you actually sell it, who launched it and what became of their earlier coins, which big holders got coins straight from the deployer, what a $500 exit really returns, and a project read built only from sources it can cite. 3 free checks a day, then 0.1 USDC each.</p>
+          <form class="pc-check" action="/check.html" method="get">
+            <div class="hc-row">
+              <input id="hc-a" name="a" placeholder="Paste a token address, 0x…" aria-label="Token address" autocomplete="off" spellcheck="false" required pattern="\s*0x[a-fA-F0-9]{40}\s*" title="0x followed by 40 characters">
+              <input type="hidden" name="go" value="1">
+              <button type="submit">Check</button>
+            </div>
+          </form>
+          <div class="proj-tags">
+            <span class="tag live">Live</span>
+            <span class="tag">Base</span>
+            <span class="tag">Token check</span>
+          </div>
+          <div class="proj-links">
+            <a class="ghost" href="https://github.com/araxis33/meme-scout" target="_blank" rel="noopener">Code <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-head">
             <div class="proj-icon"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0e1c'/%3E%3Cpath d='M6 21l6-6 5 4 9-9' fill='none' stroke='%233fbf87' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='26' cy='10' r='2.4' fill='%237ea0ff'/%3E%3C/svg%3E" alt="Stock Check logo" width="28" height="28"></div>
             <div>
               <div class="proj-name">Stock Check</div>
@@ -826,26 +789,6 @@
 
         <div class="proj-card">
           <div class="proj-head">
-            <div class="proj-icon"><img src="data:image/jpeg;base64,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" alt="Meme Scout logo" width="28" height="28"></div>
-            <div>
-              <div class="proj-name">Token Check</div>
-              <div class="proj-kind">Web app</div>
-            </div>
-          </div>
-          <p class="proj-desc">How far can you trust a token? Paste a Base or Robinhood Chain address and get a trust score from 1 to 10 with what it is made of: can you actually sell it, who launched it and what became of their earlier coins, which big holders got coins straight from the deployer, what a $500 exit really returns, and a project read built only from sources it can cite. 3 free checks a day, then 0.1 USDC each.</p>
-          <div class="proj-tags">
-            <span class="tag live">Live</span>
-            <span class="tag">Base</span>
-            <span class="tag">Token check</span>
-          </div>
-          <div class="proj-links">
-            <a class="visit" href="/check.html">Check a token <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            <a class="ghost" href="https://github.com/araxis33/meme-scout" target="_blank" rel="noopener">Code <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          </div>
-        </div>
-
-        <div class="proj-card" style="grid-column:1/-1">
-          <div class="proj-head">
             <div class="proj-icon"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0e17'/%3E%3Cpath d='M8 23a8 8 0 0 1 16 0' fill='none' stroke='%233b82f6' stroke-width='3.5' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='10' r='2.6' fill='%233b82f6'/%3E%3C/svg%3E" alt="Arc tools logo" width="28" height="28"></div>
             <div>
               <div class="proj-name">Arc Contract Check + Arc fees</div>
@@ -861,6 +804,25 @@
             <a class="visit" href="https://araxis33.github.io/arc-contract-check/" target="_blank" rel="noopener">Contract check <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
             <a class="ghost" href="/arc.html">Arc fees <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
             <a class="ghost" href="https://github.com/araxis33/arc-contract-check" target="_blank" rel="noopener">Code <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+        </div>
+
+        <div class="proj-card" id="base-niche-navigator">
+          <div class="proj-head">
+            <div class="proj-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#0052ff"/><path d="M10 23V13m6 10V8m6 15v-7" stroke="white" stroke-width="3" stroke-linecap="round"/></svg></div>
+            <div>
+              <div class="proj-name">Base Niche Navigator</div>
+              <div class="proj-kind">Standalone tool · EN / RU</div>
+            </div>
+          </div>
+          <p class="proj-desc">Choose what to build on Base. Compare potential buyers, monetization, entry difficulty, competition and visibility. Filter by your skills and explore a short priority ranking backed by primary sources.</p>
+          <div class="proj-tags">
+            <span class="tag">Beta</span>
+            <span class="tag">Base</span>
+            <span class="tag">Primary sources</span>
+          </div>
+          <div class="proj-links">
+            <a class="visit" href="https://build.deftools.xyz/">Open Navigator <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           </div>
         </div>
       </div>
