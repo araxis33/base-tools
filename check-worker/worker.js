@@ -272,14 +272,22 @@ async function get(url, opts = {}) {
 async function website(url) {
   const r = await get(url, { redirect: 'follow' });
   if (!r || !(r.headers.get('content-type') || '').includes('text/html')) return [null, [], []];
-  const html = (await r.text()).slice(0, 200000);
-  const repos = [...new Set(html.match(/https?:\/\/github\.com\/[\w.-]+(?:\/[\w.-]+)?/g) || [])].slice(0, 3);
+  // Links are searched in the whole page: SURPLUS has its "/docs" link at 332 KB of 422 (10.10.2026).
+  const full = await r.text(), html = full.slice(0, 200000);
+  const repos = [...new Set(full.match(/https?:\/\/github\.com\/[\w.-]+(?:\/[\w.-]+)?/g) || [])].slice(0, 3);
   // Documentation links on the site: docs.*, /docs, GitBook, a whitepaper.
-  const docs = [...new Set((html.match(/href="([^"#]+)"/g) || []).map((x) => x.slice(6, -1))
+  const docs = [...new Set((full.match(/href="([^"#]+)"/g) || []).map((x) => x.slice(6, -1))
     .filter((u) => /(^https?:\/\/docs\.|\/docs\b|gitbook|whitepaper|litepaper)/i.test(u)))]
     .map((u) => { try { return new URL(u, url).href; } catch (e) { return null; } }).filter(Boolean).slice(0, 2);
   const title = (html.match(/<title>([\s\S]*?)<\/title>/i) || [])[1];
   return [{ title: 'Project site: ' + (title ? clean(title, 80) : url) + ' (opened today)', url, text: clean(html, 1500) }, repos, docs];
+}
+
+async function docsPage(url) {
+  const r = await get(url, { redirect: 'follow' });
+  if (!r || !(r.headers.get('content-type') || '').includes('text/html')) return null;
+  const text = clean((await r.text()).slice(0, 200000), 1500);
+  return text ? { title: 'Project docs (opened today)', url, text } : null;
 }
 
 // The project's GitHub owner and its most recently pushed repository: a project's
@@ -356,17 +364,18 @@ async function gather(env, f) {
   const [[site, siteRepos, siteDocs], since, ...found] = await Promise.all([siteUrl ? website(siteUrl) : Promise.resolve([null, [], []]),
     host ? domainSince(host) : Promise.resolve(null), ...queries.map((q) => search(env, q))]);
   const repos = (cg.repos || []).concat(siteRepos, (f.socials || []).filter((s) => /github/.test(s[0] || '')).map((s) => s[1]));
-  const gh = repos.length ? await github(repos[0]) : null;
+  const docs = siteDocs[0] || (f.websites || []).find((u) => /docs\.|\/docs\b|gitbook|whitepaper/i.test(u)) || cg.whitepaper || null;
+  // The docs page itself is read too: team, audit and the product are often described only there.
+  const [gh, docsMat] = await Promise.all([repos.length ? github(repos[0]) : null, docs ? docsPage(docs) : null]);
   // Facts the page scores itself; the model only adds what needs reading (team, investors, audit, product).
   const socials = f.socials || [];
   const xUrl = (socials.find((s) => /twitter|^x$/i.test(s[0] || '')) || [])[1] || (cg.twitter ? `https://x.com/${cg.twitter}` : null);
   const chatUrl = (socials.find((s) => /telegram|discord/i.test(s[0] || '')) || [])[1]
     || (cg.telegram ? `https://t.me/${cg.telegram}` : null) || (cg.chats || []).find((u) => /t\.me|discord/i.test(u)) || null;
-  const docs = siteDocs[0] || (f.websites || []).find((u) => /docs\.|gitbook|whitepaper/i.test(u)) || cg.whitepaper || null;
   const checks = { site: site ? siteUrl : null, domainSince: since, docs, github: gh ? gh.facts : null, x: xUrl, chat: chatUrl };
   const cgMat = cg.id ? { title: `CoinGecko: ${cg.name} (card updated ${cg.updated || '?'})`, url: `https://www.coingecko.com/en/coins/${cg.id}`,
     text: `Categories: ${(cg.categories || []).join(', ')}. Launched: ${cg.genesis || '?'}. Listed on ${cg.cex || 0} exchanges. ${cg.description || ''}`.slice(0, 900) } : null;
-  const materials = [site, cgMat, gh].filter(Boolean);
+  const materials = [site, docsMat, cgMat, gh].filter(Boolean);
   const seen = new Set(materials.map((m) => m.url));
   let dropped = 0;
   for (const group of found) for (const m of group) {

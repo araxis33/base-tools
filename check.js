@@ -517,7 +517,9 @@ const CK = (() => {
       else minus(['exitOk', loss], 0.5);
     }
     // Exchange hot wallets hold customers' coins: not concentration.
-    if (!h.rows.length) add(['holdersUnknown'], 1); // unchecked must not score better than checked
+    // What could not be checked is said plainly, but costs nothing: not finding is not finding bad (his rule 09.10.2026).
+    const unchecked = [];
+    if (!h.rows.length) unchecked.push(['holdersUnknown']);
     const wallets = h.rows.filter((r) => r.kind === 'wallet' && !r.exchange);
     const top10 = wallets.slice(0, 10).reduce((s, r) => s + r.pct, 0);
     if (top10 > 50) add(['top10', top10], 2.5);
@@ -584,7 +586,7 @@ const CK = (() => {
     if (hard.length) risk = Math.max(risk, ...hard.map((x) => x[1]));
     const trust = 11 - risk;
     return {
-      risk, trust, raw, tier, lp, rights,
+      risk, trust, raw, tier, lp, rights, unchecked,
       hard: hard.map((x) => x[0]),
       up: tier.level === 'mature' ? [] : up.slice().sort((a, b) => b[1] - a[1]).map((x) => x[0]),
       // Positives first by weight, the maturity summary on top.

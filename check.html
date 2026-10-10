@@ -508,8 +508,10 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
     var owner = (gp.owner_address || '').toLowerCase(), renounced = !owner || CK.BURN.has(owner);
     var hr = hp.honeypotResult || {}, sim = hp.simulationResult || {};
     if (hp.honeypotResult || known('is_honeypot')) {
-      var trap = hr.isHoneypot || yes('is_honeypot');
-      rows.push((trap ? '❌ ' : '✅ ') + (ru ? (trap ? 'Продать нельзя (ловушка)' : 'Продать можно — продажа проходит в симуляции') : (trap ? 'Cannot sell (trap)' : 'Sellable — a sale passes in simulation')));
+      // The row follows the verdict: a label honeypot.is gives against passing sells is disputed, not a trap (SURPLUS, 10.10.2026).
+      var trap = a.hard.some(function (f) { return f[0] === 'honeypot'; });
+      if (!trap && hr.isHoneypot) rows.push('⚠️ ' + (ru ? 'Продать можно: продажа проходит в симуляции и на рынке, хотя honeypot.is пишет «ловушка»' : 'Sellable: sales pass in simulation and on the market, though honeypot.is says "trap"'));
+      else rows.push((trap ? '❌ ' : '✅ ') + (ru ? (trap ? 'Продать нельзя (ловушка)' : 'Продать можно — продажа проходит в симуляции') : (trap ? 'Cannot sell (trap)' : 'Sellable — a sale passes in simulation')));
     } else rows.push('➖ ' + (ru ? 'Проверка продажи для этой сети недоступна' : 'Sell check is not available for this chain'));
     var bt = sim.buyTax, st = sim.sellTax;
     if (bt === undefined && known('buy_tax')) bt = parseFloat(gp.buy_tax) * 100;
@@ -595,6 +597,11 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
       var u2 = el('ul', 'find');
       downs.forEach(function (f) { u2.appendChild(el('li', null, '✅ ' + say(f))); });
       r.appendChild(u2);
+    }
+    if ((a.unchecked || []).length) {
+      var u3 = el('ul', 'find');
+      a.unchecked.forEach(function (f) { u3.appendChild(el('li', null, '➖ ' + say(f))); });
+      r.appendChild(u3);
     }
     if (a.rights.length) {
       var rc = card(t.rightsTitle, 'rights'); line(rc, t.rightsNote, 'note');
