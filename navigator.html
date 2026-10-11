@@ -11,8 +11,12 @@
 <meta property="og:url" content="https://deftools.xyz/navigator.html">
 <meta property="og:title" content="Base Niche Navigator · what to build on Base that people will use">
 <meta property="og:description" content="14 niches ranked by demand, revenue, difficulty, competition and visibility. Who might pay, what to build first, how to check demand, with sources.">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://deftools.xyz/og-navigator-v3.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@Def7771">
+<meta name="twitter:image" content="https://deftools.xyz/og-navigator-v3.png">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233b6eff'/%3E%3C/svg%3E">
 <meta name="theme-color" content="#0a0e1c">
 <style>
@@ -205,6 +209,7 @@ footer{margin:40px 0 30px; color:var(--muted2); font-size:13px}
     <h1 id="t-title"></h1>
     <p class="sub" id="t-sub"></p>
     <div class="asof" id="t-asof"></div>
+    <div class="asof" id="t-changed" hidden></div>
   </div>
 
   <div class="panel">
@@ -290,7 +295,7 @@ var U = {
     nav1:'Niches', nav2:'Compare', nav3:'Method',
     kicker:'Base Niche Navigator', title:'What should you build on Base that people will use?',
     sub:'14 niches, ranked by demand signal, monetization, entry difficulty, competition and visibility. Open any of them to see who might pay, what to build first and how to check demand before you write code.',
-    asof:'Sources checked', goal:'What matters most to you?', presets:{ balance:'Balanced', income:'First revenue', visibility:'Visibility', custom:'Custom' },
+    asof:'Sources checked', changed:'Last change', goal:'What matters most to you?', presets:{ balance:'Balanced', income:'First revenue', visibility:'Visibility', custom:'Custom' },
     skills:'Your skills', allSkills:'Show all niches', q:'What problem do you want to solve?', qPh:'Payments, analytics, agents, Aero…',
     cat:'Niche category', allCats:'All categories', diff:'Entry difficulty',
     diffs:[['5','Any difficulty'],['2','Easy start · up to 2 of 5'],['3','Ready for integrations · up to 3'],['4','Ready for a complex MVP · up to 4']],
@@ -327,7 +332,7 @@ var U = {
     nav1:'Ниши', nav2:'Сравнить', nav3:'Методика',
     kicker:'Base Niche Navigator', title:'Что создать на Base, чтобы этим пользовались?',
     sub:'14 направлений с оценкой по спросу, заработку, сложности входа, конкуренции и заметности. Открой любое: кто может платить, что сделать первым и как проверить спрос до того, как писать код.',
-    asof:'Проверка источников', goal:'Что важнее для тебя?', presets:{ balance:'Баланс', income:'Первый доход', visibility:'Заметность', custom:'Свои веса' },
+    asof:'Проверка источников', changed:'Последнее изменение', goal:'Что важнее для тебя?', presets:{ balance:'Баланс', income:'Первый доход', visibility:'Заметность', custom:'Свои веса' },
     skills:'Твои навыки', allSkills:'Показать все направления', q:'Какую задачу хочется решать?', qPh:'Платежи, аналитика, агенты, Aero…',
     cat:'Тип направления', allCats:'Все типы', diff:'Насколько сложно начать',
     diffs:[['5','Любая сложность'],['2','Простой старт · до 2 из 5'],['3','Готов к интеграциям · до 3'],['4','Готов к сложному MVP · до 4']],
@@ -554,6 +559,9 @@ function paintStatic(){
     .forEach(function(k){ var el = $('t-' + k); if (el) el.textContent = T[k]; });
   $('t-cmp-note').textContent = T.cmpNote;
   $('t-asof').textContent = T.asof + ': ' + fmtDate(DATA.snapshot);
+  var ch = (DATA.changes || [])[0];
+  $('t-changed').hidden = !ch;
+  if (ch) $('t-changed').textContent = T.changed + ' (' + fmtDate(ch.date) + '): ' + ch[lang];
   $('f-q').placeholder = T.qPh; $('f-q').value = f.q;
   $('b-weights').textContent = T.weights + ($('weights').hidden ? ' +' : ' −');
   $('b-reset').textContent = T.reset; $('b-top').textContent = T.top; $('b-clear').textContent = T.clear;
