@@ -17,6 +17,7 @@
 
 import { BOARDS_CRON, STOCKS_CRON, refreshBoards, refreshStocks, boardsResponse, poolsResponse } from './boards.js';
 import { DATA_CRON, refreshStockData, stockDataResponse } from './stockdata.js';
+import { dex } from './dex.js';
 
 const LIMIT = 3;
 const ORIGINS = ['https://deftools.xyz', 'https://www.deftools.xyz', 'http://localhost:8765'];
@@ -208,6 +209,16 @@ export default {
     if (req.method === 'OPTIONS') return new Response(null, { headers: cors(req) });
     if (url.pathname === '/cg') return coingecko(req, ctx, url.searchParams.get('p') || '', env);
     if (url.pathname === '/shares') return shares(req, ctx, url.searchParams.get('t') || '');
+    if (url.pathname.startsWith('/dex/')) {
+      return dex(req, ctx, url, (res, src) => {
+        const h = new Headers(res.headers);
+        for (const [k, v] of Object.entries(cors(req))) h.set(k, v);
+        h.set('content-type', 'application/json');
+        h.set('x-dex', src);
+        h.set('access-control-expose-headers', 'x-dex');
+        return new Response(res.body, { status: res.status, headers: h });
+      });
+    }
     if (url.pathname === '/boards') {
       const body = await boardsResponse(env);
       if (!body) return json(req, { error: 'not built yet' }, 503);
