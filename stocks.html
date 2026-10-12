@@ -116,7 +116,6 @@ footer{margin:40px 0 30px; color:var(--muted2); font-size:13px}
   .grid{grid-template-columns:1fr; padding:6px 4px 0}
 }
 </style>
-<script src="/ds-fallback.js"></script>
 </head>
 <body>
 <header>
@@ -351,7 +350,7 @@ function venuesHtml(t){
 /* ---------- impostors and other issuers (DexScreener search) ---------- */
 function loadLook(t){
   var root = t.s.replace(/c$/, "");
-  return fetch("https://api.dexscreener.com/latest/dex/search?q=" + encodeURIComponent(root))
+  return fetch(WORKER + "/dex/latest/dex/search?q=" + encodeURIComponent(root))
     .then(function(r){ return r.json(); })
     .then(function(j){
       var pairs = (j && j.pairs) || [];

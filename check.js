@@ -14,6 +14,8 @@ const CK = (() => {
   const CHAIN_ID = { base: 8453, robinhood: 4663 };
   const RPC = { base: 'https://mainnet.base.org', robinhood: 'https://rpc.mainnet.chain.robinhood.com' };
   const USDC = { base: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913' };
+  // DexScreener through deftools' Worker (check-worker/dex.js): cached, with GeckoTerminal when DexScreener is down
+  const DEX = 'https://deftools-check.araxis67.workers.dev/dex/';
   const V4_POOL_MANAGER = { base: '0x498581ff718922c3f8e6a244956af099b2652b2b' };
   const TRANSFER = '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef';
   const BURN = new Set(['0x000000000000000000000000000000000000dead', '0x0000000000000000000000000000000000000000']);
@@ -67,7 +69,7 @@ const CK = (() => {
   // ------------------------------------------------------------ sources
 
   async function detectChain(address) {
-    const d = await getJSON(`https://api.dexscreener.com/latest/dex/tokens/${address}`);
+    const d = await getJSON(`${DEX}latest/dex/tokens/${address}`);
     const pairs = (d && d.pairs) || [];
     const liq = {};
     for (const p of pairs) liq[p.chainId] = (liq[p.chainId] || 0) + ((p.liquidity && p.liquidity.usd) || 0);
@@ -150,7 +152,7 @@ const CK = (() => {
 
   // Other tokens with the same ticker on this chain, biggest first (see checker.py).
   async function sameTicker(chain, address, symbol) {
-    const d = await getJSON(`https://api.dexscreener.com/latest/dex/search?q=${encodeURIComponent(symbol)}`);
+    const d = await getJSON(`${DEX}latest/dex/search?q=${encodeURIComponent(symbol)}`);
     const agg = {};
     for (const p of (d && d.pairs) || []) {
       const b = p.baseToken || {};
@@ -221,7 +223,7 @@ const CK = (() => {
     if (created.length) {
       const launches = {};
       for (let i = 0; i < Math.min(created.length, 60); i += 30) {
-        const d = await getJSON(`https://api.dexscreener.com/tokens/v1/${chain}/${created.slice(i, i + 30).join(',')}`);
+        const d = await getJSON(`${DEX}tokens/v1/${chain}/${created.slice(i, i + 30).join(',')}`);
         for (const p of d || []) {
           const a = lower(p.baseToken && p.baseToken.address);
           const o = launches[a] || (launches[a] = { symbol: p.baseToken && p.baseToken.symbol, liq: 0 });

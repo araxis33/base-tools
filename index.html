@@ -656,7 +656,6 @@
     .proj-card:hover{transform:none;}
   }
 </style>
-<script src="/ds-fallback.js"></script>
 </head>
 <body>
 
@@ -2327,7 +2326,7 @@ async function fetchPoolPrices(contracts, cfg){
         const group = todo[next++];
         try {
           const res = await fetchWithTimeout(
-            "https://api.dexscreener.com/tokens/v1/" + cfg.dex + "/" + group.join(","), 9000);
+            "https://deftools-check.araxis67.workers.dev/dex/tokens/v1/" + cfg.dex + "/" + group.join(","), 9000);
           if (!res.ok){ failed.push(group); continue; }
           const pairs = await res.json();
           if (!Array.isArray(pairs)){ failed.push(group); continue; }

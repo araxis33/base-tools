@@ -72,6 +72,8 @@
     queue = p.catch(function () {});
     return p;
   }
+  // DexScreener through deftools' Worker (check-worker/dex.js): cached, with GeckoTerminal when DexScreener is down
+  var DEX = 'https://deftools-check.araxis67.workers.dev/dex/';
   function getJSON(u) { return fetch(u).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }); }
 
   function readString(hex) {
@@ -87,7 +89,7 @@
   function realUsd(p) {
     var L = p.liquidity || {};
     var pu = Number(p.priceUsd || 0), pn = Number(p.priceNative || 0);
-    // no split by side (GeckoTerminal standing in for DexScreener, ds-fallback.js): unknown, not zero
+    // no split by side (GeckoTerminal standing in for DexScreener, check-worker/dex.js): unknown, not zero
     if (L.base === undefined && L.quote === undefined) return undefined;
     if (OFFICIAL[p.quoteToken.address.toLowerCase()]) return (L.quote || 0) * (pn ? pu / pn : 0);
     if (OFFICIAL[p.baseToken.address.toLowerCase()]) return (L.base || 0) * pu;
@@ -147,13 +149,13 @@
     $('pc-go').textContent = 'Checking…';
 
     var pairsP = a.length === 66
-      ? getJSON('https://api.dexscreener.com/latest/dex/pairs/arc/' + a).then(function (d) {
+      ? getJSON(DEX + 'latest/dex/pairs/arc/' + a).then(function (d) {
           var p = (d.pairs || [])[0];
           if (!p) return { token: null, pairs: [] };
           var t = OFFICIAL[p.baseToken.address.toLowerCase()] ? p.quoteToken.address : p.baseToken.address;
-          return getJSON('https://api.dexscreener.com/token-pairs/v1/arc/' + t).then(function (ps) { return { token: t, pairs: ps, focus: a.toLowerCase() }; });
+          return getJSON(DEX + 'token-pairs/v1/arc/' + t).then(function (ps) { return { token: t, pairs: ps, focus: a.toLowerCase() }; });
         })
-      : getJSON('https://api.dexscreener.com/token-pairs/v1/arc/' + a).then(function (ps) { return { token: a, pairs: ps }; });
+      : getJSON(DEX + 'token-pairs/v1/arc/' + a).then(function (ps) { return { token: a, pairs: ps }; });
 
     Promise.all([pairsP, rpc('eth_blockNumber', [])]).then(function (r) {
       var res = r[0], latest = parseInt(r[1], 16);
