@@ -1,5 +1,5 @@
 {
- "snapshot": "2026-10-12",
+ "snapshot": "2026-10-13",
  "origin": "Base Niche Navigator, sources checked 2026-10-09",
  "niches": [
   {
@@ -843,7 +843,7 @@
   {
    "id": "strategy",
    "url": "https://www.base.org/vision",
-   "checked": "2026-10-12",
+   "checked": "2026-10-13",
    "en": {
     "title": "Base · Vision 2026",
     "type": "Official strategy",
@@ -858,7 +858,7 @@
   {
    "id": "payments",
    "url": "https://www.base.org/payments",
-   "checked": "2026-10-12",
+   "checked": "2026-10-13",
    "en": {
     "title": "Base · Payments",
     "type": "Official product page",
@@ -873,7 +873,7 @@
   {
    "id": "shopify",
    "url": "https://help.shopify.com/en/manual/payments/shopify-payments/local-payment-methods/usdc-payments",
-   "checked": "2026-10-12",
+   "checked": "2026-10-13",
    "en": {
     "title": "Shopify · USDC payments",
     "type": "Commerce documentation",
@@ -888,7 +888,7 @@
   {
    "id": "x402",
    "url": "https://docs.cdp.coinbase.com/x402/welcome",
-   "checked": "2026-10-12",
+   "checked": "2026-10-13",
    "en": {
     "title": "Coinbase CDP · x402",
     "type": "Protocol documentation",
@@ -903,7 +903,7 @@
   {
    "id": "agents",
    "url": "https://www.base.org/agents",
-   "checked": "2026-10-12",
+   "checked": "2026-10-13",
    "en": {
     "title": "Base · Agents",
     "type": "Official product page",
@@ -918,7 +918,7 @@
   {
    "id": "codes",
    "url": "https://docs.base.org/specifications/builder-codes/overview",
-   "checked": "2026-10-12",
+   "checked": "2026-10-13",
    "en": {
     "title": "Base · Builder Codes",
     "type": "Developer documentation",
@@ -948,7 +948,7 @@
   {
    "id": "trading",
    "url": "https://www.base.org/trading",
-   "checked": "2026-10-12",
+   "checked": "2026-10-13",
    "en": {
     "title": "Base · Trading",
     "type": "Official product page",
@@ -963,7 +963,7 @@
   {
    "id": "data",
    "url": "https://docs.bitquery.io/docs/blockchain/Base/aerodrome-base-api/",
-   "checked": "2026-10-12",
+   "checked": "2026-10-13",
    "en": {
     "title": "Bitquery · Aerodrome API",
     "type": "Data provider documentation",
@@ -978,7 +978,7 @@
   {
    "id": "study",
    "url": "https://arxiv.org/abs/2607.12575",
-   "checked": "2026-10-12",
+   "checked": "2026-10-13",
    "en": {
     "title": "x402 adoption · research preprint",
     "type": "Research preprint",
@@ -993,7 +993,7 @@
   {
    "id": "batches",
    "url": "https://www.base.org/batches",
-   "checked": "2026-10-12",
+   "checked": "2026-10-13",
    "en": {
     "title": "Base · Batches 004",
     "type": "Official builder program",
@@ -1008,7 +1008,7 @@
   {
    "id": "verify",
    "url": "https://docs.base.org/build-on-base/assign-user-attributes",
-   "checked": "2026-10-12",
+   "checked": "2026-10-13",
    "en": {
     "title": "Base · User attributes",
     "type": "Developer documentation",
