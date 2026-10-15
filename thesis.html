@@ -688,6 +688,7 @@ function renderResult(){
       ' · <a href="/stocks.html#' + b.t.s + '">full check &rarr;</a></li>'; }).join("") + '</ul></div>' : '';
 
   if(!rows.length){
+    el.after($("memes-side"));
     el.innerHTML = blocked.length ? '<h2>What you get</h2>' + blockedHtml : "";
     return;
   }
