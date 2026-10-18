@@ -389,6 +389,8 @@ tr.other td{opacity:.85}
 <script src="thesis-core.js"></script>
 <script>
 "use strict";
+/* Read before render() rewrites the address with the basket (that dropped #memes on the live page, 18.10.2026). */
+var START_TAB = /^#memes/.test(location.hash) ? "memes" : "basket";
 
 /* The token list, the thesis parser, the pool maths and the look-alike
    detector live in thesis-core.js, where test/ can reach them. */
@@ -1929,7 +1931,7 @@ function render(debounced){
     renderHoldings();
   }
   if(totalWeight() > 0){
-    history.replaceState(null, "", shareUrl());
+    history.replaceState(null, "", shareUrl() + (document.body.dataset.tab === "memes" ? "#memes" : ""));
   }
 }
 
@@ -1997,7 +1999,7 @@ function showTab(t){
     try { history.replaceState(null, "", location.pathname + location.search + (b.dataset.tab === "memes" ? "#memes" : "")); } catch(e) {}
   });
 });
-showTab(/^#memes/.test(location.hash) ? "memes" : "basket");
+showTab(START_TAB);
 window.addEventListener("hashchange", function(){ if(/^#memes/.test(location.hash)) showTab("memes"); });
 
 /* Prices move; a quiet refresh every 60s keeps the page honest without
