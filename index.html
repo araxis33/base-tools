@@ -835,7 +835,7 @@
     <div class="section-head">
       <div>
         <div class="section-title">Live token boards</div>
-        <div class="section-sub">Updated every 15 minutes · Losers &amp; Gainers cover every Base-native token · Blue-chips are hand-picked · Stocks are priced from their deepest pool · Prices for the first three by <a href="https://www.coingecko.com/en/api" target="_blank" rel="noopener">CoinGecko</a></div>
+        <div class="section-sub">Rebuilt every 15 minutes; the stamp shows when each run last succeeded · Losers &amp; Gainers cover every Base-native token · Blue-chips are hand-picked · Stocks are priced from their deepest pool · Prices for the first three by <a href="https://www.coingecko.com/en/api" target="_blank" rel="noopener">CoinGecko</a></div>
       </div>
       <div class="head-side">
         <div class="updated" id="trend-updated">loading…</div>
@@ -1348,8 +1348,14 @@ function renderBoards(data){
   renderColumn("col-gainers", items(data.gainers));
   renderColumn("col-bluechip", items(data.bluechips));
   renderColumn("col-stocks", items(data.stocks));
-  const times = [data.losers, data.gainers, data.bluechips, data.stocks].filter(Boolean).map(b => b.ts);
-  document.getElementById("trend-updated").textContent = times.length ? "updated " + ageLabel(Math.min(...times)) : "unavailable";
+  const boards = [["Losers", data.losers], ["Gainers", data.gainers], ["Blue-chips", data.bluechips], ["Stocks", data.stocks]].filter(b => b[1]);
+  const times = boards.map(b => b[1].ts);
+  // A board whose source refused keeps its last rows; name it when it is over an hour old (18.10.2026: Stocks sat
+  // three hours behind under "updated every 15 minutes").
+  const stale = boards.filter(b => Date.now() - b[1].ts > 3600e3).map(b => b[0] + " " + ageLabel(b[1].ts));
+  const el = document.getElementById("trend-updated");
+  el.textContent = !times.length ? "unavailable" : "updated " + ageLabel(Math.max(...times)) + (stale.length ? " · stale: " + stale.join(", ") : "");
+  el.style.color = stale.length ? "var(--yellow)" : "";
 }
 
 async function loadBoards(){

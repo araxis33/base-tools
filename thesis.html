@@ -448,6 +448,14 @@ function loadPools(){
   });
   return Promise.all(jobs).then(function(res){
     if(res.every(function(r){ return !r.pairs.length; })){
+      /* Both sources refusing is usually minutes (18.10.2026 both rate-limited the Worker). The last good read,
+         kept in this browser, is shown with its age instead of an empty page; buying waits for live prices. */
+      var snap = null;
+      try { snap = JSON.parse(localStorage.getItem("thesis-last") || "null"); } catch(e) {}
+      if(snap && snap.data && Date.now() - snap.t < 6 * 3600e3){
+        state.data = snap.data; state.loadedAt = snap.t; state.source = snap.source; state.stale = true; state.error = null;
+        return snap.data;
+      }
       state.data = null;
       state.error = "Prices are not available right now: DexScreener and GeckoTerminal are not answering. The page retries every minute; nothing can be bought until they do.";
       throw new Error("no price source");
@@ -460,7 +468,9 @@ function loadPools(){
     state.data = out;
     state.loadedAt = Date.now();
     state.error = null;
+    state.stale = false;
     state.source = gecko ? "GeckoTerminal" : "DexScreener";
+    try { localStorage.setItem("thesis-last", JSON.stringify({t:state.loadedAt, source:state.source, data:out})); } catch(e) {}
     return out;
   });
 }
@@ -1128,6 +1138,7 @@ function connect(){
 
 function doQuote(){
   if(ex.busy) return;
+  if(state.stale){ ex.error = "Live prices are not answering yet, so buying waits for them. The page retries every minute."; renderExecute(); return; }
   ex.busy = true; ex.error = null; ex.msg = "";
   var rows = basketRows();
   var pay = state.pay;
@@ -1868,6 +1879,11 @@ function renderStamp(){
     return;
   }
   if(!state.data){ el.innerHTML = '<span class="dot stale"></span>Loading pools…'; return; }
+  if(state.stale){
+    var mins = Math.max(1, Math.round((Date.now() - state.loadedAt) / 60000));
+    el.innerHTML = '<span class="dot stale"></span>Live prices are not answering: showing the last read, ' + mins + ' min old. Buying waits for live prices; the page retries every minute.';
+    return;
+  }
   var live = 0, tvl = 0, vol = 0, pools = 0;
   TOKENS.forEach(function(t){
     var d = state.data[t.s];
