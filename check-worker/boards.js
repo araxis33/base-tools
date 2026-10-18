@@ -15,6 +15,7 @@
 // A part that fails keeps its last good board, with its own time.
 
 import core from '../thesis-core.js';
+import { fallback } from './dex.js';
 
 export const BOARDS_CRON = '*/15 * * * *';
 export const STOCKS_CRON = '5-59/15 * * * *';
@@ -165,6 +166,20 @@ async function getJson(url, headers) {
 }
 // Workers keep 6 connections open at a time. 36 requests fired at once got cancelled as "stalled" and the stocks run
 // saved nothing for hours (18.10.2026: "dexscreener returned no stock pools", board 3 h old), so they go 6 at a time.
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+// DexScreener puts the token asked about first; GeckoTerminal keeps the pool's own order ("USDC / NVDAc"), and the
+// board only reads pools where the stock is first (18.10.2026: one row out of ten). Such a pool is turned around: the
+// price is GeckoTerminal's price of the second token, and the 24h change is exact only against a dollar stablecoin
+// (stock in USDC = 1 / (USDC in stock)), so pools paired with anything else are left out rather than guessed.
+const DOLLARS = new Set(['usdc', 'usdbc', 'usdt', 'dai']);
+export function stockFirst(p, addr) {
+  if (String(p.baseToken && p.baseToken.address).toLowerCase() === addr) return p;
+  if (String(p.quoteToken && p.quoteToken.address).toLowerCase() !== addr || !(parseFloat(p.quotePriceUsd) > 0)) return null;
+  if (!DOLLARS.has(String(p.baseToken.symbol || '').toLowerCase())) return null;
+  const h24 = p.priceChange && p.priceChange.h24;
+  return { ...p, baseToken: p.quoteToken, quoteToken: p.baseToken, priceUsd: p.quotePriceUsd,
+    priceChange: { ...p.priceChange, h24: h24 > -100 ? 100 / (1 + h24 / 100) - 100 : 0 } };
+}
 async function mapLimit(items, limit, fn) {
   const out = new Array(items.length);
   let next = 0;
@@ -180,9 +195,27 @@ const readKV = async (env, key) => { try { return JSON.parse((await env.QUOTA.ge
 // (09.10.2026), and the batched tokens endpoint picks a shallower pool for 14 of
 // the 36, so each stock gets its own tokens request: 36, under the plan's 50.
 export async function refreshStocks(env, now = Date.now()) {
-  const answers = await mapLimit(STOCKS, 6, (t) => getJson(DS + 'tokens/' + t.a).then((j) => j.pairs || [], () => []));
-  const rows = stockBoard(answers, STOCKS);
-  if (!rows.length) return { errors: ['stocks: dexscreener returned no stock pools'] };
+  // 18.10.2026 DexScreener answered all 36 with 429 to Cloudflare's addresses for hours. After the first refusal the
+  // rest of the run goes to GeckoTerminal (reshaped into DexScreener pairs by dex.js), one stock every 2.1 s because it
+  // allows 30 calls a minute; at most 6 DexScreener calls + 36 GeckoTerminal stay under the plan's 50 per run.
+  const why = {};
+  let dsDown = false;
+  const note = (k) => { why[k] = (why[k] || 0) + 1; };
+  const viaGT = async (t) => { await sleep(2100); try { note('gt'); return (await fallback('latest/dex/tokens/' + t.a)).pairs || []; } catch (e) { note('gt err'); return []; } };
+  const answers = await mapLimit(STOCKS, 6, async (t) => {
+    if (dsDown) return null;
+    try { note('ds'); return (await getJson(DS + 'tokens/' + t.a)).pairs || []; }
+    catch (e) { if (/http 429/.test(e.message)) dsDown = true; note((String(e.message).match(/http \d+/) || ['ds err'])[0]); return null; }
+  });
+  for (let i = 0; i < STOCKS.length; i++) if (answers[i] === null) answers[i] = await viaGT(STOCKS[i]);
+  const rows = stockBoard(answers.map((list, i) => list.map((p) => stockFirst(p, STOCKS[i].a)).filter(Boolean)), STOCKS);
+  console.log('stocks sources ' + JSON.stringify(why));
+  // A short board replaces a full one only when nothing better is coming: on 18.10.2026 a rate-limited run saved one
+  // row (MRNAc) over ten. Fewer than 8 rows keeps the last board, which the page shows with its age.
+  const prev = ((await readKV(env, KEY_BOARDS)) || {}).stocks;
+  if (!rows.length || (rows.length < 8 && prev && prev.items && prev.items.length >= 8)) {
+    return { errors: ['stocks: only ' + rows.length + ' rows, kept the last board ' + JSON.stringify(why)] };
+  }
   const out = (await readKV(env, KEY_BOARDS)) || {};
   out.stocks = { ts: now, items: rows };
   await env.QUOTA.put(KEY_BOARDS, JSON.stringify(out));

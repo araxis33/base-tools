@@ -58,7 +58,7 @@ export function toPair(pool, tokens) {
     chainId: chainOf(n), dexId: dex, labels,
     url: 'https://www.geckoterminal.com/' + n + '/pools/' + a.address, pairAddress: a.address,
     baseToken: side('base_token', 0), quoteToken: side('quote_token', 1),
-    priceUsd: a.base_token_price_usd, priceNative: a.base_token_price_quote_token,
+    priceUsd: a.base_token_price_usd, priceNative: a.base_token_price_quote_token, quotePriceUsd: a.quote_token_price_usd,
     txns: { m5: txOf('m5'), h1: txOf('h1'), h6: txOf('h6'), h24: txOf('h24') },
     volume: { m5: +vol.m5 || 0, h1: +vol.h1 || 0, h6: +vol.h6 || 0, h24: +vol.h24 || 0 },
     priceChange: { m5: +ch.m5 || 0, h1: +ch.h1 || 0, h6: +ch.h6 || 0, h24: +ch.h24 || 0 },
