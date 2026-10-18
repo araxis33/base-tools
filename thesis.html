@@ -216,6 +216,13 @@ footer{border-top:1px solid var(--border); margin-top:30px; padding:22px 0 40px;
 .pair{display:grid; grid-template-columns:minmax(0,1.45fr) minmax(0,1fr); gap:22px; align-items:start; margin-top:14px}
 @media (max-width:900px){ .pair{grid-template-columns:minmax(0,1fr); gap:26px} }
 .pair > div{min-width:0}
+.pair.solo{grid-template-columns:minmax(0,1fr)}
+/* Two tabs (18.10.2026): the basket, and stock memes on their own */
+.tabs{display:flex; gap:6px; margin:6px 0 4px; border-bottom:1px solid var(--border)}
+.tabs button{background:none; border:0; border-bottom:2px solid transparent; color:var(--muted); font:inherit; font-weight:600; font-size:15px; padding:10px 14px; cursor:pointer}
+.tabs button[aria-selected="true"]{color:var(--text); border-bottom-color:var(--blue)}
+body[data-tab="memes"] .tab-basket{display:none}
+body:not([data-tab="memes"]) .tab-memes{display:none}
 #memes-slot > section{margin:0; padding:0}
 .pair-l table{min-width:0}
 .pair-l th, .pair-l td{padding:10px 6px; font-size:13px}
@@ -282,7 +289,14 @@ tr.other td{opacity:.85}
     <p class="stamp" id="stamp"><span class="dot stale"></span>Loading pools&hellip;</p>
   </div>
 
-  <section>
+  <div class="tabs" role="tablist" aria-label="Thesis">
+    <button type="button" role="tab" data-tab="basket" aria-selected="true">Basket of stocks</button>
+    <button type="button" role="tab" data-tab="memes" aria-selected="false">Stock memes</button>
+  </div>
+
+  <section class="tab-memes" id="memes"><section id="memes-side"></section></section>
+
+  <section class="tab-basket">
     <div class="panel">
       <div class="thesis-row">
         <input id="thesis" type="text" autocomplete="off" spellcheck="false"
@@ -304,7 +318,7 @@ tr.other td{opacity:.85}
     </div>
   </section>
 
-  <section>
+  <section class="tab-basket">
     <h2>Your basket</h2>
     <p class="note">Drag any weight to change it. Prices are read live from every Base pool holding these tokens; the price shown is from the deepest pool, which is the one you should actually trade in.</p>
     <div class="weights" id="weights"><p class="skel">Reading pools on Base&hellip;</p></div>
@@ -314,13 +328,11 @@ tr.other td{opacity:.85}
     </div>
   </section>
 
-  <section id="result"></section>
+  <section id="result" class="tab-basket"></section>
 
-  <section id="memes-side"></section>
+  <section id="execute" class="tab-basket"></section>
 
-  <section id="execute"></section>
-
-  <section id="holdings">
+  <section id="holdings" class="tab-basket">
     <h2>Your stocks</h2>
     <p class="note">Paste a Base address to see which of Coinbase&rsquo;s stocks it holds, what they are worth right now and what was paid for them. Nothing to sign &mdash; the wallet is asked only if you sell.</p>
     <div class="panel">
@@ -333,9 +345,9 @@ tr.other td{opacity:.85}
     </div>
   </section>
 
-  <section id="chaincheck"></section>
+  <section id="chaincheck" class="tab-basket"></section>
 
-  <section>
+  <section class="tab-basket">
     <h2>How this works</h2>
     <div class="how">
       <div>
@@ -662,7 +674,7 @@ function renderWeights(){
 function renderResult(){
   var el = $("result");
   var tot = totalWeight();
-  if(!tot || !state.data){ el.after($("memes-side")); el.innerHTML = ""; return; }
+  if(!tot || !state.data){ el.innerHTML = ""; return; }
 
   var amt = state.amount;
   var rows = [], overpay = 0, spent = 0, worstImpact = 0, missing = [];
@@ -698,7 +710,6 @@ function renderResult(){
       ' · <a href="/stocks.html#' + b.t.s + '">full check &rarr;</a></li>'; }).join("") + '</ul></div>' : '';
 
   if(!rows.length){
-    el.after($("memes-side"));
     el.innerHTML = blocked.length ? '<h2>What you get</h2>' + blockedHtml : "";
     return;
   }
@@ -727,7 +738,7 @@ function renderResult(){
       '<a href="/stocks.html">See how close each stock sits to its last close &rarr;</a></p>';
   }
 
-  html += '<div class="pair"><div class="pair-l"><div class="tbl-wrap"><table><thead><tr>' +
+  html += '<div class="pair solo"><div class="pair-l"><div class="tbl-wrap"><table><thead><tr>' +
     '<th>Stock</th><th class="r">Amount</th><th class="r">Shares</th>' +
     '<th class="r">Price</th><th>Pool</th><th class="r">Impact</th><th class="r">Worst pool</th><th></th>' +
     '</tr></thead><tbody>';
@@ -813,11 +824,9 @@ function renderResult(){
     '<button class="btn ghost" id="share">Copy share link</button>' +
     '<button class="btn ghost" id="card">Download card</button>' +
     '<span class="copied" id="copied"></span></div>' +
-    '</div><div id="memes-slot"></div></div>';
+    '</div></div>';
 
-  var memes = $("memes-side");
   el.innerHTML = html;
-  $("memes-slot").appendChild(memes);
 
   var cardRows = rows.map(function(r){ return { s:r.t.s, co:r.t.co, share:r.usd / spent }; });
   $("card").addEventListener("click", function(){
@@ -1976,6 +1985,20 @@ setInterval(function(){
   if(ex.busy || ex.state === "sending" || ex.state === "ready") return;
   loadReal().then(function(){ if(state.data && !hold.busy) render(); });
 }, 300000);
+
+/* Tabs: #memes (or the old #memes-slot link) opens the stock memes, anything else the basket. */
+function showTab(t){
+  document.body.dataset.tab = t;
+  [].forEach.call(document.querySelectorAll(".tabs button"), function(b){ b.setAttribute("aria-selected", b.dataset.tab === t ? "true" : "false"); });
+}
+[].forEach.call(document.querySelectorAll(".tabs button"), function(b){
+  b.addEventListener("click", function(){
+    showTab(b.dataset.tab);
+    try { history.replaceState(null, "", location.pathname + location.search + (b.dataset.tab === "memes" ? "#memes" : "")); } catch(e) {}
+  });
+});
+showTab(/^#memes/.test(location.hash) ? "memes" : "basket");
+window.addEventListener("hashchange", function(){ if(/^#memes/.test(location.hash)) showTab("memes"); });
 
 /* Prices move; a quiet refresh every 60s keeps the page honest without
    fighting the user's sliders. */
