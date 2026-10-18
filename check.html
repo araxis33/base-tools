@@ -46,6 +46,9 @@ form{display:flex; gap:10px; margin:20px 0 6px; flex-wrap:wrap}
 input{flex:1 1 320px; min-width:0; background:var(--card); border:1px solid var(--border); color:var(--text);
   border-radius:12px; padding:14px 16px; font-size:15px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
 input:focus{outline:none; border-color:var(--blue)}
+.samples{margin:10px 0 0; font-size:14px; color:var(--muted2)}
+.samples button{background:none; border:1px solid var(--border); color:var(--text); border-radius:999px; padding:4px 12px; margin:0 4px 6px 0; font:inherit; font-size:13.5px; cursor:pointer}
+.samples button:hover{border-color:var(--blue)}
 button.go{background:var(--blue); color:#fff; border:0; border-radius:12px; padding:0 26px; font-size:16px; font-weight:600;
   cursor:pointer; min-height:50px}
 button.go:disabled{opacity:.5; cursor:default}
@@ -120,6 +123,7 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
     <input id="addr" autocomplete="off" spellcheck="false" placeholder="0x…">
     <button class="go" id="go" type="submit"></button>
   </form>
+  <p class="samples" id="samples"></p>
   <p class="hint" id="t-hint"></p>
   <div class="pay" id="pay" hidden></div>
   <div class="steps" id="steps"></div>
@@ -404,7 +408,7 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
     if (!$('pay').hidden) paintPay();
     if (last) render(last.d, last.a, last.project);
   }
-  function setLang(l) { lang = l; store('ck-lang', l); paintStatic(); }
+  function setLang(l) { lang = l; store('ck-lang', l); paintStatic(); paintSamples(); }
   $('l-en').onclick = function () { setLang('en'); };
   $('l-ru').onclick = function () { setLang('ru'); };
 
@@ -764,6 +768,13 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
     });
   }
   $('f').onsubmit = function (ev) { ev.preventDefault(); run(); };
+  // Ready examples next to the field, so a first visitor sees a report without hunting for an address (18.10.2026).
+  var SAMPLES = [['AERO', '0x940181a94A35A4569E4529A3CDfB74e38FD98631'], ['VIRTUAL', '0x0b3e328455c4059EEb9e3f84b5543F74E24e7E1b'], ['BRETT', '0x532f27101965dd16442E59d40670FaF5eBB142E4']];
+  function paintSamples() {
+    $('samples').innerHTML = (lang === 'ru' ? 'Попробуй: ' : 'Try one: ') + SAMPLES.map(function (x) { return '<button type="button" data-a="' + x[1] + '">' + x[0] + '</button>'; }).join('');
+  }
+  $('samples').onclick = function (ev) { var b = ev.target.closest('button[data-a]'); if (!b) return; $('addr').value = b.getAttribute('data-a'); run(); };
+  paintSamples();
 
   if (params.get('a')) $('addr').value = params.get('a');
   paintStatic();
