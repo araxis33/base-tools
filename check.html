@@ -163,7 +163,7 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
       dead: function (d) { return '🔴 TRUST 1/10 — ' + d.symbol + ' (' + d.name + ') exists on ' + (d.chain === 'base' ? 'Base' : 'Robinhood Chain') + ', but there is nowhere to trade it: not a single live pool. The liquidity has been pulled — the coin is dead.'; },
       chain: function (c) { return 'This token trades on ' + c + '. For now only Base and Robinhood Chain are checked.'; },
       trust: 'TRUST', labels: ['very low — almost certainly a trap', 'low', 'medium', 'high', 'very high'],
-      scale: '10 — the most trust, 1 — almost certainly a trap. The decision is yours.',
+      scale: '10 — the most trust our checks can give, not a safety guarantee; 1 — almost certainly a trap. The decision is yours.',
       lowers: 'Lowers trust', raises: 'Raises trust',
       market: 'Market', contract: 'Contract and liquidity', who: 'Who launched it', holders: 'Holders', project: 'Project',
       rightsTitle: 'Team rights — a note, not an alarm',
@@ -185,7 +185,8 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
         domainNo: 'Site domain age unknown', noSite: 'No project site found',
         ghActive: function (n, repo) { return 'GitHub: ' + n + (n >= 100 ? '+' : '') + ' commits in 30 days (' + repo + ')'; },
         ghQuiet: function (date, repo) { return 'GitHub: last commit ' + date + ' (' + repo + ')'; },
-        ghNo: 'No GitHub found',
+        ghNo: 'Our search found no GitHub link',
+        ghUnread: function (repo) { return 'GitHub found (' + repo + '), activity not read: GitHub did not answer'; },
         xYes: 'X account', xNo: 'No X account found', chatYes: 'Telegram or Discord', chatNo: 'No Telegram or Discord found',
         prodLive: 'Working product people can use', prodNone: 'No product — only a coin', prodNo: 'A working product is not confirmed',
         marketLine: function (t) { return tierLine(t) || '—'; },
@@ -217,7 +218,7 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
       dead: function (d) { return '🔴 НАДЁЖНОСТЬ 1/10 — ' + d.symbol + ' (' + d.name + ') существует в сети ' + (d.chain === 'base' ? 'Base' : 'Robinhood Chain') + ', но торговать ею негде: ни одного живого пула. Ликвидность выведена — монета мертва.'; },
       chain: function (c) { return 'Монета торгуется в сети ' + c + '. Пока проверяю только Base и Robinhood Chain.'; },
       trust: 'НАДЁЖНОСТЬ', labels: ['очень низкая — почти наверняка ловушка', 'низкая', 'средняя', 'высокая', 'очень высокая'],
-      scale: '10 — максимальное доверие, 1 — почти наверняка ловушка. Решение за тобой.',
+      scale: '10 — самое высокое доверие по нашим проверкам, это не гарантия безопасности; 1 — почти наверняка ловушка. Решение за тобой.',
       lowers: 'Снижают надёжность', raises: 'Повышают надёжность',
       market: 'Рынок', contract: 'Контракт и ликвидность', who: 'Кто запустил', holders: 'Держатели', project: 'Проект',
       rightsTitle: 'Права команды — справка, не тревога',
@@ -239,7 +240,8 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
         domainNo: 'Возраст домена сайта не определить', noSite: 'Сайт проекта не найден',
         ghActive: function (n, repo) { return 'GitHub: ' + n + (n >= 100 ? '+' : '') + ' коммитов за 30 дней (' + repo + ')'; },
         ghQuiet: function (date, repo) { return 'GitHub: последний коммит ' + date.split('-').reverse().join('.') + ' (' + repo + ')'; },
-        ghNo: 'GitHub не найден',
+        ghNo: 'Наш поиск не нашёл ссылку на GitHub',
+        ghUnread: function (repo) { return 'GitHub найден (' + repo + '), активность не прочитана: GitHub не ответил'; },
         xYes: 'Аккаунт в X', xNo: 'Аккаунт в X не найден', chatYes: 'Telegram или Discord', chatNo: 'Telegram и Discord не найдены',
         prodLive: 'Работающий продукт, которым можно пользоваться', prodNone: 'Продукта нет — только монета', prodNo: 'Работающий продукт не подтверждён',
         marketLine: function (t) { return tierLine(t) || '—'; },
@@ -710,7 +712,7 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
       !pc.site ? ['➖', pj.noSite] : dom === null ? ['➖', pj.domainNo, pc.site] : [dom >= 365 ? '✅' : dom >= 90 ? '➖' : '⚠️', pj.domain(pc.domainSince, dom), pc.site],
     ]]);
     var push = gh ? days(gh.pushed) : null, repo = gh ? gh.url.replace('https://github.com/', '') : '';
-    rows.push([pj.dev, [!gh ? ['➖', pj.ghNo] : gh.commits30 > 0 ? ['✅', pj.ghActive(gh.commits30, repo), gh.url]
+    rows.push([pj.dev, [!gh ? ['➖', pj.ghNo] : gh.unread ? ['➖', pj.ghUnread(repo), gh.url] : gh.commits30 > 0 ? ['✅', pj.ghActive(gh.commits30, repo), gh.url]
       : [push !== null && push <= 180 ? '➖' : '⚠️', pj.ghQuiet(gh.pushed, repo), gh.url]]]);
     rows.push([pj.community, [pc.x ? ['✅', pj.xYes, pc.x] : ['➖', pj.xNo], pc.chat ? ['✅', pj.chatYes, pc.chat] : ['➖', pj.chatNo]]]);
     rows.push([pj.product, [pc.product === 'live' ? ['✅', pj.prodLive, pc.productUrl] : pc.product === 'none' ? ['⚠️', pj.prodNone] : ['➖', pj.prodNo]]]);

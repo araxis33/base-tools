@@ -315,12 +315,18 @@ async function github(repoUrl) {
   if (!m) return null;
   let [, owner, repo] = m;
   const api = 'https://api.github.com', h = { headers: { ...BROWSER, accept: 'application/vnd.github+json' } };
+  // Unauthenticated GitHub API calls from Workers' shared addresses are often refused (rate limit). The link itself was
+  // found on the project's own pages, so a refusal means "activity unread", not "no GitHub" (AERO, 18.10.2026).
+  const unread = () => ({ title: `GitHub ${owner}${repo ? '/' + repo : ''} (link found, activity not read)`, url: `https://github.com/${owner}${repo ? '/' + repo : ''}`,
+    text: 'The project links this GitHub; the GitHub API did not answer, so commits were not counted.',
+    facts: { url: `https://github.com/${owner}${repo ? '/' + repo : ''}`, commits30: null, pushed: null, unread: true } });
   const r = (await get(`${api}/orgs/${owner}/repos?sort=pushed&per_page=1`, h)) || (await get(`${api}/users/${owner}/repos?sort=pushed&per_page=1`, h));
   const list = r ? await r.json() : [];
   if (Array.isArray(list) && list.length) repo = list[0].name;
+  if (!r) return unread();
   if (!repo) return null;
   const info = await get(`${api}/repos/${owner}/${repo}`, h);
-  if (!info) return null;
+  if (!info) return unread();
   const j = await info.json();
   const since = new Date(Date.now() - 30 * 86400000).toISOString();
   const c = await get(`${api}/repos/${owner}/${repo}/commits?since=${since}&per_page=100`, h);

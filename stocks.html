@@ -302,9 +302,17 @@ function loadWeekend(){
 function weekendTable(){
   var el = $("weekend");
   if (!WK) { el.innerHTML = ""; return; }
-  var keys = TOKENS.map(function(t){ return t.s; }).filter(function(k){ return WK.rows[k]; });
+  var all = TOKENS.map(function(t){ return t.s; }).filter(function(k){ return WK.rows[k]; });
+  // A stock had a market over the weekend only if a $1,000 round trip stayed cheap. Without one, the "price" on Base is
+  // a pool with almost nothing in it (CAKEc showed $5,411 against $108.74 on 12.10.2026), so it is listed apart and
+  // kept out of the headline numbers.
+  var THIN_RT = 2;
+  var keys = all.filter(function(k){ return WK.rows[k].rt <= THIN_RT; });
+  var thin = all.filter(function(k){ return WK.rows[k].rt > THIN_RT; });
   if (!keys.length) { el.innerHTML = ""; return; }
-  var day = function(ts){ return new Date(ts * 1000).toLocaleDateString("en-GB", {day:"numeric", month:"short", timeZone:"UTC"}); };
+  // Market days are New York days: the first closed snapshot can land just after midnight UTC on Saturday,
+  // which is still Friday evening on Wall Street (10.10.2026 00:00 UTC = Friday 9 Oct, 20:00 ET).
+  var day = function(ts){ return new Date(ts * 1000).toLocaleDateString("en-GB", {day:"numeric", month:"short", timeZone:"America/New_York"}); };
   var maxGap = 0, maxRt = 0;
   var rows = keys.map(function(k){
     var r = WK.rows[k]; maxGap = Math.max(maxGap, Math.abs(r.vs)); maxRt = Math.max(maxRt, r.rt);
@@ -314,9 +322,11 @@ function weekendTable(){
   }).join("");
   el.innerHTML = '<h2 style="font-size:16px;margin:26px 0 6px">Last weekend: Base against the US open</h2>' +
     '<p class="mut" style="margin:0 0 10px">Base kept trading from Friday ' + day(WK.closeAt) + ' to Monday ' + day(WK.openAt) + ' while the US market was shut. A $1,000 round trip never cost more than ' + maxRt.toFixed(2) + '%. ' +
-    'When Wall Street opened, its price differed from where Base stood by up to ' + maxGap.toFixed(1) + '%, because the news of the weekend arrives at the open.</p>' +
+    'When Wall Street opened, its price differed from where Base stood by up to ' + maxGap.toFixed(1) + '%.</p>' +
     '<table class="tbl"><thead><tr><th>Stock</th><th class="hm">Friday close</th><th>Base, before the open</th><th>US, after the open</th><th>Difference</th><th class="hm">Worst $1,000 round trip</th></tr></thead><tbody>' + rows + '</tbody></table>' +
-    '<p class="mut" style="margin:8px 0 0;font-size:12px">Prices are logged about every 4 hours over the weekend and hourly around the open; the US price is taken about 10 minutes after the bell. One weekend so far: every new one is added here automatically.</p>';
+    (thin.length ? '<p class="mut" style="margin:8px 0 0">' + thin.length + ' more stocks had no real market on Base that weekend: a $1,000 round trip lost up to ' +
+      Math.max.apply(null, thin.map(function(k){ return WK.rows[k].rt; })).toFixed(0) + '%, so their Base price was not a price. ' + thin.join(', ') + '.</p>' : '') +
+    '<p class="mut" style="margin:8px 0 0;font-size:12px">Prices are logged about every 4 hours over the weekend and hourly around the open; the US price is taken about 10 minutes after the bell. This is the latest weekend: each new one replaces it automatically. Market days are New York days.</p>';
 }
 
 /* ---------- where it is cheapest: the same buy, forced through one venue at a time ---------- */

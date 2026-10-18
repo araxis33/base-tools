@@ -159,8 +159,19 @@ export function stockBoard(answers, stocks) {
 
 async function getJson(url, headers) {
   const r = await fetch(url, { headers: { accept: 'application/json', ...UA, ...(headers || {}) } });
-  if (!r.ok) throw new Error(url.split('?')[0] + ' http ' + r.status);
+  // An unread error body keeps the connection open; with many requests in flight Workers cancel the stalled ones.
+  if (!r.ok) { if (r.body) r.body.cancel(); throw new Error(url.split('?')[0] + ' http ' + r.status); }
   return r.json();
+}
+// Workers keep 6 connections open at a time. 36 requests fired at once got cancelled as "stalled" and the stocks run
+// saved nothing for hours (18.10.2026: "dexscreener returned no stock pools", board 3 h old), so they go 6 at a time.
+async function mapLimit(items, limit, fn) {
+  const out = new Array(items.length);
+  let next = 0;
+  await Promise.all(Array.from({ length: Math.min(limit, items.length) }, async () => {
+    while (next < items.length) { const i = next++; out[i] = await fn(items[i], i); }
+  }));
+  return out;
 }
 const cgKey = (env) => (env.CG_KEY ? { 'x-cg-demo-api-key': env.CG_KEY } : {});
 const readKV = async (env, key) => { try { return JSON.parse((await env.QUOTA.get(key)) || 'null'); } catch (e) { return null; } };
@@ -169,7 +180,7 @@ const readKV = async (env, key) => { try { return JSON.parse((await env.QUOTA.ge
 // (09.10.2026), and the batched tokens endpoint picks a shallower pool for 14 of
 // the 36, so each stock gets its own tokens request: 36, under the plan's 50.
 export async function refreshStocks(env, now = Date.now()) {
-  const answers = await Promise.all(STOCKS.map((t) => getJson(DS + 'tokens/' + t.a).then((j) => j.pairs || [], () => [])));
+  const answers = await mapLimit(STOCKS, 6, (t) => getJson(DS + 'tokens/' + t.a).then((j) => j.pairs || [], () => []));
   const rows = stockBoard(answers, STOCKS);
   if (!rows.length) return { errors: ['stocks: dexscreener returned no stock pools'] };
   const out = (await readKV(env, KEY_BOARDS)) || {};
