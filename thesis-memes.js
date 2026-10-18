@@ -229,7 +229,7 @@
         ? 'You get about <b>' + q.outTxt + ' ' + esc(r.sym) + '</b> for ' + money(q.inUsd, 2)
         : 'You get about <b>' + money(q.outUsd, 2) + ' USDC</b> for ' + q.inTxt + ' ' + esc(r.sym)) +
         ' · route cost <b style="color:' + (q.loss > 3 ? "var(--yellow)" : "var(--green-text)") + '">' + q.loss.toFixed(2) + '%</b>' +
-        ' · slippage limit ' + (MEME_SLIPPAGE / 100) + '%</p>';
+        ' · slippage limit ' + (MEME_SLIPPAGE / 100) + '% · includes a ' + (FEE_BPS / 100) + '% fee to this site</p>';
     }
     h += '<div class="actions" style="margin-top:12px">';
     if (o.state === "idle") h += '<button class="btn" id="mm-quote">Get live quote</button>';
@@ -258,7 +258,7 @@
   }
 
   function route(tokenIn, tokenOut, amountIn, from) {
-    return fetch(KYBER + "/routes?tokenIn=" + tokenIn + "&tokenOut=" + tokenOut + "&amountIn=" + amountIn.toString() + "&gasInclude=true")
+    return fetch(KYBER + "/routes?tokenIn=" + tokenIn + "&tokenOut=" + tokenOut + "&amountIn=" + amountIn.toString() + "&gasInclude=true" + feeQuery())
       .then(function (r) { return r.json(); }).then(function (j) {
         if (!j || j.code !== 0 || !j.data) throw new Error("No route found for this token right now.");
         var s = j.data.routeSummary;

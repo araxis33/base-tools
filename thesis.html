@@ -994,6 +994,11 @@ var CHAIN_HEX = "0x2105";           // Base, 8453
 var KYBER = "https://aggregator-api.kyberswap.com/base/api/v1";
 var BUILDER_SUFFIX = "62635f6d726b7775326d300b0080218021802180218021802180218021";
 var SLIPPAGE_BPS = 100;             // 1%
+/* 0.1% to this site on every swap (his decision 18.10.2026), taken from what the swap returns and already inside every
+   quote shown: KyberSwap puts it in the route summary when the quote asks for it, and the built swap keeps it. */
+var FEE_BPS = 10;
+var FEE_WALLET = "0x2ab08a231389fD6c1cb368769aE5Ba3f999209e4";
+function feeQuery(){ return FEE_BPS > 0 ? "&feeAmount=" + FEE_BPS + "&chargeFeeBy=currency_out&isInBps=true&feeReceiver=" + FEE_WALLET : ""; }
 var NATIVE = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"; // KyberSwap's name for ETH itself
 
 /* What one ETH buys in USDC right now, through the same aggregator that will
@@ -1046,7 +1051,7 @@ function basketRows(){
 function kyberRoute(row, from){
   var eth = row.ethWei !== undefined;
   var url = KYBER + "/routes?tokenIn=" + (eth ? NATIVE : USDC) + "&tokenOut=" + row.t.a +
-            "&amountIn=" + (eth ? row.ethWei : row.wei).toString() + "&gasInclude=true";
+            "&amountIn=" + (eth ? row.ethWei : row.wei).toString() + "&gasInclude=true" + feeQuery();
   return fetch(url).then(function(r){ return r.json(); }).then(function(j){
     if(!j || j.code !== 0 || !j.data) throw new Error(row.t.s + ": no route found");
     return fetch(KYBER + "/route/build", {
@@ -1073,7 +1078,8 @@ function renderExecute(){
 
   var html = '<h2>Buy it in one transaction</h2>' +
     '<p class="note">Optional, and the only part of this page that touches a wallet. ' +
-    'Every swap is quoted across all of Base and batched into a single confirmation.</p>' +
+    'Every swap is quoted across all of Base and batched into a single confirmation. ' +
+    'Every quote already includes a ' + (FEE_BPS / 100) + '% fee to this site.</p>' +
     '<div class="panel">';
 
   if(ex.error){
@@ -1680,7 +1686,7 @@ function bindSell(){
 }
 
 function kyberSell(row, amount, from){
-  var url = KYBER + "/routes?tokenIn=" + row.t.a + "&tokenOut=" + USDC + "&amountIn=" + amount.toString() + "&gasInclude=true";
+  var url = KYBER + "/routes?tokenIn=" + row.t.a + "&tokenOut=" + USDC + "&amountIn=" + amount.toString() + "&gasInclude=true" + feeQuery();
   return fetch(url).then(function(r){ return r.json(); }).then(function(j){
     if(!j || j.code !== 0 || !j.data) throw new Error(row.t.s + ": no route found");
     return fetch(KYBER + "/route/build", {

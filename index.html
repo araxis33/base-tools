@@ -1446,7 +1446,7 @@ const SLIPPAGE_BPS = 100;                   // 1%
 // Switched on the day there is volume worth charging for. Until then the site
 // takes nothing and says so, which is the only edge a new page has over Matcha.
 const FEE_WALLET = "0x2ab08a231389fD6c1cb368769aE5Ba3f999209e4";
-const FEE_BPS = 0;
+const FEE_BPS = 10;                         // 0.1%, his decision 18.10.2026
 // Circle's own USDC on Base, not the bridged USDbC — checked against the
 // contract: "USD Coin", 6 decimals. Six, not eighteen, is the reason every
 // amount here goes through the asset's own decimals rather than a constant.
@@ -1864,7 +1864,12 @@ async function quoteTrade(){
   try {
     const url = tradeChain().kyber + "/routes?tokenIn=" + (sell ? trade.token : pa.addr) +
       "&tokenOut=" + (sell ? pa.addr : trade.token) +
-      "&amountIn=" + amountIn + "&gasInclude=true";
+      "&amountIn=" + amountIn + "&gasInclude=true" +
+      // The fee rides in the quote so the number shown is what arrives (KyberSwap checked 18.10.2026: $100 of NVDAc
+      // came back 0.1% lighter in both the quote and the built swap).
+      // With an ERC-20 going in (a sale, or a purchase in USDC) it comes out of what comes back, so the approval
+      // never has to cover more than the amount typed; only a native-ETH purchase pays it on the way in.
+      (FEE_BPS > 0 ? "&feeAmount=" + FEE_BPS + "&chargeFeeBy=" + (spendsToken() ? "currency_out" : "currency_in") + "&isInBps=true&feeReceiver=" + FEE_WALLET : "");
     const res = await fetch(url);
     const j = await res.json();
     if (seq !== trade.seq) return;           // a newer keystroke already won
@@ -2025,16 +2030,7 @@ async function buildSwap(){
     slippageTolerance: SLIPPAGE_BPS,
     source: "deftools.xyz"
   };
-  if (FEE_BPS > 0){
-    body.extraFee = {
-      // Whenever the input side is an ERC-20 — a sale, or a purchase paid in
-      // USDC — the fee comes out of what is coming back, never out of what is
-      // going in, which would need a larger allowance than the dialog just
-      // asked for. Only a native-ETH purchase can be charged on the way in.
-      feeAmount: String(FEE_BPS), chargeFeeBy: spendsToken() ? "currency_out" : "currency_in",
-      isInBps: true, feeReceiver: FEE_WALLET
-    };
-  }
+  // The 0.1% fee is already inside trade.summary: the quote asked for it, and KyberSwap builds from the summary.
   const res = await fetch(tradeChain().kyber + "/route/build", {
     method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify(body)
   });
