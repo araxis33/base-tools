@@ -673,10 +673,8 @@
 /* Two views of one page (18.10.2026): the tools at /, the directory and all four boards at /?view=directory */
 body:not(.view-dir) .dir-only, body:not(.view-dir) .full-only{display:none}
 body.view-dir .home-only{display:none}
-body:not(.view-dir) .trend-grid{grid-template-columns:repeat(2, 1fr)}
-body.view-dir .trend-grid{grid-template-columns:repeat(3, 1fr)}
-@media (max-width:900px){ body.view-dir .trend-grid{grid-template-columns:1fr} }
-@media (max-width:640px){ body:not(.view-dir) .trend-grid{grid-template-columns:1fr} }
+.trend-grid{grid-template-columns:repeat(3, 1fr)}
+@media (max-width:900px){ .trend-grid{grid-template-columns:1fr} }
 </style>
 </head>
 <body>
@@ -700,9 +698,11 @@ body.view-dir .trend-grid{grid-template-columns:repeat(3, 1fr)}
   <div class="wrap">
     <div class="logo"><span class="logo-mark" aria-hidden="true"></span> deftools</div>
     <nav>
-      <a href="/#aero">Aero</a>
-      <a href="/#stocks">Stocks</a>
-      <a href="/#arc">Arc</a>
+      <a href="https://aero.deftools.xyz" target="_blank" rel="noopener">Aero Radar</a>
+      <a href="/stocks.html">Stock Check</a>
+      <a href="/thesis.html">Thesis</a>
+      <a href="/check.html">Token Check</a>
+      <a href="/arc.html">Arc</a>
       <a href="/directory.html">Directory</a>
       <a href="https://base.org" target="_blank" rel="noopener">Base.org</a>
     </nav>
@@ -711,8 +711,8 @@ body.view-dir .trend-grid{grid-template-columns:repeat(3, 1fr)}
 
 <div class="wrap hero home-only">
   <div class="pill"><span class="dot"></span> BASE &amp; ARC · READ FROM THE CHAIN</div>
-  <h1>Check it <span class="accent">before</span> you buy. <br class="h1-break">Then buy it from <span class="accent">your own wallet</span>.</h1>
-  <p class="sub">Three things people come here for.</p>
+  <h1>Tools for <span class="accent">Base</span> and <span class="accent">Arc</span>.</h1>
+  <p class="sub">Check a token. Check a stock, then build a basket of stocks and buy it. See where AERO pays most.</p>
   <div class="acts">
     <div class="act">
       <div class="n">1 · A token</div>
@@ -823,7 +823,7 @@ body.view-dir .trend-grid{grid-template-columns:repeat(3, 1fr)}
       </div>
     </div>
     <div class="trend-grid" id="trend-grid">
-      <div class="trend-col full-only">
+      <div class="trend-col">
         <div class="trend-col-head">
           <div class="trend-col-icon loss"><svg class="ic" aria-hidden="true"><use href="#i-trend-down"/></svg></div>
           <div><div class="trend-col-title">Top Losers</div><div class="trend-col-desc">Worst 24h price drops</div></div>
@@ -850,7 +850,7 @@ body.view-dir .trend-grid{grid-template-columns:repeat(3, 1fr)}
 
 <div class="wrap">
   <section id="directory">
-    <div class="dirlink home-only"><div><div class="section-title">Directory</div><p class="sub" style="margin-top:6px">24 Base apps worth using, the ones I use myself marked, referral links labelled. Plus the Losers board.</p></div><a class="visit" href="/directory.html">Open the directory</a></div>
+    <div class="dirlink home-only"><div><div class="section-title">Directory</div><p class="sub" style="margin-top:6px">24 Base apps worth using, the ones I use myself marked, referral links labelled.</p></div><a class="visit" href="/directory.html">Open the directory</a></div>
     <div class="section-head dir-only">
       <div>
         <div class="section-title">Directory</div>
