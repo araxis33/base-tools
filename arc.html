@@ -213,6 +213,28 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
     </div>
   </section>
 
+  <section id="escrow">
+    <h2>Take an advance without trusting a stranger</h2>
+    <p class="note">Workshop Escrow is a contract on Arc mainnet for work made to order. The client locks the advance
+      in USDC, the workshop builds, and the money moves only by the rules in the contract. No owner, no admin, no fees.
+      Built in a furniture workshop, for real orders.</p>
+    <div class="cards">
+      <div class="card hi"><div class="k">1 · Client</div><div class="v">Locks USDC</div>
+        <div class="s">Nobody can take it alone, not even the workshop.</div></div>
+      <div class="card"><div class="k">2 · Workshop</div><div class="v">Builds, marks delivered</div>
+        <div class="s">Only before the deadline the two agreed on.</div></div>
+      <div class="card"><div class="k">3 · Client</div><div class="v">Releases the payment</div>
+        <div class="s">Missed deadline: the client takes it back. Client silent 7 days after delivery: the workshop claims it.</div></div>
+    </div>
+    <p class="note" style="margin-top:14px">First order on mainnet: 1 USDC
+      <a href="https://explorer.arc.io/tx/0x709a3a72d5abc703f63c77b723ed5190adf6658ca9807c11d16047c25df4ccce" target="_blank" rel="noopener">locked</a> and
+      <a href="https://explorer.arc.io/tx/0xc6d24e6495594e9964473f187d448165597c9781cc6ce8ace616f7720e5dc6d3" target="_blank" rel="noopener">released to the workshop</a>.</p>
+    <p class="note" style="margin-top:8px">
+      <a href="https://araxis33.github.io/workshop-escrow/" target="_blank" rel="noopener">Open the escrow app &rarr;</a> &nbsp;·&nbsp;
+      <a href="https://explorer.arc.io/address/0xf999268ef7e91cc767f4f6752eea38841d3f9a43" target="_blank" rel="noopener">Contract on the explorer</a> &nbsp;·&nbsp;
+      <a href="https://github.com/araxis33/workshop-escrow" target="_blank" rel="noopener">Code</a></p>
+  </section>
+
   <section>
     <h2>Right now</h2>
     <p class="note">Read straight from the public RPC in your browser. Nothing is stored and
@@ -564,7 +586,6 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
 })();
 </script>
 <script src="arc-pool.js"></script>
-
 <!-- Cloudflare Web Analytics: page views only, no cookies --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d66a3ce27f4e4b47bb1eb31a0e5fa912"}'></script>
 </body>
 </html>
