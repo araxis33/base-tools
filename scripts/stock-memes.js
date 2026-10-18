@@ -13,7 +13,9 @@
 const { TOKENS } = require('../thesis-core.js');
 
 const GT = 'https://api.geckoterminal.com/api/v2/networks/base';
-const MONEY = /^(USDC|USDbC|WETH|ETH|cbBTC|USDT|EURC|DAI|cbETH)$/;
+// The other side of a pool that is money, not a meme. frxUSD (Frax's dollar) sat in the Proven list against MSTRc
+// on 18.10.2026, so stablecoins and wrapped majors beyond the first nine are listed too.
+const MONEY = /^(USDC|USDbC|WETH|ETH|cbBTC|USDT|EURC|DAI|cbETH|frxUSD|USDS|USDe|sUSDe|GHO|LUSD|crvUSD|PYUSD|USD0|EURe|wstETH|weETH|rETH|WBTC|tBTC|LBTC)$/i;
 const JUNK = { real: 500, tx: 5 }; // not worth keeping in the file at all
 const HIST = 'https://api.github.com/repos/araxis33/base-tools/commits?sha=memes-data&per_page=6';
 const RAW = 'https://raw.githubusercontent.com/araxis33/base-tools/';
