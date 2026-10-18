@@ -13,7 +13,7 @@
   var SWAP_TOPIC = '0x40e9cecb9f5f1f1c5b9c97dec2917b7ee92e57ba5563708daca94dd84ad7112f';
   var WINDOW = 5000; // the RPC refuses eth_getLogs over 10 000 blocks
   var DAILY = 'https://raw.githubusercontent.com/araxis33/base-tools/arc-data/arc-pools.json';
-  var CONTRACT_CHECK = 'https://araxis33.github.io/arc-contract-check/?address=';
+  var CONTRACT_CHECK = 'https://check.deftools.xyz/?address=';
 
   // Circle's own tokens on Arc mainnet (developers.circle.com, checked 07.10.2026).
   var OFFICIAL = {
