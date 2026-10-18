@@ -1,0 +1,41 @@
+name: navigator live numbers
+
+# Every 6 hours: USDC and EURC from their contracts, stablecoins and transactions from two sources each, DEX volume
+# from DefiLlama, Aero voter fees from the radar. The file goes to the nav-data branch; navigator.html reads it there.
+on:
+  schedule:
+    - cron: "41 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency: nav-live
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Open the nav-data branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git fetch origin nav-data; then
+            git worktree add data origin/nav-data
+            git -C data checkout -B nav-data
+          else
+            git worktree add --detach data
+            git -C data checkout --orphan nav-data
+            git -C data rm -rfq .
+          fi
+      - run: node scripts/nav-live.js data/nav-history.json > nav-live.json
+      - name: Replace the files on the nav-data branch
+        run: |
+          cp nav-live.json nav-history.json data/
+          git -C data add nav-live.json nav-history.json
+          git -C data commit -qm "Navigator live $(date -u +%Y-%m-%dT%H:%M)" || exit 0
+          git -C data push origin nav-data

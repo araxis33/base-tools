@@ -114,6 +114,24 @@ h2 small{color:var(--muted2); font-weight:400; font-size:14px; margin-left:8px}
 .dots b{width:14px; text-align:right; color:var(--text); font-size:13px; font-variant-numeric:tabular-nums}
 .c-rev{font-size:13.5px; margin:0}
 .c-rev span{display:block; color:var(--muted2); font-size:11.5px; text-transform:uppercase; letter-spacing:.04em; font-weight:700}
+.c-live{font-size:13.5px; margin:0; padding:9px 11px; background:var(--bg2); border:1px solid var(--border); border-radius:10px}
+.c-live span{display:block; color:var(--muted2); font-size:11.5px; text-transform:uppercase; letter-spacing:.04em; font-weight:700}
+.c-live b{font-variant-numeric:tabular-nums}
+.up{color:var(--green-text)} .down{color:var(--red)}
+.pulse{margin:26px 0 6px}
+.pulse .legend{margin:6px 0 12px}
+.tiles{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:12px}
+.tile{background:var(--card); border:1px solid var(--border); border-radius:14px; padding:14px 16px; text-align:left; color:var(--text); cursor:pointer; display:flex; flex-direction:column; gap:4px; font-size:13px}
+.tile:hover{border-color:var(--border-hover); background:var(--card-hover)}
+.tile .t-l{color:var(--muted); font-size:13px}
+.tile .t-v{font-size:22px; font-weight:700; font-variant-numeric:tabular-nums; letter-spacing:-.01em}
+.tile .t-c{font-weight:700; font-variant-numeric:tabular-nums}
+.tile .t-s{color:var(--muted2); font-size:12px}
+.tile .t-n{color:var(--blue-text); font-size:12.5px; margin-top:2px}
+.live-d{border-left:3px solid var(--blue); background:rgba(59,110,255,.06); border-radius:0 12px 12px 0; padding:12px 14px; margin-bottom:16px}
+.live-d small{color:var(--blue-text); font-weight:700; font-size:11.5px; text-transform:uppercase; letter-spacing:.04em}
+.live-d p{margin:4px 0 2px; font-size:14.5px}
+.live-d em{display:block; font-style:normal; color:var(--muted2); font-size:12.5px}
 .c-act{display:flex; gap:8px; margin-top:auto}
 .c-act .btn{flex:1}
 .empty{background:var(--card); border:1px dashed var(--border-hover); border-radius:16px; padding:22px; color:var(--muted); text-align:center}
@@ -211,6 +229,12 @@ footer{margin:40px 0 30px; color:var(--muted2); font-size:13px}
     <div class="asof" id="t-asof"></div>
     <div class="asof" id="t-changed" hidden></div>
   </div>
+
+  <section class="pulse" id="pulse" hidden>
+    <h2 id="t-pulse"></h2>
+    <p class="legend" id="pulse-note"></p>
+    <div class="tiles" id="tiles"></div>
+  </section>
 
   <div class="panel">
     <div class="row">
@@ -326,7 +350,11 @@ var U = {
     sources:'Primary sources', checked:'Checked',
     fn1:'Transfer volumes and transaction counts do not prove paying demand for a specific service. Agent activity should be judged by independent buyers and repeat payments.',
     fn2:'Base Batches 004: applications were closed when checked. Investments, grants and promotion are not part of the baseline revenue model.',
-    foot:'Snapshot', footN:'niches', footS:'sources', footTail:'ratings for choosing a project, not return forecasts'
+    foot:'Snapshot', footN:'niches', footS:'sources', footTail:'ratings for choosing a project, not return forecasts',
+    pulse:'What is happening on Base this week', pulseNote:'Every number is read from the chain or matched against a second source; a number that does not match stays off the page. Updated every 6 hours.',
+    updated:'Updated', ago:['just now','{n} min ago','{n} h ago'], week:'vs a week ago', liveNow:'On Base now', liveD:'Live on Base',
+    agree:'sources agree within {g}%', single:'source: DefiLlama only', own:'counted from the chain by the deftools radar', asOfL:'data for',
+    B:'B', M:'M', K:'K'
   },
   ru: {
     nav1:'Ниши', nav2:'Сравнить', nav3:'Методика',
@@ -363,13 +391,20 @@ var U = {
     sources:'Первичные источники', checked:'Проверено',
     fn1:'Объёмы переводов и число транзакций не доказывают платящий спрос на конкретный сервис. Активность агентов стоит проверять по независимым покупателям и повторной оплате.',
     fn2:'Base Batches 004: на момент проверки приём заявок закрыт. Инвестиции, гранты и продвижение не входят в базовую модель выручки.',
-    foot:'Срез', footN:'направлений', footS:'источников', footTail:'оценки для выбора проекта, не прогноз доходности'
+    foot:'Срез', footN:'направлений', footS:'источников', footTail:'оценки для выбора проекта, не прогноз доходности',
+    pulse:'Что происходит на Base за неделю', pulseNote:'Каждая цифра прочитана из сети или сверена со вторым источником; если источники не сходятся, цифры на странице нет. Обновляется каждые 6 часов.',
+    updated:'Обновлено', ago:['только что','{n} мин назад','{n} ч назад'], week:'за неделю', liveNow:'Сейчас на Base', liveD:'Живые цифры Base',
+    agree:'источники сходятся до {g}%', single:'источник: только DefiLlama', own:'посчитано из сети радаром deftools', asOfL:'данные за',
+    B:' млрд', M:' млн', K:' тыс.'
   }
 };
 
 var lang = store('ck-lang') === 'ru' ? 'ru' : 'en';
 if (/[?&]lang=ru\b/.test(location.search)) lang = 'ru';
 var DATA = null;
+// Live numbers from scripts/nav-live.js (every 6 hours, nav-data branch). Only numbers that passed its checks are in it.
+var LIVE_URL = 'https://raw.githubusercontent.com/araxis33/base-tools/nav-data/nav-live.json';
+var LIVE = null;
 var DEF = { q:'', cat:'all', skills:'all', diff:'5', model:'all', signal:'all', nocon:false, nocap:false };
 var f = Object.assign({}, DEF);
 var goal = 'balance';
@@ -433,6 +468,39 @@ function topIds(){
     .sort(function(a, b){ return (b.p - a.p) || a.id.localeCompare(b.id); }).slice(0, 3).map(function(x){ return x.id; });
 }
 
+function num(v, d){ return v.toLocaleString(lang === 'ru' ? 'ru-RU' : 'en-US', { minimumFractionDigits:d, maximumFractionDigits:d }); }
+function amount(m){
+  var T = t(), v = m.value, a = Math.abs(v), s = a >= 1e9 ? num(v / 1e9, 2) + T.B : a >= 1e6 ? num(v / 1e6, 1) + T.M : a >= 1e3 ? num(v / 1e3, 0) + T.K : num(v, 0);
+  return m.unit === 'usd' ? '$' + s : m.unit === 'eur' ? '€' + s : s;
+}
+function change(m){
+  if (m.change == null) return '';
+  var c = m.change, s = (c > 0 ? '+' : c < 0 ? '−' : '') + num(Math.abs(c), 1) + '%';
+  return '<span class="' + (c > 0 ? 'up' : c < 0 ? 'down' : '') + '">' + s + '</span> ' + esc(t().week);
+}
+function proof(m){
+  var T = t();
+  if (m.own) return T.own;
+  if (m.single) return T.single;
+  return m.sources.map(function(s){ return s.name; }).join(' · ') + ' — ' + T.agree.replace('{g}', num(Math.max(m.gap, 0.01), 2));
+}
+function liveFor(id){ return LIVE ? LIVE.metrics.filter(function(m){ return m.niches.indexOf(id) >= 0; }) : []; }
+function nicheName(id){ var n = DATA.niches.filter(function(x){ return x.id === id; })[0]; return n ? L(n).name : ''; }
+function paintPulse(){
+  if (!LIVE || !DATA) return;
+  var T = t(), mins = Math.round((Date.now() - Date.parse(LIVE.generatedAt)) / 60000);
+  var ago = mins < 2 ? T.ago[0] : mins < 90 ? T.ago[1].replace('{n}', mins) : T.ago[2].replace('{n}', Math.round(mins / 60));
+  $('t-pulse').textContent = T.pulse;
+  $('pulse-note').textContent = T.pulseNote + ' ' + T.updated + ' ' + ago + '.';
+  var list = LIVE.metrics.slice().sort(function(a, b){ return (b.change == null ? -1e9 : b.change) - (a.change == null ? -1e9 : a.change); });
+  $('tiles').innerHTML = list.map(function(m){
+    return '<button type="button" class="tile" data-open="' + esc(m.niches[0]) + '"><span class="t-l">' + esc(m[lang]) + '</span>' +
+      '<span class="t-v">' + esc(amount(m)) + '</span>' + (m.change != null ? '<span class="t-c">' + change(m) + '</span>' : '') +
+      '<span class="t-s">' + esc(proof(m)) + '</span><span class="t-n">' + esc(nicheName(m.niches[0])) + ' →</span></button>';
+  }).join('');
+  $('pulse').hidden = !list.length;
+}
+
 function dots(v, inv){
   var h = '<span class="dots' + (inv ? ' inv' : '') + '" aria-label="' + v + ' / 5">';
   for (var i = 1; i <= 5; i++) h += '<i class="' + (i <= v ? 'on' : '') + '"></i>';
@@ -471,6 +539,7 @@ function paintGrid(){
         '<div class="m">' + esc(T.mVis) + dots(n.visibility) + '</div>' +
       '</div>' +
       '<p class="c-rev"><span>' + esc(T.revenue) + '</span>' + esc(l.monetization) + '</p>' +
+      liveFor(n.id).map(function(m){ return '<p class="c-live"><span>' + esc(T.liveNow) + '</span>' + esc(m[lang]) + ': <b>' + esc(amount(m)) + '</b>' + (m.change != null ? ' · ' + change(m) : '') + '</p>'; }).join('') +
       '<div class="c-act"><button class="btn" type="button" data-open="' + n.id + '">' + esc(T.explore) + '</button>' +
         '<button class="btn ghost' + (on ? ' on' : '') + '" type="button" data-cmp="' + n.id + '"' + (!on && sel.length >= 4 ? ' disabled' : '') + '>' + esc(on ? T.added : T.add) + '</button></div>' +
     '</article>';
@@ -518,6 +587,10 @@ function openIdea(id){
       '<button class="close" type="button" data-close aria-label="Close">×</button></div></div>' +
     '<p class="d-lead">' + esc(l.summary) + '</p>' +
     '<div class="fact"><small>' + esc(T.verified) + '</small><p>' + esc(l.fact) + '</p>' + srcLinks(n.sources) + '</div>' +
+    liveFor(id).map(function(m){
+      return '<div class="live-d"><small>' + esc(T.liveD) + '</small><p>' + esc(m[lang]) + ': <b>' + esc(amount(m)) + '</b>' + (m.change != null ? ' · ' + change(m) : '') + '</p>' +
+        '<em>' + esc(proof(m)) + ' · ' + esc(T.asOfL) + ' ' + esc(fmtDate(m.asOf.slice(0, 10))) + '</em></div>';
+    }).join('') +
     '<div class="d-grid">' +
       [[T.buyer, l.buyer], [T.how, l.monetization], [T.first, l.mvp], [T.stand, l.wedge], [T.limits, l.risk], [T.existing, l.competitors]]
         .map(function(p){ return '<div><h4>' + esc(p[0]) + '</h4><p>' + esc(p[1]) + '</p></div>'; }).join('') +
@@ -587,7 +660,7 @@ function paintStatic(){
   }).join('');
   $('foot-note').innerHTML = '<p>' + esc(T.fn1) + '</p><p>' + esc(T.fn2) + '</p>' + srcLinks(['study', 'batches', 'codes']);
   $('t-foot').textContent = T.foot + ' ' + fmtDate(DATA.snapshot) + ' · ' + DATA.niches.length + ' ' + T.footN + ' · ' + DATA.sources.length + ' ' + T.footS + ' · ' + T.footTail;
-  paintGrid(); paintCompare();
+  paintPulse(); paintGrid(); paintCompare();
   var d = $('dlg'); if (d.open && location.hash.length > 1) openIdea(location.hash.slice(1));
 }
 
@@ -641,6 +714,12 @@ fetch('/navigator-data.json').then(function(r){ return r.json(); }).then(functio
 }).catch(function(){
   $('grid').innerHTML = '<div class="empty" style="grid-column:1/-1">Could not load the niches. Reload the page.</div>';
 });
+// Without the live file the page is the same as before: scores and sources, no live numbers.
+fetch(LIVE_URL, { cache:'no-cache' }).then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
+  if (!d || !d.metrics) return;
+  LIVE = d;
+  if (DATA) { paintPulse(); paintGrid(); }
+}).catch(function(){});
 })();
 </script>
 <!-- Cloudflare Web Analytics: page views only, no cookies --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d66a3ce27f4e4b47bb1eb31a0e5fa912"}'></script>
