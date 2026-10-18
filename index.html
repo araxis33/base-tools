@@ -655,6 +655,28 @@
     }
     .proj-card:hover{transform:none;}
   }
+
+.acts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.act{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.act .n{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.act h3{margin:0;font-size:19px}
+.act .ex{font-size:14px;color:var(--muted);background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px;padding:10px 12px}
+.act .ex b{color:var(--text)}
+.act .go{margin-top:auto;display:flex;gap:8px;flex-wrap:wrap}
+.flag{display:grid;grid-template-columns:1.3fr 1fr;gap:18px;align-items:center}
+.big{font-size:30px;font-weight:800;letter-spacing:-.02em}
+.path{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:stretch}
+.path .arr{align-self:center;font-size:26px;color:var(--muted)}
+.mini{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.dirlink{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px}
+@media (max-width:860px){.acts,.mini{grid-template-columns:1fr}.flag{grid-template-columns:1fr}.path{grid-template-columns:1fr}.path .arr{transform:rotate(90deg);justify-self:center}}
+/* Two views of one page (18.10.2026): the tools at /, the directory and all four boards at /?view=directory */
+body:not(.view-dir) .dir-only, body:not(.view-dir) .full-only{display:none}
+body.view-dir .home-only{display:none}
+body:not(.view-dir) .trend-grid{grid-template-columns:repeat(2, 1fr)}
+body.view-dir .trend-grid{grid-template-columns:repeat(3, 1fr)}
+@media (max-width:900px){ body.view-dir .trend-grid{grid-template-columns:1fr} }
+@media (max-width:640px){ body:not(.view-dir) .trend-grid{grid-template-columns:1fr} }
 </style>
 </head>
 <body>
@@ -678,164 +700,120 @@
   <div class="wrap">
     <div class="logo"><span class="logo-mark" aria-hidden="true"></span> deftools</div>
     <nav>
-      <a href="#projects">Tools</a>
-      <a href="#trending">Boards</a>
-      <a href="#directory">Directory</a>
+      <a href="/#aero">Aero</a>
+      <a href="/#stocks">Stocks</a>
+      <a href="/#arc">Arc</a>
+      <a href="/directory.html">Directory</a>
       <a href="https://base.org" target="_blank" rel="noopener">Base.org</a>
     </nav>
   </div>
 </header>
 
-<div class="wrap hero">
-  <div class="pill"><span class="dot"></span> <span id="tool-count">14</span> TOOLS · <span id="cat-count">5</span> CATEGORIES · BASE &amp; ARC</div>
-  <h1>Tools for <span class="accent">Base</span>. Live boards. <br class="h1-break">Trades you <span class="accent">sign yourself</span>.</h1>
-  <p class="sub">Six tools of my own, four live boards and 24 apps worth using.</p>
+<div class="wrap hero home-only">
+  <div class="pill"><span class="dot"></span> BASE &amp; ARC · READ FROM THE CHAIN</div>
+  <h1>Check it <span class="accent">before</span> you buy. <br class="h1-break">Then buy it from <span class="accent">your own wallet</span>.</h1>
+  <p class="sub">Three things people come here for.</p>
+  <div class="acts">
+    <div class="act">
+      <div class="n">1 · A token</div>
+      <h3>Can I trust this token?</h3>
+      <div class="ex">Paste an address and get a 1–10 score with what it is made of. <a href="/check.html?a=0x940181a94A35A4569E4529A3CDfB74e38FD98631&amp;go=1"><b>Try AERO →</b></a></div>
+      <form class="pc-check" action="/check.html" method="get">
+        <div class="hc-row">
+          <input name="a" placeholder="Paste a token address, 0x…" aria-label="Token address" autocomplete="off" spellcheck="false" required pattern="\s*0x[a-fA-F0-9]{40}\s*" title="0x followed by 40 characters">
+          <input type="hidden" name="go" value="1">
+          <button type="submit">Check</button>
+        </div>
+      </form>
+    </div>
+    <div class="act">
+      <div class="n">2 · A stock on Base</div>
+      <h3>Is this stock token real, and what does it cost?</h3>
+      <div class="ex" id="ex-stock">NVDAc on Base, its price against the real share and what $1,000 in and out costs.</div>
+      <div class="go"><a class="visit" href="/stocks.html">Check a stock</a><a class="ghost" href="/thesis.html">Buy a basket</a></div>
+    </div>
+    <div class="act">
+      <div class="n">3 · AERO</div>
+      <h3>Where should my AERO go?</h3>
+      <div class="ex" id="ex-aero">Every week the radar forecasts what pools will pay, then checks it against what they paid.</div>
+      <div class="go"><a class="visit" href="https://aero.deftools.xyz/#saeroPanel" target="_blank" rel="noopener">Open the radar</a></div>
+    </div>
+  </div>
 </div>
 
-<div class="wrap">
-  <section id="projects">
-    <div class="section-head">
+<div class="wrap home-only">
+  <section id="aero">
+    <div class="section-head"><div>
+      <div class="section-title">Aero Vote Radar</div>
+      <div class="section-sub">For AERO holders. Aero replaces weekly votes with sAERO allocations on October 22</div>
+    </div></div>
+    <div class="proj-card flag">
       <div>
-        <div class="section-title">Built by Def777</div>
-        <div class="section-sub">My own tools for Base and Arc. Open source, most of them free, no wallet needed to look around</div>
+        <p class="proj-desc" style="font-size:16px">Ranks every pool by what it pays per day, splits your sAERO across several so you don't dilute yourself, and checks its own forecast against what pools actually paid, every week.</p>
+        <div class="proj-tags"><span class="tag live">Live</span><span class="tag">Aerodrome</span><span class="tag">Rescans every 6h</span></div>
+        <div class="proj-links">
+          <a class="visit" href="https://aero.deftools.xyz/#saeroPanel" target="_blank" rel="noopener">Where to point sAERO</a>
+          <a class="ghost" href="https://aero.deftools.xyz/#promisePanel" target="_blank" rel="noopener">How wrong it was</a>
+          <a class="ghost" href="https://github.com/araxis33/aero-vote-radar" target="_blank" rel="noopener">Code</a>
+        </div>
       </div>
-    </div>
-
-    <div class="mine">
-      <div class="proj-grid">
-
-        <div class="proj-card">
-          <div class="proj-head">
-            <div class="proj-icon"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Cpath fill='%230433ff' d='M29.5 62.6c1.4-5.5 11.8-11.2 16.7-13.8 14.7-7 30.5-11.3 46.3-14.7 3.6-.8 7.3-1.5 11-2.1 6.7-1.5 3.2-9.7-2.9-7.6-6.5 1.1-12.9 2.5-19.3 4-14.8 3.7-29.6 8.1-43.1 15.4-6.9 3.9-15.6 9.2-17.5 17.4 0 .4-.2.9-.1 1.4v1c0 .3 0 .7.1 1 3.6 15.9 45.5 20.9 59.6 22.3 6.6.8 13.3 1.1 19.9 1.5 2 .6 3.1-2 .8-2.3-1 0-2-.2-3.1-.3-17-1.6-34.2-4-50.4-9.8-3.8-1.3-7.5-2.9-10.9-5.1-2.2-1.4-4.4-2.9-5.9-5.1-.2-.3-.3-.6-.5-.9 0-.1 0-.3-.1-.4v-1.4z'/%3E%3Cpath fill='%23ff1100' d='M29.5 86.4c1.4-5.5 11.8-11.2 16.7-13.8 14.7-7 30.5-11.3 46.3-14.7 3.6-.8 7.3-1.5 11-2.1 6.7-1.5 3.2-9.7-2.9-7.6-6.5 1.1-12.9 2.5-19.3 4-14.8 3.7-29.6 8.1-43.1 15.4-6.9 3.9-15.6 9.2-17.5 17.4 0 .4-.2.9-.1 1.4v1c0 .3 0 .7.1 1 3.6 15.9 45.5 20.9 59.6 22.3 6.6.7 13.2 1.1 19.7 1.5.3 0 .6 0 .9 0 1.7 0 1.7-2.4 0-2.4-1 0-2-.2-3.1-.3-17-1.6-34.2-4-50.4-9.8-3.8-1.3-7.5-2.9-10.9-5.1-2.2-1.4-4.4-2.9-5.9-5.1-.2-.3-.3-.6-.5-.9 0-.1 0-.3-.1-.4v-1.4z'/%3E%3C/svg%3E" alt="Aero Vote Radar logo" width="28" height="28"></div>
-            <div>
-              <div class="proj-name">Aero Vote Radar</div>
-              <div class="proj-kind">Web app · CLI · MCP server</div>
-            </div>
-          </div>
-          <p class="proj-desc">Tells veAERO holders which Aerodrome pools to vote for. Ranks every pool by the dollars it pays per vote, then splits your voting power across several of them, because piling everything into the top pool dilutes your own share of it.</p>
-          <div class="proj-tags">
-            <span class="tag live">Live</span>
-            <span class="tag">Aerodrome</span>
-            <span class="tag">Rescans every 6h</span>
-          </div>
-          <div class="proj-links">
-            <a class="visit" href="https://aero.deftools.xyz" target="_blank" rel="noopener">Open <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            <a class="ghost" href="https://github.com/araxis33/aero-vote-radar" target="_blank" rel="noopener">Code <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          </div>
-        </div>
-
-        <div class="proj-card">
-          <div class="proj-head">
-            <div class="proj-icon"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0e1c'/%3E%3Crect x='7' y='17' width='4' height='9' rx='1.4' fill='%233b6eff'/%3E%3Crect x='14' y='12' width='4' height='14' rx='1.4' fill='%237ea0ff'/%3E%3Crect x='21' y='6' width='4' height='20' rx='1.4' fill='%233fbf87'/%3E%3C/svg%3E" alt="Thesis logo" width="28" height="28"></div>
-            <div>
-              <div class="proj-name">Thesis</div>
-              <div class="proj-kind">Web app</div>
-            </div>
-          </div>
-          <p class="proj-desc">Buy US stocks and stock memes on Base from your own wallet. Write one line about what you believe and get a basket of Coinbase stocks, routed through the deepest pool; pick stock memes filtered by real money and real buyers; see what you hold and sell it. Pay in USDC or ETH.</p>
-          <div class="proj-tags">
-            <span class="tag live">Live</span>
-            <span class="tag">Base</span>
-          </div>
-          <div class="proj-links">
-            <a class="visit" href="/thesis.html">Open <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          </div>
-        </div>
-
-        <div class="proj-card">
-          <div class="proj-head">
-            <div class="proj-icon"><img src="data:image/jpeg;base64,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" alt="Meme Scout logo" width="28" height="28"></div>
-            <div>
-              <div class="proj-name">Token Check</div>
-              <div class="proj-kind">Web app</div>
-            </div>
-          </div>
-          <p class="proj-desc">How far can you trust a token? Paste a Base or Robinhood Chain address and get a trust score from 1 to 10 with what it is made of: can you actually sell it, who launched it and what became of their earlier coins, which big holders got coins straight from the deployer, what a $500 exit really returns, and a project read built only from sources it can cite. 3 free checks a day, then 0.1 USDC each.</p>
-          <form class="pc-check" action="/check.html" method="get">
-            <div class="hc-row">
-              <input id="hc-a" name="a" placeholder="Paste a token address, 0x…" aria-label="Token address" autocomplete="off" spellcheck="false" required pattern="\s*0x[a-fA-F0-9]{40}\s*" title="0x followed by 40 characters">
-              <input type="hidden" name="go" value="1">
-              <button type="submit">Check</button>
-            </div>
-          </form>
-          <div class="proj-tags">
-            <span class="tag live">Live</span>
-            <span class="tag">Base</span>
-            <span class="tag">Token check</span>
-          </div>
-          <div class="proj-links">
-            <a class="ghost" href="https://github.com/araxis33/meme-scout" target="_blank" rel="noopener">Code <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          </div>
-        </div>
-
-        <div class="proj-card">
-          <div class="proj-head">
-            <div class="proj-icon"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0e1c'/%3E%3Cpath d='M6 21l6-6 5 4 9-9' fill='none' stroke='%233fbf87' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='26' cy='10' r='2.4' fill='%237ea0ff'/%3E%3C/svg%3E" alt="Stock Check logo" width="28" height="28"></div>
-            <div>
-              <div class="proj-name">Stock Check</div>
-              <div class="proj-kind">Web app</div>
-            </div>
-          </div>
-          <p class="proj-desc">Check any Coinbase stock on Base before you buy it. Is it the official token, the price on Base against the real share, what a buy-and-sell round trip costs at your size, where you can borrow USDC against it, how it trades when Wall Street is closed, and a live chain check of fake tickers and trap pools across all 36.</p>
-          <div class="proj-tags">
-            <span class="tag live">Live</span>
-            <span class="tag">Base</span>
-          </div>
-          <div class="proj-links">
-            <a class="visit" href="/stocks.html">Open <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          </div>
-        </div>
-
-        <div class="proj-card">
-          <div class="proj-head">
-            <div class="proj-icon"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0e17'/%3E%3Cpath d='M8 23a8 8 0 0 1 16 0' fill='none' stroke='%233b82f6' stroke-width='3.5' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='10' r='2.6' fill='%233b82f6'/%3E%3C/svg%3E" alt="Arc tools logo" width="28" height="28"></div>
-            <div>
-              <div class="proj-name">Arc Contract Check + Arc fees</div>
-              <div class="proj-kind">Web tools for Circle's Arc network</div>
-            </div>
-          </div>
-          <p class="proj-desc">Paste a contract address on Arc and see who can change it: a single key, a Safe multisig or a timelock with a delay. A small log contract on Arc mainnet keeps snapshots, so you can tell if an admin changed. The fees page shows live Arc costs in dollars and catches the 18 vs 6 decimals USDC mix-up. Workshop Escrow lets a client lock an advance in USDC until the work is delivered.</p>
-          <div class="proj-tags">
-            <span class="tag live">Live</span>
-            <span class="tag">Arc mainnet</span>
-          </div>
-          <div class="proj-links">
-            <a class="visit" href="https://araxis33.github.io/arc-contract-check/" target="_blank" rel="noopener">Contract check <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            <a class="ghost" href="/arc.html">Arc fees <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            <a class="ghost" href="/arc.html#escrow">Escrow <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            <a class="ghost" href="https://github.com/araxis33/arc-contract-check" target="_blank" rel="noopener">Code <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          </div>
-        </div>
-
-        <div class="proj-card" id="base-niche-navigator">
-          <div class="proj-head">
-            <div class="proj-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#0052ff"/><path d="M10 23V13m6 10V8m6 15v-7" stroke="white" stroke-width="3" stroke-linecap="round"/></svg></div>
-            <div>
-              <div class="proj-name">Base Niche Navigator</div>
-              <div class="proj-kind">Web app · EN / RU</div>
-            </div>
-          </div>
-          <p class="proj-desc">Choose what to build on Base. Compare potential buyers, monetization, entry difficulty, competition and visibility. Filter by your skills and explore a short priority ranking backed by primary sources.</p>
-          <div class="proj-tags">
-            <span class="tag">Beta</span>
-            <span class="tag">Base</span>
-            <span class="tag">Primary sources</span>
-          </div>
-          <div class="proj-links">
-            <a class="visit" href="/navigator.html">Open <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          </div>
-        </div>
+      <div class="act" style="background:transparent" id="aero-promise" hidden>
+        <div class="n">Forecast vs paid, last closed week</div>
+        <div class="big" id="aero-promise-big"></div>
+        <div class="ex" id="aero-promise-sub"></div>
       </div>
     </div>
   </section>
+
+  <section id="stocks">
+    <div class="section-head"><div>
+      <div class="section-title">Stocks on Base: check, then buy</div>
+      <div class="section-sub">36 Coinbase stock tokens. One path: check the token and its market, compare routes, buy a basket in one transaction</div>
+    </div></div>
+    <div class="path">
+      <div class="proj-card"><div class="proj-name">1 · Stock Check</div>
+        <p class="proj-desc">Price on Base against the real share, how deep the market is, what $1,000 in and out costs, who can pause the token.</p>
+        <div class="proj-links"><a class="visit" href="/stocks.html">Check a stock</a></div></div>
+      <div class="arr" aria-hidden="true">→</div>
+      <div class="proj-card"><div class="proj-name">2 · Thesis</div>
+        <p class="proj-desc">One line about what you believe becomes a basket, routed through the deepest pools. Pay in USDC or ETH. Stock memes, filtered by real money and real buyers, are there too.</p>
+        <div class="proj-links"><a class="visit" href="/thesis.html">Build a basket</a><a class="ghost" href="/thesis.html#memes-slot">Stock memes</a></div></div>
+    </div>
+  </section>
+
+  <section id="arc">
+    <div class="section-head"><div>
+      <div class="section-title">Arc</div>
+      <div class="section-sub">Tools for Circle's Arc network</div>
+    </div></div>
+    <div class="mini">
+      <div class="proj-card"><div class="proj-name">Contract Check</div><p class="proj-desc">Who can change a contract on Arc: one key, a Safe multisig or a timelock with a delay.</p><div class="proj-links"><a class="ghost" href="https://araxis33.github.io/arc-contract-check/" target="_blank" rel="noopener">Open</a></div></div>
+      <div class="proj-card"><div class="proj-name">Fees &amp; Pool Check</div><p class="proj-desc">Fees in dollars, copies of USDC, EURC and cirBTC, and pools that take most of a trade.</p><div class="proj-links"><a class="ghost" href="/arc.html">Open</a></div></div>
+      <div class="proj-card"><div class="proj-name">Workshop Escrow</div><p class="proj-desc">Lock an advance in USDC until the work is delivered.</p><div class="proj-links"><a class="ghost" href="/arc.html#escrow">Open</a></div></div>
+    </div>
+  </section>
+
+  <section id="builders">
+    <div class="section-head"><div>
+      <div class="section-title">For builders</div>
+      <div class="section-sub">What to build on Base, with live numbers next to each niche</div>
+    </div></div>
+    <div class="dirlink"><div><div class="proj-name">Base Niche Navigator</div><p class="proj-desc" style="margin:4px 0 0">14 niches ranked by demand, revenue, difficulty, competition and visibility.</p></div><a class="ghost" href="/navigator.html">Open</a></div>
+  </section>
+</div>
+
+<div class="wrap hero dir-only">
+  <div class="pill"><span class="dot"></span> <span id="tool-count">24</span> APPS · <span id="cat-count">6</span> CATEGORIES · BASE</div>
+  <h1>Base apps <span class="accent">worth using</span>.</h1>
+  <p class="sub">The ones I use myself are marked. Referral links are labelled. <a href="/">← deftools tools</a></p>
 </div>
 
 <div class="wrap wrap-boards">
   <section id="trending">
     <div class="section-head">
       <div>
-        <div class="section-title">Live token boards</div>
-        <div class="section-sub">Rebuilt every 15 minutes; the stamp shows when each run last succeeded · Losers &amp; Gainers cover every Base-native token · Blue-chips are hand-picked · Stocks are priced from their deepest pool · Prices for the first three by <a href="https://www.coingecko.com/en/api" target="_blank" rel="noopener">CoinGecko</a></div>
+        <div class="section-title">Live boards</div>
+        <div class="section-sub">Rebuilt every 15 minutes; the stamp shows when each run last succeeded · Losers &amp; Gainers cover every Base-native token · Stocks are priced from their deepest pool · Prices for the first two by <a href="https://www.coingecko.com/en/api" target="_blank" rel="noopener">CoinGecko</a></div>
       </div>
       <div class="head-side">
         <div class="updated" id="trend-updated">loading…</div>
@@ -845,7 +823,7 @@
       </div>
     </div>
     <div class="trend-grid" id="trend-grid">
-      <div class="trend-col">
+      <div class="trend-col full-only">
         <div class="trend-col-head">
           <div class="trend-col-icon loss"><svg class="ic" aria-hidden="true"><use href="#i-trend-down"/></svg></div>
           <div><div class="trend-col-title">Top Losers</div><div class="trend-col-desc">Worst 24h price drops</div></div>
@@ -861,13 +839,6 @@
       </div>
       <div class="trend-col">
         <div class="trend-col-head">
-          <div class="trend-col-icon gem"><svg class="ic" aria-hidden="true"><use href="#i-gem"/></svg></div>
-          <div><div class="trend-col-title">Base Blue-chips</div><div class="trend-col-desc">Established Base projects, hand-picked</div></div>
-        </div>
-        <div id="col-bluechip"><div class="trend-empty">Loading…</div></div>
-      </div>
-      <div class="trend-col">
-        <div class="trend-col-head">
           <div class="trend-col-icon stock"><svg class="ic" aria-hidden="true"><use href="#i-chart"/></svg></div>
           <div><div class="trend-col-title">Stocks on Base</div><div class="trend-col-desc">The 10 most traded of 36, by 24h move · <a href="/stocks.html">all 36</a></div></div>
         </div>
@@ -879,14 +850,15 @@
 
 <div class="wrap">
   <section id="directory">
-    <div class="section-head">
+    <div class="dirlink home-only"><div><div class="section-title">Directory</div><p class="sub" style="margin-top:6px">24 Base apps worth using, the ones I use myself marked, referral links labelled. Plus the Losers board.</p></div><a class="visit" href="/directory.html">Open the directory</a></div>
+    <div class="section-head dir-only">
       <div>
         <div class="section-title">Directory</div>
         <div class="section-sub">Apps, stocks and launchpads, bots, terminals, trackers and DeFi. A <svg class="ic ic-solid" style="color:var(--yellow)" aria-hidden="true"><use href="#i-star"/></svg> marks what I use myself, or hit <b style="color:var(--yellow)">My stack</b> to see only those.</div>
       </div>
     </div>
-    <div class="filters" id="filters" role="group" aria-label="Filter tools by category"></div>
-    <div id="grid"></div>
+    <div class="dir-only"><div class="filters" id="filters" role="group" aria-label="Filter tools by category"></div>
+    <div id="grid"></div></div>
   </section>
 
 
@@ -989,6 +961,30 @@
 <script>
 // ---------- Directory data ----------
 // Muted category colors — visible but not loud
+// /directory.html redirects here with ?view=directory: the catalogue and all four boards instead of the tools.
+if (/[?&]view=directory(?![a-z])/.test(location.search)) document.body.classList.add("view-dir");
+
+// The three first-screen examples carry live numbers; without them the plain sentences stay.
+(function liveExamples(){
+  if (document.body.classList.contains("view-dir")) return;
+  fetch("https://deftools-check.araxis67.workers.dev/stock-data").then(r => r.ok ? r.json() : null).then(d => {
+    const n = d && d.items && d.items.NVDAc;
+    if (!n || !(n.dex > 0) || !n.rt) return;
+    document.getElementById("ex-stock").innerHTML = "NVDAc on Base <b>$" + n.dex.toFixed(2) + "</b> · $1,000 in and out costs <b>" + n.rt.loss.toFixed(2) + "%</b>";
+  }).catch(() => {});
+  fetch("https://aero.deftools.xyz/data/promise.json").then(r => r.ok ? r.json() : null).then(d => {
+    const e = d && d.epochs && d.epochs[d.epochs.length - 1];
+    if (!e || !e.rows || !e.rows.length) return;
+    const avg = k => e.rows.reduce((s, r) => s + r[k], 0) / e.rows.length;
+    const f = avg("forecastUsd"), p = avg("paidUsd"), per = (d.perVeAero || 10000).toLocaleString("en-US");
+    const wk = new Date(e.epochStart + "T00:00:00Z").toLocaleDateString("en-GB", {day: "numeric", month: "short", timeZone: "UTC"});
+    document.getElementById("ex-aero").innerHTML = "Last closed week the radar forecast <b>$" + f.toFixed(2) + "</b> per " + per + " votes; pools paid <b>$" + p.toFixed(2) + "</b>.";
+    document.getElementById("aero-promise-big").textContent = "$" + f.toFixed(2) + " → $" + p.toFixed(2);
+    document.getElementById("aero-promise-sub").textContent = "per " + per + " votes, top " + e.rows.length + " pools, week of " + wk;
+    document.getElementById("aero-promise").hidden = false;
+  }).catch(() => {});
+})();
+
 const CAT_STYLE = {
   "Wallets & Apps":     { color:"#4d8dff", bg:"rgba(77,141,255,0.12)" },
   "Stocks & Launchpads": { color:"#a3c24a", bg:"rgba(163,194,74,0.12)" },
@@ -1346,9 +1342,8 @@ function renderBoards(data){
   const items = b => b && b.items;
   renderColumn("col-losers", items(data.losers), "Nothing down over the last 24h.");
   renderColumn("col-gainers", items(data.gainers));
-  renderColumn("col-bluechip", items(data.bluechips));
   renderColumn("col-stocks", items(data.stocks));
-  const boards = [["Losers", data.losers], ["Gainers", data.gainers], ["Blue-chips", data.bluechips], ["Stocks", data.stocks]].filter(b => b[1]);
+  const boards = [["Losers", data.losers], ["Gainers", data.gainers], ["Stocks", data.stocks]].filter(b => b[1]);
   const times = boards.map(b => b[1].ts);
   // A board whose source refused keeps its last rows; name it when it is over an hour old (18.10.2026: Stocks sat
   // three hours behind under "updated every 15 minutes").
@@ -1366,7 +1361,6 @@ async function loadBoards(){
   } catch(e){
     renderColumn("col-losers", null);
     renderColumn("col-gainers", null);
-    renderColumn("col-bluechip", null);
     renderColumn("col-stocks", null);
     document.getElementById("trend-updated").textContent = "unavailable";
   }
