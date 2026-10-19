@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>USDC on Arc: who can change it — Arc Contract Check</title>
+<meta name="description" content="USDC on Arc mainnet is an upgradeable proxy. The right to replace its code sits with one plain key, and so does ownership. Read straight from the chain.">
+<meta property="og:title" content="USDC on Arc: the code can be replaced, and the right sits with one key">
+<meta property="og:description" content="Upgrade admin and owner of USDC on Arc mainnet are both plain keys, not contracts. Read straight from the chain with Arc Contract Check.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="deftools">
+<meta property="og:url" content="https://deftools.xyz/arc-usdc.html">
+<meta property="og:image" content="https://deftools.xyz/og-arc-usdc.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@Def7771">
+<meta name="twitter:creator" content="@Def7771">
+<link rel="canonical" href="https://deftools.xyz/arc-usdc.html">
+<meta name="theme-color" content="#0a0e1c">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233b6eff'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#0a0e1c; --bg2:#0d1226; --card:#111730; --card-hover:#151c3a;
+  --border:#232c4d; --border-hover:#33406b;
+  --blue:#3b6eff; --blue-soft:#182252; --blue-text:#7ea0ff; --blue-bright:#9db8ff;
+  --yellow:#ffcf40; --green:#3fbf87; --red:#ff6b6b;
+  --text:#eef1fb; --muted:#8791b3; --muted2:#7a84a8;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  line-height:1.55; -webkit-font-smoothing:antialiased;
+}
+a{color:var(--blue-text); text-decoration:none}
+a:hover{color:var(--blue-bright)}
+.wrap{max-width:1080px; margin:0 auto; padding:0 20px}
+
+header{border-bottom:1px solid var(--border); background:var(--bg2)}
+.head-in{display:flex; align-items:center; justify-content:space-between; gap:16px; padding-block:16px; flex-wrap:wrap}
+.back{display:inline-flex; align-items:center; min-height:32px; font-size:14px; color:var(--muted)}
+.back:hover{color:var(--text)}
+.head-links{display:flex; gap:14px}
+.head-links a{font-size:14px; min-height:32px; display:inline-flex; align-items:center}
+.head-links a[hidden]{display:none}
+
+.hero{padding:40px 0 24px}
+h1{margin:0 0 10px; font-size:32px; line-height:1.2; letter-spacing:-.02em}
+.sub{margin:0; color:var(--muted); font-size:16.5px; max-width:64ch}
+.stamp{margin-top:14px; font-size:13px; color:var(--muted2)}
+.dot{display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--green); margin-right:7px; vertical-align:middle}
+.dot.stale{background:var(--yellow)}
+.dot.dead{background:var(--red)}
+
+section{padding:26px 0}
+h2{font-size:19px; margin:0 0 4px; letter-spacing:-.01em}
+.note{color:var(--muted2); font-size:13.5px; margin:0 0 16px; max-width:70ch}
+
+.netbar{display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-top:16px}
+.netbtn{background:var(--card); border:1px solid var(--border); color:var(--muted);
+        border-radius:999px; padding:7px 16px; font-size:14px; cursor:pointer;
+        font-family:inherit; min-height:34px}
+.netbtn:hover{border-color:var(--border-hover); color:var(--text)}
+.netbtn[aria-pressed="true"]{background:var(--blue-soft); border-color:var(--blue); color:var(--blue-bright)}
+.netbtn[disabled]{opacity:.45; cursor:not-allowed}
+.netbtn[disabled]:hover{border-color:var(--border); color:var(--muted)}
+
+.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:12px}
+.card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px}
+.card .k{color:var(--muted); font-size:13px; margin-bottom:6px}
+.card .v{font-size:23px; font-weight:700; font-variant-numeric:tabular-nums; letter-spacing:-.02em}
+.card .s{color:var(--muted2); font-size:12.5px; margin-top:4px}
+.card.hi{border-left:3px solid var(--blue)}
+
+.tbl-wrap{overflow-x:auto; background:var(--card); border:1px solid var(--border); border-radius:12px}
+table{width:100%; border-collapse:collapse; min-width:420px}
+th,td{text-align:left; padding:11px 16px; font-size:14.5px; border-bottom:1px solid var(--border)}
+th{color:var(--muted); font-weight:500; font-size:12.5px; text-transform:uppercase; letter-spacing:.04em}
+tr:last-child td{border-bottom:none}
+td.num{font-variant-numeric:tabular-nums; white-space:nowrap}
+td.cost{font-variant-numeric:tabular-nums; white-space:nowrap; font-weight:600}
+.gasnote{color:var(--muted2); font-size:12.5px}
+
+.checker{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px}
+.row{display:flex; gap:10px; flex-wrap:wrap}
+input[type=text]{
+  flex:1 1 320px; min-width:0; background:var(--bg); border:1px solid var(--border);
+  color:var(--text); border-radius:10px; padding:11px 14px; font-size:15px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace; min-height:44px;
+}
+input[type=text]:focus{outline:none; border-color:var(--blue)}
+button.go{
+  background:var(--blue); border:1px solid var(--blue); color:#fff; border-radius:10px;
+  padding:11px 22px; font-size:15px; font-weight:600; cursor:pointer;
+  font-family:inherit; min-height:44px;
+}
+button.go:hover{background:#2f5ee0}
+button.go[disabled]{opacity:.6; cursor:default}
+
+.result{margin-top:16px; display:none}
+.result.on{display:block}
+.rrow{display:flex; justify-content:space-between; gap:14px; padding:10px 0;
+      border-bottom:1px solid var(--border); font-size:15px; flex-wrap:wrap}
+.rrow:last-child{border-bottom:none}
+.rrow .lab{color:var(--muted)}
+.rrow .val{font-variant-numeric:tabular-nums; font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.rrow.warn .val{color:var(--yellow)}
+.rrow.ok .val{color:var(--green)}
+.verdict{margin-top:14px; border-radius:10px; padding:13px 15px; font-size:14px; line-height:1.5}
+.verdict.ok{background:rgba(63,191,135,.10); border:1px solid rgba(63,191,135,.3); color:#8fe0bd}
+.verdict.warn{background:rgba(255,207,64,.10); border:1px solid rgba(255,207,64,.32); color:#ffe08a}
+.verdict.bad{background:rgba(255,107,107,.10); border:1px solid rgba(255,107,107,.32); color:#ffb0b0}
+.verdict.plain{background:var(--bg); border:1px solid var(--border); color:var(--text)}
+.verdict a{text-decoration:underline}
+#pc-out .verdict{margin-top:10px}
+#pc-out .verdict:first-child{margin-top:0}
+tr.row-bad td{background:rgba(255,107,107,.06)}
+tr.row-warn td{background:rgba(255,207,64,.05)}
+td.red,.red{color:var(--red)}
+.tag{font-size:11px; color:var(--blue-bright); background:var(--blue-soft); border-radius:999px; padding:1px 7px; margin-left:6px}
+.two{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+.two h3{font-size:15px; margin:0 0 8px}
+.two table{min-width:0}
+@media (max-width:760px){ .two{grid-template-columns:1fr} }
+/* on a phone the pool table must show the fee column without sideways scrolling */
+@media (max-width:640px){
+  #pc-out table, .two table{min-width:0}
+  #pc-out th, #pc-out td, .two th, .two td{padding:9px 5px; font-size:12.5px}
+  #pc-out th, .two th{font-size:10.5px; letter-spacing:.02em}
+  #pc-out td.num{white-space:normal}
+}
+.err{color:var(--red); font-size:14.5px; margin-top:12px}
+.samples{margin-top:12px; font-size:13px; color:var(--muted2)}
+.samples button{background:none; border:none; color:var(--blue-text); cursor:pointer;
+                font-size:13px; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; padding:0}
+.samples button:hover{color:var(--blue-bright); text-decoration:underline}
+
+.disclaim{background:var(--card); border:1px solid var(--border); border-left:3px solid var(--yellow);
+          border-radius:12px; padding:16px 18px; color:var(--muted); font-size:14px; margin-top:8px}
+.disclaim code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:13px; color:var(--blue-text)}
+footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px; color:var(--muted2); font-size:13.5px}
+
+@media (max-width:640px){
+  h1{font-size:25px}
+  .hero{padding:28px 0 18px}
+  .rrow{font-size:14px}
+}
+code{word-break:break-all}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap head-in">
+    <a class="back" href="/arc.html">&larr;&nbsp; Arc tools</a>
+    <div class="head-links">
+      <a href="https://check.deftools.xyz/">Check another contract</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="hero">
+    <h1>USDC on Arc: the code can be replaced, and the right sits with one key</h1>
+    <p class="sub">USDC on Arc mainnet (<code>0x3600000000000000000000000000000000000000</code>) is a proxy:
+      the address everyone uses forwards to a separate contract that holds the logic, and one admin can point it
+      at new logic. Arc Contract Check reads who that admin is, and whether it is a plain key, a multisig or a timelock.</p>
+  </div>
+
+  <img src="og-arc-usdc.png" alt="USDC on Arc: the code can be replaced, and the right sits with one key" width="1200" height="630" style="width:100%;height:auto;border-radius:12px;border:1px solid var(--border);margin:8px 0 20px">
+
+  <div class="cards">
+    <div class="card hi"><div class="k">Upgrade admin</div><div class="v">0x9005…16e0</div><div class="s">A plain key: no contract code at this address</div></div>
+    <div class="card"><div class="k">Owner</div><div class="v">0xf5a5…97f4</div><div class="s">A plain key as well</div></div>
+    <div class="card"><div class="k">Proxy type</div><div class="v">ZeppelinOS</div><div class="s">Admin and logic kept in ZeppelinOS storage slots</div></div>
+    <div class="card"><div class="k">Read at</div><div class="v">26,791,953</div><div class="s">Arc mainnet block, Oct 19, 2026</div></div>
+  </div>
+
+  <p class="note" style="margin-top:18px">What it means: whoever holds the admin key can replace USDC's logic on Arc in one transaction,
+    with no multisig or delay in the way.
+    Full addresses: admin <code>0x9005e53e3ee2f27999f15e7a52c58f804fc716e0</code>,
+    owner <code>0xf5a5658b55983e2aa037cac7a8431b510e8a97f4</code>,
+    logic <code>0xc6ad664ac6679f4ce74e10e91449c93ec1ae3ca6</code>.</p>
+
+  <p><a href="https://check.deftools.xyz/">Check any contract on Arc &rarr;</a></p>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    Read from the public Arc RPC. Part of <a href="/">deftools</a>.
+  </div>
+</footer>
+
+</body>
+</html>
