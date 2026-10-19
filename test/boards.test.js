@@ -81,3 +81,30 @@ test("stock board: ten most traded, ordered by the day's change, priced from the
   assert.ok(rows.every((r) => r.price === 10));
   for (let i = 1; i < rows.length; i++) assert.ok(rows[i - 1].change24h >= rows[i].change24h);
 });
+
+test("refused by DexScreener, the stocks run takes GitHub's copy when it is full and newer", async () => {
+  const { refreshStocks } = await load();
+  const kv = new Map([["boards:v1", JSON.stringify({ stocks: { ts: Date.now() - 3 * 3600e3, items: [] } })]]);
+  const env = { QUOTA: { get: async (k) => kv.get(k) || null, put: async (k, v) => { kv.set(k, v); } } };
+  const spareTs = Date.now() - 20 * 60e3;
+  const items = Array.from({ length: 10 }, (_, i) => ({ symbol: "S" + i }));
+  const realFetch = globalThis.fetch;
+  const asked = [];
+  globalThis.fetch = async (url) => {
+    asked.push(String(url));
+    if (String(url).includes("raw.githubusercontent.com")) {
+      return new Response(JSON.stringify({ ts: spareTs, items, pools: { S0: { n: 1 } } }), { status: 200 });
+    }
+    return new Response("slow down", { status: 429 });
+  };
+  try {
+    const r = await refreshStocks(env);
+    assert.strictEqual(r.source, "github");
+    const saved = JSON.parse(kv.get("boards:v1")).stocks;
+    assert.strictEqual(saved.ts, spareTs);
+    assert.strictEqual(saved.items.length, 10);
+    assert.ok(!asked.some((u) => u.includes("geckoterminal")), "GeckoTerminal was asked although the copy was good");
+  } finally {
+    globalThis.fetch = realFetch;
+  }
+});

@@ -191,6 +191,23 @@ async function mapLimit(items, limit, fn) {
 const cgKey = (env) => (env.CG_KEY ? { 'x-cg-demo-api-key': env.CG_KEY } : {});
 const readKV = async (env, key) => { try { return JSON.parse((await env.QUOTA.get(key)) || 'null'); } catch (e) { return null; } };
 
+// The board as built on GitHub, whose runners DexScreener does not refuse. Taken
+// only when it is full, under two hours old and newer than the board already saved;
+// it keeps its own time, so the page shows its real age.
+const SPARE_URL = 'https://raw.githubusercontent.com/araxis33/base-tools/boards-data/stocks-board.json';
+async function takeSpare(env) {
+  let spare;
+  try { spare = await getJson(SPARE_URL); } catch (e) { return null; }
+  if (!spare || !Array.isArray(spare.items) || spare.items.length < 8 || !(Date.now() - spare.ts < 2 * 3600e3)) return null;
+  const out = (await readKV(env, KEY_BOARDS)) || {};
+  if (out.stocks && out.stocks.ts >= spare.ts) return null;
+  out.stocks = { ts: spare.ts, items: spare.items };
+  await env.QUOTA.put(KEY_BOARDS, JSON.stringify(out));
+  const last = ((await readKV(env, KEY_POOLS)) || {}).items || {};
+  await env.QUOTA.put(KEY_POOLS, JSON.stringify({ ts: spare.ts, items: { ...last, ...(spare.pools || {}) } }));
+  return { errors: [], rows: spare.items.length, pools: Object.keys(spare.pools || {}).length, source: 'github' };
+}
+
 // The pairs-by-address endpoint answers Cloudflare's shared addresses with 429
 // (09.10.2026), and the batched tokens endpoint picks a shallower pool for 14 of
 // the 36, so each stock gets its own tokens request: 36, under the plan's 50.
@@ -207,6 +224,12 @@ export async function refreshStocks(env, now = Date.now()) {
     try { note('ds'); return (await getJson(DS + 'tokens/' + t.a)).pairs || []; }
     catch (e) { if (/http 429/.test(e.message)) dsDown = true; note((String(e.message).match(/http \d+/) || ['ds err'])[0]); return null; }
   });
+  // GitHub's copy (scripts/stocks-board.mjs) comes before GeckoTerminal: GeckoTerminal refuses the same shared
+  // addresses, and its refusals read as "no pools" (18.10.2026: 36 stocks asked, 2 rows).
+  if (dsDown) {
+    const spare = await takeSpare(env);
+    if (spare) { console.log('stocks sources ' + JSON.stringify(why) + ' -> github copy'); return spare; }
+  }
   for (let i = 0; i < STOCKS.length; i++) if (answers[i] === null) answers[i] = await viaGT(STOCKS[i]);
   const rows = stockBoard(answers.map((list, i) => list.map((p) => stockFirst(p, STOCKS[i].a)).filter(Boolean)), STOCKS);
   console.log('stocks sources ' + JSON.stringify(why));

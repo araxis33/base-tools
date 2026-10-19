@@ -1,0 +1,36 @@
+name: stocks board
+
+# Every 15 minutes (GitHub often runs it later or skips): the homepage stocks
+# board as a spare copy. The Worker builds the board itself and takes this file
+# from the boards-data branch only when DexScreener refuses it
+# (see scripts/stocks-board.mjs).
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency: stocks-board
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/stocks-board.mjs > stocks-board.json
+      - name: Replace the file on the boards-data branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin boards-data
+          git worktree add data origin/boards-data
+          git -C data checkout -B boards-data
+          cp stocks-board.json data/stocks-board.json
+          git -C data add stocks-board.json
+          git -C data commit -qm "Stocks board $(date -u +%Y-%m-%dT%H:%M)" || exit 0
+          git -C data push origin boards-data
