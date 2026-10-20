@@ -15,7 +15,7 @@
 //
 // Secrets: GEMINI_API_KEY, GROQ_API_KEY, TAVILY_API_KEY (optional). KV: QUOTA.
 
-import { BOARDS_CRON, STOCKS_CRON, refreshBoards, refreshStocks, boardsResponse, poolsResponse } from './boards.js';
+import { BOARDS_CRON, STOCKS_CRON, refreshBoards, refreshStocks, requestSpare, boardsResponse, poolsResponse } from './boards.js';
 import { DATA_CRON, refreshStockData, stockDataResponse } from './stockdata.js';
 import { dex } from './dex.js';
 
@@ -275,6 +275,8 @@ export default {
     const run = event.cron === STOCKS_CRON ? refreshStocks(env) : event.cron === BOARDS_CRON ? refreshBoards(env)
       : event.cron === DATA_CRON ? refreshStockData(env, Math.floor(new Date(event.scheduledTime).getUTCMinutes() / 10) % 3) : null;
     if (run) ctx.waitUntil(run.then((r) => console.log(event.cron, JSON.stringify(r)), (e) => console.log(event.cron, 'failed', e.message)));
+    // A fresh spare copy of the stocks board for the stocks cron five minutes later (boards.js, requestSpare).
+    if (event.cron === BOARDS_CRON) ctx.waitUntil(requestSpare(env).then((r) => console.log('spare', JSON.stringify(r)), (e) => console.log('spare failed', e.message)));
   },
 };
 

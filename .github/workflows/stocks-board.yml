@@ -1,6 +1,7 @@
 name: stocks board
 
-# Every 15 minutes (GitHub often runs it later or skips): the homepage stocks
+# Every 15 minutes (GitHub often runs it later or skips, so the Worker also starts
+# it by request on its boards cron, check-worker/boards.js requestSpare): the homepage stocks
 # board as a spare copy. The Worker builds the board itself and takes this file
 # from the boards-data branch only when DexScreener refuses it
 # (see scripts/stocks-board.mjs).

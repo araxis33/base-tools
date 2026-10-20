@@ -108,3 +108,21 @@ test("refused by DexScreener, the stocks run takes GitHub's copy when it is full
     globalThis.fetch = realFetch;
   }
 });
+
+test("the Worker asks GitHub for a fresh stocks copy only when it has a token", async () => {
+  const { requestSpare } = await load();
+  const realFetch = globalThis.fetch;
+  const calls = [];
+  globalThis.fetch = async (url, init) => { calls.push({ url, init }); return { status: 204 }; };
+  try {
+    assert.deepStrictEqual(await requestSpare({}), { dispatched: false, why: "no token" });
+    assert.strictEqual(calls.length, 0);
+    assert.deepStrictEqual(await requestSpare({ GH_DISPATCH_TOKEN: "t" }), { dispatched: true, status: 204 });
+    assert.match(calls[0].url, /\/repos\/araxis33\/base-tools\/actions\/workflows\/stocks-board\.yml\/dispatches$/);
+    assert.strictEqual(calls[0].init.method, "POST");
+    assert.strictEqual(calls[0].init.headers.authorization, "Bearer t");
+    assert.deepStrictEqual(JSON.parse(calls[0].init.body), { ref: "main" });
+  } finally {
+    globalThis.fetch = realFetch;
+  }
+});

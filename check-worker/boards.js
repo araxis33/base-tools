@@ -208,6 +208,21 @@ async function takeSpare(env) {
   return { errors: [], rows: spare.items.length, pools: Object.keys(spare.pools || {}).length, source: 'github' };
 }
 
+// GitHub runs the copy's schedule every 3-5 hours instead of every 15 minutes (20.10.2026: 01:58, 07:19, 12:49 UTC),
+// so the copy was mostly too old to take. A run started by request starts at once and takes ~30 s, so on the boards
+// cron, five minutes before the stocks cron, the Worker asks GitHub for one. Needs the GH_DISPATCH_TOKEN secret: a
+// fine-grained token for araxis33/base-tools with Actions read and write and nothing else. Without it nothing is asked.
+const DISPATCH_URL = 'https://api.github.com/repos/araxis33/base-tools/actions/workflows/stocks-board.yml/dispatches';
+export async function requestSpare(env) {
+  if (!env.GH_DISPATCH_TOKEN) return { dispatched: false, why: 'no token' };
+  const res = await fetch(DISPATCH_URL, {
+    method: 'POST',
+    headers: { authorization: 'Bearer ' + env.GH_DISPATCH_TOKEN, accept: 'application/vnd.github+json', 'user-agent': 'deftools-check', 'content-type': 'application/json' },
+    body: JSON.stringify({ ref: 'main' }),
+  });
+  return { dispatched: res.status === 204, status: res.status };
+}
+
 // The pairs-by-address endpoint answers Cloudflare's shared addresses with 429
 // (09.10.2026), and the batched tokens endpoint picks a shallower pool for 14 of
 // the 36, so each stock gets its own tokens request: 36, under the plan's 50.
