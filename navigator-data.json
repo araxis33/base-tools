@@ -1,1081 +1,1081 @@
 {
-  "snapshot": "2026-10-21",
-  "origin": "Base Niche Navigator, sources checked 2026-10-20",
-  "niches": [
-    {
-      "id": "usdc-ops",
-      "demand": 5,
-      "money": 5,
-      "difficulty": 3,
-      "competition": 4,
-      "visibility": 5,
-      "contracts": false,
-      "capital": false,
-      "official": false,
-      "sources": [
-        "shopify",
-        "payments"
-      ],
-      "skills": "Full stack",
-      "en": {
-        "name": "USDC payment operations",
-        "summary": "Invoices, payment reconciliation and clear reports for small businesses.",
-        "buyer": "Agencies, online stores and teams with international customers.",
-        "monetization": "Accounting subscription plus paid implementation.",
-        "fact": "Shopify supports USDC on Base. Base highlights commerce and payroll.",
-        "mvp": "Invoice → payment tracking → reconciliation → accountant export, without custody of funds.",
-        "wedge": "Choose one type of business and one accounting problem. Avoid duplicating an existing checkout.",
-        "validation": "Obtain real anonymized invoices, test manual reconciliation and propose a paid pilot.",
-        "risk": "Payment provider availability varies by region. Handle reconciliation errors and refunds explicitly.",
-        "competitors": "Shopify Payments / Base Pay provide checkout; look for an opening in accounting and operations.",
-        "reason": "Demand signal 5: an operating commerce integration. Monetization 5: a B2B subscription is a testable hypothesis. Entry 3: webhooks and reliable reconciliation. Competition 4: embedded solutions. Visibility 5: direct fit with payments.",
-        "confidence": "Medium",
-        "paidDemand": "Paying demand for a new product is unverified",
-        "category": "Products",
-        "models": [
-          "Subscription",
-          "Implementation"
-        ],
-        "signal": "Existing product",
-        "skill": "Frontend and backend development"
-      },
-      "ru": {
-        "name": "Учёт USDC-платежей",
-        "summary": "Счета, сверка оплат и понятные отчёты для малого бизнеса.",
-        "buyer": "Агентства, онлайн-магазины, команды с международными клиентами.",
-        "monetization": "Подписка за учёт + платное внедрение.",
-        "fact": "Shopify поддерживает USDC на Base. Base выделяет commerce и payroll.",
-        "mvp": "Счёт → отслеживание оплаты → сверка → экспорт для бухгалтера; без хранения средств.",
-        "wedge": "Выбрать один тип бизнеса и одну бухгалтерскую задачу. Не повторять готовый checkout.",
-        "validation": "Получить реальные обезличенные счета, проверить ручную сверку и предложить оплачиваемый пилот.",
-        "risk": "Доступность платёжных провайдеров зависит от региона. Ошибки сверки и возвратов нужно обрабатывать явно.",
-        "competitors": "Shopify Payments / Base Pay — готовая оплата; новое место искать в учёте и операциях.",
-        "reason": "Сигнал 5: работающая commerce-интеграция. Доход 5: B2B-подписка как проверяемая гипотеза. Вход 3: webhooks и надёжная сверка. Конкуренция 4: встроенные решения. Заметность 5: прямое соответствие payments.",
-        "confidence": "Средняя",
-        "paidDemand": "Платящий спрос на новый продукт не подтверждён",
-        "category": "Продукты",
-        "models": [
-          "Подписка",
-          "Внедрение"
-        ],
-        "signal": "Действующий продукт",
-        "skill": "Разработка: фронтенд и сервер"
-      }
-    },
-    {
-      "id": "lp-tools",
-      "demand": 4,
-      "money": 4,
-      "difficulty": 2,
-      "competition": 4,
-      "visibility": 4,
-      "contracts": false,
-      "capital": false,
-      "official": false,
-      "sources": [
-        "trading",
-        "data"
-      ],
-      "skills": "Дизайн и фронтенд",
-      "en": {
-        "name": "Aero liquidity analytics",
-        "summary": "Clear monitoring of pools and LP positions, beyond another APR table.",
-        "buyer": "Active liquidity providers, protocol treasuries and token teams.",
-        "monetization": "Subscription for alerts and reports; custom B2B dashboards.",
-        "fact": "Aerodrome is represented in the Base ecosystem; Bitquery documents trading and liquidity data.",
-        "mvp": "Pool watchlist, liquidity changes, position history and notifications; start with read-only access.",
-        "wedge": "Explain each alert: a change in liquidity, execution or a position.",
-        "validation": "Show LP users a prototype and test whether they will pay for a specific alert.",
-        "risk": "Data coverage and API costs. LP results depend on asset prices, incentives and expenses.",
-        "competitors": "Aerodrome UI / Bitquery provide the protocol interface and data; the complete competitor landscape has not been checked.",
-        "reason": "Demand signal 4: the protocol and API are available. Monetization 4: a subscription needs a pilot. Entry 2: a read-only interface. Competition 4: existing interfaces and data. Visibility 4: utility within trading.",
-        "confidence": "Medium",
-        "paidDemand": "Paying demand for a new product is unverified",
-        "category": "Trading",
-        "models": [
-          "Subscription",
-          "Implementation"
-        ],
-        "signal": "Existing product",
-        "skill": "Design and interfaces"
-      },
-      "ru": {
-        "name": "Аналитика ликвидности Aero",
-        "summary": "Понятный мониторинг пулов и LP-позиций вместо ещё одной таблицы APR.",
-        "buyer": "Активные LP, казначейства протоколов, команды токенов.",
-        "monetization": "Подписка на алерты и отчёты; B2B-панели под заказ.",
-        "fact": "В экосистеме Base представлен Aerodrome; Bitquery документирует данные сделок и ликвидности.",
-        "mvp": "Watchlist пулов, движение ликвидности, история позиции и уведомления; сначала только чтение.",
-        "wedge": "Чётко объяснять причину алерта: изменение ликвидности, исполнения или позиции.",
-        "validation": "Показать прототип LP-пользователям и проверить, готовы ли они платить за конкретный алерт.",
-        "risk": "Полнота данных и стоимость API. Результат LP зависит от движения активов, стимулов и расходов.",
-        "competitors": "Aerodrome UI / Bitquery — протокол и данные; полнота рынка конкурентов не проверена.",
-        "reason": "Сигнал 4: протокол и API доступны. Доход 4: подписка требует пилота. Вход 2: интерфейс только для чтения. Конкуренция 4: существующие интерфейсы и данные. Заметность 4: полезность внутри trading.",
-        "confidence": "Средняя",
-        "paidDemand": "Платящий спрос на новый продукт не подтверждён",
-        "category": "Трейдинг",
-        "models": [
-          "Подписка",
-          "Внедрение"
-        ],
-        "signal": "Действующий продукт",
-        "skill": "Дизайн и интерфейсы"
-      }
-    },
-    {
-      "id": "x402-data",
-      "demand": 4,
-      "money": 4,
-      "difficulty": 3,
-      "competition": 3,
-      "visibility": 5,
-      "contracts": false,
-      "capital": false,
-      "official": false,
-      "sources": [
-        "x402",
-        "agents",
-        "study"
-      ],
-      "skills": "Full stack",
-      "en": {
-        "name": "A focused paid API for agents",
-        "summary": "Sell a result an agent needs to complete a specific task.",
-        "buyer": "Agent developers, automated products and research tools.",
-        "monetization": "Pay per request through x402; enterprise access.",
-        "fact": "CDP documents API payments through x402; Base offers service discovery for agents.",
-        "mvp": "One high-quality endpoint with normalized data, freshness, pricing and repeatable results.",
-        "wedge": "Unique or cleaned data rather than a wrapper around a free API.",
-        "validation": "Measure independent paying buyers, repeat purchases and margin after data and inference costs.",
-        "risk": "Transactions are not buyers. High costs or a free alternative can eliminate the margin.",
-        "competitors": "CDP x402 and its service ecosystem provide the payment layer; Bankr / Virtuals are adjacent agent products.",
-        "reason": "Demand signal 4: a working API payment mechanism. Monetization 4: measured through repeat payments. Entry 3: backend and billing. Competition 3: an assessment for a narrow specialization. Visibility 5: direct agents/x402 fit.",
-        "confidence": "Medium",
-        "paidDemand": "Paying demand for a new product is unverified",
-        "category": "AI / agents",
-        "models": [
-          "Per request",
-          "Subscription"
-        ],
-        "signal": "Existing product",
-        "skill": "Frontend and backend development"
-      },
-      "ru": {
-        "name": "Узкий платный API для агентов",
-        "summary": "Продавать результат, который агенту нужен для конкретной задачи.",
-        "buyer": "Разработчики агентов, автоматизированные продукты, исследовательские инструменты.",
-        "monetization": "Оплата за запрос через x402; корпоративный доступ.",
-        "fact": "CDP документирует оплату API через x402; Base предлагает обнаружение сервисов агентами.",
-        "mvp": "Один качественный endpoint: нормализованные данные, свежесть, цена и повторяемый результат.",
-        "wedge": "Уникальные или очищенные данные, а не обёртка бесплатного API.",
-        "validation": "Измерять независимых платящих покупателей, повторные покупки и маржу после стоимости данных/инференса.",
-        "risk": "Транзакции не равны покупателям. Высокая себестоимость или бесплатный аналог могут уничтожить маржу.",
-        "competitors": "CDP x402 и экосистема сервисов — платёжный слой; Bankr / Virtuals — смежные agent-продукты.",
-        "reason": "Сигнал 4: работающий механизм продажи API. Доход 4: измеряется повторной оплатой. Вход 3: backend и биллинг. Конкуренция 3: оценка для узкой специализации. Заметность 5: прямой agents/x402 fit.",
-        "confidence": "Средняя",
-        "paidDemand": "Платящий спрос на новый продукт не подтверждён",
-        "category": "AI / агенты",
-        "models": [
-          "За запрос",
-          "Подписка"
-        ],
-        "signal": "Действующий продукт",
-        "skill": "Разработка: фронтенд и сервер"
-      }
-    },
-    {
-      "id": "attribution",
-      "demand": 4,
-      "money": 4,
-      "difficulty": 2,
-      "competition": 3,
-      "visibility": 5,
-      "contracts": false,
-      "capital": false,
-      "official": false,
-      "sources": [
-        "codes",
-        "verify"
-      ],
-      "skills": "Дизайн и фронтенд",
-      "en": {
-        "name": "App attribution and growth",
-        "summary": "Help teams understand which users return and generate useful activity.",
-        "buyer": "Base application, wallet and agent teams.",
-        "monetization": "Builder Codes implementation plus a product analytics subscription.",
-        "fact": "Builder Codes provide attribution; the documentation separately points to measuring retention and conversion yourself.",
-        "mvp": "Code integration checks, activation events and a returning-user cohort report.",
-        "wedge": "Connect onchain attribution to a real product action rather than counting transactions alone.",
-        "validation": "Find teams that have implemented codes and sell a diagnosis of one specific funnel.",
-        "risk": "Wallets are not people. Use correct definitions and handle identifiers carefully.",
-        "competitors": "Base Dashboard provides attribution and some metrics; a new product must demonstrate its advantage.",
-        "reason": "Demand signal 4: the standard and dashboard are available. Monetization 4: implementation/SaaS is a hypothesis. Entry 2: a narrow read-only audit. Competition 3: an adjacent dashboard. Visibility 5: documented growth infrastructure.",
-        "confidence": "Medium",
-        "paidDemand": "Paying demand for a new product is unverified",
-        "category": "Infrastructure",
-        "models": [
-          "Implementation",
-          "Subscription"
-        ],
-        "signal": "Existing product",
-        "skill": "Design and interfaces"
-      },
-      "ru": {
-        "name": "Атрибуция и рост приложений",
-        "summary": "Помочь командам понять, какие пользователи возвращаются и приносят полезную активность.",
-        "buyer": "Команды приложений, кошельков и агентов на Base.",
-        "monetization": "Внедрение Builder Codes + подписка на продуктовую аналитику.",
-        "fact": "Builder Codes дают атрибуцию; документация отдельно отсылает к собственному измерению retention и conversion.",
-        "mvp": "Проверка интеграции кода, события активации и когортный отчёт по возвратам.",
-        "wedge": "Связать onchain-атрибуцию с реальным действием в продукте, а не просто считать транзакции.",
-        "validation": "Найти команды с внедрёнными кодами и продать диагностику одной конкретной воронки.",
-        "risk": "Не считать кошельки людьми. Нужны корректные определения и бережная работа с идентификаторами.",
-        "competitors": "Base Dashboard — встроенная атрибуция и часть метрик; преимущество нового продукта нужно доказать.",
-        "reason": "Сигнал 4: стандарт и dashboard доступны. Доход 4: внедрение/SaaS как гипотеза. Вход 2: узкий read-only аудит. Конкуренция 3: смежный dashboard. Заметность 5: документированная инфраструктура роста.",
-        "confidence": "Средняя",
-        "paidDemand": "Платящий спрос на новый продукт не подтверждён",
-        "category": "Инфраструктура",
-        "models": [
-          "Внедрение",
-          "Подписка"
-        ],
-        "signal": "Действующий продукт",
-        "skill": "Дизайн и интерфейсы"
-      }
-    },
-    {
-      "id": "wallet-ux",
-      "demand": 4,
-      "money": 4,
-      "difficulty": 3,
-      "competition": 5,
-      "visibility": 4,
-      "contracts": false,
-      "capital": false,
-      "official": false,
-      "sources": [
-        "trading",
-        "agents"
-      ],
-      "skills": "Full stack",
-      "en": {
-        "name": "Wallet UX and task-specific onboarding",
-        "summary": "Shorten the path from the first visit to a useful action.",
-        "buyer": "Payment, trading and agent commerce applications.",
-        "monetization": "Paid implementation and ongoing product integration support.",
-        "fact": "Base describes global self-custodial accounts; CDP offers wallets and onchain tools.",
-        "mvp": "One existing wallet integration with clear funding steps and transaction statuses.",
-        "wedge": "Specialize in one funnel: payment, swap or delegating an action to an agent.",
-        "validation": "Find where users get stuck, implement an improvement and compare task completion before and after.",
-        "risk": "The product depends on a provider. Show rejection, pending status and retries correctly.",
-        "competitors": "Base Account / CDP provide core capabilities; a proprietary wallet SDK faces a high competitive barrier.",
-        "reason": "Demand signal 4: existing infrastructure. Monetization 4: an implementation contract. Entry 3: financial UX integration. Competition 5: platforms already supply the base layer. Visibility 4: through real activation.",
-        "confidence": "Medium",
-        "paidDemand": "Paying demand for a new product is unverified",
-        "category": "Infrastructure",
-        "models": [
-          "Implementation"
-        ],
-        "signal": "Existing product",
-        "skill": "Frontend and backend development"
-      },
-      "ru": {
-        "name": "Кошельки и onboarding под задачу",
-        "summary": "Сократить путь от первого открытия до полезного действия.",
-        "buyer": "Приложения платежей, торговли и агентной коммерции.",
-        "monetization": "Платное внедрение; сопровождение продуктовой интеграции.",
-        "fact": "Base описывает global self-custodial accounts; CDP предлагает wallets и onchain-инструменты.",
-        "mvp": "Одна интеграция существующего кошелька с понятным пополнением и статусами транзакций.",
-        "wedge": "Специализация на одной воронке: оплатить, обменять или поручить действие агенту.",
-        "validation": "Проверить где пользователи застревают, внедрить улучшение и сопоставить завершение задачи до/после.",
-        "risk": "Продукт зависит от провайдера. Нужно корректно показывать отказ, ожидание и повтор операции.",
-        "competitors": "Base Account / CDP — базовые возможности; собственный wallet SDK имеет высокий порог конкуренции.",
-        "reason": "Сигнал 4: готовая инфраструктура. Доход 4: контракт на внедрение. Вход 3: интеграция финансового UX. Конкуренция 5: базовый слой уже предоставляют платформы. Заметность 4: через реальную активацию.",
-        "confidence": "Средняя",
-        "paidDemand": "Платящий спрос на новый продукт не подтверждён",
-        "category": "Инфраструктура",
-        "models": [
-          "Внедрение"
-        ],
-        "signal": "Действующий продукт",
-        "skill": "Разработка: фронтенд и сервер"
-      }
-    },
-    {
-      "id": "agent-guardrails",
-      "demand": 4,
-      "money": 4,
-      "difficulty": 4,
-      "competition": 4,
-      "visibility": 5,
-      "contracts": false,
-      "capital": false,
-      "official": false,
-      "sources": [
-        "agents",
-        "payments"
-      ],
-      "skills": "Full stack",
-      "en": {
-        "name": "Agent spending controls",
-        "summary": "A dashboard for budgets, policies, logs and action review.",
-        "buyer": "Teams giving agents access to money and paid services.",
-        "monetization": "B2B subscription; spending workflow integration and audit.",
-        "fact": "Base offers agent wallets with spending limits and policy controls.",
-        "mvp": "Logs and notifications on top of an existing wallet; policy changes require owner confirmation.",
-        "wedge": "Cross-service spending accounting and clear diagnostics for rejected actions.",
-        "validation": "Test a real agent workflow: can the team spot budget leaks, and will it pay for oversight?",
-        "risk": "Permissions and accounting must be accurate. Providers already offer basic limits.",
-        "competitors": "Agentic Wallets / CDP have built-in policies; Base MCP enables protocol interactions.",
-        "reason": "Demand signal 4: control tools exist. Monetization 4: a proposed B2B model. Entry 4: security and integrations. Competition 4: built-in policies. Visibility 5: infrastructure designed for agents.",
-        "confidence": "Medium",
-        "paidDemand": "Paying demand for a new product is unverified",
-        "category": "AI / agents",
-        "models": [
-          "Subscription",
-          "Implementation"
-        ],
-        "signal": "Existing product",
-        "skill": "Frontend and backend development"
-      },
-      "ru": {
-        "name": "Контроль расходов агентов",
-        "summary": "Панель бюджетов, правил, журнала и проверки действий.",
-        "buyer": "Команды, которые дают агентам доступ к деньгам и платным сервисам.",
-        "monetization": "B2B-подписка; интеграция и аудит процесса расходов.",
-        "fact": "Base предлагает кошельки агентов с лимитами и policy controls.",
-        "mvp": "Журнал и уведомления поверх готового кошелька; изменения правил только с подтверждением владельца.",
-        "wedge": "Межсервисный учёт расходов и понятная диагностика отказов.",
-        "validation": "Проверить на реальном агентном workflow: видит ли команда утечки бюджета и готова ли оплачивать контроль.",
-        "risk": "Нужна точность разрешений и учёта. Базовые лимиты уже есть у провайдера.",
-        "competitors": "Agentic Wallets / CDP — встроенные политики; Base MCP — взаимодействие с протоколами.",
-        "reason": "Сигнал 4: инструменты контроля существуют. Доход 4: предполагаемый B2B. Вход 4: безопасность и интеграции. Конкуренция 4: встроенные политики. Заметность 5: agent-native infrastructure.",
-        "confidence": "Средняя",
-        "paidDemand": "Платящий спрос на новый продукт не подтверждён",
-        "category": "AI / агенты",
-        "models": [
-          "Подписка",
-          "Внедрение"
-        ],
-        "signal": "Действующий продукт",
-        "skill": "Разработка: фронтенд и сервер"
-      }
-    },
-    {
-      "id": "agent-commerce",
-      "demand": 3,
-      "money": 3,
-      "difficulty": 4,
-      "competition": 3,
-      "visibility": 5,
-      "contracts": false,
-      "capital": false,
-      "official": true,
-      "sources": [
-        "rfb",
-        "agents"
-      ],
-      "skills": "Full stack",
-      "en": {
-        "name": "Shopping and booking agents",
-        "summary": "Turn a narrow user intention into a completed purchase.",
-        "buyer": "Customers and merchants in one vertical market.",
-        "monetization": "Fee per completed task; commission agreed with the merchant.",
-        "fact": "Base Ecosystem Fund requests agents for shopping, booking and ticketing.",
-        "mvp": "One use case with an existing catalog, a clear price and user purchase confirmation.",
-        "wedge": "Access to a specific supplier and reliable task execution.",
-        "validation": "Run the workflow manually first and test payment, cancellation and repeat use.",
-        "risk": "Catalogs, refunds and offchain fulfillment. Fund interest does not establish consumer demand.",
-        "competitors": "Base MCP provides general operations; Bankr / Virtuals are adjacent. Vertical competitors have not been surveyed.",
-        "reason": "Demand signal 3: a fund request. Monetization 3: depends on partners. Entry 4: end-to-end commerce. Competition 3: unknown in the chosen vertical. Visibility 5: an official request.",
-        "confidence": "Medium",
-        "paidDemand": "Paying demand for a new product is unverified",
-        "category": "AI / agents",
-        "models": [
-          "Per outcome",
-          "Transaction fee"
-        ],
-        "signal": "Official builder request",
-        "skill": "Frontend and backend development"
-      },
-      "ru": {
-        "name": "Агент для покупки и бронирования",
-        "summary": "Довести узкое намерение пользователя до завершённой покупки.",
-        "buyer": "Клиенты одного вертикального рынка и его продавцы.",
-        "monetization": "Плата за выполненную задачу; комиссия по договору с продавцом.",
-        "fact": "Base Ecosystem Fund запрашивает агентов для shopping, booking и ticketing.",
-        "mvp": "Один сценарий с готовым каталогом, ясной ценой и подтверждением покупки пользователем.",
-        "wedge": "Доступ к конкретному поставщику и надёжное исполнение задачи.",
-        "validation": "Сначала выполнить сценарий вручную и проверить оплату, отмену и повторное обращение.",
-        "risk": "Каталоги, возвраты и исполнение вне блокчейна. Интерес фонда не подтверждает потребительский спрос.",
-        "competitors": "Base MCP — универсальные операции; смежные Bankr / Virtuals. Вертикальные конкуренты не обследованы.",
-        "reason": "Сигнал 3: запрос фонда. Доход 3: зависит от партнёров. Вход 4: end-to-end commerce. Конкуренция 3: неизвестна в выбранной вертикали. Заметность 5: официальный request.",
-        "confidence": "Средняя",
-        "paidDemand": "Платящий спрос на новый продукт не подтверждён",
-        "category": "AI / агенты",
-        "models": [
-          "За результат",
-          "Комиссия"
-        ],
-        "signal": "Официальный запрос",
-        "skill": "Разработка: фронтенд и сервер"
-      }
-    },
-    {
-      "id": "rwa-intel",
-      "demand": 4,
-      "money": 3,
-      "difficulty": 3,
-      "competition": 4,
-      "visibility": 5,
-      "contracts": false,
-      "capital": false,
-      "official": false,
-      "sources": [
-        "trading",
-        "rfb"
-      ],
-      "skills": "Full stack",
-      "en": {
-        "name": "Tokenized asset research",
-        "summary": "Compare asset structure, availability, liquidity and terms.",
-        "buyer": "Traders, analysts, wallet teams and financial applications.",
-        "monetization": "Research and alert subscription; data API.",
-        "fact": "Base promotes asset tokenization and programmable borrowing/lending for real-world assets.",
-        "mvp": "Asset profiles with primary documents, access conditions and verified liquidity.",
-        "wedge": "Verifiable instrument data and distinctions a typical price chart does not explain.",
-        "validation": "Choose one asset class, check data licenses and sell a pilot research dashboard.",
-        "risk": "Legal rights and access differ by asset; a token name does not establish those rights.",
-        "competitors": "Base Trading / Centrifuge are part of the tokenization ecosystem; research competition is assessed qualitatively.",
-        "reason": "Demand signal 4: product infrastructure exists. Monetization 3: willingness to pay is untested. Entry 3: documents and data. Competition 4: research tools in adjacent markets. Visibility 5: tokenization fit.",
-        "confidence": "Medium",
-        "paidDemand": "Paying demand for a new product is unverified",
-        "category": "Trading",
-        "models": [
-          "Subscription",
-          "Per request"
-        ],
-        "signal": "Existing product",
-        "skill": "Frontend and backend development"
-      },
-      "ru": {
-        "name": "Навигатор токенизированных активов",
-        "summary": "Сравнивать структуру актива, доступность, ликвидность и условия.",
-        "buyer": "Трейдеры, аналитики, команды кошельков и финансовых приложений.",
-        "monetization": "Подписка на исследование и алерты; API данных.",
-        "fact": "Base продвигает asset tokenization и programmable borrow/lend для RWA.",
-        "mvp": "Карточки активов с первичными документами, условиями доступа и проверенной ликвидностью.",
-        "wedge": "Проверяемые данные об инструментах и различиях, которые обычный price chart не объясняет.",
-        "validation": "Выбрать один класс активов, проверить лицензии данных и продать пилот исследовательской панели.",
-        "risk": "Юридические права и доступ к активу различаются; нельзя подменять это названием токена.",
-        "competitors": "Base Trading / Centrifuge — экосистема токенизации; конкурентность аналитики оценена качественно.",
-        "reason": "Сигнал 4: продуктовая инфраструктура есть. Доход 3: готовность платить не проверена. Вход 3: документы и данные. Конкуренция 4: аналитические решения смежных рынков. Заметность 5: tokenization fit.",
-        "confidence": "Средняя",
-        "paidDemand": "Платящий спрос на новый продукт не подтверждён",
-        "category": "Трейдинг",
-        "models": [
-          "Подписка",
-          "За запрос"
-        ],
-        "signal": "Действующий продукт",
-        "skill": "Разработка: фронтенд и сервер"
-      }
-    },
-    {
-      "id": "prediction",
-      "demand": 3,
-      "money": 3,
-      "difficulty": 3,
-      "competition": 3,
-      "visibility": 5,
-      "contracts": false,
-      "capital": false,
-      "official": true,
-      "sources": [
-        "rfb",
-        "batches"
-      ],
-      "skills": "Full stack",
-      "en": {
-        "name": "Prediction market tools",
-        "summary": "Data, probabilities and alerts for one specialist market.",
-        "buyer": "Professional participants and audiences focused on a specific topic.",
-        "monetization": "Data subscription and paid analytical tools.",
-        "fact": "Base's fund highlights verticalized prediction markets; Batches lists projects in this category.",
-        "mvp": "A read-only tool for one topic: event sources, probability changes and market resolution.",
-        "wedge": "Domain depth rather than another general-purpose venue.",
-        "validation": "Find which data participants already buy and offer a paid specialist briefing.",
-        "risk": "Oracle and settlement quality, and a limited audience. Launching a venue is harder than building an analytics MVP.",
-        "competitors": "Forecast / Onsight / JPEG App are listed by Base Batches and are adjacent products.",
-        "reason": "Demand signal 3: a request and program portfolio. Monetization 3: a narrow audience. Entry 3: data and domain expertise. Competition 3: a qualitative vertical assessment. Visibility 5: official interest.",
-        "confidence": "Medium",
-        "paidDemand": "Paying demand for a new product is unverified",
-        "category": "Financial markets",
-        "models": [
-          "Subscription",
-          "Per request"
-        ],
-        "signal": "Official builder request",
-        "skill": "Frontend and backend development"
-      },
-      "ru": {
-        "name": "Инструменты prediction markets",
-        "summary": "Данные, вероятность и уведомления для одного предметного рынка.",
-        "buyer": "Профессиональные участники и аудитория конкретной темы.",
-        "monetization": "Подписка на данные; платные аналитические инструменты.",
-        "fact": "Фонд Base выделяет verticalized prediction markets; Batches перечисляет проекты этой категории.",
-        "mvp": "Read-only инструмент по одной теме: источники событий, движение вероятности и разрешение рынка.",
-        "wedge": "Глубина предметной области, а не запуск ещё одной общей площадки.",
-        "validation": "Проверить, какие данные участники уже покупают, и предложить платную специализированную сводку.",
-        "risk": "Качество oracle/settlement и ограниченность аудитории. Запуск площадки сложнее аналитического MVP.",
-        "competitors": "Forecast / Onsight / JPEG App перечислены Base Batches; это смежные продукты.",
-        "reason": "Сигнал 3: request и портфель программы. Доход 3: узкая аудитория. Вход 3: данные и домен. Конкуренция 3: качественная оценка вертикали. Заметность 5: официальный интерес.",
-        "confidence": "Средняя",
-        "paidDemand": "Платящий спрос на новый продукт не подтверждён",
-        "category": "Финансовые рынки",
-        "models": [
-          "Подписка",
-          "За запрос"
-        ],
-        "signal": "Официальный запрос",
-        "skill": "Разработка: фронтенд и сервер"
-      }
-    },
-    {
-      "id": "treasury",
-      "demand": 4,
-      "money": 4,
-      "difficulty": 3,
-      "competition": 4,
-      "visibility": 4,
-      "contracts": false,
-      "capital": false,
-      "official": false,
-      "sources": [
-        "trading",
-        "payments"
-      ],
-      "skills": "Full stack",
-      "en": {
-        "name": "Stablecoin treasury reporting",
-        "summary": "Balances, cash flows, expenses and clear risk reporting.",
-        "buyer": "Small onchain teams and project treasuries.",
-        "monetization": "Subscription plus reporting implementation.",
-        "fact": "Base describes DeFi access and Morpho as lending and borrowing infrastructure.",
-        "mvp": "A read-only dashboard for balances, liabilities and flows, without automatic fund allocation.",
-        "wedge": "Operational reporting and limits rather than promises of maximum yield.",
-        "validation": "Obtain a team's real reporting example and test willingness to pay for automation.",
-        "risk": "Multiple networks and assets, complete accounting and price sources. User yield is not service revenue.",
-        "competitors": "Morpho / Base payment tools are adjacent financial infrastructure; a complete SaaS review has not been performed.",
-        "reason": "Demand signal 4: financial products are available. Monetization 4: B2B reporting is a hypothesis. Entry 3: data and reconciliation. Competition 4: adjacent tools. Visibility 4: payments/DeFi fit.",
-        "confidence": "Medium",
-        "paidDemand": "Paying demand for a new product is unverified",
-        "category": "Products",
-        "models": [
-          "Subscription",
-          "Implementation"
-        ],
-        "signal": "Existing product",
-        "skill": "Frontend and backend development"
-      },
-      "ru": {
-        "name": "Панель стейблкоин-казначейства",
-        "summary": "Остатки, потоки, расходы и понятные отчёты по риску.",
-        "buyer": "Небольшие onchain-команды и казначейства проектов.",
-        "monetization": "Подписка + внедрение отчётности.",
-        "fact": "Base описывает DeFi access и Morpho как lending/borrowing инфраструктуру.",
-        "mvp": "Read-only панель остатков, обязательств и потоков; без автоматического размещения средств.",
-        "wedge": "Операционная отчётность и лимиты вместо обещаний максимальной доходности.",
-        "validation": "Получить рабочий пример отчёта команды и проверить готовность платить за его автоматизацию.",
-        "risk": "Разные сети и активы, полнота учёта, источники цен. Доходность пользователя не является выручкой сервиса.",
-        "competitors": "Morpho / Base payment tools — смежная финансовая инфраструктура; полный обзор SaaS не выполнен.",
-        "reason": "Сигнал 4: финансовые продукты доступны. Доход 4: B2B-отчётность как гипотеза. Вход 3: данные и сверка. Конкуренция 4: смежные инструменты. Заметность 4: payments/DeFi fit.",
-        "confidence": "Средняя",
-        "paidDemand": "Платящий спрос на новый продукт не подтверждён",
-        "category": "Продукты",
-        "models": [
-          "Подписка",
-          "Внедрение"
-        ],
-        "signal": "Действующий продукт",
-        "skill": "Разработка: фронтенд и сервер"
-      }
-    },
-    {
-      "id": "local-rails",
-      "demand": 3,
-      "money": 4,
-      "difficulty": 5,
-      "competition": 4,
-      "visibility": 5,
-      "contracts": false,
-      "capital": false,
-      "official": true,
-      "sources": [
-        "rfb",
-        "payments"
-      ],
-      "skills": "Команда и партнёры",
-      "en": {
-        "name": "Local payment integrations",
-        "summary": "Connect an existing business workflow to a licensed payment partner.",
-        "buyer": "Fintechs, international payout businesses and local payment providers.",
-        "monetization": "Integration contract plus an ongoing service fee.",
-        "fact": "Base's fund identifies stablecoin distribution and local stablecoins as areas of interest.",
-        "mvp": "Integrate an existing provider into one payout corridor, without issuing a new stablecoin.",
-        "wedge": "Partnerships and an understanding of the real local payment workflow.",
-        "validation": "Before building, check supported countries, partner contracts and the actual volume of customer tasks.",
-        "risk": "Provider availability, compliance and local law. Availability in Moldova has not been confirmed here.",
-        "competitors": "Base Pay and payment providers are adjacent solutions; coverage of a specific corridor needs checking.",
-        "reason": "Demand signal 3: a fund request. Monetization 4: a B2B contract. Entry 5: local partners and requirements. Competition 4: payment businesses. Visibility 5: stablecoin distribution.",
-        "confidence": "Medium",
-        "paidDemand": "Paying demand for a new product is unverified",
-        "category": "Financial markets",
-        "models": [
-          "Implementation",
-          "Transaction fee"
-        ],
-        "signal": "Official builder request",
-        "skill": "Team and partners"
-      },
-      "ru": {
-        "name": "Локальные платёжные интеграции",
-        "summary": "Связать существующий бизнес-процесс с лицензированным платёжным партнёром.",
-        "buyer": "Финтехи, компании с международными выплатами, локальные платёжные провайдеры.",
-        "monetization": "Интеграционный контракт + плата за обслуживание.",
-        "fact": "Фонд Base указывает stablecoin distribution и local stablecoins как направления интереса.",
-        "mvp": "Интеграция существующего провайдера в один коридор выплат; без выпуска собственного стейблкоина.",
-        "wedge": "Партнёрство и понимание реального локального платёжного процесса.",
-        "validation": "До разработки проверить допустимые страны, партнёрский договор и реальный объём клиентских задач.",
-        "risk": "Доступность провайдеров, комплаенс и локальное право. Доступность решения в Молдове здесь не подтверждена.",
-        "competitors": "Base Pay и провайдеры платежей — смежные решения; покрытие конкретного коридора требует проверки.",
-        "reason": "Сигнал 3: запрос фонда. Доход 4: B2B-договор. Вход 5: локальные партнёры и требования. Конкуренция 4: платёжные компании. Заметность 5: stablecoin distribution.",
-        "confidence": "Средняя",
-        "paidDemand": "Платящий спрос на новый продукт не подтверждён",
-        "category": "Финансовые рынки",
-        "models": [
-          "Внедрение",
-          "Комиссия"
-        ],
-        "signal": "Официальный запрос",
-        "skill": "Команда и партнёры"
-      }
-    },
-    {
-      "id": "credit-rwa",
-      "demand": 3,
-      "money": 4,
-      "difficulty": 5,
-      "competition": 4,
-      "visibility": 5,
-      "contracts": true,
-      "capital": false,
-      "official": true,
-      "sources": [
-        "rfb",
-        "trading"
-      ],
-      "skills": "Команда и партнёры",
-      "en": {
-        "name": "Credit and RWA infrastructure",
-        "summary": "Tokenization, underwriting and servicing of real financial assets.",
-        "buyer": "Lenders, asset managers, brokers and financial businesses.",
-        "monetization": "B2B license / integration; contract-based servicing fees.",
-        "fact": "Base Ecosystem Fund seeks solutions for productive assets and credit underwriting.",
-        "mvp": "A testnet issuance pilot for one financial asset: holder rights, registry, access restrictions and reporting with an existing financial partner.",
-        "wedge": "Domain expertise and a partner with real assets rather than tokenization for its own sake.",
-        "validation": "Find a partner and confirm rights, collateral quality, default procedures and servicing economics.",
-        "risk": "Legal structure, credit risk, operations and smart contract security.",
-        "competitors": "Morpho / Centrifuge are adjacent protocols and infrastructure within the Base ecosystem.",
-        "reason": "Demand signal 3: an official request. Monetization 4: a B2B partner. Entry 5: financial expertise. Competition 4: professional participants. Visibility 5: a direct fund theme.",
-        "confidence": "Medium",
-        "paidDemand": "Paying demand for a new product is unverified",
-        "category": "Financial markets",
-        "models": [
-          "Implementation",
-          "Transaction fee"
-        ],
-        "signal": "Official builder request",
-        "skill": "Team and partners"
-      },
-      "ru": {
-        "name": "Инфраструктура кредита и RWA",
-        "summary": "Токенизация, underwriting и обслуживание реальных финансовых активов.",
-        "buyer": "Кредиторы, управляющие активами, брокеры и финансовые компании.",
-        "monetization": "B2B-лицензия / интеграция; сервисные комиссии по договору.",
-        "fact": "Base Ecosystem Fund ищет решения productive assets и credit underwriting.",
-        "mvp": "Пилот выпуска одного финансового актива в тестовой сети: права держателя, реестр, ограничения доступа и отчётность с действующим финансовым партнёром.",
-        "wedge": "Доменная экспертиза и партнёр с реальными активами, а не токенизация ради токена.",
-        "validation": "Найти партнёра и подтвердить права, качество обеспечения, процедуру дефолта и экономику обслуживания.",
-        "risk": "Юридическая конструкция, кредитный риск, операционное обслуживание и безопасность контрактов.",
-        "competitors": "Morpho / Centrifuge — смежные протоколы и инфраструктура в экосистеме Base.",
-        "reason": "Сигнал 3: официальный request. Доход 4: B2B-партнёр. Вход 5: финансовая экспертиза. Конкуренция 4: профессиональные игроки. Заметность 5: прямая тема фонда.",
-        "confidence": "Средняя",
-        "paidDemand": "Платящий спрос на новый продукт не подтверждён",
-        "category": "Финансовые рынки",
-        "models": [
-          "Внедрение",
-          "Комиссия"
-        ],
-        "signal": "Официальный запрос",
-        "skill": "Команда и партнёры"
-      }
-    },
-    {
-      "id": "fx-tools",
-      "demand": 3,
-      "money": 3,
-      "difficulty": 3,
-      "competition": 3,
-      "visibility": 5,
-      "contracts": false,
-      "capital": false,
-      "official": true,
-      "sources": [
-        "rfb",
-        "batches"
-      ],
-      "skills": "Full stack",
-      "en": {
-        "name": "Business FX analytics",
-        "summary": "Conversion cost comparisons and currency exposure reporting.",
-        "buyer": "Small businesses making payments in multiple currencies.",
-        "monetization": "Reporting subscription plus implementation.",
-        "fact": "Base's fund describes interest in onchain FX; Nivo is listed in the Base Batches portfolio.",
-        "mvp": "A read-only comparison of one currency route including all costs.",
-        "wedge": "The total cost for a specific business rather than an abstract best exchange rate.",
-        "validation": "Check a company's real documents and routes; offer a paid cost-saving report.",
-        "risk": "Do not promise savings without a quote and all fees. Execution and hedging require additional expertise.",
-        "competitors": "Nivo is listed by Batches for onchain FX hedging; payment providers are adjacent alternatives.",
-        "reason": "Demand signal 3: a request and portfolio. Monetization 3: buyer validation is needed. Entry 3: an analytical MVP. Competition 3: depends on the currency corridor. Visibility 5: fit with official FX interest.",
-        "confidence": "Medium",
-        "paidDemand": "Paying demand for a new product is unverified",
-        "category": "Financial markets",
-        "models": [
-          "Subscription",
-          "Implementation"
-        ],
-        "signal": "Official builder request",
-        "skill": "Frontend and backend development"
-      },
-      "ru": {
-        "name": "FX-аналитика для бизнеса",
-        "summary": "Сравнение стоимости конвертации и отчёт по валютной экспозиции.",
-        "buyer": "Малые компании с платежами в нескольких валютах.",
-        "monetization": "Подписка на отчётность + внедрение.",
-        "fact": "Фонд Base описывает интерес к onchain FX; Nivo перечислен в портфеле Base Batches.",
-        "mvp": "Read-only сравнение одного валютного маршрута с учётом всех расходов.",
-        "wedge": "Полная итоговая стоимость для конкретного бизнеса, а не абстрактный лучший курс.",
-        "validation": "Проверить реальные документы и маршруты компании; предложить оплачиваемый отчёт по экономии.",
-        "risk": "Нельзя обещать экономию без котировки и всех комиссий. Исполнение и hedging требуют дополнительной экспертизы.",
-        "competitors": "Nivo — onchain FX hedging в списке Batches; платёжные провайдеры являются смежной альтернативой.",
-        "reason": "Сигнал 3: request и портфель. Доход 3: требуется проверка покупателя. Вход 3: аналитический MVP. Конкуренция 3: зависит от валютного коридора. Заметность 5: official FX fit.",
-        "confidence": "Средняя",
-        "paidDemand": "Платящий спрос на новый продукт не подтверждён",
-        "category": "Финансовые рынки",
-        "models": [
-          "Подписка",
-          "Внедрение"
-        ],
-        "signal": "Официальный запрос",
-        "skill": "Разработка: фронтенд и сервер"
-      }
-    },
-    {
-      "id": "trading-capital",
-      "demand": 4,
-      "money": 1,
-      "difficulty": 4,
-      "competition": 5,
-      "visibility": 2,
-      "contracts": false,
-      "capital": true,
-      "official": false,
-      "sources": [
-        "trading"
-      ],
-      "skills": "Трейдинг и риск",
-      "en": {
-        "name": "Active trading and liquidity provision",
-        "summary": "An activity using your own capital, separate from building a product.",
-        "buyer": "There is no service customer: the market participant receives the outcome.",
-        "monetization": "Market P&L and protocol rewards; the result can be negative.",
-        "fact": "Base describes trading and LP infrastructure; Aerodrome is presented as a liquidity hub.",
-        "mvp": "A decision journal and complete position accounting; start with a simulation without funds.",
-        "wedge": "Only a verifiable edge after fees and changes in position value.",
-        "validation": "Evaluate out-of-sample results with the full cost of capital, execution and risk.",
-        "risk": "Capital loss, volatility, execution errors and LP losses. No strategy return is confirmed.",
-        "competitors": "Wintermute / 1inch / Aerodrome are participants and infrastructure in the trading ecosystem.",
-        "reason": "Demand signal 4: markets are available. Monetization 1: no recurring customer revenue. Entry 4: risk management. Competition 5: professional participants. Visibility 2: trading activity alone does not establish product value.",
-        "confidence": "Medium",
-        "paidDemand": "Paying demand for a new product is unverified",
-        "category": "Trading",
-        "models": [
-          "Trading P&L"
-        ],
-        "signal": "Existing product",
-        "skill": "Trading and risk management"
-      },
-      "ru": {
-        "name": "Активный трейдинг и LP",
-        "summary": "Деятельность с собственным капиталом; отдельный путь от создания продукта.",
-        "buyer": "Покупатель сервиса отсутствует: результат получает сам участник рынка.",
-        "monetization": "Рыночный P&L и протокольные вознаграждения; результат может быть отрицательным.",
-        "fact": "Base описывает торговлю и LP-инфраструктуру; Aerodrome представлен как liquidity hub.",
-        "mvp": "Журнал решений и учёт полной позиции; сначала симуляция без средств.",
-        "wedge": "Только проверяемое преимущество после комиссий и изменений стоимости позиции.",
-        "validation": "Оценивать результаты вне выборки с полной стоимостью капитала, исполнения и риска.",
-        "risk": "Потеря капитала, волатильность, ошибки исполнения и убыток LP. Нет подтверждённой доходности стратегии.",
-        "competitors": "Wintermute / 1inch / Aerodrome — участники и инфраструктура торговой экосистемы.",
-        "reason": "Сигнал 4: рынки доступны. Доход 1: нет повторной клиентской выручки. Вход 4: управление риском. Конкуренция 5: профессиональные участники. Заметность 2: торговая активность сама по себе не доказывает ценность продукта.",
-        "confidence": "Средняя",
-        "paidDemand": "Платящий спрос на новый продукт не подтверждён",
-        "category": "Трейдинг",
-        "models": [
-          "Рыночный P&L"
-        ],
-        "signal": "Действующий продукт",
-        "skill": "Трейдинг и управление риском"
-      }
-    }
-  ],
-  "sources": [
-    {
-      "id": "strategy",
-      "url": "https://www.base.org/vision",
-      "checked": "2026-10-21",
-      "en": {
-        "title": "Base · Vision 2026",
-        "type": "Official strategy",
-        "summary": "Base prioritizes markets, payments and builders. This indicates team priorities, rather than paying demand for each new product."
-      },
-      "ru": {
-        "title": "Base · Vision 2026",
-        "type": "Официальная стратегия",
-        "summary": "Base выделяет рынки, платежи и инструменты для строителей. Это сигнал приоритета команды, а не доказательство платящего спроса."
-      }
-    },
-    {
-      "id": "payments",
-      "url": "https://www.base.org/payments",
-      "checked": "2026-10-21",
-      "en": {
-        "title": "Base · Payments",
-        "type": "Official product page",
-        "summary": "The page describes merchant payments, international payroll, remittances, x402 agent payments and programmable spending controls. These are category signals; demand for a new service remains unverified."
-      },
-      "ru": {
-        "title": "Base · Payments",
-        "type": "Официальный продукт",
-        "summary": "Описаны платежи для мерчантов, международный payroll, переводы, платежи агентов через x402 и программируемые лимиты расходов."
-      }
-    },
-    {
-      "id": "shopify",
-      "url": "https://help.shopify.com/en/manual/payments/shopify-payments/local-payment-methods/usdc-payments",
-      "checked": "2026-10-21",
-      "en": {
-        "title": "Shopify · USDC payments",
-        "type": "Commerce documentation",
-        "summary": "Shopify documentation lists Base among supported networks for USDC payments and explains regional and checkout restrictions. This verifies an existing commerce integration."
-      },
-      "ru": {
-        "title": "Shopify · USDC payments",
-        "type": "Документация действующего продукта",
-        "summary": "USDC-платежи доступны на поддерживаемых сетях, включая Base; действуют ограничения по регионам и функциям checkout."
-      }
-    },
-    {
-      "id": "x402",
-      "url": "https://docs.cdp.coinbase.com/x402/welcome",
-      "checked": "2026-10-21",
-      "en": {
-        "title": "Coinbase CDP · x402",
-        "type": "Protocol documentation",
-        "summary": "x402 supports paid API and digital resource requests. A facilitator verifies and settles payments. Available infrastructure does not establish buyers for a new API."
-      },
-      "ru": {
-        "title": "Coinbase CDP · x402",
-        "type": "Документация действующего продукта",
-        "summary": "x402 позволяет продавать доступ к API или цифровому ресурсу за оплату запроса; facilitator проверяет и проводит платеж."
-      }
-    },
-    {
-      "id": "agents",
-      "url": "https://www.base.org/agents",
-      "checked": "2026-10-21",
-      "en": {
-        "title": "Base · Agents",
-        "type": "Official product page",
-        "summary": "Base lists MCP, x402, agent wallets and spending limits, as well as Bankr and Virtuals. These demonstrate infrastructure and existing projects, rather than proven demand for every agent idea."
-      },
-      "ru": {
-        "title": "Base · Agents",
-        "type": "Официальный продукт",
-        "summary": "Представлены Base MCP, x402, инструменты кошельков и ограничения расходов; в экосистеме перечислены Bankr и Virtuals."
-      }
-    },
-    {
-      "id": "codes",
-      "url": "https://docs.base.org/specifications/builder-codes/overview",
-      "checked": "2026-10-21",
-      "en": {
-        "title": "Base · Builder Codes",
-        "type": "Developer documentation",
-        "summary": "Builder Codes attribute transactions to apps. Base Dashboard shows trading volume, lending and borrow activity and TVL. Retention and other app outcomes require separate measurement."
-      },
-      "ru": {
-        "title": "Base · Builder Codes",
-        "type": "Техническая документация",
-        "summary": "Builder Codes атрибутируют активность приложению. Base Dashboard показывает trading volume и lending/borrow TVL; для retention нужны собственные измерения."
-      }
-    },
-    {
-      "id": "rfb",
-      "url": "https://base.org/blog/request-for-builders-1",
-      "checked": "2026-10-21",
-      "en": {
-        "title": "Base · Request for Builders",
-        "type": "Official builder request",
-        "summary": "Base requests products in fund tokenization, credit, local stablecoins, vertical prediction markets and agents. The page does not display a publication date; its current content was checked."
-      },
-      "ru": {
-        "title": "Base · Request for Builders",
-        "type": "Официальный запрос к строителям",
-        "summary": "Фонд описывает интерес к токенизации, кредиту, локальным стейблкоинам, вертикальным prediction markets и агентной коммерции. Дата публикации на прочитанной странице не отображается."
-      }
-    },
-    {
-      "id": "trading",
-      "url": "https://www.base.org/trading",
-      "checked": "2026-10-21",
-      "en": {
-        "title": "Base · Trading",
-        "type": "Official product page",
-        "summary": "Base describes embedded trading and tokenization and lists Aerodrome, Morpho, 1inch, Wintermute and Centrifuge. This confirms both infrastructure and established competition."
-      },
-      "ru": {
-        "title": "Base · Trading",
-        "type": "Официальный продукт",
-        "summary": "Base предлагает embedded trading и tokenization; перечислены Aerodrome, Morpho, 1inch, Wintermute и Centrifuge."
-      }
-    },
-    {
-      "id": "data",
-      "url": "https://docs.bitquery.io/docs/blockchain/Base/aerodrome-base-api/",
-      "checked": "2026-10-21",
-      "en": {
-        "title": "Bitquery · Aerodrome API",
-        "type": "Data provider documentation",
-        "summary": "Bitquery documents trades, prices and liquidity data for Aerodrome on Base. This confirms data availability, rather than paying demand for a new analytics interface."
-      },
-      "ru": {
-        "title": "Bitquery · Aerodrome API",
-        "type": "Документация поставщика",
-        "summary": "Поставщик предлагает API сделок, цен и ликвидности Aerodrome. Подтверждает наличие предложения данных, но не спрос на новый интерфейс."
-      }
-    },
-    {
-      "id": "study",
-      "url": "https://arxiv.org/abs/2607.12575",
-      "checked": "2026-10-21",
-      "en": {
-        "title": "x402 adoption · research preprint",
-        "type": "Research preprint",
-        "summary": "The preprint distinguishes activity counts from independent paying demand. Its findings are a limitation on interpretation, not an industry standard or a direct input to the niche scores."
-      },
-      "ru": {
-        "title": "x402 adoption · исследование",
-        "type": "Исследовательский препринт",
-        "summary": "Авторы предупреждают: число settlement-транзакций нельзя приравнивать к независимому пользовательскому спросу. Это препринт, а не установленный отраслевой стандарт."
-      }
-    },
-    {
-      "id": "batches",
-      "url": "https://www.base.org/batches",
-      "checked": "2026-10-21",
-      "en": {
-        "title": "Base · Batches 004",
-        "type": "Official builder program",
-        "summary": "The program lists trading, payments, agents, financing and issuance. Applications were closed when checked. Funding and promotion are not guaranteed and are excluded from baseline product revenue."
-      },
-      "ru": {
-        "title": "Base · Batches 004",
-        "type": "Официальная программа",
-        "summary": "Программа нацелена на trading, payments, agents, financing и asset issuance. На момент проверки заявки закрыты; участие и финансирование не гарантируются."
-      }
-    },
-    {
-      "id": "verify",
-      "url": "https://docs.base.org/build-on-base/assign-user-attributes",
-      "checked": "2026-10-21",
-      "en": {
-        "title": "Base · User attributes",
-        "type": "Developer documentation",
-        "summary": "Builder Codes handle app attribution; Base Verify and user attributes support verified properties, deduplication and eligibility. These have distinct roles and do not prove demand for a new service."
-      },
-      "ru": {
-        "title": "Base · User attributes",
-        "type": "Техническая документация",
-        "summary": "Base различает Builder Codes для атрибуции и Base Verify для проверенных атрибутов, дедупликации и eligibility policies."
-      }
-    }
-  ],
-  "metrics": [
-    {
-      "key": "demand",
-      "en": {
-        "label": "Demand signal",
-        "definition": "Editorial scale from 1–5: 1 — no verified signal; 2 — indirect hypothesis; 3 — official request or strategy; 4 — an operating product or documented category infrastructure; 5 — an existing business-process integration. Does not measure the number of buyers."
-      },
-      "ru": {
-        "label": "Сигнал спроса",
-        "definition": "Аналитическая шкала 1–5: 1 — нет проверенного сигнала; 2 — косвенная гипотеза; 3 — официальный запрос/стратегия; 4 — действующий продукт или документированная инфраструктура категории; 5 — существующая интеграция в бизнес-процесс. Не измеряет число покупателей."
-      }
-    },
-    {
-      "key": "monetizationScore",
-      "en": {
-        "label": "Monetization",
-        "definition": "Editorial scale from 1–5, from uncertain income to a testable hypothesis of recurring B2B revenue. The subscription and buyer are proposals, rather than evidence of signed contracts."
-      },
-      "ru": {
-        "label": "Монетизация",
-        "definition": "Аналитическая шкала 1–5 от неопределённого дохода до проверяемой гипотезы повторной B2B-выручки. Подписка и покупатель описаны как предложение, а не факт заключённых контрактов."
-      }
-    },
-    {
-      "key": "difficulty",
-      "en": {
-        "label": "Entry difficulty",
-        "definition": "Editorial scale from 1–5 for the proposed MVP: 1 — simple prototype; 2 — read-only frontend; 3 — backend or integration; 4 — complex execution or security; 5 — team, partners and a regulated process."
-      },
-      "ru": {
-        "label": "Сложность входа",
-        "definition": "Аналитическая шкала 1–5 для указанного MVP: 1 — простой прототип; 2 — read-only frontend; 3 — backend/integration; 4 — сложное исполнение или безопасность; 5 — команда, партнёры и регулируемый процесс."
-      }
-    },
-    {
-      "key": "competition",
-      "en": {
-        "label": "Competition",
-        "definition": "Editorial scale from 1–5, from a narrow open specialization to dominance by platforms or professionals. A selective assessment, rather than measured market share or a complete competitor census."
-      },
-      "ru": {
-        "label": "Конкуренция",
-        "definition": "Аналитическая шкала 1–5 от узкой свободной специализации до доминирования платформ/профессионалов. Выборочная оценка, не измеренная доля рынка и не полный census конкурентов."
-      }
-    },
-    {
-      "key": "visibility",
-      "en": {
-        "label": "Visibility potential",
-        "definition": "Editorial scale from 1–5 based on alignment with documented strategy and the ability to demonstrate useful activity. Does not predict team responses, investment or promotion."
-      },
-      "ru": {
-        "label": "Потенциал заметности",
-        "definition": "Аналитическая шкала 1–5: соответствие документированной стратегии и способность показать полезную активность. Не вероятность ответа команды, инвестиции или продвижения."
-      }
-    }
-  ]
+ "snapshot": "2026-10-21",
+ "origin": "Base Niche Navigator, sources checked 2026-10-21",
+ "niches": [
+  {
+   "id": "usdc-ops",
+   "demand": 5,
+   "money": 5,
+   "difficulty": 3,
+   "competition": 4,
+   "visibility": 5,
+   "contracts": false,
+   "capital": false,
+   "official": false,
+   "sources": [
+    "shopify",
+    "payments"
+   ],
+   "skills": "Full stack",
+   "en": {
+    "name": "USDC payment operations",
+    "summary": "Invoices, payment reconciliation and clear reports for small businesses.",
+    "buyer": "Agencies, online stores and teams with international customers.",
+    "monetization": "Accounting subscription plus paid implementation.",
+    "fact": "Shopify supports USDC on Base. Base highlights commerce and payroll.",
+    "mvp": "Invoice → payment tracking → reconciliation → accountant export, without custody of funds.",
+    "wedge": "Choose one type of business and one accounting problem. Avoid duplicating an existing checkout.",
+    "validation": "Obtain real anonymized invoices, test manual reconciliation and propose a paid pilot.",
+    "risk": "Payment provider availability varies by region. Handle reconciliation errors and refunds explicitly.",
+    "competitors": "Shopify Payments / Base Pay provide checkout; look for an opening in accounting and operations.",
+    "reason": "Demand signal 5: an operating commerce integration. Monetization 5: a B2B subscription is a testable hypothesis. Entry 3: webhooks and reliable reconciliation. Competition 4: embedded solutions. Visibility 5: direct fit with payments.",
+    "confidence": "Medium",
+    "paidDemand": "Paying demand for a new product is unverified",
+    "category": "Products",
+    "models": [
+     "Subscription",
+     "Implementation"
+    ],
+    "signal": "Existing product",
+    "skill": "Frontend and backend development"
+   },
+   "ru": {
+    "name": "Учёт USDC-платежей",
+    "summary": "Счета, сверка оплат и понятные отчёты для малого бизнеса.",
+    "buyer": "Агентства, онлайн-магазины, команды с международными клиентами.",
+    "monetization": "Подписка за учёт + платное внедрение.",
+    "fact": "Shopify поддерживает USDC на Base. Base выделяет commerce и payroll.",
+    "mvp": "Счёт → отслеживание оплаты → сверка → экспорт для бухгалтера; без хранения средств.",
+    "wedge": "Выбрать один тип бизнеса и одну бухгалтерскую задачу. Не повторять готовый checkout.",
+    "validation": "Получить реальные обезличенные счета, проверить ручную сверку и предложить оплачиваемый пилот.",
+    "risk": "Доступность платёжных провайдеров зависит от региона. Ошибки сверки и возвратов нужно обрабатывать явно.",
+    "competitors": "Shopify Payments / Base Pay — готовая оплата; новое место искать в учёте и операциях.",
+    "reason": "Сигнал 5: работающая commerce-интеграция. Доход 5: B2B-подписка как проверяемая гипотеза. Вход 3: webhooks и надёжная сверка. Конкуренция 4: встроенные решения. Заметность 5: прямое соответствие payments.",
+    "confidence": "Средняя",
+    "paidDemand": "Платящий спрос на новый продукт не подтверждён",
+    "category": "Продукты",
+    "models": [
+     "Подписка",
+     "Внедрение"
+    ],
+    "signal": "Действующий продукт",
+    "skill": "Разработка: фронтенд и сервер"
+   }
+  },
+  {
+   "id": "lp-tools",
+   "demand": 4,
+   "money": 4,
+   "difficulty": 2,
+   "competition": 4,
+   "visibility": 4,
+   "contracts": false,
+   "capital": false,
+   "official": false,
+   "sources": [
+    "trading",
+    "data"
+   ],
+   "skills": "Дизайн и фронтенд",
+   "en": {
+    "name": "Aero liquidity analytics",
+    "summary": "Clear monitoring of pools and LP positions, beyond another APR table.",
+    "buyer": "Active liquidity providers, protocol treasuries and token teams.",
+    "monetization": "Subscription for alerts and reports; custom B2B dashboards.",
+    "fact": "Aerodrome is represented in the Base ecosystem; Bitquery documents trading and liquidity data.",
+    "mvp": "Pool watchlist, liquidity changes, position history and notifications; start with read-only access.",
+    "wedge": "Explain each alert: a change in liquidity, execution or a position.",
+    "validation": "Show LP users a prototype and test whether they will pay for a specific alert.",
+    "risk": "Data coverage and API costs. LP results depend on asset prices, incentives and expenses.",
+    "competitors": "Aerodrome UI / Bitquery provide the protocol interface and data; the complete competitor landscape has not been checked.",
+    "reason": "Demand signal 4: the protocol and API are available. Monetization 4: a subscription needs a pilot. Entry 2: a read-only interface. Competition 4: existing interfaces and data. Visibility 4: utility within trading.",
+    "confidence": "Medium",
+    "paidDemand": "Paying demand for a new product is unverified",
+    "category": "Trading",
+    "models": [
+     "Subscription",
+     "Implementation"
+    ],
+    "signal": "Existing product",
+    "skill": "Design and interfaces"
+   },
+   "ru": {
+    "name": "Аналитика ликвидности Aero",
+    "summary": "Понятный мониторинг пулов и LP-позиций вместо ещё одной таблицы APR.",
+    "buyer": "Активные LP, казначейства протоколов, команды токенов.",
+    "monetization": "Подписка на алерты и отчёты; B2B-панели под заказ.",
+    "fact": "В экосистеме Base представлен Aerodrome; Bitquery документирует данные сделок и ликвидности.",
+    "mvp": "Watchlist пулов, движение ликвидности, история позиции и уведомления; сначала только чтение.",
+    "wedge": "Чётко объяснять причину алерта: изменение ликвидности, исполнения или позиции.",
+    "validation": "Показать прототип LP-пользователям и проверить, готовы ли они платить за конкретный алерт.",
+    "risk": "Полнота данных и стоимость API. Результат LP зависит от движения активов, стимулов и расходов.",
+    "competitors": "Aerodrome UI / Bitquery — протокол и данные; полнота рынка конкурентов не проверена.",
+    "reason": "Сигнал 4: протокол и API доступны. Доход 4: подписка требует пилота. Вход 2: интерфейс только для чтения. Конкуренция 4: существующие интерфейсы и данные. Заметность 4: полезность внутри trading.",
+    "confidence": "Средняя",
+    "paidDemand": "Платящий спрос на новый продукт не подтверждён",
+    "category": "Трейдинг",
+    "models": [
+     "Подписка",
+     "Внедрение"
+    ],
+    "signal": "Действующий продукт",
+    "skill": "Дизайн и интерфейсы"
+   }
+  },
+  {
+   "id": "x402-data",
+   "demand": 4,
+   "money": 4,
+   "difficulty": 3,
+   "competition": 3,
+   "visibility": 5,
+   "contracts": false,
+   "capital": false,
+   "official": false,
+   "sources": [
+    "x402",
+    "agents",
+    "study"
+   ],
+   "skills": "Full stack",
+   "en": {
+    "name": "A focused paid API for agents",
+    "summary": "Sell a result an agent needs to complete a specific task.",
+    "buyer": "Agent developers, automated products and research tools.",
+    "monetization": "Pay per request through x402; enterprise access.",
+    "fact": "CDP documents API payments through x402; Base offers service discovery for agents.",
+    "mvp": "One high-quality endpoint with normalized data, freshness, pricing and repeatable results.",
+    "wedge": "Unique or cleaned data rather than a wrapper around a free API.",
+    "validation": "Measure independent paying buyers, repeat purchases and margin after data and inference costs.",
+    "risk": "Transactions are not buyers. High costs or a free alternative can eliminate the margin.",
+    "competitors": "CDP x402 and its service ecosystem provide the payment layer; Bankr / Virtuals are adjacent agent products.",
+    "reason": "Demand signal 4: a working API payment mechanism. Monetization 4: measured through repeat payments. Entry 3: backend and billing. Competition 3: an assessment for a narrow specialization. Visibility 5: direct agents/x402 fit.",
+    "confidence": "Medium",
+    "paidDemand": "Paying demand for a new product is unverified",
+    "category": "AI / agents",
+    "models": [
+     "Per request",
+     "Subscription"
+    ],
+    "signal": "Existing product",
+    "skill": "Frontend and backend development"
+   },
+   "ru": {
+    "name": "Узкий платный API для агентов",
+    "summary": "Продавать результат, который агенту нужен для конкретной задачи.",
+    "buyer": "Разработчики агентов, автоматизированные продукты, исследовательские инструменты.",
+    "monetization": "Оплата за запрос через x402; корпоративный доступ.",
+    "fact": "CDP документирует оплату API через x402; Base предлагает обнаружение сервисов агентами.",
+    "mvp": "Один качественный endpoint: нормализованные данные, свежесть, цена и повторяемый результат.",
+    "wedge": "Уникальные или очищенные данные, а не обёртка бесплатного API.",
+    "validation": "Измерять независимых платящих покупателей, повторные покупки и маржу после стоимости данных/инференса.",
+    "risk": "Транзакции не равны покупателям. Высокая себестоимость или бесплатный аналог могут уничтожить маржу.",
+    "competitors": "CDP x402 и экосистема сервисов — платёжный слой; Bankr / Virtuals — смежные agent-продукты.",
+    "reason": "Сигнал 4: работающий механизм продажи API. Доход 4: измеряется повторной оплатой. Вход 3: backend и биллинг. Конкуренция 3: оценка для узкой специализации. Заметность 5: прямой agents/x402 fit.",
+    "confidence": "Средняя",
+    "paidDemand": "Платящий спрос на новый продукт не подтверждён",
+    "category": "AI / агенты",
+    "models": [
+     "За запрос",
+     "Подписка"
+    ],
+    "signal": "Действующий продукт",
+    "skill": "Разработка: фронтенд и сервер"
+   }
+  },
+  {
+   "id": "attribution",
+   "demand": 4,
+   "money": 4,
+   "difficulty": 2,
+   "competition": 3,
+   "visibility": 5,
+   "contracts": false,
+   "capital": false,
+   "official": false,
+   "sources": [
+    "codes",
+    "verify"
+   ],
+   "skills": "Дизайн и фронтенд",
+   "en": {
+    "name": "App attribution and growth",
+    "summary": "Help teams understand which users return and generate useful activity.",
+    "buyer": "Base application, wallet and agent teams.",
+    "monetization": "Builder Codes implementation plus a product analytics subscription.",
+    "fact": "Builder Codes provide attribution; the documentation separately points to measuring retention and conversion yourself.",
+    "mvp": "Code integration checks, activation events and a returning-user cohort report.",
+    "wedge": "Connect onchain attribution to a real product action rather than counting transactions alone.",
+    "validation": "Find teams that have implemented codes and sell a diagnosis of one specific funnel.",
+    "risk": "Wallets are not people. Use correct definitions and handle identifiers carefully.",
+    "competitors": "Base Dashboard provides attribution and some metrics; a new product must demonstrate its advantage.",
+    "reason": "Demand signal 4: the standard and dashboard are available. Monetization 4: implementation/SaaS is a hypothesis. Entry 2: a narrow read-only audit. Competition 3: an adjacent dashboard. Visibility 5: documented growth infrastructure.",
+    "confidence": "Medium",
+    "paidDemand": "Paying demand for a new product is unverified",
+    "category": "Infrastructure",
+    "models": [
+     "Implementation",
+     "Subscription"
+    ],
+    "signal": "Existing product",
+    "skill": "Design and interfaces"
+   },
+   "ru": {
+    "name": "Атрибуция и рост приложений",
+    "summary": "Помочь командам понять, какие пользователи возвращаются и приносят полезную активность.",
+    "buyer": "Команды приложений, кошельков и агентов на Base.",
+    "monetization": "Внедрение Builder Codes + подписка на продуктовую аналитику.",
+    "fact": "Builder Codes дают атрибуцию; документация отдельно отсылает к собственному измерению retention и conversion.",
+    "mvp": "Проверка интеграции кода, события активации и когортный отчёт по возвратам.",
+    "wedge": "Связать onchain-атрибуцию с реальным действием в продукте, а не просто считать транзакции.",
+    "validation": "Найти команды с внедрёнными кодами и продать диагностику одной конкретной воронки.",
+    "risk": "Не считать кошельки людьми. Нужны корректные определения и бережная работа с идентификаторами.",
+    "competitors": "Base Dashboard — встроенная атрибуция и часть метрик; преимущество нового продукта нужно доказать.",
+    "reason": "Сигнал 4: стандарт и dashboard доступны. Доход 4: внедрение/SaaS как гипотеза. Вход 2: узкий read-only аудит. Конкуренция 3: смежный dashboard. Заметность 5: документированная инфраструктура роста.",
+    "confidence": "Средняя",
+    "paidDemand": "Платящий спрос на новый продукт не подтверждён",
+    "category": "Инфраструктура",
+    "models": [
+     "Внедрение",
+     "Подписка"
+    ],
+    "signal": "Действующий продукт",
+    "skill": "Дизайн и интерфейсы"
+   }
+  },
+  {
+   "id": "wallet-ux",
+   "demand": 4,
+   "money": 4,
+   "difficulty": 3,
+   "competition": 5,
+   "visibility": 4,
+   "contracts": false,
+   "capital": false,
+   "official": false,
+   "sources": [
+    "trading",
+    "agents"
+   ],
+   "skills": "Full stack",
+   "en": {
+    "name": "Wallet UX and task-specific onboarding",
+    "summary": "Shorten the path from the first visit to a useful action.",
+    "buyer": "Payment, trading and agent commerce applications.",
+    "monetization": "Paid implementation and ongoing product integration support.",
+    "fact": "Base describes global self-custodial accounts; CDP offers wallets and onchain tools.",
+    "mvp": "One existing wallet integration with clear funding steps and transaction statuses.",
+    "wedge": "Specialize in one funnel: payment, swap or delegating an action to an agent.",
+    "validation": "Find where users get stuck, implement an improvement and compare task completion before and after.",
+    "risk": "The product depends on a provider. Show rejection, pending status and retries correctly.",
+    "competitors": "Base Account / CDP provide core capabilities; a proprietary wallet SDK faces a high competitive barrier.",
+    "reason": "Demand signal 4: existing infrastructure. Monetization 4: an implementation contract. Entry 3: financial UX integration. Competition 5: platforms already supply the base layer. Visibility 4: through real activation.",
+    "confidence": "Medium",
+    "paidDemand": "Paying demand for a new product is unverified",
+    "category": "Infrastructure",
+    "models": [
+     "Implementation"
+    ],
+    "signal": "Existing product",
+    "skill": "Frontend and backend development"
+   },
+   "ru": {
+    "name": "Кошельки и onboarding под задачу",
+    "summary": "Сократить путь от первого открытия до полезного действия.",
+    "buyer": "Приложения платежей, торговли и агентной коммерции.",
+    "monetization": "Платное внедрение; сопровождение продуктовой интеграции.",
+    "fact": "Base описывает global self-custodial accounts; CDP предлагает wallets и onchain-инструменты.",
+    "mvp": "Одна интеграция существующего кошелька с понятным пополнением и статусами транзакций.",
+    "wedge": "Специализация на одной воронке: оплатить, обменять или поручить действие агенту.",
+    "validation": "Проверить где пользователи застревают, внедрить улучшение и сопоставить завершение задачи до/после.",
+    "risk": "Продукт зависит от провайдера. Нужно корректно показывать отказ, ожидание и повтор операции.",
+    "competitors": "Base Account / CDP — базовые возможности; собственный wallet SDK имеет высокий порог конкуренции.",
+    "reason": "Сигнал 4: готовая инфраструктура. Доход 4: контракт на внедрение. Вход 3: интеграция финансового UX. Конкуренция 5: базовый слой уже предоставляют платформы. Заметность 4: через реальную активацию.",
+    "confidence": "Средняя",
+    "paidDemand": "Платящий спрос на новый продукт не подтверждён",
+    "category": "Инфраструктура",
+    "models": [
+     "Внедрение"
+    ],
+    "signal": "Действующий продукт",
+    "skill": "Разработка: фронтенд и сервер"
+   }
+  },
+  {
+   "id": "agent-guardrails",
+   "demand": 4,
+   "money": 4,
+   "difficulty": 4,
+   "competition": 4,
+   "visibility": 5,
+   "contracts": false,
+   "capital": false,
+   "official": false,
+   "sources": [
+    "agents",
+    "payments"
+   ],
+   "skills": "Full stack",
+   "en": {
+    "name": "Agent spending controls",
+    "summary": "A dashboard for budgets, policies, logs and action review.",
+    "buyer": "Teams giving agents access to money and paid services.",
+    "monetization": "B2B subscription; spending workflow integration and audit.",
+    "fact": "Base offers agent wallets with spending limits and policy controls.",
+    "mvp": "Logs and notifications on top of an existing wallet; policy changes require owner confirmation.",
+    "wedge": "Cross-service spending accounting and clear diagnostics for rejected actions.",
+    "validation": "Test a real agent workflow: can the team spot budget leaks, and will it pay for oversight?",
+    "risk": "Permissions and accounting must be accurate. Providers already offer basic limits.",
+    "competitors": "Agentic Wallets / CDP have built-in policies; Base MCP enables protocol interactions.",
+    "reason": "Demand signal 4: control tools exist. Monetization 4: a proposed B2B model. Entry 4: security and integrations. Competition 4: built-in policies. Visibility 5: infrastructure designed for agents.",
+    "confidence": "Medium",
+    "paidDemand": "Paying demand for a new product is unverified",
+    "category": "AI / agents",
+    "models": [
+     "Subscription",
+     "Implementation"
+    ],
+    "signal": "Existing product",
+    "skill": "Frontend and backend development"
+   },
+   "ru": {
+    "name": "Контроль расходов агентов",
+    "summary": "Панель бюджетов, правил, журнала и проверки действий.",
+    "buyer": "Команды, которые дают агентам доступ к деньгам и платным сервисам.",
+    "monetization": "B2B-подписка; интеграция и аудит процесса расходов.",
+    "fact": "Base предлагает кошельки агентов с лимитами и policy controls.",
+    "mvp": "Журнал и уведомления поверх готового кошелька; изменения правил только с подтверждением владельца.",
+    "wedge": "Межсервисный учёт расходов и понятная диагностика отказов.",
+    "validation": "Проверить на реальном агентном workflow: видит ли команда утечки бюджета и готова ли оплачивать контроль.",
+    "risk": "Нужна точность разрешений и учёта. Базовые лимиты уже есть у провайдера.",
+    "competitors": "Agentic Wallets / CDP — встроенные политики; Base MCP — взаимодействие с протоколами.",
+    "reason": "Сигнал 4: инструменты контроля существуют. Доход 4: предполагаемый B2B. Вход 4: безопасность и интеграции. Конкуренция 4: встроенные политики. Заметность 5: agent-native infrastructure.",
+    "confidence": "Средняя",
+    "paidDemand": "Платящий спрос на новый продукт не подтверждён",
+    "category": "AI / агенты",
+    "models": [
+     "Подписка",
+     "Внедрение"
+    ],
+    "signal": "Действующий продукт",
+    "skill": "Разработка: фронтенд и сервер"
+   }
+  },
+  {
+   "id": "agent-commerce",
+   "demand": 3,
+   "money": 3,
+   "difficulty": 4,
+   "competition": 3,
+   "visibility": 5,
+   "contracts": false,
+   "capital": false,
+   "official": true,
+   "sources": [
+    "rfb",
+    "agents"
+   ],
+   "skills": "Full stack",
+   "en": {
+    "name": "Shopping and booking agents",
+    "summary": "Turn a narrow user intention into a completed purchase.",
+    "buyer": "Customers and merchants in one vertical market.",
+    "monetization": "Fee per completed task; commission agreed with the merchant.",
+    "fact": "Base Ecosystem Fund requests agents for shopping, booking and ticketing.",
+    "mvp": "One use case with an existing catalog, a clear price and user purchase confirmation.",
+    "wedge": "Access to a specific supplier and reliable task execution.",
+    "validation": "Run the workflow manually first and test payment, cancellation and repeat use.",
+    "risk": "Catalogs, refunds and offchain fulfillment. Fund interest does not establish consumer demand.",
+    "competitors": "Base MCP provides general operations; Bankr / Virtuals are adjacent. Vertical competitors have not been surveyed.",
+    "reason": "Demand signal 3: a fund request. Monetization 3: depends on partners. Entry 4: end-to-end commerce. Competition 3: unknown in the chosen vertical. Visibility 5: an official request.",
+    "confidence": "Medium",
+    "paidDemand": "Paying demand for a new product is unverified",
+    "category": "AI / agents",
+    "models": [
+     "Per outcome",
+     "Transaction fee"
+    ],
+    "signal": "Official builder request",
+    "skill": "Frontend and backend development"
+   },
+   "ru": {
+    "name": "Агент для покупки и бронирования",
+    "summary": "Довести узкое намерение пользователя до завершённой покупки.",
+    "buyer": "Клиенты одного вертикального рынка и его продавцы.",
+    "monetization": "Плата за выполненную задачу; комиссия по договору с продавцом.",
+    "fact": "Base Ecosystem Fund запрашивает агентов для shopping, booking и ticketing.",
+    "mvp": "Один сценарий с готовым каталогом, ясной ценой и подтверждением покупки пользователем.",
+    "wedge": "Доступ к конкретному поставщику и надёжное исполнение задачи.",
+    "validation": "Сначала выполнить сценарий вручную и проверить оплату, отмену и повторное обращение.",
+    "risk": "Каталоги, возвраты и исполнение вне блокчейна. Интерес фонда не подтверждает потребительский спрос.",
+    "competitors": "Base MCP — универсальные операции; смежные Bankr / Virtuals. Вертикальные конкуренты не обследованы.",
+    "reason": "Сигнал 3: запрос фонда. Доход 3: зависит от партнёров. Вход 4: end-to-end commerce. Конкуренция 3: неизвестна в выбранной вертикали. Заметность 5: официальный request.",
+    "confidence": "Средняя",
+    "paidDemand": "Платящий спрос на новый продукт не подтверждён",
+    "category": "AI / агенты",
+    "models": [
+     "За результат",
+     "Комиссия"
+    ],
+    "signal": "Официальный запрос",
+    "skill": "Разработка: фронтенд и сервер"
+   }
+  },
+  {
+   "id": "rwa-intel",
+   "demand": 4,
+   "money": 3,
+   "difficulty": 3,
+   "competition": 4,
+   "visibility": 5,
+   "contracts": false,
+   "capital": false,
+   "official": false,
+   "sources": [
+    "trading",
+    "rfb"
+   ],
+   "skills": "Full stack",
+   "en": {
+    "name": "Tokenized asset research",
+    "summary": "Compare asset structure, availability, liquidity and terms.",
+    "buyer": "Traders, analysts, wallet teams and financial applications.",
+    "monetization": "Research and alert subscription; data API.",
+    "fact": "Base promotes asset tokenization and programmable borrowing/lending for real-world assets.",
+    "mvp": "Asset profiles with primary documents, access conditions and verified liquidity.",
+    "wedge": "Verifiable instrument data and distinctions a typical price chart does not explain.",
+    "validation": "Choose one asset class, check data licenses and sell a pilot research dashboard.",
+    "risk": "Legal rights and access differ by asset; a token name does not establish those rights.",
+    "competitors": "Base Trading / Centrifuge are part of the tokenization ecosystem; research competition is assessed qualitatively.",
+    "reason": "Demand signal 4: product infrastructure exists. Monetization 3: willingness to pay is untested. Entry 3: documents and data. Competition 4: research tools in adjacent markets. Visibility 5: tokenization fit.",
+    "confidence": "Medium",
+    "paidDemand": "Paying demand for a new product is unverified",
+    "category": "Trading",
+    "models": [
+     "Subscription",
+     "Per request"
+    ],
+    "signal": "Existing product",
+    "skill": "Frontend and backend development"
+   },
+   "ru": {
+    "name": "Навигатор токенизированных активов",
+    "summary": "Сравнивать структуру актива, доступность, ликвидность и условия.",
+    "buyer": "Трейдеры, аналитики, команды кошельков и финансовых приложений.",
+    "monetization": "Подписка на исследование и алерты; API данных.",
+    "fact": "Base продвигает asset tokenization и programmable borrow/lend для RWA.",
+    "mvp": "Карточки активов с первичными документами, условиями доступа и проверенной ликвидностью.",
+    "wedge": "Проверяемые данные об инструментах и различиях, которые обычный price chart не объясняет.",
+    "validation": "Выбрать один класс активов, проверить лицензии данных и продать пилот исследовательской панели.",
+    "risk": "Юридические права и доступ к активу различаются; нельзя подменять это названием токена.",
+    "competitors": "Base Trading / Centrifuge — экосистема токенизации; конкурентность аналитики оценена качественно.",
+    "reason": "Сигнал 4: продуктовая инфраструктура есть. Доход 3: готовность платить не проверена. Вход 3: документы и данные. Конкуренция 4: аналитические решения смежных рынков. Заметность 5: tokenization fit.",
+    "confidence": "Средняя",
+    "paidDemand": "Платящий спрос на новый продукт не подтверждён",
+    "category": "Трейдинг",
+    "models": [
+     "Подписка",
+     "За запрос"
+    ],
+    "signal": "Действующий продукт",
+    "skill": "Разработка: фронтенд и сервер"
+   }
+  },
+  {
+   "id": "prediction",
+   "demand": 3,
+   "money": 3,
+   "difficulty": 3,
+   "competition": 3,
+   "visibility": 5,
+   "contracts": false,
+   "capital": false,
+   "official": true,
+   "sources": [
+    "rfb",
+    "batches"
+   ],
+   "skills": "Full stack",
+   "en": {
+    "name": "Prediction market tools",
+    "summary": "Data, probabilities and alerts for one specialist market.",
+    "buyer": "Professional participants and audiences focused on a specific topic.",
+    "monetization": "Data subscription and paid analytical tools.",
+    "fact": "Base's fund highlights verticalized prediction markets; Batches lists projects in this category.",
+    "mvp": "A read-only tool for one topic: event sources, probability changes and market resolution.",
+    "wedge": "Domain depth rather than another general-purpose venue.",
+    "validation": "Find which data participants already buy and offer a paid specialist briefing.",
+    "risk": "Oracle and settlement quality, and a limited audience. Launching a venue is harder than building an analytics MVP.",
+    "competitors": "Forecast / Onsight / JPEG App are listed by Base Batches and are adjacent products.",
+    "reason": "Demand signal 3: a request and program portfolio. Monetization 3: a narrow audience. Entry 3: data and domain expertise. Competition 3: a qualitative vertical assessment. Visibility 5: official interest.",
+    "confidence": "Medium",
+    "paidDemand": "Paying demand for a new product is unverified",
+    "category": "Financial markets",
+    "models": [
+     "Subscription",
+     "Per request"
+    ],
+    "signal": "Official builder request",
+    "skill": "Frontend and backend development"
+   },
+   "ru": {
+    "name": "Инструменты prediction markets",
+    "summary": "Данные, вероятность и уведомления для одного предметного рынка.",
+    "buyer": "Профессиональные участники и аудитория конкретной темы.",
+    "monetization": "Подписка на данные; платные аналитические инструменты.",
+    "fact": "Фонд Base выделяет verticalized prediction markets; Batches перечисляет проекты этой категории.",
+    "mvp": "Read-only инструмент по одной теме: источники событий, движение вероятности и разрешение рынка.",
+    "wedge": "Глубина предметной области, а не запуск ещё одной общей площадки.",
+    "validation": "Проверить, какие данные участники уже покупают, и предложить платную специализированную сводку.",
+    "risk": "Качество oracle/settlement и ограниченность аудитории. Запуск площадки сложнее аналитического MVP.",
+    "competitors": "Forecast / Onsight / JPEG App перечислены Base Batches; это смежные продукты.",
+    "reason": "Сигнал 3: request и портфель программы. Доход 3: узкая аудитория. Вход 3: данные и домен. Конкуренция 3: качественная оценка вертикали. Заметность 5: официальный интерес.",
+    "confidence": "Средняя",
+    "paidDemand": "Платящий спрос на новый продукт не подтверждён",
+    "category": "Финансовые рынки",
+    "models": [
+     "Подписка",
+     "За запрос"
+    ],
+    "signal": "Официальный запрос",
+    "skill": "Разработка: фронтенд и сервер"
+   }
+  },
+  {
+   "id": "treasury",
+   "demand": 4,
+   "money": 4,
+   "difficulty": 3,
+   "competition": 4,
+   "visibility": 4,
+   "contracts": false,
+   "capital": false,
+   "official": false,
+   "sources": [
+    "trading",
+    "payments"
+   ],
+   "skills": "Full stack",
+   "en": {
+    "name": "Stablecoin treasury reporting",
+    "summary": "Balances, cash flows, expenses and clear risk reporting.",
+    "buyer": "Small onchain teams and project treasuries.",
+    "monetization": "Subscription plus reporting implementation.",
+    "fact": "Base describes DeFi access and Morpho as lending and borrowing infrastructure.",
+    "mvp": "A read-only dashboard for balances, liabilities and flows, without automatic fund allocation.",
+    "wedge": "Operational reporting and limits rather than promises of maximum yield.",
+    "validation": "Obtain a team's real reporting example and test willingness to pay for automation.",
+    "risk": "Multiple networks and assets, complete accounting and price sources. User yield is not service revenue.",
+    "competitors": "Morpho / Base payment tools are adjacent financial infrastructure; a complete SaaS review has not been performed.",
+    "reason": "Demand signal 4: financial products are available. Monetization 4: B2B reporting is a hypothesis. Entry 3: data and reconciliation. Competition 4: adjacent tools. Visibility 4: payments/DeFi fit.",
+    "confidence": "Medium",
+    "paidDemand": "Paying demand for a new product is unverified",
+    "category": "Products",
+    "models": [
+     "Subscription",
+     "Implementation"
+    ],
+    "signal": "Existing product",
+    "skill": "Frontend and backend development"
+   },
+   "ru": {
+    "name": "Панель стейблкоин-казначейства",
+    "summary": "Остатки, потоки, расходы и понятные отчёты по риску.",
+    "buyer": "Небольшие onchain-команды и казначейства проектов.",
+    "monetization": "Подписка + внедрение отчётности.",
+    "fact": "Base описывает DeFi access и Morpho как lending/borrowing инфраструктуру.",
+    "mvp": "Read-only панель остатков, обязательств и потоков; без автоматического размещения средств.",
+    "wedge": "Операционная отчётность и лимиты вместо обещаний максимальной доходности.",
+    "validation": "Получить рабочий пример отчёта команды и проверить готовность платить за его автоматизацию.",
+    "risk": "Разные сети и активы, полнота учёта, источники цен. Доходность пользователя не является выручкой сервиса.",
+    "competitors": "Morpho / Base payment tools — смежная финансовая инфраструктура; полный обзор SaaS не выполнен.",
+    "reason": "Сигнал 4: финансовые продукты доступны. Доход 4: B2B-отчётность как гипотеза. Вход 3: данные и сверка. Конкуренция 4: смежные инструменты. Заметность 4: payments/DeFi fit.",
+    "confidence": "Средняя",
+    "paidDemand": "Платящий спрос на новый продукт не подтверждён",
+    "category": "Продукты",
+    "models": [
+     "Подписка",
+     "Внедрение"
+    ],
+    "signal": "Действующий продукт",
+    "skill": "Разработка: фронтенд и сервер"
+   }
+  },
+  {
+   "id": "local-rails",
+   "demand": 3,
+   "money": 4,
+   "difficulty": 5,
+   "competition": 4,
+   "visibility": 5,
+   "contracts": false,
+   "capital": false,
+   "official": true,
+   "sources": [
+    "rfb",
+    "payments"
+   ],
+   "skills": "Команда и партнёры",
+   "en": {
+    "name": "Local payment integrations",
+    "summary": "Connect an existing business workflow to a licensed payment partner.",
+    "buyer": "Fintechs, international payout businesses and local payment providers.",
+    "monetization": "Integration contract plus an ongoing service fee.",
+    "fact": "Base's fund identifies stablecoin distribution and local stablecoins as areas of interest.",
+    "mvp": "Integrate an existing provider into one payout corridor, without issuing a new stablecoin.",
+    "wedge": "Partnerships and an understanding of the real local payment workflow.",
+    "validation": "Before building, check supported countries, partner contracts and the actual volume of customer tasks.",
+    "risk": "Provider availability, compliance and local law. Availability in Moldova has not been confirmed here.",
+    "competitors": "Base Pay and payment providers are adjacent solutions; coverage of a specific corridor needs checking.",
+    "reason": "Demand signal 3: a fund request. Monetization 4: a B2B contract. Entry 5: local partners and requirements. Competition 4: payment businesses. Visibility 5: stablecoin distribution.",
+    "confidence": "Medium",
+    "paidDemand": "Paying demand for a new product is unverified",
+    "category": "Financial markets",
+    "models": [
+     "Implementation",
+     "Transaction fee"
+    ],
+    "signal": "Official builder request",
+    "skill": "Team and partners"
+   },
+   "ru": {
+    "name": "Локальные платёжные интеграции",
+    "summary": "Связать существующий бизнес-процесс с лицензированным платёжным партнёром.",
+    "buyer": "Финтехи, компании с международными выплатами, локальные платёжные провайдеры.",
+    "monetization": "Интеграционный контракт + плата за обслуживание.",
+    "fact": "Фонд Base указывает stablecoin distribution и local stablecoins как направления интереса.",
+    "mvp": "Интеграция существующего провайдера в один коридор выплат; без выпуска собственного стейблкоина.",
+    "wedge": "Партнёрство и понимание реального локального платёжного процесса.",
+    "validation": "До разработки проверить допустимые страны, партнёрский договор и реальный объём клиентских задач.",
+    "risk": "Доступность провайдеров, комплаенс и локальное право. Доступность решения в Молдове здесь не подтверждена.",
+    "competitors": "Base Pay и провайдеры платежей — смежные решения; покрытие конкретного коридора требует проверки.",
+    "reason": "Сигнал 3: запрос фонда. Доход 4: B2B-договор. Вход 5: локальные партнёры и требования. Конкуренция 4: платёжные компании. Заметность 5: stablecoin distribution.",
+    "confidence": "Средняя",
+    "paidDemand": "Платящий спрос на новый продукт не подтверждён",
+    "category": "Финансовые рынки",
+    "models": [
+     "Внедрение",
+     "Комиссия"
+    ],
+    "signal": "Официальный запрос",
+    "skill": "Команда и партнёры"
+   }
+  },
+  {
+   "id": "credit-rwa",
+   "demand": 3,
+   "money": 4,
+   "difficulty": 5,
+   "competition": 4,
+   "visibility": 5,
+   "contracts": true,
+   "capital": false,
+   "official": true,
+   "sources": [
+    "rfb",
+    "trading"
+   ],
+   "skills": "Команда и партнёры",
+   "en": {
+    "name": "Credit and RWA infrastructure",
+    "summary": "Tokenization, underwriting and servicing of real financial assets.",
+    "buyer": "Lenders, asset managers, brokers and financial businesses.",
+    "monetization": "B2B license / integration; contract-based servicing fees.",
+    "fact": "Base Ecosystem Fund seeks solutions for productive assets and credit underwriting.",
+    "mvp": "A testnet issuance pilot for one financial asset: holder rights, registry, access restrictions and reporting with an existing financial partner.",
+    "wedge": "Domain expertise and a partner with real assets rather than tokenization for its own sake.",
+    "validation": "Find a partner and confirm rights, collateral quality, default procedures and servicing economics.",
+    "risk": "Legal structure, credit risk, operations and smart contract security.",
+    "competitors": "Morpho / Centrifuge are adjacent protocols and infrastructure within the Base ecosystem.",
+    "reason": "Demand signal 3: an official request. Monetization 4: a B2B partner. Entry 5: financial expertise. Competition 4: professional participants. Visibility 5: a direct fund theme.",
+    "confidence": "Medium",
+    "paidDemand": "Paying demand for a new product is unverified",
+    "category": "Financial markets",
+    "models": [
+     "Implementation",
+     "Transaction fee"
+    ],
+    "signal": "Official builder request",
+    "skill": "Team and partners"
+   },
+   "ru": {
+    "name": "Инфраструктура кредита и RWA",
+    "summary": "Токенизация, underwriting и обслуживание реальных финансовых активов.",
+    "buyer": "Кредиторы, управляющие активами, брокеры и финансовые компании.",
+    "monetization": "B2B-лицензия / интеграция; сервисные комиссии по договору.",
+    "fact": "Base Ecosystem Fund ищет решения productive assets и credit underwriting.",
+    "mvp": "Пилот выпуска одного финансового актива в тестовой сети: права держателя, реестр, ограничения доступа и отчётность с действующим финансовым партнёром.",
+    "wedge": "Доменная экспертиза и партнёр с реальными активами, а не токенизация ради токена.",
+    "validation": "Найти партнёра и подтвердить права, качество обеспечения, процедуру дефолта и экономику обслуживания.",
+    "risk": "Юридическая конструкция, кредитный риск, операционное обслуживание и безопасность контрактов.",
+    "competitors": "Morpho / Centrifuge — смежные протоколы и инфраструктура в экосистеме Base.",
+    "reason": "Сигнал 3: официальный request. Доход 4: B2B-партнёр. Вход 5: финансовая экспертиза. Конкуренция 4: профессиональные игроки. Заметность 5: прямая тема фонда.",
+    "confidence": "Средняя",
+    "paidDemand": "Платящий спрос на новый продукт не подтверждён",
+    "category": "Финансовые рынки",
+    "models": [
+     "Внедрение",
+     "Комиссия"
+    ],
+    "signal": "Официальный запрос",
+    "skill": "Команда и партнёры"
+   }
+  },
+  {
+   "id": "fx-tools",
+   "demand": 3,
+   "money": 3,
+   "difficulty": 3,
+   "competition": 3,
+   "visibility": 5,
+   "contracts": false,
+   "capital": false,
+   "official": true,
+   "sources": [
+    "rfb",
+    "batches"
+   ],
+   "skills": "Full stack",
+   "en": {
+    "name": "Business FX analytics",
+    "summary": "Conversion cost comparisons and currency exposure reporting.",
+    "buyer": "Small businesses making payments in multiple currencies.",
+    "monetization": "Reporting subscription plus implementation.",
+    "fact": "Base's fund describes interest in onchain FX; Nivo is listed in the Base Batches portfolio.",
+    "mvp": "A read-only comparison of one currency route including all costs.",
+    "wedge": "The total cost for a specific business rather than an abstract best exchange rate.",
+    "validation": "Check a company's real documents and routes; offer a paid cost-saving report.",
+    "risk": "Do not promise savings without a quote and all fees. Execution and hedging require additional expertise.",
+    "competitors": "Nivo is listed by Batches for onchain FX hedging; payment providers are adjacent alternatives.",
+    "reason": "Demand signal 3: a request and portfolio. Monetization 3: buyer validation is needed. Entry 3: an analytical MVP. Competition 3: depends on the currency corridor. Visibility 5: fit with official FX interest.",
+    "confidence": "Medium",
+    "paidDemand": "Paying demand for a new product is unverified",
+    "category": "Financial markets",
+    "models": [
+     "Subscription",
+     "Implementation"
+    ],
+    "signal": "Official builder request",
+    "skill": "Frontend and backend development"
+   },
+   "ru": {
+    "name": "FX-аналитика для бизнеса",
+    "summary": "Сравнение стоимости конвертации и отчёт по валютной экспозиции.",
+    "buyer": "Малые компании с платежами в нескольких валютах.",
+    "monetization": "Подписка на отчётность + внедрение.",
+    "fact": "Фонд Base описывает интерес к onchain FX; Nivo перечислен в портфеле Base Batches.",
+    "mvp": "Read-only сравнение одного валютного маршрута с учётом всех расходов.",
+    "wedge": "Полная итоговая стоимость для конкретного бизнеса, а не абстрактный лучший курс.",
+    "validation": "Проверить реальные документы и маршруты компании; предложить оплачиваемый отчёт по экономии.",
+    "risk": "Нельзя обещать экономию без котировки и всех комиссий. Исполнение и hedging требуют дополнительной экспертизы.",
+    "competitors": "Nivo — onchain FX hedging в списке Batches; платёжные провайдеры являются смежной альтернативой.",
+    "reason": "Сигнал 3: request и портфель. Доход 3: требуется проверка покупателя. Вход 3: аналитический MVP. Конкуренция 3: зависит от валютного коридора. Заметность 5: official FX fit.",
+    "confidence": "Средняя",
+    "paidDemand": "Платящий спрос на новый продукт не подтверждён",
+    "category": "Финансовые рынки",
+    "models": [
+     "Подписка",
+     "Внедрение"
+    ],
+    "signal": "Официальный запрос",
+    "skill": "Разработка: фронтенд и сервер"
+   }
+  },
+  {
+   "id": "trading-capital",
+   "demand": 4,
+   "money": 1,
+   "difficulty": 4,
+   "competition": 5,
+   "visibility": 2,
+   "contracts": false,
+   "capital": true,
+   "official": false,
+   "sources": [
+    "trading"
+   ],
+   "skills": "Трейдинг и риск",
+   "en": {
+    "name": "Active trading and liquidity provision",
+    "summary": "An activity using your own capital, separate from building a product.",
+    "buyer": "There is no service customer: the market participant receives the outcome.",
+    "monetization": "Market P&L and protocol rewards; the result can be negative.",
+    "fact": "Base describes trading and LP infrastructure; Aerodrome is presented as a liquidity hub.",
+    "mvp": "A decision journal and complete position accounting; start with a simulation without funds.",
+    "wedge": "Only a verifiable edge after fees and changes in position value.",
+    "validation": "Evaluate out-of-sample results with the full cost of capital, execution and risk.",
+    "risk": "Capital loss, volatility, execution errors and LP losses. No strategy return is confirmed.",
+    "competitors": "Wintermute / 1inch / Aerodrome are participants and infrastructure in the trading ecosystem.",
+    "reason": "Demand signal 4: markets are available. Monetization 1: no recurring customer revenue. Entry 4: risk management. Competition 5: professional participants. Visibility 2: trading activity alone does not establish product value.",
+    "confidence": "Medium",
+    "paidDemand": "Paying demand for a new product is unverified",
+    "category": "Trading",
+    "models": [
+     "Trading P&L"
+    ],
+    "signal": "Existing product",
+    "skill": "Trading and risk management"
+   },
+   "ru": {
+    "name": "Активный трейдинг и LP",
+    "summary": "Деятельность с собственным капиталом; отдельный путь от создания продукта.",
+    "buyer": "Покупатель сервиса отсутствует: результат получает сам участник рынка.",
+    "monetization": "Рыночный P&L и протокольные вознаграждения; результат может быть отрицательным.",
+    "fact": "Base описывает торговлю и LP-инфраструктуру; Aerodrome представлен как liquidity hub.",
+    "mvp": "Журнал решений и учёт полной позиции; сначала симуляция без средств.",
+    "wedge": "Только проверяемое преимущество после комиссий и изменений стоимости позиции.",
+    "validation": "Оценивать результаты вне выборки с полной стоимостью капитала, исполнения и риска.",
+    "risk": "Потеря капитала, волатильность, ошибки исполнения и убыток LP. Нет подтверждённой доходности стратегии.",
+    "competitors": "Wintermute / 1inch / Aerodrome — участники и инфраструктура торговой экосистемы.",
+    "reason": "Сигнал 4: рынки доступны. Доход 1: нет повторной клиентской выручки. Вход 4: управление риском. Конкуренция 5: профессиональные участники. Заметность 2: торговая активность сама по себе не доказывает ценность продукта.",
+    "confidence": "Средняя",
+    "paidDemand": "Платящий спрос на новый продукт не подтверждён",
+    "category": "Трейдинг",
+    "models": [
+     "Рыночный P&L"
+    ],
+    "signal": "Действующий продукт",
+    "skill": "Трейдинг и управление риском"
+   }
+  }
+ ],
+ "sources": [
+  {
+   "id": "strategy",
+   "url": "https://www.base.org/vision",
+   "checked": "2026-10-21",
+   "en": {
+    "title": "Base · Vision 2026",
+    "type": "Official strategy",
+    "summary": "Base prioritizes markets, payments and builders. This indicates team priorities, rather than paying demand for each new product."
+   },
+   "ru": {
+    "title": "Base · Vision 2026",
+    "type": "Официальная стратегия",
+    "summary": "Base выделяет рынки, платежи и инструменты для строителей. Это сигнал приоритета команды, а не доказательство платящего спроса."
+   }
+  },
+  {
+   "id": "payments",
+   "url": "https://www.base.org/payments",
+   "checked": "2026-10-21",
+   "en": {
+    "title": "Base · Payments",
+    "type": "Official product page",
+    "summary": "The page describes merchant payments, international payroll, remittances, x402 agent payments and programmable spending controls. These are category signals; demand for a new service remains unverified."
+   },
+   "ru": {
+    "title": "Base · Payments",
+    "type": "Официальный продукт",
+    "summary": "Описаны платежи для мерчантов, международный payroll, переводы, платежи агентов через x402 и программируемые лимиты расходов."
+   }
+  },
+  {
+   "id": "shopify",
+   "url": "https://help.shopify.com/en/manual/payments/shopify-payments/local-payment-methods/usdc-payments",
+   "checked": "2026-10-21",
+   "en": {
+    "title": "Shopify · USDC payments",
+    "type": "Commerce documentation",
+    "summary": "Shopify documentation lists Base among supported networks for USDC payments and explains regional and checkout restrictions. This verifies an existing commerce integration."
+   },
+   "ru": {
+    "title": "Shopify · USDC payments",
+    "type": "Документация действующего продукта",
+    "summary": "USDC-платежи доступны на поддерживаемых сетях, включая Base; действуют ограничения по регионам и функциям checkout."
+   }
+  },
+  {
+   "id": "x402",
+   "url": "https://docs.cdp.coinbase.com/x402/welcome",
+   "checked": "2026-10-21",
+   "en": {
+    "title": "Coinbase CDP · x402",
+    "type": "Protocol documentation",
+    "summary": "x402 supports paid API and digital resource requests. A facilitator verifies and settles payments. Available infrastructure does not establish buyers for a new API."
+   },
+   "ru": {
+    "title": "Coinbase CDP · x402",
+    "type": "Документация действующего продукта",
+    "summary": "x402 позволяет продавать доступ к API или цифровому ресурсу за оплату запроса; facilitator проверяет и проводит платеж."
+   }
+  },
+  {
+   "id": "agents",
+   "url": "https://www.base.org/agents",
+   "checked": "2026-10-21",
+   "en": {
+    "title": "Base · Agents",
+    "type": "Official product page",
+    "summary": "Base lists MCP, x402, agent wallets and spending limits, as well as Bankr and Virtuals. These demonstrate infrastructure and existing projects, rather than proven demand for every agent idea."
+   },
+   "ru": {
+    "title": "Base · Agents",
+    "type": "Официальный продукт",
+    "summary": "Представлены Base MCP, x402, инструменты кошельков и ограничения расходов; в экосистеме перечислены Bankr и Virtuals."
+   }
+  },
+  {
+   "id": "codes",
+   "url": "https://docs.base.org/specifications/builder-codes/overview",
+   "checked": "2026-10-21",
+   "en": {
+    "title": "Base · Builder Codes",
+    "type": "Developer documentation",
+    "summary": "Builder Codes attribute transactions to apps. Base Dashboard shows trading volume, lending and borrow activity and TVL. Retention and other app outcomes require separate measurement."
+   },
+   "ru": {
+    "title": "Base · Builder Codes",
+    "type": "Техническая документация",
+    "summary": "Builder Codes атрибутируют активность приложению. Base Dashboard показывает trading volume и lending/borrow TVL; для retention нужны собственные измерения."
+   }
+  },
+  {
+   "id": "rfb",
+   "url": "https://base.org/blog/request-for-builders-1",
+   "checked": "2026-10-21",
+   "en": {
+    "title": "Base · Request for Builders",
+    "type": "Official builder request",
+    "summary": "Base requests products in fund tokenization, credit, local stablecoins, vertical prediction markets and agents. The page does not display a publication date; its current content was checked."
+   },
+   "ru": {
+    "title": "Base · Request for Builders",
+    "type": "Официальный запрос к строителям",
+    "summary": "Фонд описывает интерес к токенизации, кредиту, локальным стейблкоинам, вертикальным prediction markets и агентной коммерции. Дата публикации на прочитанной странице не отображается."
+   }
+  },
+  {
+   "id": "trading",
+   "url": "https://www.base.org/trading",
+   "checked": "2026-10-21",
+   "en": {
+    "title": "Base · Trading",
+    "type": "Official product page",
+    "summary": "Base describes embedded trading and tokenization and lists Aerodrome, Morpho, 1inch, Wintermute and Centrifuge. This confirms both infrastructure and established competition."
+   },
+   "ru": {
+    "title": "Base · Trading",
+    "type": "Официальный продукт",
+    "summary": "Base предлагает embedded trading и tokenization; перечислены Aerodrome, Morpho, 1inch, Wintermute и Centrifuge."
+   }
+  },
+  {
+   "id": "data",
+   "url": "https://docs.bitquery.io/docs/blockchain/Base/aerodrome-base-api/",
+   "checked": "2026-10-21",
+   "en": {
+    "title": "Bitquery · Aerodrome API",
+    "type": "Data provider documentation",
+    "summary": "Bitquery documents trades, prices and liquidity data for Aerodrome on Base. This confirms data availability, rather than paying demand for a new analytics interface."
+   },
+   "ru": {
+    "title": "Bitquery · Aerodrome API",
+    "type": "Документация поставщика",
+    "summary": "Поставщик предлагает API сделок, цен и ликвидности Aerodrome. Подтверждает наличие предложения данных, но не спрос на новый интерфейс."
+   }
+  },
+  {
+   "id": "study",
+   "url": "https://arxiv.org/abs/2607.12575",
+   "checked": "2026-10-21",
+   "en": {
+    "title": "x402 adoption · research preprint",
+    "type": "Research preprint",
+    "summary": "The preprint distinguishes activity counts from independent paying demand. Its findings are a limitation on interpretation, not an industry standard or a direct input to the niche scores."
+   },
+   "ru": {
+    "title": "x402 adoption · исследование",
+    "type": "Исследовательский препринт",
+    "summary": "Авторы предупреждают: число settlement-транзакций нельзя приравнивать к независимому пользовательскому спросу. Это препринт, а не установленный отраслевой стандарт."
+   }
+  },
+  {
+   "id": "batches",
+   "url": "https://www.base.org/batches",
+   "checked": "2026-10-21",
+   "en": {
+    "title": "Base · Batches 004",
+    "type": "Official builder program",
+    "summary": "The program lists trading, payments, agents, financing and issuance. Applications were closed when checked. Funding and promotion are not guaranteed and are excluded from baseline product revenue."
+   },
+   "ru": {
+    "title": "Base · Batches 004",
+    "type": "Официальная программа",
+    "summary": "Программа нацелена на trading, payments, agents, financing и asset issuance. На момент проверки заявки закрыты; участие и финансирование не гарантируются."
+   }
+  },
+  {
+   "id": "verify",
+   "url": "https://docs.base.org/build-on-base/assign-user-attributes",
+   "checked": "2026-10-21",
+   "en": {
+    "title": "Base · User attributes",
+    "type": "Developer documentation",
+    "summary": "Builder Codes handle app attribution; Base Verify and user attributes support verified properties, deduplication and eligibility. These have distinct roles and do not prove demand for a new service."
+   },
+   "ru": {
+    "title": "Base · User attributes",
+    "type": "Техническая документация",
+    "summary": "Base различает Builder Codes для атрибуции и Base Verify для проверенных атрибутов, дедупликации и eligibility policies."
+   }
+  }
+ ],
+ "metrics": [
+  {
+   "key": "demand",
+   "en": {
+    "label": "Demand signal",
+    "definition": "Editorial scale from 1–5: 1 — no verified signal; 2 — indirect hypothesis; 3 — official request or strategy; 4 — an operating product or documented category infrastructure; 5 — an existing business-process integration. Does not measure the number of buyers."
+   },
+   "ru": {
+    "label": "Сигнал спроса",
+    "definition": "Аналитическая шкала 1–5: 1 — нет проверенного сигнала; 2 — косвенная гипотеза; 3 — официальный запрос/стратегия; 4 — действующий продукт или документированная инфраструктура категории; 5 — существующая интеграция в бизнес-процесс. Не измеряет число покупателей."
+   }
+  },
+  {
+   "key": "monetizationScore",
+   "en": {
+    "label": "Monetization",
+    "definition": "Editorial scale from 1–5, from uncertain income to a testable hypothesis of recurring B2B revenue. The subscription and buyer are proposals, rather than evidence of signed contracts."
+   },
+   "ru": {
+    "label": "Монетизация",
+    "definition": "Аналитическая шкала 1–5 от неопределённого дохода до проверяемой гипотезы повторной B2B-выручки. Подписка и покупатель описаны как предложение, а не факт заключённых контрактов."
+   }
+  },
+  {
+   "key": "difficulty",
+   "en": {
+    "label": "Entry difficulty",
+    "definition": "Editorial scale from 1–5 for the proposed MVP: 1 — simple prototype; 2 — read-only frontend; 3 — backend or integration; 4 — complex execution or security; 5 — team, partners and a regulated process."
+   },
+   "ru": {
+    "label": "Сложность входа",
+    "definition": "Аналитическая шкала 1–5 для указанного MVP: 1 — простой прототип; 2 — read-only frontend; 3 — backend/integration; 4 — сложное исполнение или безопасность; 5 — команда, партнёры и регулируемый процесс."
+   }
+  },
+  {
+   "key": "competition",
+   "en": {
+    "label": "Competition",
+    "definition": "Editorial scale from 1–5, from a narrow open specialization to dominance by platforms or professionals. A selective assessment, rather than measured market share or a complete competitor census."
+   },
+   "ru": {
+    "label": "Конкуренция",
+    "definition": "Аналитическая шкала 1–5 от узкой свободной специализации до доминирования платформ/профессионалов. Выборочная оценка, не измеренная доля рынка и не полный census конкурентов."
+   }
+  },
+  {
+   "key": "visibility",
+   "en": {
+    "label": "Visibility potential",
+    "definition": "Editorial scale from 1–5 based on alignment with documented strategy and the ability to demonstrate useful activity. Does not predict team responses, investment or promotion."
+   },
+   "ru": {
+    "label": "Потенциал заметности",
+    "definition": "Аналитическая шкала 1–5: соответствие документированной стратегии и способность показать полезную активность. Не вероятность ответа команды, инвестиции или продвижения."
+   }
+  }
+ ]
 }
