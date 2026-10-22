@@ -1,6 +1,6 @@
 {
- "generatedAt": "2026-10-22T12:19:21.435Z",
- "block": 52941106,
+ "generatedAt": "2026-10-22T17:34:44.586Z",
+ "block": 52950568,
  "metrics": [
   {
    "id": "usdc",
@@ -8,22 +8,22 @@
     "usdc-ops"
    ],
    "unit": "usd",
-   "value": 4321421676.789224,
-   "change": -1.81,
-   "asOf": "2026-10-22T12:19:21.095Z",
+   "value": 4281599357.580007,
+   "change": -2.52,
+   "asOf": "2026-10-22T17:34:44.298Z",
    "en": "USDC on Base",
    "ru": "USDC на Base",
    "sources": [
     {
      "name": "USDC contract",
-     "value": 4321421676.789224
+     "value": 4281599357.580007
     },
     {
      "name": "DefiLlama",
-     "value": 4332180285.167487
+     "value": 4310265139.058261
     }
    ],
-   "gap": 0.25
+   "gap": 0.67
   },
   {
    "id": "eurc",
@@ -31,22 +31,22 @@
     "fx-tools"
    ],
    "unit": "eur",
-   "value": 48692695.375828,
-   "change": -3.82,
-   "asOf": "2026-10-22T12:19:21.268Z",
+   "value": 49046903.860469,
+   "change": -5.37,
+   "asOf": "2026-10-22T17:34:44.386Z",
    "en": "EURC on Base",
    "ru": "EURC на Base",
    "sources": [
     {
      "name": "EURC contract",
-     "value": 48692695.375828
+     "value": 49046903.860469
     },
     {
      "name": "DefiLlama",
-     "value": 48801500.102971
+     "value": 49859593.035828
     }
    ],
-   "gap": 0.22
+   "gap": 1.63
   },
   {
    "id": "stables",
@@ -66,10 +66,10 @@
     },
     {
      "name": "DefiLlama",
-     "value": 5126110755.382144
+     "value": 5103601368.071447
     }
    ],
-   "gap": 4.14
+   "gap": 3.71
   },
   {
    "id": "tx",
@@ -101,16 +101,16 @@
     "trading-capital"
    ],
    "unit": "usd",
-   "value": 6334235937.990001,
+   "value": 6334237215.590001,
    "change": -9.7,
-   "asOf": "2026-10-22T12:19:21.272Z",
+   "asOf": "2026-10-22T17:34:44.390Z",
    "window": "7d",
    "en": "DEX volume on Base, 7 days",
    "ru": "Оборот обменников Base за 7 дней",
    "sources": [
     {
      "name": "DefiLlama",
-     "value": 6334235937.990001
+     "value": 6334237215.590001
     }
    ],
    "single": true
@@ -123,7 +123,7 @@
    "unit": "usd",
    "value": 3553653870,
    "change": -4.96,
-   "asOf": "2026-10-22T12:19:21.273Z",
+   "asOf": "2026-10-22T17:34:44.391Z",
    "window": "7d",
    "en": "Aerodrome volume, 7 days",
    "ru": "Оборот Aerodrome за 7 дней",
