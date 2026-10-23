@@ -1,6 +1,6 @@
 {
- "generatedAt": "2026-10-23T05:16:51.880Z",
- "block": 52971631,
+ "generatedAt": "2026-10-23T12:01:20.194Z",
+ "block": 52983766,
  "metrics": [
   {
    "id": "usdc",
@@ -8,22 +8,22 @@
     "usdc-ops"
    ],
    "unit": "usd",
-   "value": 4293230598.670495,
-   "change": -2.41,
-   "asOf": "2026-10-23T05:16:51.489Z",
+   "value": 4291935877.567025,
+   "change": -3.32,
+   "asOf": "2026-10-23T12:01:20.006Z",
    "en": "USDC on Base",
    "ru": "USDC на Base",
    "sources": [
     {
      "name": "USDC contract",
-     "value": 4293230598.670495
+     "value": 4291935877.567025
     },
     {
      "name": "DefiLlama",
-     "value": 4295649925.537752
+     "value": 4299967511.853698
     }
    ],
-   "gap": 0.06
+   "gap": 0.19
   },
   {
    "id": "eurc",
@@ -31,22 +31,45 @@
     "fx-tools"
    ],
    "unit": "eur",
-   "value": 49575025.195563,
-   "change": -4.09,
-   "asOf": "2026-10-23T05:16:51.718Z",
+   "value": 49790571.835116,
+   "change": -3.96,
+   "asOf": "2026-10-23T12:01:20.052Z",
    "en": "EURC on Base",
    "ru": "EURC на Base",
    "sources": [
     {
      "name": "EURC contract",
-     "value": 49575025.195563
+     "value": 49790571.835116
     },
     {
      "name": "DefiLlama",
-     "value": 49575025.195563
+     "value": 49620344.875116
     }
    ],
-   "gap": 0
+   "gap": 0.34
+  },
+  {
+   "id": "stables",
+   "niches": [
+    "treasury"
+   ],
+   "unit": "usd",
+   "value": 4936494667.734363,
+   "change": -2.11,
+   "asOf": "2026-10-22",
+   "en": "Dollar stablecoins on Base",
+   "ru": "Долларовые стейблкоины на Base",
+   "sources": [
+    {
+     "name": "growthepie",
+     "value": 4936494667.734363
+    },
+    {
+     "name": "DefiLlama",
+     "value": 5089406236.596206
+    }
+   ],
+   "gap": 3
   },
   {
    "id": "tx",
@@ -54,23 +77,23 @@
     "wallet-ux"
    ],
    "unit": "count",
-   "value": 8710201.714285715,
-   "change": 11.62,
-   "asOf": "2026-10-21",
+   "value": 8660609.142857144,
+   "change": 13.83,
+   "asOf": "2026-10-22",
    "window": "7d-avg",
    "en": "Transactions a day (7-day average)",
    "ru": "Транзакций в сутки (среднее за 7 дней)",
    "sources": [
     {
      "name": "growthepie",
-     "value": 8710201.714285715
+     "value": 8660609.142857144
     },
     {
      "name": "L2BEAT",
-     "value": 8710899.42857143
+     "value": 8662825.57142857
     }
    ],
-   "gap": 0.01
+   "gap": 0.03
   },
   {
    "id": "dex",
@@ -78,16 +101,16 @@
     "trading-capital"
    ],
    "unit": "usd",
-   "value": 5832172456.070001,
-   "change": -15.55,
-   "asOf": "2026-10-23T05:16:51.723Z",
+   "value": 5858543630.070001,
+   "change": -15.17,
+   "asOf": "2026-10-23T12:01:20.057Z",
    "window": "7d",
    "en": "DEX volume on Base, 7 days",
    "ru": "Оборот обменников Base за 7 дней",
    "sources": [
     {
      "name": "DefiLlama",
-     "value": 5832172456.070001
+     "value": 5858543630.070001
     }
    ],
    "single": true
@@ -100,7 +123,7 @@
    "unit": "usd",
    "value": 3077550977,
    "change": -19.24,
-   "asOf": "2026-10-23T05:16:51.724Z",
+   "asOf": "2026-10-23T12:01:20.057Z",
    "window": "7d",
    "en": "Aerodrome volume, 7 days",
    "ru": "Оборот Aerodrome за 7 дней",
@@ -137,10 +160,5 @@
    "own": true
   }
  ],
- "held": [
-  {
-   "id": "stables",
-   "reason": "growthepie data is from 2026-10-21"
-  }
- ]
+ "held": []
 }
