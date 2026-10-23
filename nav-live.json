@@ -1,6 +1,6 @@
 {
- "generatedAt": "2026-10-23T12:01:20.194Z",
- "block": 52983766,
+ "generatedAt": "2026-10-23T17:24:15.100Z",
+ "block": 52993453,
  "metrics": [
   {
    "id": "usdc",
@@ -8,22 +8,22 @@
     "usdc-ops"
    ],
    "unit": "usd",
-   "value": 4291935877.567025,
-   "change": -3.32,
-   "asOf": "2026-10-23T12:01:20.006Z",
+   "value": 4283442128.823696,
+   "change": -2.62,
+   "asOf": "2026-10-23T17:24:14.709Z",
    "en": "USDC on Base",
    "ru": "USDC на Base",
    "sources": [
     {
      "name": "USDC contract",
-     "value": 4291935877.567025
+     "value": 4283442128.823696
     },
     {
      "name": "DefiLlama",
-     "value": 4299967511.853698
+     "value": 4292462011.9891877
     }
    ],
-   "gap": 0.19
+   "gap": 0.21
   },
   {
    "id": "eurc",
@@ -31,22 +31,22 @@
     "fx-tools"
    ],
    "unit": "eur",
-   "value": 49790571.835116,
-   "change": -3.96,
-   "asOf": "2026-10-23T12:01:20.052Z",
+   "value": 50760046.17516,
+   "change": -2.08,
+   "asOf": "2026-10-23T17:24:14.877Z",
    "en": "EURC on Base",
    "ru": "EURC на Base",
    "sources": [
     {
      "name": "EURC contract",
-     "value": 49790571.835116
+     "value": 50760046.17516
     },
     {
      "name": "DefiLlama",
-     "value": 49620344.875116
+     "value": 50665883.30516
     }
    ],
-   "gap": 0.34
+   "gap": 0.19
   },
   {
    "id": "stables",
@@ -66,10 +66,10 @@
     },
     {
      "name": "DefiLlama",
-     "value": 5089406236.596206
+     "value": 5087017898.275708
     }
    ],
-   "gap": 3
+   "gap": 2.96
   },
   {
    "id": "tx",
@@ -103,7 +103,7 @@
    "unit": "usd",
    "value": 5858543630.070001,
    "change": -15.17,
-   "asOf": "2026-10-23T12:01:20.057Z",
+   "asOf": "2026-10-23T17:24:14.881Z",
    "window": "7d",
    "en": "DEX volume on Base, 7 days",
    "ru": "Оборот обменников Base за 7 дней",
@@ -123,7 +123,7 @@
    "unit": "usd",
    "value": 3077550977,
    "change": -19.24,
-   "asOf": "2026-10-23T12:01:20.057Z",
+   "asOf": "2026-10-23T17:24:14.881Z",
    "window": "7d",
    "en": "Aerodrome volume, 7 days",
    "ru": "Оборот Aerodrome за 7 дней",
