@@ -1,6 +1,6 @@
 {
- "generatedAt": "2026-10-24T16:12:43.979Z",
- "block": 53034507,
+ "generatedAt": "2026-10-24T21:08:45.245Z",
+ "block": 53043382,
  "metrics": [
   {
    "id": "usdc",
@@ -8,22 +8,22 @@
     "usdc-ops"
    ],
    "unit": "usd",
-   "value": 4302239231.391607,
-   "change": -2.76,
-   "asOf": "2026-10-24T16:12:43.742Z",
+   "value": 4296861694.48787,
+   "change": -2.38,
+   "asOf": "2026-10-24T21:08:32.787Z",
    "en": "USDC on Base",
    "ru": "USDC на Base",
    "sources": [
     {
      "name": "USDC contract",
-     "value": 4302239231.391607
+     "value": 4296861694.48787
     },
     {
      "name": "DefiLlama",
-     "value": 4306619102.302037
+     "value": 4298875435.814251
     }
    ],
-   "gap": 0.1
+   "gap": 0.05
   },
   {
    "id": "eurc",
@@ -31,22 +31,22 @@
     "fx-tools"
    ],
    "unit": "eur",
-   "value": 50583400.411893,
-   "change": -3.4,
-   "asOf": "2026-10-24T16:12:43.817Z",
+   "value": 50541400.411893,
+   "change": -3.7,
+   "asOf": "2026-10-24T21:08:33.005Z",
    "en": "EURC on Base",
    "ru": "EURC на Base",
    "sources": [
     {
      "name": "EURC contract",
-     "value": 50583400.411893
+     "value": 50541400.411893
     },
     {
      "name": "DefiLlama",
-     "value": 50661239.821893
+     "value": 50583400.411893
     }
    ],
-   "gap": 0.15
+   "gap": 0.08
   },
   {
    "id": "stables",
@@ -66,10 +66,10 @@
     },
     {
      "name": "DefiLlama",
-     "value": 5099522130.247434
+     "value": 5091803814.377756
     }
    ],
-   "gap": 3.31
+   "gap": 3.17
   },
   {
    "id": "tx",
@@ -103,7 +103,7 @@
    "unit": "usd",
    "value": 5853594993.190001,
    "change": -16.73,
-   "asOf": "2026-10-24T16:12:43.822Z",
+   "asOf": "2026-10-24T21:08:33.009Z",
    "window": "7d",
    "en": "DEX volume on Base, 7 days",
    "ru": "Оборот обменников Base за 7 дней",
@@ -123,7 +123,7 @@
    "unit": "usd",
    "value": 2711899024,
    "change": -30.85,
-   "asOf": "2026-10-24T16:12:43.822Z",
+   "asOf": "2026-10-24T21:08:33.009Z",
    "window": "7d",
    "en": "Aerodrome volume, 7 days",
    "ru": "Оборот Aerodrome за 7 дней",
@@ -143,7 +143,7 @@
  "held": [
   {
    "id": "aero-fees",
-   "reason": "radar data is from 2026-10-21T20:07:37.007Z"
+   "reason": "no answer from https://aero.deftools.xyz/data/fee-rate.json"
   }
  ]
 }
