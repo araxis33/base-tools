@@ -1,6 +1,6 @@
 {
- "generatedAt": "2026-10-25T16:46:40.088Z",
- "block": 53078719,
+ "generatedAt": "2026-10-25T21:11:28.994Z",
+ "block": 53086664,
  "metrics": [
   {
    "id": "usdc",
@@ -8,22 +8,22 @@
     "usdc-ops"
    ],
    "unit": "usd",
-   "value": 4290875317.90308,
-   "change": -1.46,
-   "asOf": "2026-10-25T16:46:27.578Z",
+   "value": 4291257613.050859,
+   "change": -0.56,
+   "asOf": "2026-10-25T21:11:16.760Z",
    "en": "USDC on Base",
    "ru": "USDC на Base",
    "sources": [
     {
      "name": "USDC contract",
-     "value": 4290875317.90308
+     "value": 4291257613.050859
     },
     {
      "name": "DefiLlama",
-     "value": 4306060253.500964
+     "value": 4295192293.868353
     }
    ],
-   "gap": 0.35
+   "gap": 0.09
   },
   {
    "id": "eurc",
@@ -31,22 +31,22 @@
     "fx-tools"
    ],
    "unit": "eur",
-   "value": 50458413.602201,
-   "change": -0.28,
-   "asOf": "2026-10-25T16:46:27.645Z",
+   "value": 50501170.833175,
+   "change": -0.16,
+   "asOf": "2026-10-25T21:11:16.825Z",
    "en": "EURC on Base",
    "ru": "EURC на Base",
    "sources": [
     {
      "name": "EURC contract",
-     "value": 50458413.602201
+     "value": 50501170.833175
     },
     {
      "name": "DefiLlama",
      "value": 50458413.602201
     }
    ],
-   "gap": 0
+   "gap": 0.08
   },
   {
    "id": "stables",
@@ -66,10 +66,10 @@
     },
     {
      "name": "DefiLlama",
-     "value": 5098923182.733237
+     "value": 5088040311.630847
     }
    ],
-   "gap": 3.12
+   "gap": 2.91
   },
   {
    "id": "tx",
@@ -103,7 +103,7 @@
    "unit": "usd",
    "value": 6071175844.050001,
    "change": -14.17,
-   "asOf": "2026-10-25T16:46:27.650Z",
+   "asOf": "2026-10-25T21:11:16.830Z",
    "window": "7d",
    "en": "DEX volume on Base, 7 days",
    "ru": "Оборот обменников Base за 7 дней",
@@ -123,7 +123,7 @@
    "unit": "usd",
    "value": 2567401110,
    "change": -34.83,
-   "asOf": "2026-10-25T16:46:27.651Z",
+   "asOf": "2026-10-25T21:11:16.830Z",
    "window": "7d",
    "en": "Aerodrome volume, 7 days",
    "ru": "Оборот Aerodrome за 7 дней",
