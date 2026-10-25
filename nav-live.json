@@ -1,6 +1,6 @@
 {
- "generatedAt": "2026-10-25T11:57:23.013Z",
- "block": 53070041,
+ "generatedAt": "2026-10-25T16:46:40.088Z",
+ "block": 53078719,
  "metrics": [
   {
    "id": "usdc",
@@ -8,22 +8,22 @@
     "usdc-ops"
    ],
    "unit": "usd",
-   "value": 4300055247.949056,
-   "change": -0.8,
-   "asOf": "2026-10-25T11:57:10.694Z",
+   "value": 4290875317.90308,
+   "change": -1.46,
+   "asOf": "2026-10-25T16:46:27.578Z",
    "en": "USDC on Base",
    "ru": "USDC на Base",
    "sources": [
     {
      "name": "USDC contract",
-     "value": 4300055247.949056
+     "value": 4290875317.90308
     },
     {
      "name": "DefiLlama",
-     "value": 4305218952.523861
+     "value": 4306060253.500964
     }
    ],
-   "gap": 0.12
+   "gap": 0.35
   },
   {
    "id": "eurc",
@@ -31,19 +31,19 @@
     "fx-tools"
    ],
    "unit": "eur",
-   "value": 50565124.320561,
-   "change": -0.07,
-   "asOf": "2026-10-25T11:57:10.795Z",
+   "value": 50458413.602201,
+   "change": -0.28,
+   "asOf": "2026-10-25T16:46:27.645Z",
    "en": "EURC on Base",
    "ru": "EURC на Base",
    "sources": [
     {
      "name": "EURC contract",
-     "value": 50565124.320561
+     "value": 50458413.602201
     },
     {
      "name": "DefiLlama",
-     "value": 50565124.816462
+     "value": 50458413.602201
     }
    ],
    "gap": 0
@@ -66,10 +66,10 @@
     },
     {
      "name": "DefiLlama",
-     "value": 5098035576.434985
+     "value": 5098923182.733237
     }
    ],
-   "gap": 3.1
+   "gap": 3.12
   },
   {
    "id": "tx",
@@ -103,7 +103,7 @@
    "unit": "usd",
    "value": 6071175844.050001,
    "change": -14.17,
-   "asOf": "2026-10-25T11:57:10.799Z",
+   "asOf": "2026-10-25T16:46:27.650Z",
    "window": "7d",
    "en": "DEX volume on Base, 7 days",
    "ru": "Оборот обменников Base за 7 дней",
@@ -123,7 +123,7 @@
    "unit": "usd",
    "value": 2567401110,
    "change": -34.83,
-   "asOf": "2026-10-25T11:57:10.799Z",
+   "asOf": "2026-10-25T16:46:27.651Z",
    "window": "7d",
    "en": "Aerodrome volume, 7 days",
    "ru": "Оборот Aerodrome за 7 дней",
