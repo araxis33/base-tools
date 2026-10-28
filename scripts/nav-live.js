@@ -17,7 +17,7 @@ const RPCS = ['https://mainnet.base.org', 'https://base.drpc.org']; // both answ
 const USDC = '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913';
 const EURC = '0x60a3E35Cc302bFA44Cb288Bc5a4F316Fdb1adb42';
 const WEEK_BLOCKS = 7 * 43200; // 2 s blocks
-const RADAR_FEES = 'https://aero.deftools.xyz/data/fee-rate.json';
+const RADAR_FEES = 'https://aero.deftools.xyz/data/v3.json';
 const UA = { 'user-agent': 'Mozilla/5.0 (deftools navigator; +https://deftools.xyz)' };
 const DAY = 86400000;
 
@@ -155,13 +155,15 @@ async function add(id, build) {
       en: 'Aero volume, 7 days', ru: 'Оборот Aero за 7 дней', sources: ps.map((p) => ({ name: 'DefiLlama · ' + p.name, value: p.total7d })), single: true };
   });
 
-  // What AERO voters earn in pool fees a day: our radar reads every pool's fees from the chain (aero-vote-radar).
+  // What sAERO holders earn in pool fees a day: our radar reads every Aero pool's fees from the chain, hourly, all chains
+  // (aero-vote-radar v3.json; the weekly veAERO fee-rate.json was retired with the vote on 24.10.2026).
   await add('aero-fees', async () => {
     const d = await getJson(RADAR_FEES);
-    if (Date.now() - Date.parse(d.generatedAt) > 2 * DAY) return { held: 'radar data is from ' + d.generatedAt };
-    const v = Object.values(d.pools).reduce((s, p) => s + (p.usdPerDay || 0), 0);
-    return { niches: ['lp-tools'], unit: 'usd', value: v, change: null, asOf: d.generatedAt, window: 'day',
-      en: `Fees paid to AERO voters a day (last ${d.windowHours} h)`, ru: `Комиссии голосующим AERO в сутки (за ${d.windowHours} ч)`,
+    if (Date.now() - Date.parse(d.checkedAt) > 2 * DAY) return { held: 'radar data is from ' + d.checkedAt };
+    const v = (d.gauges || []).reduce((s, p) => s + (p.feesUsdPerDay || 0), 0);
+    if (!v) return { held: 'radar has no pool fees' };
+    return { niches: ['lp-tools'], unit: 'usd', value: v, change: null, asOf: d.checkedAt, window: 'day',
+      en: `Fees paid to sAERO holders a day (last ${d.windowHours} h)`, ru: `Комиссии держателям sAERO в сутки (за ${d.windowHours} ч)`,
       sources: [{ name: 'deftools radar, from the chain', value: v }], own: true };
   });
 
