@@ -452,10 +452,20 @@ function session(){
 
 /* ---------- table ---------- */
 function shareOf(t){ return shares && shares[t.s.replace(/c$/, "")]; }
-function gapOf(t){
+/* A pool that loses 5% or more on a $1,000 round trip has almost nothing in it, so its "price" is not one
+   (PTONc +2079% against the share on 28.10.2026): no price and no gap for it. With no round trip at all
+   (no $1,000 route, or KyberSwap throttled the run, as for MSFTc) only a price 50% off the share says so (CAKEc +1760%). */
+var THIN_LOSS = 5, THIN_GAP = 50;
+function rawGap(t){
   var s = shareOf(t), d = S[t.s].dex, m = (S[t.s].chain && S[t.s].chain.multiplier) || 1;
   return s && s.price && d ? 100 * (d / (s.price * m) - 1) : null;
 }
+function thinOf(t){
+  var rt = S[t.s].rt, g = rawGap(t);
+  return !!(rt ? rt.loss >= THIN_LOSS : g != null && Math.abs(g) >= THIN_GAP);
+}
+function gapOf(t){ return thinOf(t) ? null : rawGap(t); }
+function baseUsd(t){ return thinOf(t) ? '<span class="mut">pool too thin</span>' : usd(S[t.s].dex); }
 function st0(t){ return S[t.s] || {}; }
 function flags(t){
   var c = S[t.s].chain || {}, out = ['<span class="tag g">&#10003; official</span>'];
@@ -479,7 +489,7 @@ function render(){
     var rcls = !rt ? "mut" : rt.loss < 0.3 ? "ok" : rt.loss < 1 ? "warn" : "bad";
     return '<tr class="row' + (st.open ? ' open' : '') + '" data-s="' + t.s + '">' +
       '<td><span class="sym">' + t.s + '</span><span class="co">' + esc(t.co) + '</span></td>' +
-      '<td class="num">' + usd(st.dex) + '</td>' +
+      '<td class="num">' + baseUsd(t) + '</td>' +
       '<td class="num hm">' + (s && s.price ? usd(s.price) + (open ? '' : ' <span class="mut">close</span>') : '—') + '</td>' +
       '<td class="num ' + gcls + '">' + pct(g) + '</td>' +
       '<td class="num ' + rcls + '">' + (rt ? rt.loss.toFixed(2) + '%' : st.dex === undefined ? '…' : '—') + '</td>' +
@@ -510,7 +520,7 @@ function detail(t){
   h += '</div>';
 
   h += '<div class="box"><h3>Price</h3>' +
-    kv("On Base", usd(st.dex) + (st.at ? ' <span class="mut">· ' + ago(st.at / 1000) + '</span>' : '')) +
+    kv("On Base", baseUsd(t) + (st.at ? ' <span class="mut">· ' + ago(st.at / 1000) + '</span>' : '')) +
     kv(open ? "Real share, live" : "Real share, last close", s && s.price ? usd(s.price) : "—") +
     kv("Gap", pct(g)) +
     kv("Chainlink feed", c.oracle ? usd(c.oracle) + ' <span class="mut">· ' + ago(c.oracleAt) + '</span>' : FEEDS[t.s] ? "—" : '<span class="mut">none yet for this stock</span>') +
