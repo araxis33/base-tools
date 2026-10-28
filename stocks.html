@@ -501,6 +501,14 @@ function render(){
 }
 
 function kv(k, v){ return '<div class="kv"><span>' + k + '</span><span class="num">' + v + '</span></div>'; }
+/* the $1,000 round trip from the Worker, and under it the one for the visitor's own amount once they asked for it */
+function rtHtml(t){
+  var st = S[t.s];
+  if (st.mine && st.mine.v === 1000) return kv("$1,000 round trip", st.mine.text);
+  var h = kv("$1,000 round trip", st.rt ? st.rt.loss.toFixed(2) + "%" : "—");
+  if (st.mine) h += kv("$" + st.mine.v.toLocaleString("en-US") + " round trip", st.mine.text);
+  return h;
+}
 function detail(t){
   var st = S[t.s], c = st.chain || {}, s = shareOf(t), lk = st.look, g = gapOf(t);
   var h = '<div class="grid">';
@@ -527,8 +535,8 @@ function detail(t){
     '<p class="mut">The feed updates when the price moves 0.5% or once a day, 24/5, so hours without an update are normal.</p></div>';
 
   h += '<div class="box"><h3>What a trade costs</h3>' +
-    '<div id="rt-' + t.s + '">' + kv("$1,000 round trip", st.rt ? st.rt.loss.toFixed(2) + "%" : "—") + '</div>' +
-    '<p style="margin-top:8px">Your amount: <input class="amt" id="amt-' + t.s + '" type="number" min="10" step="10" value="5000"> <button class="btn" data-rt="' + t.s + '">Check</button></p>' +
+    '<div id="rt-' + t.s + '">' + rtHtml(t) + '</div>' +
+    '<p style="margin-top:8px">Your amount: <input class="amt" id="amt-' + t.s + '" type="number" min="10" step="10" value="' + (st.mine ? st.mine.v : 5000) + '"> <button class="btn" data-rt="' + t.s + '">Check</button></p>' +
     (st.rt && st.rt.venues.length ? '<p class="mut">Best route now: ' + esc(st.rt.venues.join(", ")) + '.</p>' : '') +
     '<p class="mut">Buy, then sell everything straight back, at live quotes across every pool on Base. To buy for real, <a href="/thesis.html?b=' + t.s + '-100&a=1000">open it in Thesis</a>: it routes through the deepest pool and you sign in your own wallet.</p></div>';
 
@@ -578,10 +586,13 @@ document.addEventListener("click", function(e){
   if (rtb) {
     var t = TOKENS.filter(function(x){ return x.s === rtb.dataset.rt; })[0], v = parseFloat($("amt-" + t.s).value);
     if (!(v >= 10)) return;
-    $("rt-" + t.s).innerHTML = kv("$" + v.toLocaleString("en-US") + " round trip", "…");
+    /* kept on the stock, not only in the DOM: the venue comparison re-renders the card and used to wipe it (28.10.2026) */
+    var mine = S[t.s].mine = {v: v, text: "…"};
+    var show = function(){ var el = $("rt-" + t.s); if (el) el.innerHTML = rtHtml(t); };
+    show();
     loadVenues(t, v);
-    roundTrip(t, v).then(function(x){ $("rt-" + t.s).innerHTML = kv("$" + v.toLocaleString("en-US") + " round trip", x.loss.toFixed(2) + "% · " + usd(v * x.loss / 100)); })
-      .catch(function(){ $("rt-" + t.s).innerHTML = kv("$" + v.toLocaleString("en-US") + " round trip", "no route for that size"); });
+    roundTrip(t, v).then(function(x){ mine.text = x.loss.toFixed(2) + "% · " + usd(v * x.loss / 100); show(); })
+      .catch(function(){ mine.text = "no route for that size"; show(); });
     return;
   }
   if (ab) {
