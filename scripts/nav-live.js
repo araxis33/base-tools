@@ -144,13 +144,15 @@ async function add(id, build) {
       en: 'DEX volume on Base, 7 days', ru: 'Оборот обменников Base за 7 дней', sources: [{ name: 'DefiLlama', value: dexes.total7d }], single: true };
   });
 
+  // Since 22.10.2026 Aerodrome is Aero: DefiLlama lists Aerodrome V1/Slipstream and Aero Slipstream/Basic under one parent.
+  // The Aero ones have no week before (change is null), so they count as zero in it.
   await add('aero-volume', async () => {
-    const ps = ((dexes && dexes.protocols) || []).filter((p) => /^Aerodrome/.test(p.name) && p.total7d);
+    const ps = ((dexes && dexes.protocols) || []).filter((p) => (p.parentProtocol === 'parent#aero-protocol' || /^Aero(drome)?\b/.test(p.name)) && p.total7d);
     if (!ps.length) return { held: 'DefiLlama did not answer' };
     const now = ps.reduce((s, p) => s + p.total7d, 0);
-    const before = ps.reduce((s, p) => s + (p.change_7dover7d != null ? p.total7d / (1 + p.change_7dover7d / 100) : NaN), 0);
-    return { niches: ['lp-tools'], unit: 'usd', value: now, change: Number.isFinite(before) ? pct(now, before) : null, asOf: new Date().toISOString(), window: '7d',
-      en: 'Aerodrome volume, 7 days', ru: 'Оборот Aerodrome за 7 дней', sources: ps.map((p) => ({ name: 'DefiLlama · ' + p.name, value: p.total7d })), single: true };
+    const before = ps.reduce((s, p) => s + (p.change_7dover7d != null ? p.total7d / (1 + p.change_7dover7d / 100) : 0), 0);
+    return { niches: ['lp-tools'], unit: 'usd', value: now, change: before > 0 ? pct(now, before) : null, asOf: new Date().toISOString(), window: '7d',
+      en: 'Aero volume, 7 days', ru: 'Оборот Aero за 7 дней', sources: ps.map((p) => ({ name: 'DefiLlama · ' + p.name, value: p.total7d })), single: true };
   });
 
   // What AERO voters earn in pool fees a day: our radar reads every pool's fees from the chain (aero-vote-radar).
