@@ -9,10 +9,17 @@
   var AMOUNTS = [1, 5, 10];
 
   var css =
-    '.sup-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:999px;cursor:pointer;' +
-      'border:1px solid #ffcf40;background:rgba(255,207,64,.1);color:#ffcf40;font:inherit;font-size:13px;font-weight:700}' +
+    '.sup-btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:999px;cursor:pointer;white-space:nowrap;' +
+      'border:1px solid #ffcf40;background:rgba(255,207,64,.1);color:#ffcf40;font:inherit;font-size:13px;font-weight:700;line-height:1.3}' +
     '.sup-btn:hover{background:rgba(255,207,64,.2)}' +
-    '.sup-row{margin-top:12px}' +
+    '.sup-row{display:flex;align-items:center;gap:10px}' +
+    '.sup-own{display:flex;gap:8px;margin-top:8px}' +
+    '.sup-own label{flex:1;display:flex;align-items:center;gap:4px;border:1px solid #2a3566;background:#0a0e1c;border-radius:12px;padding:0 12px;' +
+      'color:#9aa4cf;font-size:16px;font-weight:800}' +
+    '.sup-own input{flex:1;min-width:0;background:none;border:0;outline:0;color:#fff;font:inherit;font-size:16px;font-weight:800;padding:11px 0}' +
+    '.sup-own button{padding:0 18px;border-radius:12px;border:1px solid #ffcf40;background:rgba(255,207,64,.12);color:#ffcf40;font:inherit;' +
+      'font-size:15px;font-weight:800;cursor:pointer}' +
+    '.sup-own button:disabled{opacity:.5;cursor:default}' +
     '.sup-back{position:fixed;inset:0;z-index:1000;background:rgba(4,6,14,.72);display:flex;align-items:center;justify-content:center;padding:16px}' +
     '.sup-back[hidden]{display:none}' +
     '.sup-box{width:100%;max-width:400px;background:#111730;border:1px solid #2a3566;border-radius:16px;padding:20px;color:#e8ecff;' +
@@ -42,17 +49,18 @@
   function wallet() { return window.ethereum || window.coinbaseWalletExtension || null; }
 
   function init() {
-    var foot = document.querySelector('footer');
-    if (!foot) return;
+    var head = document.querySelector('header');
+    if (!head || !head.querySelector('nav, .head-links, .lang')) return;
     var style = el('style'); style.textContent = css; document.head.appendChild(style);
 
-    var btn = el('button', 'sup-btn', '&#9829; Support deftools');
+    var btn = el('button', 'sup-btn', '&#9829; Support');
     btn.type = 'button';
-    // The home page has a links row to join; elsewhere the footer is one line of
-    // text (on check.html redrawn on language switch), so the button gets its own row.
-    var slot = foot.querySelector('.wrap > span');
-    if (!slot) { slot = el('div', (foot.querySelector('.wrap') ? 'wrap ' : '') + 'sup-row'); foot.appendChild(slot); }
-    slot.appendChild(btn);
+    // Top right, at the end of the header's links: in the footer almost nobody
+    // scrolled down to it. check.html has no links, only the language switch, and
+    // navigator.html hides its links on phones, so there it sits by the switch too.
+    var nav = head.querySelector('nav, .head-links'), lang = head.querySelector('.lang');
+    if (nav && !lang) nav.appendChild(btn);
+    else { var row = el('div', 'sup-row'); lang.parentNode.insertBefore(row, lang); row.appendChild(btn); row.appendChild(lang); }
 
     var back = el('div', 'sup-back'); back.hidden = true;
     var box = el('div', 'sup-box');
@@ -62,6 +70,8 @@
       '<div class="sup-sub">All the tools here are free. If one helped you, send a coffee in USDC on Base — it goes straight to my wallet.</div></div>' +
       '<button class="sup-x" type="button" aria-label="Close">&times;</button></div>' +
       '<div class="sup-amts"></div>' +
+      '<div class="sup-own"><label>$<input type="text" inputmode="decimal" placeholder="Other amount" aria-label="Other amount in USDC"></label>' +
+      '<button type="button">Send</button></div>' +
       '<div class="sup-note">Your wallet opens to confirm. Gas is a fraction of a cent.</div>' +
       '<div class="sup-stat"></div>' +
       '<div class="sup-or">Or send any amount from any wallet on Base:</div>' +
@@ -70,13 +80,25 @@
 
     var stat = box.querySelector('.sup-stat'), amts = box.querySelector('.sup-amts');
     function status(text, cls) { stat.className = 'sup-stat' + (cls ? ' ' + cls : ''); stat.innerHTML = text; }
-    function lock(on) { Array.prototype.forEach.call(amts.querySelectorAll('button'), function (b) { b.disabled = on; }); }
+    function lock(on) { Array.prototype.forEach.call(box.querySelectorAll('.sup-amts button, .sup-own button'), function (b) { b.disabled = on; }); }
 
     AMOUNTS.forEach(function (n) {
       var b = el('button', null, '$' + n); b.type = 'button';
-      b.onclick = function () { send(n); };
+      b.onclick = function () { send(BigInt(n) * 1000000n); };
       amts.appendChild(b);
     });
+
+    // Own amount: dollars with a dot or a comma, up to 6 decimals (USDC's), read
+    // as text so 0.1 does not turn into 0.09999… on the way to base units.
+    var own = box.querySelector('.sup-own input');
+    function sendOwn() {
+      var m = own.value.trim().replace(',', '.').match(/^(\d{0,9})(?:\.(\d{0,6}))?$/);
+      var units = m ? BigInt(m[1] || '0') * 1000000n + BigInt(((m[2] || '') + '000000').slice(0, 6)) : 0n;
+      if (units <= 0n) { status('Type an amount, for example 3 or 2.5', 'bad'); own.focus(); return; }
+      send(units);
+    }
+    box.querySelector('.sup-own button').onclick = sendOwn;
+    own.addEventListener('keydown', function (e) { if (e.key === 'Enter') sendOwn(); });
 
     function open() { status(''); back.hidden = false; }
     function close() { back.hidden = true; }
@@ -92,10 +114,10 @@
       });
     };
 
-    function send(n) {
+    function send(amount) {
       var p = wallet();
       if (!p) { status('No wallet found in this browser. Copy the address below and send from any wallet.', 'bad'); return; }
-      var from, amount = BigInt(n) * 1000000n;
+      var from;
       lock(true);
       p.request({ method: 'eth_requestAccounts' }).then(function (acc) {
         from = acc[0];
