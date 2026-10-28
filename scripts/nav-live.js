@@ -157,7 +157,7 @@ async function add(id, build) {
 
   // What sAERO holders earn in pool fees a day: our radar reads every Aero pool's fees from the chain, hourly, all chains
   // (aero-vote-radar v3.json; the weekly veAERO fee-rate.json was retired with the vote on 24.10.2026).
-  await add('aero-fees', async () => {
+  await add('saero-fees', async () => {
     const d = await getJson(RADAR_FEES);
     if (Date.now() - Date.parse(d.checkedAt) > 2 * DAY) return { held: 'radar data is from ' + d.checkedAt };
     const v = (d.gauges || []).reduce((s, p) => s + (p.feesUsdPerDay || 0), 0);
