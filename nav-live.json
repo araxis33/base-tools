@@ -1,6 +1,6 @@
 {
- "generatedAt": "2026-10-28T09:47:58.949Z",
- "block": 53195759,
+ "generatedAt": "2026-10-28T09:55:26.412Z",
+ "block": 53195988,
  "metrics": [
   {
    "id": "usdc",
@@ -8,15 +8,15 @@
     "usdc-ops"
    ],
    "unit": "usd",
-   "value": 4383276780.432013,
-   "change": 2.2,
-   "asOf": "2026-10-28T09:47:46.520Z",
+   "value": 4383207451.031131,
+   "change": 2.21,
+   "asOf": "2026-10-28T09:55:26.038Z",
    "en": "USDC on Base",
    "ru": "USDC на Base",
    "sources": [
     {
      "name": "USDC contract",
-     "value": 4383276780.432013
+     "value": 4383207451.031131
     },
     {
      "name": "DefiLlama",
@@ -33,7 +33,7 @@
    "unit": "eur",
    "value": 49187437.385744,
    "change": -1.23,
-   "asOf": "2026-10-28T09:47:46.719Z",
+   "asOf": "2026-10-28T09:55:26.132Z",
    "en": "EURC on Base",
    "ru": "EURC на Base",
    "sources": [
@@ -103,7 +103,7 @@
    "unit": "usd",
    "value": 6100356221.230004,
    "change": -8.23,
-   "asOf": "2026-10-28T09:47:46.723Z",
+   "asOf": "2026-10-28T09:55:26.136Z",
    "window": "7d",
    "en": "DEX volume on Base, 7 days",
    "ru": "Оборот обменников Base за 7 дней",
@@ -123,7 +123,7 @@
    "unit": "usd",
    "value": 3261943301.6,
    "change": -10.98,
-   "asOf": "2026-10-28T09:47:46.723Z",
+   "asOf": "2026-10-28T09:55:26.137Z",
    "window": "7d",
    "en": "Aero volume, 7 days",
    "ru": "Оборот Aero за 7 дней",
@@ -146,12 +146,27 @@
     }
    ],
    "single": true
-  }
- ],
- "held": [
+  },
   {
    "id": "aero-fees",
-   "reason": "no answer from https://aero.deftools.xyz/data/fee-rate.json"
+   "niches": [
+    "lp-tools"
+   ],
+   "unit": "usd",
+   "value": 161824.56944739164,
+   "change": -23.5,
+   "asOf": "2026-10-28T09:47:16.450Z",
+   "window": "day",
+   "en": "Fees paid to sAERO holders a day (last 96 h)",
+   "ru": "Комиссии держателям sAERO в сутки (за 96 ч)",
+   "sources": [
+    {
+     "name": "deftools radar, from the chain",
+     "value": 161824.56944739164
+    }
+   ],
+   "own": true
   }
- ]
+ ],
+ "held": []
 }
