@@ -171,6 +171,13 @@ var TOKENS = ThesisCore.TOKENS;
 var USDC = "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913";
 var KYBER = "https://aggregator-api.kyberswap.com/base/api/v1/routes";
 var WORKER = "https://deftools-check.araxis67.workers.dev";
+/* PendleLoop "Loop to Long" markets on Base (28.10.2026), built on Aave v4's Coinbase Stocks spoke */
+var PENDLE = {
+  NVDAc: "0x4b791ef48a542d7f5992b478c1c5ad162be6fde96f754576b2e0367aaca253bd", METAc: "0xe7176410fedcbdfb48a3b67a9ba335b5f90755735c4177cc86355943f75bfe18",
+  AAPLc: "0xe30ab2483e37a5406bd5c2c84252438ca1e022854dfa0b7604dc92a6a45dd8ee", GOOGLc: "0x171bcba74582a9ea038c4c244b6d60837ecfbf927b4583397be9c7e36c78fff6",
+  AMZNc: "0x1c9ebdca05eef60d2b6191d080e814e3ba6d4d9f62c95a2972e6e9c06d76c674", MSFTc: "0xaacb997d6139b5e7df25d2fa3a5fc383676e50fd1329694a43d33d8c2fe3da65",
+  TSLAc: "0x0885710dd7c62c7ca70fe8f8889388fab75a5ce4ef96919898e645a00f8d0830"
+};
 var RPCS = ["https://base-rpc.publicnode.com", "https://mainnet.base.org"];
 var POLICY_REGISTRY = "0x8453000000000000000000000000000000000002";
 /* Chainlink "Coinbase <ticker>" feeds on Base: 24/5, 0.5% deviation, 24h heartbeat. */
@@ -230,6 +237,7 @@ function loadData(){
       if ("dex" in x) { S[t.s].dex = x.dex; S[t.s].rt = x.rt; S[t.s].at = x.ts; }
       if (x.chain) S[t.s].chain = x.chain;
       if (x.morpho) S[t.s].morpho = x.morpho;
+      if (x.aave) S[t.s].aave = x.aave;
     });
   }).catch(function(){});
 }
@@ -482,9 +490,15 @@ function flags(t){
   if (lk && lk.fakes.length) out.push('<span class="tag r">' + lk.fakes.length + ' fake' + (lk.fakes.length > 1 ? 's' : '') + ' around</span>');
   return out.join("");
 }
+/* every place that lends against the stock, Aave and Morpho, the highest loan-to-value first */
+function lenders(st){
+  return (st.aave || []).map(function(m){ return {name: "Aave", ltv: m.ltv, apy: m.apy}; })
+    .concat((st.morpho || []).map(function(m){ return {name: "Morpho", ltv: m.ltv, apy: m.apy}; }))
+    .sort(function(a, b){ return b.ltv - a.ltv; });
+}
 function render(){
   var html = TOKENS.map(function(t){
-    var st = S[t.s], s = shareOf(t), g = gapOf(t), rt = st.rt, best = (st.morpho || [])[0];
+    var st = S[t.s], s = shareOf(t), g = gapOf(t), rt = st.rt, best = lenders(st)[0];
     var gcls = g == null ? "mut" : Math.abs(g) < 0.5 ? "ok" : Math.abs(g) < 1 ? "warn" : "bad";
     var rcls = !rt ? "mut" : rt.loss < 0.3 ? "ok" : rt.loss < 1 ? "warn" : "bad";
     return '<tr class="row' + (st.open ? ' open' : '') + '" data-s="' + t.s + '">' +
@@ -493,7 +507,7 @@ function render(){
       '<td class="num hm">' + (s && s.price ? usd(s.price) + (open ? '' : ' <span class="mut">close</span>') : '—') + '</td>' +
       '<td class="num ' + gcls + '">' + pct(g) + '</td>' +
       '<td class="num ' + rcls + '">' + (rt ? rt.loss.toFixed(2) + '%' : st.dex === undefined ? '…' : '—') + '</td>' +
-      '<td class="num hm">' + (best ? 'up to ' + best.ltv.toFixed(0) + '% · ' + best.apy.toFixed(1) + '%' : st.morpho ? '<span class="mut">no market</span>' : '…') + '</td>' +
+      '<td class="num hm">' + (best ? 'up to ' + best.ltv.toFixed(0) + '% · ' + best.apy.toFixed(1) + '%' : st.morpho || st.aave ? '<span class="mut">no market</span>' : '…') + '</td>' +
       '<td><span class="go"><span class="lbl">' + (st.open ? 'Close' : 'Full check') + '</span><span class="lbl-s">' + (st.open ? 'Close' : 'Check') + '</span><span class="chev">&#8250;</span></span></td></tr>' +
       (st.open ? '<tr class="detail"><td colspan="7">' + detail(t) + '</td></tr>' : '');
   }).join("");
@@ -543,11 +557,21 @@ function detail(t){
   h += '<div class="box"><h3>Where it is cheapest</h3><div>' + venuesHtml(t) + '</div></div>';
 
   h += '<div class="box"><h3>Borrow against it</h3>';
+  (st.aave || []).forEach(function(m){ h += kv('Aave · ' + esc(m.loan) + ' up to ' + m.ltv.toFixed(0) + '%', m.apy.toFixed(2) + '% · ' + usd(m.free, 0) + ' free'); });
+  if (st.aave && st.aave.length) h += '<p class="mut">Pledge ' + t.s + ' in Aave&rsquo;s ' + esc(st.aave[0].spoke) + ' market and borrow ' + esc(st.aave[0].loan) + ' without selling.</p>';
   if (st.morpho && st.morpho.length) {
     st.morpho.slice(0, 3).forEach(function(m){ h += kv('Morpho · ' + m.loan + ' up to ' + m.ltv.toFixed(0) + '%', m.apy.toFixed(2) + '% · ' + usd(m.free, 0) + ' free'); });
     h += '<p class="mut">Pledge ' + t.s + ', borrow ' + esc(st.morpho[0].loan) + ' without selling. <a href="https://app.morpho.org/base/market/' + st.morpho[0].id + '" target="_blank" rel="noopener">Open on Morpho</a>. Markets are run by independent curators and closed to US persons.</p>';
-  } else h += '<p class="mut">No live Morpho market takes ' + t.s + ' as collateral yet.</p>';
+  }
+  if (!lenders(st).length) h += '<p class="mut">No live Aave or Morpho market takes ' + t.s + ' as collateral yet.</p>';
   h += '</div>';
+
+  /* Leverage: PendleLoop borrows on Aave and buys more of the stock, over and over, in one transaction. */
+  if (PENDLE[t.s]) h += '<div class="box"><h3>Hold it with leverage</h3>' +
+    '<p>PendleLoop pledges your ' + t.s + ' on Aave, borrows USDC and buys more ' + t.s + ', in one go, so you hold a bigger position than you paid for.' +
+    (st.rt ? ' Each buy goes through the pools on Base: $1,000 in and out costs ' + st.rt.loss.toFixed(2) + '% right now.' : '') + '</p>' +
+    '<p class="mut">Leverage comes with a liquidation price. Base trades 24/7 while the US market is shut, so a Monday open can move ' + t.s + ' in one step. Loop rewards are a campaign and end.</p>' +
+    '<p style="margin-top:10px"><a class="buy" href="https://app.pendle.finance/trade/loop/' + PENDLE[t.s] + '/deposit?chain=base" target="_blank" rel="noopener">Loop ' + t.s + ' on PendleLoop &rarr;</a></p></div>';
 
   h += '<div class="box"><h3>What you own</h3>' +
     '<p>A claim on one real ' + esc(t.co) + ' share held 1:1 by Alpaca Securities, under Abu Dhabi Global Market rules. Dividends and splits change the token-to-share ratio instead of paying out: today 1 token = ' + (c.multiplier ? c.multiplier.toFixed(4) : '—') + ' share.</p>' +

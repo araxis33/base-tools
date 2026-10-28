@@ -11,6 +11,7 @@ import core from '../thesis-core.js';
 export const DATA_CRON = '*/10 * * * *';
 const KEY_DATA = 'stocks:data';
 const PARTS = 3;
+const KEEP_MS = 2 * 3600 * 1000;
 const USDC = '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913';
 const KYBER = 'https://aggregator-api.kyberswap.com/base/api/v1/routes';
 const RPCS = ['https://base-rpc.publicnode.com', 'https://mainnet.base.org'];
@@ -125,29 +126,55 @@ async function readMorpho() {
   return out;
 }
 
+// Aave v4 reserves on Base that take the stock as collateral (28.10.2026: the "Coinbase Stocks"
+// spoke, the market PendleLoop loops through). Each comes with what that spoke lends: USDC.
+async function readAave() {
+  const q = '{ reserves(request:{query:{chainIds:[8453]}, filter:ALL, orderBy:{assetName:ASC}}) { canBorrow canUseAsCollateral spoke { name address }' +
+    ' asset { underlying { address info { symbol } } } settings { collateralFactor { value } } summary { borrowApy { value } borrowable { amount { value } } } } }';
+  const r = await fetch('https://api.v4.aave.com/graphql', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ query: q }) });
+  const j = await r.json();
+  if (!j.data || !j.data.reserves) throw new Error('aave');
+  const rs = j.data.reserves, out = {};
+  core.TOKENS.forEach((t) => { out[t.s] = []; });
+  rs.forEach((x) => {
+    const t = core.TOKENS.find((k) => k.a.toLowerCase() === x.asset.underlying.address.toLowerCase());
+    if (!t || !x.canUseAsCollateral) return;
+    rs.filter((y) => y.canBorrow && y.spoke.address === x.spoke.address).forEach((y) => out[t.s].push({
+      spoke: x.spoke.name, ltv: 100 * Number(x.settings.collateralFactor.value), loan: y.asset.underlying.info.symbol,
+      apy: 100 * Number(y.summary.borrowApy.value), free: Number(y.summary.borrowable.amount.value) }));
+  });
+  return out;
+}
+
 // One run: a third of the stocks quoted; the first third also refreshes chain and Morpho.
 // What a run could not get keeps its last value, with its own time.
 export async function refreshStockData(env, part, now = Date.now()) {
   const slice = core.TOKENS.filter((t, i) => i % PARTS === part);
-  budget = part === 0 ? 39 : 49; // 50 per run, less the chain reads (5 batches, up to 2 nodes each) and Morpho (1)
+  budget = part === 0 ? 38 : 49; // 50 per run, less the chain reads (5 batches, up to 2 nodes each), Morpho (1) and Aave (1)
   const quotes = [];
   for (const t of slice) quotes.push([t.s, await quoteStock(t)]); // one stock at a time: parallel calls trip KyberSwap's limit
-  const [chain, morpho] = part === 0 ? await Promise.all([readChain().catch(() => null), readMorpho().catch(() => null)]) : [null, null];
+  const [chain, morpho, aave] = part === 0 ? await Promise.all([readChain().catch(() => null), readMorpho().catch(() => null), readAave().catch(() => null)]) : [null, null, null];
   let old = {};
   try { old = JSON.parse((await env.QUOTA.get(KEY_DATA)) || '{}'); } catch (e) { /* start over */ }
   const items = old.items || {};
   let quoted = 0;
   for (const [s, q] of quotes) {
     const it = items[s] || (items[s] = {});
-    if (q.dex != null || q.rt != null) { quoted++; it.dex = q.dex; it.rt = q.rt; it.ts = now; }
+    if (q.dex != null || q.rt != null) {
+      quoted++; it.ts = now;
+      // One leg throttled (28.10: METAc lost its round trip while its price came through): keep its last value up to two hours.
+      if (q.dex != null) { it.dex = q.dex; it.dexTs = now; } else if (!(now - (it.dexTs || 0) < KEEP_MS)) it.dex = null;
+      if (q.rt != null) { it.rt = q.rt; it.rtTs = now; } else if (!(now - (it.rtTs || 0) < KEEP_MS)) it.rt = null;
+    }
     // No route twice in a row, or never a route: the page says "no route to buy it".
     else if (!it.ts || it.miss) { it.dex = null; it.rt = null; it.ts = now; }
     it.miss = q.dex == null && q.rt == null;
   }
   if (chain) for (const s in chain) (items[s] || (items[s] = {})).chain = chain[s];
   if (morpho) for (const s in morpho) (items[s] || (items[s] = {})).morpho = morpho[s];
+  if (aave) for (const s in aave) (items[s] || (items[s] = {})).aave = aave[s];
   await env.QUOTA.put(KEY_DATA, JSON.stringify({ ts: now, items }));
-  return { part, quoted, of: slice.length, chain: !!chain, morpho: !!morpho };
+  return { part, quoted, of: slice.length, chain: !!chain, morpho: !!morpho, aave: !!aave };
 }
 
 export async function stockDataResponse(env) {
