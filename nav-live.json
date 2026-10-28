@@ -1,6 +1,6 @@
 {
- "generatedAt": "2026-10-28T06:13:12.986Z",
- "block": 53189316,
+ "generatedAt": "2026-10-28T09:47:58.949Z",
+ "block": 53195759,
  "metrics": [
   {
    "id": "usdc",
@@ -8,22 +8,22 @@
     "usdc-ops"
    ],
    "unit": "usd",
-   "value": 4363352632.932218,
-   "change": 1.72,
-   "asOf": "2026-10-28T06:13:00.754Z",
+   "value": 4383276780.432013,
+   "change": 2.2,
+   "asOf": "2026-10-28T09:47:46.520Z",
    "en": "USDC on Base",
    "ru": "USDC на Base",
    "sources": [
     {
      "name": "USDC contract",
-     "value": 4363352632.932218
+     "value": 4383276780.432013
     },
     {
      "name": "DefiLlama",
-     "value": 4365923889.967868
+     "value": 4360593112.329688
     }
    ],
-   "gap": 0.06
+   "gap": 0.52
   },
   {
    "id": "eurc",
@@ -31,15 +31,15 @@
     "fx-tools"
    ],
    "unit": "eur",
-   "value": 49187437.42628,
-   "change": -1.34,
-   "asOf": "2026-10-28T06:13:00.844Z",
+   "value": 49187437.385744,
+   "change": -1.23,
+   "asOf": "2026-10-28T09:47:46.719Z",
    "en": "EURC on Base",
    "ru": "EURC на Base",
    "sources": [
     {
      "name": "EURC contract",
-     "value": 49187437.42628
+     "value": 49187437.385744
     },
     {
      "name": "DefiLlama",
@@ -66,10 +66,10 @@
     },
     {
      "name": "DefiLlama",
-     "value": 5142802603.9938755
+     "value": 5137475948.361393
     }
    ],
-   "gap": 3.2
+   "gap": 3.1
   },
   {
    "id": "tx",
@@ -101,16 +101,16 @@
     "trading-capital"
    ],
    "unit": "usd",
-   "value": 6100356226.230004,
+   "value": 6100356221.230004,
    "change": -8.23,
-   "asOf": "2026-10-28T06:13:00.849Z",
+   "asOf": "2026-10-28T09:47:46.723Z",
    "window": "7d",
    "en": "DEX volume on Base, 7 days",
    "ru": "Оборот обменников Base за 7 дней",
    "sources": [
     {
      "name": "DefiLlama",
-     "value": 6100356226.230004
+     "value": 6100356221.230004
     }
    ],
    "single": true
@@ -121,12 +121,12 @@
     "lp-tools"
    ],
    "unit": "usd",
-   "value": 1608901536,
-   "change": -56.09,
-   "asOf": "2026-10-28T06:13:00.850Z",
+   "value": 3261943301.6,
+   "change": -10.98,
+   "asOf": "2026-10-28T09:47:46.723Z",
    "window": "7d",
-   "en": "Aerodrome volume, 7 days",
-   "ru": "Оборот Aerodrome за 7 дней",
+   "en": "Aero volume, 7 days",
+   "ru": "Оборот Aero за 7 дней",
    "sources": [
     {
      "name": "DefiLlama · Aerodrome V1",
@@ -135,6 +135,14 @@
     {
      "name": "DefiLlama · Aerodrome Slipstream",
      "value": 1571865128
+    },
+    {
+     "name": "DefiLlama · Aero Slipstream",
+     "value": 1638717498
+    },
+    {
+     "name": "DefiLlama · Aero Basic",
+     "value": 14324267.6
     }
    ],
    "single": true
