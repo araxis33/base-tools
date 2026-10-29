@@ -16,7 +16,7 @@
 // Secrets: GEMINI_API_KEY, GROQ_API_KEY, TAVILY_API_KEY (optional). KV: QUOTA.
 
 import { BOARDS_CRON, STOCKS_CRON, refreshBoards, refreshStocks, requestSpare, boardsResponse, poolsResponse } from './boards.js';
-import { DATA_CRON, refreshStockData, stockDataResponse } from './stockdata.js';
+import { DATA_CRON, refreshStockData, stockDataResponse, storeQuotes } from './stockdata.js';
 import { dex } from './dex.js';
 
 const LIMIT = 3;
@@ -223,6 +223,14 @@ export default {
       const body = await boardsResponse(env);
       if (!body) return json(req, { error: 'not built yet' }, 503);
       return new Response(body, { headers: { 'content-type': 'application/json', 'cache-control': 'public, max-age=60', ...cors(req) } });
+    }
+    // KyberSwap quotes from GitHub Actions (stock-quotes.yml): only with the shared key.
+    if (url.pathname === '/stock-quotes' && req.method === 'POST') {
+      if (!env.QUOTES_KEY || (req.headers.get('x-quotes-key') || '').trim() !== env.QUOTES_KEY.trim()) return json(req, { error: 'forbidden' }, 403);
+      let body = null;
+      try { body = await req.json(); } catch (e) { /* not JSON */ }
+      if (!body || !Array.isArray(body.quotes)) return json(req, { error: 'quotes expected' }, 400);
+      return json(req, await storeQuotes(env, body.quotes));
     }
     if (url.pathname === '/stock-pools' || url.pathname === '/stock-data') {
       const body = await (url.pathname === '/stock-pools' ? poolsResponse(env) : stockDataResponse(env));

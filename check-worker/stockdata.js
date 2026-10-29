@@ -2,15 +2,14 @@
 // KyberSwap ~108 times one stock after another, so the table took a minute or two
 // to fill and broke when KyberSwap throttled. Now the page reads GET /stock-data.
 //
-// The free plan allows 50 requests per run: a run quotes a third of the stocks
-// (12 x 3 KyberSwap calls); the first third also reads the chain and Morpho.
-// Every 10 minutes, so each stock is fresh within half an hour.
+// The KyberSwap quotes come from GitHub Actions (quoteStocks, storeQuotes, 29.10.2026);
+// the Worker reads the chain, Morpho and Aave itself every 30 minutes.
 
 import core from '../thesis-core.js';
 
 export const DATA_CRON = '*/10 * * * *';
 const KEY_DATA = 'stocks:data';
-const PARTS = 3;
+const KEY_QUOTES = 'stocks:quotes';
 const KEEP_MS = 2 * 3600 * 1000;
 const USDC = '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913';
 const KYBER = 'https://aggregator-api.kyberswap.com/base/api/v1/routes';
@@ -150,37 +149,69 @@ async function readAave() {
   return out;
 }
 
-// One run: a third of the stocks quoted; the first third also refreshes chain and Morpho.
-// What a run could not get keeps its last value, with its own time, and why it failed.
-export async function refreshStockData(env, part, now = Date.now()) {
-  const slice = core.TOKENS.filter((t, i) => i % PARTS === part);
-  budget = part === 0 ? 38 : 49; // 50 per run, less the chain reads (5 batches, up to 2 nodes each), Morpho (1) and Aave (1)
+// KyberSwap quotes for every stock, one at a time (parallel calls trip its limit),
+// within `calls` requests. Run by .github/workflows/stock-quotes.yml (29.10.2026):
+// from the Worker, KyberSwap answered "429 Forbidden" to most calls, as it limits
+// Cloudflare's shared addresses, while the same calls from GitHub's runners all went through.
+export async function quoteStocks(calls = 250) {
+  budget = calls;
   const quotes = [];
-  for (const t of slice) quotes.push([t.s, await quoteStock(t)]); // one stock at a time: parallel calls trip KyberSwap's limit
-  const [chain, morpho, aave] = part === 0 ? await Promise.all([readChain().catch(() => null), readMorpho().catch(() => null), readAave().catch(() => null)]) : [null, null, null];
+  for (const t of core.TOKENS) quotes.push([t.s, await quoteStock(t)]);
+  return quotes;
+}
+
+// What KyberSwap did not answer keeps its last value up to two hours (28.10: METAc
+// lost its round trip; 29.10: MSFTc lost both for an hour of "503 overloaded").
+// Past that, or with no value ever, the page says "no route to buy it".
+// Kept apart from the chain, Morpho and Aave reads, so neither write undoes the other.
+export async function storeQuotes(env, quotes, now = Date.now()) {
+  let old = {};
+  try { old = JSON.parse((await env.QUOTA.get(KEY_QUOTES)) || '{}'); } catch (e) { /* start over */ }
+  if (!old.items) { // the first run starts from the quotes the Worker itself last got
+    let d = {};
+    try { d = JSON.parse((await env.QUOTA.get(KEY_DATA)) || '{}'); } catch (e) { /* none */ }
+    old.items = {};
+    for (const s in d.items || {}) { const x = d.items[s]; old.items[s] = { dex: x.dex ?? null, dexTs: x.dexTs, rt: x.rt ?? null, rtTs: x.rtTs, ts: x.ts }; }
+  }
+  const items = old.items;
+  const known = new Set(core.TOKENS.map((t) => t.s));
+  let quoted = 0;
+  for (const [s, q] of quotes) {
+    if (!known.has(s) || !q || typeof q !== 'object') continue;
+    const it = items[s] || (items[s] = {});
+    const dex = Number.isFinite(q.dex) && q.dex > 0 ? q.dex : null;
+    const rt = q.rt && Number.isFinite(q.rt.loss) ? { loss: q.rt.loss, shares: Number(q.rt.shares) || 0, venues: (q.rt.venues || []).map(String).slice(0, 8) } : null;
+    if (dex != null || rt != null) quoted++;
+    if (dex != null) { it.dex = dex; it.dexTs = now; } else if (!(now - (it.dexTs || 0) < KEEP_MS)) it.dex = null;
+    if (rt != null) { it.rt = rt; it.rtTs = now; } else if (!(now - (it.rtTs || 0) < KEEP_MS)) it.rt = null;
+    it.ts = it.dex != null ? it.dexTs : now; // the page shows the price's age from this
+    if (q.why) { it.why = String(q.why).slice(0, 120); it.whyTs = now; } else { delete it.why; delete it.whyTs; }
+  }
+  await env.QUOTA.put(KEY_QUOTES, JSON.stringify({ ts: now, items }));
+  return { quoted, of: quotes.length };
+}
+
+// Every 30 minutes (the first of the three 10-minute slots): chain, Morpho and Aave.
+export async function refreshStockData(env, part, now = Date.now()) {
+  if (part !== 0) return { part, skipped: true };
+  const [chain, morpho, aave] = await Promise.all([readChain().catch(() => null), readMorpho().catch(() => null), readAave().catch(() => null)]);
   let old = {};
   try { old = JSON.parse((await env.QUOTA.get(KEY_DATA)) || '{}'); } catch (e) { /* start over */ }
   const items = old.items || {};
-  let quoted = 0;
-  for (const [s, q] of quotes) {
-    const it = items[s] || (items[s] = {});
-    if (q.dex != null || q.rt != null) quoted++;
-    // What KyberSwap did not answer keeps its last value up to two hours (28.10: METAc
-    // lost its round trip; 29.10: MSFTc lost both for an hour of "503 overloaded").
-    // Past that, or with no value ever, the page says "no route to buy it".
-    if (q.dex != null) { it.dex = q.dex; it.dexTs = now; } else if (!(now - (it.dexTs || 0) < KEEP_MS)) it.dex = null;
-    if (q.rt != null) { it.rt = q.rt; it.rtTs = now; } else if (!(now - (it.rtTs || 0) < KEEP_MS)) it.rt = null;
-    it.ts = it.dex != null ? it.dexTs : now; // the page shows the price's age from this
-    if (q.why) { it.why = q.why; it.whyTs = now; } else { delete it.why; delete it.whyTs; }
-    delete it.miss;
-  }
   if (chain) for (const s in chain) (items[s] || (items[s] = {})).chain = chain[s];
   if (morpho) for (const s in morpho) (items[s] || (items[s] = {})).morpho = morpho[s];
   if (aave) for (const s in aave) (items[s] || (items[s] = {})).aave = aave[s];
   await env.QUOTA.put(KEY_DATA, JSON.stringify({ ts: now, items }));
-  return { part, quoted, of: slice.length, chain: !!chain, morpho: !!morpho, aave: !!aave };
+  return { part, chain: !!chain, morpho: !!morpho, aave: !!aave };
 }
 
+// The page's table: the chain reads with the latest quotes laid over them.
 export async function stockDataResponse(env) {
-  return env.QUOTA.get(KEY_DATA, { cacheTtl: 60 });
+  const [data, quotes] = await Promise.all([env.QUOTA.get(KEY_DATA, { cacheTtl: 60 }), env.QUOTA.get(KEY_QUOTES, { cacheTtl: 60 })]);
+  if (!data && !quotes) return null;
+  let d = {}, q = {};
+  try { d = JSON.parse(data || '{}'); q = JSON.parse(quotes || '{}'); } catch (e) { return data; }
+  const items = d.items || {};
+  for (const s in q.items || {}) items[s] = { ...(items[s] || {}), ...q.items[s] };
+  return JSON.stringify({ ts: Math.max(d.ts || 0, q.ts || 0), items });
 }
