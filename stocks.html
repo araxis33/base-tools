@@ -570,8 +570,7 @@ function detail(t){
   if (PENDLE[t.s]) h += '<div class="box"><h3>Hold it with leverage</h3>' +
     '<p>PendleLoop pledges your ' + t.s + ' on Aave, borrows USDC and buys more ' + t.s + ', in one go, so you hold a bigger position than you paid for.' +
     (st.rt ? ' Each buy goes through the pools on Base: $1,000 in and out costs ' + st.rt.loss.toFixed(2) + '% right now.' : '') + '</p>' +
-    '<p class="mut">Leverage comes with a liquidation price. Base trades 24/7 while the US market is shut, so a Monday open can move ' + t.s + ' in one step. Loop rewards are a campaign and end.</p>' +
-    '<p style="margin-top:10px"><a class="buy" href="https://app.pendle.finance/trade/loop/' + PENDLE[t.s] + '/deposit?chain=base" target="_blank" rel="noopener">Loop ' + t.s + ' on PendleLoop &rarr;</a></p></div>';
+    '<p class="mut">Leverage comes with a liquidation price. Base trades 24/7 while the US market is shut, so a Monday open can move ' + t.s + ' in one step. Loop rewards are a campaign and end.</p></div>';
 
   h += '<div class="box"><h3>What you own</h3>' +
     '<p>A claim on one real ' + esc(t.co) + ' share held 1:1 by Alpaca Securities, under Abu Dhabi Global Market rules. Dividends and splits change the token-to-share ratio instead of paying out: today 1 token = ' + (c.multiplier ? c.multiplier.toFixed(4) : '—') + ' share.</p>' +
