@@ -211,7 +211,8 @@ export async function stockDataResponse(env) {
   if (!data && !quotes) return null;
   let d = {}, q = {};
   try { d = JSON.parse(data || '{}'); q = JSON.parse(quotes || '{}'); } catch (e) { return data; }
-  const items = d.items || {};
+  const items = {}; // from the chain record only its own reads: its old quote fields are stale
+  for (const s in d.items || {}) { const { chain, morpho, aave } = d.items[s]; items[s] = { chain, morpho, aave }; }
   for (const s in q.items || {}) items[s] = { ...(items[s] || {}), ...q.items[s] };
   return JSON.stringify({ ts: Math.max(d.ts || 0, q.ts || 0), items });
 }
