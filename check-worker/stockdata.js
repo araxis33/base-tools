@@ -33,7 +33,10 @@ const UA = { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKi
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const KYBER_PAUSE_MS = 400;
 let budget = 0;
+// The error says why: KyberSwap's HTTP status, code and message (29.10: "503 50301
+// service temporarily overloaded"), or "no budget" when the run ran out of calls.
 async function quote(tin, tout, amount) {
+  let why = 'no budget';
   for (let i = 0; i < 2 && budget > 0; i++) {
     budget--;
     await sleep(i ? 2000 : KYBER_PAUSE_MS);
@@ -41,10 +44,11 @@ async function quote(tin, tout, amount) {
       const r = await fetch(`${KYBER}?tokenIn=${tin}&tokenOut=${tout}&amountIn=${amount}`, { headers: { ...UA, 'x-client-id': 'deftools' } });
       const j = await r.json();
       if (j.data && j.data.routeSummary) return j.data.routeSummary;
+      why = `${r.status} ${j.code ?? ''} ${j.message ?? ''}`.trim();
       if (r.ok) break; // a real "no route", not a throttle
-    } catch (e) { /* try again */ }
+    } catch (e) { why = String(e.message || e); }
   }
-  throw new Error('no route');
+  throw new Error(why);
 }
 
 function venues(rs) {
@@ -57,12 +61,12 @@ function venues(rs) {
 // Price on Base from a $50 buy, then $1,000 in and straight back out: the percent lost.
 async function quoteStock(t) {
   const out = {};
-  try { const q = await quote(USDC, t.a, '50000000'); out.dex = 50 / (Number(q.amountOut) / 10 ** STOCK_DECIMALS); } catch (e) { out.dex = null; }
+  try { const q = await quote(USDC, t.a, '50000000'); out.dex = 50 / (Number(q.amountOut) / 10 ** STOCK_DECIMALS); } catch (e) { out.dex = null; out.why = e.message; }
   try {
     const buy = await quote(USDC, t.a, '1000000000');
     const sell = await quote(t.a, USDC, buy.amountOut);
     out.rt = { loss: Math.max(0, 100 * (1 - Number(sell.amountOut) / 1e6 / 1000)), shares: Number(buy.amountOut), venues: venues(buy) };
-  } catch (e) { out.rt = null; }
+  } catch (e) { out.rt = null; out.why = out.why || e.message; }
   return out;
 }
 
@@ -147,7 +151,7 @@ async function readAave() {
 }
 
 // One run: a third of the stocks quoted; the first third also refreshes chain and Morpho.
-// What a run could not get keeps its last value, with its own time.
+// What a run could not get keeps its last value, with its own time, and why it failed.
 export async function refreshStockData(env, part, now = Date.now()) {
   const slice = core.TOKENS.filter((t, i) => i % PARTS === part);
   budget = part === 0 ? 38 : 49; // 50 per run, less the chain reads (5 batches, up to 2 nodes each), Morpho (1) and Aave (1)
@@ -160,15 +164,15 @@ export async function refreshStockData(env, part, now = Date.now()) {
   let quoted = 0;
   for (const [s, q] of quotes) {
     const it = items[s] || (items[s] = {});
-    if (q.dex != null || q.rt != null) {
-      quoted++; it.ts = now;
-      // One leg throttled (28.10: METAc lost its round trip while its price came through): keep its last value up to two hours.
-      if (q.dex != null) { it.dex = q.dex; it.dexTs = now; } else if (!(now - (it.dexTs || 0) < KEEP_MS)) it.dex = null;
-      if (q.rt != null) { it.rt = q.rt; it.rtTs = now; } else if (!(now - (it.rtTs || 0) < KEEP_MS)) it.rt = null;
-    }
-    // No route twice in a row, or never a route: the page says "no route to buy it".
-    else if (!it.ts || it.miss) { it.dex = null; it.rt = null; it.ts = now; }
-    it.miss = q.dex == null && q.rt == null;
+    if (q.dex != null || q.rt != null) quoted++;
+    // What KyberSwap did not answer keeps its last value up to two hours (28.10: METAc
+    // lost its round trip; 29.10: MSFTc lost both for an hour of "503 overloaded").
+    // Past that, or with no value ever, the page says "no route to buy it".
+    if (q.dex != null) { it.dex = q.dex; it.dexTs = now; } else if (!(now - (it.dexTs || 0) < KEEP_MS)) it.dex = null;
+    if (q.rt != null) { it.rt = q.rt; it.rtTs = now; } else if (!(now - (it.rtTs || 0) < KEEP_MS)) it.rt = null;
+    it.ts = it.dex != null ? it.dexTs : now; // the page shows the price's age from this
+    if (q.why) { it.why = q.why; it.whyTs = now; } else { delete it.why; delete it.whyTs; }
+    delete it.miss;
   }
   if (chain) for (const s in chain) (items[s] || (items[s] = {})).chain = chain[s];
   if (morpho) for (const s in morpho) (items[s] || (items[s] = {})).morpho = morpho[s];
