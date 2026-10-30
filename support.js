@@ -30,6 +30,8 @@
     '.sup-sub{font-size:13px;color:#9aa4cf;margin-top:4px;line-height:1.45}' +
     '.sup-x{margin-left:auto;background:none;border:0;color:#9aa4cf;font-size:22px;line-height:1;cursor:pointer;padding:0 2px}' +
     '.sup-x:hover{color:#fff}' +
+    '@media (prefers-reduced-motion:no-preference){.sup-back{animation:sup-fade .2s ease-out}.sup-box{animation:sup-rise .2s cubic-bezier(.2,0,0,1)}}' +
+    '@keyframes sup-fade{from{opacity:0}}@keyframes sup-rise{from{opacity:0;transform:translateY(8px) scale(.98)}}' +
     '.sup-amts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}' +
     '.sup-amts button{padding:12px 0;border-radius:12px;border:1px solid #2a3566;background:#151c3a;color:#fff;font:inherit;' +
       'font-size:16px;font-weight:800;cursor:pointer}' +

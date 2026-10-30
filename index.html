@@ -293,6 +293,13 @@
     background:var(--card); border:1px solid var(--border-hover); border-radius:var(--r-lg);
     padding:20px; display:flex; flex-direction:column; gap:14px;
   }
+  /* A dialog arrives instead of popping in: the dim fades, the card rises a few pixels. */
+  @media(prefers-reduced-motion:no-preference){
+    .modal-back{animation:modal-fade .2s ease-out;}
+    .modal{animation:modal-rise .2s cubic-bezier(.2,0,0,1);}
+  }
+  @keyframes modal-fade{from{opacity:0;}}
+  @keyframes modal-rise{from{opacity:0; transform:translateY(8px) scale(.98);}}
   .modal-head{display:flex; align-items:center; gap:12px;}
   .modal-title{font-weight:800; font-size:var(--fs-md);}
   .modal-sub{font-size:var(--fs-xxs); color:var(--muted2); font-weight:600;}
@@ -1334,6 +1341,7 @@ function renderColumn(elId, items, emptyMsg){
   `;
   }).join("");
   bindCopyButtons(el);
+  if (window.dtShow) dtShow(el);
 }
 
 // Each board carries the time it was built: a board whose source failed on the
@@ -2606,6 +2614,7 @@ buyEl("buy-amount").addEventListener("input", function(){
 
 
 <!-- Cloudflare Web Analytics: page views only, no cookies --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d66a3ce27f4e4b47bb1eb31a0e5fa912"}'></script>
+<script src="fx.js"></script>
 <script src="support.js"></script>
 </body>
 </html>

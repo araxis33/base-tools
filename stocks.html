@@ -434,6 +434,7 @@ function renderChain(){
   h += '<div class="ccbox y"><b>The address prefix proves nothing.</b> Unrelated tokens on Base also start with <code>0xb2</code> and twenty zeros, like Coinbase’s. Compare the whole address.</div>';
   if (!bad.length && !spreads.length && !fakes.length) h += '<div class="ccbox g">Every live pool is quoting a sane price right now. That is not the usual state of this market.</div>';
   el.innerHTML = h;
+  if (window.dtShow) dtShow(el);
   /* the link from Thesis lands here before the section exists, so scroll once it is drawn */
   if (location.hash === "#chain" && !renderChain.shown) { renderChain.shown = true; el.scrollIntoView({block:"start"}); }
 }
@@ -496,6 +497,8 @@ function lenders(st){
     .concat((st.morpho || []).map(function(m){ return {name: "Morpho", ltv: m.ltv, apy: m.apy}; }))
     .sort(function(a, b){ return b.ltv - a.ltv; });
 }
+/* the shown price as data-v, so fx.js lights the cell when a refresh moves it */
+function fxv(k, v){ return v == null || !isFinite(v) ? '' : ' data-fx="' + k + '" data-v="' + Number(v).toFixed(2) + '"'; }
 function render(){
   var html = TOKENS.map(function(t){
     var st = S[t.s], s = shareOf(t), g = gapOf(t), rt = st.rt, best = lenders(st)[0];
@@ -503,8 +506,8 @@ function render(){
     var rcls = !rt ? "mut" : rt.loss < 0.3 ? "ok" : rt.loss < 1 ? "warn" : "bad";
     return '<tr class="row' + (st.open ? ' open' : '') + '" data-s="' + t.s + '">' +
       '<td><span class="sym">' + t.s + '</span><span class="co">' + esc(t.co) + '</span></td>' +
-      '<td class="num">' + baseUsd(t) + '</td>' +
-      '<td class="num hm">' + (s && s.price ? usd(s.price) + (open ? '' : ' <span class="mut">close</span>') : '—') + '</td>' +
+      '<td class="num"' + fxv(t.s + '-dex', thinOf(t) ? null : st.dex) + '>' + baseUsd(t) + '</td>' +
+      '<td class="num hm"' + fxv(t.s + '-share', s && s.price) + '>' + (s && s.price ? usd(s.price) + (open ? '' : ' <span class="mut">close</span>') : '—') + '</td>' +
       '<td class="num ' + gcls + '">' + pct(g) + '</td>' +
       '<td class="num ' + rcls + '">' + (rt ? rt.loss.toFixed(2) + '%' : st.dex === undefined ? '…' : '—') + '</td>' +
       '<td class="num hm">' + (best ? 'up to ' + best.ltv.toFixed(0) + '% · ' + best.apy.toFixed(1) + '%' : st.morpho || st.aave ? '<span class="mut">no market</span>' : '…') + '</td>' +
@@ -512,6 +515,7 @@ function render(){
       (st.open ? '<tr class="detail"><td colspan="7">' + detail(t) + '</td></tr>' : '');
   }).join("");
   $("rows").innerHTML = html;
+  if (window.dtFlash) dtFlash($("rows"));
 }
 
 function kv(k, v){ return '<div class="kv"><span>' + k + '</span><span class="num">' + v + '</span></div>'; }
@@ -655,6 +659,7 @@ Promise.all([loadShares().then(session), loadData()]).then(function(){
 })();
 </script>
 <!-- Cloudflare Web Analytics: page views only, no cookies --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d66a3ce27f4e4b47bb1eb31a0e5fa912"}'></script>
+<script src="fx.js"></script>
 <script src="support.js"></script>
 </body>
 </html>

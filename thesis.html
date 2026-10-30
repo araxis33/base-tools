@@ -651,12 +651,13 @@ function renderWeights(){
         '<input type="range" min="0" max="100" step="1" value="' + raw + '" data-sym="' + t.s + '" aria-label="' + t.s + ' weight">' +
         '<div class="w-pct"><b>' + Math.round(share * 100) + '%</b>' +
           '<div class="w-usd">' + (share > 0 ? money(share * amt, 2) : "&nbsp;") + '</div></div>' +
-        '<div class="w-px"><div class="p">' + px + '</div>' +
+        '<div class="w-px"><div class="p"' + (d ? ' data-fx="' + t.s + '" data-v="' + d.deep.price.toFixed(2) + '"' : '') + '>' + px + '</div>' +
           '<div class="c ' + chgCls + '"' + (bad ? ' title="' + esc(bad) + '"' : '') + '>' + chgTxt + '</div></div>' +
       '</div>';
   }).join("") + (inBasket ? '<button class="btn ghost small" id="show-all">' +
     (state.showAll ? 'Show only the basket' : 'Add a stock · all ' + TOKENS.length) + '</button>' : '');
   if($("show-all")) $("show-all").addEventListener("click", function(){ state.showAll = !state.showAll; renderWeights(); });
+  if(window.dtFlash) dtFlash(el);
 
   Array.prototype.forEach.call(el.querySelectorAll("input[type=range]"), function(r){
     r.addEventListener("input", function(){
@@ -2019,6 +2020,7 @@ setInterval(function(){
 </script>
 <script src="thesis-memes.js"></script>
 <!-- Cloudflare Web Analytics: page views only, no cookies --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d66a3ce27f4e4b47bb1eb31a0e5fa912"}'></script>
+<script src="fx.js"></script>
 <script src="support.js"></script>
 </body>
 </html>
