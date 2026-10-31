@@ -401,8 +401,8 @@ var U = {
   }
 };
 
-var lang = store('ck-lang') === 'ru' ? 'ru' : 'en';
-if (/[?&]lang=ru\b/.test(location.search)) lang = 'ru';
+// 31.10.2026 his call: English everywhere; the EN/RU switch is hidden in wayfind.css.
+var lang = 'en';
 var DATA = null;
 // Live numbers from scripts/nav-live.js (every 6 hours, nav-data branch). Only numbers that passed its checks are in it.
 var LIVE_URL = 'https://raw.githubusercontent.com/araxis33/base-tools/nav-data/nav-live.json';

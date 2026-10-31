@@ -52,3 +52,6 @@ h1 .accent{color:inherit;}
   border:2px solid var(--frame) !important; border-radius:0 !important;}
 /* The small page name above a head was set in tracked capitals; it stays, as a plain label. */
 .kicker{text-transform:none; letter-spacing:0; font-weight:500;}
+/* 31.10.2026 his call: the site is English everywhere. Check and Navigator kept an EN/RU
+   switch no other page had; it is hidden here (their scripts still reference the buttons). */
+.lang{display:none !important;}

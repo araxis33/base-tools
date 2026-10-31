@@ -383,7 +383,9 @@ footer{border-top:1px solid var(--border); margin-top:34px; padding:22px 0 40px;
   function sayEn(f) { var keep = lang; lang = 'en'; var s = say(f); lang = keep; return s; }
 
   var lang = 'en';
-  try { lang = localStorage.getItem('ck-lang') || ((navigator.language || '').toLowerCase().indexOf('ru') === 0 ? 'ru' : 'en'); } catch (e) {}
+  // 31.10.2026 his call: the site is English everywhere, so the EN/RU switch is hidden
+  // (wayfind.css) and the page no longer follows a Russian browser. The RU text stays in T.
+  lang = 'en';
   function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) {} return null; }
 
   // A browser id: paid checks belong to it, so they survive a change of network.
