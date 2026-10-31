@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@400;500;800&display=swap");
+/* deftools look, 31.10.2026 (Hallmark, theme Wayfind). Loaded after each page's own
+   <style>, so it re-points the colour tokens every page already shares (--bg, --card,
+   --border, --blue, --text...) instead of touching their rules. Light is Wayfind's
+   "platform" colourway, dark its "night"; theme.js picks one before the first paint.
+   Cobalt is the one action and what is live in both modes; amber is Support and the
+   prices on the dark boards. Radius 0 except pills, 2px ink frames, Chivo Mono with
+   tabular figures throughout. Page-specific fixes stay in each page. */
+:root, :root[data-theme="light"]{
+  color-scheme:light;
+  --bg:oklch(95.5% 0.006 250); --bg2:oklch(99.5% 0.005 250); --card:oklch(99.5% 0.005 250);
+  --card-hover:oklch(91% 0.009 250); --card-lift:oklch(99.5% 0.005 250);
+  --border:oklch(80% 0.011 250); --border-hover:oklch(16% 0.014 262); --frame:oklch(16% 0.014 262);
+  --blue:oklch(51% 0.22 264); --blue-soft:oklch(91% 0.04 264); --blue-text:oklch(45% 0.22 264); --blue-bright:oklch(40% 0.22 264);
+  --yellow:oklch(60% 0.16 75); --orange:oklch(58% 0.17 50); --amber:oklch(78% 0.16 70); --amber-ink:oklch(20% 0.04 70);
+  --text:oklch(16% 0.014 262); --muted:oklch(42% 0.016 260); --muted2:oklch(47% 0.016 260);
+  --white:oklch(99.5% 0.003 250); --green:oklch(50% 0.15 150); --green-text:oklch(45% 0.14 150); --red:oklch(53% 0.2 25);
+  --price:var(--text);
+  --r-xs:0; --r-sm:0; --r-md:0; --r-lg:0; --r-xl:0; --r-pill:999px;
+  --font-board:"Chivo Mono", ui-monospace, monospace;
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:oklch(15% 0.012 262); --bg2:oklch(12% 0.012 262); --card:oklch(19% 0.014 262);
+  --card-hover:oklch(23% 0.014 262); --card-lift:oklch(19% 0.014 262);
+  --border:oklch(31% 0.014 262); --border-hover:oklch(96% 0.005 250); --frame:oklch(96% 0.005 250);
+  --blue:oklch(62% 0.2 264); --blue-soft:oklch(26% 0.06 264); --blue-text:oklch(74% 0.14 264); --blue-bright:oklch(82% 0.1 264);
+  --yellow:oklch(81% 0.16 82); --orange:oklch(76% 0.15 55); --amber:oklch(78% 0.16 70); --amber-ink:oklch(20% 0.04 70);
+  --text:oklch(96% 0.005 250); --muted:oklch(76% 0.012 255); --muted2:oklch(70% 0.012 255);
+  --white:oklch(99.5% 0.003 250); --green:oklch(76% 0.15 150); --green-text:oklch(78% 0.14 150); --red:oklch(70% 0.17 25);
+  --price:oklch(81% 0.16 82);
+}
+html, body{overflow-x:clip;}
+body, button, input, select, textarea{font-family:var(--font-board); font-variant-numeric:tabular-nums;}
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible{outline:2px solid var(--blue-bright); outline-offset:2px;}
+header{background:var(--bg); backdrop-filter:none; border-bottom:2px solid var(--frame);}
+nav a{white-space:nowrap;}
+h1, h2, h3{letter-spacing:-0.03em;}
+h1 .accent{color:inherit;}
+.sup-btn{background:var(--amber) !important; border-color:var(--amber) !important; color:var(--amber-ink) !important; font-weight:800 !important;}
+.sup-btn:hover{filter:brightness(1.06);}
+.theme-btn{border:2px solid var(--frame); background:transparent; color:var(--text); padding:5px 12px; border-radius:var(--r-pill);
+  font:inherit; font-size:13px; font-weight:500; cursor:pointer; white-space:nowrap; margin-left:16px;}
+.theme-btn:hover{background:var(--card-hover);}
+/* Phones: on the home page the nav wraps, so the button pins beside the logo; on the
+   tool pages (.head-in) it stays in the row, next to the language switch. */
+@media (max-width:640px){ .theme-btn{margin-left:8px; padding:5px 10px;}
+  header .wrap:not(.head-in){position:relative;} header .wrap:not(.head-in) .theme-btn{position:absolute; top:14px; right:24px; margin:0;} }
+@media (prefers-reduced-motion:reduce){ .theme-btn{transition:none;} }
+/* Surfaces the tool pages share: 2px ink frames and square corners, as on the home page. */
+.card, .panel, .tbl-wrap, .checker, .tile, .chart, .step, .side-list, .traps, .method, .formula, .c-live, .d-next, section.card{
+  border:2px solid var(--frame) !important; border-radius:0 !important;}
+/* The small page name above a head was set in tracked capitals; it stays, as a plain label. */
+.kicker{text-transform:none; letter-spacing:0; font-weight:500;}
