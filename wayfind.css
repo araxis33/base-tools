@@ -55,3 +55,9 @@ h1 .accent{color:inherit;}
 /* 31.10.2026 his call: the site is English everywhere. Check and Navigator kept an EN/RU
    switch no other page had; it is hidden here (their scripts still reference the buttons). */
 .lang{display:none !important;}
+/* Light paper: text colours a few pages set as pale pastels for the dark ground
+   (verdicts on Arc, the green pill on Scout, the savings figure on Thesis, the status
+   on Contract Check) take their deep versions. */
+:root[data-theme="light"] .verdict.ok, :root[data-theme="light"] .status.ok, :root[data-theme="light"] .pill.green, :root[data-theme="light"] .savings .big{color:var(--green-text) !important;}
+:root[data-theme="light"] .verdict.warn{color:oklch(45% 0.13 70) !important;}
+:root[data-theme="light"] .verdict.bad{color:var(--red) !important;}
