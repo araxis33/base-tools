@@ -20,7 +20,7 @@ import { DATA_CRON, refreshStockData, stockDataResponse, storeQuotes } from './s
 import { dex } from './dex.js';
 
 const LIMIT = 3;
-const ORIGINS = ['https://deftools.xyz', 'https://www.deftools.xyz', 'http://localhost:8765'];
+const ORIGINS = ['https://deftools.xyz', 'https://www.deftools.xyz', 'https://night.deftools.xyz', 'http://localhost:8765'];
 const GEMINI = 'https://generativelanguage.googleapis.com/v1beta';
 const GROQ = 'https://api.groq.com/openai/v1';
 const GROQ_MODELS = ['openai/gpt-oss-120b', 'qwen/qwen3.8-27b', 'openai/gpt-oss-20b'];
