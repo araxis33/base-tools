@@ -45,7 +45,8 @@ h1 .accent{color:inherit;}
 /* Phones: on the home page the nav wraps, so the button pins beside the logo; on the
    tool pages (.head-in) it stays in the row, next to the language switch. */
 @media (max-width:640px){ .theme-btn{margin-left:8px; padding:5px 10px;}
-  header .wrap:not(.head-in){position:relative;} header .wrap:not(.head-in) .theme-btn{position:absolute; top:14px; right:24px; margin:0;} }
+  header .wrap:not(.head-in){position:relative;} header .wrap:not(.head-in) .theme-btn{position:absolute; top:14px; right:24px; margin:0;}
+  .head-links{flex-wrap:wrap; row-gap:4px;} }
 @media (prefers-reduced-motion:reduce){ .theme-btn{transition:none;} }
 /* Surfaces the tool pages share: 2px ink frames and square corners, as on the home page. */
 .card, .panel, .tbl-wrap, .checker, .tile, .chart, .step, .side-list, .traps, .method, .formula, .c-live, .d-next, section.card{
