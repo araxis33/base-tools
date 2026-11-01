@@ -38,6 +38,7 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233b6eff'/%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAACR0lEQVR42u3ZgZGCUBBEQfanZU4GQ07GxWVwdyjC36E7AausV+OCtVzo8dy2hTivteqqzy7xkhR5iZikuEvIJIVdQiYp7BIySWEPMTOLI1oaYiYp6hIySSfIEDNJaz3ETFLUQ8wkRT3ETFLUQ8wkRT18TSQZ1pmklR5iJinqIWaSonZDk31DW2c6r7SFJnehrTPdV9pCk7nQ1pmElbbQ3OefQmgZtHODlLPDQuPkAEGDoGGf8kCIhQZBg6BB0AgaBA2CBkGDoBE0CBoEDYIGQSNoEDQIGgQNgkbQIGgQNAgaBI2gQdAgaBA0CBpBg6BB0CBoEDSCBkGDoEHQCBoEDYIGQYOgETQIGgQNggZBI2gQNAgaBA2CRtAgaBA0CBoEjaBB0CBoEDQIGkGDoEHQIGgQNIIGQYOgQdAgaAQNggZBg6ARNAgaBA2CBkEjaBA0CBoEDYJG0CBoEDQIGgSNoEHQIGgQNAgaQYOgQdAgaBA0ggZBg6BB0CBoBA2CBkGDoBE0CBoEDYIGQSNoSAj6tVb5GkjwWqssNE4OEDQIGt4I2oMhCQ+EFhonB7QI2tlB93PDQpN9clhpOq+zhSb/odBK03WdLTT3eG1npem4zr8utKjpFvOfJ4eo6RSzG5r7/fVtpemyzv9eaFHTIeZdJ4eomT3m3Te0qJk55rceCkXNrDEvy7J8FOfjuW2+dmYI+ZDXdtaamWI+5D20qJkl5o9PDicIs4T8laCFzdW/7l89F4TN2WfqafevuEV8xudc+kAncvEe7QdVN6q09/LMtAAAAABJRU5ErkJggg==">
 <meta name="theme-color" content="#0a0e1c">
+<script src="/theme.js"></script>
 <style>
   :root{
     --bg:#0a0e1c;
@@ -682,7 +683,32 @@ body:not(.view-dir) .dir-only, body:not(.view-dir) .full-only{display:none}
 body.view-dir .home-only{display:none}
 .trend-grid{grid-template-columns:repeat(3, 1fr)}
 @media (max-width:900px){ .trend-grid{grid-template-columns:1fr} }
+/* 31.10.2026 polish after the Hallmark audit: same colours, type and layout; only the
+   tells it named go (eyebrow pill, caps step labels, the one coloured word, boxes
+   inside cards, the stripe on every card) and the gaps it found get filled (focus
+   ring, overflow, nav labels that wrapped at 768px). */
+html, body{overflow-x:clip;}
+:where(a, button, input, select, summary, [tabindex]):focus-visible{outline:2px solid var(--blue-bright); outline-offset:2px;}
+nav a{white-space:nowrap;}
+h1 .accent{color:inherit;}
+.act .n{font-size:13px; font-weight:600; letter-spacing:0; text-transform:none;}
+.act .ex{background:none; border:0; padding:0;}
+.proj-card::before{display:none;}
+.tag{letter-spacing:0;}
+/* 31.10.2026 Wayfind on this page (colours, font and the Dark button live in
+   /wayfind.css and /theme.js, shared by every page): 2px ink frames on the
+   surfaces, square controls, heavy heads, prices in the board colour. */
+.hero{background:none;}
+/* The directory view kept the eyebrow pill; its counts are still filled by script, only hidden. */
+.pill{display:none;}
+h1, h3, .section-title, .proj-name{font-weight:800;}
+.act, .proj-card, .trend-col, .card, .dirlink, .x-card{border:2px solid var(--frame); border-radius:0;}
+.card:hover, .proj-card:hover{border-color:var(--frame);}
+.visit, .hc-row button{border-radius:0; border:2px solid var(--frame);}
+.hc-row input{border-radius:0;}
+.trend-price{font-weight:800; color:var(--price);}
 </style>
+<link rel="stylesheet" href="/wayfind.css">
 </head>
 <body>
 
@@ -717,14 +743,13 @@ body.view-dir .home-only{display:none}
 </header>
 
 <div class="wrap hero home-only">
-  <div class="pill"><span class="dot"></span> BASE · READ FROM THE CHAIN</div>
   <h1>Tools for <span class="accent">Base</span>.</h1>
   <p class="sub">Check a token. Check a stock, then build a basket of stocks and buy it. See where AERO pays most.</p>
   <div class="acts">
     <div class="act">
-      <div class="n">1 · A token</div>
+      <div class="n">A token</div>
       <h3>Can I trust this token?</h3>
-      <div class="ex">Paste an address and get a 1–10 score with what it is made of. <a href="/check.html?a=0x940181a94A35A4569E4529A3CDfB74e38FD98631&amp;go=1"><b>Try AERO →</b></a></div>
+      <div class="ex">Paste an address and get a 1–10 score with what it is made of. <a href="/check.html?a=0x940181a94A35A4569E4529A3CDfB74e38FD98631&amp;go=1"><b>Try it on AERO</b></a></div>
       <form class="pc-check" action="/check.html" method="get">
         <div class="hc-row">
           <input name="a" placeholder="Paste a token address, 0x…" aria-label="Token address" autocomplete="off" spellcheck="false" required pattern="\s*0x[a-fA-F0-9]{40}\s*" title="0x followed by 40 characters">
@@ -734,13 +759,13 @@ body.view-dir .home-only{display:none}
       </form>
     </div>
     <div class="act">
-      <div class="n">2 · A stock on Base</div>
+      <div class="n">A stock on Base</div>
       <h3>Is this stock token real, and what does it cost?</h3>
       <div class="ex" id="ex-stock">NVDAc on Base, its price against the real share and what $1,000 in and out costs.</div>
       <div class="go"><a class="visit" href="/stocks.html">Check a stock</a><a class="ghost" href="/thesis.html">Buy a basket</a></div>
     </div>
     <div class="act">
-      <div class="n">3 · AERO</div>
+      <div class="n">AERO</div>
       <h3>Where should my AERO go?</h3>
       <div class="ex" id="ex-aero">Every week the radar forecasts what pools will pay, then checks it against what they paid.</div>
       <div class="go"><a class="visit" href="https://aero.deftools.xyz/#saeroPanel" target="_blank" rel="noopener">Open the radar</a></div>
@@ -752,12 +777,12 @@ body.view-dir .home-only{display:none}
   <section id="aero">
     <div class="section-head"><div>
       <div class="section-title">Aero Vote Radar</div>
-      <div class="section-sub">For AERO holders. Aero replaces weekly votes with sAERO allocations on October 22</div>
+      <div class="section-sub">For AERO holders. Since October 22, sAERO allocations replace weekly votes on Aero</div>
     </div></div>
     <div class="proj-card flag">
       <div>
         <p class="proj-desc" style="font-size:16px">Ranks every pool by what it pays per day, splits your sAERO across several so you don't dilute yourself, and checks its own forecast against what pools actually paid, every week.</p>
-        <div class="proj-tags"><span class="tag live">Live</span><span class="tag">Aerodrome</span><span class="tag">Rescans every 6h</span></div>
+        <div class="proj-tags"><span class="tag live">Live</span><span class="tag">Aerodrome</span><span class="tag">Rescans every hour</span></div>
         <div class="proj-links">
           <a class="visit" href="https://aero.deftools.xyz/#saeroPanel" target="_blank" rel="noopener">Where to point sAERO</a>
           <a class="ghost" href="https://aero.deftools.xyz/#promisePanel" target="_blank" rel="noopener">How wrong it was</a>
@@ -778,11 +803,11 @@ body.view-dir .home-only{display:none}
       <div class="section-sub">36 Coinbase stock tokens. One path: check the token and its market, compare routes, buy a basket in one transaction</div>
     </div></div>
     <div class="path">
-      <div class="proj-card"><div class="proj-name">1 · Stock Check</div>
+      <div class="proj-card"><div class="proj-name">Stock Check</div>
         <p class="proj-desc">Price on Base against the real share, how deep the market is, what $1,000 in and out costs, who can pause the token.</p>
         <div class="proj-links"><a class="visit" href="/stocks.html">Check a stock</a></div></div>
       <div class="arr" aria-hidden="true">→</div>
-      <div class="proj-card"><div class="proj-name">2 · Thesis</div>
+      <div class="proj-card"><div class="proj-name">Thesis</div>
         <p class="proj-desc">One line about what you believe becomes a basket, routed through the deepest pools. Pay in USDC or ETH. Stock memes, filtered by real money and real buyers, are there too.</p>
         <div class="proj-links"><a class="visit" href="/thesis.html">Build a basket</a><a class="ghost" href="/thesis.html#memes">Stock memes</a></div></div>
     </div>
@@ -887,7 +912,7 @@ body.view-dir .home-only{display:none}
             <div class="x-handle">@Def7771</div>
           </div>
         </div>
-        <p class="x-bio">Tracking the <span>Base</span> ecosystem before it trends. Onchain data · DeFi alpha · Crypto macro.</p>
+        <p class="x-bio">Building onchain tools and writing about what moves money onchain. Now: Aero Vote Radar and deftools on Base.</p>
         <a class="x-follow" href="https://x.com/Def7771" target="_blank" rel="noopener">Follow on X</a>
       </div>
     </div>
