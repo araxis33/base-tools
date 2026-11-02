@@ -7,8 +7,9 @@
 // GitHub to run each job when it is due. Times are New York times where the job
 // is about the US market, so summer and winter time take care of themselves.
 //
-// Secret: GH_DISPATCH, a fine-grained GitHub token with "Actions: read and write"
-// on araxis33/base-tools and araxis33/night-shift only. Without it, nothing runs.
+// Secret: GH_DISPATCH_TOKEN, the same one boards.js uses for the stocks board: a
+// fine-grained GitHub token with "Actions: read and write" on araxis33/base-tools
+// and araxis33/night-shift only (both repos since 2.11.2026). Without it, nothing runs.
 
 const GH = 'https://api.github.com/repos/araxis33';
 
@@ -38,12 +39,12 @@ export function dueJobs(scheduledTime) {
 export async function runDueJobs(env, scheduledTime) {
   const jobs = dueJobs(scheduledTime);
   if (!jobs.length) return { jobs: 0 };
-  if (!env.GH_DISPATCH) return { jobs: jobs.length, skipped: 'no GH_DISPATCH secret' };
+  if (!env.GH_DISPATCH_TOKEN) return { jobs: jobs.length, skipped: 'no GH_DISPATCH_TOKEN secret' };
   const out = [];
   for (const [repo, wf, inputs] of jobs) {
     const r = await fetch(`${GH}/${repo}/actions/workflows/${wf}/dispatches`, {
       method: 'POST',
-      headers: { authorization: `Bearer ${env.GH_DISPATCH}`, accept: 'application/vnd.github+json', 'user-agent': 'deftools-check', 'x-github-api-version': '2022-11-28' },
+      headers: { authorization: `Bearer ${env.GH_DISPATCH_TOKEN}`, accept: 'application/vnd.github+json', 'user-agent': 'deftools-check', 'x-github-api-version': '2022-11-28' },
       body: JSON.stringify({ ref: 'main', ...(inputs ? { inputs } : {}) }),
     });
     out.push(`${repo}/${wf}${inputs ? ':' + inputs.job : ''} ${r.status}`); // 204 = started
