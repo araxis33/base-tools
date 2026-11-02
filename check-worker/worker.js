@@ -18,6 +18,7 @@
 import { BOARDS_CRON, STOCKS_CRON, refreshBoards, refreshStocks, requestSpare, boardsResponse, poolsResponse } from './boards.js';
 import { DATA_CRON, refreshStockData, stockDataResponse, storeQuotes } from './stockdata.js';
 import { dex } from './dex.js';
+import { runDueJobs } from './clock.js';
 
 const LIMIT = 3;
 const ORIGINS = ['https://deftools.xyz', 'https://www.deftools.xyz', 'https://night.deftools.xyz', 'http://localhost:8765'];
@@ -285,6 +286,8 @@ export default {
     if (run) ctx.waitUntil(run.then((r) => console.log(event.cron, JSON.stringify(r)), (e) => console.log(event.cron, 'failed', e.message)));
     // A fresh spare copy of the stocks board for the stocks cron five minutes later (boards.js, requestSpare).
     if (event.cron === BOARDS_CRON) ctx.waitUntil(requestSpare(env).then((r) => console.log('spare', JSON.stringify(r)), (e) => console.log('spare failed', e.message)));
+    // GitHub Actions jobs started on time from here, since GitHub's own schedule runs late (clock.js).
+    if (event.cron === DATA_CRON) ctx.waitUntil(runDueJobs(env, event.scheduledTime).then((r) => console.log('clock', JSON.stringify(r)), (e) => console.log('clock failed', e.message)));
   },
 };
 
