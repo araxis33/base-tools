@@ -19,9 +19,10 @@ import { BOARDS_CRON, STOCKS_CRON, refreshBoards, refreshStocks, requestSpare, b
 import { DATA_CRON, refreshStockData, stockDataResponse, storeQuotes } from './stockdata.js';
 import { dex } from './dex.js';
 import { runDueJobs } from './clock.js';
+import { pushRoute, runPushes } from './push.js';
 
 const LIMIT = 3;
-const ORIGINS = ['https://deftools.xyz', 'https://www.deftools.xyz', 'https://night.deftools.xyz', 'http://localhost:8765'];
+const ORIGINS = ['https://deftools.xyz', 'https://www.deftools.xyz', 'https://night.deftools.xyz', 'https://aero.deftools.xyz', 'http://localhost:8765'];
 const GEMINI = 'https://generativelanguage.googleapis.com/v1beta';
 const GROQ = 'https://api.groq.com/openai/v1';
 const GROQ_MODELS = ['openai/gpt-oss-120b', 'qwen/qwen3.8-27b', 'openai/gpt-oss-20b'];
@@ -209,6 +210,7 @@ export default {
     const url = new URL(req.url);
     if (req.method === 'OPTIONS') return new Response(null, { headers: cors(req) });
     if (url.pathname === '/cg') return coingecko(req, ctx, url.searchParams.get('p') || '', env);
+    if (url.pathname.startsWith('/push/')) return pushRoute(req, env, url, json);
     if (url.pathname === '/shares') return shares(req, ctx, url.searchParams.get('t') || '');
     if (url.pathname.startsWith('/dex/')) {
       return dex(req, ctx, url, (res, src) => {
@@ -288,6 +290,8 @@ export default {
     if (event.cron === BOARDS_CRON) ctx.waitUntil(requestSpare(env).then((r) => console.log('spare', JSON.stringify(r)), (e) => console.log('spare failed', e.message)));
     // GitHub Actions jobs started on time from here, since GitHub's own schedule runs late (clock.js).
     if (event.cron === DATA_CRON) ctx.waitUntil(runDueJobs(env, event.scheduledTime).then((r) => console.log('clock', JSON.stringify(r)), (e) => console.log('clock failed', e.message)));
+    // Radar alerts: Autopilot's next move and visitors' own 47 h (push.js).
+    if (event.cron === DATA_CRON) ctx.waitUntil(runPushes(env, rpc).then((r) => console.log('push', JSON.stringify(r)), (e) => console.log('push failed', e.message)));
   },
 };
 
