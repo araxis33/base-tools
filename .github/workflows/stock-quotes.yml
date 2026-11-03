@@ -2,10 +2,9 @@ name: stock quotes
 
 # Every 30 minutes, KyberSwap's price and $1,000 round trip for every Coinbase
 # stock on Base, sent to the Worker for Stock Check's table. KyberSwap limits
-# Cloudflare's addresses, not GitHub's (scripts/stock-quotes.mjs).
+# Cloudflare's addresses, not GitHub's (scripts/stock-quotes.mjs). The Worker
+# (check-worker/clock.js) starts it at :10 and :40; GitHub's schedule ran every 3-7 hours.
 on:
-  schedule:
-    - cron: "15,45 * * * *"
   workflow_dispatch:
 
 permissions:
