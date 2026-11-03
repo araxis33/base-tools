@@ -3,8 +3,8 @@
    <style>, so it re-points the colour tokens every page already shares (--bg, --card,
    --border, --blue, --text...) instead of touching their rules. Light is Wayfind's
    "platform" colourway, dark its "night"; theme.js picks one before the first paint.
-   Cobalt is the one action and what is live in both modes; amber is Support and the
-   prices on the dark boards. Radius 0 except pills, 2px ink frames, Chivo Mono with
+   Cobalt is the one action and what is live in both modes; amber is Support. Prices on the
+   boards are plain text in both modes (3.11.2026: amber prices on dark were not liked). Radius 0 except pills, 2px ink frames, Chivo Mono with
    tabular figures throughout. Page-specific fixes stay in each page. */
 :root, :root[data-theme="light"]{
   color-scheme:light;
@@ -28,7 +28,7 @@
   --yellow:oklch(81% 0.16 82); --orange:oklch(76% 0.15 55); --amber:oklch(78% 0.16 70); --amber-ink:oklch(20% 0.04 70);
   --text:oklch(96% 0.005 250); --muted:oklch(76% 0.012 255); --muted2:oklch(70% 0.012 255);
   --white:oklch(99.5% 0.003 250); --green:oklch(76% 0.15 150); --green-text:oklch(78% 0.14 150); --red:oklch(70% 0.17 25);
-  --price:oklch(81% 0.16 82);
+  --price:var(--text);
 }
 html, body{overflow-x:clip;}
 body, button, input, select, textarea{font-family:var(--font-board); font-variant-numeric:tabular-nums;}
