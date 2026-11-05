@@ -12,6 +12,7 @@
 //   GET  /cg?p=<path>         -> CoinGecko answer for the homepage boards, cached
 //   GET  /shares?t=NVDA,AAPL  -> real share prices for stocks.html, cached 60 s
 //   GET  /boards              -> the four homepage boards, rebuilt on a timer (boards.js)
+//   /game/*                   -> Night Shift "Beat the night" leaderboard (game.js)
 //
 // Secrets: GEMINI_API_KEY, GROQ_API_KEY, TAVILY_API_KEY (optional). KV: QUOTA.
 
@@ -20,6 +21,7 @@ import { DATA_CRON, refreshStockData, stockDataResponse, storeQuotes } from './s
 import { dex } from './dex.js';
 import { runDueJobs } from './clock.js';
 import { pushRoute, runPushes } from './push.js';
+import { gameRoute } from './game.js';
 
 const LIMIT = 3;
 const ORIGINS = ['https://deftools.xyz', 'https://www.deftools.xyz', 'https://night.deftools.xyz', 'https://aero.deftools.xyz', 'http://localhost:8765'];
@@ -211,6 +213,7 @@ export default {
     if (req.method === 'OPTIONS') return new Response(null, { headers: cors(req) });
     if (url.pathname === '/cg') return coingecko(req, ctx, url.searchParams.get('p') || '', env);
     if (url.pathname.startsWith('/push/')) return pushRoute(req, env, url, json);
+    if (url.pathname.startsWith('/game/')) return gameRoute(req, env, url, json);
     if (url.pathname === '/shares') return shares(req, ctx, url.searchParams.get('t') || '');
     if (url.pathname.startsWith('/dex/')) {
       return dex(req, ctx, url, (res, src) => {
