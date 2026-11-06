@@ -193,6 +193,8 @@ var FEEDS = {
 var S = {};           // per ticker: chain, dex, share, rt, morpho, look
 var shares = null, open = null;
 var SNAPS = "https://raw.githubusercontent.com/araxis33/base-tools/stocks-data/snapshots.jsonl";
+var EXIT_URL = "https://raw.githubusercontent.com/araxis33/base-tools/stocks-data/exit-depth.json";
+var EXIT = null;
 var WK = null;        // last complete weekend, built from the hourly snapshots
 var P = null;         // per ticker: every pool on Base summarised (ThesisCore.summarisePools), for the chain check
 /* Trading venues KyberSwap can be limited to, in the order we list them. */
@@ -526,6 +528,21 @@ function render(){
 
 function kv(k, v){ return '<div class="kv"><span>' + k + '</span><span class="num">' + v + '</span></div>'; }
 /* the $1,000 round trip from the Worker, and under it the one for the visitor's own amount once they asked for it */
+function money0(v){ return "$" + (v >= 1000000 ? (v / 1000000).toFixed(1) + "M" : v >= 1000 ? Math.round(v / 1000) + "K" : Math.round(v)); }
+function exitText(d){
+  if (!d) return "—";
+  if (d.over) return "over " + money0(d.over);
+  if (d.under) return "under " + money0(d.under);
+  return "about " + money0(d.usd);
+}
+/* Once a day from scripts/exit-depth.mjs: what sells into USDC before the average price is 1% or 3% below a small sale. */
+function exitHtml(t){
+  var x = EXIT && EXIT.items && EXIT.items[t.s];
+  if (!x) return "";
+  if (thinOf(t)) return kv("Exit depth", '<span class="mut">no real market</span>');
+  return kv("Sell at 1% impact", exitText(x.d1)) + kv("Sell at 3% impact", exitText(x.d3)) +
+    '<p class="mut">How much sells into USDC on Base before the average price falls that far. Estimate from quotes, no trades, checked ' + ago(EXIT.ts / 1000) + '.</p>';
+}
 function rtHtml(t){
   var st = S[t.s];
   if (st.mine && st.mine.v === 1000) return kv("$1,000 round trip", st.mine.text);
@@ -559,7 +576,7 @@ function detail(t){
     '<p class="mut">The feed updates when the price moves 0.5% or once a day, 24/5, so hours without an update are normal.</p></div>';
 
   h += '<div class="box"><h3>What a trade costs</h3>' +
-    '<div id="rt-' + t.s + '">' + rtHtml(t) + '</div>' +
+    '<div id="rt-' + t.s + '">' + rtHtml(t) + '</div>' + exitHtml(t) +
     '<p style="margin-top:8px">Your amount: <input class="amt" id="amt-' + t.s + '" type="number" min="10" step="10" value="' + (st.mine ? st.mine.v : 5000) + '"> <button class="btn" data-rt="' + t.s + '">Check</button></p>' +
     (st.rt && st.rt.venues.length ? '<p class="mut">Best route now: ' + esc(st.rt.venues.join(", ")) + '.</p>' : '') +
     '<p class="mut">Buy, then sell everything straight back, at live quotes across every pool on Base. To buy for real, <a href="/thesis.html?b=' + t.s + '-100&a=1000">open it in Thesis</a>: it routes through the deepest pool and you sign in your own wallet.</p></div>';
@@ -659,6 +676,7 @@ loadPools().then(renderChain);
 setInterval(function(){ loadPools().then(renderChain); }, 120000);
 if (S[wanted]) setTimeout(function(){ var r = document.querySelector('tr.row[data-s="' + wanted + '"]'); if (r) r.scrollIntoView({block:"start"}); }, 50);
 loadWeekend().then(function(){ weekendTable(); render(); });
+fetch(EXIT_URL).then(function(r){ return r.ok ? r.json() : null; }).then(function(j){ if (j) { EXIT = j; render(); } }).catch(function(){});
 Promise.all([loadShares().then(session), loadData()]).then(function(){
   render();
   setInterval(function(){ loadData().then(render); }, 120000);
