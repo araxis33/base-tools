@@ -229,6 +229,7 @@ function rpcBatch(calls){
 /* Built by our Worker every 10 minutes, a third of the stocks per run (10.10.2026):
    the page used to quote KyberSwap ~108 times one stock after another, and the
    table took a minute or two to fill. A failed read keeps what the page has. */
+function ev(n){ try { navigator.sendBeacon(WORKER + "/ev", n); } catch (e) { /* a counter never gets in the way */ } }
 var DT = null;
 function loadData(){
   return fetch(WORKER + "/stock-data").then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); }).then(function(j){
@@ -615,9 +616,11 @@ function detail(t){
 /* ---------- interactions ---------- */
 document.addEventListener("click", function(e){
   var rtb = e.target.closest("[data-rt]"), ab = e.target.closest("[data-auth]"), row = e.target.closest("tr.row");
+  if (e.target.closest("a.buy")) ev("stock_buy");
   if (rtb) {
     var t = TOKENS.filter(function(x){ return x.s === rtb.dataset.rt; })[0], v = parseFloat($("amt-" + t.s).value);
     if (!(v >= 10)) return;
+    ev("stock_amount");
     /* kept on the stock, not only in the DOM: the venue comparison re-renders the card and used to wipe it (28.10.2026) */
     var mine = S[t.s].mine = {v: v, text: "…"};
     var show = function(){ var el = $("rt-" + t.s); if (el) el.innerHTML = rtHtml(t); };
@@ -638,6 +641,7 @@ document.addEventListener("click", function(e){
   }
   if (row && !e.target.closest("input,a,button")) {
     var k = row.dataset.s; S[k].open = !S[k].open;
+    if (S[k].open) ev("stock_open");
     var tk = TOKENS.filter(function(x){ return x.s === k; })[0];
     if (S[k].open && S[k].look === undefined) loadLook(tk).then(render);
     render();

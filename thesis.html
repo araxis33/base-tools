@@ -500,6 +500,12 @@ function loadPools(){
    (Yahoo, through our Worker), adjusted by the token's own share multiplier,
    and a basket simply does not buy what fails. */
 var WORKER = "https://deftools-check.araxis67.workers.dev";
+function ev(n){ try { navigator.sendBeacon(WORKER + "/ev", n); } catch (e) { /* a counter never gets in the way */ } }
+document.addEventListener("click", function(e){
+  if (e.target.closest("#buyall")) ev("thesis_buyall");
+  else if (e.target.closest("#share")) ev("thesis_share");
+  else if (e.target.closest("a.buy")) ev("thesis_buy");
+});
 var GAP_OPEN = 3, GAP_CLOSED = 10;   // % from the real share; wider while Wall Street is shut
 var IMPACT_LIMIT = 2;                // % estimated price impact for one stock's slice
 var DEEP_MARKET = 100000;            // $ in sane pools: deep enough to trust without the share price
@@ -1396,6 +1402,7 @@ function signAndConfirm(p, tx, what, landed){
    the swaps depend on the allowances in front of them. `ui.msg` reports
    progress, `ui.link` the finished state. Rejects with a readable error. */
 function sendCalls(p, from, calls, ui){
+  var link = ui.link; ui.link = function(url, text){ if (!/Waiting/.test(text)) ev("thesis_tx"); return link(url, text); };
   var plain = calls.map(function(c){ return { to:c.to, data:c.data, value:c.value || "0x0" }; });
   return p.request({
     method: "wallet_sendCalls",

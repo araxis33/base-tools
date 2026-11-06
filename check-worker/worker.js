@@ -22,6 +22,7 @@ import { dex } from './dex.js';
 import { runDueJobs } from './clock.js';
 import { pushRoute, runPushes } from './push.js';
 import { gameRoute } from './game.js';
+import { countEvent } from './events.js';
 
 const LIMIT = 3;
 const ORIGINS = ['https://deftools.xyz', 'https://www.deftools.xyz', 'https://night.deftools.xyz', 'https://aero.deftools.xyz', 'http://localhost:8765'];
@@ -214,6 +215,7 @@ export default {
     if (url.pathname === '/cg') return coingecko(req, ctx, url.searchParams.get('p') || '', env);
     if (url.pathname.startsWith('/push/')) return pushRoute(req, env, url, json);
     if (url.pathname.startsWith('/game/')) return gameRoute(req, env, url, json);
+    if (url.pathname === '/ev' && req.method === 'POST') return countEvent(req, env, ORIGINS);
     if (url.pathname === '/shares') return shares(req, ctx, url.searchParams.get('t') || '');
     if (url.pathname.startsWith('/dex/')) {
       return dex(req, ctx, url, (res, src) => {
