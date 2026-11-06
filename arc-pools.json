@@ -1,149 +1,117 @@
 {
- "at": "2026-11-05T13:19:35.792Z",
- "fromBlock": 29501256,
- "toBlock": 29674056,
+ "at": "2026-11-06T13:03:18.390Z",
+ "fromBlock": 29669085,
+ "toBlock": 29841885,
  "v4": {
-  "pools": 865,
-  "swaps": 72988,
-  "trapPools": 30,
-  "trapSwaps": 69
+  "pools": 1011,
+  "swaps": 100901,
+  "trapPools": 35,
+  "trapSwaps": 52
  },
  "traps": [
   {
-   "pool": "0x80137cca2b41d03bf869f320721cee54df16d881d3286f7b78bd2ca282b6d3f3",
-   "swaps": 14,
-   "feePct": 78.4374,
-   "pair": "ASTOCK/USDC",
-   "token": "0x4C9b47Dbd5933aa4574B2c27F82419E4DBBD0222",
-   "url": "https://dexscreener.com/arc/0x80137cca2b41d03bf869f320721cee54df16d881d3286f7b78bd2ca282b6d3f3"
-  },
-  {
-   "pool": "0xa22869a76e3280d90815f86109cf2cb6ca9a759507475c844cd7e05be02536ba",
-   "swaps": 13,
-   "feePct": 70.03,
-   "pair": "ASTOCK/USDC",
-   "token": "0x4C9b47Dbd5933aa4574B2c27F82419E4DBBD0222",
-   "url": "https://dexscreener.com/arc/0xa22869a76e3280d90815f86109cf2cb6ca9a759507475c844cd7e05be02536ba"
-  },
-  {
-   "pool": "0x04e4f784f2ca93c46f4e636ac8793c36c6e32b520966125b3fd4d20a948b9753",
-   "swaps": 3,
-   "feePct": 60.04,
-   "pair": "ARCLOAK/USDC",
-   "token": "0x797abf94A828776f082C56e33e5Ec432E1d27033",
-   "url": "https://dexscreener.com/arc/0x04e4f784f2ca93c46f4e636ac8793c36c6e32b520966125b3fd4d20a948b9753"
-  },
-  {
-   "pool": "0x89eb43b1cd342c8c357eb5de6f524167d5711dd2161b16ac61893600de6a64a8",
-   "swaps": 2,
-   "feePct": 95.005,
-   "pair": "TOLLY/USDC",
-   "token": "0xAD00F34872d1E184f96f38551ea322d7e49336F3",
-   "url": "https://dexscreener.com/arc/0x89eb43b1cd342c8c357eb5de6f524167d5711dd2161b16ac61893600de6a64a8"
-  },
-  {
-   "pool": "0x023989f1edd2413479e8693c6f33bc5dc10d77f87502ee26bc3466ed33c133c0",
-   "swaps": 2,
-   "feePct": 70.03,
-   "pair": "ARCLOAK/USDC",
-   "token": "0x797abf94A828776f082C56e33e5Ec432E1d27033",
-   "url": "https://dexscreener.com/arc/0x023989f1edd2413479e8693c6f33bc5dc10d77f87502ee26bc3466ed33c133c0"
-  },
-  {
    "pool": "0xe49c0a4833b73a331d209c9fa9acf29b3e99238cc7aecdbba652dbaca5392ffa",
-   "swaps": 2,
+   "swaps": 6,
    "feePct": 50.7194,
    "pair": "AF/USDC",
    "token": "0x75d658f8101fBE6DC217FBba7E20a0312af5Fa2E",
    "url": "https://dexscreener.com/arc/0xe49c0a4833b73a331d209c9fa9acf29b3e99238cc7aecdbba652dbaca5392ffa"
   },
   {
-   "pool": "0x1b65d1074ba5686be622d02aabf60758bb6d3e57ec85f5ff91d3901b820ee54a",
-   "swaps": 2,
+   "pool": "0x7a4c6a87673415c8fe31872970f0409496d13f7d716e0b73111fd09e2575643d",
+   "swaps": 3,
    "feePct": 88.012,
-   "pair": "USDT/USDC",
-   "token": "0x69499F13a091Ea12D3f340B4Fc2801E47c26C300",
-   "url": "https://dexscreener.com/arc/0x1b65d1074ba5686be622d02aabf60758bb6d3e57ec85f5ff91d3901b820ee54a"
+   "pair": "AAPL/USDC",
+   "token": "0x196CFDeaef6E1A585E1c167598e0597eeEc2db09",
+   "url": "https://dexscreener.com/arc/0x7a4c6a87673415c8fe31872970f0409496d13f7d716e0b73111fd09e2575643d"
   },
   {
-   "pool": "0x0c659d46b9b953d59d1dd185633d5d22fdf8671eb1a57de15a50bb2874792d67",
-   "swaps": 2,
-   "feePct": 94.2178,
-   "pair": "NIGHT/UCF",
-   "token": "0xaa53F4b3C18D2347B02905b93a5c8579816746F4",
-   "url": "https://dexscreener.com/arc/0x0c659d46b9b953d59d1dd185633d5d22fdf8671eb1a57de15a50bb2874792d67"
-  },
-  {
-   "pool": "0x106cb161ad90f78a6bc6919beddba5ed938b4d92ce9c2566c2fb6e6838a0e38b",
-   "swaps": 2,
-   "feePct": 94.8532,
-   "pair": "TOLLY/UCF",
-   "token": "0xBc43CE8DEc648EA298C4275559b81D6261c90b67",
-   "url": "https://dexscreener.com/arc/0x106cb161ad90f78a6bc6919beddba5ed938b4d92ce9c2566c2fb6e6838a0e38b"
-  },
-  {
-   "pool": "0x0b7dc8f7b5ce704dbdd0430ab18c4be163837c58a25eb28b735e97cc5bcb4ba6",
-   "swaps": 2,
-   "feePct": 50.1499,
-   "pair": "NOPE/USDC",
-   "token": "0x910f7Da5251F52209594f67b6d911398589AE7Bf",
-   "url": "https://dexscreener.com/arc/0x0b7dc8f7b5ce704dbdd0430ab18c4be163837c58a25eb28b735e97cc5bcb4ba6"
-  },
-  {
-   "pool": "0x6e1b0158ca30a0fd5503a1bbf6cd0ab3ebc1a2fa3fffc76bbac66c4be4fa35b8",
-   "swaps": 2,
+   "pool": "0xdb7a479f557d269f6e5e66125bf1eb6111c300631af202de4634bc473268e07b",
+   "swaps": 3,
    "feePct": 88.012,
-   "pair": "CORLA/USDC",
-   "token": "0x844C250FDe212850e23E512D9101C4fadf05Aa36",
-   "url": "https://dexscreener.com/arc/0x6e1b0158ca30a0fd5503a1bbf6cd0ab3ebc1a2fa3fffc76bbac66c4be4fa35b8"
+   "pair": "GTA6/USDC",
+   "token": "0x20EE51265930ba4F8012d507f5ab48fBac38482b",
+   "url": "https://dexscreener.com/arc/0xdb7a479f557d269f6e5e66125bf1eb6111c300631af202de4634bc473268e07b"
   },
   {
-   "pool": "0x91a4313c8f0ecbd3f9bcdf7f7a53fafbb50e2c8a859cf0551dad12a3cd1b208d",
-   "swaps": 2,
-   "feePct": 88.012,
-   "pair": "CORLA/USDC",
-   "token": "0x9cf9103bD770E5A65b170889B10A706802382D65",
-   "url": "https://dexscreener.com/arc/0x91a4313c8f0ecbd3f9bcdf7f7a53fafbb50e2c8a859cf0551dad12a3cd1b208d"
+   "pool": "0x968a05375b9055f5e1815db513bc1d134f7de1ef3c1d687b0eab8fa66d40f275",
+   "swaps": 3,
+   "feePct": 95.1049,
+   "pair": "USDC/USDC",
+   "token": "0x038442AAdDDaaC9ac7AB8E18ac9A031641C5D398",
+   "url": "https://dexscreener.com/arc/0x968a05375b9055f5e1815db513bc1d134f7de1ef3c1d687b0eab8fa66d40f275"
   },
   {
-   "pool": "0x468e2c01912a4e7ab82b0f3cb7fa64e90e7d4e3839c8b17688fd1fc94f019a38",
-   "swaps": 2,
-   "feePct": 88.012,
-   "pair": "ASTOCK/USDC",
-   "token": "0x232Fe0cc58D0D3ebAC52a2284a1467D4a5B47f3c",
-   "url": "https://dexscreener.com/arc/0x468e2c01912a4e7ab82b0f3cb7fa64e90e7d4e3839c8b17688fd1fc94f019a38"
-  },
-  {
-   "pool": "0xc3df04174dfb0d4ec62bc0d3ed5fc9acd3ed4be0bb47c2fc318172afa6952360",
-   "swaps": 2,
-   "feePct": 88.012,
-   "pair": "OpenAI/USDC",
-   "token": "0x51093C08D9b758cFf91f9Ec6c07d77BC926AFd10",
-   "url": "https://dexscreener.com/arc/0xc3df04174dfb0d4ec62bc0d3ed5fc9acd3ed4be0bb47c2fc318172afa6952360"
+   "pool": "0x82a9e8851491d40867b81bf1266d6a9072f349cd3636035feb8f88df2b65c343",
+   "swaps": 3,
+   "feePct": 70.03,
+   "pair": "UNIPAD/USDC",
+   "token": "0xc2FFBCFB814163d7E237d93449E32a04f6AB6c5C",
+   "url": "https://dexscreener.com/arc/0x82a9e8851491d40867b81bf1266d6a9072f349cd3636035feb8f88df2b65c343"
   },
   {
    "pool": "0xed6978fd3dae01a583cfdccb527e954b6183a2fc8f762afe80b2e8413a8350f1",
    "swaps": 2,
    "feePct": 88.012,
-   "pair": "Gemini/USDC",
-   "token": "0x88c9d3C84B7328227B7348822BD7D20D106CF8c2",
-   "url": "https://dexscreener.com/arc/0xed6978fd3dae01a583cfdccb527e954b6183a2fc8f762afe80b2e8413a8350f1"
-  },
-  {
-   "pool": "0x4b67cb9f9506f1fe7e2034f18a6ca9b1915249c926f71a9b22075088f491bde4",
-   "swaps": 1,
-   "feePct": 80.02,
    "pair": null,
    "token": null,
    "url": null
   },
   {
-   "pool": "0xd43a98991bb9f30039e60670aa15159d32464207bc9367109af9e0886a1c3b9d",
+   "pool": "0x946e13244e960457b9f7dd4b439e68fe6fda852ca3554d42798c3851ebf3634e",
+   "swaps": 2,
+   "feePct": 60.04,
+   "pair": "AF/USDC",
+   "token": "0x75d658f8101fBE6DC217FBba7E20a0312af5Fa2E",
+   "url": "https://dexscreener.com/arc/0x946e13244e960457b9f7dd4b439e68fe6fda852ca3554d42798c3851ebf3634e"
+  },
+  {
+   "pool": "0x495902b94fa35c66f5df350d3691d5e0397fb0d5ea919dca4b7419ad215dd182",
+   "swaps": 2,
+   "feePct": 50.05,
+   "pair": "LINK/USDC",
+   "token": "0x76a443768A5e3B8d1AED0105FC250877841Deb40",
+   "url": "https://dexscreener.com/arc/0x495902b94fa35c66f5df350d3691d5e0397fb0d5ea919dca4b7419ad215dd182"
+  },
+  {
+   "pool": "0x7d089b857f287d47e795d96a72d083b0c9eee46e84151f670d39173a012e6e11",
+   "swaps": 2,
+   "feePct": 50.05,
+   "pair": "ARCIRCLE/USDC",
+   "token": "0xe5718F298ac3b65FAf7c711b56cBD72b3bb15fF7",
+   "url": "https://dexscreener.com/arc/0x7d089b857f287d47e795d96a72d083b0c9eee46e84151f670d39173a012e6e11"
+  },
+  {
+   "pool": "0x89eb43b1cd342c8c357eb5de6f524167d5711dd2161b16ac61893600de6a64a8",
    "swaps": 1,
-   "feePct": 85.015,
+   "feePct": 95.005,
    "pair": null,
    "token": null,
    "url": null
+  },
+  {
+   "pool": "0xab9ce75c37a95720cc563b599eafd6ce80f757459e74bd10ee5890a8f19c71e4",
+   "swaps": 1,
+   "feePct": 88,
+   "pair": "NVIDIA/USDC",
+   "token": "0xcED63Bb0464dE06FB57B368967487af241c517E2",
+   "url": "https://dexscreener.com/arc/0xab9ce75c37a95720cc563b599eafd6ce80f757459e74bd10ee5890a8f19c71e4"
+  },
+  {
+   "pool": "0xa954a9abe40494fbf6a53c5a9ea90d2512978bc83d5fcd62f4e28dea922dd4a7",
+   "swaps": 1,
+   "feePct": 55.045,
+   "pair": "AI/USDC",
+   "token": "0x35f215fb669747D041E6A5733C8388F3C994Fd45",
+   "url": "https://dexscreener.com/arc/0xa954a9abe40494fbf6a53c5a9ea90d2512978bc83d5fcd62f4e28dea922dd4a7"
+  },
+  {
+   "pool": "0x0b7dc8f7b5ce704dbdd0430ab18c4be163837c58a25eb28b735e97cc5bcb4ba6",
+   "swaps": 1,
+   "feePct": 50.1499,
+   "pair": "NOPE/USDC",
+   "token": "0x910f7Da5251F52209594f67b6d911398589AE7Bf",
+   "url": "https://dexscreener.com/arc/0x0b7dc8f7b5ce704dbdd0430ab18c4be163837c58a25eb28b735e97cc5bcb4ba6"
   },
   {
    "pool": "0x49d1f4b47d1b66272cd407818ad9116bc6ba8c348f231802223cac3ce06a67a7",
@@ -154,36 +122,140 @@
    "url": "https://dexscreener.com/arc/0x49d1f4b47d1b66272cd407818ad9116bc6ba8c348f231802223cac3ce06a67a7"
   },
   {
-   "pool": "0x224ed7b2750821b30011392e025a1f07b1dd8ffae4168a36d3b1093a7f007cf8",
+   "pool": "0x7ef6702f1e1823f80e26fc9d2089f6d539236a8115f7d8de1b4953c734e5d06a",
    "swaps": 1,
-   "feePct": 79.251,
-   "pair": "ARCUS/USDC",
-   "token": "0xB7C934FF18730c24e6113BB4bC5A68feEf16fD29",
-   "url": "https://dexscreener.com/arc/0x224ed7b2750821b30011392e025a1f07b1dd8ffae4168a36d3b1093a7f007cf8"
+   "feePct": 90.01,
+   "pair": "Minara/USDC",
+   "token": "0xA163d7624Da3B5d9182c50EaB5b8cd247Ae861bb",
+   "url": "https://dexscreener.com/arc/0x7ef6702f1e1823f80e26fc9d2089f6d539236a8115f7d8de1b4953c734e5d06a"
   },
   {
-   "pool": "0x7648a5aeae4eb43bc678366dd2153bad4225e4cbee744fe2aeb8778fda1f9500",
+   "pool": "0x1516afbda39e2f15078c7c7861a6dc19ed5c71440fb41bff29ed78067efe4a05",
    "swaps": 1,
-   "feePct": 75.025,
-   "pair": "ARCUS/USDC",
-   "token": "0xB7C934FF18730c24e6113BB4bC5A68feEf16fD29",
-   "url": "https://dexscreener.com/arc/0x7648a5aeae4eb43bc678366dd2153bad4225e4cbee744fe2aeb8778fda1f9500"
+   "feePct": 78.022,
+   "pair": "AKARII/USDC",
+   "token": "0x643098f125E765081fEC0B67384BFe5cA498F24a",
+   "url": "https://dexscreener.com/arc/0x1516afbda39e2f15078c7c7861a6dc19ed5c71440fb41bff29ed78067efe4a05"
   },
   {
-   "pool": "0x968a05375b9055f5e1815db513bc1d134f7de1ef3c1d687b0eab8fa66d40f275",
+   "pool": "0xb8bba6fdaa2d62a12c34f22bc3dff502f099668be095963ef44fbdceb05fb3a6",
    "swaps": 1,
-   "feePct": 95.1049,
-   "pair": "USDC/USDC",
-   "token": "0x038442AAdDDaaC9ac7AB8E18ac9A031641C5D398",
-   "url": "https://dexscreener.com/arc/0x968a05375b9055f5e1815db513bc1d134f7de1ef3c1d687b0eab8fa66d40f275"
+   "feePct": 82.018,
+   "pair": "AKARII/USDC",
+   "token": "0x643098f125E765081fEC0B67384BFe5cA498F24a",
+   "url": "https://dexscreener.com/arc/0xb8bba6fdaa2d62a12c34f22bc3dff502f099668be095963ef44fbdceb05fb3a6"
   },
   {
-   "pool": "0xd197101260a6c9f7eb65017b9a0e07511cf3b9ce41b662fe86f6e405f3161b22",
+   "pool": "0xeefb2854541dac2c7d4e8a8670652bad9f6fa0c20fdecf9637a92fba6eefb65a",
+   "swaps": 1,
+   "feePct": 70.03,
+   "pair": "MEMESPAD/USDC",
+   "token": "0x0bB3bEFba323578DAd33EfB6356c69b557787777",
+   "url": "https://dexscreener.com/arc/0xeefb2854541dac2c7d4e8a8670652bad9f6fa0c20fdecf9637a92fba6eefb65a"
+  },
+  {
+   "pool": "0x83e757ddcbb85f3b4d8a4fbd7a36dd744bcdc4d3d21065b5a157e66ed30af65d",
+   "swaps": 1,
+   "feePct": 89.02,
+   "pair": "MEMESPAD/USDC",
+   "token": "0x0bB3bEFba323578DAd33EfB6356c69b557787777",
+   "url": "https://dexscreener.com/arc/0x83e757ddcbb85f3b4d8a4fbd7a36dd744bcdc4d3d21065b5a157e66ed30af65d"
+  },
+  {
+   "pool": "0xa18cd73b616c25a9a264d8a0d76e7e55bbbb238ae8e579ff06886e7aef1361fa",
+   "swaps": 1,
+   "feePct": 78.022,
+   "pair": "EURC/ARGUS",
+   "token": "0xbEf5f6d51CB62b58e6A8f77868681825C6fe21c1",
+   "url": "https://dexscreener.com/arc/0xa18cd73b616c25a9a264d8a0d76e7e55bbbb238ae8e579ff06886e7aef1361fa"
+  },
+  {
+   "pool": "0xee0db205acdb7705b5c54d4528d25d0d488281d5bbc656def3438df26dad852f",
+   "swaps": 1,
+   "feePct": 80.02,
+   "pair": "EYE/USDC",
+   "token": "0x49e09Ee7Ea5dE6a009f1619064cd041A16B5c876",
+   "url": "https://dexscreener.com/arc/0xee0db205acdb7705b5c54d4528d25d0d488281d5bbc656def3438df26dad852f"
+  },
+  {
+   "pool": "0xca1466c647c687d63d45b39ea9fa37f1dade84eb6f3cca25de5ecb2942756ae1",
+   "swaps": 1,
+   "feePct": 85.015,
+   "pair": "NIPS/USDC",
+   "token": "0xDa02947395996f0f7283f0188FB0F8CdbC0aBD0e",
+   "url": "https://dexscreener.com/arc/0xca1466c647c687d63d45b39ea9fa37f1dade84eb6f3cca25de5ecb2942756ae1"
+  },
+  {
+   "pool": "0x5130092fcdf809269031d6061d47e6089f9f520f6d07e5e08a2ab085c2e85bec",
+   "swaps": 1,
+   "feePct": 82.018,
+   "pair": "THEARC/USDC",
+   "token": "0xD472Ba22a0Ed86E3747216EbC35a77a45589c8a3",
+   "url": "https://dexscreener.com/arc/0x5130092fcdf809269031d6061d47e6089f9f520f6d07e5e08a2ab085c2e85bec"
+  },
+  {
+   "pool": "0x4844a2cddfd44c8284fdbc00a40996af6bb947d4f4c1e0a568e54aa4336102c7",
    "swaps": 1,
    "feePct": 50.05,
-   "pair": "ARC/USDC",
-   "token": "0xDf618987F6266DC78342D5ce26dB10A9D6340087",
-   "url": "https://dexscreener.com/arc/0xd197101260a6c9f7eb65017b9a0e07511cf3b9ce41b662fe86f6e405f3161b22"
+   "pair": "JACKET/USDC",
+   "token": "0xff3301e56CA27D8b877a2F4F1e30e8059172714A",
+   "url": "https://dexscreener.com/arc/0x4844a2cddfd44c8284fdbc00a40996af6bb947d4f4c1e0a568e54aa4336102c7"
+  },
+  {
+   "pool": "0xb6def2c72963917d9773645ea0bd2233118d900e73335de573933913480250cb",
+   "swaps": 1,
+   "feePct": 65.035,
+   "pair": "AF/USDC",
+   "token": "0x75d658f8101fBE6DC217FBba7E20a0312af5Fa2E",
+   "url": "https://dexscreener.com/arc/0xb6def2c72963917d9773645ea0bd2233118d900e73335de573933913480250cb"
+  },
+  {
+   "pool": "0x26222e10c79cc9d1dc1223a772cad6d7b06bce1f5ead854553def5149170e93d",
+   "swaps": 1,
+   "feePct": 75.025,
+   "pair": "ARGUS/USDC",
+   "token": "0xF30D66cB76C1E59E959f1c49f188074cf2aD4B7D",
+   "url": "https://dexscreener.com/arc/0x26222e10c79cc9d1dc1223a772cad6d7b06bce1f5ead854553def5149170e93d"
+  },
+  {
+   "pool": "0x2c3e604ebd2be803010667fd89fd407ae6412589023a39b3a0cff0e7423674bc",
+   "swaps": 1,
+   "feePct": 73.027,
+   "pair": "ARCORA/USDC",
+   "token": "0xF129686cc0212481e0637010E35142296d864444",
+   "url": "https://dexscreener.com/arc/0x2c3e604ebd2be803010667fd89fd407ae6412589023a39b3a0cff0e7423674bc"
+  },
+  {
+   "pool": "0x05ef4bda84bf8289fa29c6a85b0eaec83fadc84ac7d0badd5fa3305d85753179",
+   "swaps": 1,
+   "feePct": 60,
+   "pair": "UNIPAD/USDC",
+   "token": "0xc2FFBCFB814163d7E237d93449E32a04f6AB6c5C",
+   "url": "https://dexscreener.com/arc/0x05ef4bda84bf8289fa29c6a85b0eaec83fadc84ac7d0badd5fa3305d85753179"
+  },
+  {
+   "pool": "0x031e54b19a57a78340ef3c43da1ca16d781f833d77850316ae82fa99feab67e9",
+   "swaps": 1,
+   "feePct": 78.7413,
+   "pair": "AU/USDC",
+   "token": "0x82e7ab2c72d6c6B06D310833aD2101dDf6D94Da9",
+   "url": "https://dexscreener.com/arc/0x031e54b19a57a78340ef3c43da1ca16d781f833d77850316ae82fa99feab67e9"
+  },
+  {
+   "pool": "0x921f5d3255f6bc46d134b289bd1026178c0601cc1320acec4b1215e3b5c7bcc8",
+   "swaps": 1,
+   "feePct": 75.5245,
+   "pair": "CINU/USDC",
+   "token": "0xBDBB76DB770cC99DCF3FA31C42C171b9584D6a10",
+   "url": "https://dexscreener.com/arc/0x921f5d3255f6bc46d134b289bd1026178c0601cc1320acec4b1215e3b5c7bcc8"
+  },
+  {
+   "pool": "0x9c038e2d4bd13d5f77c2a724e2e2ffde3b43ada2e0b542656687989d3ed6e6c6",
+   "swaps": 1,
+   "feePct": 71.029,
+   "pair": "AF/USDC",
+   "token": "0x75d658f8101fBE6DC217FBba7E20a0312af5Fa2E",
+   "url": "https://dexscreener.com/arc/0x9c038e2d4bd13d5f77c2a724e2e2ffde3b43ada2e0b542656687989d3ed6e6c6"
   },
   {
    "pool": "0x6167ee00f6cbed9bee8842eb2803dfd5047c89d962a5257815f68555a9ef8634",
@@ -194,60 +266,28 @@
    "url": "https://dexscreener.com/arc/0x6167ee00f6cbed9bee8842eb2803dfd5047c89d962a5257815f68555a9ef8634"
   },
   {
-   "pool": "0x2816e36197ce03d8a504cc02ad00436f879d92e236fa5a331c9870c51f7dfbd9",
+   "pool": "0xc895583e2707c40d7471223b54528fe56fc51d18ca3beb17c2c9ab4d791e5034",
+   "swaps": 1,
+   "feePct": 95.1049,
+   "pair": "ARGUS/USDC",
+   "token": "0x309b64f7A89aABf5b2B0a1098D350b98d3550c00",
+   "url": "https://dexscreener.com/arc/0xc895583e2707c40d7471223b54528fe56fc51d18ca3beb17c2c9ab4d791e5034"
+  },
+  {
+   "pool": "0xfa527c5602f71256f2af75f50a6df75273798e482c3f495ab5636b09a999ee8b",
+   "swaps": 1,
+   "feePct": 88.012,
+   "pair": "NIGHT/USDC",
+   "token": "0xaa53F4b3C18D2347B02905b93a5c8579816746F4",
+   "url": "https://dexscreener.com/arc/0xfa527c5602f71256f2af75f50a6df75273798e482c3f495ab5636b09a999ee8b"
+  },
+  {
+   "pool": "0x906331db4d9408a829c765a8b5a4a664e26b70e91d40a368b3567e5b092de16f",
    "swaps": 1,
    "feePct": 50.05,
-   "pair": "PCH/USDC",
-   "token": "0x7f2293b6DF4934Aa5392d5Fef8eF9ca987B0393b",
-   "url": "https://dexscreener.com/arc/0x2816e36197ce03d8a504cc02ad00436f879d92e236fa5a331c9870c51f7dfbd9"
-  },
-  {
-   "pool": "0x41490bb649dd7a6fac885025657057edd6a09b8a1ba130e93bda95fb41f5592a",
-   "swaps": 1,
-   "feePct": 70.03,
-   "pair": "ARCTIC/USDC",
-   "token": "0x5661950773A169CB575731ba535f72d97Ae18202",
-   "url": "https://dexscreener.com/arc/0x41490bb649dd7a6fac885025657057edd6a09b8a1ba130e93bda95fb41f5592a"
-  },
-  {
-   "pool": "0xce665891555d601422edaa0ffef96b6584bdac9d8363147d71cc03de2f3a5bd1",
-   "swaps": 1,
-   "feePct": 81.0181,
-   "pair": "DUKE/USDC",
-   "token": "0x41358Defd0dedc90528b3F1835715E907B686e6a",
-   "url": "https://dexscreener.com/arc/0xce665891555d601422edaa0ffef96b6584bdac9d8363147d71cc03de2f3a5bd1"
-  },
-  {
-   "pool": "0x6f98e4f7b0c1ede348559c5c6d066e1bc2ea1ce7c847d2fa70b41f6324b5fc24",
-   "swaps": 1,
-   "feePct": 98.2138,
-   "pair": "$$$/WETH",
-   "token": "0x1fc29df411ec71A48a431ebBc9f585B98aF910B3",
-   "url": "https://dexscreener.com/arc/0x6f98e4f7b0c1ede348559c5c6d066e1bc2ea1ce7c847d2fa70b41f6324b5fc24"
-  },
-  {
-   "pool": "0x3b7b1deb7710d3c0dfd28e5a0648fb91a724c94c1764b924b3c2cab37bb13146",
-   "swaps": 1,
-   "feePct": 79.021,
-   "pair": "Architects/USDC",
-   "token": "0x8bcb94279FC2c984EC34e0C1f2192df8c69EA4F0",
-   "url": "https://dexscreener.com/arc/0x3b7b1deb7710d3c0dfd28e5a0648fb91a724c94c1764b924b3c2cab37bb13146"
-  },
-  {
-   "pool": "0xa3d015adf0e897ac93b6e3823757f3a7a2f998435d54108af8e76bd4fecc06d0",
-   "swaps": 1,
-   "feePct": 80.02,
-   "pair": "Fest/USDC",
-   "token": "0xE4Bf28b3ac8bA884C369E37833a1a66CB353DDA3",
-   "url": "https://dexscreener.com/arc/0xa3d015adf0e897ac93b6e3823757f3a7a2f998435d54108af8e76bd4fecc06d0"
-  },
-  {
-   "pool": "0x4844a2cddfd44c8284fdbc00a40996af6bb947d4f4c1e0a568e54aa4336102c7",
-   "swaps": 1,
-   "feePct": 50.05,
-   "pair": "JACKET/USDC",
-   "token": "0xff3301e56CA27D8b877a2F4F1e30e8059172714A",
-   "url": "https://dexscreener.com/arc/0x4844a2cddfd44c8284fdbc00a40996af6bb947d4f4c1e0a568e54aa4336102c7"
+   "pair": "POLL/USDC",
+   "token": "0xf76b1D00bD3d63A37246B5f512074e864010E33d",
+   "url": "https://dexscreener.com/arc/0x906331db4d9408a829c765a8b5a4a664e26b70e91d40a368b3567e5b092de16f"
   }
  ],
  "copies": [
@@ -257,7 +297,7 @@
    "name": "Circle Wrapped Bitcoin",
    "copyOf": "CIRBTC",
    "real": "0x171a4217b86a807a64eb94757db6849fb4bdbaa0",
-   "shownUsd": 38850361,
+   "shownUsd": 36848688,
    "realUsd": 0,
    "trades24h": 7
   },
@@ -267,19 +307,9 @@
    "name": "EURC",
    "copyOf": "EURC",
    "real": "0xbef5f6d51cb62b58e6a8f77868681825c6fe21c1",
-   "shownUsd": 2243246,
+   "shownUsd": 2244144,
    "realUsd": 0,
    "trades24h": 6
-  },
-  {
-   "address": "0xd4619f378062e2DF74D3f40C631394d853074dcC",
-   "symbol": "cirBTC",
-   "name": "Circle Wraped Bitcoin",
-   "copyOf": "CIRBTC",
-   "real": "0x171a4217b86a807a64eb94757db6849fb4bdbaa0",
-   "shownUsd": 262497,
-   "realUsd": 2,
-   "trades24h": 2
   },
   {
    "address": "0x8E98A62a995A50eca9979bfa016f91bf36A8F9D9",
@@ -287,19 +317,9 @@
    "name": "UpSideDownCat",
    "copyOf": "USDC",
    "real": "0x3600000000000000000000000000000000000000",
-   "shownUsd": 40755,
-   "realUsd": 19083,
-   "trades24h": 65
-  },
-  {
-   "address": "0x762F4B6Eb85e11d8d670C5D3A0Be867D53f000C6",
-   "symbol": "CIRBTC",
-   "name": "Circle Wrapped Bitcoin",
-   "copyOf": "CIRBTC",
-   "real": "0x171a4217b86a807a64eb94757db6849fb4bdbaa0",
-   "shownUsd": 0,
-   "realUsd": 0,
-   "trades24h": 2
+   "shownUsd": 39013,
+   "realUsd": 18214,
+   "trades24h": 54
   }
  ]
 }
