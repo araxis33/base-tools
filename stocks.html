@@ -143,7 +143,7 @@ footer{margin:40px 0 30px; color:var(--muted2); font-size:13px}
   <div class="session" id="session"><i class="dot"></i><div><b>Checking the market&hellip;</b><span></span></div></div>
 
   <div class="hint"><span class="live"><i></i>LIVE</span>
-    <span>Prices on Base and round trips are re-checked every 30 minutes, the real share live. <b>Tap any stock</b> for its full check: fakes, trade cost at your size, borrowing, transfers.</span></div>
+    <span><span id="rtAge">Round trips are re-checked every 30 minutes</span>. Estimate from two quotes, no trades. The real share is live. <b>Tap any stock</b> for its full check: fakes, trade cost at your size, borrowing, transfers.</span></div>
 
   <table class="tbl" id="tbl">
     <thead><tr>
@@ -234,13 +234,16 @@ function loadData(){
   return fetch(WORKER + "/stock-data").then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); }).then(function(j){
     if (!j || !j.items) return;
     DT = j.ts;
+    var rtAt = 0;
     TOKENS.forEach(function(t){
       var x = j.items[t.s]; if (!x) return;
       if ("dex" in x) { S[t.s].dex = x.dex; S[t.s].rt = x.rt; S[t.s].at = x.ts; }
+      if (x.rtTs > rtAt) rtAt = x.rtTs;
       if (x.chain) S[t.s].chain = x.chain;
       if (x.morpho) S[t.s].morpho = x.morpho;
       if (x.aave) S[t.s].aave = x.aave;
     });
+    if (rtAt) $("rtAge").textContent = "Round trips checked " + ago(rtAt / 1000);
   }).catch(function(){});
 }
 
@@ -485,7 +488,7 @@ function flags(t){
   if (c.multiplier && Math.abs(c.multiplier - 1) > 1e-9) out.push('<span class="tag y">1 token = ' + c.multiplier.toFixed(4) + ' shares</span>');
   if (g != null && Math.abs(g) >= 3) out.push('<span class="tag r">' + pct(g, 1) + ' from the share: do not buy</span>');
   else if (g != null && Math.abs(g) >= 1) out.push('<span class="tag y">' + pct(g, 1) + ' from the share</span>');
-  if (rt && rt.loss >= 5) out.push('<span class="tag r">empty market: $1,000 in and out loses ' + rt.loss.toFixed(0) + '%</span>');
+  if (rt && rt.loss >= 5) out.push('<span class="tag r">empty market: $1,000 in and out, est. cost ' + rt.loss.toFixed(0) + '%</span>');
   else if (rt && rt.loss >= 1) out.push('<span class="tag y">costly round trip</span>');
   if (st0(t).rt === null && st0(t).dex === null) out.push('<span class="tag r">no route to buy it</span>');
   if (open && c.oracleAt && Date.now()/1000 - c.oracleAt > 3 * 3600) out.push('<span class="tag">feed ' + ago(c.oracleAt) + '</span>');
@@ -575,7 +578,7 @@ function detail(t){
   /* Leverage: PendleLoop borrows on Aave and buys more of the stock, over and over, in one transaction. */
   if (PENDLE[t.s]) h += '<div class="box"><h3>Hold it with leverage</h3>' +
     '<p>PendleLoop pledges your ' + t.s + ' on Aave, borrows USDC and buys more ' + t.s + ', in one go, so you hold a bigger position than you paid for.' +
-    (st.rt ? ' Each buy goes through the pools on Base: $1,000 in and out costs ' + st.rt.loss.toFixed(2) + '% right now.' : '') + '</p>' +
+    (st.rt ? ' Each buy goes through the pools on Base: $1,000 in and out costs about ' + st.rt.loss.toFixed(2) + '% right now, by two quotes.' : '') + '</p>' +
     '<p class="mut">Leverage comes with a liquidation price. Base trades 24/7 while the US market is shut, so a Monday open can move ' + t.s + ' in one step. Loop rewards are a campaign and end.</p></div>';
 
   h += '<div class="box"><h3>What you own</h3>' +
