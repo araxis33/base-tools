@@ -162,7 +162,7 @@ footer{margin:40px 0 30px; color:var(--muted2); font-size:13px}
       The Chainlink feed is shown inside each stock but not used for the gap: it only moves when the price shifts 0.5%, so it can sit hours behind.</p>
     <p>Read-only: nothing here asks for a wallet. To buy a stock, a basket or a stock meme, use <a href="/thesis.html">Thesis</a>. Not financial advice.</p>
   </div>
-  <footer>Built by <a href="https://x.com/Def7771" target="_blank" rel="noopener">@Def7771</a> · <a href="https://github.com/araxis33/base-tools" target="_blank" rel="noopener">code</a></footer>
+  <footer>Built by <a href="https://x.com/Def7771" target="_blank" rel="noopener">@Def7771</a> · <a href="https://github.com/araxis33/base-tools" target="_blank" rel="noopener">code</a> · Not available to US residents.</footer>
 </div>
 
 <script src="/thesis-core.js"></script>
@@ -540,7 +540,7 @@ function detail(t){
   var broken = (g != null && Math.abs(g) >= 3) || (st.rt && st.rt.loss >= 5) || (st.rt === null && st.dex === null);
   h += '<div class="box wide flagbar"><div>' + flags(t) + '</div>' +
     (broken ? '<a class="buy off" href="/thesis.html?b=' + t.s + '-100&a=1000">Why Thesis won&rsquo;t buy it &rarr;</a>'
-            : '<a class="buy" href="/thesis.html?b=' + t.s + '-100&a=1000">Buy in Thesis &rarr;</a>') + '</div>';
+            : '<a class="buy" href="/thesis.html?b=' + t.s + '-100&a=1000">Buy in Thesis &rarr;</a><span class="mut" style="display:block;font-size:12px;margin-top:4px">Not available to US residents.</span>') + '</div>';
 
   h += '<div class="box"><h3>Is it the real one?</h3>' +
     '<p class="ok">&#10003; Official ' + t.s + ', issued by Coinbase.</p>' +
