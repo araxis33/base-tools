@@ -18,6 +18,7 @@ const quotes = await quoteStocks();
 const ok = quotes.filter(([, q]) => q.dex != null || q.rt != null).length;
 console.log(`quoted ${ok} of ${quotes.length}`);
 for (const [s, q] of quotes) if (q.why) console.log(s, q.why);
+for (const [s, q] of quotes) if (q.tries && Math.max(...q.tries) - Math.min(...q.tries) >= 1) console.log(s, 'round trip tries', q.tries.join(' '));
 if (dry) { console.log(JSON.stringify(quotes.slice(0, 3))); process.exit(0); }
 
 if (!process.env.QUOTES_KEY) { console.error('QUOTES_KEY is not set'); process.exit(1); }

@@ -61,11 +61,23 @@ function venues(rs) {
 async function quoteStock(t) {
   const out = {};
   try { const q = await quote(USDC, t.a, '50000000'); out.dex = 50 / (Number(q.amountOut) / 10 ** STOCK_DECIMALS); } catch (e) { out.dex = null; out.why = e.message; }
-  try {
-    const buy = await quote(USDC, t.a, '1000000000');
-    const sell = await quote(t.a, USDC, buy.amountOut);
-    out.rt = { loss: Math.max(0, 100 * (1 - Number(sell.amountOut) / 1e6 / 1000)), shares: Number(buy.amountOut), venues: venues(buy) };
-  } catch (e) { out.rt = null; out.why = out.why || e.message; }
+  // A costly answer gets two more tries, and the cheapest stands: on 06.11.2026 the table showed
+  // MRNAc at 32.6% and 40.5% while the same two quotes gave 5.4-5.7% minutes around them, its
+  // route through other pools than usual. `tries` keeps every answer in the run's log.
+  let best = null, why = null;
+  const tries = [];
+  for (let i = 0; i < 3 && (!best || best.loss >= 1); i++) {
+    try {
+      const buy = await quote(USDC, t.a, '1000000000');
+      const sell = await quote(t.a, USDC, buy.amountOut);
+      const rt = { loss: Math.max(0, 100 * (1 - Number(sell.amountOut) / 1e6 / 1000)), shares: Number(buy.amountOut), venues: venues(buy) };
+      tries.push(Number(rt.loss.toFixed(2)));
+      if (!best || rt.loss < best.loss) best = rt;
+    } catch (e) { why = e.message; }
+  }
+  out.rt = best;
+  if (!best) out.why = out.why || why;
+  if (tries.length > 1) out.tries = tries;
   return out;
 }
 
