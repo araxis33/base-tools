@@ -1,0 +1,35 @@
+name: exit depth
+
+# Once a day on US market days: how much of each Coinbase stock sells into USDC on Base at 1%
+# and 3% price impact. The file goes to the stocks-data branch so the site's history stays clean.
+on:
+  schedule:
+    - cron: "25 17 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency: stocks-snapshot
+
+jobs:
+  depth:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/exit-depth.mjs exit-depth.json
+      - name: Save to the stocks-data branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin stocks-data
+          git worktree add data origin/stocks-data
+          git -C data checkout -B stocks-data
+          mv exit-depth.json data/exit-depth.json
+          git -C data add exit-depth.json
+          git -C data commit -qm "Exit depth $(date -u +%Y-%m-%dT%H:%M)"
+          git -C data push origin stocks-data
