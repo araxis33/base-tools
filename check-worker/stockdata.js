@@ -13,7 +13,9 @@ const KEY_QUOTES = 'stocks:quotes';
 const KEEP_MS = 2 * 3600 * 1000;
 const USDC = '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913';
 const KYBER = 'https://aggregator-api.kyberswap.com/base/api/v1/routes';
-const RPCS = ['https://base-rpc.publicnode.com', 'https://mainnet.base.org'];
+// Blast first: it answers Cloudflare and takes a batch of 48 calls (6.11.2026). publicnode refuses
+// Cloudflare's addresses and mainnet.base.org allows 25 calls a second.
+const RPCS = ['https://base-mainnet.public.blastapi.io', 'https://base-rpc.publicnode.com', 'https://mainnet.base.org'];
 const STOCK_DECIMALS = 8; // every Coinbase stock token on Base (all 36 read on 08.10.2026)
 const SENDER_SCOPE = 'b81736c875ab819dd97f59f2a6542cfb731ad52b4ae15a6f24df2fb02b0327f5';
 const PAUSABLE = ['transfers', 'minting', 'burning', 'seizing'];
