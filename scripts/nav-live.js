@@ -16,7 +16,6 @@ const fs = require('fs');
 const RPCS = ['https://mainnet.base.org', 'https://base.drpc.org']; // both answer for old blocks (publicnode wants a token)
 const USDC = '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913';
 const EURC = '0x60a3E35Cc302bFA44Cb288Bc5a4F316Fdb1adb42';
-const WEEK_BLOCKS = 7 * 43200; // 2 s blocks
 const RADAR_FEES = 'https://aero.deftools.xyz/data/v3.json';
 const UA = { 'user-agent': 'Mozilla/5.0 (deftools navigator; +https://deftools.xyz)' };
 const DAY = 86400000;
@@ -45,6 +44,23 @@ async function rpc(method, params) {
 const supply = async (token, block, decimals) =>
   Number(BigInt(await rpc('eth_call', [{ to: token, data: '0x18160ddd' }, block]))) / 10 ** decimals;
 
+// First block at or after a time, from block timestamps. Never from a block count:
+// Base went from 2 s to 0.2 s blocks on 5.11.2026.
+async function blockAtTime(targetSec, head) {
+  const before = async (n) => parseInt((await rpc('eth_getBlockByNumber', ['0x' + n.toString(16), false])).timestamp, 16) < targetSec;
+  let hi = head, lo = 0;
+  for (let step = 1000; hi > 0; step *= 2) {
+    const probe = Math.max(0, hi - step);
+    if (await before(probe)) { lo = probe + 1; break; }
+    hi = probe;
+  }
+  while (lo < hi) {
+    const mid = Math.floor((lo + hi) / 2);
+    if (await before(mid)) lo = mid + 1; else hi = mid;
+  }
+  return lo;
+}
+
 const gap = (a, b) => Math.abs(a / b - 1) * 100;
 const pct = (now, before) => (before ? (now / before - 1) * 100 : null);
 const r2 = (x) => (x == null ? null : Math.round(x * 100) / 100);
@@ -64,7 +80,7 @@ async function add(id, build) {
 
 (async () => {
   const head = parseInt(await rpc('eth_blockNumber', []), 16);
-  const weekAgo = '0x' + (head - WEEK_BLOCKS).toString(16);
+  const weekAgo = '0x' + (await blockAtTime(Math.floor(Date.now() / 1000) - 7 * 86400, head)).toString(16);
   const [stables, gtp, l2b, dexes] = await Promise.all([
     getJson('https://stablecoins.llama.fi/stablecoins?includePrices=true').catch(() => null),
     getJson('https://api.growthepie.com/v1/fundamentals.json').catch(() => null),

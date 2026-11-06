@@ -89,8 +89,12 @@ async function rpcBatch(calls) {
     try {
       const r = await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body });
       if (!r.ok) continue;
+      const answers = await r.json();
+      // A node over its limit still answers 200 with errors in place of the results (mainnet.base.org:
+      // "25/second request limit reached"). Only a revert means the contract has no such function.
+      if (answers.some((x) => x.error && !/revert/i.test(x.error.message || ''))) continue;
       const out = [];
-      (await r.json()).forEach((x) => { out[x.id] = x.result || null; });
+      answers.forEach((x) => { out[x.id] = x.result || null; });
       return out;
     } catch (e) { /* next node */ }
   }
@@ -210,7 +214,8 @@ export async function refreshStockData(env, part, now = Date.now()) {
   let old = {};
   try { old = JSON.parse((await env.QUOTA.get(KEY_DATA)) || '{}'); } catch (e) { /* start over */ }
   const items = old.items || {};
-  if (chain) for (const s in chain) (items[s] || (items[s] = {})).chain = chain[s];
+  // A read without the multiplier is a failed read: the last good one stays.
+  if (chain) for (const s in chain) if (chain[s].multiplier != null) (items[s] || (items[s] = {})).chain = chain[s];
   if (morpho) for (const s in morpho) (items[s] || (items[s] = {})).morpho = morpho[s];
   if (aave) for (const s in aave) (items[s] || (items[s] = {})).aave = aave[s];
   await env.QUOTA.put(KEY_DATA, JSON.stringify({ ts: now, items }));

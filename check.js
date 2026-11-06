@@ -22,7 +22,7 @@ const CK = (() => {
   const EXCHANGE_ETH = 500; // a wallet this rich is an exchange or a bridge, not an insider
   const MAJOR_CEX = ['Binance', 'Coinbase Exchange', 'Kraken', 'OKX', 'Bybit', 'Upbit', 'Bitget', 'KuCoin', 'Gate'];
   const DEX_WORDS = ['uniswap', 'aerodrome', 'pancake', 'sushi', 'baseswap', 'dex', 'balancer', 'curve', 'swap', 'velodrome'];
-  const SNIPE_BLOCKS = 3;
+  const SNIPE_SECONDS = 6; // "bought in the first moments": three blocks when Base made one every 2 s
   const DEPLOYER_BUDGET_MS = 35000;
   const HOLDERS_BUDGET_MS = 30000;
   const ADDR_RE = /0x[a-fA-F0-9]{40}/;
@@ -289,6 +289,28 @@ const CK = (() => {
       devFunded: wallets.filter((r) => dev && r.funder === dev), unchecked };
   }
 
+  // First block at or after a time, from block timestamps. Never from a block time:
+  // Base went from 2 s to 0.2 s blocks on 5.11.2026.
+  async function blockAtTime(chain, targetSec, head) {
+    const before = async (n) => {
+      const r = await rpc(chain, [['eth_getBlockByNumber', ['0x' + n.toString(16), false]]]);
+      const b = r && r[0] && r[0].result;
+      if (!b) throw new Error('no block ' + n);
+      return parseInt(b.timestamp, 16) < targetSec;
+    };
+    let hi = head, lo = 0;
+    for (let step = 1000; hi > 0; step *= 2) {
+      const probe = Math.max(0, hi - step);
+      if (await before(probe)) { lo = probe + 1; break; }
+      hi = probe;
+    }
+    while (lo < hi) {
+      const mid = Math.floor((lo + hi) / 2);
+      if (await before(mid)) lo = mid + 1; else hi = mid;
+    }
+    return lo;
+  }
+
   async function snipers(chain, token, creationBlock, poolCreatedMs, lpAddrs, totalRaw, dev) {
     if (!totalRaw || !RPC[chain]) return null;
     let start = creationBlock;
@@ -296,9 +318,9 @@ const CK = (() => {
       const head = await rpc(chain, [['eth_getBlockByNumber', ['latest', false]]]);
       const blk = head && head[0] && head[0].result;
       if (blk) {
-        const n = parseInt(blk.number, 16), ts = parseInt(blk.timestamp, 16);
-        const guess = n - Math.floor((ts - poolCreatedMs / 1000) / (chain === 'base' ? 2 : 1));
-        start = Math.max(creationBlock || 0, guess - 60);
+        const n = parseInt(blk.number, 16);
+        const fromTime = await blockAtTime(chain, Math.floor(poolCreatedMs / 1000) - 120, n).catch(() => null);
+        if (fromTime != null) start = Math.max(creationBlock || 0, fromTime);
       }
     }
     if (!start) return null;
@@ -317,7 +339,12 @@ const CK = (() => {
     }
     if (!buys.length) return { found: false };
     const first = Math.min(...buys.map((b) => b[0]));
-    const early = [...new Set(buys.filter((b) => b[0] < first + SNIPE_BLOCKS).map((b) => b[1]))];
+    // The first moments in this chain's blocks at that time, measured on the window just read.
+    const ends = await rpc(chain, [start, start + 1800].map((n) => ['eth_getBlockByNumber', ['0x' + n.toString(16), false]]));
+    const t0 = ends && ends[0] && ends[0].result, t1 = ends && ends[1] && ends[1].result;
+    const secPerBlock = t0 && t1 ? (parseInt(t1.timestamp, 16) - parseInt(t0.timestamp, 16)) / 1800 : 2;
+    const snipeBlocks = Math.max(1, Math.round(SNIPE_SECONDS / (secPerBlock || 2)));
+    const early = [...new Set(buys.filter((b) => b[0] < first + snipeBlocks).map((b) => b[1]))];
     const sameBlock = new Set(buys.filter((b) => b[0] === first).map((b) => b[1])).size;
     const bal = await rpc(chain, early.slice(0, 60).map((a) => ['eth_call', [{ to: token, data: '0x70a08231' + a.slice(2).padStart(64, '0') }, 'latest']]));
     let held = 0n;

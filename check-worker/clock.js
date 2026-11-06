@@ -28,6 +28,9 @@ export function dueJobs(scheduledTime) {
   const jobs = [];
   // Stock Check's KyberSwap quotes, twice an hour.
   if (utcMin === 10 || utcMin === 40) jobs.push(['base-tools', 'stock-quotes.yml', null]);
+  // Navigator's live numbers, every 6 hours as its page says: GitHub's schedule ran them about every 12.
+  const utcHour = new Date(scheduledTime).getUTCHours();
+  if (utcHour % 6 === 0 && utcMin === 20) jobs.push(['base-tools', 'nav-live.yml', null]);
   // Night Shift: the day's close and after-hours, once after-hours end (20:00 New York).
   if (WEEKDAY.includes(wd) && min === at(20, 20)) jobs.push(['night-shift', 'data.yml', { job: 'closes' }]);
   // Monday check: the night record twice before the bell (the later one wins), the open twice after it.

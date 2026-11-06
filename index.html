@@ -767,7 +767,7 @@ h1, h3, .section-title, .proj-name{font-weight:800;}
     <div class="act">
       <div class="n">AERO</div>
       <h3>Where should my AERO go?</h3>
-      <div class="ex" id="ex-aero">Every week the radar forecasts what pools will pay, then checks it against what they paid.</div>
+      <div class="ex" id="ex-aero">Every hour the radar ranks pools by what they pay, then shows what its pick really paid.</div>
       <div class="go"><a class="visit" href="https://aero.deftools.xyz/#saeroPanel" target="_blank" rel="noopener">Open the radar</a></div>
     </div>
   </div>
@@ -781,18 +781,13 @@ h1, h3, .section-title, .proj-name{font-weight:800;}
     </div></div>
     <div class="proj-card flag">
       <div>
-        <p class="proj-desc" style="font-size:16px">Ranks every pool by what it pays per day, splits your sAERO across several so you don't dilute yourself, and checks its own forecast against what pools actually paid, every week.</p>
-        <div class="proj-tags"><span class="tag live">Live</span><span class="tag">Aerodrome</span><span class="tag">Rescans every hour</span></div>
+        <p class="proj-desc" style="font-size:16px">Ranks every pool by what it pays per day, splits your sAERO across several so you don't dilute yourself, and shows what each of its picks actually paid.</p>
+        <div class="proj-tags"><span class="tag live">Live</span><span class="tag">Aero</span><span class="tag">Rescans every hour</span></div>
         <div class="proj-links">
           <a class="visit" href="https://aero.deftools.xyz/#saeroPanel" target="_blank" rel="noopener">Where to point sAERO</a>
-          <a class="ghost" href="https://aero.deftools.xyz/#promisePanel" target="_blank" rel="noopener">How wrong it was</a>
+          <a class="ghost" href="https://aero.deftools.xyz/#arRecord" target="_blank" rel="noopener">Track record</a>
           <a class="ghost" href="https://github.com/araxis33/aero-vote-radar" target="_blank" rel="noopener">Code</a>
         </div>
-      </div>
-      <div class="act" style="background:transparent" id="aero-promise" hidden>
-        <div class="n">Forecast vs paid, last closed week</div>
-        <div class="big" id="aero-promise-big"></div>
-        <div class="ex" id="aero-promise-sub"></div>
       </div>
     </div>
   </section>
@@ -1003,17 +998,6 @@ if (/[?&]view=directory(?![a-z])/.test(location.search)) document.body.classList
     const n = d && d.items && d.items.NVDAc;
     if (!n || !(n.dex > 0) || !n.rt) return;
     document.getElementById("ex-stock").innerHTML = "NVDAc on Base <b>$" + n.dex.toFixed(2) + "</b> · $1,000 in and out costs <b>" + n.rt.loss.toFixed(2) + "%</b>";
-  }).catch(() => {});
-  fetch("https://aero.deftools.xyz/data/promise.json").then(r => r.ok ? r.json() : null).then(d => {
-    const e = d && d.epochs && d.epochs[d.epochs.length - 1];
-    if (!e || !e.rows || !e.rows.length) return;
-    const avg = k => e.rows.reduce((s, r) => s + r[k], 0) / e.rows.length;
-    const f = avg("forecastUsd"), p = avg("paidUsd"), per = (d.perVeAero || 10000).toLocaleString("en-US");
-    const wk = new Date(e.epochStart + "T00:00:00Z").toLocaleDateString("en-GB", {day: "numeric", month: "short", timeZone: "UTC"});
-    document.getElementById("ex-aero").innerHTML = "Last closed week the radar forecast <b>$" + f.toFixed(2) + "</b> per " + per + " votes; pools paid <b>$" + p.toFixed(2) + "</b>.";
-    document.getElementById("aero-promise-big").textContent = "$" + f.toFixed(2) + " → $" + p.toFixed(2);
-    document.getElementById("aero-promise-sub").textContent = "per " + per + " votes, top " + e.rows.length + " pools, week of " + wk;
-    document.getElementById("aero-promise").hidden = false;
   }).catch(() => {});
 })();
 
