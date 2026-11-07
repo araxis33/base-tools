@@ -259,8 +259,19 @@ const CK = (() => {
       if (addr && !src.has(addr)) src.set(addr, { contract: String(h.is_contract) === '1', name: h.tag || undefined, raw: null, gpPct: (num(h.percent) || 0) * 100 });
     }
     const addrs = [...src.keys()];
-    const res = addrs.length ? await rpc(chain, addrs.map((a) => ['eth_call', [{ to: token, data: '0x70a08231' + a.slice(2).padStart(64, '0') }, 'latest']])
-      .concat([['eth_call', [{ to: token, data: '0x18160ddd' }, 'latest']]])) : null;
+    // mainnet.base.org answers 25 calls a second: in one 40-call batch 15 came back
+    // "25/second request limit reached" (07.11.2026). Batches of 10, half a second apart.
+    const calls = addrs.map((a) => ['eth_call', [{ to: token, data: '0x70a08231' + a.slice(2).padStart(64, '0') }, 'latest']])
+      .concat([['eth_call', [{ to: token, data: '0x18160ddd' }, 'latest']]]);
+    let res = null;
+    if (addrs.length) {
+      res = [];
+      for (let i = 0; i < calls.length; i += 10) {
+        if (i) await sleep(500);
+        const part = await rpc(chain, calls.slice(i, i + 10));
+        for (let j = 0; j < Math.min(10, calls.length - i); j++) res.push((part && part[j]) || null);
+      }
+    }
     const word = (r) => (r && r.result && r.result.length >= 66 ? BigInt(r.result.slice(0, 66)) : null);
     const supply = (res && word(res[addrs.length])) || totalRaw;
     const rows = addrs.map((addr, i) => {
