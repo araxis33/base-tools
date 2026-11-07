@@ -244,15 +244,34 @@ const CK = (() => {
     return out;
   }
 
-  async function holderMap(chain, token, totalRaw, dev, lpAddrs) {
+  async function holderMap(chain, token, totalRaw, dev, lpAddrs, gp) {
     const d = await bs(chain, `/api/v2/tokens/${token}/holders`);
-    const rows = ((d && d.items) || []).slice(0, 20).map((h) => {
+    // Both holder lists can lag a new coin: Blockscout listed 9 holders and a 0.8% top wallet for
+    // a coin where one wallet held 99.98% (GoPlus had it right, 07.11.2026). So the two lists are
+    // merged and every balance is read from the chain.
+    const src = new Map();
+    for (const h of ((d && d.items) || []).slice(0, 20)) {
       const a = h.address || {};
-      const addr = lower(a.hash);
-      const pct = totalRaw ? Number(BigInt(h.value || '0') * 1000000n / totalRaw) / 10000 : 0;
-      const kind = BURN.has(addr) ? 'burn' : lpAddrs.has(addr) ? 'pool' : a.is_contract ? 'contract' : 'wallet';
-      return { address: addr, pct, kind, name: a.name, isDev: addr === dev };
-    });
+      if (a.hash) src.set(lower(a.hash), { contract: !!a.is_contract, name: a.name, raw: BigInt(h.value || '0'), inBs: true });
+    }
+    for (const h of ((gp && gp.holders) || []).slice(0, 20)) {
+      const addr = lower(h.address);
+      if (addr && !src.has(addr)) src.set(addr, { contract: String(h.is_contract) === '1', name: h.tag || undefined, raw: null, gpPct: (num(h.percent) || 0) * 100 });
+    }
+    const addrs = [...src.keys()];
+    const res = addrs.length ? await rpc(chain, addrs.map((a) => ['eth_call', [{ to: token, data: '0x70a08231' + a.slice(2).padStart(64, '0') }, 'latest']])
+      .concat([['eth_call', [{ to: token, data: '0x18160ddd' }, 'latest']]])) : null;
+    const word = (r) => (r && r.result && r.result.length >= 66 ? BigInt(r.result.slice(0, 66)) : null);
+    const supply = (res && word(res[addrs.length])) || totalRaw;
+    const rows = addrs.map((addr, i) => {
+      const s = src.get(addr);
+      const raw = (res && word(res[i])) ?? s.raw;
+      const pct = raw !== null && supply ? Number(raw * 1000000n / supply) / 10000 : (s.gpPct || 0);
+      const kind = BURN.has(addr) ? 'burn' : lpAddrs.has(addr) ? 'pool' : s.contract ? 'contract' : 'wallet';
+      return { address: addr, pct, kind, name: s.name, isDev: addr === dev, inBs: !!s.inBs };
+    }).sort((a, b) => b.pct - a.pct).slice(0, 20);
+    // A holder with 1%+ that Blockscout did not list: its list was behind.
+    const behind = rows.some((r) => !r.inBs && r.pct >= 1);
     const wallets = rows.filter((r) => r.kind === 'wallet').slice(0, 10);
     let done = 0;
     const work = wallets.map(async (r) => {
@@ -286,7 +305,7 @@ const CK = (() => {
     for (const [f, g] of clusters.slice(0, 3)) if (!(await walletProfile(chain, f)).exchange) kept.push([f, g]);
     clusters = kept;
     return { rows, clusters, handed: group('gotFrom'), fromDev,
-      devFunded: wallets.filter((r) => dev && r.funder === dev), unchecked };
+      devFunded: wallets.filter((r) => dev && r.funder === dev), unchecked, behind };
   }
 
   // First block at or after a time, from block timestamps. Never from a block time:
@@ -402,7 +421,7 @@ const CK = (() => {
     const [devInfo, holders, q500, q5000, snipe, twins, depth, mon] = await Promise.all([
       (async () => { const part = {}; await withTimeout(deployerRecord(chain, address, tx, part), DEPLOYER_BUDGET_MS);
         if (!part.dev) part.dev = dev; if (!part.launches) part.launches = []; return part; })(),
-      holderMap(chain, address, totalRaw, dev, lpAddrs),
+      holderMap(chain, address, totalRaw, dev, lpAddrs, gp),
       sell(500), sell(5000),
       snipers(chain, address, tx && tx.block_number ? Number(tx.block_number) : null, createdMs, lpAddrs, totalRaw, dev),
       sameTicker(chain, address, (best.baseToken || {}).symbol || ''),
@@ -424,7 +443,8 @@ const CK = (() => {
       dsSells: pairs.reduce((s, p) => s + (((p.txns || {}).h24 || {}).sells || 0), 0),
       websites: (infoBlock.websites || []).map((w) => w.url), socials: (infoBlock.socials || []).map((s) => [s.type, s.url]),
       verified: info ? info.is_verified : null,
-      holderCount: parseInt((tokenInfo && tokenInfo.holders_count) || (gp && gp.holder_count) || '0', 10),
+      // The larger count: either source can lag a new coin (Blockscout said 9, GoPlus 5 466, 07.11.2026).
+      holderCount: Math.max(parseInt((tokenInfo && tokenInfo.holders_count) || '0', 10) || 0, parseInt((gp && gp.holder_count) || '0', 10) || 0),
       cg: cg || {}, gp: gp || {}, hp: hp || {}, dev: devInfo, holders, snipe, twins, mintCap, depth, month: mon,
       dsBuys: pairs.reduce((s, p) => s + (((p.txns || {}).h24 || {}).buys || 0), 0),
       exits: Object.fromEntries([[500, q500], [5000, q5000]].filter(([, q]) => q && q[0] > 0)),
@@ -549,6 +569,7 @@ const CK = (() => {
     // What could not be checked is said plainly, but costs nothing: not finding is not finding bad (his rule 09.10.2026).
     const unchecked = [];
     if (!h.rows.length) unchecked.push(['holdersUnknown']);
+    if (h.behind) unchecked.push(['holdersBehind']);
     const wallets = h.rows.filter((r) => r.kind === 'wallet' && !r.exchange);
     const top10 = wallets.slice(0, 10).reduce((s, r) => s + r.pct, 0);
     if (top10 > 50) add(['top10', top10], 2.5);
