@@ -1,6 +1,6 @@
 {
- "generatedAt": "2026-11-08T00:21:12.965Z",
- "block": 54534466,
+ "generatedAt": "2026-11-08T06:21:10.120Z",
+ "block": 54642456,
  "metrics": [
   {
    "id": "usdc",
@@ -8,22 +8,22 @@
     "usdc-ops"
    ],
    "unit": "usd",
-   "value": 4340082426.026689,
-   "change": 0.94,
-   "asOf": "2026-11-08T00:21:12.620Z",
+   "value": 4335327257.902539,
+   "change": 0.72,
+   "asOf": "2026-11-08T06:21:10.012Z",
    "en": "USDC on Base",
    "ru": "USDC на Base",
    "sources": [
     {
      "name": "USDC contract",
-     "value": 4340082426.026689
+     "value": 4335327257.902539
     },
     {
      "name": "DefiLlama",
-     "value": 4345642426.576028
+     "value": 4342641285.5489
     }
    ],
-   "gap": 0.13
+   "gap": 0.17
   },
   {
    "id": "eurc",
@@ -31,46 +31,45 @@
     "fx-tools"
    ],
    "unit": "eur",
-   "value": 52333515.995674,
-   "change": 5.19,
-   "asOf": "2026-11-08T00:21:12.739Z",
+   "value": 52353822.105674,
+   "change": 5.45,
+   "asOf": "2026-11-08T06:21:10.051Z",
    "en": "EURC on Base",
    "ru": "EURC на Base",
    "sources": [
     {
      "name": "EURC contract",
-     "value": 52333515.995674
+     "value": 52353822.105674
     },
     {
      "name": "DefiLlama",
-     "value": 52358210.715736
+     "value": 52353822.105674
     }
    ],
-   "gap": 0.05
+   "gap": 0
   },
   {
-   "id": "tx",
+   "id": "stables",
    "niches": [
-    "wallet-ux"
+    "treasury"
    ],
-   "unit": "count",
-   "value": 7983352.714285715,
-   "change": -12.01,
-   "asOf": "2026-11-06",
-   "window": "7d-avg",
-   "en": "Transactions a day (7-day average)",
-   "ru": "Транзакций в сутки (среднее за 7 дней)",
+   "unit": "usd",
+   "value": 4961830352.206512,
+   "change": 0.98,
+   "asOf": "2026-11-07",
+   "en": "Dollar stablecoins on Base",
+   "ru": "Долларовые стейблкоины на Base",
    "sources": [
     {
      "name": "growthepie",
-     "value": 7983352.714285715
+     "value": 4961830352.206512
     },
     {
-     "name": "L2BEAT",
-     "value": 8061720.714285715
+     "name": "DefiLlama",
+     "value": 5009630375.748546
     }
    ],
-   "gap": 0.97
+   "gap": 0.95
   },
   {
    "id": "dex",
@@ -78,16 +77,16 @@
     "trading-capital"
    ],
    "unit": "usd",
-   "value": 8025120746.210003,
-   "change": 10.46,
-   "asOf": "2026-11-08T00:21:12.743Z",
+   "value": 8031305186.520001,
+   "change": 15.04,
+   "asOf": "2026-11-08T06:21:10.055Z",
    "window": "7d",
    "en": "DEX volume on Base, 7 days",
    "ru": "Оборот обменников Base за 7 дней",
    "sources": [
     {
      "name": "DefiLlama",
-     "value": 8025120746.210003
+     "value": 8031305186.520001
     }
    ],
    "single": true
@@ -98,28 +97,28 @@
     "lp-tools"
    ],
    "unit": "usd",
-   "value": 3921044936,
-   "change": 2.16,
-   "asOf": "2026-11-08T00:21:12.744Z",
+   "value": 3969215707,
+   "change": 6.68,
+   "asOf": "2026-11-08T06:21:10.056Z",
    "window": "7d",
    "en": "Aero volume, 7 days",
    "ru": "Оборот Aero за 7 дней",
    "sources": [
     {
      "name": "DefiLlama · Aerodrome V1",
-     "value": 22959817
+     "value": 22442640
     },
     {
      "name": "DefiLlama · Aerodrome Slipstream",
-     "value": 836012074
+     "value": 833484630
     },
     {
      "name": "DefiLlama · Aero Slipstream",
-     "value": 3042176727
+     "value": 3093397353
     },
     {
      "name": "DefiLlama · Aero Basic",
-     "value": 19896318
+     "value": 19891084
     }
    ],
    "single": true
@@ -130,16 +129,16 @@
     "lp-tools"
    ],
    "unit": "usd",
-   "value": 267741.17706639075,
-   "change": 19.69,
-   "asOf": "2026-11-07T23:47:16.772Z",
+   "value": 251712.1229445214,
+   "change": 12.53,
+   "asOf": "2026-11-08T05:47:19.075Z",
    "window": "day",
    "en": "Fees paid to sAERO holders a day (last 96 h)",
    "ru": "Комиссии держателям sAERO в сутки (за 96 ч)",
    "sources": [
     {
      "name": "deftools radar, from the chain",
-     "value": 267741.17706639075
+     "value": 251712.1229445214
     }
    ],
    "own": true
@@ -147,8 +146,8 @@
  ],
  "held": [
   {
-   "id": "stables",
-   "reason": "growthepie data is from 2026-11-06"
+   "id": "tx",
+   "reason": "growthepie 55265842 vs L2BEAT 55925209 over 7 days"
   }
  ]
 }
