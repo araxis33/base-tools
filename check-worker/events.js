@@ -4,6 +4,7 @@
 const EVENTS = new Set([
   'stock_open', 'stock_amount', 'stock_buy',
   'thesis_buy', 'thesis_buyall', 'thesis_share', 'thesis_tx',
+  'index_buy', 'index_amount',
   'night_trade', 'night_tx', 'night_game',
   'radar_notify', 'radar_stakes',
 ]);
