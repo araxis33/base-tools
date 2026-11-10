@@ -205,7 +205,12 @@ fetch(EXIT_URL).then(function(r){ return r.json(); }).then(function(exit){
 }).catch(function(){
   $("tbl").innerHTML = "<tr><td class=\"skel\">Exit depth did not load. Try again in a minute.</td></tr>";
 });
+/* Counted the same way as Stock Check and Thesis: one number per action per day, nothing about the person. */
+function ev(n){ try { navigator.sendBeacon(WORKER + "/ev", n); } catch (e) { /* a counter never gets in the way */ } }
+var amtSeen = false;
 $("amt").addEventListener("input", setBuy);
+$("amt").addEventListener("change", function(){ if (!amtSeen){ amtSeen = true; ev("index_amount"); } });
+$("buy").addEventListener("click", function(){ ev("index_buy"); });
 })();
 </script>
 <!-- Cloudflare Web Analytics: page views only, no cookies --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d66a3ce27f4e4b47bb1eb31a0e5fa912"}'></script>
