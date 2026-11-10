@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script src="/theme.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Base Liquid 10 · the 10 stocks you can actually sell on Base</title>
+<meta name="description" content="An index of the 10 Coinbase stocks on Base with the deepest exit, each weighted by how much sells into USDC before the price moves 1%. Live price on Base against the real shares, and one transaction to buy all 10.">
+<link rel="canonical" href="https://deftools.xyz/liquid10.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="deftools">
+<meta property="og:url" content="https://deftools.xyz/liquid10.html">
+<meta property="og:title" content="Base Liquid 10 · the 10 stocks you can actually sell on Base">
+<meta property="og:description" content="10 Coinbase stocks on Base, weighted by exit depth. Live gap to the real shares, one transaction to buy all 10.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@Def7771">
+<meta name="twitter:creator" content="@Def7771">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233b6eff'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#0a0e1c">
+<style>
+:root{
+  --bg:#0a0e1c; --bg2:#0d1226; --card:#111730; --card-hover:#151c3a;
+  --border:#232c4d; --border-hover:#33406b;
+  --blue:#3b6eff; --blue-soft:#182252; --blue-text:#7ea0ff; --blue-bright:#9db8ff;
+  --yellow:#ffcf40; --green:#3fbf87; --green-text:#6fd7ab; --red:#ff6b6b;
+  --text:#eef1fb; --muted:#8791b3; --muted2:#7a84a8;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0; background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased}
+a{color:var(--blue-text); text-decoration:none}
+a:hover{color:var(--blue-bright)}
+.wrap{max-width:1080px; margin:0 auto; padding:0 20px}
+.num{font-variant-numeric:tabular-nums}
+header{border-bottom:1px solid var(--border); background:var(--bg2)}
+.head-in{display:flex; align-items:center; justify-content:space-between; gap:16px; padding-block:16px; flex-wrap:wrap}
+.back{display:inline-flex; align-items:center; min-height:32px; font-size:14px; color:var(--muted)}
+.back:hover{color:var(--text)}
+.head-links{display:flex; gap:14px}
+.head-links a{font-size:14px; min-height:32px; display:inline-flex; align-items:center}
+.hero{padding:38px 0 18px}
+h1{margin:0 0 10px; font-size:33px; line-height:1.18; letter-spacing:-.025em}
+.sub{margin:0; color:var(--muted); font-size:16.5px; max-width:64ch}
+.tiles{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:22px 0 14px}
+.tile{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:14px 16px}
+.tile .l{color:var(--muted2); font-size:12.5px; text-transform:uppercase; letter-spacing:.05em; font-weight:600}
+.tile .v{font-size:27px; font-weight:700; letter-spacing:-.02em; margin-top:4px; font-variant-numeric:tabular-nums}
+.tile .n{color:var(--muted); font-size:13px; margin-top:2px}
+.ok{color:var(--green-text)} .warn{color:var(--yellow)} .bad{color:var(--red)} .mut{color:var(--muted)}
+.buybox{background:var(--blue-soft); border:1px solid var(--border-hover); border-radius:12px; padding:14px 16px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-bottom:22px}
+.buybox label{display:flex; align-items:center; gap:6px; font-size:15px; font-weight:600}
+input.amt{background:var(--bg); color:var(--text); border:1px solid var(--border); border-radius:8px; padding:8px 10px; font-size:16px; min-height:40px; width:120px; font-variant-numeric:tabular-nums}
+a.buy{display:inline-flex; align-items:center; min-height:40px; padding:8px 18px; border-radius:9px; background:var(--blue); color:#fff; font-weight:700; font-size:15px; white-space:nowrap}
+a.buy:hover{color:#fff; filter:brightness(1.1)}
+.buybox .t{color:var(--muted); font-size:13.5px; flex:1; min-width:220px}
+.tbl{width:100%; border-collapse:collapse; font-size:14.5px; background:var(--card); border:1px solid var(--border); border-radius:12px; overflow:hidden}
+.tbl th{text-align:right; font-weight:600; color:var(--muted2); font-size:12.5px; text-transform:uppercase; letter-spacing:.04em; padding:10px 12px; border-bottom:1px solid var(--border)}
+.tbl th:first-child,.tbl td:first-child{text-align:left}
+.tbl td{text-align:right; padding:11px 12px; border-bottom:1px solid var(--border); font-variant-numeric:tabular-nums}
+.tbl tr:last-child td{border-bottom:0}
+.sym{font-weight:700; color:var(--blue-bright)}
+.co{color:var(--muted); font-size:12.5px; display:block}
+.bar{display:inline-block; height:6px; background:var(--blue); border-radius:3px; vertical-align:middle; margin-right:8px}
+.skel{color:var(--muted); padding:18px 12px}
+.note{color:var(--muted); font-size:13.5px; margin-top:16px; max-width:80ch}
+.note p{margin:6px 0}
+footer{margin:40px 0 30px; color:var(--muted2); font-size:13px}
+@media (max-width:760px){
+  h1{font-size:26px}
+  .tiles{grid-template-columns:1fr}
+  .tbl th.hm,.tbl td.hm{display:none}
+  .tbl td,.tbl th{padding:10px 6px}
+  .bar{display:none}
+}
+</style>
+<link rel="stylesheet" href="/wayfind.css">
+</head>
+<body>
+<header>
+  <div class="wrap head-in">
+    <a class="back" href="/">&larr;&nbsp; deftools</a>
+    <nav class="head-links">
+      <a href="/stocks.html">Stock Check</a>
+      <a href="/thesis.html">Thesis: buy</a>
+      <a href="https://www.base.org/stocks" target="_blank" rel="noopener">Official list</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <h1>Base Liquid 10</h1>
+    <p class="sub">The 10 stocks you can actually sell on Base. Each one is weighted by how much sells into USDC before the price moves 1%, so the whole basket exits as easily as its parts.</p>
+  </div>
+
+  <div class="tiles">
+    <div class="tile"><div class="l">Today on the exchange</div><div class="v" id="t-day">&hellip;</div><div class="n" id="t-day-n">same 10 stocks, same weights</div></div>
+    <div class="tile"><div class="l">On Base vs exchange</div><div class="v" id="t-gap">&hellip;</div><div class="n" id="t-gap-n">&nbsp;</div></div>
+    <div class="tile"><div class="l">Whole index sells for</div><div class="v" id="t-exit">&hellip;</div><div class="n">before a 1% price hit</div></div>
+  </div>
+
+  <div class="buybox">
+    <label>$ <input class="amt" id="amt" type="number" min="10" step="10" value="1000" inputmode="decimal" aria-label="Amount in USDC"></label>
+    <a class="buy" id="buy" href="/thesis.html">Buy all 10 &middot; one transaction</a>
+    <div class="t" id="buy-t">Opens Thesis with the basket filled in: split by the weights below and swapped through KyberSwap in your own wallet, one confirmation, 0.1% fee included in the quotes.</div>
+  </div>
+
+  <table class="tbl" id="tbl">
+    <tr><th>Stock</th><th>Weight</th><th class="hm">Sells before &minus;1%</th><th class="hm">On Base</th><th class="hm">Real share</th><th>Gap</th></tr>
+    <tr><td colspan="6" class="skel">Reading exit depth and prices&hellip;</td></tr>
+  </table>
+
+  <div class="note">
+    <p><b>How it is built.</b> Every night we ask KyberSwap what each of the 36 Coinbase stocks on Base would fetch in USDC at sizes from $100 to $1M, and note the size where the average price is 1% below a small sale. The 10 deepest make the index; each weight is its depth divided by the total of the 10. Measured <span id="d-at">&hellip;</span>.</p>
+    <p><b>Why depth.</b> Many stocks on Base have almost nothing in their pools: <span id="d-thin">&hellip;</span> of the 36 lose more than 1% on a $50,000 sale and never enter. With depth weights, every stock in the index hits that 1% at the same size of the whole basket, so no single name traps your exit.</p>
+    <p><i>On Base</i> is what a $50 buy pays per share right now (KyberSwap routing). <i>Real share</i> is the last trade on the US market, after-hours included. <i>Gap</i> is the difference, adjusted for the token-to-share ratio. Not financial advice.</p>
+  </div>
+  <footer>Built by <a href="https://x.com/Def7771" target="_blank" rel="noopener">@Def7771</a> · <a href="https://github.com/araxis33/base-tools" target="_blank" rel="noopener">code</a> · Not available to US residents.</footer>
+</div>
+
+<script src="/thesis-core.js"></script>
+<script>
+(function(){
+"use strict";
+var TOKENS = ThesisCore.TOKENS;
+var WORKER = "https://deftools-check.araxis67.workers.dev";
+var EXIT_URL = "https://raw.githubusercontent.com/araxis33/base-tools/stocks-data/exit-depth.json";
+var SIZE = 10, ENTRY = 50000;
+var $ = function(id){ return document.getElementById(id); };
+function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+function co(s){ var t = TOKENS.filter(function(x){ return x.s === s; })[0]; return t ? t.co : ""; }
+function usdK(v){ return v >= 1e6 ? "$" + (v / 1e6).toFixed(2) + "M" : "$" + Math.round(v / 1000) + "K"; }
+function pct(v){ return (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(2) + "%"; }
+function money(v){ return "$" + v.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2}); }
+
+var IDX = null;   // [{s, depth, w}] the index, deepest first
+
+/* The 10 stocks whose 1% exit depth is largest; weights are each depth over their total. */
+function pick(exit){
+  var all = Object.keys(exit.items).map(function(s){
+    var d = exit.items[s] && exit.items[s].d1;
+    return {s:s, depth: d && d.usd ? d.usd : 0};
+  });
+  var thin = all.filter(function(x){ return x.depth < ENTRY; }).length;
+  var top = all.filter(function(x){ return x.depth >= ENTRY; }).sort(function(a, b){ return b.depth - a.depth; }).slice(0, SIZE);
+  var tot = top.reduce(function(a, x){ return a + x.depth; }, 0);
+  top.forEach(function(x){ x.w = x.depth / tot; });
+  return {top:top, tot:tot, thin:thin, total:all.length};
+}
+
+/* Whole-percent weights for the Thesis link, adjusted so they add to 100. */
+function thesisUrl(amount){
+  var parts = IDX.map(function(x){ return {s:x.s, p:Math.floor(x.w * 100), r:x.w * 100 % 1}; });
+  var left = 100 - parts.reduce(function(a, x){ return a + x.p; }, 0);
+  parts.slice().sort(function(a, b){ return b.r - a.r; }).slice(0, left).forEach(function(x){ x.p++; });
+  return "/thesis.html?b=" + parts.map(function(x){ return x.s + "-" + x.p; }).join("_") + "&a=" + Math.round(amount) + "#execute";
+}
+function setBuy(){
+  if (!IDX) return;
+  var a = parseFloat($("amt").value);
+  $("buy").href = thesisUrl(a > 0 ? a : 1000);
+}
+
+function render(exitInfo, data, shares){
+  var rows = "", gapSum = 0, gapW = 0, daySum = 0, dayW = 0, rtSum = 0, rtW = 0;
+  IDX.forEach(function(x){
+    var d = data && data[x.s] || {}, root = x.s.replace(/c$/, ""), sh = shares && shares[root];
+    var m = (d.chain && d.chain.multiplier) || 1;
+    var gap = sh && sh.price && d.dex ? 100 * (d.dex / (sh.price * m) - 1) : null;
+    if (gap != null){ gapSum += x.w * gap; gapW += x.w; }
+    if (sh && sh.price && sh.prevClose){ daySum += x.w * 100 * (sh.price / sh.prevClose - 1); dayW += x.w; }
+    if (d.rt && d.rt.loss != null){ rtSum += x.w * d.rt.loss; rtW += x.w; }
+    rows += "<tr><td><span class=\"sym\">" + esc(root) + "</span><span class=\"co\">" + esc(co(x.s)) + "</span></td>" +
+      "<td><span class=\"bar\" style=\"width:" + Math.round(x.w * 400) + "px\"></span>" + (x.w * 100).toFixed(1) + "%</td>" +
+      "<td class=\"hm\">" + usdK(x.depth) + "</td>" +
+      "<td class=\"hm\">" + (d.dex ? money(d.dex) : "—") + "</td>" +
+      "<td class=\"hm\">" + (sh && sh.price ? money(sh.price * m) : "—") + "</td>" +
+      "<td class=\"" + (gap == null ? "mut" : Math.abs(gap) >= 2 ? "warn" : gap > 0 ? "ok" : "") + "\">" + (gap == null ? "—" : pct(gap)) + "</td></tr>";
+  });
+  $("tbl").innerHTML = "<tr><th>Stock</th><th>Weight</th><th class=\"hm\">Sells before &minus;1%</th><th class=\"hm\">On Base</th><th class=\"hm\">Real share</th><th>Gap</th></tr>" + rows;
+
+  $("t-exit").textContent = usdK(exitInfo.tot);
+  if (dayW > .5){ var day = daySum / dayW; $("t-day").textContent = pct(day); $("t-day").className = "v " + (day >= 0 ? "ok" : "bad"); }
+  else { $("t-day").textContent = "—"; $("t-day-n").textContent = "real share prices did not load"; }
+  if (gapW > .5){
+    var g = gapSum / gapW;
+    $("t-gap").textContent = pct(g);
+    $("t-gap").className = "v " + (Math.abs(g) >= 2 ? "warn" : "");
+    $("t-gap-n").textContent = Math.abs(g) >= 2 ? (g > 0 ? "pricey: Base pays more than the shares" : "cheap: Base is below the shares") : "fair: within ±2%";
+  } else { $("t-gap").textContent = "—"; }
+  if (rtW > .5) $("buy-t").textContent = "Opens Thesis with the basket filled in: split by the weights below and swapped through KyberSwap in your own wallet, one confirmation, 0.1% fee included in the quotes. Buying $1,000 and selling it straight back costs about " + (rtSum / rtW).toFixed(2) + "% on top.";
+}
+
+fetch(EXIT_URL).then(function(r){ return r.json(); }).then(function(exit){
+  var info = pick(exit);
+  IDX = info.top;
+  $("d-at").textContent = new Date(exit.ts).toUTCString().replace(/:\d\d GMT$/, " UTC");
+  $("d-thin").textContent = info.thin;
+  setBuy();
+  var roots = IDX.map(function(x){ return x.s.replace(/c$/, ""); });
+  return Promise.all([
+    fetch(WORKER + "/stock-data").then(function(r){ return r.json(); }).then(function(j){ return j.items; }).catch(function(){ return null; }),
+    fetch(WORKER + "/shares?t=" + roots.join(",")).then(function(r){ return r.json(); }).catch(function(){ return null; })
+  ]).then(function(p){ render(info, p[0], p[1]); });
+}).catch(function(){
+  $("tbl").innerHTML = "<tr><td class=\"skel\">Exit depth did not load. Try again in a minute.</td></tr>";
+});
+$("amt").addEventListener("input", setBuy);
+})();
+</script>
+<!-- Cloudflare Web Analytics: page views only, no cookies --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d66a3ce27f4e4b47bb1eb31a0e5fa912"}'></script>
+<script src="fx.js"></script>
+<script src="support.js"></script>
+</body>
+</html>
