@@ -39,6 +39,7 @@
 <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAACR0lEQVR42u3ZgZGCUBBEQfanZU4GQ07GxWVwdyjC36E7AausV+OCtVzo8dy2hTivteqqzy7xkhR5iZikuEvIJIVdQiYp7BIySWEPMTOLI1oaYiYp6hIySSfIEDNJaz3ETFLUQ8wkRT3ETFLUQ8wkRT18TSQZ1pmklR5iJinqIWaSonZDk31DW2c6r7SFJnehrTPdV9pCk7nQ1pmElbbQ3OefQmgZtHODlLPDQuPkAEGDoGGf8kCIhQZBg6BB0AgaBA2CBkGDoBE0CBoEDYIGQSNoEDQIGgQNgkbQIGgQNAgaBI2gQdAgaBA0CBpBg6BB0CBoEDSCBkGDoEHQCBoEDYIGQYOgETQIGgQNggZBI2gQNAgaBA2CRtAgaBA0CBoEjaBB0CBoEDQIGkGDoEHQIGgQNIIGQYOgQdAgaAQNggZBg6ARNAgaBA2CBkEjaBA0CBoEDYJG0CBoEDQIGgSNoEHQIGgQNAgaQYOgQdAgaBA0ggZBg6BB0CBoBA2CBkGDoBE0CBoEDYIGQSNoSAj6tVb5GkjwWqssNE4OEDQIGt4I2oMhCQ+EFhonB7QI2tlB93PDQpN9clhpOq+zhSb/odBK03WdLTT3eG1npem4zr8utKjpFvOfJ4eo6RSzG5r7/fVtpemyzv9eaFHTIeZdJ4eomT3m3Te0qJk55rceCkXNrDEvy7J8FOfjuW2+dmYI+ZDXdtaamWI+5D20qJkl5o9PDicIs4T8laCFzdW/7l89F4TN2WfqafevuEV8xudc+kAncvEe7QdVN6q09/LMtAAAAABJRU5ErkJggg==">
 <meta name="theme-color" content="#0a0e1c">
 <script src="/theme.js"></script>
+<script src="/us-gate.js" defer></script>
 <style>
   :root{
     --bg:#0a0e1c;
@@ -2059,6 +2060,12 @@ async function buildSwap(){
 async function doTrade(){
   if (trade.busy) return;
   if (trade.done){ closeBuy(); return; }
+  // Stock tokens go through the US gate (us-gate.js); other tokens do not.
+  if (/^[A-Z]{1,6}c$/.test(trade.symbol || "") && !trade.usOk){
+    if (typeof window.usGate !== "function"){ buyStatus("Trading is unavailable right now. Reload the page and try again.", true); return; }
+    try { await window.usGate(); trade.usOk = true; }
+    catch(e){ buyStatus(esc(e.message || String(e)), true); return; }
+  }
   if (!trade.account){
     trade.busy = true; renderCta();
     try { await connectWallet(); }
