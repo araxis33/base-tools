@@ -1727,7 +1727,9 @@ function renderRebalance(){
     var sell = p.sells.filter(function(x){ return x.s === r.s; })[0];
     var buy = p.buys.filter(function(x){ return x.s === r.s; })[0];
     var step = sell ? '<span class="down">sell ' + money(sell.usd, 2) + '</span>' :
-               buy ? '<span class="up">buy ' + money(buy.usd, 2) + '</span>' : '<span class="co">on target</span>';
+               buy ? '<span class="up">buy ' + money(buy.usd, 2) + '</span>' :
+               Math.abs(r.nowPct - r.wantPct) < 0.5 ? '<span class="co">on target</span>' :
+               '<span class="co">under $1, skipped</span>';
     html += '<tr><td class="sym">' + r.s + '</td><td class="n r">' + r.nowPct.toFixed(1) + '%</td>' +
       '<td class="n r">' + r.wantPct.toFixed(1) + '%</td><td class="n r">' + step + '</td></tr>';
   });
@@ -1738,6 +1740,8 @@ function renderRebalance(){
     html += '';
   } else if(!p.sells.length && !p.buys.length){
     html += '<span class="co">Already on target, within $1 a stock.</span>';
+  } else if(p.sells.length && !p.buys.length && p.rows.some(function(r){ return r.wantPct - r.nowPct >= 0.5; })){
+    html += '<span class="co">Too small to rebalance: every buy would be under $1, so the sale would only leave USDC behind.</span>';
   } else if(p.sells.length){
     html += '<button class="btn ghost" id="rb-sell"' + (hold.busy || hold.state === "sending" ? ' disabled' : '') +
       '>Step 1 · quote the sales (' + p.sells.length + ')</button>';
