@@ -389,6 +389,7 @@ tr.other td{opacity:.85}
 </footer>
 
 <script src="thesis-core.js"></script>
+<script src="us-gate.js"></script>
 <script>
 "use strict";
 /* Read before render() rewrites the address with the basket (that dropped #memes on the live page, 18.10.2026). */
@@ -1163,7 +1164,20 @@ function connect(){
   });
 }
 
+/* Every trade starts behind the US gate (us-gate.js). The confirmation is kept
+   for 30 days, so after the first time this resolves at once. If the gate
+   script did not load, trading stays closed rather than skipping the check. */
+function gated(go, fail){
+  if(typeof window.usGate !== "function"){ fail("Trading is unavailable right now. Reload the page and try again."); return; }
+  window.usGate().then(go, function(e){ fail(e.message || String(e)); });
+}
+
 function doQuote(){
+  if(ex.busy) return;
+  gated(doQuoteNow, function(m){ ex.error = m; renderExecute(); });
+}
+
+function doQuoteNow(){
   if(ex.busy) return;
   if(state.stale){ ex.error = "Live prices are not answering yet, so buying waits for them. The page retries every minute."; renderExecute(); return; }
   ex.busy = true; ex.error = null; ex.msg = "";
@@ -1712,6 +1726,11 @@ function kyberSell(row, amount, from){
 }
 
 function doSellQuote(){
+  if(hold.busy) return;
+  gated(doSellQuoteNow, function(m){ hold.error2 = m; renderHoldings(); });
+}
+
+function doSellQuoteNow(){
   if(hold.busy) return;
   hold.busy = true; hold.error2 = null; hold.msg = "";
   connect().then(function(from){

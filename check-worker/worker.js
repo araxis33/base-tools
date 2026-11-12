@@ -42,6 +42,8 @@ function cors(req) {
   return { 'access-control-allow-origin': ORIGINS.includes(o) ? o : ORIGINS[0], 'access-control-allow-methods': 'GET,POST,OPTIONS',
     'access-control-allow-headers': 'content-type, x-client, x-owner', 'vary': 'origin' };
 }
+// The US and its territories, as Cloudflare reports them.
+const US_REGIONS = ['US', 'PR', 'GU', 'VI', 'AS', 'MP', 'UM'];
 const json = (req, body, status = 200) => new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json', ...cors(req) } });
 const day = () => new Date().toISOString().slice(0, 10);
 const ipOf = (req) => req.headers.get('cf-connecting-ip') || 'unknown';
@@ -217,6 +219,14 @@ export default {
     if (url.pathname.startsWith('/game/')) return gameRoute(req, env, url, json);
     if (url.pathname === '/ev' && req.method === 'POST') return countEvent(req, env, ORIGINS);
     if (url.pathname === '/shares') return shares(req, ctx, url.searchParams.get('t') || '');
+    // Stocks Maxxing rules: no trading for US users. Pages ask this before any
+    // stock trade and refuse when Cloudflare places the visitor in the US.
+    if (url.pathname === '/geo') {
+      const c = (req.cf && req.cf.country) || null;
+      const res = json(req, { country: c, us: US_REGIONS.includes(c) });
+      res.headers.set('cache-control', 'no-store');
+      return res;
+    }
     if (url.pathname.startsWith('/dex/')) {
       return dex(req, ctx, url, (res, src) => {
         const h = new Headers(res.headers);
