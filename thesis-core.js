@@ -51,6 +51,78 @@
 
   var MIN_POOL_LIQUIDITY = 500;
 
+  /* Well-known US companies that have no Coinbase token on Base yet. Naming
+     one of them must say so out loud, not quietly vanish from the basket. */
+  var NOT_ON_BASE = {
+    palantir: "Palantir", berkshire: "Berkshire Hathaway", jpmorgan: "JPMorgan", visa: "Visa",
+    mastercard: "Mastercard", walmart: "Walmart", costco: "Costco", coca: "Coca-Cola", cocacola: "Coca-Cola",
+    pepsi: "PepsiCo", pepsico: "PepsiCo", disney: "Disney", nike: "Nike", boeing: "Boeing", intel: "Intel",
+    ibm: "IBM", salesforce: "Salesforce", adobe: "Adobe", uber: "Uber", airbnb: "Airbnb", shopify: "Shopify",
+    coinbase: "Coinbase", robinhood: "Robinhood", exxon: "ExxonMobil", chevron: "Chevron", starbucks: "Starbucks",
+    mcdonalds: "McDonald's", qualcomm: "Qualcomm", micron: "Micron", tsmc: "TSMC", asml: "ASML",
+    snowflake: "Snowflake", crowdstrike: "CrowdStrike", cloudflare: "Cloudflare", rivian: "Rivian",
+    lucid: "Lucid", alibaba: "Alibaba", baidu: "Baidu", spotify: "Spotify", ford: "Ford",
+    goldman: "Goldman Sachs", blackrock: "BlackRock", unitedhealth: "UnitedHealth", amgen: "Amgen",
+    caterpillar: "Caterpillar", lockheed: "Lockheed Martin", supermicro: "Supermicro",
+    coreweave: "CoreWeave", ionq: "IonQ", rklb: "Rocket Lab",
+    pltr: "Palantir", smci: "Supermicro"
+  };
+
+  /* Words that carry no theme: they are never reported as "nothing matched". */
+  var FILLER = ("and or the for with but plus some my want like into stocks stock shares share companies company " +
+    "each per max maximum cap capped most more less only all any also exposure basket buy invest investing bet bets " +
+    "big small names name theme themes sector sectors heavy light mostly mainly little bit lot lots of to in on at " +
+    "a an i me no not without except minus skip drop than up just over under kind sort type stuff things thing " +
+    "long term short good best top new old play plays world future next one two three ten percent pct weight " +
+    "please give get make build portfolio index").split(" ");
+
+  /* "max 25% each", "cap at 30%", "no more than 20% per stock", "25% max":
+     the largest share any one company may hold. Null when none is set. */
+  var CAP_RE = /\b(?:max(?:imum)?|cap(?:ped)?(?:\s+at)?|at\s+most|no\s+more\s+than|up\s+to)\s*(\d{1,2})\s*(?:%|percent|pct)|\b(\d{1,2})\s*(?:%|percent|pct)\s*(?:max(?:imum)?|cap|tops)\b/;
+  function parseCap(text) {
+    var m = CAP_RE.exec(String(text).toLowerCase());
+    if (!m) return null;
+    var n = parseInt(m[1] || m[2], 10);
+    return n >= 1 && n <= 99 ? n : null;
+  }
+
+  /* Whole percents that add up to 100 with no company above the cap. Slices
+     over the cap give their excess to the others in proportion to what those
+     already hold, repeated until nothing is over. When the cap cannot be met
+     (four stocks under a 20% cap) every stock sits at the cap and `short`
+     says how much of the 100 is left unplaced. */
+  function applyCap(weights, cap) {
+    var syms = Object.keys(weights || {}).filter(function (s) { return weights[s] > 0; });
+    var out = {};
+    if (!syms.length || !(cap > 0)) { syms.forEach(function (s) { out[s] = weights[s]; }); return {weights: out, short: 0, trimmed: []}; }
+    var total = syms.reduce(function (a, s) { return a + weights[s]; }, 0);
+    if (cap * syms.length < 100) {
+      syms.forEach(function (s) { out[s] = cap; });
+      return {weights: out, short: 100 - cap * syms.length, trimmed: syms.filter(function (s) { return weights[s] / total * 100 > cap; })};
+    }
+    var share = {}, fixed = {};
+    syms.forEach(function (s) { share[s] = weights[s] / total * 100; });
+    var trimmed = syms.filter(function (s) { return share[s] > cap + 1e-9; });
+    for (var guard = 0; guard < syms.length; guard++) {
+      var over = syms.filter(function (s) { return !fixed[s] && share[s] > cap + 1e-9; });
+      if (!over.length) break;
+      over.forEach(function (s) { fixed[s] = true; share[s] = cap; });
+      var left = 100 - syms.filter(function (s) { return fixed[s]; }).length * cap;
+      var free = syms.filter(function (s) { return !fixed[s]; });
+      var freeSum = free.reduce(function (a, s) { return a + share[s]; }, 0);
+      free.forEach(function (s) { share[s] = freeSum > 0 ? share[s] / freeSum * left : left / free.length; });
+    }
+    /* whole percents: floor, then hand the crumbs to the largest remainders that still fit under the cap */
+    var given = 0;
+    syms.forEach(function (s) { out[s] = Math.floor(share[s] + 1e-9); given += out[s]; });
+    var order = syms.slice().sort(function (a, b) { return (share[b] - out[b]) - (share[a] - out[a]); });
+    for (var i = 0; given < 100 && i < order.length * 2; i++) {
+      var s = order[i % order.length];
+      if (out[s] < cap) { out[s] += 1; given += 1; }
+    }
+    return {weights: out, short: 0, trimmed: trimmed};
+  }
+
   /* ---------- thesis parsing ---------- */
   /* Deliberately dumb and fully visible: words are matched against tickers,
      company names and tags. "no x" / "without x" removes. A company's weight
@@ -58,8 +130,9 @@
      around. */
   function parseThesis(text, tokens) {
     tokens = tokens || TOKENS;
-    var t = " " + String(text).toLowerCase().replace(/[^a-z0-9\s&-]/g, " ").replace(/\s+/g, " ") + " ";
-    var score = {}, dropped = {}, why = [];
+    var cap = parseCap(text);
+    var t = " " + String(text).toLowerCase().replace(CAP_RE, " ").replace(/[^a-z0-9\s&-]/g, " ").replace(/\s+/g, " ") + " ";
+    var score = {}, dropped = {}, why = [], seen = [];
 
     /* "ai chips and cloud" counts twice for NVIDIA (ai, chips) and once for
        Amazon (cloud). Crude, but you can read it off your own sentence. */
@@ -78,6 +151,7 @@
         if (t.indexOf(" " + w + " ") > -1 || t.indexOf(" " + w + "s ") > -1) hits.push(w);
       });
       if (!hits.length) return;
+      hits.forEach(function (w) { seen.push(w); });
       /* "no tesla", "without chips", "minus the ev stuff" all remove */
       var neg = hits.some(function (w) {
         return new RegExp("(no|not|without|except|minus|skip|drop)\\s+(\\w+\\s+){0,2}" + w).test(t);
@@ -87,8 +161,24 @@
       hits.forEach(function (w) { if (why.indexOf(w) < 0) why.push(w); });
     });
 
+    /* What the sentence asked for that this list cannot give: a company with
+       no token on Base, or a word no stock answers to. Both are shown, never
+       silently dropped. Words after "no"/"without" are wishes to leave out,
+       so they are not reported. */
+    var covered = seen.join(" ").split(/[\s-]+/);
+    var notOnBase = [], unmatched = [];
+    t.trim().split(" ").forEach(function (w) {
+      if (w.length < 3 || /^\d+$/.test(w) || FILLER.indexOf(w) > -1) return;
+      var stem = w.replace(/s$/, "");
+      if (covered.indexOf(w) > -1 || covered.indexOf(stem) > -1) return;
+      if (new RegExp("(no|not|without|except|minus|skip|drop)\\s+(\\w+\\s+){0,2}" + w + "\\b").test(t)) return;
+      var name = NOT_ON_BASE[w] || NOT_ON_BASE[stem];
+      if (name) { if (notOnBase.indexOf(name) < 0) notOnBase.push(name); }
+      else if (unmatched.indexOf(w) < 0) unmatched.push(w);
+    });
+
     var syms = Object.keys(score);
-    if (!syms.length) return {weights: null, why: [], dropped: Object.keys(dropped)};
+    if (!syms.length) return {weights: null, why: [], dropped: Object.keys(dropped), cap: cap, notOnBase: notOnBase, unmatched: unmatched};
 
     var sum = syms.reduce(function (a, s) { return a + score[s]; }, 0);
     var w = {}, given = 0;
@@ -96,7 +186,9 @@
     /* hand the rounding crumbs to the strongest match */
     var top = syms.reduce(function (a, b) { return score[b] > score[a] ? b : a; }, syms[0]);
     w[top] += 100 - given;
-    return {weights: w, why: why, dropped: Object.keys(dropped)};
+    var capped = cap ? applyCap(w, cap) : null;
+    return {weights: capped ? capped.weights : w, why: why, dropped: Object.keys(dropped),
+            cap: cap, capShort: capped ? capped.short : 0, notOnBase: notOnBase, unmatched: unmatched};
   }
 
   /* ---------- pools ---------- */
@@ -296,10 +388,67 @@
     return {knownQty: basis.knownQty, cost: basis.cost, unknownQty: basis.unknownQty + (chainQty - held), buys: basis.buys};
   }
 
+  /* ---------- rebalance ---------- */
+  /* Moves a wallet's stocks toward the basket's weights using only the money
+     already in those stocks: the excess is sold for USDC, and that USDC (less
+     `keep`, a margin for slippage and fees) buys what is short. No new money
+     goes in, and nothing outside the stocks is touched.
+
+     held:   [{s, qty, price}]   the wallet's Coinbase stocks
+     target: {s: percent}        the basket, summing to about 100
+     Returns {total, sells:[{s, qty, usd}], buys:[{s, usd}], rows:[...]} where
+     a row says where each stock is and where it should be. Moves under
+     `minUsd` are left alone: swapping a dollar costs more than it fixes. */
+  function planRebalance(held, target, opts) {
+    opts = opts || {};
+    var minUsd = opts.minUsd != null ? opts.minUsd : 1;
+    var keep = opts.keep != null ? opts.keep : 0.01;
+    var price = {}, qty = {}, value = {};
+    (held || []).forEach(function (h) {
+      if (!(h.qty > 0) || !(h.price > 0)) return;
+      price[h.s] = h.price; qty[h.s] = h.qty; value[h.s] = h.qty * h.price;
+    });
+    var total = Object.keys(value).reduce(function (a, s) { return a + value[s]; }, 0);
+    var tsum = Object.keys(target || {}).reduce(function (a, s) { return a + (target[s] > 0 ? target[s] : 0); }, 0);
+    var syms = Object.keys(value);
+    Object.keys(target || {}).forEach(function (s) { if (target[s] > 0 && syms.indexOf(s) < 0) syms.push(s); });
+
+    var rows = syms.map(function (s) {
+      var want = tsum > 0 && target[s] > 0 ? total * target[s] / tsum : 0;
+      var now = value[s] || 0;
+      return { s: s, now: now, want: want, nowPct: total > 0 ? now / total * 100 : 0,
+               wantPct: tsum > 0 && target[s] > 0 ? target[s] / tsum * 100 : 0, delta: want - now };
+    });
+
+    var sells = [], buys = [], proceeds = 0;
+    rows.forEach(function (r) {
+      if (r.delta < -minUsd && price[r.s]) {
+        var q = Math.min(qty[r.s], -r.delta / price[r.s]);
+        /* a stock that leaves the basket is sold whole, not to the last cent */
+        if (!(target[r.s] > 0)) q = qty[r.s];
+        sells.push({ s: r.s, qty: q, usd: q * price[r.s] });
+        proceeds += q * price[r.s];
+      }
+    });
+    var short = rows.filter(function (r) { return r.delta > minUsd; });
+    var need = short.reduce(function (a, r) { return a + r.delta; }, 0);
+    var budget = proceeds * (1 - keep);
+    var scale = need > 0 ? Math.min(1, budget / need) : 0;
+    short.forEach(function (r) {
+      var usd = r.delta * scale;
+      if (usd >= minUsd) buys.push({ s: r.s, usd: usd });
+    });
+    return { total: total, sells: sells, buys: buys, rows: rows, proceeds: proceeds };
+  }
+
   var api = {
+    planRebalance: planRebalance,
     TOKENS: TOKENS,
     MIN_POOL_LIQUIDITY: MIN_POOL_LIQUIDITY,
     parseThesis: parseThesis,
+    parseCap: parseCap,
+    applyCap: applyCap,
+    NOT_ON_BASE: NOT_ON_BASE,
     summarisePools: summarisePools,
     findLookalikes: findLookalikes,
     costBasis: costBasis,

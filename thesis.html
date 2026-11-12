@@ -388,7 +388,7 @@ tr.other td{opacity:.85}
   </div>
 </footer>
 
-<script src="thesis-core.js"></script>
+<script src="thesis-core.js?v=2"></script>
 <script src="us-gate.js"></script>
 <script>
 "use strict";
@@ -412,6 +412,7 @@ var THEMES = [
 
 var state = {
   weights:{},        // symbol -> percent (raw, normalised on display)
+  cap:null,          // the most any one company may hold, in percent; null = no cap
   amount:1000,
   data:null,         // symbol -> pool summary
   loadedAt:0,
@@ -606,6 +607,7 @@ function applyTheme(th){
     TOKENS.forEach(function(t){ if(!state.data || !priceCheck(t.s)) w[t.s] = 10; });
   }
   state.weights = w;
+  state.cap = null;
   state.touched = {}; state.showAll = false;
   state.title = th.label;
   $("thesis").value = "";
@@ -621,17 +623,35 @@ function buildFromThesis(){
   if(!text){ $("parsed").textContent = "Type something first — or pick a theme below."; return; }
   var r = ThesisCore.parseThesis(text, TOKENS);
   Array.prototype.forEach.call($("chips").querySelectorAll(".chip"), function(b){ b.classList.remove("on"); });
+  /* What the sentence asked for and Base cannot give is said out loud. */
+  var missing = '';
+  if(r.notOnBase && r.notOnBase.length) missing += '<br>Not on Base yet: <b>' + esc(r.notOnBase.join(", ")) + '</b>.';
+  if(r.unmatched && r.unmatched.length) missing += '<br>No stock here answers to: <b>' + esc(r.unmatched.join(", ")) + '</b>.';
   if(!r.weights){
-    $("parsed").innerHTML = 'Nothing matched. Try words like <b>ai</b>, <b>cloud</b>, <b>space</b>, <b>bitcoin</b>, <b>chips</b>, or a company name.';
+    $("parsed").innerHTML = 'Nothing matched. Try words like <b>ai</b>, <b>cloud</b>, <b>space</b>, <b>bitcoin</b>, <b>chips</b>, or a company name.' + missing;
     return;
   }
   state.weights = r.weights;
+  state.cap = r.cap || null;
   state.touched = {}; state.showAll = false;
   state.title = "“" + text + "”";
   var msg = 'Matched <b>' + Object.keys(r.weights).length + '</b> stocks on: <b>' +
             esc(r.why.filter(function(v,i,a){ return a.indexOf(v)===i; }).join(", ")) + '</b>';
   if(r.dropped.length) msg += ' — removed <b>' + esc(r.dropped.join(", ")) + '</b>';
-  $("parsed").innerHTML = msg + '. Equal slices to start; drag them around.';
+  msg += state.cap ? '. Weighted by your words, no stock above <b>' + state.cap + '%</b>; drag them around.'
+                   : '. Weighted by your words; drag them around.';
+  if(r.capShort) msg += '<br><b>' + Object.keys(r.weights).length + ' stocks at ' + state.cap + '% each make only ' +
+    (100 - r.capShort) + '%.</b> Add stocks or raise the cap to place the rest.';
+  $("parsed").innerHTML = msg + missing;
+  render();
+}
+
+/* Trim every slice above the cap and spread the excess over the rest. */
+function trimToCap(){
+  if(!state.cap) return;
+  var tot = totalWeight(), pct = {};
+  for(var s in state.weights){ if(state.weights[s] > 0) pct[s] = state.weights[s] / tot * 100; }
+  state.weights = ThesisCore.applyCap(pct, state.cap).weights;
   render();
 }
 
@@ -654,9 +674,11 @@ function renderWeights(){
     var chgTxt = d ? (chg >= 0 ? "+" : "") + chg.toFixed(2) + "%" : "";
     var bad = state.data ? priceCheck(t.s) : null;
     if(bad){ chgCls = "down"; chgTxt = "not buyable"; }
+    var over = state.cap && Math.round(share * 100) > state.cap;
     return '' +
       '<div class="w-row' + (raw > 0 ? '' : ' off') + '">' +
-        '<div class="w-tick"><div class="s">' + t.s + '</div><div class="n">' + esc(t.co) + '</div></div>' +
+        '<div class="w-tick"><div class="s">' + t.s + '</div><div class="n">' +
+          (over ? '<span class="down">over your ' + state.cap + '% cap</span>' : esc(t.co)) + '</div></div>' +
         '<input type="range" min="0" max="100" step="1" value="' + raw + '" data-sym="' + t.s + '" aria-label="' + t.s + ' weight">' +
         '<div class="w-pct"><b>' + Math.round(share * 100) + '%</b>' +
           '<div class="w-usd">' + (share > 0 ? money(share * amt, 2) : "&nbsp;") + '</div></div>' +
@@ -679,7 +701,16 @@ function renderWeights(){
 
   var n = Object.keys(state.weights).filter(function(k){ return state.weights[k] > 0; }).length;
   $("tot-left").innerHTML = n ? (n + ' stock' + (n>1?'s':'') + ' · ' + money(amt, 2) + ' total') : 'Nothing selected yet.';
-  $("tot-right").innerHTML = n ? '<button class="btn ghost small" id="clear">Clear</button>' : '';
+  var overCap = state.cap ? TOKENS.filter(function(t){
+    return tot > 0 && Math.round((state.weights[t.s] || 0) / tot * 100) > state.cap;
+  }).length : 0;
+  if(n && state.cap) $("tot-left").innerHTML += ' · cap ' + state.cap + '% each' +
+    (overCap ? ' · <span class="down">' + overCap + ' over</span>' : '');
+  $("tot-right").innerHTML = n ? ((overCap ? '<button class="btn small" id="trim">Trim to ' + state.cap + '%</button> ' : '') +
+    (state.cap ? '<button class="btn ghost small" id="nocap">Remove cap</button> ' : '') +
+    '<button class="btn ghost small" id="clear">Clear</button>') : '';
+  if($("trim")) $("trim").addEventListener("click", trimToCap);
+  if($("nocap")) $("nocap").addEventListener("click", function(){ state.cap = null; render(); });
   if($("clear")) $("clear").addEventListener("click", function(){ state.weights = {}; state.touched = {}; render(); });
 }
 
@@ -1174,6 +1205,17 @@ function gated(go, fail){
 
 function doQuote(){
   if(ex.busy) return;
+  /* The cap is a rule the buyer set, so a basket that breaks it is not bought. */
+  if(state.cap){
+    var tot = totalWeight();
+    var over = TOKENS.filter(function(t){ return tot > 0 && Math.round((state.weights[t.s] || 0) / tot * 100) > state.cap; })
+                     .map(function(t){ return t.s; });
+    if(over.length){
+      ex.error = over.join(", ") + (over.length > 1 ? " are" : " is") + " over your " + state.cap +
+        "% cap. Press “Trim to " + state.cap + "%” above, or remove the cap, before buying.";
+      renderExecute(); return;
+    }
+  }
   gated(doQuoteNow, function(m){ ex.error = m; renderExecute(); });
 }
 
@@ -1245,7 +1287,7 @@ function doBuy(){
       ex.state = "ready";
     }).then(function(){
       ex.busy = false; renderExecute();
-      if(ex.state === "done") refreshHoldingsOf(from);
+      if(ex.state === "done"){ if(rb.step === "buying"){ rb.step = "idle"; rb.buys = []; rb.msg = "Rebalanced."; } refreshHoldingsOf(from); }
     });
     return;
   }
@@ -1267,7 +1309,7 @@ function doBuy(){
     ex.state = "ready";
   }).then(function(){
     ex.busy = false; renderExecute();
-    if(ex.state === "done") refreshHoldingsOf(from);
+    if(ex.state === "done"){ if(rb.step === "buying"){ rb.step = "idle"; rb.buys = []; rb.msg = "Rebalanced."; } refreshHoldingsOf(from); }
   });
 }
 
@@ -1641,8 +1683,152 @@ function renderHoldings(){
   if(!priced) html += '<p class="note" style="margin:12px 0 0">Prices are still loading.</p>';
 
   html += renderSell();
+  html += renderRebalance();
   el.innerHTML = html;
   bindSell();
+  bindRebalance();
+}
+
+/* ---------- rebalance to the basket ----------
+   The wallet's stocks are moved toward the basket above with the money that is
+   already in them: step 1 sells the excess for USDC in one transaction, step 2
+   buys what is short with that USDC in one more. Nothing is signed without the
+   wallet asking, and no new money goes in. */
+var rb = { step:"idle", error:null, msg:"", buys:[] };   // buys: step 2, fixed when step 1 is quoted
+
+function rebalancePlan(){
+  if(!hold.rows || !hold.rows.length || !state.data || !(totalWeight() > 0)) return null;
+  var tot = totalWeight(), target = {};
+  TOKENS.forEach(function(t){ var w = state.weights[t.s] || 0; if(w > 0) target[t.s] = w / tot * 100; });
+  var held = hold.rows.map(function(r){
+    var d = state.data[r.t.s];
+    return { s:r.t.s, qty:r.qty, price:d ? d.deep.price : 0 };
+  });
+  return ThesisCore.planRebalance(held, target, { minUsd:1, keep:0.01 });
+}
+
+function overCapList(){
+  if(!state.cap) return [];
+  var tot = totalWeight();
+  return TOKENS.filter(function(t){ return tot > 0 && Math.round((state.weights[t.s] || 0) / tot * 100) > state.cap; })
+               .map(function(t){ return t.s; });
+}
+
+function renderRebalance(){
+  var p = rebalancePlan();
+  if(!p || !(p.total > 0)) return "";
+  var html = '<h3 style="margin:22px 0 6px">Rebalance to your basket</h3>' +
+    '<p class="note" style="margin:0 0 12px">Moves the ' + money(p.total, 2) + ' in these stocks toward the basket above, ' +
+    'using only that money: the excess is sold for USDC, and that USDC buys what is short (1% is kept back for slippage). ' +
+    'Two confirmations in your wallet, nothing else is touched.' + (state.cap ? ' Your cap: ' + state.cap + '% per stock.' : '') + '</p>';
+  html += '<div class="tbl-wrap" style="margin-bottom:12px"><table><thead><tr><th>Stock</th><th class="r">Now</th>' +
+    '<th class="r">Target</th><th class="r">Step</th></tr></thead><tbody>';
+  p.rows.sort(function(a, b){ return b.wantPct - a.wantPct || b.nowPct - a.nowPct; }).forEach(function(r){
+    var sell = p.sells.filter(function(x){ return x.s === r.s; })[0];
+    var buy = p.buys.filter(function(x){ return x.s === r.s; })[0];
+    var step = sell ? '<span class="down">sell ' + money(sell.usd, 2) + '</span>' :
+               buy ? '<span class="up">buy ' + money(buy.usd, 2) + '</span>' : '<span class="co">on target</span>';
+    html += '<tr><td class="sym">' + r.s + '</td><td class="n r">' + r.nowPct.toFixed(1) + '%</td>' +
+      '<td class="n r">' + r.wantPct.toFixed(1) + '%</td><td class="n r">' + step + '</td></tr>';
+  });
+  html += '</tbody></table></div>';
+  if(rb.error) html += '<div class="traps" style="margin:0 0 12px"><b>' + esc(rb.error) + '</b></div>';
+  html += '<div class="actions" style="margin-top:0">';
+  if(rb.step === "sold"){
+    html += '';
+  } else if(!p.sells.length && !p.buys.length){
+    html += '<span class="co">Already on target, within $1 a stock.</span>';
+  } else if(p.sells.length){
+    html += '<button class="btn ghost" id="rb-sell"' + (hold.busy || hold.state === "sending" ? ' disabled' : '') +
+      '>Step 1 · quote the sales (' + p.sells.length + ')</button>';
+  }
+  if(rb.step === "sold" && rb.buys.length){
+    html += '<button class="btn" id="rb-buy"' + (ex.busy ? ' disabled' : '') + '>Step 2 · buy with the USDC from the sale (' + rb.buys.length + ')</button>';
+  }
+  html += '<span class="copied">' + esc(rb.msg || "") + '</span></div>';
+  return html;
+}
+
+function bindRebalance(){
+  if($("rb-sell")) $("rb-sell").addEventListener("click", rebalanceSell);
+  if($("rb-buy")) $("rb-buy").addEventListener("click", rebalanceBuy);
+}
+
+/* Step 1: quote the planned sales into the sell box above; the wallet signs
+   them there with the same "Sell … in one transaction" button. */
+function rebalanceSell(){
+  if(hold.busy) return;
+  var over = overCapList();
+  if(over.length){ rb.error = over.join(", ") + " is over your " + state.cap + "% cap. Trim the basket first."; renderHoldings(); return; }
+  gated(function(){
+    var p = rebalancePlan();
+    if(!p || !p.sells.length) return;
+    rb.buys = p.buys;
+    hold.busy = true; rb.error = null; rb.msg = ""; hold.error2 = null;
+    connect().then(function(from){
+      if(from.toLowerCase() !== hold.addr) throw new Error("Connect the wallet that holds these stocks to rebalance it.");
+      hold.state = "quoting"; renderHoldings();
+      return Promise.all(p.sells.map(function(s){
+        var r = hold.rows.filter(function(x){ return x.t.s === s.s; })[0];
+        var amt = BigInt(Math.floor(s.qty * 1e8));
+        if(amt > r.bal) amt = r.bal;
+        return kyberSell({ t:r.t, price:state.data[r.t.s].deep.price }, amt, from);
+      }));
+    }).then(function(qs){
+      if(!qs) return;
+      var dropped = [];
+      qs = qs.filter(function(q){
+        var qty = Number(q.amount) / 1e8, eff = qty > 0 ? Number(q.out) / 1e6 / qty : 0;
+        var diff = (q.row.price - eff) / q.row.price * 100;
+        if(diff > QUOTE_LIMIT){ dropped.push(q.row.t.s); return false; }
+        return true;
+      });
+      if(dropped.length) rb.error = "Left out of the sale, the pools are too thin right now: " + dropped.join(", ") + ".";
+      hold.quotes = qs.length ? qs : null;
+      hold.state = qs.length ? "ready" : "idle";
+      rb.step = qs.length ? "selling" : "idle";
+      rb.msg = qs.length ? "Sales quoted above. Press “Sell … in one transaction”, then come back for step 2." : "";
+    }).catch(function(e){
+      rb.error = (e && e.message) ? e.message : String(e);
+      hold.state = hold.quotes ? "ready" : "idle";
+    }).then(function(){ hold.busy = false; renderHoldings(); });
+  }, function(m){ rb.error = m; renderHoldings(); });
+}
+
+/* Step 2: quote the planned buys into the "Buy it in one transaction" box,
+   paid in USDC from the sale. */
+function rebalanceBuy(){
+  if(ex.busy) return;
+  var over = overCapList();
+  if(over.length){ rb.error = over.join(", ") + " is over your " + state.cap + "% cap. Trim the basket first."; renderHoldings(); return; }
+  gated(function(){
+    if(!rb.buys.length) return;
+    ex.busy = true; ex.error = null; ex.msg = ""; rb.error = null;
+    connect().then(function(from){
+      ex.state = "quoting"; renderExecute();
+      var rows = rb.buys.map(function(b){
+        var t = tok(b.s), d = state.data[b.s];
+        return { t:t, d:d, usd:b.usd, wei:BigInt(Math.floor(b.usd * 1e6)) };
+      }).filter(function(r){ return r.d && !blockReason(r.t, r.usd); });
+      return Promise.all(rows.map(function(r){ return kyberRoute(r, from); }));
+    }).then(function(qs){
+      qs = (qs || []).filter(function(q){
+        var got = Number(q.out) / 1e8, eff = got > 0 ? q.row.usd / got : Infinity;
+        return (eff - q.row.d.deep.price) / q.row.d.deep.price * 100 <= QUOTE_LIMIT;
+      });
+      ex.quotes = qs.length ? qs : null;
+      ex.state = qs.length ? "ready" : "idle";
+      ex.msg = qs.length ? "Rebalance buys, paid in USDC from the sale. Quotes are good for a couple of minutes." : "";
+      if(!qs.length) rb.error = "No buy could be quoted within the price limit right now. Try again in a minute.";
+      else rb.step = "buying";
+    }).catch(function(e){
+      ex.error = (e && e.message) ? e.message : String(e);
+      ex.state = ex.quotes ? "ready" : "idle";
+    }).then(function(){
+      ex.busy = false; renderExecute(); renderHoldings();
+      if(ex.quotes) $("execute").scrollIntoView({behavior:"smooth", block:"start"});
+    });
+  }, function(m){ rb.error = m; renderHoldings(); });
 }
 
 function renderSell(){
@@ -1776,7 +1962,9 @@ function doSell(){
   var from = ex.account;
   var ui = {
     msg: function(t){ hold.msg = t; renderHoldings(); },
-    link: function(url, t){ hold.state = "done"; hold.txt = url; hold.msg = t; renderHoldings(); }
+    link: function(url, t){ hold.state = "done"; hold.txt = url; hold.msg = t;
+      if(rb.step === "selling"){ rb.step = "sold"; rb.msg = "Sold. Step 2 buys what is short with that USDC."; }
+      renderHoldings(); }
   };
   readBalances(from).then(function(before){
     return multicallUints(hold.quotes.map(function(q){
@@ -1878,13 +2066,15 @@ function shareUrl(){
     var raw = state.weights[t.s] || 0;
     if(raw > 0) parts.push(t.s + "-" + Math.round(raw / tot * 100));
   });
-  return location.origin + location.pathname + "?b=" + parts.join("_") + "&a=" + Math.round(state.amount);
+  return location.origin + location.pathname + "?b=" + parts.join("_") + "&a=" + Math.round(state.amount) +
+    (state.cap ? "&cap=" + state.cap : "");
 }
 
 function readUrl(){
   var q = new URLSearchParams(location.search);
-  var b = q.get("b"), a = q.get("a");
+  var b = q.get("b"), a = q.get("a"), cap = parseInt(q.get("cap"), 10);
   if(a && !isNaN(parseFloat(a))) state.amount = Math.max(1, parseFloat(a));
+  if(cap >= 1 && cap <= 99) state.cap = cap;
   if(!b) return false;
   var w = {}, ok = false;
   b.split("_").forEach(function(part){
