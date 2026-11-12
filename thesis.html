@@ -1157,7 +1157,7 @@ function renderExecute(){
   } else if(ex.state === "quoting"){
     html += '<button class="btn" disabled>Quoting ' + rows.length + ' swaps…</button>';
   } else if(ex.state === "ready"){
-    html += '<button class="btn" id="ex-buy">Buy ' + rows.length + ' stocks in one transaction</button>' +
+    html += '<button class="btn" id="ex-buy">Buy ' + ex.quotes.length + ' stock' + (ex.quotes.length > 1 ? 's' : '') + ' in one transaction</button>' +
             '<button class="btn ghost" id="ex-requote">Requote</button>';
   } else if(ex.state === "sending"){
     html += '<button class="btn" disabled>Confirm in your wallet…</button>';
