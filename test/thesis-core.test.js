@@ -362,10 +362,92 @@ test("thesis.html's inline script parses", () => {
 test("thesis.html uses the core instead of carrying its own copy", () => {
   // A Windows checkout writes CRLF; the page is the same either way.
   const html = fs.readFileSync(path.join(__dirname, "..", "thesis.html"), "utf8").replace(/\r\n/g, "\n");
-  const coreTag = html.indexOf('<script src="thesis-core.js"></script>');
+  // A ?v= on the tag only busts browser caches; it is the same script.
+  const coreTag = html.search(/<script src="thesis-core\.js(\?v=\d+)?"><\/script>/);
   const inline = html.indexOf('<script>\n"use strict";');
   assert.ok(coreTag > -1, "thesis-core.js is loaded");
   assert.ok(coreTag < inline, "and loaded before the page script");
   assert.doesNotMatch(html, /function parseThesis\(/);
   assert.doesNotMatch(html, /0xb2000000000000000000/i, "addresses live only in thesis-core.js");
+});
+
+test("parseCap reads the usual ways of saying a cap", () => {
+  const { parseCap } = core;
+  assert.equal(parseCap("ai chips, max 25% each"), 25);
+  assert.equal(parseCap("cap at 30% per stock"), 30);
+  assert.equal(parseCap("no more than 20 percent in one name"), 20);
+  assert.equal(parseCap("big tech 15% max"), 15);
+  assert.equal(parseCap("ai chips"), null);
+});
+
+test("applyCap keeps every slice under the cap and still hands out 100", () => {
+  const { applyCap } = core;
+  const r = applyCap({ NVDAc: 60, AMDc: 20, AVGOc: 10, MRVLc: 10 }, 30);
+  assert.equal(Object.values(r.weights).reduce((a, b) => a + b, 0), 100);
+  for (const v of Object.values(r.weights)) assert.ok(v <= 30, String(v));
+  assert.deepEqual(r.trimmed, ["NVDAc"]);
+  assert.equal(r.short, 0);
+  // AMD held twice what AVGO held before, and still does not hold less after
+  assert.ok(r.weights.AMDc >= r.weights.AVGOc);
+});
+
+test("applyCap says when the cap cannot be met with this few stocks", () => {
+  const { applyCap } = core;
+  const r = applyCap({ NVDAc: 50, AMDc: 50 }, 20);
+  assert.deepEqual(r.weights, { NVDAc: 20, AMDc: 20 });
+  assert.equal(r.short, 60);
+});
+
+test("parseThesis applies a cap written in the sentence", () => {
+  const r = parseThesis("ai chips, max 15% each");
+  assert.equal(r.cap, 15);
+  assert.equal(sum(r.weights), 100);
+  for (const [s, v] of Object.entries(r.weights)) assert.ok(v <= 15, s + " " + v);
+});
+
+test("parseThesis names what Base does not have instead of dropping it", () => {
+  const r = parseThesis("ai chips, palantir, robotics, no tesla");
+  assert.deepEqual(r.notOnBase, ["Palantir"]);
+  assert.deepEqual(r.unmatched, ["robotics"]);
+  assert.ok(r.weights.NVDAc > 0);
+  const none = parseThesis("palantir and visa");
+  assert.equal(none.weights, null);
+  assert.deepEqual(none.notOnBase, ["Palantir", "Visa"]);
+  // what you say no to is not a wish, so it is not reported
+  assert.deepEqual(parseThesis("big tech, no palantir").notOnBase, []);
+  // filler and matched words never show up as unmatched
+  assert.deepEqual(parseThesis("i want some ai and cloud stocks").unmatched, []);
+});
+
+test("planRebalance sells the excess and buys the shortfall with that money only", () => {
+  const { planRebalance } = core;
+  // $1,000: NVDA $700, AMD $300; basket wants 50/50
+  const p = planRebalance([{ s: "NVDAc", qty: 7, price: 100 }, { s: "AMDc", qty: 1, price: 300 }],
+                          { NVDAc: 50, AMDc: 50 }, { keep: 0.01 });
+  assert.equal(p.total, 1000);
+  assert.equal(p.sells.length, 1);
+  assert.equal(p.sells[0].s, "NVDAc");
+  assert.ok(Math.abs(p.sells[0].usd - 200) < 1e-9);
+  assert.ok(Math.abs(p.sells[0].qty - 2) < 1e-9);
+  assert.equal(p.buys.length, 1);
+  assert.equal(p.buys[0].s, "AMDc");
+  assert.ok(Math.abs(p.buys[0].usd - 198) < 1e-9, "1% kept back for slippage");
+});
+
+test("planRebalance sells a stock that left the basket in full and buys a new one", () => {
+  const { planRebalance } = core;
+  const p = planRebalance([{ s: "TSLAc", qty: 2, price: 250 }, { s: "NVDAc", qty: 5, price: 100 }],
+                          { NVDAc: 50, GOOGLc: 50 }, { keep: 0 });
+  const tsla = p.sells.find((x) => x.s === "TSLAc");
+  assert.equal(tsla.qty, 2, "whole position");
+  assert.deepEqual(p.buys.map((b) => b.s), ["GOOGLc"]);
+  assert.ok(Math.abs(p.buys[0].usd - 500) < 1e-9);
+});
+
+test("planRebalance leaves small moves alone and does nothing when already on target", () => {
+  const { planRebalance } = core;
+  const p = planRebalance([{ s: "NVDAc", qty: 5.005, price: 100 }, { s: "AMDc", qty: 5, price: 100 }],
+                          { NVDAc: 50, AMDc: 50 }, { minUsd: 1 });
+  assert.equal(p.sells.length, 0);
+  assert.equal(p.buys.length, 0);
 });
