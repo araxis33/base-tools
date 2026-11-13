@@ -1,6 +1,6 @@
 {
- "generatedAt": "2026-11-13T12:21:11.199Z",
- "block": 56910458,
+ "generatedAt": "2026-11-13T18:21:11.970Z",
+ "block": 57018463,
  "metrics": [
   {
    "id": "usdc",
@@ -8,22 +8,22 @@
     "usdc-ops"
    ],
    "unit": "usd",
-   "value": 4413287648.532266,
-   "change": 2.02,
-   "asOf": "2026-11-13T12:21:11.028Z",
+   "value": 4377276052.446607,
+   "change": 2.63,
+   "asOf": "2026-11-13T18:21:11.808Z",
    "en": "USDC on Base",
    "ru": "USDC на Base",
    "sources": [
     {
      "name": "USDC contract",
-     "value": 4413287648.532266
+     "value": 4377276052.446607
     },
     {
      "name": "DefiLlama",
-     "value": 4372842544.958098
+     "value": 4401287415.760533
     }
    ],
-   "gap": 0.92
+   "gap": 0.55
   },
   {
    "id": "eurc",
@@ -31,22 +31,22 @@
     "fx-tools"
    ],
    "unit": "eur",
-   "value": 48855894.144923,
-   "change": -7.32,
-   "asOf": "2026-11-13T12:21:11.066Z",
+   "value": 48527084.974716,
+   "change": -4.84,
+   "asOf": "2026-11-13T18:21:11.895Z",
    "en": "EURC on Base",
    "ru": "EURC на Base",
    "sources": [
     {
      "name": "EURC contract",
-     "value": 48855894.144923
+     "value": 48527084.974716
     },
     {
      "name": "DefiLlama",
-     "value": 48758759.144923
+     "value": 49462407.528686
     }
    ],
-   "gap": 0.2
+   "gap": 1.89
   },
   {
    "id": "stables",
@@ -66,10 +66,10 @@
     },
     {
      "name": "DefiLlama",
-     "value": 5200854098.374696
+     "value": 5230222776.445701
     }
    ],
-   "gap": 4.39
+   "gap": 4.93
   },
   {
    "id": "dex",
@@ -79,7 +79,7 @@
    "unit": "usd",
    "value": 6813094310.430001,
    "change": -17.05,
-   "asOf": "2026-11-13T12:21:11.069Z",
+   "asOf": "2026-11-13T18:21:11.900Z",
    "window": "7d",
    "en": "DEX volume on Base, 7 days",
    "ru": "Оборот обменников Base за 7 дней",
@@ -99,7 +99,7 @@
    "unit": "usd",
    "value": 4441836099,
    "change": 13.77,
-   "asOf": "2026-11-13T12:21:11.070Z",
+   "asOf": "2026-11-13T18:21:11.901Z",
    "window": "7d",
    "en": "Aero volume, 7 days",
    "ru": "Оборот Aero за 7 дней",
@@ -129,16 +129,16 @@
     "lp-tools"
    ],
    "unit": "usd",
-   "value": 278365.60935511976,
-   "change": -1.64,
-   "asOf": "2026-11-13T11:47:21.725Z",
+   "value": 289207.9777575721,
+   "change": 2.19,
+   "asOf": "2026-11-13T17:47:20.206Z",
    "window": "day",
    "en": "Fees paid to sAERO holders a day (last 96 h)",
    "ru": "Комиссии держателям sAERO в сутки (за 96 ч)",
    "sources": [
     {
      "name": "deftools radar, from the chain",
-     "value": 278365.60935511976
+     "value": 289207.9777575721
     }
    ],
    "own": true
