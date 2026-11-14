@@ -1,6 +1,6 @@
 {
- "generatedAt": "2026-11-14T06:21:12.490Z",
- "block": 57234461,
+ "generatedAt": "2026-11-14T06:57:40.973Z",
+ "block": 57245403,
  "metrics": [
   {
    "id": "usdc",
@@ -8,22 +8,22 @@
     "usdc-ops"
    ],
    "unit": "usd",
-   "value": 4264910240.920327,
-   "change": 0.53,
-   "asOf": "2026-11-14T06:21:12.144Z",
+   "value": 4266835394.127432,
+   "change": 0.23,
+   "asOf": "2026-11-14T06:57:40.644Z",
    "en": "USDC on Base",
    "ru": "USDC на Base",
    "sources": [
     {
      "name": "USDC contract",
-     "value": 4264910240.920327
+     "value": 4266835394.127432
     },
     {
      "name": "DefiLlama",
      "value": 4272136809.8725986
     }
    ],
-   "gap": 0.17
+   "gap": 0.12
   },
   {
    "id": "eurc",
@@ -32,8 +32,8 @@
    ],
    "unit": "eur",
    "value": 48277107.830897,
-   "change": -7.85,
-   "asOf": "2026-11-14T06:21:12.291Z",
+   "change": -7.84,
+   "asOf": "2026-11-14T06:57:40.805Z",
    "en": "EURC on Base",
    "ru": "EURC на Base",
    "sources": [
@@ -103,7 +103,7 @@
    "unit": "usd",
    "value": 7143778995.670002,
    "change": -11.01,
-   "asOf": "2026-11-14T06:21:12.295Z",
+   "asOf": "2026-11-14T06:57:40.809Z",
    "window": "7d",
    "en": "DEX volume on Base, 7 days",
    "ru": "Оборот обменников Base за 7 дней",
@@ -123,7 +123,7 @@
    "unit": "usd",
    "value": 4626867008,
    "change": 18,
-   "asOf": "2026-11-14T06:21:12.295Z",
+   "asOf": "2026-11-14T06:57:40.810Z",
    "window": "7d",
    "en": "Aero volume, 7 days",
    "ru": "Оборот Aero за 7 дней",
@@ -153,16 +153,16 @@
     "lp-tools"
    ],
    "unit": "usd",
-   "value": 299085.9112982141,
-   "change": 10.96,
-   "asOf": "2026-11-14T05:47:29.992Z",
+   "value": 299366.72507241584,
+   "change": 11.07,
+   "asOf": "2026-11-14T06:47:20.662Z",
    "window": "day",
    "en": "Fees paid to sAERO holders a day (last 96 h)",
    "ru": "Комиссии держателям sAERO в сутки (за 96 ч)",
    "sources": [
     {
      "name": "deftools radar, from the chain",
-     "value": 299085.9112982141
+     "value": 299366.72507241584
     }
    ],
    "own": true
