@@ -1,6 +1,6 @@
 {
- "generatedAt": "2026-11-16T00:21:09.334Z",
- "block": 57990459,
+ "generatedAt": "2026-11-16T06:21:17.777Z",
+ "block": 58098487,
  "metrics": [
   {
    "id": "usdc",
@@ -8,22 +8,68 @@
     "usdc-ops"
    ],
    "unit": "usd",
-   "value": 4357557325.128737,
-   "change": 0.99,
-   "asOf": "2026-11-16T00:21:09.109Z",
+   "value": 4377091568.121908,
+   "change": 1.42,
+   "asOf": "2026-11-16T06:21:17.238Z",
    "en": "USDC on Base",
    "ru": "USDC на Base",
    "sources": [
     {
      "name": "USDC contract",
-     "value": 4357557325.128737
+     "value": 4377091568.121908
     },
     {
      "name": "DefiLlama",
-     "value": 4354143678.18421
+     "value": 4379624560.277053
     }
    ],
-   "gap": 0.08
+   "gap": 0.06
+  },
+  {
+   "id": "eurc",
+   "niches": [
+    "fx-tools"
+   ],
+   "unit": "eur",
+   "value": 49938469.600209,
+   "change": -4.32,
+   "asOf": "2026-11-16T06:21:17.419Z",
+   "en": "EURC on Base",
+   "ru": "EURC на Base",
+   "sources": [
+    {
+     "name": "EURC contract",
+     "value": 49938469.600209
+    },
+    {
+     "name": "DefiLlama",
+     "value": 50157328.130209
+    }
+   ],
+   "gap": 0.44
+  },
+  {
+   "id": "stables",
+   "niches": [
+    "treasury"
+   ],
+   "unit": "usd",
+   "value": 4978196638.452294,
+   "change": 0.83,
+   "asOf": "2026-11-15",
+   "en": "Dollar stablecoins on Base",
+   "ru": "Долларовые стейблкоины на Base",
+   "sources": [
+    {
+     "name": "growthepie",
+     "value": 4978196638.452294
+    },
+    {
+     "name": "DefiLlama",
+     "value": 5234698920.122216
+    }
+   ],
+   "gap": 4.9
   },
   {
    "id": "tx",
@@ -31,20 +77,20 @@
     "wallet-ux"
    ],
    "unit": "count",
-   "value": 8441527.142857144,
-   "change": 6.92,
-   "asOf": "2026-11-14",
+   "value": 8744902.42857143,
+   "change": 10.39,
+   "asOf": "2026-11-15",
    "window": "7d-avg",
    "en": "Transactions a day (7-day average)",
    "ru": "Транзакций в сутки (среднее за 7 дней)",
    "sources": [
     {
      "name": "growthepie",
-     "value": 8441527.142857144
+     "value": 8744902.42857143
     },
     {
      "name": "L2BEAT",
-     "value": 8442233.857142856
+     "value": 8745690
     }
    ],
    "gap": 0.01
@@ -55,16 +101,16 @@
     "trading-capital"
    ],
    "unit": "usd",
-   "value": 8124115076.390001,
-   "change": 1.1,
-   "asOf": "2026-11-16T00:21:09.184Z",
+   "value": 8558011840.920001,
+   "change": 4.08,
+   "asOf": "2026-11-16T06:21:17.423Z",
    "window": "7d",
    "en": "DEX volume on Base, 7 days",
    "ru": "Оборот обменников Base за 7 дней",
    "sources": [
     {
      "name": "DefiLlama",
-     "value": 8124115076.390001
+     "value": 8558011840.920001
     }
    ],
    "single": true
@@ -75,28 +121,28 @@
     "lp-tools"
    ],
    "unit": "usd",
-   "value": 5088280874,
-   "change": 28.2,
-   "asOf": "2026-11-16T00:21:09.185Z",
+   "value": 5332702324,
+   "change": 31.47,
+   "asOf": "2026-11-16T06:21:17.423Z",
    "window": "7d",
    "en": "Aero volume, 7 days",
    "ru": "Оборот Aero за 7 дней",
    "sources": [
     {
      "name": "DefiLlama · Aerodrome V1",
-     "value": 20550460
+     "value": 21242318
     },
     {
      "name": "DefiLlama · Aerodrome Slipstream",
-     "value": 770114356
+     "value": 786139686
     },
     {
      "name": "DefiLlama · Aero Slipstream",
-     "value": 4267933717
+     "value": 4492768458
     },
     {
      "name": "DefiLlama · Aero Basic",
-     "value": 29682341
+     "value": 32551862
     }
    ],
    "single": true
@@ -107,29 +153,20 @@
     "lp-tools"
    ],
    "unit": "usd",
-   "value": 310304.9032988581,
-   "change": 35.66,
-   "asOf": "2026-11-15T23:47:17.076Z",
+   "value": 310698.7329738352,
+   "change": 35.83,
+   "asOf": "2026-11-16T05:47:19.059Z",
    "window": "day",
    "en": "Fees paid to sAERO holders a day (last 96 h)",
    "ru": "Комиссии держателям sAERO в сутки (за 96 ч)",
    "sources": [
     {
      "name": "deftools radar, from the chain",
-     "value": 310304.9032988581
+     "value": 310698.7329738352
     }
    ],
    "own": true
   }
  ],
- "held": [
-  {
-   "id": "eurc",
-   "reason": "contract €50150926.130209 vs DefiLlama €47025314.865758"
-  },
-  {
-   "id": "stables",
-   "reason": "growthepie data is from 2026-11-14"
-  }
- ]
+ "held": []
 }
