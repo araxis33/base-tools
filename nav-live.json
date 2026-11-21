@@ -1,6 +1,6 @@
 {
- "generatedAt": "2026-11-21T18:21:10.645Z",
- "block": 60474458,
+ "generatedAt": "2026-11-21T19:44:30.285Z",
+ "block": 60499449,
  "metrics": [
   {
    "id": "usdc",
@@ -8,22 +8,22 @@
     "usdc-ops"
    ],
    "unit": "usd",
-   "value": 4259724297.950185,
-   "change": -0.6,
-   "asOf": "2026-11-21T18:21:10.356Z",
+   "value": 4248335174.225762,
+   "change": -0.81,
+   "asOf": "2026-11-21T19:44:29.909Z",
    "en": "USDC on Base",
    "ru": "USDC на Base",
    "sources": [
     {
      "name": "USDC contract",
-     "value": 4259724297.950185
+     "value": 4248335174.225762
     },
     {
      "name": "DefiLlama",
-     "value": 4275505297.1115885
+     "value": 4264370247.391205
     }
    ],
-   "gap": 0.37
+   "gap": 0.38
   },
   {
    "id": "stables",
@@ -43,10 +43,10 @@
     },
     {
      "name": "DefiLlama",
-     "value": 4850050444.75518
+     "value": 4838931118.408002
     }
    ],
-   "gap": 3.73
+   "gap": 3.51
   },
   {
    "id": "tx",
@@ -80,7 +80,7 @@
    "unit": "usd",
    "value": 8473656119.880001,
    "change": 18.62,
-   "asOf": "2026-11-21T18:21:10.466Z",
+   "asOf": "2026-11-21T19:44:30.101Z",
    "window": "7d",
    "en": "DEX volume on Base, 7 days",
    "ru": "Оборот обменников Base за 7 дней",
@@ -100,7 +100,7 @@
    "unit": "usd",
    "value": 4799711515,
    "change": 3.74,
-   "asOf": "2026-11-21T18:21:10.466Z",
+   "asOf": "2026-11-21T19:44:30.102Z",
    "window": "7d",
    "en": "Aero volume, 7 days",
    "ru": "Оборот Aero за 7 дней",
@@ -130,16 +130,16 @@
     "lp-tools"
    ],
    "unit": "usd",
-   "value": 275989.10854992573,
-   "change": -3.72,
-   "asOf": "2026-11-21T17:47:18.495Z",
+   "value": 275953.34972382494,
+   "change": -3.73,
+   "asOf": "2026-11-21T18:47:22.941Z",
    "window": "day",
    "en": "Fees paid to sAERO holders a day (last 96 h)",
    "ru": "Комиссии держателям sAERO в сутки (за 96 ч)",
    "sources": [
     {
      "name": "deftools radar, from the chain",
-     "value": 275989.10854992573
+     "value": 275953.34972382494
     }
    ],
    "own": true
