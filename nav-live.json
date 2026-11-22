@@ -1,6 +1,6 @@
 {
- "generatedAt": "2026-11-22T06:21:09.547Z",
- "block": 60690454,
+ "generatedAt": "2026-11-22T07:22:50.591Z",
+ "block": 60708959,
  "metrics": [
   {
    "id": "usdc",
@@ -8,22 +8,22 @@
     "usdc-ops"
    ],
    "unit": "usd",
-   "value": 4326463301.636485,
-   "change": -0.08,
-   "asOf": "2026-11-22T06:21:09.317Z",
+   "value": 4326403910.176151,
+   "change": -0.07,
+   "asOf": "2026-11-22T07:22:50.293Z",
    "en": "USDC on Base",
    "ru": "USDC на Base",
    "sources": [
     {
      "name": "USDC contract",
-     "value": 4326463301.636485
+     "value": 4326403910.176151
     },
     {
      "name": "DefiLlama",
-     "value": 4346376885.78687
+     "value": 4331586170.184241
     }
    ],
-   "gap": 0.46
+   "gap": 0.12
   },
   {
    "id": "eurc",
@@ -32,8 +32,8 @@
    ],
    "unit": "eur",
    "value": 48566568.839669,
-   "change": 2.15,
-   "asOf": "2026-11-22T06:21:09.413Z",
+   "change": 2.14,
+   "asOf": "2026-11-22T07:22:50.386Z",
    "en": "EURC on Base",
    "ru": "EURC на Base",
    "sources": [
@@ -80,7 +80,7 @@
    "unit": "usd",
    "value": 8249555464.860002,
    "change": 1.54,
-   "asOf": "2026-11-22T06:21:09.416Z",
+   "asOf": "2026-11-22T07:22:50.390Z",
    "window": "7d",
    "en": "DEX volume on Base, 7 days",
    "ru": "Оборот обменников Base за 7 дней",
@@ -100,7 +100,7 @@
    "unit": "usd",
    "value": 4714107859,
    "change": -7.35,
-   "asOf": "2026-11-22T06:21:09.417Z",
+   "asOf": "2026-11-22T07:22:50.391Z",
    "window": "7d",
    "en": "Aero volume, 7 days",
    "ru": "Оборот Aero за 7 дней",
@@ -130,16 +130,16 @@
     "lp-tools"
    ],
    "unit": "usd",
-   "value": 271866.24397694005,
-   "change": -13.03,
-   "asOf": "2026-11-22T05:47:14.022Z",
+   "value": 271314.70465752005,
+   "change": -13.21,
+   "asOf": "2026-11-22T06:47:26.103Z",
    "window": "day",
    "en": "Fees paid to sAERO holders a day (last 96 h)",
    "ru": "Комиссии держателям sAERO в сутки (за 96 ч)",
    "sources": [
     {
      "name": "deftools radar, from the chain",
-     "value": 271866.24397694005
+     "value": 271314.70465752005
     }
    ],
    "own": true
@@ -148,7 +148,7 @@
  "held": [
   {
    "id": "stables",
-   "reason": "growthepie 4607176882.351229 vs DefiLlama 4920312204.315717"
+   "reason": "growthepie 4607176882.351229 vs DefiLlama 4905539307.340029"
   }
  ]
 }
