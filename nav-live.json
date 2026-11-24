@@ -1,6 +1,6 @@
 {
- "generatedAt": "2026-11-24T00:17:11.065Z",
- "block": 61445250,
+ "generatedAt": "2026-11-24T00:21:12.207Z",
+ "block": 61446460,
  "metrics": [
   {
    "id": "usdc",
@@ -8,15 +8,15 @@
     "usdc-ops"
    ],
    "unit": "usd",
-   "value": 4280670967.453398,
+   "value": 4280677821.169051,
    "change": 0.36,
-   "asOf": "2026-11-24T00:17:10.676Z",
+   "asOf": "2026-11-24T00:21:11.766Z",
    "en": "USDC on Base",
    "ru": "USDC на Base",
    "sources": [
     {
      "name": "USDC contract",
-     "value": 4280670967.453398
+     "value": 4280677821.169051
     },
     {
      "name": "DefiLlama",
@@ -31,15 +31,15 @@
     "fx-tools"
    ],
    "unit": "eur",
-   "value": 47611172.059928,
+   "value": 47611792.961928,
    "change": 0.22,
-   "asOf": "2026-11-24T00:17:10.885Z",
+   "asOf": "2026-11-24T00:21:12.019Z",
    "en": "EURC on Base",
    "ru": "EURC на Base",
    "sources": [
     {
      "name": "EURC contract",
-     "value": 47611172.059928
+     "value": 47611792.961928
     },
     {
      "name": "DefiLlama",
@@ -80,7 +80,7 @@
    "unit": "usd",
    "value": 8027589770.930001,
    "change": -6.2,
-   "asOf": "2026-11-24T00:17:10.889Z",
+   "asOf": "2026-11-24T00:21:12.022Z",
    "window": "7d",
    "en": "DEX volume on Base, 7 days",
    "ru": "Оборот обменников Base за 7 дней",
@@ -100,7 +100,7 @@
    "unit": "usd",
    "value": 4672551375,
    "change": -12.38,
-   "asOf": "2026-11-24T00:17:10.890Z",
+   "asOf": "2026-11-24T00:21:12.023Z",
    "window": "7d",
    "en": "Aero volume, 7 days",
    "ru": "Оборот Aero за 7 дней",
