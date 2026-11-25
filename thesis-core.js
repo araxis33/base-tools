@@ -5,9 +5,10 @@
   "use strict";
 
   /* The Coinbase Tokenized Stocks published on base.org/stocks: the first ten
-     since launch, the other 26 listed on 25-30.09.2026. These addresses are
+     since launch, the 26 listed on 25-30.09.2026 and
+     24 more on 25.11.2026. These addresses are
      the whole point of the list: any other contract using these tickers on
-     Base was not issued by Coinbase. All 36 carry 8 decimals, checked
+     Base was not issued by Coinbase. All 60 carry 8 decimals, checked
      onchain. scripts/check-stock-list.js compares this list with base.org's
      own /api/stocks every day. */
   var TOKENS = [
@@ -46,7 +47,32 @@
     {s:"RDDTc",  co:"Reddit",        a:"0xb20000000000000000000066242d4067724cB7A1", tags:["reddit","social","ads","media","tech"]},
     {s:"SOUNc",  co:"SoundHound",    a:"0xb2000000000000000000002137743d4a01fe4e88", tags:["ai","voice","soundhound","software","tech"]},
     {s:"TTWOc",  co:"Take-Two",      a:"0xB200000000000000000000f720C26062Bc3067Da", tags:["take-two","games","gaming","gta","entertainment"]},
-    {s:"WENc",   co:"Wendy's",       a:"0xb20000000000000000000044e3cd7a0e1028e57a", tags:["wendys","restaurants","food","fast food","consumer","dividends"]}
+    {s:"WENc",   co:"Wendy's",       a:"0xb20000000000000000000044e3cd7a0e1028e57a", tags:["wendys","restaurants","food","fast food","consumer","dividends"]},
+    /* The 24 more listed on 25.11.2026 (base.org /api/stocks; DJTc, RDDTc, PYPLc were already here) */
+    {s:"ANETc",  co:"Arista",       a:"0xB200000000000000000000E71D4E45D1421251cb", tags:["ai","networking","arista","cloud","hardware","tech"]},
+    {s:"ANTc",   co:"Anthropic",    a:"0xb20000000000000000000016e38FD364d271Ba28", tags:["ai","anthropic","claude","llm","frontier","tech"]},
+    {s:"APPc",   co:"AppLovin",     a:"0xb20000000000000000000006f910a0e7BBD3c168", tags:["applovin","ads","apps","software","games","tech"]},
+    {s:"BMNRc",  co:"BitMine",      a:"0xB200000000000000000000eA2df44A307CaB279C", tags:["ethereum","eth","crypto","bitmine","treasury"]},
+    {s:"CRMc",   co:"Salesforce",   a:"0xB2000000000000000000006432a3a7991e718DBB", tags:["ai","cloud","salesforce","software","crm","tech"]},
+    {s:"GTLBc",  co:"GitLab",       a:"0xb200000000000000000000df14B76C292A32982d", tags:["gitlab","software","devops","developers","cloud","tech"]},
+    {s:"LRCXc",  co:"Lam Research", a:"0xB20000000000000000000034975347FF1848AAb9", tags:["ai","chips","semis","lam research","equipment","hardware","tech"]},
+    {s:"QCOMc",  co:"Qualcomm",     a:"0xB2000000000000000000005672D78eFF30D24665", tags:["chips","semis","qualcomm","phones","wireless","tech"]},
+    {s:"AMCc",   co:"AMC",          a:"0xB200000000000000000000CD7e6b8042cb7c2BB5", tags:["amc","movies","cinema","entertainment","meme"]},
+    {s:"CMGc",   co:"Chipotle",     a:"0xB200000000000000000000E4A60215E10D6D8c2b", tags:["chipotle","restaurants","food","fast food","consumer"]},
+    {s:"CVNAc",  co:"Carvana",      a:"0xb200000000000000000000Ffb10718f880A48274", tags:["carvana","cars","ecommerce","retail","consumer"]},
+    {s:"LULUc",  co:"Lululemon",    a:"0xB200000000000000000000989dc22D3656717734", tags:["lululemon","apparel","fashion","fitness","retail","consumer"]},
+    {s:"RIVNc",  co:"Rivian",       a:"0xB2000000000000000000003e4249C65bd6c037d9", tags:["rivian","ev","cars","trucks","frontier"]},
+    {s:"JNJc",   co:"Johnson & Johnson", a:"0xb20000000000000000000090658e3f9b29E2f5C2", tags:["johnson","pharma","drugs","health","healthcare","medtech","dividends"]},
+    {s:"MRKc",   co:"Merck",        a:"0xb200000000000000000000241fe94fe97FcBf034", tags:["merck","pharma","drugs","vaccines","health","healthcare","dividends"]},
+    {s:"UNHc",   co:"UnitedHealth", a:"0xb200000000000000000000c367d37d07150182A2", tags:["unitedhealth","health","healthcare","insurance"]},
+    {s:"MNSTc",  co:"Monster",      a:"0xb2000000000000000000005BCdE0a6926919FEF9", tags:["monster","drinks","beverages","energy drinks","consumer"]},
+    {s:"BACc",   co:"Bank of America", a:"0xB200000000000000000000E3e784CDF88Df2959d", tags:["bank of america","bofa","banks","bank","finance","dividends"]},
+    {s:"SOFIc",  co:"SoFi",         a:"0xB2000000000000000000003eF37a7c863DC1482A", tags:["sofi","fintech","bank","finance","lending"]},
+    {s:"LUVc",   co:"Southwest",    a:"0xb200000000000000000000d5c0393796E92FCAB0", tags:["southwest","airlines","travel"]},
+    {s:"RKLBc",  co:"Rocket Lab",   a:"0xb200000000000000000000e8E50CBbb9a3861a3C", tags:["space","rockets","rocket lab","satellites","defense","frontier"]},
+    {s:"VRTc",   co:"Vertiv",       a:"0xB200000000000000000000b2E8dBA585B1ffB158", tags:["ai","data centers","power","cooling","vertiv","energy"]},
+    {s:"MPc",    co:"MP Materials", a:"0xB2000000000000000000003958003d801724F9d3", tags:["mp materials","rare earths","mining","materials","magnets"]},
+    {s:"VSTc",   co:"Vistra",       a:"0xB20000000000000000000079DC24fe2FBD09110f", tags:["vistra","power","energy","utilities","nuclear","ai"]}
   ];
 
   var MIN_POOL_LIQUIDITY = 500;
@@ -57,14 +83,14 @@
     palantir: "Palantir", berkshire: "Berkshire Hathaway", jpmorgan: "JPMorgan", visa: "Visa",
     mastercard: "Mastercard", walmart: "Walmart", costco: "Costco", coca: "Coca-Cola", cocacola: "Coca-Cola",
     pepsi: "PepsiCo", pepsico: "PepsiCo", disney: "Disney", nike: "Nike", boeing: "Boeing", intel: "Intel",
-    ibm: "IBM", salesforce: "Salesforce", adobe: "Adobe", uber: "Uber", airbnb: "Airbnb", shopify: "Shopify",
+    ibm: "IBM", adobe: "Adobe", uber: "Uber", airbnb: "Airbnb", shopify: "Shopify",
     coinbase: "Coinbase", robinhood: "Robinhood", exxon: "ExxonMobil", chevron: "Chevron", starbucks: "Starbucks",
-    mcdonalds: "McDonald's", qualcomm: "Qualcomm", micron: "Micron", tsmc: "TSMC", asml: "ASML",
-    snowflake: "Snowflake", crowdstrike: "CrowdStrike", cloudflare: "Cloudflare", rivian: "Rivian",
+    mcdonalds: "McDonald's", micron: "Micron", tsmc: "TSMC", asml: "ASML",
+    snowflake: "Snowflake", crowdstrike: "CrowdStrike", cloudflare: "Cloudflare",
     lucid: "Lucid", alibaba: "Alibaba", baidu: "Baidu", spotify: "Spotify", ford: "Ford",
-    goldman: "Goldman Sachs", blackrock: "BlackRock", unitedhealth: "UnitedHealth", amgen: "Amgen",
+    goldman: "Goldman Sachs", blackrock: "BlackRock", amgen: "Amgen",
     caterpillar: "Caterpillar", lockheed: "Lockheed Martin", supermicro: "Supermicro",
-    coreweave: "CoreWeave", ionq: "IonQ", rklb: "Rocket Lab",
+    coreweave: "CoreWeave", ionq: "IonQ",
     pltr: "Palantir", smci: "Supermicro"
   };
 

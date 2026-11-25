@@ -168,10 +168,11 @@ async function readAave() {
 }
 
 // KyberSwap quotes for every stock, one at a time (parallel calls trip its limit),
-// within `calls` requests. Run by .github/workflows/stock-quotes.yml (29.10.2026):
+// within `calls` requests: seven per stock covers the $50 price and three round trips
+// (25.11.2026: a fixed 250 ran out at the 43rd of 60 stocks). Run by .github/workflows/stock-quotes.yml (29.10.2026):
 // from the Worker, KyberSwap answered "429 Forbidden" to most calls, as it limits
 // Cloudflare's shared addresses, while the same calls from GitHub's runners all went through.
-export async function quoteStocks(calls = 250) {
+export async function quoteStocks(calls = 7 * core.TOKENS.length) {
   budget = calls;
   const quotes = [];
   for (const t of core.TOKENS) quotes.push([t.s, await quoteStock(t)]);

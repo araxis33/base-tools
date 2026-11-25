@@ -126,3 +126,70 @@ test("the Worker asks GitHub for a fresh stocks copy only when it has a token", 
     globalThis.fetch = realFetch;
   }
 });
+
+test("with 60 stocks each run asks one half, under the plan's 50 calls, and the board ranks both halves", async () => {
+  const { refreshStocks } = await load();
+  const core = require("../thesis-core.js");
+  const kv = new Map();
+  const env = { QUOTA: { get: async (k) => kv.get(k) || null, put: async (k, v) => { kv.set(k, v); } } };
+  const realFetch = globalThis.fetch;
+  let asked = 0;
+  globalThis.fetch = async (url) => {
+    asked++;
+    const a = String(url).split("/").pop().toLowerCase();
+    const i = core.TOKENS.findIndex((t) => t.a.toLowerCase() === a);
+    return new Response(JSON.stringify({ pairs: [pair({ token: a, price: 10, liq: 1000, vol: 60 - i, ch: i })] }), { status: 200 });
+  };
+  try {
+    const slot = 15 * 60e3, t0 = Math.floor(Date.now() / (2 * slot)) * 2 * slot;
+    await refreshStocks(env, t0);
+    assert.ok(asked <= 30, "first run asked " + asked);
+    asked = 0;
+    const r = await refreshStocks(env, t0 + slot);
+    assert.ok(asked <= 30, "second run asked " + asked);
+    assert.strictEqual(r.rows, 10);
+    const items = JSON.parse(kv.get("boards:v1")).stocks.items;
+    const top = core.TOKENS.slice(0, 10).map((t) => t.s).sort();
+    assert.deepStrictEqual(items.map((x) => x.symbol).sort(), top, "the most traded come from the half asked a run earlier too");
+    assert.strictEqual(Object.keys(JSON.parse(kv.get("stocks:pools")).items).length, 60);
+  } finally {
+    globalThis.fetch = realFetch;
+  }
+});
+
+test("when DexScreener fails without 429, GeckoTerminal gets only what is left of 45 calls", async () => {
+  const { refreshStocks } = await load();
+  const kv = new Map();
+  const env = { QUOTA: { get: async (k) => kv.get(k) || null, put: async (k, v) => { kv.set(k, v); } } };
+  const realFetch = globalThis.fetch, realTimeout = globalThis.setTimeout;
+  let asked = 0;
+  globalThis.fetch = async () => { asked++; return new Response("down", { status: 503 }); };
+  globalThis.setTimeout = (fn) => realTimeout(fn, 0);
+  try {
+    await refreshStocks(env);
+    assert.ok(asked <= 45, "asked " + asked);
+  } finally {
+    globalThis.fetch = realFetch; globalThis.setTimeout = realTimeout;
+  }
+});
+
+test("on a cold row cache the half not asked comes from the board already saved", async () => {
+  const { refreshStocks } = await load();
+  const core = require("../thesis-core.js");
+  const slot = 15 * 60e3, t0 = Math.floor(Date.now() / (2 * slot)) * 2 * slot; // part 0: the first half is asked
+  const old = core.TOKENS.slice(30, 40).map((t) => ({ symbol: t.s, volume24h: 1e9, change24h: 1 }));
+  const kv = new Map([["boards:v1", JSON.stringify({ stocks: { ts: t0 - 60e3, items: old } })]]);
+  const env = { QUOTA: { get: async (k) => kv.get(k) || null, put: async (k, v) => { kv.set(k, v); } } };
+  const realFetch = globalThis.fetch;
+  globalThis.fetch = async (url) => {
+    const a = String(url).split("/").pop().toLowerCase();
+    return new Response(JSON.stringify({ pairs: [pair({ token: a, price: 10, liq: 1000, vol: 5 })] }), { status: 200 });
+  };
+  try {
+    await refreshStocks(env, t0);
+    const items = JSON.parse(kv.get("boards:v1")).stocks.items.map((x) => x.symbol).sort();
+    assert.deepStrictEqual(items, old.map((x) => x.symbol).sort());
+  } finally {
+    globalThis.fetch = realFetch;
+  }
+});
