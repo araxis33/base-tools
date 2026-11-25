@@ -126,3 +126,33 @@ test("the Worker asks GitHub for a fresh stocks copy only when it has a token", 
     globalThis.fetch = realFetch;
   }
 });
+
+test("with 60 stocks each run asks one half, under the plan's 50 calls, and the board ranks both halves", async () => {
+  const { refreshStocks } = await load();
+  const core = require("../thesis-core.js");
+  const kv = new Map();
+  const env = { QUOTA: { get: async (k) => kv.get(k) || null, put: async (k, v) => { kv.set(k, v); } } };
+  const realFetch = globalThis.fetch;
+  let asked = 0;
+  globalThis.fetch = async (url) => {
+    asked++;
+    const a = String(url).split("/").pop().toLowerCase();
+    const i = core.TOKENS.findIndex((t) => t.a.toLowerCase() === a);
+    return new Response(JSON.stringify({ pairs: [pair({ token: a, price: 10, liq: 1000, vol: 60 - i, ch: i })] }), { status: 200 });
+  };
+  try {
+    const slot = 15 * 60e3, t0 = Math.floor(Date.now() / (2 * slot)) * 2 * slot;
+    await refreshStocks(env, t0);
+    assert.ok(asked <= 30, "first run asked " + asked);
+    asked = 0;
+    const r = await refreshStocks(env, t0 + slot);
+    assert.ok(asked <= 30, "second run asked " + asked);
+    assert.strictEqual(r.rows, 10);
+    const items = JSON.parse(kv.get("boards:v1")).stocks.items;
+    const top = core.TOKENS.slice(0, 10).map((t) => t.s).sort();
+    assert.deepStrictEqual(items.map((x) => x.symbol).sort(), top, "the most traded come from the half asked a run earlier too");
+    assert.strictEqual(Object.keys(JSON.parse(kv.get("stocks:pools")).items).length, 60);
+  } finally {
+    globalThis.fetch = realFetch;
+  }
+});

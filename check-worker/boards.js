@@ -28,6 +28,12 @@ const UA = { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKi
 const KEY_BOARDS = 'boards:v1';
 const KEY_LIQ = 'boards:liq';
 const KEY_POOLS = 'stocks:pools';
+// Each stock's last board row, so a run that asks only half of the stocks still ranks all of them.
+const KEY_STOCK_ROWS = 'stocks:rows';
+// One run asks at most this many stocks: one DexScreener or GeckoTerminal call each, under the plan's 50 per run.
+// 25.11.2026: 60 stocks, so each run asks one half in turn and each stock is read every 30 minutes.
+const STOCKS_PER_RUN = 30;
+const ROW_KEEP_MS = 2 * 3600e3;
 
 // Tickers that collide with globally multi-chain assets (stablecoins, wrapped BTC/ETH,
 // blue-chip DeFi tokens available on many chains). These are excluded even when the
@@ -148,11 +154,15 @@ export function boardsFrom(tokens, liq) {
 
 // One DexScreener answer per stock -> the board: the ten most traded, by the
 // day's change. Each price comes from that stock's deepest honest pool.
+export function stockRow(pairs, t) {
+  const pick = pickPoolPrice(pairs, t.a);
+  return pick ? rowFromPair(t.s, t.a, pick.pair) : null;
+}
 export function stockBoard(answers, stocks) {
-  return stocks.map((t, i) => {
-    const pick = pickPoolPrice(answers[i], t.a);
-    return pick ? rowFromPair(t.s, t.a, pick.pair) : null;
-  }).filter(Boolean)
+  return boardFromRows(stocks.map((t, i) => stockRow(answers[i], t)));
+}
+export function boardFromRows(rows) {
+  return rows.filter(Boolean)
     .sort((a, b) => (b.volume24h || 0) - (a.volume24h || 0))
     .slice(0, STOCK_BOARD_ROWS)
     .sort((a, b) => (b.change24h || 0) - (a.change24h || 0));
@@ -234,7 +244,11 @@ export async function refreshStocks(env, now = Date.now()) {
   let dsDown = false;
   const note = (k) => { why[k] = (why[k] || 0) + 1; };
   const viaGT = async (t) => { await sleep(2100); try { note('gt'); return (await fallback('latest/dex/tokens/' + t.a)).pairs || []; } catch (e) { note('gt err'); return []; } };
-  const answers = await mapLimit(STOCKS, 6, async (t) => {
+  const parts = Math.ceil(STOCKS.length / STOCKS_PER_RUN), part = Math.floor(now / (15 * 60e3)) % parts;
+  const size = Math.ceil(STOCKS.length / parts);
+  const asked = (i) => Math.floor(i / size) === part;
+  const answers = await mapLimit(STOCKS, 6, async (t, i) => {
+    if (!asked(i)) return undefined;
     if (dsDown) return null;
     try { note('ds'); return (await getJson(DS + 'tokens/' + t.a)).pairs || []; }
     catch (e) { if (/http 429/.test(e.message)) dsDown = true; note((String(e.message).match(/http \d+/) || ['ds err'])[0]); return null; }
@@ -246,7 +260,17 @@ export async function refreshStocks(env, now = Date.now()) {
     if (spare) { console.log('stocks sources ' + JSON.stringify(why) + ' -> github copy'); return spare; }
   }
   for (let i = 0; i < STOCKS.length; i++) if (answers[i] === null) answers[i] = await viaGT(STOCKS[i]);
-  const rows = stockBoard(answers.map((list, i) => list.map((p) => stockFirst(p, STOCKS[i].a)).filter(Boolean)), STOCKS);
+  // A stock asked this run gets a new row; an empty answer (a refusal reads the same) keeps the last row up to 2 h.
+  const cache = (await readKV(env, KEY_STOCK_ROWS)) || {};
+  const rows = boardFromRows(STOCKS.map((t, i) => {
+    if (answers[i] !== undefined) {
+      const row = stockRow(answers[i].map((p) => stockFirst(p, t.a)).filter(Boolean), t);
+      if (row || answers[i].length || !cache[t.s]) cache[t.s] = { ts: now, row };
+    }
+    const c = cache[t.s];
+    return c && now - c.ts < ROW_KEEP_MS ? c.row : null;
+  }));
+  await env.QUOTA.put(KEY_STOCK_ROWS, JSON.stringify(cache));
   console.log('stocks sources ' + JSON.stringify(why));
   // A short board replaces a full one only when nothing better is coming: on 18.10.2026 a rate-limited run saved one
   // row (MRNAc) over ten. Fewer than 8 rows keeps the last board, which the page shows with its age.
@@ -261,7 +285,7 @@ export async function refreshStocks(env, now = Date.now()) {
   // A stock DexScreener didn't answer for this run keeps its last summary (first live run: 25 of 30).
   const last = ((await readKV(env, KEY_POOLS)) || {}).items || {};
   const pools = {};
-  core.TOKENS.forEach((t, i) => { const d = answers[i].length ? core.summarisePools(answers[i], t) : last[t.s]; if (d) pools[t.s] = d; });
+  core.TOKENS.forEach((t, i) => { const d = answers[i] && answers[i].length ? core.summarisePools(answers[i], t) : last[t.s]; if (d) pools[t.s] = d; });
   await env.QUOTA.put(KEY_POOLS, JSON.stringify({ ts: now, items: pools }));
   return { errors: [], rows: rows.length, pools: Object.keys(pools).length };
 }

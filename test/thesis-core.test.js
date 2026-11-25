@@ -13,11 +13,11 @@ function sum(weights) {
   return Object.values(weights).reduce((a, b) => a + b, 0);
 }
 
-test("the token list is 36 distinct Coinbase addresses", () => {
-  assert.equal(TOKENS.length, 36);
+test("the token list is 60 distinct Coinbase addresses", () => {
+  assert.equal(TOKENS.length, 60);
   const addrs = new Set(TOKENS.map((t) => t.a.toLowerCase()));
-  assert.equal(addrs.size, 36);
-  assert.equal(new Set(TOKENS.map((t) => t.s)).size, 36, "tickers are unique too");
+  assert.equal(addrs.size, 60);
+  assert.equal(new Set(TOKENS.map((t) => t.s)).size, 60, "tickers are unique too");
   for (const t of TOKENS) {
     assert.match(t.a, /^0xb2000000000000000000[0-9a-f]{20}$/i, t.s);
     assert.match(t.s, /c$/, t.s);

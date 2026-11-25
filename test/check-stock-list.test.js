@@ -29,7 +29,7 @@ test("the address pattern picks every Thesis address out of a page and nothing s
 test("listFromApi reads base.org's /api/stocks shape", () => {
   const json = { source: "api", stocks: TOKENS.map((t) => ({ ticker: t.s, address: t.a, name: t.co, color: "#000" })) };
   const list = listFromApi(json);
-  assert.equal(list.length, 36);
+  assert.equal(list.length, 60);
   assert.deepEqual(diff(list.map((s) => s.address), ours), { added: [], removed: [] });
 });
 

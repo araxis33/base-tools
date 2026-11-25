@@ -86,11 +86,11 @@
     ibm: "IBM", adobe: "Adobe", uber: "Uber", airbnb: "Airbnb", shopify: "Shopify",
     coinbase: "Coinbase", robinhood: "Robinhood", exxon: "ExxonMobil", chevron: "Chevron", starbucks: "Starbucks",
     mcdonalds: "McDonald's", micron: "Micron", tsmc: "TSMC", asml: "ASML",
-    snowflake: "Snowflake", crowdstrike: "CrowdStrike", cloudflare: "Cloudflare", 
+    snowflake: "Snowflake", crowdstrike: "CrowdStrike", cloudflare: "Cloudflare",
     lucid: "Lucid", alibaba: "Alibaba", baidu: "Baidu", spotify: "Spotify", ford: "Ford",
     goldman: "Goldman Sachs", blackrock: "BlackRock", amgen: "Amgen",
     caterpillar: "Caterpillar", lockheed: "Lockheed Martin", supermicro: "Supermicro",
-    coreweave: "CoreWeave", ionq: "IonQ", ,
+    coreweave: "CoreWeave", ionq: "IonQ",
     pltr: "Palantir", smci: "Supermicro"
   };
 
