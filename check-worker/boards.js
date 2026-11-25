@@ -264,18 +264,23 @@ export async function refreshStocks(env, now = Date.now()) {
   // board already saved, so a run that asks one half does not rank that half alone.
   const cache = (await readKV(env, KEY_STOCK_ROWS)) || {};
   const prev = ((await readKV(env, KEY_BOARDS)) || {}).stocks;
-  const seed = (b) => (b && Array.isArray(b.items) ? b.items : []).forEach((r) => {
-    if (r && r.symbol && !(cache[r.symbol] && cache[r.symbol].ts >= b.ts)) cache[r.symbol] = { ts: b.ts, row: r };
+  // The saved board only fills gaps (its time is the board's, not the row's); GitHub's copy is a fresh read of every row.
+  const seed = (b, fresh) => (b && Array.isArray(b.items) ? b.items : []).forEach((r) => {
+    if (r && r.symbol && (fresh ? !(cache[r.symbol] && cache[r.symbol].ts >= b.ts) : !cache[r.symbol])) cache[r.symbol] = { ts: b.ts, row: r };
   });
-  seed(prev);
+  seed(prev, false);
   // GitHub's copy (scripts/stocks-board.mjs) comes before GeckoTerminal: GeckoTerminal refuses the same shared
   // addresses, and its refusals read as "no pools" (18.10.2026: 36 stocks asked, 2 rows).
   if (dsDown) {
     calls++;
     const spare = await takeSpare(env);
     if (spare) {
-      seed(((await readKV(env, KEY_BOARDS)) || {}).stocks);
+      seed(((await readKV(env, KEY_BOARDS)) || {}).stocks, true);
       await env.QUOTA.put(KEY_STOCK_ROWS, JSON.stringify(cache));
+      // What DexScreener did answer before refusing is newer than GitHub's copy for those stocks.
+      const saved = (await readKV(env, KEY_POOLS)) || { items: {} };
+      core.TOKENS.forEach((t, i) => { if (answers[i] && answers[i].length) { const d = core.summarisePools(answers[i], t); if (d) saved.items[t.s] = d; } });
+      await env.QUOTA.put(KEY_POOLS, JSON.stringify(saved));
       console.log('stocks sources ' + JSON.stringify(why) + ' -> github copy'); return spare;
     }
   }
